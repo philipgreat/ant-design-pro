@@ -14,7 +14,7 @@ import { Layout } from 'antd';
 
 import HomeScreen from './HomeScreen.js'
 import LoginForm from './LoginForm.js'
-
+import  './LoginForm.less'
 const { Content, Footer } = Layout;
 
 class Launcher extends React.Component {
@@ -30,7 +30,7 @@ class Launcher extends React.Component {
 
         if(state.loggedIn){
 
-            return (<Layout>
+            return (<Layout style={ {height:'100%'}}>
                     <Content style={ {overflow: 'initial', height:'100%'}}>
                     <HomeScreen/>
                     </Content>
@@ -38,8 +38,8 @@ class Launcher extends React.Component {
               </Layout>);
         }
 
-        return (<Layout>
-                    <Content style={{ overflow: 'initial', height:'100%' }}>
+        return (<Layout style={ {height:'100%'}}>
+                    <Content style={{ textAlign: "center",overflow: 'initial', height:'100%' }}>
                     <LoginForm/>
                     </Content>
                 

@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 
 
 import { Layout } from 'antd';
-
+import styles  from './LoginForm.less'
 const { Content, Footer } = Layout;
 
 const FormItem = Form.Item;
@@ -35,8 +35,8 @@ class NormalLoginForm extends Component {
         //console.log("what the type",getFieldDecorator );
         return (
            
-    <div className="login">
-                <div className="login-form" >
+    <div className={styles.login}>
+                <div className={styles.loginForm} >
                     <div className="login-logo">
                         <span>跨境供应链管理系统</span>
                     </div>
