@@ -6,6 +6,8 @@ import './g2';
 // import { browserHistory } from 'dva/router';
 import './index.less';
 
+import LauncherModel from './launcher/Launcher.model'
+
 // 1. Initialize
 const app = dva({
   // history: browserHistory,
@@ -18,7 +20,7 @@ const app = dva({
 models.forEach((m) => {
   app.model(m);
 });
-
+app.model(LauncherModel);
 // 4. Router
 app.router(require('./router'));
 

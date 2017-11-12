@@ -1,5 +1,5 @@
 /* eslint-disable import/first */
-import '../src/polyfill';
+import '../coresrc/polyfill';
 import { jsdom } from 'jsdom';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

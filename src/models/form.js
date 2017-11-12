@@ -3,7 +3,7 @@ import { message } from 'antd';
 import { fakeSubmitForm } from '../services/api';
 
 export default {
-  namespace: 'form',
+  namespace: 'formx',
 
   state: {
     step: {

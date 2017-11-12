@@ -10,9 +10,9 @@
     "build": "roadhog build",
     "site": "roadhog-api-doc static",
     "analyze": "roadhog build --analyze",
-    "lint:style": "stylelint \"src/**/*.less\" --syntax less",
-    "lint": "eslint --ext .js src mock tests && npm run lint:style",
-    "lint:fix": "eslint --fix --ext .js src mock tests && npm run lint:style",
+    "lint:style": "stylelint \"coresrc/**/*.less\" --syntax less",
+    "lint": "eslint --ext .js coresrc mock tests && npm run lint:style",
+    "lint:fix": "eslint --fix --ext .js coresrc mock tests && npm run lint:style",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js",
     "test": "jest",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "antd": "^3.0.0-beta.1",
+    "axios": "^0.16.2",
     "babel-runtime": "^6.9.2",
     "classnames": "^2.2.5",
     "core-js": "^2.5.1",
@@ -30,6 +31,7 @@
     "lodash": "^4.17.4",
     "lodash-decorators": "^4.4.1",
     "lodash.clonedeep": "^4.5.0",
+    "keymaster": "^1.6.2",
     "moment": "^2.19.1",
     "numeral": "^2.0.6",
     "prop-types": "^15.5.10",
@@ -38,7 +40,8 @@
     "react-container-query": "^0.9.1",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.0.0",
-    "react-fittext": "^1.0.0"
+    "react-fittext": "^1.0.0",
+    "react-fontawesome": "^1.6.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
