@@ -47,6 +47,7 @@ class BasicLayout extends React.PureComponent {
   constructor(props) {
     super(props);
     // 把一级 Layout 的 children 作为菜单项
+    
     this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), []);
     this.state = {
       openKeys: this.getDefaultCollapsedSubMenus(props),
@@ -220,7 +221,7 @@ class BasicLayout extends React.PureComponent {
   }
   render() {
     const { currentUser, collapsed, fetchingNotices } = this.props;
-
+    console.log("test value",this.props)
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
         <Menu.Item disabled><Icon type="user" />个人中心</Menu.Item>
@@ -355,7 +356,7 @@ class BasicLayout extends React.PureComponent {
               }]}
               copyright={
                 <div>
-                  Copyright <Icon type="copyright" /> 2017 蚂蚁金服体验技术部出品
+                  Powered By Antd Pro <Icon type="copyright" /> 
                 </div>
               }
             />
@@ -379,4 +380,5 @@ export default connect(state => ({
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  ...state
 }))(BasicLayout);

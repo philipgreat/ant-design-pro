@@ -7,7 +7,7 @@ import './g2';
 import './index.less';
 
 import LauncherModel from './launcher/Launcher.model'
-
+import CommnunityModel from './bizcomponents/community/Community.model'
 // 1. Initialize
 const app = dva({
   // history: browserHistory,
@@ -21,6 +21,7 @@ models.forEach((m) => {
   app.model(m);
 });
 app.model(LauncherModel);
+app.model(CommnunityModel);
 // 4. Router
 app.router(require('./router'));
 

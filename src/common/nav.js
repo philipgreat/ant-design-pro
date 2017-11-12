@@ -1,4 +1,5 @@
 import BasicLayout from '../layouts/BasicLayout';
+import BizAppLayout from '../layouts/BizAppLayout';
 import UserLayout from '../layouts/UserLayout';
 import BlankLayout from '../layouts/BlankLayout';
 
@@ -33,16 +34,25 @@ import Login from '../routes/User/Login';
 import Register from '../routes/User/Register';
 import RegisterResult from '../routes/User/RegisterResult';
 
+
+import CommunityBizApp from '../bizcomponents/community/Community.app'
+
+
+
 const data = [{
-  component: BasicLayout,
-  layout: 'BasicLayout',
+  component: BizAppLayout,
+  layout: 'BizAppLayout',
   name: '首页', // for breadcrumb
   path: '',
   children: [{
-    name: 'Dashboard',
+    name: '仪表板',
     icon: 'dashboard',
     path: 'dashboard',
     children: [{
+      name: '测试页',
+      path: 'test',
+      component: CommunityBizApp,
+    },{
       name: '分析页',
       path: 'analysis',
       component: Analysis,
