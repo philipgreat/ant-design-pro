@@ -6,10 +6,10 @@ import Monitor from '../../routes/Dashboard/Monitor';
 import Workplace from '../../routes/Dashboard/Workplace';
 
 import CommunityBizApp from './Community.app'
-
+const path="CommunityBizApp"
 const data = [{
   component: CommunityBizApp,
-  layout: 'CommunityBizApp',
+  layout: path,
   name: '首页', // for breadcrumb
   path: '',
   children: [{
@@ -60,7 +60,7 @@ export function getNavData() {
 }
 
 
-const path="CommunityBizApp"
+
 export function getRouteData() {
   if (!data.some(item => item.layout === path) ||
       !(data.filter(item => item.layout === path)[0].children)) {
