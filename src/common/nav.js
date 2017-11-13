@@ -33,10 +33,10 @@ import Error from '../routes/Result/Error';
 import Login from '../routes/User/Login';
 import Register from '../routes/User/Register';
 import RegisterResult from '../routes/User/RegisterResult';
-
+import CommunityBizApp from '../bizcomponents/community/Community.app'
 const data = [{
-  component: BizAppLayout,
-  layout: 'BizAppLayout',
+  component: CommunityBizApp,
+  layout: 'CommunityBizApp',
   name: '首页', // for breadcrumb
   path: '',
   children: [{

@@ -8,7 +8,7 @@ import BizAppLayout from './layouts/BizAppLayout'
 import UserLayout from './layouts/UserLayout';
 
 import Launcher from './launcher/Launcher'
-
+import CommunityBizApp  from './bizcomponents/community/Community.app'
 function RouterConfig({ history }) {
   return (
     <LocaleProvider locale={enUS}>
@@ -16,9 +16,8 @@ function RouterConfig({ history }) {
         <Switch>
         <Route path="/user" component={UserLayout} />
         <Route path="/home" component={Launcher} />
-        
-          
-          <Route path="/" component={BizAppLayout} />
+ 
+          <Route path="/" component={CommunityBizApp} />
           <Redirect to="/" />
         </Switch>
       </Router>
