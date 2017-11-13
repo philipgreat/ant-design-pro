@@ -87,7 +87,7 @@ class CommunityBizApp extends React.PureComponent {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)];
     currentMenuSelectedKeys.splice(-1, 1);
     if (currentMenuSelectedKeys.length === 0) {
-      return ['dashboard'];
+      return ['community/dashboard'];
     }
     return currentMenuSelectedKeys;
   }
@@ -139,7 +139,7 @@ class CommunityBizApp extends React.PureComponent {
                 {icon}<span>{item.name}</span>
               </a>
             ) : (
-              <Link to={itemPath} target={item.target}>
+              <Link to={"/community"+itemPath} target={item.target}>
                 {icon}<span>{item.name}</span>
               </Link>
             )
@@ -151,10 +151,11 @@ class CommunityBizApp extends React.PureComponent {
   getPageTitle() {
     const { location } = this.props;
     const { pathname } = location;
-    let title = 'Ant Design Pro';
+    let title = '供应链系统';
     getRouteData().forEach((item) => {
+      console.log("itempath", item.path, pathname);
       if (item.path === pathname) {
-        title = `${item.name} - Ant Design Pro`;
+        title = `${item.name} - 供应链系统`;
       }
     });
     return title;
@@ -337,7 +338,7 @@ class CommunityBizApp extends React.PureComponent {
                   )
                 )
               }
-              <Redirect to="/dashboard/analysis" />
+             
             </Switch>
             <GlobalFooter
               links={[{

@@ -17,8 +17,8 @@ function RouterConfig({ history }) {
         <Route path="/user" component={UserLayout} />
         <Route path="/home" component={Launcher} />
  
-          <Route path="/" component={CommunityBizApp} />
-          <Redirect to="/" />
+          <Route path="/community" component={CommunityBizApp} />
+          <Redirect to="/community" />
         </Switch>
       </Router>
     </LocaleProvider>

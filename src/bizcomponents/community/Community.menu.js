@@ -11,7 +11,7 @@ const data = [{
   component: CommunityBizApp,
   layout: path,
   name: '首页', // for breadcrumb
-  path: '',
+  path: '/community',
   children: [{
     name: '仪表板',
     icon: 'dashboard',
@@ -21,8 +21,8 @@ const data = [{
       path: 'test',
       component: Monitor,
     }, {
-      name: '分析页11',
-      path: 'analysis11',
+      name: '分析页',
+      path: 'analysis',
       component: Workplace,
     }, {
       name: '监控页',
@@ -37,13 +37,14 @@ const data = [{
 }];
 
 
-function getPlainNode(nodeList, parentPath = '') {
+function getPlainNode(nodeList, parentPath = 'community') {
   const arr = [];
   nodeList.forEach((node) => {
     const item = node;
-    item.path = `${parentPath}/${item.path || ''}`.replace(/\/+/g, '/');
+    item.path = `/${parentPath}/${item.path || ''}`.replace(/\/+/g, '/');
     item.exact = true;
     if (item.children && !item.component) {
+      //console.log("item.path",item.path)
       arr.push(...getPlainNode(item.children, item.path));
     } else {
       if (item.children && item.component) {
