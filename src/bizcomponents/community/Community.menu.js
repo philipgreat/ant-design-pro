@@ -7,11 +7,12 @@ import Workplace from '../../routes/Dashboard/Workplace';
 
 import CommunityBizApp from './Community.app'
 const path="CommunityBizApp"
+const pathHeader='community';
 const data = [{
   component: CommunityBizApp,
   layout: path,
   name: '首页', // for breadcrumb
-  path: '/community',
+  path: '/'+pathHeader,
   children: [{
     name: '仪表板',
     icon: 'dashboard',
@@ -68,7 +69,7 @@ export function getRouteData() {
     return null;
   }
   const dataList = cloneDeep(data.filter(item => item.layout === path)[0]);
-  const nodeList = getPlainNode(dataList.children);
+  const nodeList = getPlainNode(dataList.children,pathHeader);
   return nodeList;
 }
 export default data;
