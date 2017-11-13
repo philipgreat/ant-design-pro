@@ -1,13 +1,12 @@
 
 import pathToRegexp from 'path-to-regexp';
 import { routerRedux } from 'dva/router';
-import key from 'keymaster';
-import {getNavData} from './nav'
+//import key from 'keymaster';
 export default {
 
   namespace: 'community',
 
-  state: {__menu:getNavData()},
+  state: {},
 
   subscriptions: {
     
@@ -24,6 +23,7 @@ export default {
 
         if(newstate){
           dispatch({type:"updateState",payload:newstate});
+   
           return;
         }
         const match = pathToRegexp('/community/dash/:id').exec(pathname);
@@ -40,9 +40,8 @@ export default {
 
   effects: {
     *view({ payload }, { call, put }) { 
-      //CommunityService
       yield put({type:"showLoading",payload:{loading:true}});
-      const data = yield call(CommunityService.view,payload.id);
+      const data = yield call(Community.view,payload.id);
       console.log("this is the data id: ", data.id)
       yield put({type:"updateState",payload:data});
     },

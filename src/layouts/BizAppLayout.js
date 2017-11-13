@@ -47,16 +47,16 @@ class BizAppLayout extends React.PureComponent {
   constructor(props) {
     super(props);
     // 把一级 Layout 的 children 作为菜单项
-    const { location,menu } = this.props;
-    this.menus = menu.reduce((arr, current) => arr.concat(current.children), []);
+    
+    this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), []);
     this.state = {
       openKeys: this.getDefaultCollapsedSubMenus(props),
     };
   }
   getChildContext() {
-    const { location,menu } = this.props;
+    const { location } = this.props;
     const routeData = getRouteData('BizAppLayout');
-    const menuData = this.props.menu.reduce((arr, current) => arr.concat(current.children), []);
+    const menuData = getNavData().reduce((arr, current) => arr.concat(current.children), []);
     const breadcrumbNameMap = {};
     routeData.concat(menuData).forEach((item) => {
       breadcrumbNameMap[item.path] = item.name;
@@ -380,5 +380,5 @@ export default connect(state => ({
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
-  menu:state.community.__menu
+  ...state
 }))(BizAppLayout);

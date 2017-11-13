@@ -4,7 +4,7 @@ import Monitor from '../../routes/Dashboard/Monitor';
 import Workplace from '../../routes/Dashboard/Workplace';
 
 import BizAppLayout from '../../layouts/BizAppLayout';
-
+import CommunityBizApp from './Community.app'
 
 const data = [{
   component: BizAppLayout,
@@ -16,9 +16,13 @@ const data = [{
     icon: 'dashboard',
     path: 'dashboard',
     children: [{
-      name: '分析页',
-      path: 'analysis',
-      component: Analysis,
+      name: '测试页',
+      path: 'test',
+      component: CommunityBizApp,
+    }, {
+      name: '分析页11',
+      path: 'analysis11',
+      component: Workplace,
     }, {
       name: '监控页',
       path: 'monitor',

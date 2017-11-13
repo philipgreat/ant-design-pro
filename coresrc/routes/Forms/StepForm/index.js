@@ -65,6 +65,6 @@ class StepForm extends PureComponent {
 }
 
 export default connect(state => ({
-  stepFormData: state.form.step,
-  submitting: state.form.stepFormSubmitting,
+  stepFormData: state.formtest.step,
+  submitting: state.formtest.stepFormSubmitting,
 }))(StepForm);

@@ -4,7 +4,6 @@ import { LocaleProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import enUS from 'antd/lib/locale-provider/en_US';
 import BasicLayout from './layouts/BasicLayout';
-import BizAppLayout from './layouts/BizAppLayout';
 import UserLayout from './layouts/UserLayout';
 
 import Launcher from './launcher/Launcher'
@@ -16,7 +15,9 @@ function RouterConfig({ history }) {
         <Switch>
         <Route path="/user" component={UserLayout} />
         <Route path="/home" component={Launcher} />
-          <Route path="/" component={BizAppLayout} />
+        
+          
+          <Route path="/" component={BasicLayout} />
           <Redirect to="/" />
         </Switch>
       </Router>

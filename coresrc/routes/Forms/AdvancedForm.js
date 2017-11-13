@@ -50,7 +50,7 @@ class AdvancedForm extends PureComponent {
         if (!error) {
           // submit the values
           dispatch({
-            type: 'form/submitAdvancedForm',
+            type: 'formtest/submitStepFormAdvancedForm',
             payload: values,
           });
         }
@@ -270,5 +270,5 @@ class AdvancedForm extends PureComponent {
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-  submitting: state.form.advancedFormSubmitting,
+  submitting: state.formtest.advancedFormSubmitting,
 }))(Form.create()(AdvancedForm));

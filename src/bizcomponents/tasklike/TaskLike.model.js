@@ -1,7 +1,7 @@
 
 import pathToRegexp from 'path-to-regexp';
 import { routerRedux } from 'dva/router';
-import key from 'keymaster';
+//import key from 'keymaster';
 export default {
 
   namespace: 'taskLike',
@@ -40,9 +40,8 @@ export default {
 
   effects: {
     *view({ payload }, { call, put }) { 
-      //CommunityService
       yield put({type:"showLoading",payload:{loading:true}});
-      const data = yield call(CommunityService.view,payload.id);
+      const data = yield call(TaskLike.view,payload.id);
       console.log("this is the data id: ", data.id)
       yield put({type:"updateState",payload:data});
     },

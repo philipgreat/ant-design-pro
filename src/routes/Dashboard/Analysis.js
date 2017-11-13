@@ -90,6 +90,7 @@ export default class Analysis extends Component {
   }
 
   render() {
+    console.log("Ami.......................")
     const { rangePickerValue, salesType, currentTabKey, loading } = this.state;
     const { chart } = this.props;
     const {
@@ -217,6 +218,8 @@ export default class Analysis extends Component {
       style: { marginBottom: 24 },
     };
 
+
+    console.log("Am I running??????")
     return (
       <div>
         <Row gutter={24}>

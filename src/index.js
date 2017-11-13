@@ -15,13 +15,13 @@ const app = dva({
 
 // 2. Plugins
 // app.use({});
-
+app.model(LauncherModel);
+app.model(CommnunityModel);
 // 3. Model move to router
 models.forEach((m) => {
   app.model(m);
 });
-app.model(LauncherModel);
-app.model(CommnunityModel);
+
 // 4. Router
 app.router(require('./router'));
 

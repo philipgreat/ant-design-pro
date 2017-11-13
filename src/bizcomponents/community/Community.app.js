@@ -7,6 +7,10 @@ import { bindActionCreators } from 'redux';
 
 
 import { Layout } from 'antd';
+import '../../style/index.less';
+
+import CommunityBizSider from './Community.sider'
+import CommunityBizHeader from './Community.header'
 
 const { Sider, Header, Content, Footer } = Layout;
 
@@ -24,7 +28,18 @@ class CommunityBizApp extends Component {
     render() {
 
         return (
-            <h1>SHOWME</h1>
+            <Layout className="ant-layout-has-sider">
+                 <CommunityBizSider path={this.props.location.pathname} collapsed={this.state.collapsed}>left sidebar</CommunityBizSider>
+                       
+                <Layout>
+                    <CommunityBizHeader collapsed={this.state.collapsed} toggle={this.toggle}>header</CommunityBizHeader>
+                    <Layout>
+                        <Content>{this.props.children}</Content>
+                        
+                    </Layout>
+                    
+                </Layout>
+            </Layout>
         );
     }
 }

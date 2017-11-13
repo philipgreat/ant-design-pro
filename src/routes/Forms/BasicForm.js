@@ -12,7 +12,7 @@ const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
 @connect(state => ({
-  submitting: state.form.regularFormSubmitting,
+  submitting: state.formtest.regularFormSubmitting,
 }))
 @Form.create()
 export default class BasicForms extends PureComponent {
@@ -21,7 +21,7 @@ export default class BasicForms extends PureComponent {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         this.props.dispatch({
-          type: 'form/submitRegularForm',
+          type: 'formtest/submitRegularForm',
           payload: values,
         });
       }

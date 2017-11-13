@@ -27,7 +27,7 @@ export default class TableForm extends PureComponent {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         this.props.dispatch({
-          type: 'form/submit',
+          type: 'formtest/submitStepForm',
           payload: values,
         });
       }

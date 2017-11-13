@@ -14,7 +14,7 @@ export default ({ formItemLayout, form, data, dispatch, submitting }) => {
     validateFields((err, values) => {
       if (!err) {
         dispatch({
-          type: 'form/submitStepForm',
+          type: 'formtest/submitStepForm',
           payload: {
             ...data,
             ...values,
