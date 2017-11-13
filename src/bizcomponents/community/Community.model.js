@@ -17,13 +17,11 @@ export default {
         if (!pathname.startsWith("/community")) {
           return;
         }
-        
-        
+ 
         const newstate = location.state;
 
         if(newstate){
           dispatch({type:"updateState",payload:newstate});
-   
           return;
         }
         const match = pathToRegexp('/community/dash/:id').exec(pathname);

@@ -1,4 +1,5 @@
 import BasicLayout from '../layouts/BasicLayout';
+import BizAppLayout from '../layouts/BizAppLayout'
 import UserLayout from '../layouts/UserLayout';
 import BlankLayout from '../layouts/BlankLayout';
 
@@ -34,8 +35,8 @@ import Register from '../routes/User/Register';
 import RegisterResult from '../routes/User/RegisterResult';
 
 const data = [{
-  component: BasicLayout,
-  layout: 'BasicLayout',
+  component: BizAppLayout,
+  layout: 'BizAppLayout',
   name: '首页', // for breadcrumb
   path: '',
   children: [{
