@@ -1,13 +1,43 @@
 
 import cloneDeep from 'lodash/cloneDeep';
-
-import Analysis from '../../routes/Dashboard/Analysis';
-import Monitor from '../../routes/Dashboard/Monitor';
-import Workplace from '../../routes/Dashboard/Workplace';
-
+import CommunityTable from './Community.table';
 import CommunityBizApp from './Community.app'
 const path="CommunityBizApp"
 const pathHeader='community';
+const data = [{
+  component: CommunityBizApp,
+  layout: path,
+  name: '首页', // for breadcrumb
+  path: '/'+pathHeader,
+  children: [{
+    name: '仪表板',
+    icon: 'CommunityTable',
+    path: 'list',
+    children: [{
+      name: '列表页',
+      path: 'invitationCodeList',
+      component: CommunityTable,
+    }],
+  }],
+}];
+
+
+/*
+
+
+import cloneDeep from 'lodash/cloneDeep';
+
+import Analysis from '../../routes/Dashboard/Analysis';
+import Monitor from '../../routes/Dashboard/Monitor';
+
+import BasicList from '../../routes/List/BasicList';
+
+
+import SearchList from '../../routes/List/SearchList';
+
+import Workplace from './Workplace';
+
+
 const data = [{
   component: CommunityBizApp,
   layout: path,
@@ -24,7 +54,7 @@ const data = [{
     }, {
       name: '分析页',
       path: 'analysis',
-      component: Workplace,
+      component: Analysis,
     }, {
       name: '监控页',
       path: 'monitor',
@@ -33,10 +63,24 @@ const data = [{
       name: '工作台',
       path: 'workplace',
       component: Workplace,
+    }, {
+      name: '标准列表',
+      path: 'basic-list',
+      component: BasicList,
+    },{
+      name: '搜索列表',
+      path: 'search-list',
+      component: SearchList,
+    },{
+      name: '列表页',
+      path: 'table-list',
+      component: TableList,
     }],
   }],
 }];
 
+
+*/
 
 function getPlainNode(nodeList, parentPath = 'community') {
   const arr = [];
