@@ -11,11 +11,23 @@ const data = [{
   path: '/'+pathHeader,
   children: [{
     name: '仪表板',
-    icon: 'CommunityTable',
+    icon: 'dashboard',
     path: 'list',
     children: [{
-      name: '列表页',
+      name: '邀请码列表',
       path: 'invitationCodeList',
+      component: CommunityTable,
+    },{
+      name: '社区会员列表',
+      path: 'communityUserList',
+      component: CommunityTable,
+    },{
+      name: '帖子列表',
+      path: 'threadList',
+      component: CommunityTable,
+    },{
+      name: '任务列表',
+      path: 'taskList',
       component: CommunityTable,
     }],
   }],
