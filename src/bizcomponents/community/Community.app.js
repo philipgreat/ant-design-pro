@@ -16,15 +16,12 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 
 
-
-const { Header, Sider, Content } = Layout;
-const { SubMenu } = Menu;
-
-
-import CommunityTable from './Community.search'
 import CommunityUserSearch from '../communityuser/CommunityUser.search'
 import InvitationCodeSearch from '../invitationcode/InvitationCode.search'
 import ThreadSearch from '../thread/Thread.search'
+
+const { Header, Sider, Content } = Layout;
+const { SubMenu } = Menu;
 
 
 
@@ -121,7 +118,28 @@ class CommunityBizApp extends React.PureComponent {
     
     return connect(state => ({
       rule: state.rule,
-      data: state.community.invitationCodeList
+      data: state.community.invitationCodeList,
+      loading: state.community.loading
+    }))(InvitationCodeSearch);
+  }
+
+  getCommunityUserSearch() {
+    
+    
+    return connect(state => ({
+      rule: state.rule,
+      data: state.community.communityUserList,
+      loading: state.community.loading
+    }))(InvitationCodeSearch);
+  }
+
+  getThreadSearch() {
+    
+    
+    return connect(state => ({
+      rule: state.rule,
+      data: state.community.threadList,
+      loading: state.community.loading
     }))(InvitationCodeSearch);
   }
 
@@ -148,7 +166,7 @@ class CommunityBizApp extends React.PureComponent {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices } = this.props;
+    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -180,7 +198,7 @@ class CommunityBizApp extends React.PureComponent {
             selectedKeys={this.getCurrentMenuSelectedKeys()}
             style={{ margin: '16px 0', width: '100%' }}
           >
-            {this.getNavMenuItems("C000001")}
+            {this.getNavMenuItems(this.props.community.id)}
           </Menu>
         </Sider>
         <Layout>
@@ -194,8 +212,8 @@ class CommunityBizApp extends React.PureComponent {
             <Switch>
             
             <Route path="/community/:id/list/invitationCodeList" component={this.getInvitationCodeSearch()} />
-            <Route path="/community/:id/list/communityUserList" component={CommunityUserSearch} />
-            <Route path="/community/:id/list/threadList" component={ThreadSearch} />
+            <Route path="/community/:id/list/communityUserList" component={this.getCommunityUserSearch()} />
+            <Route path="/community/:id/list/threadList" component={this.getThreadSearch()} />
             
             </Switch>
            

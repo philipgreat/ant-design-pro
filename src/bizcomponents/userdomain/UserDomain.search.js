@@ -11,9 +11,7 @@ const FormItem = Form.Item;
 const { Option } = Select;
 const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',');
 
-@connect(state => ({
-  rule: state.rule,
-}))
+
 @Form.create()
 export default class UserDomainSearch extends PureComponent {
   state = {
@@ -26,9 +24,7 @@ export default class UserDomainSearch extends PureComponent {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch({
-      type: 'rule/fetch',
-    });
+   
   }
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
@@ -266,7 +262,7 @@ export default class UserDomainSearch extends PureComponent {
   }
 
   render() {
-    const { rule: { loading: ruleLoading, data } } = this.props;
+    const { data,loading } = this.props;
     const { selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (
@@ -300,7 +296,7 @@ export default class UserDomainSearch extends PureComponent {
             </div>
             <UserDomainTable
               selectedRows={selectedRows}
-              loading={ruleLoading}
+              loading={loading}
               data={data}
               onSelectRow={this.handleSelectRows}
               onChange={this.handleStandardTableChange}

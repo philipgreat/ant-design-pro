@@ -24,7 +24,7 @@ export default class InvitationCodeSearch extends PureComponent {
 
   componentDidMount() {
     const { dispatch } = this.props;
-
+   
   }
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
