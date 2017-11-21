@@ -24,7 +24,7 @@ export default class InvitationCodeSearch extends PureComponent {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    
+
   }
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
@@ -262,7 +262,7 @@ export default class InvitationCodeSearch extends PureComponent {
   }
 
   render() {
-    const { data } = this.props;
+    const { data,loading } = this.props;
     const { selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (
@@ -296,7 +296,7 @@ export default class InvitationCodeSearch extends PureComponent {
             </div>
             <InvitationCodeTable
               selectedRows={selectedRows}
-              loading={false}
+              loading={loading}
               data={data}
               onSelectRow={this.handleSelectRows}
               onChange={this.handleStandardTableChange}
