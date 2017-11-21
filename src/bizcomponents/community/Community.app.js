@@ -12,8 +12,6 @@ import styles from './Community.app.less';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
-//import { getNavData,getRouteData } from './Community.menu';
-
 
 import InvitationCodeSearch from '../invitationcode/InvitationCode.search'
 
@@ -30,6 +28,7 @@ import TaskSearch from '../task/Task.search'
 import GroupPageSearch from '../grouppage/GroupPage.search'
 
 import ThreadSearch from '../thread/Thread.search'
+
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -59,7 +58,7 @@ const query = {
 
 class CommunityBizApp extends React.PureComponent {
   
-  constructor(props) {
+ constructor(props) {
     super(props);
     // 把一级 Layout 的 children 作为菜单项
     
@@ -107,64 +106,61 @@ class CommunityBizApp extends React.PureComponent {
         <Icon type='dashboard' />
         <span>仪表板</span>
       </span>} >
-      <Menu.Item >
       
-        <Link to={"/community/"+objectId+"/list/invitationCodeList"}>invitationCode</Link>
+      
+      <Menu.Item >   
+        <Link to={"/community/"+objectId+"/list/invitationCodeList"}>InvitationCode</Link>
       </Menu.Item>
   
 
-      <Menu.Item >
-      
-        <Link to={"/community/"+objectId+"/list/homePageList"}>homePage</Link>
+      <Menu.Item >   
+        <Link to={"/community/"+objectId+"/list/homePageList"}>HomePage</Link>
       </Menu.Item>
   
 
-      <Menu.Item >
-      
-        <Link to={"/community/"+objectId+"/list/encyclopediaItemList"}>encyclopediaItem</Link>
+      <Menu.Item >   
+        <Link to={"/community/"+objectId+"/list/encyclopediaItemList"}>EncyclopediaItem</Link>
       </Menu.Item>
   
 
-      <Menu.Item >
-      
-        <Link to={"/community/"+objectId+"/list/taskPageList"}>taskPage</Link>
+      <Menu.Item >   
+        <Link to={"/community/"+objectId+"/list/taskPageList"}>TaskPage</Link>
       </Menu.Item>
   
 
-      <Menu.Item >
-      
-        <Link to={"/community/"+objectId+"/list/communityUserList"}>communityUser</Link>
+      <Menu.Item >   
+        <Link to={"/community/"+objectId+"/list/communityUserList"}>CommunityUser</Link>
       </Menu.Item>
   
 
-      <Menu.Item >
-      
-        <Link to={"/community/"+objectId+"/list/taskList"}>task</Link>
+      <Menu.Item >   
+        <Link to={"/community/"+objectId+"/list/taskList"}>Task</Link>
       </Menu.Item>
   
 
-      <Menu.Item >
-      
-        <Link to={"/community/"+objectId+"/list/groupPageList"}>groupPage</Link>
+      <Menu.Item >   
+        <Link to={"/community/"+objectId+"/list/groupPageList"}>GroupPage</Link>
       </Menu.Item>
   
 
-      <Menu.Item >
-      
-        <Link to={"/community/"+objectId+"/list/threadList"}>thread</Link>
+      <Menu.Item >   
+        <Link to={"/community/"+objectId+"/list/threadList"}>Thread</Link>
       </Menu.Item>
   
-      
+  
+ 
       
       </SubMenu>
 
     );
 
   }
-  
+
+
+
+
   getInvitationCodeSearch() {
-    
-    
+ 
     return connect(state => ({
       rule: state.rule,
       data: state.community.invitationCodeList,
@@ -174,8 +170,7 @@ class CommunityBizApp extends React.PureComponent {
   
 
   getHomePageSearch() {
-    
-    
+ 
     return connect(state => ({
       rule: state.rule,
       data: state.community.homePageList,
@@ -185,8 +180,7 @@ class CommunityBizApp extends React.PureComponent {
   
 
   getEncyclopediaItemSearch() {
-    
-    
+ 
     return connect(state => ({
       rule: state.rule,
       data: state.community.encyclopediaItemList,
@@ -196,8 +190,7 @@ class CommunityBizApp extends React.PureComponent {
   
 
   getTaskPageSearch() {
-    
-    
+ 
     return connect(state => ({
       rule: state.rule,
       data: state.community.taskPageList,
@@ -207,8 +200,7 @@ class CommunityBizApp extends React.PureComponent {
   
 
   getCommunityUserSearch() {
-    
-    
+ 
     return connect(state => ({
       rule: state.rule,
       data: state.community.communityUserList,
@@ -218,8 +210,7 @@ class CommunityBizApp extends React.PureComponent {
   
 
   getTaskSearch() {
-    
-    
+ 
     return connect(state => ({
       rule: state.rule,
       data: state.community.taskList,
@@ -229,8 +220,7 @@ class CommunityBizApp extends React.PureComponent {
   
 
   getGroupPageSearch() {
-    
-    
+ 
     return connect(state => ({
       rule: state.rule,
       data: state.community.groupPageList,
@@ -240,16 +230,17 @@ class CommunityBizApp extends React.PureComponent {
   
 
   getThreadSearch() {
-    
-    
+ 
     return connect(state => ({
       rule: state.rule,
       data: state.community.threadList,
       loading: state.community.loading
     }))(ThreadSearch);
   }
-
-  getPageTitle() {
+  
+  
+  
+getPageTitle() {
     const { location } = this.props;
     const { pathname } = location;
     let title = '供应链系统';
@@ -316,23 +307,25 @@ class CommunityBizApp extends React.PureComponent {
             /></Header>
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
-            
-            <Route path="/community/:id/list/invitationCodeList" component={this.getInvitationCodeSearch()} />
-            
-                      <Route path="/community/:id/list/homePageList" component={this.getHomePageSearch()} />
-            
-                      <Route path="/community/:id/list/encyclopediaItemList" component={this.getEncyclopediaItemSearch()} />
-            
-                      <Route path="/community/:id/list/taskPageList" component={this.getTaskPageSearch()} />
-            
-                      <Route path="/community/:id/list/communityUserList" component={this.getCommunityUserSearch()} />
-            
-                      <Route path="/community/:id/list/taskList" component={this.getTaskSearch()} />
-            
-                      <Route path="/community/:id/list/groupPageList" component={this.getGroupPageSearch()} />
-            
-                      <Route path="/community/:id/list/threadList" component={this.getThreadSearch()} />
-                              </Switch>
+    
+          <Route path="/community/:id/list/invitationCodeList" component={this.getInvitationCodeSearch()} />
+
+          <Route path="/community/:id/list/homePageList" component={this.getHomePageSearch()} />
+
+          <Route path="/community/:id/list/encyclopediaItemList" component={this.getEncyclopediaItemSearch()} />
+
+          <Route path="/community/:id/list/taskPageList" component={this.getTaskPageSearch()} />
+
+          <Route path="/community/:id/list/communityUserList" component={this.getCommunityUserSearch()} />
+
+          <Route path="/community/:id/list/taskList" component={this.getTaskSearch()} />
+
+          <Route path="/community/:id/list/groupPageList" component={this.getGroupPageSearch()} />
+
+          <Route path="/community/:id/list/threadList" component={this.getThreadSearch()} />
+              
+             
+</Switch>
            
           </Content>
         </Layout>
@@ -356,3 +349,6 @@ export default connect(state => ({
   notices: state.global.notices,
   ...state
 }))(CommunityBizApp);
+
+
+
