@@ -12,7 +12,8 @@ const data = [{
   children: [{
     name: '仪表板',
     icon: 'dashboard',
-    path: 'list',
+    path: '/:id/list',
+    exact: false,
     children: [{
       name: '邀请码列表',
       path: 'invitationCodeList',
@@ -32,6 +33,10 @@ const data = [{
     }],
   }],
 }];
+
+
+
+
 
 
 /*

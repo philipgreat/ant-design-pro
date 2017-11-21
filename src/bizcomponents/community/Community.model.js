@@ -1,6 +1,7 @@
 
 import pathToRegexp from 'path-to-regexp';
 import { routerRedux } from 'dva/router';
+import CommunityService from './Community.service'
 //import key from 'keymaster';
 export default {
 
@@ -24,7 +25,7 @@ export default {
           dispatch({type:"updateState",payload:newstate});
           return;
         }
-        const match = pathToRegexp('/community/dash/:id').exec(pathname);
+        const match = pathToRegexp('/community/:id/list/:listName').exec(pathname);
         if (!match) {
           return;
           // dispatch action with userId
@@ -39,7 +40,7 @@ export default {
   effects: {
     *view({ payload }, { call, put }) { 
       yield put({type:"showLoading",payload:{loading:true}});
-      const data = yield call(Community.view,payload.id);
+      const data = yield call(CommunityService.view,payload.id);
       console.log("this is the data id: ", data.id)
       yield put({type:"updateState",payload:data});
     },
