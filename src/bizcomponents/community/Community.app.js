@@ -127,8 +127,13 @@ class CommunityBizApp extends React.PureComponent {
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     });
   }
- 
-
+   toggle = () => {
+    const { collapsed } = this.props;
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: !collapsed,
+    });
+  }
 
   render() {
     const { currentUser, collapsed, fetchingNotices } = this.props;
@@ -170,7 +175,12 @@ class CommunityBizApp extends React.PureComponent {
           </Menu>
         </Sider>
         <Layout>
-          
+        <Header className={styles.header}>
+            <Icon
+              className={styles.trigger}
+              type={collapsed ? 'menu-unfold' : 'menu-fold'}
+              onClick={this.toggle}
+            /></Header>
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
             
