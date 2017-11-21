@@ -5,6 +5,26 @@ import { Table, Alert, Badge } from 'antd';
 import styles from './CommunityUser.table.less';
 
 
+
+const columns = [
+{title:'Id',dataIndex: 'id'},
+{title:'Mobile',dataIndex: 'mobile'},
+{title:'Nick Name',dataIndex: 'nickName'},
+{title:'Gender',dataIndex: 'gender'},
+{title:'User Type',dataIndex: 'userType'},
+{title:'Avatar',dataIndex: 'avatar'},
+{title:'Birthday',dataIndex: 'birthday'},
+{title:'Experience Point',dataIndex: 'experiencePoint'},
+{title:'Bonus Point',dataIndex: 'bonusPoint'},
+{title:'City',dataIndex: 'city'},
+{title:'Status',dataIndex: 'status'},
+{title:'Hide Info',dataIndex: 'hideInfo'},
+{title:'Administrator',dataIndex: 'administrator'},
+{title:'Community',dataIndex: 'community'},
+
+      
+    ];
+
 class CommunityUserTable extends PureComponent {
   state = {
     selectedRowKeys: []
@@ -42,30 +62,7 @@ class CommunityUserTable extends PureComponent {
     const { data } = this.props;
 
    
-    const columns = [
-      {
-        title: '编号',
-        dataIndex: 'id',
-      },
-      {
-        title: '名字',
-        dataIndex: 'name',
-      },
-      {
-        title: '邀请码',
-        dataIndex: 'code',
-      },
-      {
-        title: '已经使用',
-        dataIndex: 'used',
-        render: (text, record) => <a>{record.used ? "是" : "否"}</a>
-      }, {
-        title: 'CreateTime',
-        dataIndex: 'createTime',
-        key: 'createTime',
-
-       }
-    ];
+    
 
     const paginationProps = {
       showSizeChanger: true,

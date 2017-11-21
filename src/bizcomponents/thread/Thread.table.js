@@ -5,6 +5,44 @@ import { Table, Alert, Badge } from 'antd';
 import styles from './Thread.table.less';
 
 
+
+const columns = [
+{title:'Id',dataIndex: 'id'},
+{title:'Title',dataIndex: 'title'},
+{title:'Display Order',dataIndex: 'displayOrder'},
+{title:'Create Time',dataIndex: 'createTime'},
+{title:'Event Time',dataIndex: 'eventTime'},
+{title:'Registration Stop Time',dataIndex: 'registrationStopTime'},
+{title:'Event Location',dataIndex: 'eventLocation'},
+{title:'City',dataIndex: 'city'},
+{title:'Community Group',dataIndex: 'communityGroup'},
+{title:'Thread Type',dataIndex: 'threadType'},
+{title:'Community',dataIndex: 'community'},
+{title:'Creator',dataIndex: 'creator'},
+{title:'Home Page',dataIndex: 'homePage'},
+{title:'Group Page',dataIndex: 'groupPage'},
+{title:'Video Url',dataIndex: 'videoUrl'},
+{title:'Cover Image Path1',dataIndex: 'coverImagePath1'},
+{title:'Cover Image Path2',dataIndex: 'coverImagePath2'},
+{title:'Cover Image Path3',dataIndex: 'coverImagePath3'},
+{title:'Image Path1',dataIndex: 'imagePath1'},
+{title:'Image Path2',dataIndex: 'imagePath2'},
+{title:'Image Path3',dataIndex: 'imagePath3'},
+{title:'Image Path4',dataIndex: 'imagePath4'},
+{title:'Image Path5',dataIndex: 'imagePath5'},
+{title:'Content',dataIndex: 'content'},
+{title:'Approval',dataIndex: 'approval'},
+{title:'Canceling',dataIndex: 'canceling'},
+{title:'Completion',dataIndex: 'completion'},
+{title:'Hiding',dataIndex: 'hiding'},
+{title:'Like By Current User',dataIndex: 'likeByCurrentUser'},
+{title:'Replied By Current User',dataIndex: 'repliedByCurrentUser'},
+{title:'Registered By Current User',dataIndex: 'registeredByCurrentUser'},
+{title:'Current Status',dataIndex: 'currentStatus'},
+
+      
+    ];
+
 class ThreadTable extends PureComponent {
   state = {
     selectedRowKeys: []
@@ -42,30 +80,7 @@ class ThreadTable extends PureComponent {
     const { data } = this.props;
 
    
-    const columns = [
-      {
-        title: '编号',
-        dataIndex: 'id',
-      },
-      {
-        title: '名字',
-        dataIndex: 'name',
-      },
-      {
-        title: '邀请码',
-        dataIndex: 'code',
-      },
-      {
-        title: '已经使用',
-        dataIndex: 'used',
-        render: (text, record) => <a>{record.used ? "是" : "否"}</a>
-      }, {
-        title: 'CreateTime',
-        dataIndex: 'createTime',
-        key: 'createTime',
-
-       }
-    ];
+    
 
     const paginationProps = {
       showSizeChanger: true,

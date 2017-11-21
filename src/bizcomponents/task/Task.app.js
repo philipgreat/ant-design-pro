@@ -1,56 +1,259 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Layout, Menu, Icon, Avatar, Dropdown, Tag, message, Spin } from 'antd';
+import DocumentTitle from 'react-document-title';
+import { connect } from 'dva';
+import { Link, Route, Redirect, Switch } from 'dva/router';
+import moment from 'moment';
+import groupBy from 'lodash/groupBy';
+import { ContainerQuery } from 'react-container-query';
+import classNames from 'classnames';
+import styles from './Community.app.less';
+import HeaderSearch from '../../components/HeaderSearch';
+import NoticeIcon from '../../components/NoticeIcon';
+import GlobalFooter from '../../components/GlobalFooter';
+
+import TaskAssigmentSearch from '../taskassigment/TaskAssigment.search'
+
+import TaskLikeSearch from '../tasklike/TaskLike.search'
+
+import TaskReplySearch from '../taskreply/TaskReply.search'
 
 
-import React, { Component } from 'react';
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+const { Header, Sider, Content } = Layout;
+const { SubMenu } = Menu;
 
 
-import { Layout } from 'antd';
-import '../../style/index.less';
 
-import TaskBizSider from './Task.sider'
-import TaskBizHeader from './Task.header'
+const query = {
+  'screen-xs': {
+    maxWidth: 575,
+  },
+  'screen-sm': {
+    minWidth: 576,
+    maxWidth: 767,
+  },
+  'screen-md': {
+    minWidth: 768,
+    maxWidth: 991,
+  },
+  'screen-lg': {
+    minWidth: 992,
+    maxWidth: 1199,
+  },
+  'screen-xl': {
+    minWidth: 1200,
+  },
+};
 
-const { Sider, Header, Content, Footer } = Layout;
-
-
-class TaskBizApp extends Component {
-   
-    state = {
-        collapsed: true,
+class TaskBizApp extends React.PureComponent {
+  
+ constructor(props) {
+    super(props);
+    // 把一级 Layout 的 children 作为菜单项
+    
+    //this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), []);
+    this.state = {
+      openKeys: this.getDefaultCollapsedSubMenus(props),
     };
-    toggle = () => {
-        this.setState({
-            collapsed: !this.state.collapsed,
-        });
-    };
-    render() {
+  }
 
-        return (
-            <Layout className="ant-layout-has-sider">
-                 <TaskBizSider path={this.props.location.pathname} collapsed={this.state.collapsed}>left sidebar</TaskBizSider>
-                       
-                <Layout>
-                    <TaskBizHeader collapsed={this.state.collapsed} toggle={this.toggle}>header</TaskBizHeader>
-                    <Layout>
-                        <Content>{this.props.children}</Content>
-                        
-                    </Layout>
-                    
-                </Layout>
-            </Layout>
-        );
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'user/fetchCurrent',
+    });
+  }
+  componentWillUnmount() {
+    clearTimeout(this.resizeTimeout);
+  }
+  onCollapse = (collapsed) => {
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: collapsed,
+    });
+  }
+
+  getDefaultCollapsedSubMenus(props) {
+    const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)];
+    currentMenuSelectedKeys.splice(-1, 1);
+    if (currentMenuSelectedKeys.length === 0) {
+      return ['/community'];
     }
+    return currentMenuSelectedKeys;
+  }
+  getCurrentMenuSelectedKeys(props) {
+    const { location: { pathname } } = props || this.props;
+    const keys = pathname.split('/').slice(1);
+    if (keys.length === 1 && keys[0] === '') {
+      return [this.menus[0].key];
+    }
+    return keys;
+  }
+  getNavMenuItems(objectId){
+
+    return (
+      <SubMenu title={<span>
+        <Icon type='dashboard' />
+        <span>仪表板</span>
+      </span>} >
+      
+      
+      <Menu.Item >   
+        <Link to={"/task/"+objectId+"/list/taskAssigmentList"}>TaskAssigment</Link>
+      </Menu.Item>
+  
+
+      <Menu.Item >   
+        <Link to={"/task/"+objectId+"/list/taskLikeList"}>TaskLike</Link>
+      </Menu.Item>
+  
+
+      <Menu.Item >   
+        <Link to={"/task/"+objectId+"/list/taskReplyList"}>TaskReply</Link>
+      </Menu.Item>
+  
+  
+ 
+      
+      </SubMenu>
+
+    );
+
+  }
+
+
+
+
+  getTaskAssigmentSearch() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.task.taskAssigmentList,
+      loading: state.task.loading
+    }))(TaskAssigmentSearch);
+  }
+  
+
+  getTaskLikeSearch() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.task.taskLikeList,
+      loading: state.task.loading
+    }))(TaskLikeSearch);
+  }
+  
+
+  getTaskReplySearch() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.task.taskReplyList,
+      loading: state.task.loading
+    }))(TaskReplySearch);
+  }
+  
+  
+  
+getPageTitle() {
+    const { location } = this.props;
+    const { pathname } = location;
+    let title = '供应链系统';
+    
+    return title;
+  }
+ 
+  handleOpenChange = (openKeys) => {
+    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
+    this.setState({
+      openKeys: latestOpenKey ? [latestOpenKey] : [],
+    });
+  }
+   toggle = () => {
+    const { collapsed } = this.props;
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: !collapsed,
+    });
+  }
+
+  render() {
+    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    console.log("test value",this.props)
+    // Don't show popup menu when it is been collapsed
+    const menuProps = collapsed ? {} : {
+      openKeys: this.state.openKeys,
+    };
+
+    const layout = (
+      <Layout>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          breakpoint="md"
+          onCollapse={this.onCollapse}
+          width={256}
+          className={styles.sider}
+        >
+          <div className={styles.logo}>
+            <Link to="/">
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/iwWyPinUoseUxIAeElSx.svg" alt="logo" />
+              <h1>跨境供应链</h1>
+            </Link>
+          </div>
+          <Menu
+            theme="dark"
+            mode="inline"
+            {...menuProps}
+            onOpenChange={this.handleOpenChange}
+            selectedKeys={this.getCurrentMenuSelectedKeys()}
+            style={{ margin: '16px 0', width: '100%' }}
+          >
+            {this.getNavMenuItems(this.props.community.id)}
+          </Menu>
+        </Sider>
+        <Layout>
+        <Header className={styles.header}>
+            <Icon
+              className={styles.trigger}
+              type={collapsed ? 'menu-unfold' : 'menu-fold'}
+              onClick={this.toggle}
+            /></Header>
+          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+            <Switch>
+    
+          <Route path="/task/:id/list/taskAssigmentList" component={this.getTaskAssigmentSearch()} />
+
+          <Route path="/task/:id/list/taskLikeList" component={this.getTaskLikeSearch()} />
+
+          <Route path="/task/:id/list/taskReplyList" component={this.getTaskReplySearch()} />
+              
+             
+</Switch>
+           
+          </Content>
+        </Layout>
+      </Layout>
+    );
+
+    return (
+      <DocumentTitle title={this.getPageTitle()}>
+        <ContainerQuery query={query}>
+          {params => <div className={classNames(params)}>{layout}</div>}
+        </ContainerQuery>
+      </DocumentTitle>
+    );
+  }
 }
 
-const mapStateToProps = state => {   
-    return state;
-};
-const mapDispatchToProps = dispatch => ({
-    receiveData: bindActionCreators({}, dispatch)
-});
+export default connect(state => ({
+  currentUser: state.user.currentUser,
+  collapsed: state.global.collapsed,
+  fetchingNotices: state.global.fetchingNotices,
+  notices: state.global.notices,
+  ...state
+}))(TaskBizApp);
 
-//export default connect(mapStateToProps, mapDispatchToProps)(TaskBizApp);
-export default connect(mapStateToProps)(TaskBizApp);
+
 

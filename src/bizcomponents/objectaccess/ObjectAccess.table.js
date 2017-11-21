@@ -5,6 +5,25 @@ import { Table, Alert, Badge } from 'antd';
 import styles from './ObjectAccess.table.less';
 
 
+
+const columns = [
+{title:'Id',dataIndex: 'id'},
+{title:'Display Name',dataIndex: 'displayName'},
+{title:'Object Type',dataIndex: 'objectType'},
+{title:'List1',dataIndex: 'list1'},
+{title:'List2',dataIndex: 'list2'},
+{title:'List3',dataIndex: 'list3'},
+{title:'List4',dataIndex: 'list4'},
+{title:'List5',dataIndex: 'list5'},
+{title:'List6',dataIndex: 'list6'},
+{title:'List7',dataIndex: 'list7'},
+{title:'List8',dataIndex: 'list8'},
+{title:'List9',dataIndex: 'list9'},
+{title:'App',dataIndex: 'app'},
+
+      
+    ];
+
 class ObjectAccessTable extends PureComponent {
   state = {
     selectedRowKeys: []
@@ -42,30 +61,7 @@ class ObjectAccessTable extends PureComponent {
     const { data } = this.props;
 
    
-    const columns = [
-      {
-        title: '编号',
-        dataIndex: 'id',
-      },
-      {
-        title: '名字',
-        dataIndex: 'name',
-      },
-      {
-        title: '邀请码',
-        dataIndex: 'code',
-      },
-      {
-        title: '已经使用',
-        dataIndex: 'used',
-        render: (text, record) => <a>{record.used ? "是" : "否"}</a>
-      }, {
-        title: 'CreateTime',
-        dataIndex: 'createTime',
-        key: 'createTime',
-
-       }
-    ];
+    
 
     const paginationProps = {
       showSizeChanger: true,

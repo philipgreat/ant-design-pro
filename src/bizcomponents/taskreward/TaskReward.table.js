@@ -5,6 +5,17 @@ import { Table, Alert, Badge } from 'antd';
 import styles from './TaskReward.table.less';
 
 
+
+const columns = [
+{title:'Id',dataIndex: 'id'},
+{title:'Who',dataIndex: 'who'},
+{title:'Reword Point',dataIndex: 'rewordPoint'},
+{title:'Action Time',dataIndex: 'actionTime'},
+{title:'Comment',dataIndex: 'comment'},
+
+      
+    ];
+
 class TaskRewardTable extends PureComponent {
   state = {
     selectedRowKeys: []
@@ -42,30 +53,7 @@ class TaskRewardTable extends PureComponent {
     const { data } = this.props;
 
    
-    const columns = [
-      {
-        title: '编号',
-        dataIndex: 'id',
-      },
-      {
-        title: '名字',
-        dataIndex: 'name',
-      },
-      {
-        title: '邀请码',
-        dataIndex: 'code',
-      },
-      {
-        title: '已经使用',
-        dataIndex: 'used',
-        render: (text, record) => <a>{record.used ? "是" : "否"}</a>
-      }, {
-        title: 'CreateTime',
-        dataIndex: 'createTime',
-        key: 'createTime',
-
-       }
-    ];
+    
 
     const paginationProps = {
       showSizeChanger: true,

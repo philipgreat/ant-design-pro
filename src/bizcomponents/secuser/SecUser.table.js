@@ -5,6 +5,23 @@ import { Table, Alert, Badge } from 'antd';
 import styles from './SecUser.table.less';
 
 
+
+const columns = [
+{title:'Id',dataIndex: 'id'},
+{title:'Login',dataIndex: 'login'},
+{title:'Mobile',dataIndex: 'mobile'},
+{title:'Email',dataIndex: 'email'},
+{title:'Pwd',dataIndex: 'pwd'},
+{title:'Verification Code',dataIndex: 'verificationCode'},
+{title:'Verification Code Expire',dataIndex: 'verificationCodeExpire'},
+{title:'Last Login Time',dataIndex: 'lastLoginTime'},
+{title:'Domain',dataIndex: 'domain'},
+{title:'Blocking',dataIndex: 'blocking'},
+{title:'Current Status',dataIndex: 'currentStatus'},
+
+      
+    ];
+
 class SecUserTable extends PureComponent {
   state = {
     selectedRowKeys: []
@@ -42,30 +59,7 @@ class SecUserTable extends PureComponent {
     const { data } = this.props;
 
    
-    const columns = [
-      {
-        title: '编号',
-        dataIndex: 'id',
-      },
-      {
-        title: '名字',
-        dataIndex: 'name',
-      },
-      {
-        title: '邀请码',
-        dataIndex: 'code',
-      },
-      {
-        title: '已经使用',
-        dataIndex: 'used',
-        render: (text, record) => <a>{record.used ? "是" : "否"}</a>
-      }, {
-        title: 'CreateTime',
-        dataIndex: 'createTime',
-        key: 'createTime',
-
-       }
-    ];
+    
 
     const paginationProps = {
       showSizeChanger: true,

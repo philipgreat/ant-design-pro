@@ -5,6 +5,20 @@ import { Table, Alert, Badge } from 'antd';
 import styles from './TaskReply.table.less';
 
 
+
+const columns = [
+{title:'Id',dataIndex: 'id'},
+{title:'Reply Time',dataIndex: 'replyTime'},
+{title:'Content',dataIndex: 'content'},
+{title:'Replier',dataIndex: 'replier'},
+{title:'Task',dataIndex: 'task'},
+{title:'Best Answer Setting',dataIndex: 'bestAnswerSetting'},
+{title:'Like By Current User',dataIndex: 'likeByCurrentUser'},
+{title:'Current Status',dataIndex: 'currentStatus'},
+
+      
+    ];
+
 class TaskReplyTable extends PureComponent {
   state = {
     selectedRowKeys: []
@@ -42,30 +56,7 @@ class TaskReplyTable extends PureComponent {
     const { data } = this.props;
 
    
-    const columns = [
-      {
-        title: '编号',
-        dataIndex: 'id',
-      },
-      {
-        title: '名字',
-        dataIndex: 'name',
-      },
-      {
-        title: '邀请码',
-        dataIndex: 'code',
-      },
-      {
-        title: '已经使用',
-        dataIndex: 'used',
-        render: (text, record) => <a>{record.used ? "是" : "否"}</a>
-      }, {
-        title: 'CreateTime',
-        dataIndex: 'createTime',
-        key: 'createTime',
-
-       }
-    ];
+    
 
     const paginationProps = {
       showSizeChanger: true,

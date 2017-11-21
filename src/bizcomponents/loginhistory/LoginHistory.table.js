@@ -5,6 +5,17 @@ import { Table, Alert, Badge } from 'antd';
 import styles from './LoginHistory.table.less';
 
 
+
+const columns = [
+{title:'Id',dataIndex: 'id'},
+{title:'Login Time',dataIndex: 'loginTime'},
+{title:'From Ip',dataIndex: 'fromIp'},
+{title:'Description',dataIndex: 'description'},
+{title:'Sec User',dataIndex: 'secUser'},
+
+      
+    ];
+
 class LoginHistoryTable extends PureComponent {
   state = {
     selectedRowKeys: []
@@ -42,30 +53,7 @@ class LoginHistoryTable extends PureComponent {
     const { data } = this.props;
 
    
-    const columns = [
-      {
-        title: '编号',
-        dataIndex: 'id',
-      },
-      {
-        title: '名字',
-        dataIndex: 'name',
-      },
-      {
-        title: '邀请码',
-        dataIndex: 'code',
-      },
-      {
-        title: '已经使用',
-        dataIndex: 'used',
-        render: (text, record) => <a>{record.used ? "是" : "否"}</a>
-      }, {
-        title: 'CreateTime',
-        dataIndex: 'createTime',
-        key: 'createTime',
-
-       }
-    ];
+    
 
     const paginationProps = {
       showSizeChanger: true,

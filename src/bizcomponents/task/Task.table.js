@@ -5,6 +5,38 @@ import { Table, Alert, Badge } from 'antd';
 import styles from './Task.table.less';
 
 
+
+const columns = [
+{title:'Id',dataIndex: 'id'},
+{title:'Title',dataIndex: 'title'},
+{title:'Selected Task',dataIndex: 'selectedTask'},
+{title:'Create Time',dataIndex: 'createTime'},
+{title:'Content',dataIndex: 'content'},
+{title:'Creator',dataIndex: 'creator'},
+{title:'Community',dataIndex: 'community'},
+{title:'Home Page',dataIndex: 'homePage'},
+{title:'Task Page',dataIndex: 'taskPage'},
+{title:'Video Url',dataIndex: 'videoUrl'},
+{title:'Cover Image Path1',dataIndex: 'coverImagePath1'},
+{title:'Cover Image Path2',dataIndex: 'coverImagePath2'},
+{title:'Cover Image Path3',dataIndex: 'coverImagePath3'},
+{title:'Image Path1',dataIndex: 'imagePath1'},
+{title:'Image Path2',dataIndex: 'imagePath2'},
+{title:'Image Path3',dataIndex: 'imagePath3'},
+{title:'Image Path4',dataIndex: 'imagePath4'},
+{title:'Image Path5',dataIndex: 'imagePath5'},
+{title:'Creator Bonus',dataIndex: 'creatorBonus'},
+{title:'Additional Bonus',dataIndex: 'additionalBonus'},
+{title:'Hiding',dataIndex: 'hiding'},
+{title:'Resolving',dataIndex: 'resolving'},
+{title:'Reward',dataIndex: 'reward'},
+{title:'Like By Current User',dataIndex: 'likeByCurrentUser'},
+{title:'Replied By Current User',dataIndex: 'repliedByCurrentUser'},
+{title:'Current Status',dataIndex: 'currentStatus'},
+
+      
+    ];
+
 class TaskTable extends PureComponent {
   state = {
     selectedRowKeys: []
@@ -42,30 +74,7 @@ class TaskTable extends PureComponent {
     const { data } = this.props;
 
    
-    const columns = [
-      {
-        title: '编号',
-        dataIndex: 'id',
-      },
-      {
-        title: '名字',
-        dataIndex: 'name',
-      },
-      {
-        title: '邀请码',
-        dataIndex: 'code',
-      },
-      {
-        title: '已经使用',
-        dataIndex: 'used',
-        render: (text, record) => <a>{record.used ? "是" : "否"}</a>
-      }, {
-        title: 'CreateTime',
-        dataIndex: 'createTime',
-        key: 'createTime',
-
-       }
-    ];
+    
 
     const paginationProps = {
       showSizeChanger: true,

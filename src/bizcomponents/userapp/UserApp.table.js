@@ -5,6 +5,21 @@ import { Table, Alert, Badge } from 'antd';
 import styles from './UserApp.table.less';
 
 
+
+const columns = [
+{title:'Id',dataIndex: 'id'},
+{title:'Title',dataIndex: 'title'},
+{title:'Sec User',dataIndex: 'secUser'},
+{title:'App Icon',dataIndex: 'appIcon'},
+{title:'Full Access',dataIndex: 'fullAccess'},
+{title:'Permission',dataIndex: 'permission'},
+{title:'Object Type',dataIndex: 'objectType'},
+{title:'Object Id',dataIndex: 'objectId'},
+{title:'Location',dataIndex: 'location'},
+
+      
+    ];
+
 class UserAppTable extends PureComponent {
   state = {
     selectedRowKeys: []
@@ -42,30 +57,7 @@ class UserAppTable extends PureComponent {
     const { data } = this.props;
 
    
-    const columns = [
-      {
-        title: '编号',
-        dataIndex: 'id',
-      },
-      {
-        title: '名字',
-        dataIndex: 'name',
-      },
-      {
-        title: '邀请码',
-        dataIndex: 'code',
-      },
-      {
-        title: '已经使用',
-        dataIndex: 'used',
-        render: (text, record) => <a>{record.used ? "是" : "否"}</a>
-      }, {
-        title: 'CreateTime',
-        dataIndex: 'createTime',
-        key: 'createTime',
-
-       }
-    ];
+    
 
     const paginationProps = {
       showSizeChanger: true,

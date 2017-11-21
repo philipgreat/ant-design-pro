@@ -5,6 +5,17 @@ import { Table, Alert, Badge } from 'antd';
 import styles from './ThreadRegistration.table.less';
 
 
+
+const columns = [
+{title:'Id',dataIndex: 'id'},
+{title:'Thread',dataIndex: 'thread'},
+{title:'Participant',dataIndex: 'participant'},
+{title:'Register Time',dataIndex: 'registerTime'},
+{title:'Comments',dataIndex: 'comments'},
+
+      
+    ];
+
 class ThreadRegistrationTable extends PureComponent {
   state = {
     selectedRowKeys: []
@@ -42,30 +53,7 @@ class ThreadRegistrationTable extends PureComponent {
     const { data } = this.props;
 
    
-    const columns = [
-      {
-        title: '编号',
-        dataIndex: 'id',
-      },
-      {
-        title: '名字',
-        dataIndex: 'name',
-      },
-      {
-        title: '邀请码',
-        dataIndex: 'code',
-      },
-      {
-        title: '已经使用',
-        dataIndex: 'used',
-        render: (text, record) => <a>{record.used ? "是" : "否"}</a>
-      }, {
-        title: 'CreateTime',
-        dataIndex: 'createTime',
-        key: 'createTime',
-
-       }
-    ];
+    
 
     const paginationProps = {
       showSizeChanger: true,

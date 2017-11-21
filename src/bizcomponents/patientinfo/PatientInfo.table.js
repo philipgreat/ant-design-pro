@@ -5,6 +5,22 @@ import { Table, Alert, Badge } from 'antd';
 import styles from './PatientInfo.table.less';
 
 
+
+const columns = [
+{title:'Id',dataIndex: 'id'},
+{title:'Name',dataIndex: 'name'},
+{title:'Nick Name',dataIndex: 'nickName'},
+{title:'Gender',dataIndex: 'gender'},
+{title:'Birthday',dataIndex: 'birthday'},
+{title:'Wear Device Type',dataIndex: 'wearDeviceType'},
+{title:'Wear Start Time',dataIndex: 'wearStartTime'},
+{title:'Recover Plan',dataIndex: 'recoverPlan'},
+{title:'Recover Start Time',dataIndex: 'recoverStartTime'},
+{title:'User',dataIndex: 'user'},
+
+      
+    ];
+
 class PatientInfoTable extends PureComponent {
   state = {
     selectedRowKeys: []
@@ -42,30 +58,7 @@ class PatientInfoTable extends PureComponent {
     const { data } = this.props;
 
    
-    const columns = [
-      {
-        title: '编号',
-        dataIndex: 'id',
-      },
-      {
-        title: '名字',
-        dataIndex: 'name',
-      },
-      {
-        title: '邀请码',
-        dataIndex: 'code',
-      },
-      {
-        title: '已经使用',
-        dataIndex: 'used',
-        render: (text, record) => <a>{record.used ? "是" : "否"}</a>
-      }, {
-        title: 'CreateTime',
-        dataIndex: 'createTime',
-        key: 'createTime',
-
-       }
-    ];
+    
 
     const paginationProps = {
       showSizeChanger: true,
