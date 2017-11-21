@@ -273,7 +273,7 @@ export default class UserDomainSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:UserDomain">
+      <PageHeaderLayout title="用户域列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

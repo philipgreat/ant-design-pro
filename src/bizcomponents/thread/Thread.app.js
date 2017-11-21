@@ -99,17 +99,17 @@ class ThreadBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/thread/"+objectId+"/list/threadReplyList"}>ThreadReply</Link>
+        <Link to={"/thread/"+objectId+"/list/threadReplyList"}>跟帖回复</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/thread/"+objectId+"/list/threadRegistrationList"}>ThreadRegistration</Link>
+        <Link to={"/thread/"+objectId+"/list/threadRegistrationList"}>活动注册</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/thread/"+objectId+"/list/threadLikeList"}>ThreadLike</Link>
+        <Link to={"/thread/"+objectId+"/list/threadLikeList"}>主贴点赞</Link>
       </Menu.Item>
   
   

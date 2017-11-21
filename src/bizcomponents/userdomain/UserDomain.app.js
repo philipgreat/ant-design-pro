@@ -95,7 +95,7 @@ class UserDomainBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/userDomain/"+objectId+"/list/secUserList"}>SecUser</Link>
+        <Link to={"/userDomain/"+objectId+"/list/secUserList"}>SEC的用户</Link>
       </Menu.Item>
   
   

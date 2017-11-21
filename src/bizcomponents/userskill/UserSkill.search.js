@@ -273,7 +273,7 @@ export default class UserSkillSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:UserSkill">
+      <PageHeaderLayout title="用户技能列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

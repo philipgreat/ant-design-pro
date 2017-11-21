@@ -273,7 +273,7 @@ export default class ThreadHidingSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:ThreadHiding">
+      <PageHeaderLayout title="线程隐藏列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

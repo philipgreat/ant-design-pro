@@ -7,11 +7,11 @@ import styles from './ThreadRegistration.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Thread',dataIndex: 'thread'},
-{title:'Participant',dataIndex: 'participant'},
-{title:'Register Time',dataIndex: 'registerTime'},
-{title:'Comments',dataIndex: 'comments'},
+{title:'序号',dataIndex: 'id'},
+{title:'主贴',dataIndex: 'thread'},
+{title:'参与者',dataIndex: 'participant'},
+{title:'登记时间',dataIndex: 'registerTime'},
+{title:'评论',dataIndex: 'comments'},
 
       
     ];

@@ -99,17 +99,17 @@ class TaskBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/task/"+objectId+"/list/taskAssigmentList"}>TaskAssigment</Link>
+        <Link to={"/task/"+objectId+"/list/taskAssigmentList"}>任务分配</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/task/"+objectId+"/list/taskLikeList"}>TaskLike</Link>
+        <Link to={"/task/"+objectId+"/list/taskLikeList"}>任务点赞</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/task/"+objectId+"/list/taskReplyList"}>TaskReply</Link>
+        <Link to={"/task/"+objectId+"/list/taskReplyList"}>回复任务</Link>
       </Menu.Item>
   
   

@@ -273,7 +273,7 @@ export default class FanSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:Fan">
+      <PageHeaderLayout title="粉丝列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

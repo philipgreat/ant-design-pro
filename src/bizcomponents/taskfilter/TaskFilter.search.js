@@ -273,7 +273,7 @@ export default class TaskFilterSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:TaskFilter">
+      <PageHeaderLayout title="任务过滤器列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

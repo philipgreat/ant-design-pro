@@ -273,7 +273,7 @@ export default class InvitationCodeSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:InvitationCode">
+      <PageHeaderLayout title="邀请码列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

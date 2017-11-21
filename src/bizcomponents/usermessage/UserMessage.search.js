@@ -273,7 +273,7 @@ export default class UserMessageSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:UserMessage">
+      <PageHeaderLayout title="用户消息列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

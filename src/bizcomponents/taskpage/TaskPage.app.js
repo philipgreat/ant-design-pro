@@ -97,12 +97,12 @@ class TaskPageBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/taskPage/"+objectId+"/list/taskFilterList"}>TaskFilter</Link>
+        <Link to={"/taskPage/"+objectId+"/list/taskFilterList"}>任务过滤器</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/taskPage/"+objectId+"/list/taskList"}>Task</Link>
+        <Link to={"/taskPage/"+objectId+"/list/taskList"}>任务</Link>
       </Menu.Item>
   
   

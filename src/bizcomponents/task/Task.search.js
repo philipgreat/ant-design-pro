@@ -273,7 +273,7 @@ export default class TaskSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:Task">
+      <PageHeaderLayout title="任务列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

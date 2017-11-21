@@ -95,7 +95,7 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/taskBestAnswerSetting/"+objectId+"/list/taskReplyList"}>TaskReply</Link>
+        <Link to={"/taskBestAnswerSetting/"+objectId+"/list/taskReplyList"}>回复任务</Link>
       </Menu.Item>
   
   

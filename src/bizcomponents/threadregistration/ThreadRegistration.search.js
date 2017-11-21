@@ -273,7 +273,7 @@ export default class ThreadRegistrationSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:ThreadRegistration">
+      <PageHeaderLayout title="活动注册列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

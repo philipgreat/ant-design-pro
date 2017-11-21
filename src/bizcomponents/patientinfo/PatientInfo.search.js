@@ -273,7 +273,7 @@ export default class PatientInfoSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:PatientInfo">
+      <PageHeaderLayout title="病人信息列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

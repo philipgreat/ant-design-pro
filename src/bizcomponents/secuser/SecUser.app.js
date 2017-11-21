@@ -97,12 +97,12 @@ class SecUserBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/secUser/"+objectId+"/list/userAppList"}>UserApp</Link>
+        <Link to={"/secUser/"+objectId+"/list/userAppList"}>用户应用程序</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/secUser/"+objectId+"/list/loginHistoryList"}>LoginHistory</Link>
+        <Link to={"/secUser/"+objectId+"/list/loginHistoryList"}>登录历史</Link>
       </Menu.Item>
   
   

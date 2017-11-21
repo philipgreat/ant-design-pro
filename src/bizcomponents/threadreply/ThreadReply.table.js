@@ -7,12 +7,12 @@ import styles from './ThreadReply.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Reply Time',dataIndex: 'replyTime'},
-{title:'Content',dataIndex: 'content'},
-{title:'Replier',dataIndex: 'replier'},
-{title:'Thread',dataIndex: 'thread'},
-{title:'Like By Current User',dataIndex: 'likeByCurrentUser'},
+{title:'序号',dataIndex: 'id'},
+{title:'回复时间',dataIndex: 'replyTime'},
+{title:'内容',dataIndex: 'content'},
+{title:'应答者',dataIndex: 'replier'},
+{title:'主贴',dataIndex: 'thread'},
+{title:'当前用户已点赞',dataIndex: 'likeByCurrentUser'},
 
       
     ];

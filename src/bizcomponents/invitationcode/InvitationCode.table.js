@@ -7,12 +7,12 @@ import styles from './InvitationCode.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Name',dataIndex: 'name'},
-{title:'Code',dataIndex: 'code'},
-{title:'Create Time',dataIndex: 'createTime'},
-{title:'Community',dataIndex: 'community'},
-{title:'Used',dataIndex: 'used'},
+{title:'序号',dataIndex: 'id'},
+{title:'名称',dataIndex: 'name'},
+{title:'代码',dataIndex: 'code'},
+{title:'创建时间',dataIndex: 'createTime'},
+{title:'社区',dataIndex: 'community'},
+{title:'用',dataIndex: 'used'},
 
       
     ];

@@ -273,7 +273,7 @@ export default class MessageFilterSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:MessageFilter">
+      <PageHeaderLayout title="消息过滤列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

@@ -95,7 +95,7 @@ class ThreadCancelingBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/threadCanceling/"+objectId+"/list/threadList"}>Thread</Link>
+        <Link to={"/threadCanceling/"+objectId+"/list/threadList"}>主贴</Link>
       </Menu.Item>
   
   

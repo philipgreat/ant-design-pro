@@ -273,7 +273,7 @@ export default class FollowSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:Follow">
+      <PageHeaderLayout title="关注列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

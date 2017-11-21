@@ -273,7 +273,7 @@ export default class ThreadReplyLikeSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:ThreadReplyLike">
+      <PageHeaderLayout title="跟帖回复点赞列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

@@ -7,15 +7,15 @@ import styles from './UserApp.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Title',dataIndex: 'title'},
-{title:'Sec User',dataIndex: 'secUser'},
-{title:'App Icon',dataIndex: 'appIcon'},
-{title:'Full Access',dataIndex: 'fullAccess'},
-{title:'Permission',dataIndex: 'permission'},
-{title:'Object Type',dataIndex: 'objectType'},
-{title:'Object Id',dataIndex: 'objectId'},
-{title:'Location',dataIndex: 'location'},
+{title:'序号',dataIndex: 'id'},
+{title:'标题',dataIndex: 'title'},
+{title:'SEC的用户',dataIndex: 'secUser'},
+{title:'应用程序图标',dataIndex: 'appIcon'},
+{title:'完全访问',dataIndex: 'fullAccess'},
+{title:'许可',dataIndex: 'permission'},
+{title:'对象类型',dataIndex: 'objectType'},
+{title:'对象ID',dataIndex: 'objectId'},
+{title:'位置',dataIndex: 'location'},
 
       
     ];

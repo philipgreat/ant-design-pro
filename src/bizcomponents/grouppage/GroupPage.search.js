@@ -273,7 +273,7 @@ export default class GroupPageSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:GroupPage">
+      <PageHeaderLayout title="群组页面列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

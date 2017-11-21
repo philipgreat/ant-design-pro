@@ -7,12 +7,12 @@ import styles from './TaskFilter.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Name',dataIndex: 'name'},
-{title:'Filter Key',dataIndex: 'filterKey'},
-{title:'Link Url',dataIndex: 'linkUrl'},
-{title:'Task Page',dataIndex: 'taskPage'},
-{title:'Home Page',dataIndex: 'homePage'},
+{title:'序号',dataIndex: 'id'},
+{title:'名称',dataIndex: 'name'},
+{title:'过滤器健值',dataIndex: 'filterKey'},
+{title:'链接网址',dataIndex: 'linkUrl'},
+{title:'任务页面',dataIndex: 'taskPage'},
+{title:'主页',dataIndex: 'homePage'},
 
       
     ];

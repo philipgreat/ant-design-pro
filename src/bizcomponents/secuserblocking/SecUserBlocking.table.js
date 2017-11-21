@@ -7,10 +7,10 @@ import styles from './SecUserBlocking.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Who',dataIndex: 'who'},
-{title:'Block Time',dataIndex: 'blockTime'},
-{title:'Comments',dataIndex: 'comments'},
+{title:'序号',dataIndex: 'id'},
+{title:'谁',dataIndex: 'who'},
+{title:'屏蔽时间',dataIndex: 'blockTime'},
+{title:'评论',dataIndex: 'comments'},
 
       
     ];

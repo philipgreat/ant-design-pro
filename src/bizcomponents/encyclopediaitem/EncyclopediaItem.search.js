@@ -273,7 +273,7 @@ export default class EncyclopediaItemSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:EncyclopediaItem">
+      <PageHeaderLayout title="百科全书条目列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

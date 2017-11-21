@@ -109,42 +109,42 @@ class CommunityBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/community/"+objectId+"/list/invitationCodeList"}>InvitationCode</Link>
+        <Link to={"/community/"+objectId+"/list/invitationCodeList"}>邀请码</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/community/"+objectId+"/list/homePageList"}>HomePage</Link>
+        <Link to={"/community/"+objectId+"/list/homePageList"}>主页</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/community/"+objectId+"/list/encyclopediaItemList"}>EncyclopediaItem</Link>
+        <Link to={"/community/"+objectId+"/list/encyclopediaItemList"}>百科全书条目</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/community/"+objectId+"/list/taskPageList"}>TaskPage</Link>
+        <Link to={"/community/"+objectId+"/list/taskPageList"}>任务页面</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/community/"+objectId+"/list/communityUserList"}>CommunityUser</Link>
+        <Link to={"/community/"+objectId+"/list/communityUserList"}>社区用户</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/community/"+objectId+"/list/taskList"}>Task</Link>
+        <Link to={"/community/"+objectId+"/list/taskList"}>任务</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/community/"+objectId+"/list/groupPageList"}>GroupPage</Link>
+        <Link to={"/community/"+objectId+"/list/groupPageList"}>群组页面</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/community/"+objectId+"/list/threadList"}>Thread</Link>
+        <Link to={"/community/"+objectId+"/list/threadList"}>主贴</Link>
       </Menu.Item>
   
   

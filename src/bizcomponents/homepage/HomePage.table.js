@@ -7,9 +7,9 @@ import styles from './HomePage.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Title',dataIndex: 'title'},
-{title:'Community',dataIndex: 'community'},
+{title:'序号',dataIndex: 'id'},
+{title:'标题',dataIndex: 'title'},
+{title:'社区',dataIndex: 'community'},
 
       
     ];

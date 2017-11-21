@@ -273,7 +273,7 @@ export default class GroupFilterSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:GroupFilter">
+      <PageHeaderLayout title="群组过滤器列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

@@ -273,7 +273,7 @@ export default class TaskReplyLikeSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:TaskReplyLike">
+      <PageHeaderLayout title="任务回复点赞列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

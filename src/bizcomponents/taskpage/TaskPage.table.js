@@ -7,10 +7,10 @@ import styles from './TaskPage.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Title',dataIndex: 'title'},
-{title:'Current Key',dataIndex: 'currentKey'},
-{title:'Community',dataIndex: 'community'},
+{title:'序号',dataIndex: 'id'},
+{title:'标题',dataIndex: 'title'},
+{title:'当前健值',dataIndex: 'currentKey'},
+{title:'社区',dataIndex: 'community'},
 
       
     ];

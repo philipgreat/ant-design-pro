@@ -95,7 +95,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/secUserBlocking/"+objectId+"/list/secUserList"}>SecUser</Link>
+        <Link to={"/secUserBlocking/"+objectId+"/list/secUserList"}>SEC的用户</Link>
       </Menu.Item>
   
   

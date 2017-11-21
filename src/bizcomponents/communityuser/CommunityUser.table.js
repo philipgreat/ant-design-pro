@@ -7,20 +7,20 @@ import styles from './CommunityUser.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Mobile',dataIndex: 'mobile'},
-{title:'Nick Name',dataIndex: 'nickName'},
-{title:'Gender',dataIndex: 'gender'},
-{title:'User Type',dataIndex: 'userType'},
-{title:'Avatar',dataIndex: 'avatar'},
-{title:'Birthday',dataIndex: 'birthday'},
-{title:'Experience Point',dataIndex: 'experiencePoint'},
-{title:'Bonus Point',dataIndex: 'bonusPoint'},
-{title:'City',dataIndex: 'city'},
-{title:'Status',dataIndex: 'status'},
-{title:'Hide Info',dataIndex: 'hideInfo'},
-{title:'Administrator',dataIndex: 'administrator'},
-{title:'Community',dataIndex: 'community'},
+{title:'序号',dataIndex: 'id'},
+{title:'手机',dataIndex: 'mobile'},
+{title:'昵称',dataIndex: 'nickName'},
+{title:'性别',dataIndex: 'gender'},
+{title:'用户类型',dataIndex: 'userType'},
+{title:'头像',dataIndex: 'avatar'},
+{title:'生日',dataIndex: 'birthday'},
+{title:'成长值',dataIndex: 'experiencePoint'},
+{title:'积分',dataIndex: 'bonusPoint'},
+{title:'城市',dataIndex: 'city'},
+{title:'状态',dataIndex: 'status'},
+{title:'隐藏的信息',dataIndex: 'hideInfo'},
+{title:'管理员',dataIndex: 'administrator'},
+{title:'社区',dataIndex: 'community'},
 
       
     ];

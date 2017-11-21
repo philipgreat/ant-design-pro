@@ -95,7 +95,7 @@ class ThreadCompletionBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/threadCompletion/"+objectId+"/list/threadList"}>Thread</Link>
+        <Link to={"/threadCompletion/"+objectId+"/list/threadList"}>主贴</Link>
       </Menu.Item>
   
   

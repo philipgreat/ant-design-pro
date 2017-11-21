@@ -273,7 +273,7 @@ export default class CommunitySearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:Community">
+      <PageHeaderLayout title="社区列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

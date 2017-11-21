@@ -273,7 +273,7 @@ export default class HomePageSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:HomePage">
+      <PageHeaderLayout title="主页列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

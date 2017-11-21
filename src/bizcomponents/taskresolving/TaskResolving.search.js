@@ -273,7 +273,7 @@ export default class TaskResolvingSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:TaskResolving">
+      <PageHeaderLayout title="任务分解列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

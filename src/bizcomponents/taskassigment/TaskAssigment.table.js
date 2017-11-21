@@ -7,11 +7,11 @@ import styles from './TaskAssigment.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Task',dataIndex: 'task'},
-{title:'Assignee',dataIndex: 'assignee'},
-{title:'Assign Time',dataIndex: 'assignTime'},
-{title:'Comments',dataIndex: 'comments'},
+{title:'序号',dataIndex: 'id'},
+{title:'任务',dataIndex: 'task'},
+{title:'受让人',dataIndex: 'assignee'},
+{title:'分配时间',dataIndex: 'assignTime'},
+{title:'评论',dataIndex: 'comments'},
 
       
     ];

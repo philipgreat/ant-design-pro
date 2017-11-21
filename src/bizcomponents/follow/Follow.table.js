@@ -7,10 +7,10 @@ import styles from './Follow.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'User',dataIndex: 'user'},
-{title:'Follow Id',dataIndex: 'followId'},
-{title:'Adding Time',dataIndex: 'addingTime'},
+{title:'序号',dataIndex: 'id'},
+{title:'用户',dataIndex: 'user'},
+{title:'关注的社区用户',dataIndex: 'followId'},
+{title:'添加时间',dataIndex: 'addingTime'},
 
       
     ];

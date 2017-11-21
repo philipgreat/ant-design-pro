@@ -7,12 +7,12 @@ import styles from './MessageFilter.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Name',dataIndex: 'name'},
-{title:'Message Count',dataIndex: 'messageCount'},
-{title:'Filter Key',dataIndex: 'filterKey'},
-{title:'Link Url',dataIndex: 'linkUrl'},
-{title:'User',dataIndex: 'user'},
+{title:'序号',dataIndex: 'id'},
+{title:'名称',dataIndex: 'name'},
+{title:'消息计数',dataIndex: 'messageCount'},
+{title:'过滤器健值',dataIndex: 'filterKey'},
+{title:'链接网址',dataIndex: 'linkUrl'},
+{title:'用户',dataIndex: 'user'},
 
       
     ];

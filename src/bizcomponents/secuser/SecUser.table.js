@@ -7,17 +7,17 @@ import styles from './SecUser.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Login',dataIndex: 'login'},
-{title:'Mobile',dataIndex: 'mobile'},
-{title:'Email',dataIndex: 'email'},
-{title:'Pwd',dataIndex: 'pwd'},
-{title:'Verification Code',dataIndex: 'verificationCode'},
-{title:'Verification Code Expire',dataIndex: 'verificationCodeExpire'},
-{title:'Last Login Time',dataIndex: 'lastLoginTime'},
-{title:'Domain',dataIndex: 'domain'},
-{title:'Blocking',dataIndex: 'blocking'},
-{title:'Current Status',dataIndex: 'currentStatus'},
+{title:'序号',dataIndex: 'id'},
+{title:'登录',dataIndex: 'login'},
+{title:'手机',dataIndex: 'mobile'},
+{title:'电子邮件',dataIndex: 'email'},
+{title:'PWD',dataIndex: 'pwd'},
+{title:'验证码',dataIndex: 'verificationCode'},
+{title:'验证码过期',dataIndex: 'verificationCodeExpire'},
+{title:'最后登录时间',dataIndex: 'lastLoginTime'},
+{title:'域',dataIndex: 'domain'},
+{title:'屏蔽',dataIndex: 'blocking'},
+{title:'当前状态',dataIndex: 'currentStatus'},
 
       
     ];

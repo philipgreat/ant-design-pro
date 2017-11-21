@@ -7,9 +7,9 @@ import styles from './UserSkill.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Skill Name',dataIndex: 'skillName'},
-{title:'User',dataIndex: 'user'},
+{title:'序号',dataIndex: 'id'},
+{title:'技能名称',dataIndex: 'skillName'},
+{title:'用户',dataIndex: 'user'},
 
       
     ];

@@ -7,19 +7,19 @@ import styles from './ObjectAccess.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Display Name',dataIndex: 'displayName'},
-{title:'Object Type',dataIndex: 'objectType'},
-{title:'List1',dataIndex: 'list1'},
-{title:'List2',dataIndex: 'list2'},
-{title:'List3',dataIndex: 'list3'},
-{title:'List4',dataIndex: 'list4'},
-{title:'List5',dataIndex: 'list5'},
-{title:'List6',dataIndex: 'list6'},
-{title:'List7',dataIndex: 'list7'},
-{title:'List8',dataIndex: 'list8'},
-{title:'List9',dataIndex: 'list9'},
-{title:'App',dataIndex: 'app'},
+{title:'序号',dataIndex: 'id'},
+{title:'显示名称',dataIndex: 'displayName'},
+{title:'对象类型',dataIndex: 'objectType'},
+{title:'列表1',dataIndex: 'list1'},
+{title:'列表2',dataIndex: 'list2'},
+{title:'列表3',dataIndex: 'list3'},
+{title:'列表4',dataIndex: 'list4'},
+{title:'列表5',dataIndex: 'list5'},
+{title:'列表6',dataIndex: 'list6'},
+{title:'列表7',dataIndex: 'list7'},
+{title:'列表8',dataIndex: 'list8'},
+{title:'列表9',dataIndex: 'list9'},
+{title:'应用程序',dataIndex: 'app'},
 
       
     ];

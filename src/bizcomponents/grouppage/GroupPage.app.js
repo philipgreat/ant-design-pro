@@ -97,12 +97,12 @@ class GroupPageBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/groupPage/"+objectId+"/list/groupFilterList"}>GroupFilter</Link>
+        <Link to={"/groupPage/"+objectId+"/list/groupFilterList"}>群组过滤器</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/groupPage/"+objectId+"/list/threadList"}>Thread</Link>
+        <Link to={"/groupPage/"+objectId+"/list/threadList"}>主贴</Link>
       </Menu.Item>
   
   

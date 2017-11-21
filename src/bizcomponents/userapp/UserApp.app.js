@@ -95,7 +95,7 @@ class UserAppBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/userApp/"+objectId+"/list/objectAccessList"}>ObjectAccess</Link>
+        <Link to={"/userApp/"+objectId+"/list/objectAccessList"}>对象访问</Link>
       </Menu.Item>
   
   

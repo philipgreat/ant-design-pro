@@ -7,10 +7,10 @@ import styles from './TaskLike.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Like Time',dataIndex: 'likeTime'},
-{title:'Replier',dataIndex: 'replier'},
-{title:'Task',dataIndex: 'task'},
+{title:'序号',dataIndex: 'id'},
+{title:'点赞时间',dataIndex: 'likeTime'},
+{title:'应答者',dataIndex: 'replier'},
+{title:'任务',dataIndex: 'task'},
 
       
     ];

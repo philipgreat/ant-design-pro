@@ -7,10 +7,10 @@ import styles from './ThreadReplyLike.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Like Time',dataIndex: 'likeTime'},
-{title:'Replier',dataIndex: 'replier'},
-{title:'Thread Reply',dataIndex: 'threadReply'},
+{title:'序号',dataIndex: 'id'},
+{title:'点赞时间',dataIndex: 'likeTime'},
+{title:'应答者',dataIndex: 'replier'},
+{title:'跟帖回复',dataIndex: 'threadReply'},
 
       
     ];

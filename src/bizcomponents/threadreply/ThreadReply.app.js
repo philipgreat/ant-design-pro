@@ -95,7 +95,7 @@ class ThreadReplyBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/threadReply/"+objectId+"/list/threadReplyLikeList"}>ThreadReplyLike</Link>
+        <Link to={"/threadReply/"+objectId+"/list/threadReplyLikeList"}>跟帖回复点赞</Link>
       </Menu.Item>
   
   

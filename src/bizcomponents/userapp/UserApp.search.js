@@ -273,7 +273,7 @@ export default class UserAppSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:UserApp">
+      <PageHeaderLayout title="用户应用程序列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

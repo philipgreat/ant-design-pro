@@ -7,12 +7,12 @@ import styles from './EncyclopediaItem.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Title',dataIndex: 'title'},
-{title:'Publish Time',dataIndex: 'publishTime'},
-{title:'Content',dataIndex: 'content'},
-{title:'Community',dataIndex: 'community'},
-{title:'Home Page',dataIndex: 'homePage'},
+{title:'序号',dataIndex: 'id'},
+{title:'标题',dataIndex: 'title'},
+{title:'发布时间',dataIndex: 'publishTime'},
+{title:'内容',dataIndex: 'content'},
+{title:'社区',dataIndex: 'community'},
+{title:'主页',dataIndex: 'homePage'},
 
       
     ];

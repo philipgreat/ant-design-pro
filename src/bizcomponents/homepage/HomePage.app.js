@@ -103,27 +103,27 @@ class HomePageBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/homePage/"+objectId+"/list/slideList"}>Slide</Link>
+        <Link to={"/homePage/"+objectId+"/list/slideList"}>幻灯片</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/homePage/"+objectId+"/list/encyclopediaItemList"}>EncyclopediaItem</Link>
+        <Link to={"/homePage/"+objectId+"/list/encyclopediaItemList"}>百科全书条目</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/homePage/"+objectId+"/list/taskFilterList"}>TaskFilter</Link>
+        <Link to={"/homePage/"+objectId+"/list/taskFilterList"}>任务过滤器</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/homePage/"+objectId+"/list/taskList"}>Task</Link>
+        <Link to={"/homePage/"+objectId+"/list/taskList"}>任务</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/homePage/"+objectId+"/list/threadList"}>Thread</Link>
+        <Link to={"/homePage/"+objectId+"/list/threadList"}>主贴</Link>
       </Menu.Item>
   
   

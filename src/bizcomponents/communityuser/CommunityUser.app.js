@@ -129,92 +129,92 @@ class CommunityUserBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/patientInfoList"}>PatientInfo</Link>
+        <Link to={"/communityUser/"+objectId+"/list/patientInfoList"}>病人信息</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/userSkillList"}>UserSkill</Link>
+        <Link to={"/communityUser/"+objectId+"/list/userSkillList"}>用户技能</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/messageFilterList"}>MessageFilter</Link>
+        <Link to={"/communityUser/"+objectId+"/list/messageFilterList"}>消息过滤</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/userMessageList"}>UserMessage</Link>
+        <Link to={"/communityUser/"+objectId+"/list/userMessageList"}>用户消息</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/taskList"}>Task</Link>
+        <Link to={"/communityUser/"+objectId+"/list/taskList"}>任务</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/taskAssigmentList"}>TaskAssigment</Link>
+        <Link to={"/communityUser/"+objectId+"/list/taskAssigmentList"}>任务分配</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/taskLikeList"}>TaskLike</Link>
+        <Link to={"/communityUser/"+objectId+"/list/taskLikeList"}>任务点赞</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/taskReplyList"}>TaskReply</Link>
+        <Link to={"/communityUser/"+objectId+"/list/taskReplyList"}>回复任务</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/taskReplyLikeList"}>TaskReplyLike</Link>
+        <Link to={"/communityUser/"+objectId+"/list/taskReplyLikeList"}>任务回复点赞</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/threadList"}>Thread</Link>
+        <Link to={"/communityUser/"+objectId+"/list/threadList"}>主贴</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/threadReplyList"}>ThreadReply</Link>
+        <Link to={"/communityUser/"+objectId+"/list/threadReplyList"}>跟帖回复</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/threadRegistrationList"}>ThreadRegistration</Link>
+        <Link to={"/communityUser/"+objectId+"/list/threadRegistrationList"}>活动注册</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/threadLikeList"}>ThreadLike</Link>
+        <Link to={"/communityUser/"+objectId+"/list/threadLikeList"}>主贴点赞</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/threadReplyLikeList"}>ThreadReplyLike</Link>
+        <Link to={"/communityUser/"+objectId+"/list/threadReplyLikeList"}>跟帖回复点赞</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/fanList"}>Fan</Link>
+        <Link to={"/communityUser/"+objectId+"/list/fanList"}>粉丝</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/followList"}>Follow</Link>
+        <Link to={"/communityUser/"+objectId+"/list/followList"}>关注</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/bonusPointList"}>BonusPoint</Link>
+        <Link to={"/communityUser/"+objectId+"/list/bonusPointList"}>积分</Link>
       </Menu.Item>
   
 
       <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/experiencePointList"}>ExperiencePoint</Link>
+        <Link to={"/communityUser/"+objectId+"/list/experiencePointList"}>成长值</Link>
       </Menu.Item>
   
   

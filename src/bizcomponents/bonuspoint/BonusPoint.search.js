@@ -273,7 +273,7 @@ export default class BonusPointSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:BonusPoint">
+      <PageHeaderLayout title="积分列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

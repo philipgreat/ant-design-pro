@@ -95,7 +95,7 @@ class ThreadHidingBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/threadHiding/"+objectId+"/list/threadList"}>Thread</Link>
+        <Link to={"/threadHiding/"+objectId+"/list/threadList"}>主贴</Link>
       </Menu.Item>
   
   

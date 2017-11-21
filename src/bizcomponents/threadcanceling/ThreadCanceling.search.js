@@ -273,7 +273,7 @@ export default class ThreadCancelingSearch extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:ThreadCanceling">
+      <PageHeaderLayout title="线程取消列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

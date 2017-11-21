@@ -7,10 +7,10 @@ import styles from './Fan.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'User',dataIndex: 'user'},
-{title:'Fan Id',dataIndex: 'fanId'},
-{title:'Adding Time',dataIndex: 'addingTime'},
+{title:'序号',dataIndex: 'id'},
+{title:'用户',dataIndex: 'user'},
+{title:'粉丝的ID',dataIndex: 'fanId'},
+{title:'添加时间',dataIndex: 'addingTime'},
 
       
     ];

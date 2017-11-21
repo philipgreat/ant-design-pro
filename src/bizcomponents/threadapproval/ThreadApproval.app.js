@@ -95,7 +95,7 @@ class ThreadApprovalBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/threadApproval/"+objectId+"/list/threadList"}>Thread</Link>
+        <Link to={"/threadApproval/"+objectId+"/list/threadList"}>主贴</Link>
       </Menu.Item>
   
   

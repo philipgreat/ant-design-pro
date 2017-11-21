@@ -7,8 +7,8 @@ import styles from './UserDomain.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Name',dataIndex: 'name'},
+{title:'序号',dataIndex: 'id'},
+{title:'名称',dataIndex: 'name'},
 
       
     ];

@@ -95,7 +95,7 @@ class TaskHidingBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/taskHiding/"+objectId+"/list/taskList"}>Task</Link>
+        <Link to={"/taskHiding/"+objectId+"/list/taskList"}>任务</Link>
       </Menu.Item>
   
   

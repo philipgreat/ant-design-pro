@@ -7,11 +7,11 @@ import styles from './ExperiencePoint.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Name',dataIndex: 'name'},
-{title:'Obtain Time',dataIndex: 'obtainTime'},
-{title:'Points',dataIndex: 'points'},
-{title:'User',dataIndex: 'user'},
+{title:'序号',dataIndex: 'id'},
+{title:'名称',dataIndex: 'name'},
+{title:'获得时间',dataIndex: 'obtainTime'},
+{title:'点',dataIndex: 'points'},
+{title:'用户',dataIndex: 'user'},
 
       
     ];

@@ -7,11 +7,11 @@ import styles from './LoginHistory.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Login Time',dataIndex: 'loginTime'},
-{title:'From Ip',dataIndex: 'fromIp'},
-{title:'Description',dataIndex: 'description'},
-{title:'Sec User',dataIndex: 'secUser'},
+{title:'序号',dataIndex: 'id'},
+{title:'登录时间',dataIndex: 'loginTime'},
+{title:'从IP',dataIndex: 'fromIp'},
+{title:'描述',dataIndex: 'description'},
+{title:'SEC的用户',dataIndex: 'secUser'},
 
       
     ];

@@ -95,7 +95,7 @@ class TaskRewardBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/taskReward/"+objectId+"/list/taskList"}>Task</Link>
+        <Link to={"/taskReward/"+objectId+"/list/taskList"}>任务</Link>
       </Menu.Item>
   
   

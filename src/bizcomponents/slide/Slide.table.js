@@ -7,11 +7,11 @@ import styles from './Slide.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Title',dataIndex: 'title'},
-{title:'Image Url',dataIndex: 'imageUrl'},
-{title:'Link Url',dataIndex: 'linkUrl'},
-{title:'Home Page',dataIndex: 'homePage'},
+{title:'序号',dataIndex: 'id'},
+{title:'标题',dataIndex: 'title'},
+{title:'图像网址',dataIndex: 'imageUrl'},
+{title:'链接网址',dataIndex: 'linkUrl'},
+{title:'主页',dataIndex: 'homePage'},
 
       
     ];

@@ -7,10 +7,10 @@ import styles from './ThreadLike.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Like Time',dataIndex: 'likeTime'},
-{title:'Replier',dataIndex: 'replier'},
-{title:'Thread',dataIndex: 'thread'},
+{title:'序号',dataIndex: 'id'},
+{title:'点赞时间',dataIndex: 'likeTime'},
+{title:'应答者',dataIndex: 'replier'},
+{title:'主贴',dataIndex: 'thread'},
 
       
     ];

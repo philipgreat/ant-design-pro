@@ -7,16 +7,16 @@ import styles from './PatientInfo.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Name',dataIndex: 'name'},
-{title:'Nick Name',dataIndex: 'nickName'},
-{title:'Gender',dataIndex: 'gender'},
-{title:'Birthday',dataIndex: 'birthday'},
-{title:'Wear Device Type',dataIndex: 'wearDeviceType'},
-{title:'Wear Start Time',dataIndex: 'wearStartTime'},
-{title:'Recover Plan',dataIndex: 'recoverPlan'},
-{title:'Recover Start Time',dataIndex: 'recoverStartTime'},
-{title:'User',dataIndex: 'user'},
+{title:'序号',dataIndex: 'id'},
+{title:'名称',dataIndex: 'name'},
+{title:'昵称',dataIndex: 'nickName'},
+{title:'性别',dataIndex: 'gender'},
+{title:'生日',dataIndex: 'birthday'},
+{title:'佩戴设备类型',dataIndex: 'wearDeviceType'},
+{title:'磨损的开始时间',dataIndex: 'wearStartTime'},
+{title:'康复计划',dataIndex: 'recoverPlan'},
+{title:'复苏开始时间',dataIndex: 'recoverStartTime'},
+{title:'用户',dataIndex: 'user'},
 
       
     ];

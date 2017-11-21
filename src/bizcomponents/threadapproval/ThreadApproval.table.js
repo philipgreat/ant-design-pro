@@ -7,10 +7,10 @@ import styles from './ThreadApproval.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Who',dataIndex: 'who'},
-{title:'Action Time',dataIndex: 'actionTime'},
-{title:'Comment',dataIndex: 'comment'},
+{title:'序号',dataIndex: 'id'},
+{title:'谁',dataIndex: 'who'},
+{title:'行动时间',dataIndex: 'actionTime'},
+{title:'评论',dataIndex: 'comment'},
 
       
     ];

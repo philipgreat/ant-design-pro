@@ -7,10 +7,10 @@ import styles from './GroupFilter.table.less';
 
 
 const columns = [
-{title:'Id',dataIndex: 'id'},
-{title:'Filter Link',dataIndex: 'filterLink'},
-{title:'Title',dataIndex: 'title'},
-{title:'Group Page',dataIndex: 'groupPage'},
+{title:'序号',dataIndex: 'id'},
+{title:'滤波环节',dataIndex: 'filterLink'},
+{title:'标题',dataIndex: 'title'},
+{title:'群组页面',dataIndex: 'groupPage'},
 
       
     ];
