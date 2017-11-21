@@ -1,10 +1,11 @@
+
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
-import StandardTable from '../../components/StandardTable';
+import TaskHidingTable from './TaskHiding.table';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
-import styles from './Community.table.less';
+import styles from './TaskHiding.search.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -14,7 +15,7 @@ const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',');
   rule: state.rule,
 }))
 @Form.create()
-export default class CommunityTable extends PureComponent {
+export default class TaskHidingSearch extends PureComponent {
   state = {
     addInputValue: '',
     modalVisible: false,
@@ -47,7 +48,7 @@ export default class CommunityTable extends PureComponent {
       ...filters,
     };
     if (sorter.field) {
-      params.sorter = `${sorter.field}_${sorter.order}`;
+      params.sorter = `_`;
     }
 
     dispatch({
@@ -276,7 +277,7 @@ export default class CommunityTable extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格">
+      <PageHeaderLayout title="查询表格:TaskHiding">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>
@@ -297,7 +298,7 @@ export default class CommunityTable extends PureComponent {
                 )
               }
             </div>
-            <StandardTable
+            <TaskHidingTable
               selectedRows={selectedRows}
               loading={ruleLoading}
               data={data}
@@ -324,3 +325,5 @@ export default class CommunityTable extends PureComponent {
     );
   }
 }
+
+

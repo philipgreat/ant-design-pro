@@ -13,9 +13,17 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 //import { getNavData,getRouteData } from './Community.menu';
-import CommunityTable from './Community.table'
+
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
+
+
+import CommunityTable from './Community.search'
+import CommunityUserSearch from '../communityuser/CommunityUser.search'
+import InvitationCodeSearch from '../invitationcode/InvitationCode.search'
+import ThreadSearch from '../thread/Thread.search'
+
+
 
 const query = {
   'screen-xs': {
@@ -119,15 +127,17 @@ class CommunityBizApp extends React.PureComponent {
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     });
   }
- 
-
+   toggle = () => {
+    const { collapsed } = this.props;
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: !collapsed,
+    });
+  }
 
   render() {
     const { currentUser, collapsed, fetchingNotices } = this.props;
     console.log("test value",this.props)
-
-    
-
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
       openKeys: this.state.openKeys,
@@ -162,13 +172,18 @@ class CommunityBizApp extends React.PureComponent {
           </Menu>
         </Sider>
         <Layout>
-          
+        <Header className={styles.header}>
+            <Icon
+              className={styles.trigger}
+              type={collapsed ? 'menu-unfold' : 'menu-fold'}
+              onClick={this.toggle}
+            /></Header>
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
             
-            <Route path="/community/:id/list/invitationCodeList" component={CommunityTable} />
-            <Route path="/community/:id/list/communityUserList" component={CommunityTable} />
-            <Route path="/community/:id/list/threadList" component={CommunityTable} />
+            <Route path="/community/:id/list/invitationCodeList" component={InvitationCodeSearch} />
+            <Route path="/community/:id/list/communityUserList" component={CommunityUserSearch} />
+            <Route path="/community/:id/list/threadList" component={ThreadSearch} />
             
             </Switch>
            

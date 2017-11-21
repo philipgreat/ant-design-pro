@@ -14,14 +14,17 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 //import { getNavData,getRouteData } from './Community.menu';
 
+
+
+
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
 
-import CommunityTable from './Community.table'
-import CommunityUserTable from '../communityuser/CommunityUser.table'
-import InvitationCodeTable from '../invitationcode/InvitationCode.table'
-import ThreadTable from '../thread/Thread.table'
+import CommunityTable from './Community.search'
+import CommunityUserSearch from '../communityuser/CommunityUser.search'
+import InvitationCodeSearch from '../invitationcode/InvitationCode.search'
+import ThreadSearch from '../thread/Thread.search'
 
 
 
@@ -113,6 +116,15 @@ class CommunityBizApp extends React.PureComponent {
 
   }
   
+  getInvitationCodeSearch() {
+    
+    
+    return connect(state => ({
+      rule: state.rule,
+      data: state.community.invitationCodeList
+    }))(InvitationCodeSearch);
+  }
+
   getPageTitle() {
     const { location } = this.props;
     const { pathname } = location;
@@ -138,9 +150,6 @@ class CommunityBizApp extends React.PureComponent {
   render() {
     const { currentUser, collapsed, fetchingNotices } = this.props;
     console.log("test value",this.props)
-
-    
-
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
       openKeys: this.state.openKeys,
@@ -184,9 +193,9 @@ class CommunityBizApp extends React.PureComponent {
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
             
-            <Route path="/community/:id/list/invitationCodeList" component={InvitationCodeTable} />
-            <Route path="/community/:id/list/communityUserList" component={CommunityUserTable} />
-            <Route path="/community/:id/list/threadList" component={ThreadTable} />
+            <Route path="/community/:id/list/invitationCodeList" component={this.getInvitationCodeSearch()} />
+            <Route path="/community/:id/list/communityUserList" component={CommunityUserSearch} />
+            <Route path="/community/:id/list/threadList" component={ThreadSearch} />
             
             </Switch>
            
