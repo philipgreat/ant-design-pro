@@ -1,4 +1,3 @@
-
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
@@ -48,7 +47,7 @@ export default class CommunityTable extends PureComponent {
       ...filters,
     };
     if (sorter.field) {
-      params.sorter = `_`;
+      params.sorter = `${sorter.field}_${sorter.order}`;
     }
 
     dispatch({
@@ -277,7 +276,7 @@ export default class CommunityTable extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:Community">
+      <PageHeaderLayout title="查询表格">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>
@@ -325,5 +324,3 @@ export default class CommunityTable extends PureComponent {
     );
   }
 }
-
-

@@ -5,7 +5,7 @@ import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, Inpu
 import StandardTable from '../../components/StandardTable';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
-import styles from './Community.table.less';
+import styles from './MessageFilter.table.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -15,7 +15,7 @@ const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',');
   rule: state.rule,
 }))
 @Form.create()
-export default class CommunityTable extends PureComponent {
+export default class MessageFilterTable extends PureComponent {
   state = {
     addInputValue: '',
     modalVisible: false,
@@ -277,7 +277,7 @@ export default class CommunityTable extends PureComponent {
     );
 
     return (
-      <PageHeaderLayout title="查询表格:Community">
+      <PageHeaderLayout title="查询表格:MessageFilter">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

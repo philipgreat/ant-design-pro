@@ -13,17 +13,9 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 //import { getNavData,getRouteData } from './Community.menu';
-
+import CommunityTable from './Community.table'
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
-import CommunityTable from './Community.table'
-import CommunityUserTable from '../communityuser/CommunityUser.table'
-import InvitationCodeTable from '../invitationcode/InvitationCode.table'
-import ThreadTable from '../thread/Thread.table'
-
-
 
 const query = {
   'screen-xs': {
@@ -174,9 +166,9 @@ class CommunityBizApp extends React.PureComponent {
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
             
-            <Route path="/community/:id/list/invitationCodeList" component={InvitationCodeTable} />
-            <Route path="/community/:id/list/communityUserList" component={CommunityUserTable} />
-            <Route path="/community/:id/list/threadList" component={ThreadTable} />
+            <Route path="/community/:id/list/invitationCodeList" component={CommunityTable} />
+            <Route path="/community/:id/list/communityUserList" component={CommunityTable} />
+            <Route path="/community/:id/list/threadList" component={CommunityTable} />
             
             </Switch>
            
