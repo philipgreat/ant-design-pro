@@ -22,8 +22,30 @@ const view=(targetObjectId)=>{
 
     });
 }
+////http://localhost:8080/naf/communityUserManager/loadCommunityUser/CU000001/taskList;taskListCurrentPage=3;taskListRowsPerPage=20/
+  
 
-const CommunityUserService={view};
+const joinParameters=(parameters)=>{
+    var obj = parameters;//{value1: 'prop1', value2: 'prop2', value3: 'prop3'};
+    var arr = [];
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            arr.push(key + '=' + obj[key]);
+        }
+    };
+    var result = arr.join(';');
+    return result;
+}
+
+const load=(targetObjectId,parameters)=>{
+    var parametersExpr = joinParameters(parameters);
+    return get({
+        url: PREFIX+`communityUserManager/loadCommunityUser/${targetObjectId}/${parametersExpr}/`
+
+    });
+}
+
+const CommunityUserService={view,load};
 export default CommunityUserService;
 
 

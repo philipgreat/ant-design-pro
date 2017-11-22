@@ -38,18 +38,20 @@ export default class TaskSearch extends PureComponent {
     }, {});
 
     const params = {
-      currentPage: pagination.current,
-      pageSize: pagination.pageSize,
+      taskList:1,
+      taskListCurrentPage: pagination.current,
+      taskListRowsPerPage: pagination.pageSize,
       ...formValues,
       ...filters,
     };
     if (sorter.field) {
       params.sorter = `_`;
     }
-
+    //http://localhost:8080/naf/communityUserManager/loadCommunityUser/CU000001/taskList;taskListCurrentPage=3;taskListRowsPerPage=20/
+  
     dispatch({
-      type: 'rule/fetch',
-      payload: params,
+      type: 'communityUser/load',
+      payload: {id:'CU000001',parameters:params},
     });
   }
 
