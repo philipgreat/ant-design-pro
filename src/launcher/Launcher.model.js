@@ -6,9 +6,9 @@ import { routerRedux } from 'dva/router';
 import key from 'keymaster';
 const  apps = {
 
-  "com.terapico.bbt.community.Community": "communityApp",
-  "com.terapico.bbt.communityuser.CommunityUser": "communityUserApp",
-  "com.terapico.bbt.userdomain.UserDomain": "userDomainApp",
+  "com.terapico.bbt.community.Community": "community",
+  "com.terapico.bbt.communityuser.CommunityUser": "communityUser",
+  "com.terapico.bbt.userdomain.UserDomain": "userDomain",
   
   
         
@@ -37,11 +37,11 @@ const lowercaseFirst = (stringExpr) => {
   return stringExpr.substring(0,1).toLowerCase()+stringExpr.substring(1);
 }
 
-const calcLocationPath =(clazz)=>{
+const calcLocationPath =(clazz,id,subLocation)=>{
   
   const locationPath  = apps[clazz];
   if(locationPath){
-    return locationPath+"/dash";
+    return locationPath+"/"+id+"/"+subLocation;
   }
   return "/home";
 }
@@ -103,7 +103,7 @@ export default {
         //console.log("gotoApp has been called", payload);
         const data = yield call(LauncherService.gotoApp,payload.appId);
 
-        const locationPath = calcLocationPath(data.class);
+        const locationPath = calcLocationPath(data.class,data.id,"list/taskList/");
         const location = {pathname:"/"+locationPath+"/"+data.id,state:data};
         yield put(routerRedux.push(location));
         //yield put({type:"showApp",payload:{data}});
