@@ -117,7 +117,8 @@ class ThreadReplyBizApp extends React.PureComponent {
       data: state.threadReply.threadReplyLikeList,
       count: state.threadReply.threadReplyLikeCount,
       currentPage: state.threadReply.threadReplyLikeCurrentPageNumber,
-      loading: state.threadReply.loading
+      loading: state.threadReply.loading,
+      owner: {type:'threadReply',id:state.threadReply.id}//this is for model namespace and 
     }))(ThreadReplyLikeSearch);
   }
   

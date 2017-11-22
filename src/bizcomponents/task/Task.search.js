@@ -47,13 +47,14 @@ export default class TaskSearch extends PureComponent {
     if (sorter.field) {
       params.sorter = `_`;
     }
-
-    dispatch({
-            type: 'communityUser/load',
-           payload: {id:'CU000001',parameters:params},
+	
+	const {owner} = this.props;
+	dispatch({
+       type: owner.type+'/load',
+       payload: {id:owner.id, parameters:params},
     });
   }
-
+  
   handleFormReset = () => {
     const { form, dispatch } = this.props;
     form.resetFields();
@@ -263,7 +264,7 @@ export default class TaskSearch extends PureComponent {
   }
 
   render() {
-    const { data,loading,count,currentPage } = this.props;
+    const { data,loading,count,currentPage,owner } = this.props;
     const { selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (
@@ -299,10 +300,11 @@ export default class TaskSearch extends PureComponent {
               selectedRows={selectedRows}
               loading={loading}
               data={data}
-              current={currentPage}
               count={count}
+              current={currentPage}
               onSelectRow={this.handleSelectRows}
               onChange={this.handleStandardTableChange}
+              owner={owner}
             />
           </div>
         </Card>

@@ -117,7 +117,8 @@ class TaskResolvingBizApp extends React.PureComponent {
       data: state.taskResolving.taskList,
       count: state.taskResolving.taskCount,
       currentPage: state.taskResolving.taskCurrentPageNumber,
-      loading: state.taskResolving.loading
+      loading: state.taskResolving.loading,
+      owner: {type:'taskResolving',id:state.taskResolving.id}//this is for model namespace and 
     }))(TaskSearch);
   }
   

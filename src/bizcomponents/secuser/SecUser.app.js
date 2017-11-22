@@ -124,7 +124,8 @@ class SecUserBizApp extends React.PureComponent {
       data: state.secUser.userAppList,
       count: state.secUser.userAppCount,
       currentPage: state.secUser.userAppCurrentPageNumber,
-      loading: state.secUser.loading
+      loading: state.secUser.loading,
+      owner: {type:'secUser',id:state.secUser.id}//this is for model namespace and 
     }))(UserAppSearch);
   }
   
@@ -136,7 +137,8 @@ class SecUserBizApp extends React.PureComponent {
       data: state.secUser.loginHistoryList,
       count: state.secUser.loginHistoryCount,
       currentPage: state.secUser.loginHistoryCurrentPageNumber,
-      loading: state.secUser.loading
+      loading: state.secUser.loading,
+      owner: {type:'secUser',id:state.secUser.id}//this is for model namespace and 
     }))(LoginHistorySearch);
   }
   

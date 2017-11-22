@@ -49,7 +49,7 @@ class TaskResolvingTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data,count,current } = this.props;
+    const { data,count,current, owner } = this.props;
 
    
     

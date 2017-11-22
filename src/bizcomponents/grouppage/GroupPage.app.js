@@ -124,7 +124,8 @@ class GroupPageBizApp extends React.PureComponent {
       data: state.groupPage.groupFilterList,
       count: state.groupPage.groupFilterCount,
       currentPage: state.groupPage.groupFilterCurrentPageNumber,
-      loading: state.groupPage.loading
+      loading: state.groupPage.loading,
+      owner: {type:'groupPage',id:state.groupPage.id}//this is for model namespace and 
     }))(GroupFilterSearch);
   }
   
@@ -136,7 +137,8 @@ class GroupPageBizApp extends React.PureComponent {
       data: state.groupPage.threadList,
       count: state.groupPage.threadCount,
       currentPage: state.groupPage.threadCurrentPageNumber,
-      loading: state.groupPage.loading
+      loading: state.groupPage.loading,
+      owner: {type:'groupPage',id:state.groupPage.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
   

@@ -117,7 +117,8 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
       data: state.taskBestAnswerSetting.taskReplyList,
       count: state.taskBestAnswerSetting.taskReplyCount,
       currentPage: state.taskBestAnswerSetting.taskReplyCurrentPageNumber,
-      loading: state.taskBestAnswerSetting.loading
+      loading: state.taskBestAnswerSetting.loading,
+      owner: {type:'taskBestAnswerSetting',id:state.taskBestAnswerSetting.id}//this is for model namespace and 
     }))(TaskReplySearch);
   }
   

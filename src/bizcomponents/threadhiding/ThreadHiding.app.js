@@ -117,7 +117,8 @@ class ThreadHidingBizApp extends React.PureComponent {
       data: state.threadHiding.threadList,
       count: state.threadHiding.threadCount,
       currentPage: state.threadHiding.threadCurrentPageNumber,
-      loading: state.threadHiding.loading
+      loading: state.threadHiding.loading,
+      owner: {type:'threadHiding',id:state.threadHiding.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
   

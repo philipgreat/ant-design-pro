@@ -145,7 +145,8 @@ class HomePageBizApp extends React.PureComponent {
       data: state.homePage.slideList,
       count: state.homePage.slideCount,
       currentPage: state.homePage.slideCurrentPageNumber,
-      loading: state.homePage.loading
+      loading: state.homePage.loading,
+      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
     }))(SlideSearch);
   }
   
@@ -157,7 +158,8 @@ class HomePageBizApp extends React.PureComponent {
       data: state.homePage.encyclopediaItemList,
       count: state.homePage.encyclopediaItemCount,
       currentPage: state.homePage.encyclopediaItemCurrentPageNumber,
-      loading: state.homePage.loading
+      loading: state.homePage.loading,
+      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
     }))(EncyclopediaItemSearch);
   }
   
@@ -169,7 +171,8 @@ class HomePageBizApp extends React.PureComponent {
       data: state.homePage.taskFilterList,
       count: state.homePage.taskFilterCount,
       currentPage: state.homePage.taskFilterCurrentPageNumber,
-      loading: state.homePage.loading
+      loading: state.homePage.loading,
+      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
     }))(TaskFilterSearch);
   }
   
@@ -181,7 +184,8 @@ class HomePageBizApp extends React.PureComponent {
       data: state.homePage.taskList,
       count: state.homePage.taskCount,
       currentPage: state.homePage.taskCurrentPageNumber,
-      loading: state.homePage.loading
+      loading: state.homePage.loading,
+      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
     }))(TaskSearch);
   }
   
@@ -193,7 +197,8 @@ class HomePageBizApp extends React.PureComponent {
       data: state.homePage.threadList,
       count: state.homePage.threadCount,
       currentPage: state.homePage.threadCurrentPageNumber,
-      loading: state.homePage.loading
+      loading: state.homePage.loading,
+      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
   

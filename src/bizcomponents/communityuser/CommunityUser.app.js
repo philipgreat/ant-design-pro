@@ -236,7 +236,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.patientInfoList,
       count: state.communityUser.patientInfoCount,
       currentPage: state.communityUser.patientInfoCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(PatientInfoSearch);
   }
   
@@ -248,7 +249,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.userSkillList,
       count: state.communityUser.userSkillCount,
       currentPage: state.communityUser.userSkillCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(UserSkillSearch);
   }
   
@@ -260,7 +262,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.messageFilterList,
       count: state.communityUser.messageFilterCount,
       currentPage: state.communityUser.messageFilterCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(MessageFilterSearch);
   }
   
@@ -272,7 +275,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.userMessageList,
       count: state.communityUser.userMessageCount,
       currentPage: state.communityUser.userMessageCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(UserMessageSearch);
   }
   
@@ -284,7 +288,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.taskList,
       count: state.communityUser.taskCount,
       currentPage: state.communityUser.taskCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(TaskSearch);
   }
   
@@ -296,7 +301,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.taskAssigmentList,
       count: state.communityUser.taskAssigmentCount,
       currentPage: state.communityUser.taskAssigmentCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(TaskAssigmentSearch);
   }
   
@@ -308,7 +314,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.taskLikeList,
       count: state.communityUser.taskLikeCount,
       currentPage: state.communityUser.taskLikeCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(TaskLikeSearch);
   }
   
@@ -320,7 +327,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.taskReplyList,
       count: state.communityUser.taskReplyCount,
       currentPage: state.communityUser.taskReplyCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(TaskReplySearch);
   }
   
@@ -332,7 +340,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.taskReplyLikeList,
       count: state.communityUser.taskReplyLikeCount,
       currentPage: state.communityUser.taskReplyLikeCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(TaskReplyLikeSearch);
   }
   
@@ -344,7 +353,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.threadList,
       count: state.communityUser.threadCount,
       currentPage: state.communityUser.threadCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
   
@@ -356,7 +366,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.threadReplyList,
       count: state.communityUser.threadReplyCount,
       currentPage: state.communityUser.threadReplyCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(ThreadReplySearch);
   }
   
@@ -368,7 +379,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.threadRegistrationList,
       count: state.communityUser.threadRegistrationCount,
       currentPage: state.communityUser.threadRegistrationCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(ThreadRegistrationSearch);
   }
   
@@ -380,7 +392,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.threadLikeList,
       count: state.communityUser.threadLikeCount,
       currentPage: state.communityUser.threadLikeCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(ThreadLikeSearch);
   }
   
@@ -392,7 +405,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.threadReplyLikeList,
       count: state.communityUser.threadReplyLikeCount,
       currentPage: state.communityUser.threadReplyLikeCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(ThreadReplyLikeSearch);
   }
   
@@ -404,7 +418,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.fanList,
       count: state.communityUser.fanCount,
       currentPage: state.communityUser.fanCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(FanSearch);
   }
   
@@ -416,7 +431,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.followList,
       count: state.communityUser.followCount,
       currentPage: state.communityUser.followCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(FollowSearch);
   }
   
@@ -428,7 +444,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.bonusPointList,
       count: state.communityUser.bonusPointCount,
       currentPage: state.communityUser.bonusPointCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(BonusPointSearch);
   }
   
@@ -440,7 +457,8 @@ class CommunityUserBizApp extends React.PureComponent {
       data: state.communityUser.experiencePointList,
       count: state.communityUser.experiencePointCount,
       currentPage: state.communityUser.experiencePointCurrentPageNumber,
-      loading: state.communityUser.loading
+      loading: state.communityUser.loading,
+      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(ExperiencePointSearch);
   }
   

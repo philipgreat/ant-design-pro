@@ -166,7 +166,8 @@ class CommunityBizApp extends React.PureComponent {
       data: state.community.invitationCodeList,
       count: state.community.invitationCodeCount,
       currentPage: state.community.invitationCodeCurrentPageNumber,
-      loading: state.community.loading
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(InvitationCodeSearch);
   }
   
@@ -178,7 +179,8 @@ class CommunityBizApp extends React.PureComponent {
       data: state.community.homePageList,
       count: state.community.homePageCount,
       currentPage: state.community.homePageCurrentPageNumber,
-      loading: state.community.loading
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(HomePageSearch);
   }
   
@@ -190,7 +192,8 @@ class CommunityBizApp extends React.PureComponent {
       data: state.community.encyclopediaItemList,
       count: state.community.encyclopediaItemCount,
       currentPage: state.community.encyclopediaItemCurrentPageNumber,
-      loading: state.community.loading
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(EncyclopediaItemSearch);
   }
   
@@ -202,7 +205,8 @@ class CommunityBizApp extends React.PureComponent {
       data: state.community.taskPageList,
       count: state.community.taskPageCount,
       currentPage: state.community.taskPageCurrentPageNumber,
-      loading: state.community.loading
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(TaskPageSearch);
   }
   
@@ -214,7 +218,8 @@ class CommunityBizApp extends React.PureComponent {
       data: state.community.communityUserList,
       count: state.community.communityUserCount,
       currentPage: state.community.communityUserCurrentPageNumber,
-      loading: state.community.loading
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(CommunityUserSearch);
   }
   
@@ -226,7 +231,8 @@ class CommunityBizApp extends React.PureComponent {
       data: state.community.taskList,
       count: state.community.taskCount,
       currentPage: state.community.taskCurrentPageNumber,
-      loading: state.community.loading
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(TaskSearch);
   }
   
@@ -238,7 +244,8 @@ class CommunityBizApp extends React.PureComponent {
       data: state.community.groupPageList,
       count: state.community.groupPageCount,
       currentPage: state.community.groupPageCurrentPageNumber,
-      loading: state.community.loading
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(GroupPageSearch);
   }
   
@@ -250,7 +257,8 @@ class CommunityBizApp extends React.PureComponent {
       data: state.community.threadList,
       count: state.community.threadCount,
       currentPage: state.community.threadCurrentPageNumber,
-      loading: state.community.loading
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
   
