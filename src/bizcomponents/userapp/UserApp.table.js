@@ -7,15 +7,15 @@ import styles from './UserApp.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'标题',dataIndex: 'title'},
-{title:'SEC的用户',dataIndex: 'secUser'},
-{title:'应用程序图标',dataIndex: 'appIcon'},
-{title:'完全访问',dataIndex: 'fullAccess'},
-{title:'许可',dataIndex: 'permission'},
-{title:'对象类型',dataIndex: 'objectType'},
-{title:'对象ID',dataIndex: 'objectId'},
-{title:'位置',dataIndex: 'location'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'标题',dataIndex: 'title',width:'8'},
+{title:'SEC的用户',dataIndex: 'secUser',width:'13'},
+{title:'应用程序图标',dataIndex: 'appIcon',width:'13'},
+{title:'完全访问',dataIndex: 'fullAccess',width:'8'},
+{title:'许可',dataIndex: 'permission',width:'8'},
+{title:'对象类型',dataIndex: 'objectType',width:'17'},
+{title:'对象ID',dataIndex: 'objectId',width:'12'},
+{title:'位置',dataIndex: 'location',width:'16'},
 
       
     ];
@@ -96,6 +96,7 @@ class UserAppTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:1035}}
         />
       </div>
     );

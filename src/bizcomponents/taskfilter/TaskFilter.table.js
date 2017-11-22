@@ -7,12 +7,12 @@ import styles from './TaskFilter.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'名称',dataIndex: 'name'},
-{title:'过滤器健值',dataIndex: 'filterKey'},
-{title:'链接网址',dataIndex: 'linkUrl'},
-{title:'任务页面',dataIndex: 'taskPage'},
-{title:'主页',dataIndex: 'homePage'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'名称',dataIndex: 'name',width:'8'},
+{title:'过滤器健值',dataIndex: 'filterKey',width:'25'},
+{title:'链接网址',dataIndex: 'linkUrl',width:'40'},
+{title:'任务页面',dataIndex: 'taskPage',width:'13'},
+{title:'主页',dataIndex: 'homePage',width:'13'},
 
       
     ];
@@ -93,6 +93,7 @@ class TaskFilterTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:1275}}
         />
       </div>
     );

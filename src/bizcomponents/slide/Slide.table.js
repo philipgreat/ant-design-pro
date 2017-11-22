@@ -7,11 +7,11 @@ import styles from './Slide.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'标题',dataIndex: 'title'},
-{title:'图像网址',dataIndex: 'imageUrl'},
-{title:'链接网址',dataIndex: 'linkUrl'},
-{title:'主页',dataIndex: 'homePage'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'标题',dataIndex: 'title',width:'8'},
+{title:'图像网址',dataIndex: 'imageUrl',width:'16'},
+{title:'链接网址',dataIndex: 'linkUrl',width:'40'},
+{title:'主页',dataIndex: 'homePage',width:'13'},
 
       
     ];
@@ -92,6 +92,7 @@ class SlideTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

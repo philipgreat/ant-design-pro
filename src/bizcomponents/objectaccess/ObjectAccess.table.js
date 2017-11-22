@@ -7,19 +7,19 @@ import styles from './ObjectAccess.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'显示名称',dataIndex: 'displayName'},
-{title:'对象类型',dataIndex: 'objectType'},
-{title:'列表1',dataIndex: 'list1'},
-{title:'列表2',dataIndex: 'list2'},
-{title:'列表3',dataIndex: 'list3'},
-{title:'列表4',dataIndex: 'list4'},
-{title:'列表5',dataIndex: 'list5'},
-{title:'列表6',dataIndex: 'list6'},
-{title:'列表7',dataIndex: 'list7'},
-{title:'列表8',dataIndex: 'list8'},
-{title:'列表9',dataIndex: 'list9'},
-{title:'应用程序',dataIndex: 'app'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'显示名称',dataIndex: 'displayName',width:'11'},
+{title:'对象类型',dataIndex: 'objectType',width:'32'},
+{title:'列表1',dataIndex: 'list1',width:'24'},
+{title:'列表2',dataIndex: 'list2',width:'24'},
+{title:'列表3',dataIndex: 'list3',width:'24'},
+{title:'列表4',dataIndex: 'list4',width:'24'},
+{title:'列表5',dataIndex: 'list5',width:'24'},
+{title:'列表6',dataIndex: 'list6',width:'24'},
+{title:'列表7',dataIndex: 'list7',width:'24'},
+{title:'列表8',dataIndex: 'list8',width:'24'},
+{title:'列表9',dataIndex: 'list9',width:'24'},
+{title:'应用程序',dataIndex: 'app',width:'13'},
 
       
     ];
@@ -100,6 +100,7 @@ class ObjectAccessTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:3405}}
         />
       </div>
     );

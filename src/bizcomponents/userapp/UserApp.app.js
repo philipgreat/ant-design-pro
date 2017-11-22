@@ -8,7 +8,7 @@ import moment from 'moment';
 import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
-import styles from './Community.app.less';
+import styles from './UserApp.app.less';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
@@ -73,7 +73,7 @@ class UserAppBizApp extends React.PureComponent {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)];
     currentMenuSelectedKeys.splice(-1, 1);
     if (currentMenuSelectedKeys.length === 0) {
-      return ['/community'];
+      return ['/userApp/'];
     }
     return currentMenuSelectedKeys;
   }
@@ -90,7 +90,7 @@ class UserAppBizApp extends React.PureComponent {
     return (
       <SubMenu title={<span>
         <Icon type='dashboard' />
-        <span>仪表板</span>
+        <span>用户应用程序</span>
       </span>} >
       
       
@@ -165,7 +165,7 @@ getPageTitle() {
           <div className={styles.logo}>
             <Link to="/">
               <img src="https://gw.alipayobjects.com/zos/rmsportal/iwWyPinUoseUxIAeElSx.svg" alt="logo" />
-              <h1>跨境供应链</h1>
+              <h1>用户应用程序</h1>
             </Link>
           </div>
           <Menu
@@ -176,7 +176,7 @@ getPageTitle() {
             selectedKeys={this.getCurrentMenuSelectedKeys()}
             style={{ margin: '16px 0', width: '100%' }}
           >
-            {this.getNavMenuItems(this.props.community.id)}
+            {this.getNavMenuItems(this.props.userApp.id)}
           </Menu>
         </Sider>
         <Layout>

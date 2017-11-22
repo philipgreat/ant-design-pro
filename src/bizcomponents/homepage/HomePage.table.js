@@ -7,9 +7,9 @@ import styles from './HomePage.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'标题',dataIndex: 'title'},
-{title:'社区',dataIndex: 'community'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'标题',dataIndex: 'title',width:'6'},
+{title:'社区',dataIndex: 'community',width:'13'},
 
       
     ];
@@ -90,6 +90,7 @@ class HomePageTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

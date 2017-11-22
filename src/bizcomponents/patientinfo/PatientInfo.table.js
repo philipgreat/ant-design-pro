@@ -7,16 +7,16 @@ import styles from './PatientInfo.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'名称',dataIndex: 'name'},
-{title:'昵称',dataIndex: 'nickName'},
-{title:'性别',dataIndex: 'gender'},
-{title:'生日',dataIndex: 'birthday'},
-{title:'佩戴设备类型',dataIndex: 'wearDeviceType'},
-{title:'磨损的开始时间',dataIndex: 'wearStartTime'},
-{title:'康复计划',dataIndex: 'recoverPlan'},
-{title:'复苏开始时间',dataIndex: 'recoverStartTime'},
-{title:'用户',dataIndex: 'user'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'名称',dataIndex: 'name',width:'6'},
+{title:'昵称',dataIndex: 'nickName',width:'6'},
+{title:'性别',dataIndex: 'gender',width:'5'},
+{title:'生日',dataIndex: 'birthday',width:'14'},
+{title:'佩戴设备类型',dataIndex: 'wearDeviceType',width:'8'},
+{title:'磨损的开始时间',dataIndex: 'wearStartTime',width:'14'},
+{title:'康复计划',dataIndex: 'recoverPlan',width:'15'},
+{title:'复苏开始时间',dataIndex: 'recoverStartTime',width:'14'},
+{title:'用户',dataIndex: 'user',width:'13'},
 
       
     ];
@@ -97,6 +97,7 @@ class PatientInfoTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

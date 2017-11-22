@@ -7,38 +7,38 @@ import styles from './Thread.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'标题',dataIndex: 'title'},
-{title:'显示顺序',dataIndex: 'displayOrder'},
-{title:'创建时间',dataIndex: 'createTime'},
-{title:'事件时间',dataIndex: 'eventTime'},
-{title:'注册时间停止',dataIndex: 'registrationStopTime'},
-{title:'事件的位置',dataIndex: 'eventLocation'},
-{title:'城市',dataIndex: 'city'},
-{title:'社区组',dataIndex: 'communityGroup'},
-{title:'帖子类型',dataIndex: 'threadType'},
-{title:'社区',dataIndex: 'community'},
-{title:'创建者',dataIndex: 'creator'},
-{title:'主页',dataIndex: 'homePage'},
-{title:'群组页面',dataIndex: 'groupPage'},
-{title:'视频网址',dataIndex: 'videoUrl'},
-{title:'封面图像路径1',dataIndex: 'coverImagePath1'},
-{title:'封面图像路径2',dataIndex: 'coverImagePath2'},
-{title:'封面图像路径3',dataIndex: 'coverImagePath3'},
-{title:'图1',dataIndex: 'imagePath1'},
-{title:'图2',dataIndex: 'imagePath2'},
-{title:'图3',dataIndex: 'imagePath3'},
-{title:'图4',dataIndex: 'imagePath4'},
-{title:'图5',dataIndex: 'imagePath5'},
-{title:'内容',dataIndex: 'content'},
-{title:'验收',dataIndex: 'approval'},
-{title:'取消',dataIndex: 'canceling'},
-{title:'完成',dataIndex: 'completion'},
-{title:'躲藏',dataIndex: 'hiding'},
-{title:'当前用户已点赞',dataIndex: 'likeByCurrentUser'},
-{title:'当前用户已回复',dataIndex: 'repliedByCurrentUser'},
-{title:'由当前用户注册',dataIndex: 'registeredByCurrentUser'},
-{title:'当前状态',dataIndex: 'currentStatus'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'标题',dataIndex: 'title',width:'15'},
+{title:'显示顺序',dataIndex: 'displayOrder',width:'10'},
+{title:'创建时间',dataIndex: 'createTime',width:'9'},
+{title:'事件时间',dataIndex: 'eventTime',width:'23'},
+{title:'注册时间停止',dataIndex: 'registrationStopTime',width:'23'},
+{title:'事件的位置',dataIndex: 'eventLocation',width:'13'},
+{title:'城市',dataIndex: 'city',width:'6'},
+{title:'社区组',dataIndex: 'communityGroup',width:'8'},
+{title:'帖子类型',dataIndex: 'threadType',width:'9'},
+{title:'社区',dataIndex: 'community',width:'13'},
+{title:'创建者',dataIndex: 'creator',width:'13'},
+{title:'主页',dataIndex: 'homePage',width:'13'},
+{title:'群组页面',dataIndex: 'groupPage',width:'13'},
+{title:'视频网址',dataIndex: 'videoUrl',width:'50'},
+{title:'封面图像路径1',dataIndex: 'coverImagePath1',width:'13'},
+{title:'封面图像路径2',dataIndex: 'coverImagePath2',width:'13'},
+{title:'封面图像路径3',dataIndex: 'coverImagePath3',width:'13'},
+{title:'图1',dataIndex: 'imagePath1',width:'13'},
+{title:'图2',dataIndex: 'imagePath2',width:'13'},
+{title:'图3',dataIndex: 'imagePath3',width:'13'},
+{title:'图4',dataIndex: 'imagePath4',width:'13'},
+{title:'图5',dataIndex: 'imagePath5',width:'13'},
+{title:'内容',dataIndex: 'content',width:'107'},
+{title:'验收',dataIndex: 'approval',width:'13'},
+{title:'取消',dataIndex: 'canceling',width:'13'},
+{title:'完成',dataIndex: 'completion',width:'13'},
+{title:'躲藏',dataIndex: 'hiding',width:'13'},
+{title:'当前用户已点赞',dataIndex: 'likeByCurrentUser',width:'9'},
+{title:'当前用户已回复',dataIndex: 'repliedByCurrentUser',width:'9'},
+{title:'由当前用户注册',dataIndex: 'registeredByCurrentUser',width:'9'},
+{title:'当前状态',dataIndex: 'currentStatus',width:'13'},
 
       
     ];
@@ -119,6 +119,7 @@ class ThreadTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:5940}}
         />
       </div>
     );

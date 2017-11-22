@@ -7,10 +7,10 @@ import styles from './Follow.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'用户',dataIndex: 'user'},
-{title:'关注的社区用户',dataIndex: 'followId'},
-{title:'添加时间',dataIndex: 'addingTime'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'用户',dataIndex: 'user',width:'13'},
+{title:'关注的社区用户',dataIndex: 'followId',width:'12'},
+{title:'添加时间',dataIndex: 'addingTime',width:'9'},
 
       
     ];
@@ -91,6 +91,7 @@ class FollowTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

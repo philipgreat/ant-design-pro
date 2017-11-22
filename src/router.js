@@ -9,6 +9,8 @@ import UserLayout from './layouts/UserLayout';
 
 import Launcher from './launcher/Launcher'
 import CommunityBizApp  from './bizcomponents/community/Community.app'
+import CommunityUserBizApp  from './bizcomponents/communityuser/CommunityUser.app'
+
 function RouterConfig({ history }) {
   return (
     <LocaleProvider locale={enUS}>
@@ -17,8 +19,9 @@ function RouterConfig({ history }) {
         <Route path="/user" component={UserLayout} />
         <Route path="/home" component={Launcher} />
  
-          <Route path="/community" component={CommunityBizApp} />
-          <Redirect to="/community" />
+        <Route path="/community/" component={CommunityBizApp} />
+        <Route path="/communityUser/" component={CommunityUserBizApp} />
+          
         </Switch>
       </Router>
     </LocaleProvider>

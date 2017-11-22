@@ -7,10 +7,10 @@ import styles from './SecUserBlocking.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'谁',dataIndex: 'who'},
-{title:'屏蔽时间',dataIndex: 'blockTime'},
-{title:'评论',dataIndex: 'comments'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'谁',dataIndex: 'who',width:'17'},
+{title:'屏蔽时间',dataIndex: 'blockTime',width:'9'},
+{title:'评论',dataIndex: 'comments',width:'28'},
 
       
     ];
@@ -91,6 +91,7 @@ class SecUserBlockingTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

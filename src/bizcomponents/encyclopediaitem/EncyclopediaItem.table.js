@@ -7,12 +7,12 @@ import styles from './EncyclopediaItem.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'标题',dataIndex: 'title'},
-{title:'发布时间',dataIndex: 'publishTime'},
-{title:'内容',dataIndex: 'content'},
-{title:'社区',dataIndex: 'community'},
-{title:'主页',dataIndex: 'homePage'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'标题',dataIndex: 'title',width:'15'},
+{title:'发布时间',dataIndex: 'publishTime',width:'14'},
+{title:'内容',dataIndex: 'content',width:'107'},
+{title:'社区',dataIndex: 'community',width:'13'},
+{title:'主页',dataIndex: 'homePage',width:'13'},
 
       
     ];
@@ -93,6 +93,7 @@ class EncyclopediaItemTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:2115}}
         />
       </div>
     );

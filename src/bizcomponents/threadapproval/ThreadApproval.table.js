@@ -7,10 +7,10 @@ import styles from './ThreadApproval.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'谁',dataIndex: 'who'},
-{title:'行动时间',dataIndex: 'actionTime'},
-{title:'评论',dataIndex: 'comment'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'谁',dataIndex: 'who',width:'21'},
+{title:'行动时间',dataIndex: 'actionTime',width:'9'},
+{title:'评论',dataIndex: 'comment',width:'8'},
 
       
     ];
@@ -91,6 +91,7 @@ class ThreadApprovalTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

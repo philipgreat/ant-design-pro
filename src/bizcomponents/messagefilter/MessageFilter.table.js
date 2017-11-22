@@ -7,12 +7,12 @@ import styles from './MessageFilter.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'名称',dataIndex: 'name'},
-{title:'消息计数',dataIndex: 'messageCount'},
-{title:'过滤器健值',dataIndex: 'filterKey'},
-{title:'链接网址',dataIndex: 'linkUrl'},
-{title:'用户',dataIndex: 'user'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'名称',dataIndex: 'name',width:'8'},
+{title:'消息计数',dataIndex: 'messageCount',width:'9'},
+{title:'过滤器健值',dataIndex: 'filterKey',width:'18'},
+{title:'链接网址',dataIndex: 'linkUrl',width:'40'},
+{title:'用户',dataIndex: 'user',width:'13'},
 
       
     ];
@@ -93,6 +93,7 @@ class MessageFilterTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:1110}}
         />
       </div>
     );

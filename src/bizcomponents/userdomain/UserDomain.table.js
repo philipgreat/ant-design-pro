@@ -7,8 +7,8 @@ import styles from './UserDomain.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'名称',dataIndex: 'name'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'名称',dataIndex: 'name',width:'8'},
 
       
     ];
@@ -89,6 +89,7 @@ class UserDomainTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

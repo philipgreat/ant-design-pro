@@ -7,10 +7,10 @@ import styles from './GroupFilter.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'滤波环节',dataIndex: 'filterLink'},
-{title:'标题',dataIndex: 'title'},
-{title:'群组页面',dataIndex: 'groupPage'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'滤波环节',dataIndex: 'filterLink',width:'32'},
+{title:'标题',dataIndex: 'title',width:'8'},
+{title:'群组页面',dataIndex: 'groupPage',width:'13'},
 
       
     ];
@@ -91,6 +91,7 @@ class GroupFilterTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

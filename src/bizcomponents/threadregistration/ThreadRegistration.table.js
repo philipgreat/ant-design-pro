@@ -7,11 +7,11 @@ import styles from './ThreadRegistration.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'主贴',dataIndex: 'thread'},
-{title:'参与者',dataIndex: 'participant'},
-{title:'登记时间',dataIndex: 'registerTime'},
-{title:'评论',dataIndex: 'comments'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'主贴',dataIndex: 'thread',width:'13'},
+{title:'参与者',dataIndex: 'participant',width:'13'},
+{title:'登记时间',dataIndex: 'registerTime',width:'9'},
+{title:'评论',dataIndex: 'comments',width:'14'},
 
       
     ];
@@ -92,6 +92,7 @@ class ThreadRegistrationTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

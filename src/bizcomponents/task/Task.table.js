@@ -7,32 +7,32 @@ import styles from './Task.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'标题',dataIndex: 'title'},
-{title:'选定的任务',dataIndex: 'selectedTask'},
-{title:'创建时间',dataIndex: 'createTime'},
-{title:'内容',dataIndex: 'content'},
-{title:'创建者',dataIndex: 'creator'},
-{title:'社区',dataIndex: 'community'},
-{title:'主页',dataIndex: 'homePage'},
-{title:'任务页面',dataIndex: 'taskPage'},
-{title:'视频网址',dataIndex: 'videoUrl'},
-{title:'封面图像路径1',dataIndex: 'coverImagePath1'},
-{title:'封面图像路径2',dataIndex: 'coverImagePath2'},
-{title:'封面图像路径3',dataIndex: 'coverImagePath3'},
-{title:'图1',dataIndex: 'imagePath1'},
-{title:'图2',dataIndex: 'imagePath2'},
-{title:'图3',dataIndex: 'imagePath3'},
-{title:'图4',dataIndex: 'imagePath4'},
-{title:'图5',dataIndex: 'imagePath5'},
-{title:'发布人的奖金',dataIndex: 'creatorBonus'},
-{title:'额外的奖金',dataIndex: 'additionalBonus'},
-{title:'躲藏',dataIndex: 'hiding'},
-{title:'解决',dataIndex: 'resolving'},
-{title:'悬赏',dataIndex: 'reward'},
-{title:'当前用户已点赞',dataIndex: 'likeByCurrentUser'},
-{title:'当前用户已回复',dataIndex: 'repliedByCurrentUser'},
-{title:'当前状态',dataIndex: 'currentStatus'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'标题',dataIndex: 'title',width:'15'},
+{title:'选定的任务',dataIndex: 'selectedTask',width:'5'},
+{title:'创建时间',dataIndex: 'createTime',width:'9'},
+{title:'内容',dataIndex: 'content',width:'107'},
+{title:'创建者',dataIndex: 'creator',width:'13'},
+{title:'社区',dataIndex: 'community',width:'13'},
+{title:'主页',dataIndex: 'homePage',width:'13'},
+{title:'任务页面',dataIndex: 'taskPage',width:'13'},
+{title:'视频网址',dataIndex: 'videoUrl',width:'50'},
+{title:'封面图像路径1',dataIndex: 'coverImagePath1',width:'13'},
+{title:'封面图像路径2',dataIndex: 'coverImagePath2',width:'13'},
+{title:'封面图像路径3',dataIndex: 'coverImagePath3',width:'13'},
+{title:'图1',dataIndex: 'imagePath1',width:'13'},
+{title:'图2',dataIndex: 'imagePath2',width:'13'},
+{title:'图3',dataIndex: 'imagePath3',width:'13'},
+{title:'图4',dataIndex: 'imagePath4',width:'13'},
+{title:'图5',dataIndex: 'imagePath5',width:'13'},
+{title:'发布人的奖金',dataIndex: 'creatorBonus',width:'7'},
+{title:'额外的奖金',dataIndex: 'additionalBonus',width:'7'},
+{title:'躲藏',dataIndex: 'hiding',width:'13'},
+{title:'解决',dataIndex: 'resolving',width:'13'},
+{title:'悬赏',dataIndex: 'reward',width:'13'},
+{title:'当前用户已点赞',dataIndex: 'likeByCurrentUser',width:'9'},
+{title:'当前用户已回复',dataIndex: 'repliedByCurrentUser',width:'9'},
+{title:'当前状态',dataIndex: 'currentStatus',width:'12'},
 
       
     ];
@@ -113,6 +113,7 @@ class TaskTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:4860}}
         />
       </div>
     );

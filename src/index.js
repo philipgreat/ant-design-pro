@@ -8,6 +8,8 @@ import './index.less';
 
 import LauncherModel from './launcher/Launcher.model'
 import CommnunityModel from './bizcomponents/community/Community.model'
+import CommnunityUserModel from './bizcomponents/communityuser/CommunityUser.model'
+
 // 1. Initialize
 const app = dva({
   // history: browserHistory,
@@ -17,6 +19,8 @@ const app = dva({
 // app.use({});
 app.model(LauncherModel);
 app.model(CommnunityModel);
+app.model(CommnunityUserModel);
+
 // 3. Model move to router
 models.forEach((m) => {
   app.model(m);

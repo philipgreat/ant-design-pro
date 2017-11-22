@@ -7,20 +7,20 @@ import styles from './CommunityUser.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'手机',dataIndex: 'mobile'},
-{title:'昵称',dataIndex: 'nickName'},
-{title:'性别',dataIndex: 'gender'},
-{title:'用户类型',dataIndex: 'userType'},
-{title:'头像',dataIndex: 'avatar'},
-{title:'生日',dataIndex: 'birthday'},
-{title:'成长值',dataIndex: 'experiencePoint'},
-{title:'积分',dataIndex: 'bonusPoint'},
-{title:'城市',dataIndex: 'city'},
-{title:'状态',dataIndex: 'status'},
-{title:'隐藏的信息',dataIndex: 'hideInfo'},
-{title:'管理员',dataIndex: 'administrator'},
-{title:'社区',dataIndex: 'community'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'手机',dataIndex: 'mobile',width:'15'},
+{title:'昵称',dataIndex: 'nickName',width:'6'},
+{title:'性别',dataIndex: 'gender',width:'5'},
+{title:'用户类型',dataIndex: 'userType',width:'8'},
+{title:'头像',dataIndex: 'avatar',width:'14'},
+{title:'生日',dataIndex: 'birthday',width:'14'},
+{title:'成长值',dataIndex: 'experiencePoint',width:'9'},
+{title:'积分',dataIndex: 'bonusPoint',width:'11'},
+{title:'城市',dataIndex: 'city',width:'7'},
+{title:'状态',dataIndex: 'status',width:'12'},
+{title:'隐藏的信息',dataIndex: 'hideInfo',width:'8'},
+{title:'管理员',dataIndex: 'administrator',width:'8'},
+{title:'社区',dataIndex: 'community',width:'13'},
 
       
     ];
@@ -101,6 +101,7 @@ class CommunityUserTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:1155}}
         />
       </div>
     );

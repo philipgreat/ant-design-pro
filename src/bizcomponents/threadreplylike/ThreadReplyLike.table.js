@@ -7,10 +7,10 @@ import styles from './ThreadReplyLike.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'点赞时间',dataIndex: 'likeTime'},
-{title:'应答者',dataIndex: 'replier'},
-{title:'跟帖回复',dataIndex: 'threadReply'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'点赞时间',dataIndex: 'likeTime',width:'9'},
+{title:'应答者',dataIndex: 'replier',width:'13'},
+{title:'跟帖回复',dataIndex: 'threadReply',width:'13'},
 
       
     ];
@@ -91,6 +91,7 @@ class ThreadReplyLikeTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

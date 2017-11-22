@@ -7,11 +7,11 @@ import styles from './ExperiencePoint.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'名称',dataIndex: 'name'},
-{title:'获得时间',dataIndex: 'obtainTime'},
-{title:'点',dataIndex: 'points'},
-{title:'用户',dataIndex: 'user'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'名称',dataIndex: 'name',width:'8'},
+{title:'获得时间',dataIndex: 'obtainTime',width:'9'},
+{title:'点',dataIndex: 'points',width:'7'},
+{title:'用户',dataIndex: 'user',width:'13'},
 
       
     ];
@@ -92,6 +92,7 @@ class ExperiencePointTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

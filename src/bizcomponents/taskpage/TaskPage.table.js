@@ -7,10 +7,10 @@ import styles from './TaskPage.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'标题',dataIndex: 'title'},
-{title:'当前健值',dataIndex: 'currentKey'},
-{title:'社区',dataIndex: 'community'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'标题',dataIndex: 'title',width:'6'},
+{title:'当前健值',dataIndex: 'currentKey',width:'25'},
+{title:'社区',dataIndex: 'community',width:'13'},
 
       
     ];
@@ -91,6 +91,7 @@ class TaskPageTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

@@ -7,10 +7,10 @@ import styles from './TaskLike.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'点赞时间',dataIndex: 'likeTime'},
-{title:'应答者',dataIndex: 'replier'},
-{title:'任务',dataIndex: 'task'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'点赞时间',dataIndex: 'likeTime',width:'9'},
+{title:'应答者',dataIndex: 'replier',width:'13'},
+{title:'任务',dataIndex: 'task',width:'13'},
 
       
     ];
@@ -91,6 +91,7 @@ class TaskLikeTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

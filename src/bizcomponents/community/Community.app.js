@@ -87,7 +87,7 @@ class CommunityBizApp extends React.PureComponent {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)];
     currentMenuSelectedKeys.splice(-1, 1);
     if (currentMenuSelectedKeys.length === 0) {
-      return ['/community'];
+      return ['/community/'];
     }
     return currentMenuSelectedKeys;
   }
@@ -104,7 +104,7 @@ class CommunityBizApp extends React.PureComponent {
     return (
       <SubMenu title={<span>
         <Icon type='dashboard' />
-        <span>仪表板</span>
+        <span>社区</span>
       </span>} >
       
       
@@ -284,7 +284,7 @@ getPageTitle() {
           <div className={styles.logo}>
             <Link to="/">
               <img src="https://gw.alipayobjects.com/zos/rmsportal/iwWyPinUoseUxIAeElSx.svg" alt="logo" />
-              <h1>跨境供应链</h1>
+              <h1>社区</h1>
             </Link>
           </div>
           <Menu

@@ -7,12 +7,12 @@ import styles from './InvitationCode.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'名称',dataIndex: 'name'},
-{title:'代码',dataIndex: 'code'},
-{title:'创建时间',dataIndex: 'createTime'},
-{title:'社区',dataIndex: 'community'},
-{title:'用',dataIndex: 'used'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'名称',dataIndex: 'name',width:'7'},
+{title:'代码',dataIndex: 'code',width:'10'},
+{title:'创建时间',dataIndex: 'createTime',width:'9'},
+{title:'社区',dataIndex: 'community',width:'13'},
+{title:'用',dataIndex: 'used',width:'8'},
 
       
     ];
@@ -93,6 +93,7 @@ class InvitationCodeTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

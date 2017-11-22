@@ -7,9 +7,9 @@ import styles from './Community.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'名称',dataIndex: 'name'},
-{title:'描述',dataIndex: 'description'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'名称',dataIndex: 'name',width:'10'},
+{title:'描述',dataIndex: 'description',width:'10'},
 
       
     ];
@@ -90,6 +90,7 @@ class CommunityTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

@@ -7,9 +7,9 @@ import styles from './UserSkill.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'技能名称',dataIndex: 'skillName'},
-{title:'用户',dataIndex: 'user'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'技能名称',dataIndex: 'skillName',width:'17'},
+{title:'用户',dataIndex: 'user',width:'13'},
 
       
     ];
@@ -90,6 +90,7 @@ class UserSkillTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );

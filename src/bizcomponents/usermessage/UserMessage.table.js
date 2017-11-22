@@ -7,13 +7,13 @@ import styles from './UserMessage.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'标题',dataIndex: 'title'},
-{title:'信息的关键',dataIndex: 'messageKey'},
-{title:'接收者',dataIndex: 'receiver'},
-{title:'内容',dataIndex: 'content'},
-{title:'链接网址',dataIndex: 'linkUrl'},
-{title:'消息的时间',dataIndex: 'messageTime'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'标题',dataIndex: 'title',width:'10'},
+{title:'信息的关键',dataIndex: 'messageKey',width:'18'},
+{title:'接收者',dataIndex: 'receiver',width:'13'},
+{title:'内容',dataIndex: 'content',width:'14'},
+{title:'链接网址',dataIndex: 'linkUrl',width:'31'},
+{title:'消息的时间',dataIndex: 'messageTime',width:'9'},
 
       
     ];
@@ -94,6 +94,7 @@ class UserMessageTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:1125}}
         />
       </div>
     );

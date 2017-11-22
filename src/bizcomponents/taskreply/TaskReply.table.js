@@ -7,14 +7,14 @@ import styles from './TaskReply.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'回复时间',dataIndex: 'replyTime'},
-{title:'内容',dataIndex: 'content'},
-{title:'应答者',dataIndex: 'replier'},
-{title:'任务',dataIndex: 'task'},
-{title:'最佳答案设置',dataIndex: 'bestAnswerSetting'},
-{title:'当前用户已点赞',dataIndex: 'likeByCurrentUser'},
-{title:'当前状态',dataIndex: 'currentStatus'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'回复时间',dataIndex: 'replyTime',width:'9'},
+{title:'内容',dataIndex: 'content',width:'22'},
+{title:'应答者',dataIndex: 'replier',width:'13'},
+{title:'任务',dataIndex: 'task',width:'13'},
+{title:'最佳答案设置',dataIndex: 'bestAnswerSetting',width:'13'},
+{title:'当前用户已点赞',dataIndex: 'likeByCurrentUser',width:'9'},
+{title:'当前状态',dataIndex: 'currentStatus',width:'19'},
 
       
     ];
@@ -95,6 +95,7 @@ class TaskReplyTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:1125}}
         />
       </div>
     );

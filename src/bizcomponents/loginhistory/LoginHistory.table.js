@@ -7,11 +7,11 @@ import styles from './LoginHistory.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id'},
-{title:'登录时间',dataIndex: 'loginTime'},
-{title:'从IP',dataIndex: 'fromIp'},
-{title:'描述',dataIndex: 'description'},
-{title:'SEC的用户',dataIndex: 'secUser'},
+{title:'序号',dataIndex: 'id',width:'20'},
+{title:'登录时间',dataIndex: 'loginTime',width:'9'},
+{title:'从IP',dataIndex: 'fromIp',width:'15'},
+{title:'描述',dataIndex: 'description',width:'8'},
+{title:'SEC的用户',dataIndex: 'secUser',width:'13'},
 
       
     ];
@@ -92,6 +92,7 @@ class LoginHistoryTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
+          scroll={{x:800}}
         />
       </div>
     );
