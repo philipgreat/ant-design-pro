@@ -8,7 +8,7 @@ import moment from 'moment';
 import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
-import styles from './Community.app.less';
+import styles from './CommunityUser.app.less';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
@@ -465,7 +465,7 @@ getPageTitle() {
             selectedKeys={this.getCurrentMenuSelectedKeys()}
             style={{ margin: '16px 0', width: '100%' }}
           >
-            {this.getNavMenuItems(this.props.community.id)}
+            {this.getNavMenuItems(this.props.communityUser.id)}
           </Menu>
         </Sider>
         <Layout>
