@@ -47,6 +47,12 @@ export default {
       console.log("this is the data id: ", data.id)
       yield put({type:"updateState",payload:data});
     },
+    *load({ payload }, { call, put }) { 
+      yield put({type:"showLoading",payload:{loading:true}});
+      const data = yield call(ThreadReplyLikeService.load,payload.id,payload.parameters);
+      console.log("this is the data id: ", data.id)
+      yield put({type:"updateState",payload:data});
+    },
   },
   
   reducers: {

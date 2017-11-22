@@ -38,8 +38,9 @@ export default class TaskReplySearch extends PureComponent {
     }, {});
 
     const params = {
-      currentPage: pagination.current,
-      pageSize: pagination.pageSize,
+      taskReplyList:1,
+      taskReplyListCurrentPage: pagination.current,
+      taskReplyListRowsPerPage: pagination.pageSize,
       ...formValues,
       ...filters,
     };
@@ -262,7 +263,7 @@ export default class TaskReplySearch extends PureComponent {
   }
 
   render() {
-    const { data,loading } = this.props;
+    const { data,loading,count,currentPage } = this.props;
     const { selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (
@@ -298,6 +299,7 @@ export default class TaskReplySearch extends PureComponent {
               selectedRows={selectedRows}
               loading={loading}
               data={data}
+              count={count}
               onSelectRow={this.handleSelectRows}
               onChange={this.handleStandardTableChange}
             />

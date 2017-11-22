@@ -23,7 +23,28 @@ const view=(targetObjectId)=>{
     });
 }
 
-const TaskRewardService={view};
+
+const joinParameters=(parameters)=>{
+    var obj = parameters;//{value1: 'prop1', value2: 'prop2', value3: 'prop3'};
+    var arr = [];
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            arr.push(key + '=' + obj[key]);
+        }
+    };
+    var result = arr.join(';');
+    return result;
+}
+
+const load=(targetObjectId,parameters)=>{
+    var parametersExpr = joinParameters(parameters);
+    return get({
+        url: PREFIX+`taskRewardManager/loadTaskReward/${targetObjectId}/${parametersExpr}/`
+
+    });
+}
+
+const TaskRewardService={view,load};
 export default TaskRewardService;
 
 

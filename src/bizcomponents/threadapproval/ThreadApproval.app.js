@@ -116,6 +116,7 @@ class ThreadApprovalBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.threadApproval.threadList,
       count: state.threadApproval.threadCount,
+      currentPage: state.threadApproval.threadCurrentPageNumber,
       loading: state.threadApproval.loading
     }))(ThreadSearch);
   }

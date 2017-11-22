@@ -123,6 +123,7 @@ class GroupPageBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.groupPage.groupFilterList,
       count: state.groupPage.groupFilterCount,
+      currentPage: state.groupPage.groupFilterCurrentPageNumber,
       loading: state.groupPage.loading
     }))(GroupFilterSearch);
   }
@@ -134,6 +135,7 @@ class GroupPageBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.groupPage.threadList,
       count: state.groupPage.threadCount,
+      currentPage: state.groupPage.threadCurrentPageNumber,
       loading: state.groupPage.loading
     }))(ThreadSearch);
   }

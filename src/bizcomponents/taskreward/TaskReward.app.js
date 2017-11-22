@@ -116,6 +116,7 @@ class TaskRewardBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.taskReward.taskList,
       count: state.taskReward.taskCount,
+      currentPage: state.taskReward.taskCurrentPageNumber,
       loading: state.taskReward.loading
     }))(TaskSearch);
   }

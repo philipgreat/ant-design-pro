@@ -23,7 +23,28 @@ const view=(targetObjectId)=>{
     });
 }
 
-const ThreadRegistrationService={view};
+
+const joinParameters=(parameters)=>{
+    var obj = parameters;//{value1: 'prop1', value2: 'prop2', value3: 'prop3'};
+    var arr = [];
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            arr.push(key + '=' + obj[key]);
+        }
+    };
+    var result = arr.join(';');
+    return result;
+}
+
+const load=(targetObjectId,parameters)=>{
+    var parametersExpr = joinParameters(parameters);
+    return get({
+        url: PREFIX+`threadRegistrationManager/loadThreadRegistration/${targetObjectId}/${parametersExpr}/`
+
+    });
+}
+
+const ThreadRegistrationService={view,load};
 export default ThreadRegistrationService;
 
 

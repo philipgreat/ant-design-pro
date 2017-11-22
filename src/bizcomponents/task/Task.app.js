@@ -130,6 +130,7 @@ class TaskBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.task.taskAssigmentList,
       count: state.task.taskAssigmentCount,
+      currentPage: state.task.taskAssigmentCurrentPageNumber,
       loading: state.task.loading
     }))(TaskAssigmentSearch);
   }
@@ -141,6 +142,7 @@ class TaskBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.task.taskLikeList,
       count: state.task.taskLikeCount,
+      currentPage: state.task.taskLikeCurrentPageNumber,
       loading: state.task.loading
     }))(TaskLikeSearch);
   }
@@ -152,6 +154,7 @@ class TaskBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.task.taskReplyList,
       count: state.task.taskReplyCount,
+      currentPage: state.task.taskReplyCurrentPageNumber,
       loading: state.task.loading
     }))(TaskReplySearch);
   }

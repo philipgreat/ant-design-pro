@@ -123,6 +123,7 @@ class TaskPageBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.taskPage.taskFilterList,
       count: state.taskPage.taskFilterCount,
+      currentPage: state.taskPage.taskFilterCurrentPageNumber,
       loading: state.taskPage.loading
     }))(TaskFilterSearch);
   }
@@ -134,6 +135,7 @@ class TaskPageBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.taskPage.taskList,
       count: state.taskPage.taskCount,
+      currentPage: state.taskPage.taskCurrentPageNumber,
       loading: state.taskPage.loading
     }))(TaskSearch);
   }

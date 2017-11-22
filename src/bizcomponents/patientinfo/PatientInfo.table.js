@@ -55,7 +55,7 @@ class PatientInfoTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data,count } = this.props;
+    const { data,count,current } = this.props;
 
    
     
@@ -64,7 +64,8 @@ class PatientInfoTable extends PureComponent {
       showSizeChanger: true,
       showQuickJumper: true,
       pageSize: 20,
-      total: count
+      total: count,
+      current: current
       
     };
 

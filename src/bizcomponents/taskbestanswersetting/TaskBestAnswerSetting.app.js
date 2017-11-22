@@ -116,6 +116,7 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.taskBestAnswerSetting.taskReplyList,
       count: state.taskBestAnswerSetting.taskReplyCount,
+      currentPage: state.taskBestAnswerSetting.taskReplyCurrentPageNumber,
       loading: state.taskBestAnswerSetting.loading
     }))(TaskReplySearch);
   }

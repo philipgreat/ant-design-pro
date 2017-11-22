@@ -38,8 +38,9 @@ export default class HomePageSearch extends PureComponent {
     }, {});
 
     const params = {
-      currentPage: pagination.current,
-      pageSize: pagination.pageSize,
+      homePageList:1,
+      homePageListCurrentPage: pagination.current,
+      homePageListRowsPerPage: pagination.pageSize,
       ...formValues,
       ...filters,
     };
@@ -262,7 +263,7 @@ export default class HomePageSearch extends PureComponent {
   }
 
   render() {
-    const { data,loading } = this.props;
+    const { data,loading,count,currentPage } = this.props;
     const { selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (
@@ -298,6 +299,7 @@ export default class HomePageSearch extends PureComponent {
               selectedRows={selectedRows}
               loading={loading}
               data={data}
+              count={count}
               onSelectRow={this.handleSelectRows}
               onChange={this.handleStandardTableChange}
             />

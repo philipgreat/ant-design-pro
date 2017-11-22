@@ -47,11 +47,10 @@ export default class TaskSearch extends PureComponent {
     if (sorter.field) {
       params.sorter = `_`;
     }
-    //http://localhost:8080/naf/communityUserManager/loadCommunityUser/CU000001/taskList;taskListCurrentPage=3;taskListRowsPerPage=20/
-  
+
     dispatch({
-      type: 'communityUser/load',
-      payload: {id:'CU000001',parameters:params},
+            type: 'communityUser/load',
+           payload: {id:'CU000001',parameters:params},
     });
   }
 
@@ -264,7 +263,7 @@ export default class TaskSearch extends PureComponent {
   }
 
   render() {
-    const { data,loading,count } = this.props;
+    const { data,loading,count,currentPage } = this.props;
     const { selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (
@@ -300,6 +299,7 @@ export default class TaskSearch extends PureComponent {
               selectedRows={selectedRows}
               loading={loading}
               data={data}
+              current={currentPage}
               count={count}
               onSelectRow={this.handleSelectRows}
               onChange={this.handleStandardTableChange}

@@ -130,6 +130,7 @@ class ThreadBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.thread.threadReplyList,
       count: state.thread.threadReplyCount,
+      currentPage: state.thread.threadReplyCurrentPageNumber,
       loading: state.thread.loading
     }))(ThreadReplySearch);
   }
@@ -141,6 +142,7 @@ class ThreadBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.thread.threadRegistrationList,
       count: state.thread.threadRegistrationCount,
+      currentPage: state.thread.threadRegistrationCurrentPageNumber,
       loading: state.thread.loading
     }))(ThreadRegistrationSearch);
   }
@@ -152,6 +154,7 @@ class ThreadBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.thread.threadLikeList,
       count: state.thread.threadLikeCount,
+      currentPage: state.thread.threadLikeCurrentPageNumber,
       loading: state.thread.loading
     }))(ThreadLikeSearch);
   }

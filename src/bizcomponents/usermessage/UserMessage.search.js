@@ -38,8 +38,9 @@ export default class UserMessageSearch extends PureComponent {
     }, {});
 
     const params = {
-      currentPage: pagination.current,
-      pageSize: pagination.pageSize,
+      userMessageList:1,
+      userMessageListCurrentPage: pagination.current,
+      userMessageListRowsPerPage: pagination.pageSize,
       ...formValues,
       ...filters,
     };
@@ -262,7 +263,7 @@ export default class UserMessageSearch extends PureComponent {
   }
 
   render() {
-    const { data,loading } = this.props;
+    const { data,loading,count,currentPage } = this.props;
     const { selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (
@@ -298,6 +299,7 @@ export default class UserMessageSearch extends PureComponent {
               selectedRows={selectedRows}
               loading={loading}
               data={data}
+              count={count}
               onSelectRow={this.handleSelectRows}
               onChange={this.handleStandardTableChange}
             />

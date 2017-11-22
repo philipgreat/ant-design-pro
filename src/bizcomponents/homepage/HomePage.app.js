@@ -144,6 +144,7 @@ class HomePageBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.homePage.slideList,
       count: state.homePage.slideCount,
+      currentPage: state.homePage.slideCurrentPageNumber,
       loading: state.homePage.loading
     }))(SlideSearch);
   }
@@ -155,6 +156,7 @@ class HomePageBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.homePage.encyclopediaItemList,
       count: state.homePage.encyclopediaItemCount,
+      currentPage: state.homePage.encyclopediaItemCurrentPageNumber,
       loading: state.homePage.loading
     }))(EncyclopediaItemSearch);
   }
@@ -166,6 +168,7 @@ class HomePageBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.homePage.taskFilterList,
       count: state.homePage.taskFilterCount,
+      currentPage: state.homePage.taskFilterCurrentPageNumber,
       loading: state.homePage.loading
     }))(TaskFilterSearch);
   }
@@ -177,6 +180,7 @@ class HomePageBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.homePage.taskList,
       count: state.homePage.taskCount,
+      currentPage: state.homePage.taskCurrentPageNumber,
       loading: state.homePage.loading
     }))(TaskSearch);
   }
@@ -188,6 +192,7 @@ class HomePageBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.homePage.threadList,
       count: state.homePage.threadCount,
+      currentPage: state.homePage.threadCurrentPageNumber,
       loading: state.homePage.loading
     }))(ThreadSearch);
   }

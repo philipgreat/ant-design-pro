@@ -116,6 +116,7 @@ class UserDomainBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.userDomain.secUserList,
       count: state.userDomain.secUserCount,
+      currentPage: state.userDomain.secUserCurrentPageNumber,
       loading: state.userDomain.loading
     }))(SecUserSearch);
   }

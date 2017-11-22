@@ -116,6 +116,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.secUserBlocking.secUserList,
       count: state.secUserBlocking.secUserCount,
+      currentPage: state.secUserBlocking.secUserCurrentPageNumber,
       loading: state.secUserBlocking.loading
     }))(SecUserSearch);
   }

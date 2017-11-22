@@ -123,6 +123,7 @@ class SecUserBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.secUser.userAppList,
       count: state.secUser.userAppCount,
+      currentPage: state.secUser.userAppCurrentPageNumber,
       loading: state.secUser.loading
     }))(UserAppSearch);
   }
@@ -134,6 +135,7 @@ class SecUserBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.secUser.loginHistoryList,
       count: state.secUser.loginHistoryCount,
+      currentPage: state.secUser.loginHistoryCurrentPageNumber,
       loading: state.secUser.loading
     }))(LoginHistorySearch);
   }

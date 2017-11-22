@@ -116,6 +116,7 @@ class UserAppBizApp extends React.PureComponent {
       rule: state.rule,
       data: state.userApp.objectAccessList,
       count: state.userApp.objectAccessCount,
+      currentPage: state.userApp.objectAccessCurrentPageNumber,
       loading: state.userApp.loading
     }))(ObjectAccessSearch);
   }

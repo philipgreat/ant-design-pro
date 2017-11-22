@@ -22,8 +22,7 @@ const view=(targetObjectId)=>{
 
     });
 }
-////http://localhost:8080/naf/communityUserManager/loadCommunityUser/CU000001/taskList;taskListCurrentPage=3;taskListRowsPerPage=20/
-  
+
 
 const joinParameters=(parameters)=>{
     var obj = parameters;//{value1: 'prop1', value2: 'prop2', value3: 'prop3'};
