@@ -122,6 +122,7 @@ class GroupPageBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.groupPage.groupFilterList,
+      count: state.groupPage.groupFilterCount,
       loading: state.groupPage.loading
     }))(GroupFilterSearch);
   }
@@ -132,6 +133,7 @@ class GroupPageBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.groupPage.threadList,
+      count: state.groupPage.threadCount,
       loading: state.groupPage.loading
     }))(ThreadSearch);
   }

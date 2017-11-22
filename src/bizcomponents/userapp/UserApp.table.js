@@ -7,15 +7,15 @@ import styles from './UserApp.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'标题',dataIndex: 'title',width:'8'},
-{title:'SEC的用户',dataIndex: 'secUser',width:'13'},
-{title:'应用程序图标',dataIndex: 'appIcon',width:'13'},
-{title:'完全访问',dataIndex: 'fullAccess',width:'8'},
-{title:'许可',dataIndex: 'permission',width:'8'},
-{title:'对象类型',dataIndex: 'objectType',width:'17'},
-{title:'对象ID',dataIndex: 'objectId',width:'12'},
-{title:'位置',dataIndex: 'location',width:'16'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'标题',debugtype:'string',dataIndex: 'title',width:'8'},
+{title:'SEC的用户',debugtype:'sec_user',dataIndex: 'secUser',width:'13'},
+{title:'应用程序图标',debugtype:'string',dataIndex: 'appIcon',width:'13'},
+{title:'完全访问',debugtype:'bool',dataIndex: 'fullAccess',width:'8'},
+{title:'许可',debugtype:'string',dataIndex: 'permission',width:'8'},
+{title:'对象类型',debugtype:'string',dataIndex: 'objectType',width:'17'},
+{title:'对象ID',debugtype:'string',dataIndex: 'objectId',width:'12'},
+{title:'位置',debugtype:'string',dataIndex: 'location',width:'16'},
 
       
     ];
@@ -54,7 +54,7 @@ class UserAppTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -62,6 +62,8 @@ class UserAppTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

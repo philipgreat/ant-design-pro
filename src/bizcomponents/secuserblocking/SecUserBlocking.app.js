@@ -115,6 +115,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.secUserBlocking.secUserList,
+      count: state.secUserBlocking.secUserCount,
       loading: state.secUserBlocking.loading
     }))(SecUserSearch);
   }

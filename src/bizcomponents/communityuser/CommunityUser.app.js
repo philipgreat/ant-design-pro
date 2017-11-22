@@ -234,6 +234,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.patientInfoList,
+      count: state.communityUser.patientInfoCount,
       loading: state.communityUser.loading
     }))(PatientInfoSearch);
   }
@@ -244,6 +245,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.userSkillList,
+      count: state.communityUser.userSkillCount,
       loading: state.communityUser.loading
     }))(UserSkillSearch);
   }
@@ -254,6 +256,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.messageFilterList,
+      count: state.communityUser.messageFilterCount,
       loading: state.communityUser.loading
     }))(MessageFilterSearch);
   }
@@ -264,6 +267,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.userMessageList,
+      count: state.communityUser.userMessageCount,
       loading: state.communityUser.loading
     }))(UserMessageSearch);
   }
@@ -274,6 +278,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.taskList,
+      count: state.communityUser.taskCount,
       loading: state.communityUser.loading
     }))(TaskSearch);
   }
@@ -284,6 +289,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.taskAssigmentList,
+      count: state.communityUser.taskAssigmentCount,
       loading: state.communityUser.loading
     }))(TaskAssigmentSearch);
   }
@@ -294,6 +300,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.taskLikeList,
+      count: state.communityUser.taskLikeCount,
       loading: state.communityUser.loading
     }))(TaskLikeSearch);
   }
@@ -304,6 +311,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.taskReplyList,
+      count: state.communityUser.taskReplyCount,
       loading: state.communityUser.loading
     }))(TaskReplySearch);
   }
@@ -314,6 +322,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.taskReplyLikeList,
+      count: state.communityUser.taskReplyLikeCount,
       loading: state.communityUser.loading
     }))(TaskReplyLikeSearch);
   }
@@ -324,6 +333,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.threadList,
+      count: state.communityUser.threadCount,
       loading: state.communityUser.loading
     }))(ThreadSearch);
   }
@@ -334,6 +344,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.threadReplyList,
+      count: state.communityUser.threadReplyCount,
       loading: state.communityUser.loading
     }))(ThreadReplySearch);
   }
@@ -344,6 +355,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.threadRegistrationList,
+      count: state.communityUser.threadRegistrationCount,
       loading: state.communityUser.loading
     }))(ThreadRegistrationSearch);
   }
@@ -354,6 +366,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.threadLikeList,
+      count: state.communityUser.threadLikeCount,
       loading: state.communityUser.loading
     }))(ThreadLikeSearch);
   }
@@ -364,6 +377,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.threadReplyLikeList,
+      count: state.communityUser.threadReplyLikeCount,
       loading: state.communityUser.loading
     }))(ThreadReplyLikeSearch);
   }
@@ -374,6 +388,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.fanList,
+      count: state.communityUser.fanCount,
       loading: state.communityUser.loading
     }))(FanSearch);
   }
@@ -384,6 +399,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.followList,
+      count: state.communityUser.followCount,
       loading: state.communityUser.loading
     }))(FollowSearch);
   }
@@ -394,6 +410,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.bonusPointList,
+      count: state.communityUser.bonusPointCount,
       loading: state.communityUser.loading
     }))(BonusPointSearch);
   }
@@ -404,6 +421,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.experiencePointList,
+      count: state.communityUser.experiencePointCount,
       loading: state.communityUser.loading
     }))(ExperiencePointSearch);
   }

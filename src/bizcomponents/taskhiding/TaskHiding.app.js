@@ -115,6 +115,7 @@ class TaskHidingBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.taskHiding.taskList,
+      count: state.taskHiding.taskCount,
       loading: state.taskHiding.loading
     }))(TaskSearch);
   }

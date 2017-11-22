@@ -7,11 +7,11 @@ import styles from './ExperiencePoint.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'名称',dataIndex: 'name',width:'8'},
-{title:'获得时间',dataIndex: 'obtainTime',width:'9'},
-{title:'点',dataIndex: 'points',width:'7'},
-{title:'用户',dataIndex: 'user',width:'13'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'名称',debugtype:'string',dataIndex: 'name',width:'8'},
+{title:'获得时间',dataIndex: 'obtainTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'点',debugtype:'int',dataIndex: 'points',width:'7'},
+{title:'用户',debugtype:'community_user',dataIndex: 'user',width:'13'},
 
       
     ];
@@ -50,7 +50,7 @@ class ExperiencePointTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -58,6 +58,8 @@ class ExperiencePointTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

@@ -122,6 +122,7 @@ class TaskPageBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.taskPage.taskFilterList,
+      count: state.taskPage.taskFilterCount,
       loading: state.taskPage.loading
     }))(TaskFilterSearch);
   }
@@ -132,6 +133,7 @@ class TaskPageBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.taskPage.taskList,
+      count: state.taskPage.taskCount,
       loading: state.taskPage.loading
     }))(TaskSearch);
   }

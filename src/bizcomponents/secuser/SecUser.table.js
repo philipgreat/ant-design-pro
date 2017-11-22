@@ -7,17 +7,17 @@ import styles from './SecUser.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'登录',dataIndex: 'login',width:'9'},
-{title:'手机',dataIndex: 'mobile',width:'15'},
-{title:'电子邮件',dataIndex: 'email',width:'23'},
-{title:'PWD',dataIndex: 'pwd',width:'11'},
-{title:'验证码',dataIndex: 'verificationCode',width:'11'},
-{title:'验证码过期',dataIndex: 'verificationCodeExpire',width:'23'},
-{title:'最后登录时间',dataIndex: 'lastLoginTime',width:'23'},
-{title:'域',dataIndex: 'domain',width:'13'},
-{title:'屏蔽',dataIndex: 'blocking',width:'13'},
-{title:'当前状态',dataIndex: 'currentStatus',width:'11'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'登录',debugtype:'string',dataIndex: 'login',width:'9'},
+{title:'手机',debugtype:'string_china_mobile_phone',dataIndex: 'mobile',width:'15'},
+{title:'电子邮件',debugtype:'string_email',dataIndex: 'email',width:'23'},
+{title:'PWD',debugtype:'string_password',dataIndex: 'pwd',width:'11'},
+{title:'验证码',debugtype:'int',dataIndex: 'verificationCode',width:'11'},
+{title:'验证码过期',dataIndex: 'verificationCodeExpire',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'最后登录时间',dataIndex: 'lastLoginTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'域',debugtype:'user_domain',dataIndex: 'domain',width:'13'},
+{title:'屏蔽',debugtype:'sec_user_blocking',dataIndex: 'blocking',width:'13'},
+{title:'当前状态',debugtype:'string',dataIndex: 'currentStatus',width:'11'},
 
       
     ];
@@ -56,7 +56,7 @@ class SecUserTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -64,6 +64,8 @@ class SecUserTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

@@ -129,6 +129,7 @@ class ThreadBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.thread.threadReplyList,
+      count: state.thread.threadReplyCount,
       loading: state.thread.loading
     }))(ThreadReplySearch);
   }
@@ -139,6 +140,7 @@ class ThreadBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.thread.threadRegistrationList,
+      count: state.thread.threadRegistrationCount,
       loading: state.thread.loading
     }))(ThreadRegistrationSearch);
   }
@@ -149,6 +151,7 @@ class ThreadBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.thread.threadLikeList,
+      count: state.thread.threadLikeCount,
       loading: state.thread.loading
     }))(ThreadLikeSearch);
   }

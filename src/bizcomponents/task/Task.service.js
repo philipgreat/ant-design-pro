@@ -18,7 +18,7 @@ const PREFIX="http://"+parseHost()+":8080/naf/";
 
 const view=(targetObjectId)=>{
     return get({
-        url: PREFIX+`taskManager/view//`
+        url: PREFIX+`taskManager/view/${targetObjectId}/`
 
     });
 }

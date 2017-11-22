@@ -7,10 +7,10 @@ import styles from './GroupPage.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'标题',dataIndex: 'title',width:'7'},
-{title:'目前的组名',dataIndex: 'currentGroupName',width:'9'},
-{title:'社区',dataIndex: 'community',width:'13'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'标题',debugtype:'string',dataIndex: 'title',width:'7'},
+{title:'目前的组名',debugtype:'string',dataIndex: 'currentGroupName',width:'9'},
+{title:'社区',debugtype:'community',dataIndex: 'community',width:'13'},
 
       
     ];
@@ -49,7 +49,7 @@ class GroupPageTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -57,6 +57,8 @@ class GroupPageTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

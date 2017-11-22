@@ -7,11 +7,11 @@ import styles from './Slide.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'标题',dataIndex: 'title',width:'8'},
-{title:'图像网址',dataIndex: 'imageUrl',width:'16'},
-{title:'链接网址',dataIndex: 'linkUrl',width:'40'},
-{title:'主页',dataIndex: 'homePage',width:'13'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'标题',debugtype:'string',dataIndex: 'title',width:'8'},
+{title:'图像网址',debugtype:'string_image',dataIndex: 'imageUrl',width:'16'},
+{title:'链接网址',debugtype:'string',dataIndex: 'linkUrl',width:'40'},
+{title:'主页',debugtype:'home_page',dataIndex: 'homePage',width:'13'},
 
       
     ];
@@ -50,7 +50,7 @@ class SlideTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -58,6 +58,8 @@ class SlideTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

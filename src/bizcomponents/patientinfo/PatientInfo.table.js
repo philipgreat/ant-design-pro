@@ -7,16 +7,16 @@ import styles from './PatientInfo.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'名称',dataIndex: 'name',width:'6'},
-{title:'昵称',dataIndex: 'nickName',width:'6'},
-{title:'性别',dataIndex: 'gender',width:'5'},
-{title:'生日',dataIndex: 'birthday',width:'14'},
-{title:'佩戴设备类型',dataIndex: 'wearDeviceType',width:'8'},
-{title:'磨损的开始时间',dataIndex: 'wearStartTime',width:'14'},
-{title:'康复计划',dataIndex: 'recoverPlan',width:'15'},
-{title:'复苏开始时间',dataIndex: 'recoverStartTime',width:'14'},
-{title:'用户',dataIndex: 'user',width:'13'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'名称',debugtype:'string',dataIndex: 'name',width:'6'},
+{title:'昵称',debugtype:'string',dataIndex: 'nickName',width:'6'},
+{title:'性别',debugtype:'string_gender',dataIndex: 'gender',width:'5'},
+{title:'生日',dataIndex: 'birthday',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'佩戴设备类型',debugtype:'string',dataIndex: 'wearDeviceType',width:'8'},
+{title:'磨损的开始时间',dataIndex: 'wearStartTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'康复计划',debugtype:'string',dataIndex: 'recoverPlan',width:'15'},
+{title:'复苏开始时间',dataIndex: 'recoverStartTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'用户',debugtype:'community_user',dataIndex: 'user',width:'13'},
 
       
     ];
@@ -55,7 +55,7 @@ class PatientInfoTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -63,6 +63,8 @@ class PatientInfoTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

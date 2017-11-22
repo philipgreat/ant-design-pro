@@ -18,21 +18,13 @@ const PREFIX="http://"+parseHost()+":8080/naf/";
 
 const view=(targetObjectId)=>{
     return get({
-        url: PREFIX+`loginHistoryManager/view//`
+        url: PREFIX+`loginHistoryManager/view/${targetObjectId}/`
 
     });
 }
 
 const LoginHistoryService={view};
 export default LoginHistoryService;
-
-
-
-
-
-
-
-
 
 
 

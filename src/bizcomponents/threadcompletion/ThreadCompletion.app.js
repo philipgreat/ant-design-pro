@@ -115,6 +115,7 @@ class ThreadCompletionBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.threadCompletion.threadList,
+      count: state.threadCompletion.threadCount,
       loading: state.threadCompletion.loading
     }))(ThreadSearch);
   }

@@ -143,6 +143,7 @@ class HomePageBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.homePage.slideList,
+      count: state.homePage.slideCount,
       loading: state.homePage.loading
     }))(SlideSearch);
   }
@@ -153,6 +154,7 @@ class HomePageBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.homePage.encyclopediaItemList,
+      count: state.homePage.encyclopediaItemCount,
       loading: state.homePage.loading
     }))(EncyclopediaItemSearch);
   }
@@ -163,6 +165,7 @@ class HomePageBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.homePage.taskFilterList,
+      count: state.homePage.taskFilterCount,
       loading: state.homePage.loading
     }))(TaskFilterSearch);
   }
@@ -173,6 +176,7 @@ class HomePageBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.homePage.taskList,
+      count: state.homePage.taskCount,
       loading: state.homePage.loading
     }))(TaskSearch);
   }
@@ -183,6 +187,7 @@ class HomePageBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.homePage.threadList,
+      count: state.homePage.threadCount,
       loading: state.homePage.loading
     }))(ThreadSearch);
   }

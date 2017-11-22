@@ -7,9 +7,9 @@ import styles from './Community.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'名称',dataIndex: 'name',width:'10'},
-{title:'描述',dataIndex: 'description',width:'10'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'名称',debugtype:'string',dataIndex: 'name',width:'10'},
+{title:'描述',debugtype:'string',dataIndex: 'description',width:'10'},
 
       
     ];
@@ -48,7 +48,7 @@ class CommunityTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -56,6 +56,8 @@ class CommunityTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

@@ -18,7 +18,7 @@ const PREFIX="http://"+parseHost()+":8080/naf/";
 
 const view=(targetObjectId)=>{
     return get({
-        url: PREFIX+`threadApprovalManager/view//`
+        url: PREFIX+`threadApprovalManager/view/${targetObjectId}/`
 
     });
 }

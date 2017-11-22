@@ -1,8 +1,9 @@
 
 import pathToRegexp from 'path-to-regexp';
 import { routerRedux } from 'dva/router';
-import CommunityUserService from './CommunityUser.service'
 //import key from 'keymaster';
+import CommunityUserService from './CommunityUser.service';
+
 export default {
 
   namespace: 'communityUser',

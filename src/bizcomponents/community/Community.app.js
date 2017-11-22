@@ -164,6 +164,7 @@ class CommunityBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.community.invitationCodeList,
+      count: state.community.invitationCodeCount,
       loading: state.community.loading
     }))(InvitationCodeSearch);
   }
@@ -174,6 +175,7 @@ class CommunityBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.community.homePageList,
+      count: state.community.homePageCount,
       loading: state.community.loading
     }))(HomePageSearch);
   }
@@ -184,6 +186,7 @@ class CommunityBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.community.encyclopediaItemList,
+      count: state.community.encyclopediaItemCount,
       loading: state.community.loading
     }))(EncyclopediaItemSearch);
   }
@@ -194,6 +197,7 @@ class CommunityBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.community.taskPageList,
+      count: state.community.taskPageCount,
       loading: state.community.loading
     }))(TaskPageSearch);
   }
@@ -204,6 +208,7 @@ class CommunityBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.community.communityUserList,
+      count: state.community.communityUserCount,
       loading: state.community.loading
     }))(CommunityUserSearch);
   }
@@ -214,6 +219,7 @@ class CommunityBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.community.taskList,
+      count: state.community.taskCount,
       loading: state.community.loading
     }))(TaskSearch);
   }
@@ -224,6 +230,7 @@ class CommunityBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.community.groupPageList,
+      count: state.community.groupPageCount,
       loading: state.community.loading
     }))(GroupPageSearch);
   }
@@ -234,6 +241,7 @@ class CommunityBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.community.threadList,
+      count: state.community.threadCount,
       loading: state.community.loading
     }))(ThreadSearch);
   }

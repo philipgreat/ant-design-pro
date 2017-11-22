@@ -115,6 +115,7 @@ class ThreadCancelingBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.threadCanceling.threadList,
+      count: state.threadCanceling.threadCount,
       loading: state.threadCanceling.loading
     }))(ThreadSearch);
   }

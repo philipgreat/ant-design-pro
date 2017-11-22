@@ -115,6 +115,7 @@ class ThreadReplyBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.threadReply.threadReplyLikeList,
+      count: state.threadReply.threadReplyLikeCount,
       loading: state.threadReply.loading
     }))(ThreadReplyLikeSearch);
   }

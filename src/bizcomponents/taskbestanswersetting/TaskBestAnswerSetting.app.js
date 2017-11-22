@@ -115,6 +115,7 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.taskBestAnswerSetting.taskReplyList,
+      count: state.taskBestAnswerSetting.taskReplyCount,
       loading: state.taskBestAnswerSetting.loading
     }))(TaskReplySearch);
   }

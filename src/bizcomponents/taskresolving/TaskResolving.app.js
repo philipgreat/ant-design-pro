@@ -115,6 +115,7 @@ class TaskResolvingBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.taskResolving.taskList,
+      count: state.taskResolving.taskCount,
       loading: state.taskResolving.loading
     }))(TaskSearch);
   }

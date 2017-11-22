@@ -7,10 +7,10 @@ import styles from './SecUserBlocking.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'谁',dataIndex: 'who',width:'17'},
-{title:'屏蔽时间',dataIndex: 'blockTime',width:'9'},
-{title:'评论',dataIndex: 'comments',width:'28'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'谁',debugtype:'string',dataIndex: 'who',width:'17'},
+{title:'屏蔽时间',dataIndex: 'blockTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'评论',debugtype:'string',dataIndex: 'comments',width:'28'},
 
       
     ];
@@ -49,7 +49,7 @@ class SecUserBlockingTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -57,6 +57,8 @@ class SecUserBlockingTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

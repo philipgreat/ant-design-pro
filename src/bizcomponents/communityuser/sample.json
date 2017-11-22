@@ -1,0 +1,3775 @@
+{
+    "class": "com.terapico.bbt.communityuser.CommunityUser",
+    "id": "CU000001",
+    "mobile": "136****8888",
+    "nickName": "喀拉",
+    "gender": "男",
+    "userType": "患者",
+    "avatar": "avatar.jpg",
+    "birthday": 2150899200000,
+    "experiencePoint": 9561,
+    "bonusPoint": 712989,
+    "city": "北京",
+    "status": "迎接更光明的明天",
+    "hideInfo": true,
+    "administrator": true,
+    "community": {
+        "id": "C000001",
+        "name": "听障互助社区",
+        "description": "听障互助社区",
+        "version": 638
+    },
+    "version": 2,
+    "patientInfoCount": 20,
+    "patientInfoList": [
+        {
+            "id": "PI000001",
+            "name": "刘利",
+            "nickName": "喀拉",
+            "gender": "男",
+            "birthday": 2110291200000,
+            "wearDeviceType": "人造耳蜗",
+            "wearStartTime": 1900857600000,
+            "recoverPlan": "自己教学",
+            "recoverStartTime": 2027260800000,
+            "version": 1
+        },
+        {
+            "id": "PI000002",
+            "name": "刘丽",
+            "nickName": "嘎啦",
+            "gender": "女",
+            "birthday": 2109168000000,
+            "wearDeviceType": "助听器",
+            "wearStartTime": 2037715200000,
+            "recoverPlan": "机构教学",
+            "recoverStartTime": 1976889600000,
+            "version": 1
+        },
+        {
+            "id": "PI000003",
+            "name": "刘利",
+            "nickName": "喀拉",
+            "gender": "男",
+            "birthday": 2115820800000,
+            "wearDeviceType": "人造耳蜗",
+            "wearStartTime": 1884960000000,
+            "recoverPlan": "自己教学",
+            "recoverStartTime": 2034000000000,
+            "version": 1
+        },
+        {
+            "id": "PI000004",
+            "name": "刘丽",
+            "nickName": "嘎啦",
+            "gender": "女",
+            "birthday": 2121436800000,
+            "wearDeviceType": "助听器",
+            "wearStartTime": 1954080000000,
+            "recoverPlan": "机构教学",
+            "recoverStartTime": 1943971200000,
+            "version": 1
+        },
+        {
+            "id": "PI000005",
+            "name": "刘利",
+            "nickName": "喀拉",
+            "gender": "男",
+            "birthday": 2043504000000,
+            "wearDeviceType": "人造耳蜗",
+            "wearStartTime": 2014300800000,
+            "recoverPlan": "自己教学",
+            "recoverStartTime": 1977667200000,
+            "version": 1
+        },
+        {
+            "id": "PI000006",
+            "name": "刘丽",
+            "nickName": "嘎啦",
+            "gender": "女",
+            "birthday": 2092752000000,
+            "wearDeviceType": "助听器",
+            "wearStartTime": 1978012800000,
+            "recoverPlan": "机构教学",
+            "recoverStartTime": 2019398400000,
+            "version": 1
+        },
+        {
+            "id": "PI000007",
+            "name": "刘利",
+            "nickName": "喀拉",
+            "gender": "男",
+            "birthday": 2111155200000,
+            "wearDeviceType": "人造耳蜗",
+            "wearStartTime": 2038147200000,
+            "recoverPlan": "自己教学",
+            "recoverStartTime": 2019398400000,
+            "version": 1
+        },
+        {
+            "id": "PI000008",
+            "name": "刘丽",
+            "nickName": "嘎啦",
+            "gender": "女",
+            "birthday": 2115129600000,
+            "wearDeviceType": "助听器",
+            "wearStartTime": 1943712000000,
+            "recoverPlan": "机构教学",
+            "recoverStartTime": 1946044800000,
+            "version": 1
+        },
+        {
+            "id": "PI000009",
+            "name": "刘利",
+            "nickName": "喀拉",
+            "gender": "男",
+            "birthday": 2154268800000,
+            "wearDeviceType": "人造耳蜗",
+            "wearStartTime": 2020521600000,
+            "recoverPlan": "自己教学",
+            "recoverStartTime": 1883750400000,
+            "version": 1
+        },
+        {
+            "id": "PI000010",
+            "name": "刘丽",
+            "nickName": "嘎啦",
+            "gender": "女",
+            "birthday": 2147702400000,
+            "wearDeviceType": "助听器",
+            "wearStartTime": 1997884800000,
+            "recoverPlan": "机构教学",
+            "recoverStartTime": 1943193600000,
+            "version": 1
+        },
+        {
+            "id": "PI000011",
+            "name": "刘利",
+            "nickName": "喀拉",
+            "gender": "男",
+            "birthday": 2060784000000,
+            "wearDeviceType": "人造耳蜗",
+            "wearStartTime": 2030284800000,
+            "recoverPlan": "自己教学",
+            "recoverStartTime": 2025100800000,
+            "version": 1
+        },
+        {
+            "id": "PI000012",
+            "name": "刘丽",
+            "nickName": "嘎啦",
+            "gender": "女",
+            "birthday": 2114352000000,
+            "wearDeviceType": "助听器",
+            "wearStartTime": 1975420800000,
+            "recoverPlan": "机构教学",
+            "recoverStartTime": 1969113600000,
+            "version": 1
+        },
+        {
+            "id": "PI000013",
+            "name": "刘利",
+            "nickName": "喀拉",
+            "gender": "男",
+            "birthday": 2089036800000,
+            "wearDeviceType": "人造耳蜗",
+            "wearStartTime": 1912003200000,
+            "recoverPlan": "自己教学",
+            "recoverStartTime": 1900166400000,
+            "version": 1
+        },
+        {
+            "id": "PI000014",
+            "name": "刘丽",
+            "nickName": "嘎啦",
+            "gender": "女",
+            "birthday": 2122992000000,
+            "wearDeviceType": "助听器",
+            "wearStartTime": 1974470400000,
+            "recoverPlan": "机构教学",
+            "recoverStartTime": 1948464000000,
+            "version": 1
+        },
+        {
+            "id": "PI000015",
+            "name": "刘利",
+            "nickName": "喀拉",
+            "gender": "男",
+            "birthday": 2193840000000,
+            "wearDeviceType": "人造耳蜗",
+            "wearStartTime": 1941638400000,
+            "recoverPlan": "自己教学",
+            "recoverStartTime": 1891785600000,
+            "version": 1
+        },
+        {
+            "id": "PI000016",
+            "name": "刘丽",
+            "nickName": "嘎啦",
+            "gender": "女",
+            "birthday": 2087222400000,
+            "wearDeviceType": "助听器",
+            "wearStartTime": 1927641600000,
+            "recoverPlan": "机构教学",
+            "recoverStartTime": 1975334400000,
+            "version": 1
+        },
+        {
+            "id": "PI000017",
+            "name": "刘利",
+            "nickName": "喀拉",
+            "gender": "男",
+            "birthday": 2077200000000,
+            "wearDeviceType": "人造耳蜗",
+            "wearStartTime": 2023977600000,
+            "recoverPlan": "自己教学",
+            "recoverStartTime": 2020348800000,
+            "version": 1
+        },
+        {
+            "id": "PI000018",
+            "name": "刘丽",
+            "nickName": "嘎啦",
+            "gender": "女",
+            "birthday": 2140790400000,
+            "wearDeviceType": "助听器",
+            "wearStartTime": 2000390400000,
+            "recoverPlan": "机构教学",
+            "recoverStartTime": 1965744000000,
+            "version": 1
+        },
+        {
+            "id": "PI000019",
+            "name": "刘利",
+            "nickName": "喀拉",
+            "gender": "男",
+            "birthday": 2150208000000,
+            "wearDeviceType": "人造耳蜗",
+            "wearStartTime": 1958313600000,
+            "recoverPlan": "自己教学",
+            "recoverStartTime": 2015942400000,
+            "version": 1
+        },
+        {
+            "id": "PI000020",
+            "name": "刘丽",
+            "nickName": "嘎啦",
+            "gender": "女",
+            "birthday": 2198419200000,
+            "wearDeviceType": "助听器",
+            "wearStartTime": 1992528000000,
+            "recoverPlan": "机构教学",
+            "recoverStartTime": 1990368000000,
+            "version": 1
+        }
+    ],
+    "userSkillCount": 20,
+    "userSkillList": [
+        {
+            "id": "US000001",
+            "skillName": "医疗方面",
+            "version": 1
+        },
+        {
+            "id": "US000002",
+            "skillName": "康复方面",
+            "version": 1
+        },
+        {
+            "id": "US000003",
+            "skillName": "教育方面",
+            "version": 1
+        },
+        {
+            "id": "US000004",
+            "skillName": "咨询方面",
+            "version": 1
+        },
+        {
+            "id": "US000005",
+            "skillName": "器材及硬件方面",
+            "version": 1
+        },
+        {
+            "id": "US000006",
+            "skillName": "其他",
+            "version": 1
+        },
+        {
+            "id": "US000007",
+            "skillName": "我不是专家，我是一个热心肠",
+            "version": 1
+        },
+        {
+            "id": "US000008",
+            "skillName": "医疗方面",
+            "version": 1
+        },
+        {
+            "id": "US000009",
+            "skillName": "康复方面",
+            "version": 1
+        },
+        {
+            "id": "US000010",
+            "skillName": "教育方面",
+            "version": 1
+        },
+        {
+            "id": "US000011",
+            "skillName": "咨询方面",
+            "version": 1
+        },
+        {
+            "id": "US000012",
+            "skillName": "器材及硬件方面",
+            "version": 1
+        },
+        {
+            "id": "US000013",
+            "skillName": "其他",
+            "version": 1
+        },
+        {
+            "id": "US000014",
+            "skillName": "我不是专家，我是一个热心肠",
+            "version": 1
+        },
+        {
+            "id": "US000015",
+            "skillName": "医疗方面",
+            "version": 1
+        },
+        {
+            "id": "US000016",
+            "skillName": "康复方面",
+            "version": 1
+        },
+        {
+            "id": "US000017",
+            "skillName": "教育方面",
+            "version": 1
+        },
+        {
+            "id": "US000018",
+            "skillName": "咨询方面",
+            "version": 1
+        },
+        {
+            "id": "US000019",
+            "skillName": "器材及硬件方面",
+            "version": 1
+        },
+        {
+            "id": "US000020",
+            "skillName": "其他",
+            "version": 1
+        }
+    ],
+    "messageFilterCount": 3,
+    "messageFilterList": [
+        {
+            "id": "MF000001",
+            "name": "急待解决",
+            "messageCount": 7,
+            "filterKey": "URGENT_MESSAGE",
+            "linkUrl": "communityUserManager/urgentMessages/",
+            "version": 0
+        },
+        {
+            "id": "MF000002",
+            "name": "任务消息",
+            "messageCount": 7,
+            "filterKey": "TASK_MESSAGE",
+            "linkUrl": "communityUserManager/taskMessages/",
+            "version": 0
+        },
+        {
+            "id": "MF000003",
+            "name": "提示解决",
+            "messageCount": 6,
+            "filterKey": "TIPS_MESSEGE",
+            "linkUrl": "communityUserManager/tipsMessages/",
+            "version": 0
+        }
+    ],
+    "userMessageCount": 20,
+    "userMessageList": [
+        {
+            "id": "UM000001",
+            "title": "您有新的回复",
+            "messageKey": "URGENT_MESSAGE",
+            "content": "李亚青回复了你的信息",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1485055429000,
+            "version": 1
+        },
+        {
+            "id": "UM000002",
+            "title": "您有新的回复0002",
+            "messageKey": "TASK_MESSAGE",
+            "content": "李亚青回复了你的信息0002",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1386428137000,
+            "version": 1
+        },
+        {
+            "id": "UM000003",
+            "title": "您有新的回复0003",
+            "messageKey": "TIPS_MESSEGE",
+            "content": "李亚青回复了你的信息0003",
+            "linkUrl": "threadManager/view/T000001/",
+            "messageTime": 1510005786000,
+            "version": 1
+        },
+        {
+            "id": "UM000004",
+            "title": "您有新的回复0004",
+            "messageKey": "URGENT_MESSAGE",
+            "content": "李亚青回复了你的信息0004",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1364693392000,
+            "version": 1
+        },
+        {
+            "id": "UM000005",
+            "title": "您有新的回复0005",
+            "messageKey": "TASK_MESSAGE",
+            "content": "李亚青回复了你的信息0005",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1458988995000,
+            "version": 1
+        },
+        {
+            "id": "UM000006",
+            "title": "您有新的回复0006",
+            "messageKey": "TIPS_MESSEGE",
+            "content": "李亚青回复了你的信息0006",
+            "linkUrl": "threadManager/view/T000001/",
+            "messageTime": 1424054292000,
+            "version": 1
+        },
+        {
+            "id": "UM000007",
+            "title": "您有新的回复0007",
+            "messageKey": "URGENT_MESSAGE",
+            "content": "李亚青回复了你的信息0007",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1387893220000,
+            "version": 1
+        },
+        {
+            "id": "UM000008",
+            "title": "您有新的回复0008",
+            "messageKey": "TASK_MESSAGE",
+            "content": "李亚青回复了你的信息0008",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1358853986000,
+            "version": 1
+        },
+        {
+            "id": "UM000009",
+            "title": "您有新的回复0009",
+            "messageKey": "TIPS_MESSEGE",
+            "content": "李亚青回复了你的信息0009",
+            "linkUrl": "threadManager/view/T000001/",
+            "messageTime": 1363538981000,
+            "version": 1
+        },
+        {
+            "id": "UM000010",
+            "title": "您有新的回复0010",
+            "messageKey": "URGENT_MESSAGE",
+            "content": "李亚青回复了你的信息0010",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1392350509000,
+            "version": 1
+        },
+        {
+            "id": "UM000011",
+            "title": "您有新的回复0011",
+            "messageKey": "TASK_MESSAGE",
+            "content": "李亚青回复了你的信息0011",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1384914501000,
+            "version": 1
+        },
+        {
+            "id": "UM000012",
+            "title": "您有新的回复0012",
+            "messageKey": "TIPS_MESSEGE",
+            "content": "李亚青回复了你的信息0012",
+            "linkUrl": "threadManager/view/T000001/",
+            "messageTime": 1386834319000,
+            "version": 1
+        },
+        {
+            "id": "UM000013",
+            "title": "您有新的回复0013",
+            "messageKey": "URGENT_MESSAGE",
+            "content": "李亚青回复了你的信息0013",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1494874405000,
+            "version": 1
+        },
+        {
+            "id": "UM000014",
+            "title": "您有新的回复0014",
+            "messageKey": "TASK_MESSAGE",
+            "content": "李亚青回复了你的信息0014",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1480733489000,
+            "version": 1
+        },
+        {
+            "id": "UM000015",
+            "title": "您有新的回复0015",
+            "messageKey": "TIPS_MESSEGE",
+            "content": "李亚青回复了你的信息0015",
+            "linkUrl": "threadManager/view/T000001/",
+            "messageTime": 1370250442000,
+            "version": 1
+        },
+        {
+            "id": "UM000016",
+            "title": "您有新的回复0016",
+            "messageKey": "URGENT_MESSAGE",
+            "content": "李亚青回复了你的信息0016",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1455575649000,
+            "version": 1
+        },
+        {
+            "id": "UM000017",
+            "title": "您有新的回复0017",
+            "messageKey": "TASK_MESSAGE",
+            "content": "李亚青回复了你的信息0017",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1508068100000,
+            "version": 1
+        },
+        {
+            "id": "UM000018",
+            "title": "您有新的回复0018",
+            "messageKey": "TIPS_MESSEGE",
+            "content": "李亚青回复了你的信息0018",
+            "linkUrl": "threadManager/view/T000001/",
+            "messageTime": 1405846986000,
+            "version": 1
+        },
+        {
+            "id": "UM000019",
+            "title": "您有新的回复0019",
+            "messageKey": "URGENT_MESSAGE",
+            "content": "李亚青回复了你的信息0019",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1478541528000,
+            "version": 1
+        },
+        {
+            "id": "UM000020",
+            "title": "您有新的回复0020",
+            "messageKey": "TASK_MESSAGE",
+            "content": "李亚青回复了你的信息0020",
+            "linkUrl": "taskManager/view/T000001/",
+            "messageTime": 1486970487000,
+            "version": 1
+        }
+    ],
+    "taskCount": 19,
+    "taskList": [
+        {
+            "id": "T000002",
+            "title": "听力损失儿童回归的优点0002",
+            "selectedTask": "否",
+            "createTime": 1450812745000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0002",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 78,
+            "additionalBonus": 98,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000003",
+            "title": "听力损失儿童回归的优点0003",
+            "selectedTask": "是",
+            "createTime": 1379525724000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0003",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 99,
+            "additionalBonus": 74,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000004",
+            "title": "听力损失儿童回归的优点0004",
+            "selectedTask": "否",
+            "createTime": 1452542995000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0004",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 80,
+            "additionalBonus": 83,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000005",
+            "title": "听力损失儿童回归的优点0005",
+            "selectedTask": "是",
+            "createTime": 1379897342000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0005",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 92,
+            "additionalBonus": 93,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000006",
+            "title": "听力损失儿童回归的优点0006",
+            "selectedTask": "否",
+            "createTime": 1400383626000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0006",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 95,
+            "additionalBonus": 73,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000007",
+            "title": "听力损失儿童回归的优点0007",
+            "selectedTask": "是",
+            "createTime": 1454401772000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0007",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 94,
+            "additionalBonus": 81,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000008",
+            "title": "听力损失儿童回归的优点0008",
+            "selectedTask": "否",
+            "createTime": 1430781152000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0008",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 82,
+            "additionalBonus": 90,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000009",
+            "title": "听力损失儿童回归的优点0009",
+            "selectedTask": "是",
+            "createTime": 1395223224000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0009",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 94,
+            "additionalBonus": 86,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000010",
+            "title": "听力损失儿童回归的优点0010",
+            "selectedTask": "否",
+            "createTime": 1358056026000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0010",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 97,
+            "additionalBonus": 76,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000011",
+            "title": "听力损失儿童回归的优点0011",
+            "selectedTask": "是",
+            "createTime": 1399742106000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0011",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 97,
+            "additionalBonus": 81,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000012",
+            "title": "听力损失儿童回归的优点0012",
+            "selectedTask": "否",
+            "createTime": 1453330547000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0012",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 88,
+            "additionalBonus": 95,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000013",
+            "title": "听力损失儿童回归的优点0013",
+            "selectedTask": "是",
+            "createTime": 1449213920000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0013",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 73,
+            "additionalBonus": 73,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000014",
+            "title": "听力损失儿童回归的优点0014",
+            "selectedTask": "否",
+            "createTime": 1357342415000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0014",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 97,
+            "additionalBonus": 72,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000015",
+            "title": "听力损失儿童回归的优点0015",
+            "selectedTask": "是",
+            "createTime": 1408905809000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0015",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 80,
+            "additionalBonus": 80,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000016",
+            "title": "听力损失儿童回归的优点0016",
+            "selectedTask": "否",
+            "createTime": 1462886260000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0016",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 74,
+            "additionalBonus": 95,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000017",
+            "title": "听力损失儿童回归的优点0017",
+            "selectedTask": "是",
+            "createTime": 1418890320000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0017",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 74,
+            "additionalBonus": 86,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000018",
+            "title": "听力损失儿童回归的优点0018",
+            "selectedTask": "否",
+            "createTime": 1388721277000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0018",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 89,
+            "additionalBonus": 89,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000019",
+            "title": "听力损失儿童回归的优点0019",
+            "selectedTask": "是",
+            "createTime": 1375065703000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0019",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 84,
+            "additionalBonus": 83,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        },
+        {
+            "id": "T000020",
+            "title": "听力损失儿童回归的优点0020",
+            "selectedTask": "否",
+            "createTime": 1360021155000,
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0020",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "creatorBonus": 100,
+            "additionalBonus": 90,
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskLikeCount": 20,
+            "taskReplyCount": 20
+        }
+    ],
+    "taskAssigmentCount": 20,
+    "taskAssigmentList": [
+        {
+            "id": "TA000001",
+            "assignTime": 1471272108000,
+            "comments": "请立即帮助解决此问题,谢谢",
+            "version": 1
+        },
+        {
+            "id": "TA000002",
+            "assignTime": 1407767251000,
+            "comments": "请立即帮助解决此问题,谢谢0002",
+            "version": 1
+        },
+        {
+            "id": "TA000003",
+            "assignTime": 1492456886000,
+            "comments": "请立即帮助解决此问题,谢谢0003",
+            "version": 1
+        },
+        {
+            "id": "TA000004",
+            "assignTime": 1360628767000,
+            "comments": "请立即帮助解决此问题,谢谢0004",
+            "version": 1
+        },
+        {
+            "id": "TA000005",
+            "assignTime": 1379353502000,
+            "comments": "请立即帮助解决此问题,谢谢0005",
+            "version": 1
+        },
+        {
+            "id": "TA000006",
+            "assignTime": 1426749875000,
+            "comments": "请立即帮助解决此问题,谢谢0006",
+            "version": 1
+        },
+        {
+            "id": "TA000007",
+            "assignTime": 1422587285000,
+            "comments": "请立即帮助解决此问题,谢谢0007",
+            "version": 1
+        },
+        {
+            "id": "TA000008",
+            "assignTime": 1388845594000,
+            "comments": "请立即帮助解决此问题,谢谢0008",
+            "version": 1
+        },
+        {
+            "id": "TA000009",
+            "assignTime": 1392772774000,
+            "comments": "请立即帮助解决此问题,谢谢0009",
+            "version": 1
+        },
+        {
+            "id": "TA000010",
+            "assignTime": 1505545172000,
+            "comments": "请立即帮助解决此问题,谢谢0010",
+            "version": 1
+        },
+        {
+            "id": "TA000011",
+            "assignTime": 1432399584000,
+            "comments": "请立即帮助解决此问题,谢谢0011",
+            "version": 1
+        },
+        {
+            "id": "TA000012",
+            "assignTime": 1449352859000,
+            "comments": "请立即帮助解决此问题,谢谢0012",
+            "version": 1
+        },
+        {
+            "id": "TA000013",
+            "assignTime": 1409308801000,
+            "comments": "请立即帮助解决此问题,谢谢0013",
+            "version": 1
+        },
+        {
+            "id": "TA000014",
+            "assignTime": 1423575399000,
+            "comments": "请立即帮助解决此问题,谢谢0014",
+            "version": 1
+        },
+        {
+            "id": "TA000015",
+            "assignTime": 1394526415000,
+            "comments": "请立即帮助解决此问题,谢谢0015",
+            "version": 1
+        },
+        {
+            "id": "TA000016",
+            "assignTime": 1479569653000,
+            "comments": "请立即帮助解决此问题,谢谢0016",
+            "version": 1
+        },
+        {
+            "id": "TA000017",
+            "assignTime": 1391892782000,
+            "comments": "请立即帮助解决此问题,谢谢0017",
+            "version": 1
+        },
+        {
+            "id": "TA000018",
+            "assignTime": 1359686022000,
+            "comments": "请立即帮助解决此问题,谢谢0018",
+            "version": 1
+        },
+        {
+            "id": "TA000019",
+            "assignTime": 1488910530000,
+            "comments": "请立即帮助解决此问题,谢谢0019",
+            "version": 1
+        },
+        {
+            "id": "TA000020",
+            "assignTime": 1383533865000,
+            "comments": "请立即帮助解决此问题,谢谢0020",
+            "version": 1
+        }
+    ],
+    "taskLikeCount": 20,
+    "taskLikeList": [
+        {
+            "id": "TL000001",
+            "likeTime": 1413355861000,
+            "version": 1
+        },
+        {
+            "id": "TL000002",
+            "likeTime": 1495802124000,
+            "version": 1
+        },
+        {
+            "id": "TL000003",
+            "likeTime": 1379998637000,
+            "version": 1
+        },
+        {
+            "id": "TL000004",
+            "likeTime": 1451438972000,
+            "version": 1
+        },
+        {
+            "id": "TL000005",
+            "likeTime": 1491501529000,
+            "version": 1
+        },
+        {
+            "id": "TL000006",
+            "likeTime": 1481716445000,
+            "version": 1
+        },
+        {
+            "id": "TL000007",
+            "likeTime": 1391816400000,
+            "version": 1
+        },
+        {
+            "id": "TL000008",
+            "likeTime": 1357372107000,
+            "version": 1
+        },
+        {
+            "id": "TL000009",
+            "likeTime": 1358888744000,
+            "version": 1
+        },
+        {
+            "id": "TL000010",
+            "likeTime": 1503937495000,
+            "version": 1
+        },
+        {
+            "id": "TL000011",
+            "likeTime": 1371030292000,
+            "version": 1
+        },
+        {
+            "id": "TL000012",
+            "likeTime": 1374856334000,
+            "version": 1
+        },
+        {
+            "id": "TL000013",
+            "likeTime": 1471954021000,
+            "version": 1
+        },
+        {
+            "id": "TL000014",
+            "likeTime": 1463260694000,
+            "version": 1
+        },
+        {
+            "id": "TL000015",
+            "likeTime": 1479650900000,
+            "version": 1
+        },
+        {
+            "id": "TL000016",
+            "likeTime": 1455157883000,
+            "version": 1
+        },
+        {
+            "id": "TL000017",
+            "likeTime": 1478847491000,
+            "version": 1
+        },
+        {
+            "id": "TL000018",
+            "likeTime": 1460254065000,
+            "version": 1
+        },
+        {
+            "id": "TL000019",
+            "likeTime": 1499771839000,
+            "version": 1
+        },
+        {
+            "id": "TL000020",
+            "likeTime": 1509199779000,
+            "version": 1
+        }
+    ],
+    "taskReplyCount": 20,
+    "taskReplyList": [
+        {
+            "id": "TR000001",
+            "replyTime": 1400749439000,
+            "content": "我测试过，效果很好，大家要不要试一试",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000002",
+            "replyTime": 1421743645000,
+            "content": "我测试过，效果很好，大家要不要试一试0002",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000003",
+            "replyTime": 1495409649000,
+            "content": "我测试过，效果很好，大家要不要试一试0003",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000004",
+            "replyTime": 1416121924000,
+            "content": "我测试过，效果很好，大家要不要试一试0004",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000005",
+            "replyTime": 1507942802000,
+            "content": "我测试过，效果很好，大家要不要试一试0005",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000006",
+            "replyTime": 1373673628000,
+            "content": "我测试过，效果很好，大家要不要试一试0006",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000007",
+            "replyTime": 1443588561000,
+            "content": "我测试过，效果很好，大家要不要试一试0007",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000008",
+            "replyTime": 1469993794000,
+            "content": "我测试过，效果很好，大家要不要试一试0008",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000009",
+            "replyTime": 1497643299000,
+            "content": "我测试过，效果很好，大家要不要试一试0009",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000010",
+            "replyTime": 1489213350000,
+            "content": "我测试过，效果很好，大家要不要试一试0010",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000011",
+            "replyTime": 1363572615000,
+            "content": "我测试过，效果很好，大家要不要试一试0011",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000012",
+            "replyTime": 1479313969000,
+            "content": "我测试过，效果很好，大家要不要试一试0012",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000013",
+            "replyTime": 1368141846000,
+            "content": "我测试过，效果很好，大家要不要试一试0013",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000014",
+            "replyTime": 1458597507000,
+            "content": "我测试过，效果很好，大家要不要试一试0014",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000015",
+            "replyTime": 1395821330000,
+            "content": "我测试过，效果很好，大家要不要试一试0015",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000016",
+            "replyTime": 1484185504000,
+            "content": "我测试过，效果很好，大家要不要试一试0016",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000017",
+            "replyTime": 1390722248000,
+            "content": "我测试过，效果很好，大家要不要试一试0017",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000018",
+            "replyTime": 1455047915000,
+            "content": "我测试过，效果很好，大家要不要试一试0018",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000019",
+            "replyTime": 1371625972000,
+            "content": "我测试过，效果很好，大家要不要试一试0019",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        },
+        {
+            "id": "TR000020",
+            "replyTime": 1404943856000,
+            "content": "我测试过，效果很好，大家要不要试一试0020",
+            "likeByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "taskReplyLikeCount": 20
+        }
+    ],
+    "taskReplyLikeCount": 20,
+    "taskReplyLikeList": [
+        {
+            "id": "TRL000001",
+            "likeTime": 1403748562000,
+            "version": 1
+        },
+        {
+            "id": "TRL000002",
+            "likeTime": 1432223839000,
+            "version": 1
+        },
+        {
+            "id": "TRL000003",
+            "likeTime": 1464794730000,
+            "version": 1
+        },
+        {
+            "id": "TRL000004",
+            "likeTime": 1434344398000,
+            "version": 1
+        },
+        {
+            "id": "TRL000005",
+            "likeTime": 1469993842000,
+            "version": 1
+        },
+        {
+            "id": "TRL000006",
+            "likeTime": 1398815364000,
+            "version": 1
+        },
+        {
+            "id": "TRL000007",
+            "likeTime": 1353775171000,
+            "version": 1
+        },
+        {
+            "id": "TRL000008",
+            "likeTime": 1420832262000,
+            "version": 1
+        },
+        {
+            "id": "TRL000009",
+            "likeTime": 1385321775000,
+            "version": 1
+        },
+        {
+            "id": "TRL000010",
+            "likeTime": 1447027473000,
+            "version": 1
+        },
+        {
+            "id": "TRL000011",
+            "likeTime": 1499939672000,
+            "version": 1
+        },
+        {
+            "id": "TRL000012",
+            "likeTime": 1389612280000,
+            "version": 1
+        },
+        {
+            "id": "TRL000013",
+            "likeTime": 1482755784000,
+            "version": 1
+        },
+        {
+            "id": "TRL000014",
+            "likeTime": 1468997751000,
+            "version": 1
+        },
+        {
+            "id": "TRL000015",
+            "likeTime": 1359325300000,
+            "version": 1
+        },
+        {
+            "id": "TRL000016",
+            "likeTime": 1375607071000,
+            "version": 1
+        },
+        {
+            "id": "TRL000017",
+            "likeTime": 1470351899000,
+            "version": 1
+        },
+        {
+            "id": "TRL000018",
+            "likeTime": 1490821136000,
+            "version": 1
+        },
+        {
+            "id": "TRL000019",
+            "likeTime": 1409093728000,
+            "version": 1
+        },
+        {
+            "id": "TRL000020",
+            "likeTime": 1483837269000,
+            "version": 1
+        }
+    ],
+    "threadCount": 20,
+    "threadList": [
+        {
+            "id": "T000001",
+            "title": "听力损失儿童回归的优点",
+            "displayOrder": 0,
+            "createTime": 1442051848000,
+            "eventTime": 2095204773000,
+            "registrationStopTime": 2169014845000,
+            "eventLocation": "奥克斯广场阳光咖啡",
+            "city": "成都",
+            "communityGroup": "最新",
+            "threadType": "TOPIC",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "httpcover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 17,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000002",
+            "title": "听力损失儿童回归的优点0002",
+            "displayOrder": 0,
+            "createTime": 1410256539000,
+            "eventTime": 2062710741000,
+            "registrationStopTime": 2080966036000,
+            "eventLocation": "奥克斯广场阳光咖啡0002",
+            "city": "保定",
+            "communityGroup": "好好学习",
+            "threadType": "EVENT",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0002",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 4,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000003",
+            "title": "听力损失儿童回归的优点0003",
+            "displayOrder": 0,
+            "createTime": 1455332229000,
+            "eventTime": 2063603743000,
+            "registrationStopTime": 2177404534000,
+            "eventLocation": "奥克斯广场阳光咖啡0003",
+            "city": "廊坊",
+            "communityGroup": "求职就业",
+            "threadType": "TOPIC",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0003",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000004",
+            "title": "听力损失儿童回归的优点0004",
+            "displayOrder": 100000,
+            "createTime": 1358589791000,
+            "eventTime": 2142044727000,
+            "registrationStopTime": 2100080195000,
+            "eventLocation": "奥克斯广场阳光咖啡0004",
+            "city": "成都",
+            "communityGroup": "灌水",
+            "threadType": "EVENT",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0004",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000005",
+            "title": "听力损失儿童回归的优点0005",
+            "displayOrder": 0,
+            "createTime": 1434546141000,
+            "eventTime": 2083341847000,
+            "registrationStopTime": 2169615428000,
+            "eventLocation": "奥克斯广场阳光咖啡0005",
+            "city": "保定",
+            "communityGroup": "公告与反馈",
+            "threadType": "TOPIC",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0005",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000006",
+            "title": "听力损失儿童回归的优点0006",
+            "displayOrder": 100000,
+            "createTime": 1466742066000,
+            "eventTime": 2171797346000,
+            "registrationStopTime": 2137564591000,
+            "eventLocation": "奥克斯广场阳光咖啡0006",
+            "city": "廊坊",
+            "communityGroup": "最新",
+            "threadType": "EVENT",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0006",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000007",
+            "title": "听力损失儿童回归的优点0007",
+            "displayOrder": 0,
+            "createTime": 1377993427000,
+            "eventTime": 2171051907000,
+            "registrationStopTime": 2098843202000,
+            "eventLocation": "奥克斯广场阳光咖啡0007",
+            "city": "成都",
+            "communityGroup": "好好学习",
+            "threadType": "TOPIC",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0007",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000008",
+            "title": "听力损失儿童回归的优点0008",
+            "displayOrder": 100000,
+            "createTime": 1424725801000,
+            "eventTime": 2161324927000,
+            "registrationStopTime": 2160991775000,
+            "eventLocation": "奥克斯广场阳光咖啡0008",
+            "city": "保定",
+            "communityGroup": "求职就业",
+            "threadType": "EVENT",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0008",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000009",
+            "title": "听力损失儿童回归的优点0009",
+            "displayOrder": 0,
+            "createTime": 1396164805000,
+            "eventTime": 2113603909000,
+            "registrationStopTime": 2097942845000,
+            "eventLocation": "奥克斯广场阳光咖啡0009",
+            "city": "廊坊",
+            "communityGroup": "灌水",
+            "threadType": "TOPIC",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0009",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000010",
+            "title": "听力损失儿童回归的优点0010",
+            "displayOrder": 100000,
+            "createTime": 1440403466000,
+            "eventTime": 2043580952000,
+            "registrationStopTime": 2043290679000,
+            "eventLocation": "奥克斯广场阳光咖啡0010",
+            "city": "成都",
+            "communityGroup": "公告与反馈",
+            "threadType": "EVENT",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0010",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000011",
+            "title": "听力损失儿童回归的优点0011",
+            "displayOrder": 0,
+            "createTime": 1365568337000,
+            "eventTime": 2165586916000,
+            "registrationStopTime": 2119600904000,
+            "eventLocation": "奥克斯广场阳光咖啡0011",
+            "city": "保定",
+            "communityGroup": "最新",
+            "threadType": "TOPIC",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0011",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000012",
+            "title": "听力损失儿童回归的优点0012",
+            "displayOrder": 100000,
+            "createTime": 1380928095000,
+            "eventTime": 2104371977000,
+            "registrationStopTime": 2117310052000,
+            "eventLocation": "奥克斯广场阳光咖啡0012",
+            "city": "廊坊",
+            "communityGroup": "好好学习",
+            "threadType": "EVENT",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0012",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000013",
+            "title": "听力损失儿童回归的优点0013",
+            "displayOrder": 0,
+            "createTime": 1404861948000,
+            "eventTime": 2055831021000,
+            "registrationStopTime": 2130710011000,
+            "eventLocation": "奥克斯广场阳光咖啡0013",
+            "city": "成都",
+            "communityGroup": "求职就业",
+            "threadType": "TOPIC",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0013",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000014",
+            "title": "听力损失儿童回归的优点0014",
+            "displayOrder": 100000,
+            "createTime": 1407245585000,
+            "eventTime": 2178875831000,
+            "registrationStopTime": 2047095674000,
+            "eventLocation": "奥克斯广场阳光咖啡0014",
+            "city": "保定",
+            "communityGroup": "灌水",
+            "threadType": "EVENT",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0014",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000015",
+            "title": "听力损失儿童回归的优点0015",
+            "displayOrder": 0,
+            "createTime": 1438159041000,
+            "eventTime": 2160451122000,
+            "registrationStopTime": 2077392301000,
+            "eventLocation": "奥克斯广场阳光咖啡0015",
+            "city": "廊坊",
+            "communityGroup": "公告与反馈",
+            "threadType": "TOPIC",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0015",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000016",
+            "title": "听力损失儿童回归的优点0016",
+            "displayOrder": 100000,
+            "createTime": 1486262385000,
+            "eventTime": 2114838961000,
+            "registrationStopTime": 2106503843000,
+            "eventLocation": "奥克斯广场阳光咖啡0016",
+            "city": "成都",
+            "communityGroup": "最新",
+            "threadType": "EVENT",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0016",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000017",
+            "title": "听力损失儿童回归的优点0017",
+            "displayOrder": 0,
+            "createTime": 1488091915000,
+            "eventTime": 2166848354000,
+            "registrationStopTime": 2140714487000,
+            "eventLocation": "奥克斯广场阳光咖啡0017",
+            "city": "保定",
+            "communityGroup": "好好学习",
+            "threadType": "TOPIC",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0017",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000018",
+            "title": "听力损失儿童回归的优点0018",
+            "displayOrder": 100000,
+            "createTime": 1500835566000,
+            "eventTime": 2149963286000,
+            "registrationStopTime": 2078207060000,
+            "eventLocation": "奥克斯广场阳光咖啡0018",
+            "city": "廊坊",
+            "communityGroup": "求职就业",
+            "threadType": "EVENT",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0018",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000019",
+            "title": "听力损失儿童回归的优点0019",
+            "displayOrder": 0,
+            "createTime": 1410185769000,
+            "eventTime": 2123607492000,
+            "registrationStopTime": 2086936426000,
+            "eventLocation": "奥克斯广场阳光咖啡0019",
+            "city": "成都",
+            "communityGroup": "灌水",
+            "threadType": "TOPIC",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0019",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        },
+        {
+            "id": "T000020",
+            "title": "听力损失儿童回归的优点0020",
+            "displayOrder": 100000,
+            "createTime": 1460711955000,
+            "eventTime": 2050097800000,
+            "registrationStopTime": 2152691278000,
+            "eventLocation": "奥克斯广场阳光咖啡0020",
+            "city": "保定",
+            "communityGroup": "公告与反馈",
+            "threadType": "EVENT",
+            "videoUrl": "https://player.youku.com/embed/XMzE0ODQ0NTA2NA",
+            "coverImagePath1": "cover.jpg",
+            "coverImagePath2": "cover.jpg",
+            "coverImagePath3": "cover.jpg",
+            "imagePath1": "image.jpg",
+            "imagePath2": "image.jpg",
+            "imagePath3": "image.jpg",
+            "imagePath4": "image.jpg",
+            "imagePath5": "image.jpg",
+            "content": "多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   0020",
+            "likeByCurrentUser": false,
+            "repliedByCurrentUser": false,
+            "registeredByCurrentUser": false,
+            "currentStatus": "INIT",
+            "version": 1,
+            "threadReplyCount": 20,
+            "threadLikeCount": 20
+        }
+    ],
+    "threadReplyCount": 20,
+    "threadReplyList": [
+        {
+            "id": "TR000001",
+            "replyTime": 1467185770000,
+            "content": "我测试过，效果很好，大家要不要试一试",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000002",
+            "replyTime": 1435559968000,
+            "content": "我测试过，效果很好，大家要不要试一试0002",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000003",
+            "replyTime": 1387306497000,
+            "content": "我测试过，效果很好，大家要不要试一试0003",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000004",
+            "replyTime": 1472600218000,
+            "content": "我测试过，效果很好，大家要不要试一试0004",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000005",
+            "replyTime": 1423806268000,
+            "content": "我测试过，效果很好，大家要不要试一试0005",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000006",
+            "replyTime": 1398114174000,
+            "content": "我测试过，效果很好，大家要不要试一试0006",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000007",
+            "replyTime": 1394132998000,
+            "content": "我测试过，效果很好，大家要不要试一试0007",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000008",
+            "replyTime": 1365895106000,
+            "content": "我测试过，效果很好，大家要不要试一试0008",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000009",
+            "replyTime": 1489737242000,
+            "content": "我测试过，效果很好，大家要不要试一试0009",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000010",
+            "replyTime": 1504028465000,
+            "content": "我测试过，效果很好，大家要不要试一试0010",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000011",
+            "replyTime": 1365446970000,
+            "content": "我测试过，效果很好，大家要不要试一试0011",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000012",
+            "replyTime": 1355027527000,
+            "content": "我测试过，效果很好，大家要不要试一试0012",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000013",
+            "replyTime": 1450922566000,
+            "content": "我测试过，效果很好，大家要不要试一试0013",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000014",
+            "replyTime": 1374586108000,
+            "content": "我测试过，效果很好，大家要不要试一试0014",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000015",
+            "replyTime": 1433862025000,
+            "content": "我测试过，效果很好，大家要不要试一试0015",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000016",
+            "replyTime": 1484284666000,
+            "content": "我测试过，效果很好，大家要不要试一试0016",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000017",
+            "replyTime": 1446560708000,
+            "content": "我测试过，效果很好，大家要不要试一试0017",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000018",
+            "replyTime": 1394521597000,
+            "content": "我测试过，效果很好，大家要不要试一试0018",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000019",
+            "replyTime": 1495868099000,
+            "content": "我测试过，效果很好，大家要不要试一试0019",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        },
+        {
+            "id": "TR000020",
+            "replyTime": 1488957834000,
+            "content": "我测试过，效果很好，大家要不要试一试0020",
+            "likeByCurrentUser": false,
+            "version": 1,
+            "threadReplyLikeCount": 20
+        }
+    ],
+    "threadRegistrationCount": 20,
+    "threadRegistrationList": [
+        {
+            "id": "TR000001",
+            "registerTime": 1438821368000,
+            "comments": "我很乐意参加此次活动",
+            "version": 1
+        },
+        {
+            "id": "TR000002",
+            "registerTime": 1357731883000,
+            "comments": "我很乐意参加此次活动0002",
+            "version": 1
+        },
+        {
+            "id": "TR000003",
+            "registerTime": 1377782459000,
+            "comments": "我很乐意参加此次活动0003",
+            "version": 1
+        },
+        {
+            "id": "TR000004",
+            "registerTime": 1454352458000,
+            "comments": "我很乐意参加此次活动0004",
+            "version": 1
+        },
+        {
+            "id": "TR000005",
+            "registerTime": 1440747379000,
+            "comments": "我很乐意参加此次活动0005",
+            "version": 1
+        },
+        {
+            "id": "TR000006",
+            "registerTime": 1482810535000,
+            "comments": "我很乐意参加此次活动0006",
+            "version": 1
+        },
+        {
+            "id": "TR000007",
+            "registerTime": 1423500984000,
+            "comments": "我很乐意参加此次活动0007",
+            "version": 1
+        },
+        {
+            "id": "TR000008",
+            "registerTime": 1506111849000,
+            "comments": "我很乐意参加此次活动0008",
+            "version": 1
+        },
+        {
+            "id": "TR000009",
+            "registerTime": 1395014106000,
+            "comments": "我很乐意参加此次活动0009",
+            "version": 1
+        },
+        {
+            "id": "TR000010",
+            "registerTime": 1404341517000,
+            "comments": "我很乐意参加此次活动0010",
+            "version": 1
+        },
+        {
+            "id": "TR000011",
+            "registerTime": 1413313760000,
+            "comments": "我很乐意参加此次活动0011",
+            "version": 1
+        },
+        {
+            "id": "TR000012",
+            "registerTime": 1355359704000,
+            "comments": "我很乐意参加此次活动0012",
+            "version": 1
+        },
+        {
+            "id": "TR000013",
+            "registerTime": 1392099517000,
+            "comments": "我很乐意参加此次活动0013",
+            "version": 1
+        },
+        {
+            "id": "TR000014",
+            "registerTime": 1492062173000,
+            "comments": "我很乐意参加此次活动0014",
+            "version": 1
+        },
+        {
+            "id": "TR000015",
+            "registerTime": 1374173844000,
+            "comments": "我很乐意参加此次活动0015",
+            "version": 1
+        },
+        {
+            "id": "TR000016",
+            "registerTime": 1427366388000,
+            "comments": "我很乐意参加此次活动0016",
+            "version": 1
+        },
+        {
+            "id": "TR000017",
+            "registerTime": 1427255858000,
+            "comments": "我很乐意参加此次活动0017",
+            "version": 1
+        },
+        {
+            "id": "TR000018",
+            "registerTime": 1474390261000,
+            "comments": "我很乐意参加此次活动0018",
+            "version": 1
+        },
+        {
+            "id": "TR000019",
+            "registerTime": 1494311005000,
+            "comments": "我很乐意参加此次活动0019",
+            "version": 1
+        },
+        {
+            "id": "TR000020",
+            "registerTime": 1458455736000,
+            "comments": "我很乐意参加此次活动0020",
+            "version": 1
+        }
+    ],
+    "threadLikeCount": 20,
+    "threadLikeList": [
+        {
+            "id": "TL000001",
+            "likeTime": 1383106444000,
+            "version": 1
+        },
+        {
+            "id": "TL000002",
+            "likeTime": 1388211799000,
+            "version": 1
+        },
+        {
+            "id": "TL000003",
+            "likeTime": 1417662735000,
+            "version": 1
+        },
+        {
+            "id": "TL000004",
+            "likeTime": 1392996085000,
+            "version": 1
+        },
+        {
+            "id": "TL000005",
+            "likeTime": 1358841884000,
+            "version": 1
+        },
+        {
+            "id": "TL000006",
+            "likeTime": 1417415460000,
+            "version": 1
+        },
+        {
+            "id": "TL000007",
+            "likeTime": 1353153544000,
+            "version": 1
+        },
+        {
+            "id": "TL000008",
+            "likeTime": 1451765281000,
+            "version": 1
+        },
+        {
+            "id": "TL000009",
+            "likeTime": 1382746166000,
+            "version": 1
+        },
+        {
+            "id": "TL000010",
+            "likeTime": 1360166135000,
+            "version": 1
+        },
+        {
+            "id": "TL000011",
+            "likeTime": 1409174614000,
+            "version": 1
+        },
+        {
+            "id": "TL000012",
+            "likeTime": 1484354589000,
+            "version": 1
+        },
+        {
+            "id": "TL000013",
+            "likeTime": 1432353048000,
+            "version": 1
+        },
+        {
+            "id": "TL000014",
+            "likeTime": 1432224606000,
+            "version": 1
+        },
+        {
+            "id": "TL000015",
+            "likeTime": 1488114511000,
+            "version": 1
+        },
+        {
+            "id": "TL000016",
+            "likeTime": 1364209284000,
+            "version": 1
+        },
+        {
+            "id": "TL000017",
+            "likeTime": 1490359745000,
+            "version": 1
+        },
+        {
+            "id": "TL000018",
+            "likeTime": 1438189318000,
+            "version": 1
+        },
+        {
+            "id": "TL000019",
+            "likeTime": 1450439364000,
+            "version": 1
+        },
+        {
+            "id": "TL000020",
+            "likeTime": 1445284362000,
+            "version": 1
+        }
+    ],
+    "threadReplyLikeCount": 20,
+    "threadReplyLikeList": [
+        {
+            "id": "TRL000001",
+            "likeTime": 1358918725000,
+            "version": 1
+        },
+        {
+            "id": "TRL000002",
+            "likeTime": 1417567822000,
+            "version": 1
+        },
+        {
+            "id": "TRL000003",
+            "likeTime": 1503504689000,
+            "version": 1
+        },
+        {
+            "id": "TRL000004",
+            "likeTime": 1367510845000,
+            "version": 1
+        },
+        {
+            "id": "TRL000005",
+            "likeTime": 1429245528000,
+            "version": 1
+        },
+        {
+            "id": "TRL000006",
+            "likeTime": 1415889769000,
+            "version": 1
+        },
+        {
+            "id": "TRL000007",
+            "likeTime": 1481918577000,
+            "version": 1
+        },
+        {
+            "id": "TRL000008",
+            "likeTime": 1488155845000,
+            "version": 1
+        },
+        {
+            "id": "TRL000009",
+            "likeTime": 1371596371000,
+            "version": 1
+        },
+        {
+            "id": "TRL000010",
+            "likeTime": 1408172245000,
+            "version": 1
+        },
+        {
+            "id": "TRL000011",
+            "likeTime": 1482678785000,
+            "version": 1
+        },
+        {
+            "id": "TRL000012",
+            "likeTime": 1369363177000,
+            "version": 1
+        },
+        {
+            "id": "TRL000013",
+            "likeTime": 1502853576000,
+            "version": 1
+        },
+        {
+            "id": "TRL000014",
+            "likeTime": 1510553904000,
+            "version": 1
+        },
+        {
+            "id": "TRL000015",
+            "likeTime": 1387990108000,
+            "version": 1
+        },
+        {
+            "id": "TRL000016",
+            "likeTime": 1463637523000,
+            "version": 1
+        },
+        {
+            "id": "TRL000017",
+            "likeTime": 1389426508000,
+            "version": 1
+        },
+        {
+            "id": "TRL000018",
+            "likeTime": 1506486510000,
+            "version": 1
+        },
+        {
+            "id": "TRL000019",
+            "likeTime": 1367425771000,
+            "version": 1
+        },
+        {
+            "id": "TRL000020",
+            "likeTime": 1474096254000,
+            "version": 1
+        }
+    ],
+    "fanCount": 20,
+    "fanList": [
+        {
+            "id": "F000001",
+            "fanId": "CU000001",
+            "addingTime": 1415942626000,
+            "version": 1
+        },
+        {
+            "id": "F000002",
+            "fanId": "CU000002",
+            "addingTime": 1422678370000,
+            "version": 1
+        },
+        {
+            "id": "F000003",
+            "fanId": "CU000001",
+            "addingTime": 1466544273000,
+            "version": 1
+        },
+        {
+            "id": "F000004",
+            "fanId": "CU000002",
+            "addingTime": 1491996952000,
+            "version": 1
+        },
+        {
+            "id": "F000005",
+            "fanId": "CU000001",
+            "addingTime": 1430658330000,
+            "version": 1
+        },
+        {
+            "id": "F000006",
+            "fanId": "CU000002",
+            "addingTime": 1436354566000,
+            "version": 1
+        },
+        {
+            "id": "F000007",
+            "fanId": "CU000001",
+            "addingTime": 1459930750000,
+            "version": 1
+        },
+        {
+            "id": "F000008",
+            "fanId": "CU000002",
+            "addingTime": 1417849951000,
+            "version": 1
+        },
+        {
+            "id": "F000009",
+            "fanId": "CU000001",
+            "addingTime": 1383531899000,
+            "version": 1
+        },
+        {
+            "id": "F000010",
+            "fanId": "CU000002",
+            "addingTime": 1413603299000,
+            "version": 1
+        },
+        {
+            "id": "F000011",
+            "fanId": "CU000001",
+            "addingTime": 1460610160000,
+            "version": 1
+        },
+        {
+            "id": "F000012",
+            "fanId": "CU000002",
+            "addingTime": 1361660517000,
+            "version": 1
+        },
+        {
+            "id": "F000013",
+            "fanId": "CU000001",
+            "addingTime": 1432358611000,
+            "version": 1
+        },
+        {
+            "id": "F000014",
+            "fanId": "CU000002",
+            "addingTime": 1494020707000,
+            "version": 1
+        },
+        {
+            "id": "F000015",
+            "fanId": "CU000001",
+            "addingTime": 1363352654000,
+            "version": 1
+        },
+        {
+            "id": "F000016",
+            "fanId": "CU000002",
+            "addingTime": 1488286033000,
+            "version": 1
+        },
+        {
+            "id": "F000017",
+            "fanId": "CU000001",
+            "addingTime": 1438961109000,
+            "version": 1
+        },
+        {
+            "id": "F000018",
+            "fanId": "CU000002",
+            "addingTime": 1390675750000,
+            "version": 1
+        },
+        {
+            "id": "F000019",
+            "fanId": "CU000001",
+            "addingTime": 1464637525000,
+            "version": 1
+        },
+        {
+            "id": "F000020",
+            "fanId": "CU000002",
+            "addingTime": 1411689903000,
+            "version": 1
+        }
+    ],
+    "followCount": 20,
+    "followList": [
+        {
+            "id": "F000001",
+            "followId": "CU000001",
+            "addingTime": 1450737934000,
+            "version": 1
+        },
+        {
+            "id": "F000002",
+            "followId": "CU000002",
+            "addingTime": 1457932435000,
+            "version": 1
+        },
+        {
+            "id": "F000003",
+            "followId": "CU000001",
+            "addingTime": 1379403783000,
+            "version": 1
+        },
+        {
+            "id": "F000004",
+            "followId": "CU000002",
+            "addingTime": 1446536918000,
+            "version": 1
+        },
+        {
+            "id": "F000005",
+            "followId": "CU000001",
+            "addingTime": 1461595810000,
+            "version": 1
+        },
+        {
+            "id": "F000006",
+            "followId": "CU000002",
+            "addingTime": 1406023284000,
+            "version": 1
+        },
+        {
+            "id": "F000007",
+            "followId": "CU000001",
+            "addingTime": 1429240026000,
+            "version": 1
+        },
+        {
+            "id": "F000008",
+            "followId": "CU000002",
+            "addingTime": 1440379008000,
+            "version": 1
+        },
+        {
+            "id": "F000009",
+            "followId": "CU000001",
+            "addingTime": 1398256818000,
+            "version": 1
+        },
+        {
+            "id": "F000010",
+            "followId": "CU000002",
+            "addingTime": 1430556053000,
+            "version": 1
+        },
+        {
+            "id": "F000011",
+            "followId": "CU000001",
+            "addingTime": 1385762813000,
+            "version": 1
+        },
+        {
+            "id": "F000012",
+            "followId": "CU000002",
+            "addingTime": 1395800724000,
+            "version": 1
+        },
+        {
+            "id": "F000013",
+            "followId": "CU000001",
+            "addingTime": 1422789545000,
+            "version": 1
+        },
+        {
+            "id": "F000014",
+            "followId": "CU000002",
+            "addingTime": 1380088505000,
+            "version": 1
+        },
+        {
+            "id": "F000015",
+            "followId": "CU000001",
+            "addingTime": 1409379534000,
+            "version": 1
+        },
+        {
+            "id": "F000016",
+            "followId": "CU000002",
+            "addingTime": 1386923664000,
+            "version": 1
+        },
+        {
+            "id": "F000017",
+            "followId": "CU000001",
+            "addingTime": 1387189338000,
+            "version": 1
+        },
+        {
+            "id": "F000018",
+            "followId": "CU000002",
+            "addingTime": 1375361277000,
+            "version": 1
+        },
+        {
+            "id": "F000019",
+            "followId": "CU000001",
+            "addingTime": 1411257131000,
+            "version": 1
+        },
+        {
+            "id": "F000020",
+            "followId": "CU000002",
+            "addingTime": 1385262697000,
+            "version": 1
+        }
+    ],
+    "bonusPointCount": 20,
+    "bonusPointList": [
+        {
+            "id": "BP000001",
+            "name": "完成求助奖励",
+            "obtainTime": 1499103178000,
+            "points": 927,
+            "version": 1
+        },
+        {
+            "id": "BP000002",
+            "name": "完成求助奖励0002",
+            "obtainTime": 1494060196000,
+            "points": 992,
+            "version": 1
+        },
+        {
+            "id": "BP000003",
+            "name": "完成求助奖励0003",
+            "obtainTime": 1431571693000,
+            "points": 856,
+            "version": 1
+        },
+        {
+            "id": "BP000004",
+            "name": "完成求助奖励0004",
+            "obtainTime": 1389728081000,
+            "points": 935,
+            "version": 1
+        },
+        {
+            "id": "BP000005",
+            "name": "完成求助奖励0005",
+            "obtainTime": 1486971578000,
+            "points": 723,
+            "version": 1
+        },
+        {
+            "id": "BP000006",
+            "name": "完成求助奖励0006",
+            "obtainTime": 1360362960000,
+            "points": 905,
+            "version": 1
+        },
+        {
+            "id": "BP000007",
+            "name": "完成求助奖励0007",
+            "obtainTime": 1431085432000,
+            "points": 763,
+            "version": 1
+        },
+        {
+            "id": "BP000008",
+            "name": "完成求助奖励0008",
+            "obtainTime": 1493598509000,
+            "points": 811,
+            "version": 1
+        },
+        {
+            "id": "BP000009",
+            "name": "完成求助奖励0009",
+            "obtainTime": 1435843425000,
+            "points": 747,
+            "version": 1
+        },
+        {
+            "id": "BP000010",
+            "name": "完成求助奖励0010",
+            "obtainTime": 1435147875000,
+            "points": 996,
+            "version": 1
+        },
+        {
+            "id": "BP000011",
+            "name": "完成求助奖励0011",
+            "obtainTime": 1493193878000,
+            "points": 856,
+            "version": 1
+        },
+        {
+            "id": "BP000012",
+            "name": "完成求助奖励0012",
+            "obtainTime": 1479087468000,
+            "points": 838,
+            "version": 1
+        },
+        {
+            "id": "BP000013",
+            "name": "完成求助奖励0013",
+            "obtainTime": 1496751866000,
+            "points": 961,
+            "version": 1
+        },
+        {
+            "id": "BP000014",
+            "name": "完成求助奖励0014",
+            "obtainTime": 1363463954000,
+            "points": 964,
+            "version": 1
+        },
+        {
+            "id": "BP000015",
+            "name": "完成求助奖励0015",
+            "obtainTime": 1417773661000,
+            "points": 729,
+            "version": 1
+        },
+        {
+            "id": "BP000016",
+            "name": "完成求助奖励0016",
+            "obtainTime": 1493371823000,
+            "points": 832,
+            "version": 1
+        },
+        {
+            "id": "BP000017",
+            "name": "完成求助奖励0017",
+            "obtainTime": 1458568384000,
+            "points": 737,
+            "version": 1
+        },
+        {
+            "id": "BP000018",
+            "name": "完成求助奖励0018",
+            "obtainTime": 1375651380000,
+            "points": 904,
+            "version": 1
+        },
+        {
+            "id": "BP000019",
+            "name": "完成求助奖励0019",
+            "obtainTime": 1483319487000,
+            "points": 799,
+            "version": 1
+        },
+        {
+            "id": "BP000020",
+            "name": "完成求助奖励0020",
+            "obtainTime": 1383376889000,
+            "points": 959,
+            "version": 1
+        }
+    ],
+    "experiencePointCount": 20,
+    "experiencePointList": [
+        {
+            "id": "EP000001",
+            "name": "浏览求助",
+            "obtainTime": 1364154592000,
+            "points": 79,
+            "version": 1
+        },
+        {
+            "id": "EP000002",
+            "name": "参加活动",
+            "obtainTime": 1497903077000,
+            "points": 95,
+            "version": 1
+        },
+        {
+            "id": "EP000003",
+            "name": "浏览求助",
+            "obtainTime": 1432913551000,
+            "points": 76,
+            "version": 1
+        },
+        {
+            "id": "EP000004",
+            "name": "参加活动",
+            "obtainTime": 1402122006000,
+            "points": 79,
+            "version": 1
+        },
+        {
+            "id": "EP000005",
+            "name": "浏览求助",
+            "obtainTime": 1471914063000,
+            "points": 74,
+            "version": 1
+        },
+        {
+            "id": "EP000006",
+            "name": "参加活动",
+            "obtainTime": 1502290851000,
+            "points": 76,
+            "version": 1
+        },
+        {
+            "id": "EP000007",
+            "name": "浏览求助",
+            "obtainTime": 1432992106000,
+            "points": 85,
+            "version": 1
+        },
+        {
+            "id": "EP000008",
+            "name": "参加活动",
+            "obtainTime": 1395903408000,
+            "points": 89,
+            "version": 1
+        },
+        {
+            "id": "EP000009",
+            "name": "浏览求助",
+            "obtainTime": 1460246527000,
+            "points": 87,
+            "version": 1
+        },
+        {
+            "id": "EP000010",
+            "name": "参加活动",
+            "obtainTime": 1431240765000,
+            "points": 78,
+            "version": 1
+        },
+        {
+            "id": "EP000011",
+            "name": "浏览求助",
+            "obtainTime": 1363440204000,
+            "points": 77,
+            "version": 1
+        },
+        {
+            "id": "EP000012",
+            "name": "参加活动",
+            "obtainTime": 1464826688000,
+            "points": 91,
+            "version": 1
+        },
+        {
+            "id": "EP000013",
+            "name": "浏览求助",
+            "obtainTime": 1388859880000,
+            "points": 74,
+            "version": 1
+        },
+        {
+            "id": "EP000014",
+            "name": "参加活动",
+            "obtainTime": 1356941531000,
+            "points": 99,
+            "version": 1
+        },
+        {
+            "id": "EP000015",
+            "name": "浏览求助",
+            "obtainTime": 1424126763000,
+            "points": 94,
+            "version": 1
+        },
+        {
+            "id": "EP000016",
+            "name": "参加活动",
+            "obtainTime": 1478476353000,
+            "points": 92,
+            "version": 1
+        },
+        {
+            "id": "EP000017",
+            "name": "浏览求助",
+            "obtainTime": 1472873732000,
+            "points": 91,
+            "version": 1
+        },
+        {
+            "id": "EP000018",
+            "name": "参加活动",
+            "obtainTime": 1379991540000,
+            "points": 85,
+            "version": 1
+        },
+        {
+            "id": "EP000019",
+            "name": "浏览求助",
+            "obtainTime": 1434126098000,
+            "points": 85,
+            "version": 1
+        },
+        {
+            "id": "EP000020",
+            "name": "参加活动",
+            "obtainTime": 1416883952000,
+            "points": 92,
+            "version": 1
+        }
+    ],
+    "actionList": [
+        {
+            "actionName": null,
+            "actionPath": "view/CU000001/",
+            "actionKey": "view",
+            "localeKey": "@view",
+            "actionGroup": "main",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "createCommunityUser/",
+            "actionKey": "createCommunityUser",
+            "localeKey": "@create",
+            "actionGroup": "main",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateCommunityUser/CU000001/",
+            "actionKey": "updateCommunityUser",
+            "localeKey": "@update",
+            "actionGroup": "main",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "cloneCommunityUser/CU000001/",
+            "actionKey": "cloneCommunityUser",
+            "localeKey": "@copy",
+            "actionGroup": "main",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "transferToAnotherCommunity/CU000001/",
+            "actionKey": "transferToAnotherCommunity",
+            "localeKey": "community_user.transfer_to_community",
+            "actionGroup": "main",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addPatientInfo/CU000001/",
+            "actionKey": "addPatientInfo",
+            "localeKey": "community_user.addPatientInfo",
+            "actionGroup": "patientInfoList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removePatientInfo/CU000001/",
+            "actionKey": "removePatientInfo",
+            "localeKey": "community_user.removePatientInfo",
+            "actionGroup": "patientInfoList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updatePatientInfo/CU000001/",
+            "actionKey": "updatePatientInfo",
+            "localeKey": "community_user.updatePatientInfo",
+            "actionGroup": "patientInfoList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyPatientInfoFrom/CU000001/",
+            "actionKey": "copyPatientInfoFrom",
+            "localeKey": "community_user.copyPatientInfoFrom",
+            "actionGroup": "patientInfoList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addUserSkill/CU000001/",
+            "actionKey": "addUserSkill",
+            "localeKey": "community_user.addUserSkill",
+            "actionGroup": "userSkillList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeUserSkill/CU000001/",
+            "actionKey": "removeUserSkill",
+            "localeKey": "community_user.removeUserSkill",
+            "actionGroup": "userSkillList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateUserSkill/CU000001/",
+            "actionKey": "updateUserSkill",
+            "localeKey": "community_user.updateUserSkill",
+            "actionGroup": "userSkillList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyUserSkillFrom/CU000001/",
+            "actionKey": "copyUserSkillFrom",
+            "localeKey": "community_user.copyUserSkillFrom",
+            "actionGroup": "userSkillList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addMessageFilter/CU000001/",
+            "actionKey": "addMessageFilter",
+            "localeKey": "community_user.addMessageFilter",
+            "actionGroup": "messageFilterList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeMessageFilter/CU000001/",
+            "actionKey": "removeMessageFilter",
+            "localeKey": "community_user.removeMessageFilter",
+            "actionGroup": "messageFilterList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateMessageFilter/CU000001/",
+            "actionKey": "updateMessageFilter",
+            "localeKey": "community_user.updateMessageFilter",
+            "actionGroup": "messageFilterList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyMessageFilterFrom/CU000001/",
+            "actionKey": "copyMessageFilterFrom",
+            "localeKey": "community_user.copyMessageFilterFrom",
+            "actionGroup": "messageFilterList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addUserMessage/CU000001/",
+            "actionKey": "addUserMessage",
+            "localeKey": "community_user.addUserMessage",
+            "actionGroup": "userMessageList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeUserMessage/CU000001/",
+            "actionKey": "removeUserMessage",
+            "localeKey": "community_user.removeUserMessage",
+            "actionGroup": "userMessageList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateUserMessage/CU000001/",
+            "actionKey": "updateUserMessage",
+            "localeKey": "community_user.updateUserMessage",
+            "actionGroup": "userMessageList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyUserMessageFrom/CU000001/",
+            "actionKey": "copyUserMessageFrom",
+            "localeKey": "community_user.copyUserMessageFrom",
+            "actionGroup": "userMessageList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addTask/CU000001/",
+            "actionKey": "addTask",
+            "localeKey": "community_user.addTask",
+            "actionGroup": "taskList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeTask/CU000001/",
+            "actionKey": "removeTask",
+            "localeKey": "community_user.removeTask",
+            "actionGroup": "taskList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateTask/CU000001/",
+            "actionKey": "updateTask",
+            "localeKey": "community_user.updateTask",
+            "actionGroup": "taskList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyTaskFrom/CU000001/",
+            "actionKey": "copyTaskFrom",
+            "localeKey": "community_user.copyTaskFrom",
+            "actionGroup": "taskList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addTaskAssigment/CU000001/",
+            "actionKey": "addTaskAssigment",
+            "localeKey": "community_user.addTaskAssigment",
+            "actionGroup": "taskAssigmentList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeTaskAssigment/CU000001/",
+            "actionKey": "removeTaskAssigment",
+            "localeKey": "community_user.removeTaskAssigment",
+            "actionGroup": "taskAssigmentList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateTaskAssigment/CU000001/",
+            "actionKey": "updateTaskAssigment",
+            "localeKey": "community_user.updateTaskAssigment",
+            "actionGroup": "taskAssigmentList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyTaskAssigmentFrom/CU000001/",
+            "actionKey": "copyTaskAssigmentFrom",
+            "localeKey": "community_user.copyTaskAssigmentFrom",
+            "actionGroup": "taskAssigmentList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addTaskLike/CU000001/",
+            "actionKey": "addTaskLike",
+            "localeKey": "community_user.addTaskLike",
+            "actionGroup": "taskLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeTaskLike/CU000001/",
+            "actionKey": "removeTaskLike",
+            "localeKey": "community_user.removeTaskLike",
+            "actionGroup": "taskLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateTaskLike/CU000001/",
+            "actionKey": "updateTaskLike",
+            "localeKey": "community_user.updateTaskLike",
+            "actionGroup": "taskLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyTaskLikeFrom/CU000001/",
+            "actionKey": "copyTaskLikeFrom",
+            "localeKey": "community_user.copyTaskLikeFrom",
+            "actionGroup": "taskLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addTaskReply/CU000001/",
+            "actionKey": "addTaskReply",
+            "localeKey": "community_user.addTaskReply",
+            "actionGroup": "taskReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeTaskReply/CU000001/",
+            "actionKey": "removeTaskReply",
+            "localeKey": "community_user.removeTaskReply",
+            "actionGroup": "taskReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateTaskReply/CU000001/",
+            "actionKey": "updateTaskReply",
+            "localeKey": "community_user.updateTaskReply",
+            "actionGroup": "taskReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyTaskReplyFrom/CU000001/",
+            "actionKey": "copyTaskReplyFrom",
+            "localeKey": "community_user.copyTaskReplyFrom",
+            "actionGroup": "taskReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addTaskReplyLike/CU000001/",
+            "actionKey": "addTaskReplyLike",
+            "localeKey": "community_user.addTaskReplyLike",
+            "actionGroup": "taskReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeTaskReplyLike/CU000001/",
+            "actionKey": "removeTaskReplyLike",
+            "localeKey": "community_user.removeTaskReplyLike",
+            "actionGroup": "taskReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateTaskReplyLike/CU000001/",
+            "actionKey": "updateTaskReplyLike",
+            "localeKey": "community_user.updateTaskReplyLike",
+            "actionGroup": "taskReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyTaskReplyLikeFrom/CU000001/",
+            "actionKey": "copyTaskReplyLikeFrom",
+            "localeKey": "community_user.copyTaskReplyLikeFrom",
+            "actionGroup": "taskReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addThread/CU000001/",
+            "actionKey": "addThread",
+            "localeKey": "community_user.addThread",
+            "actionGroup": "threadList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeThread/CU000001/",
+            "actionKey": "removeThread",
+            "localeKey": "community_user.removeThread",
+            "actionGroup": "threadList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateThread/CU000001/",
+            "actionKey": "updateThread",
+            "localeKey": "community_user.updateThread",
+            "actionGroup": "threadList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyThreadFrom/CU000001/",
+            "actionKey": "copyThreadFrom",
+            "localeKey": "community_user.copyThreadFrom",
+            "actionGroup": "threadList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addThreadReply/CU000001/",
+            "actionKey": "addThreadReply",
+            "localeKey": "community_user.addThreadReply",
+            "actionGroup": "threadReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeThreadReply/CU000001/",
+            "actionKey": "removeThreadReply",
+            "localeKey": "community_user.removeThreadReply",
+            "actionGroup": "threadReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateThreadReply/CU000001/",
+            "actionKey": "updateThreadReply",
+            "localeKey": "community_user.updateThreadReply",
+            "actionGroup": "threadReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyThreadReplyFrom/CU000001/",
+            "actionKey": "copyThreadReplyFrom",
+            "localeKey": "community_user.copyThreadReplyFrom",
+            "actionGroup": "threadReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addThreadRegistration/CU000001/",
+            "actionKey": "addThreadRegistration",
+            "localeKey": "community_user.addThreadRegistration",
+            "actionGroup": "threadRegistrationList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeThreadRegistration/CU000001/",
+            "actionKey": "removeThreadRegistration",
+            "localeKey": "community_user.removeThreadRegistration",
+            "actionGroup": "threadRegistrationList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateThreadRegistration/CU000001/",
+            "actionKey": "updateThreadRegistration",
+            "localeKey": "community_user.updateThreadRegistration",
+            "actionGroup": "threadRegistrationList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyThreadRegistrationFrom/CU000001/",
+            "actionKey": "copyThreadRegistrationFrom",
+            "localeKey": "community_user.copyThreadRegistrationFrom",
+            "actionGroup": "threadRegistrationList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addThreadLike/CU000001/",
+            "actionKey": "addThreadLike",
+            "localeKey": "community_user.addThreadLike",
+            "actionGroup": "threadLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeThreadLike/CU000001/",
+            "actionKey": "removeThreadLike",
+            "localeKey": "community_user.removeThreadLike",
+            "actionGroup": "threadLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateThreadLike/CU000001/",
+            "actionKey": "updateThreadLike",
+            "localeKey": "community_user.updateThreadLike",
+            "actionGroup": "threadLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyThreadLikeFrom/CU000001/",
+            "actionKey": "copyThreadLikeFrom",
+            "localeKey": "community_user.copyThreadLikeFrom",
+            "actionGroup": "threadLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addThreadReplyLike/CU000001/",
+            "actionKey": "addThreadReplyLike",
+            "localeKey": "community_user.addThreadReplyLike",
+            "actionGroup": "threadReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeThreadReplyLike/CU000001/",
+            "actionKey": "removeThreadReplyLike",
+            "localeKey": "community_user.removeThreadReplyLike",
+            "actionGroup": "threadReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateThreadReplyLike/CU000001/",
+            "actionKey": "updateThreadReplyLike",
+            "localeKey": "community_user.updateThreadReplyLike",
+            "actionGroup": "threadReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyThreadReplyLikeFrom/CU000001/",
+            "actionKey": "copyThreadReplyLikeFrom",
+            "localeKey": "community_user.copyThreadReplyLikeFrom",
+            "actionGroup": "threadReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addFan/CU000001/",
+            "actionKey": "addFan",
+            "localeKey": "community_user.addFan",
+            "actionGroup": "fanList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeFan/CU000001/",
+            "actionKey": "removeFan",
+            "localeKey": "community_user.removeFan",
+            "actionGroup": "fanList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateFan/CU000001/",
+            "actionKey": "updateFan",
+            "localeKey": "community_user.updateFan",
+            "actionGroup": "fanList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyFanFrom/CU000001/",
+            "actionKey": "copyFanFrom",
+            "localeKey": "community_user.copyFanFrom",
+            "actionGroup": "fanList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addFollow/CU000001/",
+            "actionKey": "addFollow",
+            "localeKey": "community_user.addFollow",
+            "actionGroup": "followList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeFollow/CU000001/",
+            "actionKey": "removeFollow",
+            "localeKey": "community_user.removeFollow",
+            "actionGroup": "followList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateFollow/CU000001/",
+            "actionKey": "updateFollow",
+            "localeKey": "community_user.updateFollow",
+            "actionGroup": "followList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyFollowFrom/CU000001/",
+            "actionKey": "copyFollowFrom",
+            "localeKey": "community_user.copyFollowFrom",
+            "actionGroup": "followList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addBonusPoint/CU000001/",
+            "actionKey": "addBonusPoint",
+            "localeKey": "community_user.addBonusPoint",
+            "actionGroup": "bonusPointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeBonusPoint/CU000001/",
+            "actionKey": "removeBonusPoint",
+            "localeKey": "community_user.removeBonusPoint",
+            "actionGroup": "bonusPointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateBonusPoint/CU000001/",
+            "actionKey": "updateBonusPoint",
+            "localeKey": "community_user.updateBonusPoint",
+            "actionGroup": "bonusPointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyBonusPointFrom/CU000001/",
+            "actionKey": "copyBonusPointFrom",
+            "localeKey": "community_user.copyBonusPointFrom",
+            "actionGroup": "bonusPointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addExperiencePoint/CU000001/",
+            "actionKey": "addExperiencePoint",
+            "localeKey": "community_user.addExperiencePoint",
+            "actionGroup": "experiencePointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeExperiencePoint/CU000001/",
+            "actionKey": "removeExperiencePoint",
+            "localeKey": "community_user.removeExperiencePoint",
+            "actionGroup": "experiencePointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateExperiencePoint/CU000001/",
+            "actionKey": "updateExperiencePoint",
+            "localeKey": "community_user.updateExperiencePoint",
+            "actionGroup": "experiencePointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyExperiencePointFrom/CU000001/",
+            "actionKey": "copyExperiencePointFrom",
+            "localeKey": "community_user.copyExperiencePointFrom",
+            "actionGroup": "experiencePointList",
+            "actionLevel": "primary"
+        }
+    ]
+}

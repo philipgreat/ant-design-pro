@@ -129,6 +129,7 @@ class TaskBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.task.taskAssigmentList,
+      count: state.task.taskAssigmentCount,
       loading: state.task.loading
     }))(TaskAssigmentSearch);
   }
@@ -139,6 +140,7 @@ class TaskBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.task.taskLikeList,
+      count: state.task.taskLikeCount,
       loading: state.task.loading
     }))(TaskLikeSearch);
   }
@@ -149,6 +151,7 @@ class TaskBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.task.taskReplyList,
+      count: state.task.taskReplyCount,
       loading: state.task.loading
     }))(TaskReplySearch);
   }

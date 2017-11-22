@@ -7,13 +7,13 @@ import styles from './UserMessage.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'标题',dataIndex: 'title',width:'10'},
-{title:'信息的关键',dataIndex: 'messageKey',width:'18'},
-{title:'接收者',dataIndex: 'receiver',width:'13'},
-{title:'内容',dataIndex: 'content',width:'14'},
-{title:'链接网址',dataIndex: 'linkUrl',width:'31'},
-{title:'消息的时间',dataIndex: 'messageTime',width:'9'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'标题',debugtype:'string',dataIndex: 'title',width:'10'},
+{title:'信息的关键',debugtype:'string',dataIndex: 'messageKey',width:'18'},
+{title:'接收者',debugtype:'community_user',dataIndex: 'receiver',width:'13'},
+{title:'内容',debugtype:'string',dataIndex: 'content',width:'14'},
+{title:'链接网址',debugtype:'string',dataIndex: 'linkUrl',width:'31'},
+{title:'消息的时间',dataIndex: 'messageTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
 
       
     ];
@@ -52,7 +52,7 @@ class UserMessageTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -60,6 +60,8 @@ class UserMessageTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

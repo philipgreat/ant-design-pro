@@ -7,14 +7,14 @@ import styles from './TaskReply.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'回复时间',dataIndex: 'replyTime',width:'9'},
-{title:'内容',dataIndex: 'content',width:'22'},
-{title:'应答者',dataIndex: 'replier',width:'13'},
-{title:'任务',dataIndex: 'task',width:'13'},
-{title:'最佳答案设置',dataIndex: 'bestAnswerSetting',width:'13'},
-{title:'当前用户已点赞',dataIndex: 'likeByCurrentUser',width:'9'},
-{title:'当前状态',dataIndex: 'currentStatus',width:'19'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'回复时间',dataIndex: 'replyTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'内容',debugtype:'string',dataIndex: 'content',width:'22'},
+{title:'应答者',debugtype:'community_user',dataIndex: 'replier',width:'13'},
+{title:'任务',debugtype:'task',dataIndex: 'task',width:'13'},
+{title:'最佳答案设置',debugtype:'task_best_answer_setting',dataIndex: 'bestAnswerSetting',width:'13'},
+{title:'当前用户已点赞',debugtype:'bool',dataIndex: 'likeByCurrentUser',width:'9'},
+{title:'当前状态',debugtype:'string',dataIndex: 'currentStatus',width:'19'},
 
       
     ];
@@ -53,7 +53,7 @@ class TaskReplyTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -61,6 +61,8 @@ class TaskReplyTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

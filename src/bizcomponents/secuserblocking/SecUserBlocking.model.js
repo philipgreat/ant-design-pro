@@ -2,6 +2,8 @@
 import pathToRegexp from 'path-to-regexp';
 import { routerRedux } from 'dva/router';
 //import key from 'keymaster';
+import SecUserBlockingService from './SecUserBlocking.service';
+
 export default {
 
   namespace: 'secUserBlocking',
@@ -26,7 +28,7 @@ export default {
    
           return;
         }
-        const match = pathToRegexp('/secUserBlocking/dash/:id').exec(pathname);
+        const match = pathToRegexp('/secUserBlocking/:id/list/:listName').exec(pathname);
         if (!match) {
           return;
           // dispatch action with userId
@@ -41,7 +43,7 @@ export default {
   effects: {
     *view({ payload }, { call, put }) { 
       yield put({type:"showLoading",payload:{loading:true}});
-      const data = yield call(SecUserBlocking.view,payload.id);
+      const data = yield call(SecUserBlockingService.view,payload.id);
       console.log("this is the data id: ", data.id)
       yield put({type:"updateState",payload:data});
     },

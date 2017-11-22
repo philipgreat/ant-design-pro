@@ -115,6 +115,7 @@ class UserAppBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.userApp.objectAccessList,
+      count: state.userApp.objectAccessCount,
       loading: state.userApp.loading
     }))(ObjectAccessSearch);
   }

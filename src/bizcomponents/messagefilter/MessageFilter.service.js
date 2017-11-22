@@ -18,7 +18,7 @@ const PREFIX="http://"+parseHost()+":8080/naf/";
 
 const view=(targetObjectId)=>{
     return get({
-        url: PREFIX+`messageFilterManager/view//`
+        url: PREFIX+`messageFilterManager/view/${targetObjectId}/`
 
     });
 }

@@ -122,6 +122,7 @@ class SecUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.secUser.userAppList,
+      count: state.secUser.userAppCount,
       loading: state.secUser.loading
     }))(UserAppSearch);
   }
@@ -132,6 +133,7 @@ class SecUserBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.secUser.loginHistoryList,
+      count: state.secUser.loginHistoryCount,
       loading: state.secUser.loading
     }))(LoginHistorySearch);
   }

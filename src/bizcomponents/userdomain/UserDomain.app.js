@@ -115,6 +115,7 @@ class UserDomainBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.userDomain.secUserList,
+      count: state.userDomain.secUserCount,
       loading: state.userDomain.loading
     }))(SecUserSearch);
   }

@@ -7,12 +7,12 @@ import styles from './EncyclopediaItem.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'标题',dataIndex: 'title',width:'15'},
-{title:'发布时间',dataIndex: 'publishTime',width:'14'},
-{title:'内容',dataIndex: 'content',width:'107'},
-{title:'社区',dataIndex: 'community',width:'13'},
-{title:'主页',dataIndex: 'homePage',width:'13'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'标题',debugtype:'string',dataIndex: 'title',width:'15'},
+{title:'发布时间',dataIndex: 'publishTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'内容',debugtype:'string',dataIndex: 'content',width:'107'},
+{title:'社区',debugtype:'community',dataIndex: 'community',width:'13'},
+{title:'主页',debugtype:'home_page',dataIndex: 'homePage',width:'13'},
 
       
     ];
@@ -51,7 +51,7 @@ class EncyclopediaItemTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -59,6 +59,8 @@ class EncyclopediaItemTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

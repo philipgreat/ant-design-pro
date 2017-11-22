@@ -7,11 +7,11 @@ import styles from './TaskAssigment.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'任务',dataIndex: 'task',width:'13'},
-{title:'受让人',dataIndex: 'assignee',width:'13'},
-{title:'分配时间',dataIndex: 'assignTime',width:'9'},
-{title:'评论',dataIndex: 'comments',width:'17'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'任务',debugtype:'task',dataIndex: 'task',width:'13'},
+{title:'受让人',debugtype:'community_user',dataIndex: 'assignee',width:'13'},
+{title:'分配时间',dataIndex: 'assignTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'评论',debugtype:'string',dataIndex: 'comments',width:'17'},
 
       
     ];
@@ -50,7 +50,7 @@ class TaskAssigmentTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -58,6 +58,8 @@ class TaskAssigmentTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

@@ -2,6 +2,8 @@
 import pathToRegexp from 'path-to-regexp';
 import { routerRedux } from 'dva/router';
 //import key from 'keymaster';
+import TaskBestAnswerSettingService from './TaskBestAnswerSetting.service';
+
 export default {
 
   namespace: 'taskBestAnswerSetting',
@@ -26,7 +28,7 @@ export default {
    
           return;
         }
-        const match = pathToRegexp('/taskBestAnswerSetting/dash/:id').exec(pathname);
+        const match = pathToRegexp('/taskBestAnswerSetting/:id/list/:listName').exec(pathname);
         if (!match) {
           return;
           // dispatch action with userId
@@ -41,7 +43,7 @@ export default {
   effects: {
     *view({ payload }, { call, put }) { 
       yield put({type:"showLoading",payload:{loading:true}});
-      const data = yield call(TaskBestAnswerSetting.view,payload.id);
+      const data = yield call(TaskBestAnswerSettingService.view,payload.id);
       console.log("this is the data id: ", data.id)
       yield put({type:"updateState",payload:data});
     },

@@ -7,10 +7,10 @@ import styles from './ThreadApproval.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'谁',dataIndex: 'who',width:'21'},
-{title:'行动时间',dataIndex: 'actionTime',width:'9'},
-{title:'评论',dataIndex: 'comment',width:'8'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'谁',debugtype:'string_current_user_name',dataIndex: 'who',width:'21'},
+{title:'行动时间',dataIndex: 'actionTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'评论',debugtype:'string',dataIndex: 'comment',width:'8'},
 
       
     ];
@@ -49,7 +49,7 @@ class ThreadApprovalTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -57,6 +57,8 @@ class ThreadApprovalTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

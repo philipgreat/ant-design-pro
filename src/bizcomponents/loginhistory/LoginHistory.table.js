@@ -7,11 +7,11 @@ import styles from './LoginHistory.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'登录时间',dataIndex: 'loginTime',width:'9'},
-{title:'从IP',dataIndex: 'fromIp',width:'15'},
-{title:'描述',dataIndex: 'description',width:'8'},
-{title:'SEC的用户',dataIndex: 'secUser',width:'13'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'登录时间',dataIndex: 'loginTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'从IP',debugtype:'string',dataIndex: 'fromIp',width:'15'},
+{title:'描述',debugtype:'string',dataIndex: 'description',width:'8'},
+{title:'SEC的用户',debugtype:'sec_user',dataIndex: 'secUser',width:'13'},
 
       
     ];
@@ -50,7 +50,7 @@ class LoginHistoryTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -58,6 +58,8 @@ class LoginHistoryTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

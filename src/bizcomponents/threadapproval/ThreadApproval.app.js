@@ -115,6 +115,7 @@ class ThreadApprovalBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.threadApproval.threadList,
+      count: state.threadApproval.threadCount,
       loading: state.threadApproval.loading
     }))(ThreadSearch);
   }

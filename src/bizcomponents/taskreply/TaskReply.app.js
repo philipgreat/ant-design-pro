@@ -115,6 +115,7 @@ class TaskReplyBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.taskReply.taskReplyLikeList,
+      count: state.taskReply.taskReplyLikeCount,
       loading: state.taskReply.loading
     }))(TaskReplyLikeSearch);
   }

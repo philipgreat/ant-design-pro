@@ -7,10 +7,10 @@ import styles from './Follow.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'用户',dataIndex: 'user',width:'13'},
-{title:'关注的社区用户',dataIndex: 'followId',width:'12'},
-{title:'添加时间',dataIndex: 'addingTime',width:'9'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'用户',debugtype:'community_user',dataIndex: 'user',width:'13'},
+{title:'关注的社区用户',debugtype:'string',dataIndex: 'followId',width:'12'},
+{title:'添加时间',dataIndex: 'addingTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
 
       
     ];
@@ -49,7 +49,7 @@ class FollowTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -57,6 +57,8 @@ class FollowTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

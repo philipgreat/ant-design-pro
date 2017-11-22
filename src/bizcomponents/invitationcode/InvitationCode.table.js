@@ -7,12 +7,12 @@ import styles from './InvitationCode.table.less';
 
 
 const columns = [
-{title:'序号',dataIndex: 'id',width:'20'},
-{title:'名称',dataIndex: 'name',width:'7'},
-{title:'代码',dataIndex: 'code',width:'10'},
-{title:'创建时间',dataIndex: 'createTime',width:'9'},
-{title:'社区',dataIndex: 'community',width:'13'},
-{title:'用',dataIndex: 'used',width:'8'},
+{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
+{title:'名称',debugtype:'string',dataIndex: 'name',width:'7'},
+{title:'代码',debugtype:'int',dataIndex: 'code',width:'10'},
+{title:'创建时间',dataIndex: 'createTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'社区',debugtype:'community',dataIndex: 'community',width:'13'},
+{title:'用',debugtype:'bool',dataIndex: 'used',width:'8'},
 
       
     ];
@@ -51,7 +51,7 @@ class InvitationCodeTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data } = this.props;
+    const { data,count } = this.props;
 
    
     
@@ -59,6 +59,8 @@ class InvitationCodeTable extends PureComponent {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
+      pageSize: 20,
+      total: count
       
     };
 

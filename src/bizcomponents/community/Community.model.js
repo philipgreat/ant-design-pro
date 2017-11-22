@@ -1,8 +1,9 @@
 
 import pathToRegexp from 'path-to-regexp';
 import { routerRedux } from 'dva/router';
-import CommunityService from './Community.service'
 //import key from 'keymaster';
+import CommunityService from './Community.service';
+
 export default {
 
   namespace: 'community',
@@ -18,11 +19,13 @@ export default {
         if (!pathname.startsWith("/community")) {
           return;
         }
- 
+        
+        
         const newstate = location.state;
 
         if(newstate){
           dispatch({type:"updateState",payload:newstate});
+   
           return;
         }
         const match = pathToRegexp('/community/:id/list/:listName').exec(pathname);

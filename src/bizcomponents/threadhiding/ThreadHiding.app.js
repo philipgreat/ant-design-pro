@@ -115,6 +115,7 @@ class ThreadHidingBizApp extends React.PureComponent {
     return connect(state => ({
       rule: state.rule,
       data: state.threadHiding.threadList,
+      count: state.threadHiding.threadCount,
       loading: state.threadHiding.loading
     }))(ThreadSearch);
   }
