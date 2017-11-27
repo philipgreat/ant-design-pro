@@ -8,7 +8,7 @@ import styles from './TaskReplyLike.table.less';
 
 const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
-{title:'点赞时间',dataIndex: 'likeTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'点赞时间',dataIndex: 'likeTime',render: (text,record)=>moment(record.likeTime).format('YYYY-MM-DD')},
 {title:'应答者',debugtype:'community_user',dataIndex: 'replier',width:'13'},
 {title:'回复任务',debugtype:'task_reply',dataIndex: 'taskReply',width:'13'},
 

@@ -13,7 +13,7 @@ const columns = [
 {title:'接收者',debugtype:'community_user',dataIndex: 'receiver',width:'13'},
 {title:'内容',debugtype:'string',dataIndex: 'content',width:'14'},
 {title:'链接网址',debugtype:'string',dataIndex: 'linkUrl',width:'31'},
-{title:'消息的时间',dataIndex: 'messageTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'消息的时间',dataIndex: 'messageTime',render: (text,record)=>moment(record.messageTime).format('YYYY-MM-DD')},
 
       
     ];

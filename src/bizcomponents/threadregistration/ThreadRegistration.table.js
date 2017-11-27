@@ -10,7 +10,7 @@ const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
 {title:'主贴',debugtype:'thread',dataIndex: 'thread',width:'13'},
 {title:'参与者',debugtype:'community_user',dataIndex: 'participant',width:'13'},
-{title:'登记时间',dataIndex: 'registerTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'登记时间',dataIndex: 'registerTime',render: (text,record)=>moment(record.registerTime).format('YYYY-MM-DD')},
 {title:'评论',debugtype:'string',dataIndex: 'comments',width:'14'},
 
       

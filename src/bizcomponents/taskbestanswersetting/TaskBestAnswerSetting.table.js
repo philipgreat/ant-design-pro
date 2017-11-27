@@ -9,7 +9,7 @@ import styles from './TaskBestAnswerSetting.table.less';
 const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
 {title:'谁',debugtype:'string_current_user_name',dataIndex: 'who',width:'21'},
-{title:'设置时间',dataIndex: 'setTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'设置时间',dataIndex: 'setTime',render: (text,record)=>moment(record.setTime).format('YYYY-MM-DD')},
 {title:'评论',debugtype:'string',dataIndex: 'comment',width:'8'},
 
       

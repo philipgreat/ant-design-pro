@@ -8,20 +8,20 @@ import moment from 'moment';
 import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
-import styles from './Community.app.less';
+import styles from './Task.app.less';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
-//import { getNavData,getRouteData } from './Community.menu';
+
+import TaskAssigmentSearch from '../taskassigment/TaskAssigment.search'
+
+import TaskLikeSearch from '../tasklike/TaskLike.search'
+
+import TaskReplySearch from '../taskreply/TaskReply.search'
+
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
-import CommunityTable from './Community.search'
-import CommunityUserSearch from '../communityuser/CommunityUser.search'
-import InvitationCodeSearch from '../invitationcode/InvitationCode.search'
-import ThreadSearch from '../thread/Thread.search'
 
 
 
@@ -46,9 +46,9 @@ const query = {
   },
 };
 
-class CommunityBizApp extends React.PureComponent {
+class TaskBizApp extends React.PureComponent {
   
-  constructor(props) {
+ constructor(props) {
     super(props);
     // 把一级 Layout 的 children 作为菜单项
     
@@ -59,9 +59,7 @@ class CommunityBizApp extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.props.dispatch({
-      type: 'user/fetchCurrent',
-    });
+   
   }
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout);
@@ -77,7 +75,7 @@ class CommunityBizApp extends React.PureComponent {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)];
     currentMenuSelectedKeys.splice(-1, 1);
     if (currentMenuSelectedKeys.length === 0) {
-      return ['/community'];
+      return ['/task/'];
     }
     return currentMenuSelectedKeys;
   }
@@ -94,26 +92,77 @@ class CommunityBizApp extends React.PureComponent {
     return (
       <SubMenu title={<span>
         <Icon type='dashboard' />
-        <span>仪表板</span>
+        <span>任务</span>
       </span>} >
-      <Menu.Item >
-        <Link to={"/community/"+objectId+"/list/invitationCodeList"}>邀请码列表</Link>
-      </Menu.Item>
-      <Menu.Item >
-      <Link to={"/community/"+objectId+"/list/communityUserList"}>社区用户列表</Link>
-      </Menu.Item>
-      <Menu.Item >
-        <Link to={"/community/"+objectId+"/list/threadList"}>帖子列表</Link>
-      </Menu.Item>
       
+      
+      <Menu.Item >   
+        <Link to={"/task/"+objectId+"/list/taskAssigmentList"}>任务分配</Link>
+      </Menu.Item>
+  
+
+      <Menu.Item >   
+        <Link to={"/task/"+objectId+"/list/taskLikeList"}>任务点赞</Link>
+      </Menu.Item>
+  
+
+      <Menu.Item >   
+        <Link to={"/task/"+objectId+"/list/taskReplyList"}>回复任务</Link>
+      </Menu.Item>
+  
+  
+ 
       
       </SubMenu>
 
     );
 
   }
+
+
+
+
+  getTaskAssigmentSearch() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.task.taskAssigmentList,
+      count: state.task.taskAssigmentCount,
+      currentPage: state.task.taskAssigmentCurrentPageNumber,
+      loading: state.task.loading,
+      owner: {type:'task',id:state.task.id}//this is for model namespace and 
+    }))(TaskAssigmentSearch);
+  }
   
-  getPageTitle() {
+
+  getTaskLikeSearch() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.task.taskLikeList,
+      count: state.task.taskLikeCount,
+      currentPage: state.task.taskLikeCurrentPageNumber,
+      loading: state.task.loading,
+      owner: {type:'task',id:state.task.id}//this is for model namespace and 
+    }))(TaskLikeSearch);
+  }
+  
+
+  getTaskReplySearch() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.task.taskReplyList,
+      count: state.task.taskReplyCount,
+      currentPage: state.task.taskReplyCurrentPageNumber,
+      loading: state.task.loading,
+      owner: {type:'task',id:state.task.id}//this is for model namespace and 
+    }))(TaskReplySearch);
+  }
+  
+  
+  
+getPageTitle() {
     const { location } = this.props;
     const { pathname } = location;
     let title = '供应链系统';
@@ -136,7 +185,7 @@ class CommunityBizApp extends React.PureComponent {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices } = this.props;
+    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -157,7 +206,7 @@ class CommunityBizApp extends React.PureComponent {
           <div className={styles.logo}>
             <Link to="/">
               <img src="https://gw.alipayobjects.com/zos/rmsportal/iwWyPinUoseUxIAeElSx.svg" alt="logo" />
-              <h1>跨境供应链</h1>
+              <h1>任务</h1>
             </Link>
           </div>
           <Menu
@@ -168,7 +217,7 @@ class CommunityBizApp extends React.PureComponent {
             selectedKeys={this.getCurrentMenuSelectedKeys()}
             style={{ margin: '16px 0', width: '100%' }}
           >
-            {this.getNavMenuItems("C000001")}
+            {this.getNavMenuItems(this.props.task.id)}
           </Menu>
         </Sider>
         <Layout>
@@ -180,12 +229,15 @@ class CommunityBizApp extends React.PureComponent {
             /></Header>
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
-            
-            <Route path="/community/:id/list/invitationCodeList" component={InvitationCodeSearch} />
-            <Route path="/community/:id/list/communityUserList" component={CommunityUserSearch} />
-            <Route path="/community/:id/list/threadList" component={ThreadSearch} />
-            
-            </Switch>
+    
+          <Route path="/task/:id/list/taskAssigmentList" component={this.getTaskAssigmentSearch()} />
+
+          <Route path="/task/:id/list/taskLikeList" component={this.getTaskLikeSearch()} />
+
+          <Route path="/task/:id/list/taskReplyList" component={this.getTaskReplySearch()} />
+              
+             
+</Switch>
            
           </Content>
         </Layout>
@@ -208,4 +260,7 @@ export default connect(state => ({
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
   ...state
-}))(CommunityBizApp);
+}))(TaskBizApp);
+
+
+

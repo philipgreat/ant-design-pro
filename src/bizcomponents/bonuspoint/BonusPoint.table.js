@@ -9,7 +9,7 @@ import styles from './BonusPoint.table.less';
 const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
 {title:'名称',debugtype:'string',dataIndex: 'name',width:'10'},
-{title:'获得时间',dataIndex: 'obtainTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'获得时间',dataIndex: 'obtainTime',render: (text,record)=>moment(record.obtainTime).format('YYYY-MM-DD')},
 {title:'点',debugtype:'int',dataIndex: 'points',width:'8'},
 {title:'用户',debugtype:'community_user',dataIndex: 'user',width:'13'},
 

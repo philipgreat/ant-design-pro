@@ -10,7 +10,7 @@ const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
 {title:'名称',debugtype:'string',dataIndex: 'name',width:'7'},
 {title:'代码',debugtype:'int',dataIndex: 'code',width:'10'},
-{title:'创建时间',dataIndex: 'createTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'创建时间',dataIndex: 'createTime',render: (text,record)=>moment(record.createTime).format('YYYY-MM-DD')},
 {title:'社区',debugtype:'community',dataIndex: 'community',width:'13'},
 {title:'用',debugtype:'bool',dataIndex: 'used',width:'8'},
 

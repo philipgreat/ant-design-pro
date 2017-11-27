@@ -1,11 +1,12 @@
 
 import pathToRegexp from 'path-to-regexp';
 import { routerRedux } from 'dva/router';
-import CommunityService from './Community.service'
 //import key from 'keymaster';
+import TaskService from './Task.service';
+
 export default {
 
-  namespace: 'community',
+  namespace: 'task',
 
   state: {},
 
@@ -15,17 +16,19 @@ export default {
       history.listen((location) => {
        
         const pathname = location.pathname;
-        if (!pathname.startsWith("/community")) {
+        if (!pathname.startsWith("/task")) {
           return;
         }
- 
+        
+        
         const newstate = location.state;
 
         if(newstate){
           dispatch({type:"updateState",payload:newstate});
+   
           return;
         }
-        const match = pathToRegexp('/community/:id/list/:listName').exec(pathname);
+        const match = pathToRegexp('/task/:id/list/:listName').exec(pathname);
         if (!match) {
           return;
           // dispatch action with userId
@@ -40,7 +43,13 @@ export default {
   effects: {
     *view({ payload }, { call, put }) { 
       yield put({type:"showLoading",payload:{loading:true}});
-      const data = yield call(CommunityService.view,payload.id);
+      const data = yield call(TaskService.view,payload.id);
+      console.log("this is the data id: ", data.id)
+      yield put({type:"updateState",payload:data});
+    },
+    *load({ payload }, { call, put }) { 
+      yield put({type:"showLoading",payload:{loading:true}});
+      const data = yield call(TaskService.load,payload.id,payload.parameters);
       console.log("this is the data id: ", data.id)
       yield put({type:"updateState",payload:data});
     },

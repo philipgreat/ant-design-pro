@@ -9,9 +9,6 @@ const  apps = {
   "com.terapico.bbt.community.Community": "community",
   "com.terapico.bbt.communityuser.CommunityUser": "communityUser",
   "com.terapico.bbt.userdomain.UserDomain": "userDomain",
-  
-  
-        
 
 };
 const rootElement = document.getElementById("root");
@@ -102,7 +99,6 @@ export default {
     *gotoApp({ payload }, { call, put }) { 
         //console.log("gotoApp has been called", payload);
         const data = yield call(LauncherService.gotoApp,payload.appId);
-
         const locationPath = calcLocationPath(data.class,data.id,"list/taskList/");
         const location = {pathname:"/"+locationPath+"/"+data.id,state:data};
         yield put(routerRedux.push(location));

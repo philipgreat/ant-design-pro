@@ -55,9 +55,7 @@ class TaskRewardBizApp extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.props.dispatch({
-      type: 'user/fetchCurrent',
-    });
+   
   }
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout);

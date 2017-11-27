@@ -13,7 +13,7 @@ const columns = [
 {title:'性别',debugtype:'string_gender',dataIndex: 'gender',width:'5'},
 {title:'用户类型',debugtype:'string',dataIndex: 'userType',width:'8'},
 {title:'头像',debugtype:'string_image',dataIndex: 'avatar',width:'14'},
-{title:'生日',dataIndex: 'birthday',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'生日',dataIndex: 'birthday',render: (text,record)=>moment(record.birthday).format('YYYY-MM-DD')},
 {title:'成长值',debugtype:'int',dataIndex: 'experiencePoint',width:'9'},
 {title:'积分',debugtype:'int',dataIndex: 'bonusPoint',width:'11'},
 {title:'城市',debugtype:'string',dataIndex: 'city',width:'7'},

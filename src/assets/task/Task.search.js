@@ -120,7 +120,9 @@ export default class TaskSearch extends PureComponent {
 
   
 
- 
+  renderForm() {
+    return this.state.expandForm ? this.renderAdvancedForm() : this.renderSimpleForm();
+  }
 
   render() {
     const { data,loading,count,currentPage,owner } = this.props;

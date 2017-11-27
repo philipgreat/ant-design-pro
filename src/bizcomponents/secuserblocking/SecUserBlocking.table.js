@@ -9,7 +9,7 @@ import styles from './SecUserBlocking.table.less';
 const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
 {title:'谁',debugtype:'string',dataIndex: 'who',width:'17'},
-{title:'屏蔽时间',dataIndex: 'blockTime',render: (text,record)=>moment(record).format('YYYY-MM-DD HH:mm')},
+{title:'屏蔽时间',dataIndex: 'blockTime',render: (text,record)=>moment(record.blockTime).format('YYYY-MM-DD')},
 {title:'评论',debugtype:'string',dataIndex: 'comments',width:'28'},
 
       
