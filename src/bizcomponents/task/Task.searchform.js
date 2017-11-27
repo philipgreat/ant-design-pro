@@ -17,16 +17,26 @@ export default class TaskSearchForm extends PureComponent {
         modalVisible: false,
         expandForm: false,
         selectedRows: [],
-        formValues: {id:"SDFDF"},
+        formValues: {},
       };
 
     componentDidMount() {
+        
         const { dispatch } = this.props;
         //console.log(this.props);
         const { getFieldDecorator,setFieldsValue } = this.props.form;
-        const {parameters} = this.props;
-        console.log("parameters", parameters);
-        setFieldsValue(parameters);
+        const {taskSearchFormParameters} = this.props;
+        
+        if(!taskSearchFormParameters){
+            console.log("not have the value");
+            return;
+        }
+        console.log("taskSearchFormParameters", taskSearchFormParameters);
+        
+        
+        setFieldsValue(taskSearchFormParameters);
+        
+        
     }
 
 
@@ -75,26 +85,21 @@ export default class TaskSearchForm extends PureComponent {
           }
 
           const params = {
-           
             ...taskSearchByIdParameters,
             ...taskSearchByNameParameters,
-            ...fieldsValue,
-            
-            updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
           };
           
-          
+         
           
           const {owner} = this.props;
           
+          
+
           dispatch({
              type: owner.type+'/load',
-             payload: {id:owner.id, parameters:params},
+             payload: {id:owner.id, parameters:params, taskSearchFormParameters:fieldsValue},
           });
-          this.setState({
-            formValues: fieldsValue,
-
-          });
+          
         });
       }
     renderSimpleForm() {

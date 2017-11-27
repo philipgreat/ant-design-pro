@@ -3,6 +3,7 @@ import pathToRegexp from 'path-to-regexp';
 import { routerRedux } from 'dva/router';
 //import key from 'keymaster';
 import CommunityUserService from './CommunityUser.service';
+import { stat } from 'fs';
 
 export default {
 
@@ -48,7 +49,9 @@ export default {
       yield put({type:"updateState",payload:data});
     },
     *load({ payload }, { call, put }) { 
-      yield put({type:"showLoading",payload:{loading:true}});
+      console.log("INPUT PAYLOAD: ", payload)
+      
+      yield put({type:"showLoading",payload});
       const data = yield call(CommunityUserService.load,payload.id,payload.parameters);
       
       const newPlayload={...payload,...data};
@@ -59,13 +62,13 @@ export default {
   
   reducers: {
     updateState(state, action) {
-      const payload = {...action.payload,...{loading:false}};
-      return { ...payload,...state };
+      const payload = {...action.payload,loading:false};
+      return {  ...payload};
     },
     showLoading(state, action) {
       //const loading=true;
-      const payload = {...action.payload,...{loading:true}};
-      return { ...state,...payload };
+      const payload = {...action.payload,loading:true};
+      return { ...payload };
     },
   },
 

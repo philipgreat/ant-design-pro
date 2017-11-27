@@ -280,14 +280,14 @@ class CommunityUserBizApp extends React.PureComponent {
   
 
   getTaskSearch() {
- 
+    
     return connect(state => ({
       rule: state.rule,
       data: state.communityUser.taskList,
       count: state.communityUser.taskCount,
       currentPage: state.communityUser.taskCurrentPageNumber,
       loading: state.communityUser.loading,
-      parameters: state.communityUser.parameters,
+      taskSearchFormParameters: state.communityUser.taskSearchFormParameters,
       owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(TaskSearch);
   }

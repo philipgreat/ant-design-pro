@@ -71,7 +71,7 @@ class TaskTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data,count,current, owner } = this.props;
+    const { data,count,current, owner,loading } = this.props;
 
    
     
@@ -109,7 +109,7 @@ class TaskTable extends PureComponent {
           />
         </div>
         <Table
-          loading={false}
+          loading={loading}
           rowKey={record => record.id}
           rowSelection={rowSelection}
           dataSource={data}
