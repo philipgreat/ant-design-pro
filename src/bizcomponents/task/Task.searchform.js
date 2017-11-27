@@ -17,8 +17,20 @@ export default class TaskSearchForm extends PureComponent {
         modalVisible: false,
         expandForm: false,
         selectedRows: [],
-        formValues: {},
+        formValues: {id:"SDFDF"},
       };
+
+    componentDidMount() {
+        const { dispatch } = this.props;
+        //console.log(this.props);
+        const { getFieldDecorator,setFieldsValue } = this.props.form;
+        const {parameters} = this.props;
+        console.log("parameters", parameters);
+        setFieldsValue(parameters);
+    }
+
+
+    
     toggleForm = () => {
         this.setState({
           expandForm: !this.state.expandForm,
@@ -40,44 +52,71 @@ export default class TaskSearchForm extends PureComponent {
     
         form.validateFields((err, fieldsValue) => {
           if (err) return;
-    
-          const values = {
+            /*options.put(key+".searchField", field);
+		options.put(key+".searchVerb", verb);
+        options.put(key+".searchValue", value);*/
+        //
+          var taskSearchByIdParameters = {};
+
+          if(fieldsValue.id){
+            taskSearchByIdParameters={taskList:1,
+                "taskList.searchField":"id",
+                "taskList.searchVerb":"startsWith",
+                "taskList.searchValue":fieldsValue.id,};
+
+          }
+          var taskSearchByNameParameters = {};
+          if(fieldsValue.title){
+            taskSearchByNameParameters={taskList:1,
+                "taskList.searchField":"title",
+                "taskList.searchVerb":"startsWith",
+                "taskList.searchValue":fieldsValue.title,};
+
+          }
+
+          const params = {
+           
+            ...taskSearchByIdParameters,
+            ...taskSearchByNameParameters,
             ...fieldsValue,
+            
             updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
           };
-    
-          this.setState({
-            formValues: values,
-          });
-    
+          
+          
+          
+          const {owner} = this.props;
+          
           dispatch({
-            type: 'rule/fetch',
-            payload: values,
+             type: owner.type+'/load',
+             payload: {id:owner.id, parameters:params},
+          });
+          this.setState({
+            formValues: fieldsValue,
+
           });
         });
       }
     renderSimpleForm() {
-        const { getFieldDecorator } = this.props.form;
+        const { getFieldDecorator} = this.props.form;
+        
         return (
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                     <Col md={8} sm={24}>
-                        <FormItem label="规则编号">
-                            {getFieldDecorator('no')(
-                                <Input placeholder="请输入" />
+                        <FormItem label="编号">
+                            {getFieldDecorator('id')(
+                                <Input placeholder="请输入编号" />
                             )}
                         </FormItem>
                     </Col>
                     <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
-                            )}
-                        </FormItem>
-                    </Col>
+                    <FormItem label="标题">
+                        {getFieldDecorator('title')(
+                            <Input placeholder="请输入标题" />
+                        )}
+                    </FormItem>
+                </Col>
                     <Col md={8} sm={24}>
                         <span className={styles.submitButtons}>
                             <Button type="primary" htmlType="submit">查询</Button>
@@ -98,8 +137,8 @@ export default class TaskSearchForm extends PureComponent {
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                     <Col md={8} sm={24}>
-                        <FormItem label="规则编号">
-                            {getFieldDecorator('no')(
+                        <FormItem label="编号">
+                            {getFieldDecorator('id')(
                                 <Input placeholder="请输入" />
                             )}
                         </FormItem>

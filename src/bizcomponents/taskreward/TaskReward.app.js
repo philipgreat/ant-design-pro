@@ -164,11 +164,10 @@ getPageTitle() {
           className={styles.sider}
         >
           <div className={styles.logo}>
-            <Link to="/">
-              <img src="https://gw.alipayobjects.com/zos/rmsportal/iwWyPinUoseUxIAeElSx.svg" alt="logo" />
-              <h1>任务悬赏</h1>
-            </Link>
+            <img src="https://gw.alipayobjects.com/zos/rmsportal/iwWyPinUoseUxIAeElSx.svg" alt="logo" onClick={this.toggle}/>          
+            <Link to="/home"> <h1>任务悬赏</h1></Link>
           </div>
+          
           <Menu
             theme="dark"
             mode="inline"
@@ -181,12 +180,7 @@ getPageTitle() {
           </Menu>
         </Sider>
         <Layout>
-        <Header className={styles.header}>
-            <Icon
-              className={styles.trigger}
-              type={collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            /></Header>
+        
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
     

@@ -26,7 +26,7 @@ export default class TaskSearch extends PureComponent {
 
   componentDidMount() {
     const { dispatch } = this.props;
-   
+    //console.log(this.props);
   }
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
@@ -124,7 +124,7 @@ export default class TaskSearch extends PureComponent {
 
 
   render() {
-    const { data,loading,count,currentPage,owner } = this.props;
+    const { data,loading,count,currentPage,owner,parameters } = this.props;
     const { selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (

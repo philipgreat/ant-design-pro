@@ -50,20 +50,22 @@ export default {
     *load({ payload }, { call, put }) { 
       yield put({type:"showLoading",payload:{loading:true}});
       const data = yield call(CommunityUserService.load,payload.id,payload.parameters);
-      console.log("this is the data id: ", data.id)
-      yield put({type:"updateState",payload:data});
+      
+      const newPlayload={...payload,...data};
+      console.log("NEW PAYLOAD: ", newPlayload)
+      yield put({type:"updateState",payload:newPlayload});
     },
   },
   
   reducers: {
     updateState(state, action) {
       const payload = {...action.payload,...{loading:false}};
-      return { ...state, ...payload };
+      return { ...payload,...state };
     },
     showLoading(state, action) {
       //const loading=true;
       const payload = {...action.payload,...{loading:true}};
-      return { ...state, ...payload };
+      return { ...state,...payload };
     },
   },
 

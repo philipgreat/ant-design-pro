@@ -40,7 +40,7 @@ export default class CommunityUserSearchForm extends PureComponent {
     
         form.validateFields((err, fieldsValue) => {
           if (err) return;
-    
+          if (true) return;
           const values = {
             ...fieldsValue,
             updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
@@ -62,7 +62,7 @@ export default class CommunityUserSearchForm extends PureComponent {
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                     <Col md={8} sm={24}>
-                        <FormItem label="规则编号">
+                        <FormItem label="编号">
                             {getFieldDecorator('no')(
                                 <Input placeholder="请输入" />
                             )}
@@ -98,7 +98,7 @@ export default class CommunityUserSearchForm extends PureComponent {
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                     <Col md={8} sm={24}>
-                        <FormItem label="规则编号">
+                        <FormItem label="编号">
                             {getFieldDecorator('no')(
                                 <Input placeholder="请输入" />
                             )}

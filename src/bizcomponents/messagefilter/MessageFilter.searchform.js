@@ -62,7 +62,7 @@ export default class MessageFilterSearchForm extends PureComponent {
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                     <Col md={8} sm={24}>
-                        <FormItem label="规则编号">
+                        <FormItem label="编号">
                             {getFieldDecorator('no')(
                                 <Input placeholder="请输入" />
                             )}
@@ -98,7 +98,7 @@ export default class MessageFilterSearchForm extends PureComponent {
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                     <Col md={8} sm={24}>
-                        <FormItem label="规则编号">
+                        <FormItem label="编号">
                             {getFieldDecorator('no')(
                                 <Input placeholder="请输入" />
                             )}

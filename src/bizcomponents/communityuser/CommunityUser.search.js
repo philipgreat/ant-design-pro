@@ -124,7 +124,7 @@ export default class CommunityUserSearch extends PureComponent {
 
 
   render() {
-    const { data,loading,count,currentPage,owner } = this.props;
+    const { data,loading,count,currentPage,owner,parameters } = this.props;
     const { selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (
