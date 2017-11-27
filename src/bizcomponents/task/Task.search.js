@@ -3,10 +3,12 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
 import TaskTable from './Task.table';
+import TaskSearchForm from './Task.searchform';
+
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
 import styles from './Task.search.less';
-import TaskSearchForm from './Task.searchform'
+
 const FormItem = Form.Item;
 const { Option } = Select;
 const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',');
@@ -14,7 +16,7 @@ const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',');
 
 @Form.create()
 export default class TaskSearch extends PureComponent {
-  state = {
+ state = {
     addInputValue: '',
     modalVisible: false,
     expandForm: false,
@@ -120,7 +122,6 @@ export default class TaskSearch extends PureComponent {
 
   
 
- 
 
   render() {
     const { data,loading,count,currentPage,owner } = this.props;
