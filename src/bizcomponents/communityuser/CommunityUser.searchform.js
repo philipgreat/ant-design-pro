@@ -24,7 +24,20 @@ export default class CommunityUserSearchForm extends PureComponent {
           expandForm: !this.state.expandForm,
         });
       }
-
+    componentDidMount() {
+        
+        const { dispatch } = this.props;
+        //console.log(this.props);
+        const { getFieldDecorator,setFieldsValue } = this.props.form;
+        const {searchFormParameters} = this.props;       
+        if(!searchFormParameters){
+            return;
+        }
+        //console.log("searchFormParameters", searchFormParameters);        
+        setFieldsValue(searchFormParameters);
+        
+        
+    }
     handleFormReset = () => {
         const { form, dispatch } = this.props;
         form.resetFields();
@@ -33,29 +46,43 @@ export default class CommunityUserSearchForm extends PureComponent {
           payload: {},
         });
       }
-    handleSearch = (e) => {
+   handleSearch = (e) => {
         e.preventDefault();
     
         const { dispatch, form } = this.props;
     
         form.validateFields((err, fieldsValue) => {
           if (err) return;
-          if (true) return;
-          const values = {
-            ...fieldsValue,
-            updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
+          
+          var searchByIdParameters = {};
+
+          if(fieldsValue.id){
+            searchByIdParameters={communityUserList:1,
+                "communityUserList.searchField":"id",
+                "communityUserList.searchVerb":"startsWith",
+                "communityUserList.searchValue":fieldsValue.id,};
+
+          }
+          
+
+          const params = {
+            ...searchByIdParameters,
           };
-    
-          this.setState({
-            formValues: values,
-          });
-    
+          
+         
+          
+          const {owner} = this.props;
+          
+          
+
           dispatch({
-            type: 'rule/fetch',
-            payload: values,
+             type: owner.type+'/load',
+             payload: {id:owner.id, parameters:params, communityUserSearchFormParameters:fieldsValue},
           });
+          
         });
       }
+      
     renderSimpleForm() {
         const { getFieldDecorator } = this.props.form;
         return (
@@ -63,18 +90,15 @@ export default class CommunityUserSearchForm extends PureComponent {
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                     <Col md={8} sm={24}>
                         <FormItem label="编号">
-                            {getFieldDecorator('no')(
-                                <Input placeholder="请输入" />
+                            {getFieldDecorator('id')(
+                                <Input placeholder="请输入编号" />
                             )}
                         </FormItem>
                     </Col>
                     <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
+                        <FormItem label="标题">
+                            {getFieldDecorator('title')(
+                                <Input placeholder="请输入标题" />
                             )}
                         </FormItem>
                     </Col>
@@ -99,7 +123,7 @@ export default class CommunityUserSearchForm extends PureComponent {
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                     <Col md={8} sm={24}>
                         <FormItem label="编号">
-                            {getFieldDecorator('no')(
+                            {getFieldDecorator('id')(
                                 <Input placeholder="请输入" />
                             )}
                         </FormItem>
