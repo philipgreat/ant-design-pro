@@ -115,6 +115,7 @@ class UserAppBizApp extends React.PureComponent {
       data: state.userApp.objectAccessList,
       count: state.userApp.objectAccessCount,
       currentPage: state.userApp.objectAccessCurrentPageNumber,
+      searchFormParameters: state.userApp.objectAccessSearchFormParameters,
       loading: state.userApp.loading,
       owner: {type:'userApp',id:state.userApp.id}//this is for model namespace and 
     }))(ObjectAccessSearch);

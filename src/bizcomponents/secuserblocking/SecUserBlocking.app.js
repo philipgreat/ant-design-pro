@@ -115,6 +115,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
       data: state.secUserBlocking.secUserList,
       count: state.secUserBlocking.secUserCount,
       currentPage: state.secUserBlocking.secUserCurrentPageNumber,
+      searchFormParameters: state.secUserBlocking.secUserSearchFormParameters,
       loading: state.secUserBlocking.loading,
       owner: {type:'secUserBlocking',id:state.secUserBlocking.id}//this is for model namespace and 
     }))(SecUserSearch);

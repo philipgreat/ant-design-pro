@@ -115,6 +115,7 @@ class ThreadApprovalBizApp extends React.PureComponent {
       data: state.threadApproval.threadList,
       count: state.threadApproval.threadCount,
       currentPage: state.threadApproval.threadCurrentPageNumber,
+      searchFormParameters: state.threadApproval.threadSearchFormParameters,
       loading: state.threadApproval.loading,
       owner: {type:'threadApproval',id:state.threadApproval.id}//this is for model namespace and 
     }))(ThreadSearch);

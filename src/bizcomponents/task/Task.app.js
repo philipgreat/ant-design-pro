@@ -129,6 +129,7 @@ class TaskBizApp extends React.PureComponent {
       data: state.task.taskAssigmentList,
       count: state.task.taskAssigmentCount,
       currentPage: state.task.taskAssigmentCurrentPageNumber,
+      searchFormParameters: state.task.taskAssigmentSearchFormParameters,
       loading: state.task.loading,
       owner: {type:'task',id:state.task.id}//this is for model namespace and 
     }))(TaskAssigmentSearch);
@@ -142,6 +143,7 @@ class TaskBizApp extends React.PureComponent {
       data: state.task.taskLikeList,
       count: state.task.taskLikeCount,
       currentPage: state.task.taskLikeCurrentPageNumber,
+      searchFormParameters: state.task.taskLikeSearchFormParameters,
       loading: state.task.loading,
       owner: {type:'task',id:state.task.id}//this is for model namespace and 
     }))(TaskLikeSearch);
@@ -155,6 +157,7 @@ class TaskBizApp extends React.PureComponent {
       data: state.task.taskReplyList,
       count: state.task.taskReplyCount,
       currentPage: state.task.taskReplyCurrentPageNumber,
+      searchFormParameters: state.task.taskReplySearchFormParameters,
       loading: state.task.loading,
       owner: {type:'task',id:state.task.id}//this is for model namespace and 
     }))(TaskReplySearch);

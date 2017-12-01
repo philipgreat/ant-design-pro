@@ -46,6 +46,18 @@ export default class CommunityUserSearchForm extends PureComponent {
           payload: {},
         });
       }
+    buildStringSearchParameters=(formValues,fieldName)=>{
+        const fieldValue = formValues[fieldName]
+        if(!fieldValue){
+            console.log("NO VALUE")
+            return {};
+        }
+        return {communityUserList:1,
+            "communityUserList.searchField":fieldName,
+            "communityUserList.searchVerb":"startsWith",
+            "communityUserList.searchValue":fieldValue}
+    
+       }
    handleSearch = (e) => {
         e.preventDefault();
     
@@ -64,10 +76,13 @@ export default class CommunityUserSearchForm extends PureComponent {
 
           }
           
-
           const params = {
-            ...searchByIdParameters,
-          };
+          			...this.buildStringSearchParameters(fieldsValue,"id"),
+			...this.buildStringSearchParameters(fieldsValue,"mobile"),
+
+               
+              };
+
           
          
           
@@ -88,20 +103,31 @@ export default class CommunityUserSearchForm extends PureComponent {
         return (
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+                
+                
+                
                     <Col md={8} sm={24}>
-                        <FormItem label="编号">
+                        <FormItem label="序号">
                             {getFieldDecorator('id')(
-                                <Input placeholder="请输入编号" />
+                                <Input placeholder="请输入序号" />
                             )}
                         </FormItem>
                     </Col>
+                   
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="标题">
-                            {getFieldDecorator('title')(
-                                <Input placeholder="请输入标题" />
+                        <FormItem label="手机">
+                            {getFieldDecorator('mobile')(
+                                <Input placeholder="请输入手机" />
                             )}
                         </FormItem>
                     </Col>
+                   
+                    
+                    
+                    
+                    
                     <Col md={8} sm={24}>
                         <span className={styles.submitButtons}>
                             <Button type="primary" htmlType="submit">查询</Button>

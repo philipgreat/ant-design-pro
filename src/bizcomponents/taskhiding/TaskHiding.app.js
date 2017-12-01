@@ -115,6 +115,7 @@ class TaskHidingBizApp extends React.PureComponent {
       data: state.taskHiding.taskList,
       count: state.taskHiding.taskCount,
       currentPage: state.taskHiding.taskCurrentPageNumber,
+      searchFormParameters: state.taskHiding.taskSearchFormParameters,
       loading: state.taskHiding.loading,
       owner: {type:'taskHiding',id:state.taskHiding.id}//this is for model namespace and 
     }))(TaskSearch);

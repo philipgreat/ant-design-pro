@@ -115,6 +115,7 @@ class UserDomainBizApp extends React.PureComponent {
       data: state.userDomain.secUserList,
       count: state.userDomain.secUserCount,
       currentPage: state.userDomain.secUserCurrentPageNumber,
+      searchFormParameters: state.userDomain.secUserSearchFormParameters,
       loading: state.userDomain.loading,
       owner: {type:'userDomain',id:state.userDomain.id}//this is for model namespace and 
     }))(SecUserSearch);

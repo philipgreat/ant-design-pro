@@ -115,6 +115,7 @@ class TaskReplyBizApp extends React.PureComponent {
       data: state.taskReply.taskReplyLikeList,
       count: state.taskReply.taskReplyLikeCount,
       currentPage: state.taskReply.taskReplyLikeCurrentPageNumber,
+      searchFormParameters: state.taskReply.taskReplyLikeSearchFormParameters,
       loading: state.taskReply.loading,
       owner: {type:'taskReply',id:state.taskReply.id}//this is for model namespace and 
     }))(TaskReplyLikeSearch);

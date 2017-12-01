@@ -24,7 +24,20 @@ export default class ThreadSearchForm extends PureComponent {
           expandForm: !this.state.expandForm,
         });
       }
-
+    componentDidMount() {
+        
+        const { dispatch } = this.props;
+        //console.log(this.props);
+        const { getFieldDecorator,setFieldsValue } = this.props.form;
+        const {searchFormParameters} = this.props;       
+        if(!searchFormParameters){
+            return;
+        }
+        //console.log("searchFormParameters", searchFormParameters);        
+        setFieldsValue(searchFormParameters);
+        
+        
+    }
     handleFormReset = () => {
         const { form, dispatch } = this.props;
         form.resetFields();
@@ -33,51 +46,88 @@ export default class ThreadSearchForm extends PureComponent {
           payload: {},
         });
       }
-    handleSearch = (e) => {
+    buildStringSearchParameters=(formValues,fieldName)=>{
+        const fieldValue = formValues[fieldName]
+        if(!fieldValue){
+            console.log("NO VALUE")
+            return {};
+        }
+        return {threadList:1,
+            "threadList.searchField":fieldName,
+            "threadList.searchVerb":"startsWith",
+            "threadList.searchValue":fieldValue}
+    
+       }
+   handleSearch = (e) => {
         e.preventDefault();
     
         const { dispatch, form } = this.props;
     
         form.validateFields((err, fieldsValue) => {
           if (err) return;
-    
-          const values = {
-            ...fieldsValue,
-            updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
-          };
-    
-          this.setState({
-            formValues: values,
-          });
-    
+          
+          var searchByIdParameters = {};
+
+          if(fieldsValue.id){
+            searchByIdParameters={threadList:1,
+                "threadList.searchField":"id",
+                "threadList.searchVerb":"startsWith",
+                "threadList.searchValue":fieldsValue.id,};
+
+          }
+          
+          const params = {
+          			...this.buildStringSearchParameters(fieldsValue,"id"),
+			...this.buildStringSearchParameters(fieldsValue,"title"),
+
+               
+              };
+
+          
+         
+          
+          const {owner} = this.props;
+          
+          
+
           dispatch({
-            type: 'rule/fetch',
-            payload: values,
+             type: owner.type+'/load',
+             payload: {id:owner.id, parameters:params, threadSearchFormParameters:fieldsValue},
           });
+          
         });
       }
+      
     renderSimpleForm() {
         const { getFieldDecorator } = this.props.form;
         return (
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+                
+                
+                
                     <Col md={8} sm={24}>
-                        <FormItem label="编号">
-                            {getFieldDecorator('no')(
-                                <Input placeholder="请输入" />
+                        <FormItem label="序号">
+                            {getFieldDecorator('id')(
+                                <Input placeholder="请输入序号" />
                             )}
                         </FormItem>
                     </Col>
+                   
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
+                        <FormItem label="标题">
+                            {getFieldDecorator('title')(
+                                <Input placeholder="请输入标题" />
                             )}
                         </FormItem>
                     </Col>
+                   
+                    
+                    
+                    
+                    
                     <Col md={8} sm={24}>
                         <span className={styles.submitButtons}>
                             <Button type="primary" htmlType="submit">查询</Button>
@@ -99,7 +149,7 @@ export default class ThreadSearchForm extends PureComponent {
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                     <Col md={8} sm={24}>
                         <FormItem label="编号">
-                            {getFieldDecorator('no')(
+                            {getFieldDecorator('id')(
                                 <Input placeholder="请输入" />
                             )}
                         </FormItem>

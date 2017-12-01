@@ -122,6 +122,7 @@ class TaskPageBizApp extends React.PureComponent {
       data: state.taskPage.taskFilterList,
       count: state.taskPage.taskFilterCount,
       currentPage: state.taskPage.taskFilterCurrentPageNumber,
+      searchFormParameters: state.taskPage.taskFilterSearchFormParameters,
       loading: state.taskPage.loading,
       owner: {type:'taskPage',id:state.taskPage.id}//this is for model namespace and 
     }))(TaskFilterSearch);
@@ -135,6 +136,7 @@ class TaskPageBizApp extends React.PureComponent {
       data: state.taskPage.taskList,
       count: state.taskPage.taskCount,
       currentPage: state.taskPage.taskCurrentPageNumber,
+      searchFormParameters: state.taskPage.taskSearchFormParameters,
       loading: state.taskPage.loading,
       owner: {type:'taskPage',id:state.taskPage.id}//this is for model namespace and 
     }))(TaskSearch);

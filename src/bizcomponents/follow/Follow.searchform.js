@@ -24,7 +24,20 @@ export default class FollowSearchForm extends PureComponent {
           expandForm: !this.state.expandForm,
         });
       }
-
+    componentDidMount() {
+        
+        const { dispatch } = this.props;
+        //console.log(this.props);
+        const { getFieldDecorator,setFieldsValue } = this.props.form;
+        const {searchFormParameters} = this.props;       
+        if(!searchFormParameters){
+            return;
+        }
+        //console.log("searchFormParameters", searchFormParameters);        
+        setFieldsValue(searchFormParameters);
+        
+        
+    }
     handleFormReset = () => {
         const { form, dispatch } = this.props;
         form.resetFields();
@@ -33,51 +46,88 @@ export default class FollowSearchForm extends PureComponent {
           payload: {},
         });
       }
-    handleSearch = (e) => {
+    buildStringSearchParameters=(formValues,fieldName)=>{
+        const fieldValue = formValues[fieldName]
+        if(!fieldValue){
+            console.log("NO VALUE")
+            return {};
+        }
+        return {followList:1,
+            "followList.searchField":fieldName,
+            "followList.searchVerb":"startsWith",
+            "followList.searchValue":fieldValue}
+    
+       }
+   handleSearch = (e) => {
         e.preventDefault();
     
         const { dispatch, form } = this.props;
     
         form.validateFields((err, fieldsValue) => {
           if (err) return;
-    
-          const values = {
-            ...fieldsValue,
-            updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
-          };
-    
-          this.setState({
-            formValues: values,
-          });
-    
+          
+          var searchByIdParameters = {};
+
+          if(fieldsValue.id){
+            searchByIdParameters={followList:1,
+                "followList.searchField":"id",
+                "followList.searchVerb":"startsWith",
+                "followList.searchValue":fieldsValue.id,};
+
+          }
+          
+          const params = {
+          			...this.buildStringSearchParameters(fieldsValue,"id"),
+			...this.buildStringSearchParameters(fieldsValue,"followId"),
+
+               
+              };
+
+          
+         
+          
+          const {owner} = this.props;
+          
+          
+
           dispatch({
-            type: 'rule/fetch',
-            payload: values,
+             type: owner.type+'/load',
+             payload: {id:owner.id, parameters:params, followSearchFormParameters:fieldsValue},
           });
+          
         });
       }
+      
     renderSimpleForm() {
         const { getFieldDecorator } = this.props.form;
         return (
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+                
+                
+                
                     <Col md={8} sm={24}>
-                        <FormItem label="编号">
-                            {getFieldDecorator('no')(
-                                <Input placeholder="请输入" />
+                        <FormItem label="序号">
+                            {getFieldDecorator('id')(
+                                <Input placeholder="请输入序号" />
                             )}
                         </FormItem>
                     </Col>
+                   
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
+                        <FormItem label="关注的社区用户">
+                            {getFieldDecorator('followId')(
+                                <Input placeholder="请输入关注的社区用户" />
                             )}
                         </FormItem>
                     </Col>
+                   
+                    
+                    
+                    
+                    
                     <Col md={8} sm={24}>
                         <span className={styles.submitButtons}>
                             <Button type="primary" htmlType="submit">查询</Button>
@@ -99,7 +149,7 @@ export default class FollowSearchForm extends PureComponent {
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                     <Col md={8} sm={24}>
                         <FormItem label="编号">
-                            {getFieldDecorator('no')(
+                            {getFieldDecorator('id')(
                                 <Input placeholder="请输入" />
                             )}
                         </FormItem>

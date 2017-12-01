@@ -19,34 +19,25 @@ export default class TaskSearchForm extends PureComponent {
         selectedRows: [],
         formValues: {},
       };
-
-    componentDidMount() {
-        
-        const { dispatch } = this.props;
-        //console.log(this.props);
-        const { getFieldDecorator,setFieldsValue } = this.props.form;
-        const {taskSearchFormParameters} = this.props;
-        
-        if(!taskSearchFormParameters){
-            console.log("not have the value");
-            return;
-        }
-        console.log("taskSearchFormParameters", taskSearchFormParameters);
-        
-        
-        setFieldsValue(taskSearchFormParameters);
-        
-        
-    }
-
-
-    
     toggleForm = () => {
         this.setState({
           expandForm: !this.state.expandForm,
         });
       }
-
+    componentDidMount() {
+        
+        const { dispatch } = this.props;
+        //console.log(this.props);
+        const { getFieldDecorator,setFieldsValue } = this.props.form;
+        const {searchFormParameters} = this.props;       
+        if(!searchFormParameters){
+            return;
+        }
+        //console.log("searchFormParameters", searchFormParameters);        
+        setFieldsValue(searchFormParameters);
+        
+        
+    }
     handleFormReset = () => {
         const { form, dispatch } = this.props;
         form.resetFields();
@@ -55,39 +46,43 @@ export default class TaskSearchForm extends PureComponent {
           payload: {},
         });
       }
-    handleSearch = (e) => {
+    buildStringSearchParameters=(formValues,fieldName)=>{
+        const fieldValue = formValues[fieldName]
+        if(!fieldValue){
+            console.log("NO VALUE")
+            return {};
+        }
+        return {taskList:1,
+            "taskList.searchField":fieldName,
+            "taskList.searchVerb":"startsWith",
+            "taskList.searchValue":fieldValue}
+    
+       }
+   handleSearch = (e) => {
         e.preventDefault();
     
         const { dispatch, form } = this.props;
     
         form.validateFields((err, fieldsValue) => {
           if (err) return;
-            /*options.put(key+".searchField", field);
-		options.put(key+".searchVerb", verb);
-        options.put(key+".searchValue", value);*/
-        //
-          var taskSearchByIdParameters = {};
+          
+          var searchByIdParameters = {};
 
           if(fieldsValue.id){
-            taskSearchByIdParameters={taskList:1,
+            searchByIdParameters={taskList:1,
                 "taskList.searchField":"id",
                 "taskList.searchVerb":"startsWith",
                 "taskList.searchValue":fieldsValue.id,};
 
           }
-          var taskSearchByNameParameters = {};
-          if(fieldsValue.title){
-            taskSearchByNameParameters={taskList:1,
-                "taskList.searchField":"title",
-                "taskList.searchVerb":"startsWith",
-                "taskList.searchValue":fieldsValue.title,};
-
-          }
-
+          
           const params = {
-            ...taskSearchByIdParameters,
-            ...taskSearchByNameParameters,
-          };
+          			...this.buildStringSearchParameters(fieldsValue,"id"),
+			...this.buildStringSearchParameters(fieldsValue,"title"),
+
+               
+              };
+
           
          
           
@@ -102,26 +97,37 @@ export default class TaskSearchForm extends PureComponent {
           
         });
       }
+      
     renderSimpleForm() {
-        const { getFieldDecorator} = this.props.form;
-        
+        const { getFieldDecorator } = this.props.form;
         return (
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+                
+                
+                
                     <Col md={8} sm={24}>
-                        <FormItem label="编号">
+                        <FormItem label="序号">
                             {getFieldDecorator('id')(
-                                <Input placeholder="请输入编号" />
+                                <Input placeholder="请输入序号" />
                             )}
                         </FormItem>
                     </Col>
+                   
+                    
+                    
                     <Col md={8} sm={24}>
-                    <FormItem label="标题">
-                        {getFieldDecorator('title')(
-                            <Input placeholder="请输入标题" />
-                        )}
-                    </FormItem>
-                </Col>
+                        <FormItem label="标题">
+                            {getFieldDecorator('title')(
+                                <Input placeholder="请输入标题" />
+                            )}
+                        </FormItem>
+                    </Col>
+                   
+                    
+                    
+                    
+                    
                     <Col md={8} sm={24}>
                         <span className={styles.submitButtons}>
                             <Button type="primary" htmlType="submit">查询</Button>

@@ -115,6 +115,7 @@ class ThreadCompletionBizApp extends React.PureComponent {
       data: state.threadCompletion.threadList,
       count: state.threadCompletion.threadCount,
       currentPage: state.threadCompletion.threadCurrentPageNumber,
+      searchFormParameters: state.threadCompletion.threadSearchFormParameters,
       loading: state.threadCompletion.loading,
       owner: {type:'threadCompletion',id:state.threadCompletion.id}//this is for model namespace and 
     }))(ThreadSearch);

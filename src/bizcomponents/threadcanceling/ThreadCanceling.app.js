@@ -115,6 +115,7 @@ class ThreadCancelingBizApp extends React.PureComponent {
       data: state.threadCanceling.threadList,
       count: state.threadCanceling.threadCount,
       currentPage: state.threadCanceling.threadCurrentPageNumber,
+      searchFormParameters: state.threadCanceling.threadSearchFormParameters,
       loading: state.threadCanceling.loading,
       owner: {type:'threadCanceling',id:state.threadCanceling.id}//this is for model namespace and 
     }))(ThreadSearch);

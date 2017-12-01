@@ -129,6 +129,7 @@ class ThreadBizApp extends React.PureComponent {
       data: state.thread.threadReplyList,
       count: state.thread.threadReplyCount,
       currentPage: state.thread.threadReplyCurrentPageNumber,
+      searchFormParameters: state.thread.threadReplySearchFormParameters,
       loading: state.thread.loading,
       owner: {type:'thread',id:state.thread.id}//this is for model namespace and 
     }))(ThreadReplySearch);
@@ -142,6 +143,7 @@ class ThreadBizApp extends React.PureComponent {
       data: state.thread.threadRegistrationList,
       count: state.thread.threadRegistrationCount,
       currentPage: state.thread.threadRegistrationCurrentPageNumber,
+      searchFormParameters: state.thread.threadRegistrationSearchFormParameters,
       loading: state.thread.loading,
       owner: {type:'thread',id:state.thread.id}//this is for model namespace and 
     }))(ThreadRegistrationSearch);
@@ -155,6 +157,7 @@ class ThreadBizApp extends React.PureComponent {
       data: state.thread.threadLikeList,
       count: state.thread.threadLikeCount,
       currentPage: state.thread.threadLikeCurrentPageNumber,
+      searchFormParameters: state.thread.threadLikeSearchFormParameters,
       loading: state.thread.loading,
       owner: {type:'thread',id:state.thread.id}//this is for model namespace and 
     }))(ThreadLikeSearch);
