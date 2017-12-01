@@ -65,16 +65,7 @@ export default class ThreadLikeSearchForm extends PureComponent {
     
         form.validateFields((err, fieldsValue) => {
           if (err) return;
-          
-          var searchByIdParameters = {};
 
-          if(fieldsValue.id){
-            searchByIdParameters={threadLikeList:1,
-                "threadLikeList.searchField":"id",
-                "threadLikeList.searchVerb":"startsWith",
-                "threadLikeList.searchValue":fieldsValue.id,};
-
-          }
           
           const params = {
           			...this.buildStringSearchParameters(fieldsValue,"id"),
@@ -136,59 +127,18 @@ export default class ThreadLikeSearchForm extends PureComponent {
         return (
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+                
+                
                     <Col md={8} sm={24}>
-                        <FormItem label="编号">
+                        <FormItem label="序号">
                             {getFieldDecorator('id')(
-                                <Input placeholder="请输入" />
+                                <Input placeholder="请输入序号" />
                             )}
                         </FormItem>
                     </Col>
-                    <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
-                            )}
-                        </FormItem>
-                    </Col>
-                    <Col md={8} sm={24}>
-                        <FormItem label="调用次数">
-                            {getFieldDecorator('number')(
-                                <InputNumber style={{ width: '100%' }} />
-                            )}
-                        </FormItem>
-                    </Col>
-                </Row>
-                <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
-                    <Col md={8} sm={24}>
-                        <FormItem label="更新日期">
-                            {getFieldDecorator('date')(
-                                <DatePicker style={{ width: '100%' }} placeholder="请输入更新日期" />
-                            )}
-                        </FormItem>
-                    </Col>
-                    <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status3')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
-                            )}
-                        </FormItem>
-                    </Col>
-                    <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status4')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
-                            )}
-                        </FormItem>
-                    </Col>
+                    
+                    
+                    
                 </Row>
                 <div style={{ overflow: 'hidden' }}>
                     <span style={{ float: 'right', marginBottom: 24 }}>

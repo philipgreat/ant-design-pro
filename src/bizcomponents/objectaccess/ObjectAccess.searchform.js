@@ -65,20 +65,21 @@ export default class ObjectAccessSearchForm extends PureComponent {
     
         form.validateFields((err, fieldsValue) => {
           if (err) return;
-          
-          var searchByIdParameters = {};
 
-          if(fieldsValue.id){
-            searchByIdParameters={objectAccessList:1,
-                "objectAccessList.searchField":"id",
-                "objectAccessList.searchVerb":"startsWith",
-                "objectAccessList.searchValue":fieldsValue.id,};
-
-          }
           
           const params = {
           			...this.buildStringSearchParameters(fieldsValue,"id"),
 			...this.buildStringSearchParameters(fieldsValue,"displayName"),
+			...this.buildStringSearchParameters(fieldsValue,"objectType"),
+			...this.buildStringSearchParameters(fieldsValue,"list1"),
+			...this.buildStringSearchParameters(fieldsValue,"list2"),
+			...this.buildStringSearchParameters(fieldsValue,"list3"),
+			...this.buildStringSearchParameters(fieldsValue,"list4"),
+			...this.buildStringSearchParameters(fieldsValue,"list5"),
+			...this.buildStringSearchParameters(fieldsValue,"list6"),
+			...this.buildStringSearchParameters(fieldsValue,"list7"),
+			...this.buildStringSearchParameters(fieldsValue,"list8"),
+			...this.buildStringSearchParameters(fieldsValue,"list9"),
 
                
               };
@@ -147,59 +148,128 @@ export default class ObjectAccessSearchForm extends PureComponent {
         return (
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+                
+                
                     <Col md={8} sm={24}>
-                        <FormItem label="编号">
+                        <FormItem label="序号">
                             {getFieldDecorator('id')(
-                                <Input placeholder="请输入" />
+                                <Input placeholder="请输入序号" />
                             )}
                         </FormItem>
                     </Col>
+                    
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
+                        <FormItem label="显示名称">
+                            {getFieldDecorator('displayName')(
+                                <Input placeholder="请输入显示名称" />
                             )}
                         </FormItem>
                     </Col>
+                    
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="调用次数">
-                            {getFieldDecorator('number')(
-                                <InputNumber style={{ width: '100%' }} />
+                        <FormItem label="对象类型">
+                            {getFieldDecorator('objectType')(
+                                <Input placeholder="请输入对象类型" />
                             )}
                         </FormItem>
                     </Col>
-                </Row>
-                <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+                    
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="更新日期">
-                            {getFieldDecorator('date')(
-                                <DatePicker style={{ width: '100%' }} placeholder="请输入更新日期" />
+                        <FormItem label="列表1">
+                            {getFieldDecorator('list1')(
+                                <Input placeholder="请输入列表1" />
                             )}
                         </FormItem>
                     </Col>
+                    
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status3')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
+                        <FormItem label="列表2">
+                            {getFieldDecorator('list2')(
+                                <Input placeholder="请输入列表2" />
                             )}
                         </FormItem>
                     </Col>
+                    
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status4')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
+                        <FormItem label="列表3">
+                            {getFieldDecorator('list3')(
+                                <Input placeholder="请输入列表3" />
                             )}
                         </FormItem>
                     </Col>
+                    
+                    
+                    
+                    <Col md={8} sm={24}>
+                        <FormItem label="列表4">
+                            {getFieldDecorator('list4')(
+                                <Input placeholder="请输入列表4" />
+                            )}
+                        </FormItem>
+                    </Col>
+                    
+                    
+                    
+                    <Col md={8} sm={24}>
+                        <FormItem label="列表5">
+                            {getFieldDecorator('list5')(
+                                <Input placeholder="请输入列表5" />
+                            )}
+                        </FormItem>
+                    </Col>
+                    
+                    
+                    
+                    <Col md={8} sm={24}>
+                        <FormItem label="列表6">
+                            {getFieldDecorator('list6')(
+                                <Input placeholder="请输入列表6" />
+                            )}
+                        </FormItem>
+                    </Col>
+                    
+                    
+                    
+                    <Col md={8} sm={24}>
+                        <FormItem label="列表7">
+                            {getFieldDecorator('list7')(
+                                <Input placeholder="请输入列表7" />
+                            )}
+                        </FormItem>
+                    </Col>
+                    
+                    
+                    
+                    <Col md={8} sm={24}>
+                        <FormItem label="列表8">
+                            {getFieldDecorator('list8')(
+                                <Input placeholder="请输入列表8" />
+                            )}
+                        </FormItem>
+                    </Col>
+                    
+                    
+                    
+                    <Col md={8} sm={24}>
+                        <FormItem label="列表9">
+                            {getFieldDecorator('list9')(
+                                <Input placeholder="请输入列表9" />
+                            )}
+                        </FormItem>
+                    </Col>
+                    
+                    
+                    
                 </Row>
                 <div style={{ overflow: 'hidden' }}>
                     <span style={{ float: 'right', marginBottom: 24 }}>

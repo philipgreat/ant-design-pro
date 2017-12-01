@@ -65,20 +65,17 @@ export default class CommunityUserSearchForm extends PureComponent {
     
         form.validateFields((err, fieldsValue) => {
           if (err) return;
-          
-          var searchByIdParameters = {};
 
-          if(fieldsValue.id){
-            searchByIdParameters={communityUserList:1,
-                "communityUserList.searchField":"id",
-                "communityUserList.searchVerb":"startsWith",
-                "communityUserList.searchValue":fieldsValue.id,};
-
-          }
           
           const params = {
           			...this.buildStringSearchParameters(fieldsValue,"id"),
 			...this.buildStringSearchParameters(fieldsValue,"mobile"),
+			...this.buildStringSearchParameters(fieldsValue,"nickName"),
+			...this.buildStringSearchParameters(fieldsValue,"gender"),
+			...this.buildStringSearchParameters(fieldsValue,"userType"),
+			...this.buildStringSearchParameters(fieldsValue,"avatar"),
+			...this.buildStringSearchParameters(fieldsValue,"city"),
+			...this.buildStringSearchParameters(fieldsValue,"status"),
 
                
               };
@@ -147,59 +144,88 @@ export default class CommunityUserSearchForm extends PureComponent {
         return (
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+                
+                
                     <Col md={8} sm={24}>
-                        <FormItem label="编号">
+                        <FormItem label="序号">
                             {getFieldDecorator('id')(
-                                <Input placeholder="请输入" />
+                                <Input placeholder="请输入序号" />
                             )}
                         </FormItem>
                     </Col>
+                    
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
+                        <FormItem label="手机">
+                            {getFieldDecorator('mobile')(
+                                <Input placeholder="请输入手机" />
+                            )}
+                        </FormItem>
+                    </Col>
+                    
+                    
+                    
+                    <Col md={8} sm={24}>
+                        <FormItem label="昵称">
+                            {getFieldDecorator('nickName')(
+                                <Input placeholder="请输入昵称" />
+                            )}
+                        </FormItem>
+                    </Col>
+                    
+                    
+                    
+                    <Col md={8} sm={24}>
+                        <FormItem label="性别">
+                            {getFieldDecorator('gender')(
+                                <Input placeholder="请输入性别" />
+                            )}
+                        </FormItem>
+                    </Col>
+                    
+                    
+                    
+                    <Col md={8} sm={24}>
+                        <FormItem label="用户类型">
+                            {getFieldDecorator('userType')(
+                                <Input placeholder="请输入用户类型" />
+                            )}
+                        </FormItem>
+                    </Col>
+                    
+                    
+                    
+                    <Col md={8} sm={24}>
+                        <FormItem label="头像">
+                            {getFieldDecorator('avatar')(
+                                <Input placeholder="请输入头像" />
+                            )}
+                        </FormItem>
+                    </Col>
+                    
+                    
+                    
+                    <Col md={8} sm={24}>
+                        <FormItem label="城市">
+                            {getFieldDecorator('city')(
+                                <Input placeholder="请输入城市" />
+                            )}
+                        </FormItem>
+                    </Col>
+                    
+                    
+                    
+                    <Col md={8} sm={24}>
+                        <FormItem label="状态">
                             {getFieldDecorator('status')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
+                                <Input placeholder="请输入状态" />
                             )}
                         </FormItem>
                     </Col>
-                    <Col md={8} sm={24}>
-                        <FormItem label="调用次数">
-                            {getFieldDecorator('number')(
-                                <InputNumber style={{ width: '100%' }} />
-                            )}
-                        </FormItem>
-                    </Col>
-                </Row>
-                <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
-                    <Col md={8} sm={24}>
-                        <FormItem label="更新日期">
-                            {getFieldDecorator('date')(
-                                <DatePicker style={{ width: '100%' }} placeholder="请输入更新日期" />
-                            )}
-                        </FormItem>
-                    </Col>
-                    <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status3')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
-                            )}
-                        </FormItem>
-                    </Col>
-                    <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status4')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
-                            )}
-                        </FormItem>
-                    </Col>
+                    
+                    
+                    
                 </Row>
                 <div style={{ overflow: 'hidden' }}>
                     <span style={{ float: 'right', marginBottom: 24 }}>

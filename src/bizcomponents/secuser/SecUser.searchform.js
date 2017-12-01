@@ -65,20 +65,15 @@ export default class SecUserSearchForm extends PureComponent {
     
         form.validateFields((err, fieldsValue) => {
           if (err) return;
-          
-          var searchByIdParameters = {};
 
-          if(fieldsValue.id){
-            searchByIdParameters={secUserList:1,
-                "secUserList.searchField":"id",
-                "secUserList.searchVerb":"startsWith",
-                "secUserList.searchValue":fieldsValue.id,};
-
-          }
           
           const params = {
           			...this.buildStringSearchParameters(fieldsValue,"id"),
 			...this.buildStringSearchParameters(fieldsValue,"login"),
+			...this.buildStringSearchParameters(fieldsValue,"mobile"),
+			...this.buildStringSearchParameters(fieldsValue,"email"),
+			...this.buildStringSearchParameters(fieldsValue,"pwd"),
+			...this.buildStringSearchParameters(fieldsValue,"currentStatus"),
 
                
               };
@@ -147,59 +142,68 @@ export default class SecUserSearchForm extends PureComponent {
         return (
             <Form onSubmit={this.handleSearch} layout="inline">
                 <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+                
+                
                     <Col md={8} sm={24}>
-                        <FormItem label="编号">
+                        <FormItem label="序号">
                             {getFieldDecorator('id')(
-                                <Input placeholder="请输入" />
+                                <Input placeholder="请输入序号" />
                             )}
                         </FormItem>
                     </Col>
+                    
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
+                        <FormItem label="登录">
+                            {getFieldDecorator('login')(
+                                <Input placeholder="请输入登录" />
                             )}
                         </FormItem>
                     </Col>
+                    
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="调用次数">
-                            {getFieldDecorator('number')(
-                                <InputNumber style={{ width: '100%' }} />
+                        <FormItem label="手机">
+                            {getFieldDecorator('mobile')(
+                                <Input placeholder="请输入手机" />
                             )}
                         </FormItem>
                     </Col>
-                </Row>
-                <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+                    
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="更新日期">
-                            {getFieldDecorator('date')(
-                                <DatePicker style={{ width: '100%' }} placeholder="请输入更新日期" />
+                        <FormItem label="电子邮件">
+                            {getFieldDecorator('email')(
+                                <Input placeholder="请输入电子邮件" />
                             )}
                         </FormItem>
                     </Col>
+                    
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status3')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
+                        <FormItem label="PWD">
+                            {getFieldDecorator('pwd')(
+                                <Input placeholder="请输入PWD" />
                             )}
                         </FormItem>
                     </Col>
+                    
+                    
+                    
                     <Col md={8} sm={24}>
-                        <FormItem label="使用状态">
-                            {getFieldDecorator('status4')(
-                                <Select placeholder="请选择" style={{ width: '100%' }}>
-                                    <Option value="0">关闭</Option>
-                                    <Option value="1">运行中</Option>
-                                </Select>
+                        <FormItem label="当前状态">
+                            {getFieldDecorator('currentStatus')(
+                                <Input placeholder="请输入当前状态" />
                             )}
                         </FormItem>
                     </Col>
+                    
+                    
+                    
                 </Row>
                 <div style={{ overflow: 'hidden' }}>
                     <span style={{ float: 'right', marginBottom: 24 }}>
