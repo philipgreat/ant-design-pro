@@ -99,6 +99,16 @@ export default class TaskSearch extends PureComponent {
       modalVisible: !!flag,
     });
   }
+  
+  
+  handleCreate = () => {
+ 
+   	const {dispatch,owner} = this.props;
+	dispatch({
+       type: owner.type+'/gotoCreateForm',
+       payload: {id:owner.id,type:'task'},
+    });
+  }
 
   handleAddInput = (e) => {
     this.setState({
@@ -142,7 +152,7 @@ export default class TaskSearch extends PureComponent {
               <TaskSearchForm {...this.props}/>
             </div>
             <div className={styles.tableListOperator}>
-              <Button icon="plus" type="primary" onClick={() => this.handleModalVisible(true)}>新建</Button>
+              <Button icon="plus" type="primary" onClick={() => this.handleCreate()}>新建</Button>
               {
                 selectedRows.length > 0 && (
                   <span>
@@ -176,18 +186,11 @@ export default class TaskSearch extends PureComponent {
         >
           <FormItem
             labelCol={{ span: 5 }}
-            wrapperCol={{ span: 5 }}
-            label="描述"
-          >
-            <Input placeholder="请输入" onChange={this.handleAddInput} value={addInputValue} />
-          </FormItem><FormItem
-            labelCol={{ span: 5 }}
-            wrapperCol={{ span: 5 }}
+            wrapperCol={{ span: 15 }}
             label="描述"
           >
             <Input placeholder="请输入" onChange={this.handleAddInput} value={addInputValue} />
           </FormItem>
-          
         </Modal>
       </PageHeaderLayout>
     );
