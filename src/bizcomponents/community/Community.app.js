@@ -14,21 +14,21 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import InvitationCodeSearch from '../invitationcode/InvitationCode.search'
-
+import InvitationCodeCreateForm from '../invitationcode/InvitationCode.createform'
 import HomePageSearch from '../homepage/HomePage.search'
-
+import HomePageCreateForm from '../homepage/HomePage.createform'
 import EncyclopediaItemSearch from '../encyclopediaitem/EncyclopediaItem.search'
-
+import EncyclopediaItemCreateForm from '../encyclopediaitem/EncyclopediaItem.createform'
 import TaskPageSearch from '../taskpage/TaskPage.search'
-
+import TaskPageCreateForm from '../taskpage/TaskPage.createform'
 import CommunityUserSearch from '../communityuser/CommunityUser.search'
-
+import CommunityUserCreateForm from '../communityuser/CommunityUser.createform'
 import TaskSearch from '../task/Task.search'
-
+import TaskCreateForm from '../task/Task.createform'
 import GroupPageSearch from '../grouppage/GroupPage.search'
-
+import GroupPageCreateForm from '../grouppage/GroupPage.createform'
 import ThreadSearch from '../thread/Thread.search'
-
+import ThreadCreateForm from '../thread/Thread.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -169,6 +169,18 @@ class CommunityBizApp extends React.PureComponent {
       owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(InvitationCodeSearch);
   }
+  getInvitationCodeCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.community.invitationCodeList,
+      count: state.community.invitationCodeCount,
+      currentPage: state.community.invitationCodeCurrentPageNumber,
+      searchFormParameters: state.community.invitationCodeSearchFormParameters,
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
+    }))(InvitationCodeCreateForm);
+  }
   
 
   getHomePageSearch() {
@@ -182,6 +194,18 @@ class CommunityBizApp extends React.PureComponent {
       loading: state.community.loading,
       owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(HomePageSearch);
+  }
+  getHomePageCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.community.homePageList,
+      count: state.community.homePageCount,
+      currentPage: state.community.homePageCurrentPageNumber,
+      searchFormParameters: state.community.homePageSearchFormParameters,
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
+    }))(HomePageCreateForm);
   }
   
 
@@ -197,6 +221,18 @@ class CommunityBizApp extends React.PureComponent {
       owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(EncyclopediaItemSearch);
   }
+  getEncyclopediaItemCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.community.encyclopediaItemList,
+      count: state.community.encyclopediaItemCount,
+      currentPage: state.community.encyclopediaItemCurrentPageNumber,
+      searchFormParameters: state.community.encyclopediaItemSearchFormParameters,
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
+    }))(EncyclopediaItemCreateForm);
+  }
   
 
   getTaskPageSearch() {
@@ -210,6 +246,18 @@ class CommunityBizApp extends React.PureComponent {
       loading: state.community.loading,
       owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(TaskPageSearch);
+  }
+  getTaskPageCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.community.taskPageList,
+      count: state.community.taskPageCount,
+      currentPage: state.community.taskPageCurrentPageNumber,
+      searchFormParameters: state.community.taskPageSearchFormParameters,
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
+    }))(TaskPageCreateForm);
   }
   
 
@@ -225,6 +273,18 @@ class CommunityBizApp extends React.PureComponent {
       owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(CommunityUserSearch);
   }
+  getCommunityUserCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.community.communityUserList,
+      count: state.community.communityUserCount,
+      currentPage: state.community.communityUserCurrentPageNumber,
+      searchFormParameters: state.community.communityUserSearchFormParameters,
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
+    }))(CommunityUserCreateForm);
+  }
   
 
   getTaskSearch() {
@@ -238,6 +298,18 @@ class CommunityBizApp extends React.PureComponent {
       loading: state.community.loading,
       owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(TaskSearch);
+  }
+  getTaskCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.community.taskList,
+      count: state.community.taskCount,
+      currentPage: state.community.taskCurrentPageNumber,
+      searchFormParameters: state.community.taskSearchFormParameters,
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
+    }))(TaskCreateForm);
   }
   
 
@@ -253,6 +325,18 @@ class CommunityBizApp extends React.PureComponent {
       owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(GroupPageSearch);
   }
+  getGroupPageCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.community.groupPageList,
+      count: state.community.groupPageCount,
+      currentPage: state.community.groupPageCurrentPageNumber,
+      searchFormParameters: state.community.groupPageSearchFormParameters,
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
+    }))(GroupPageCreateForm);
+  }
   
 
   getThreadSearch() {
@@ -266,6 +350,18 @@ class CommunityBizApp extends React.PureComponent {
       loading: state.community.loading,
       owner: {type:'community',id:state.community.id}//this is for model namespace and 
     }))(ThreadSearch);
+  }
+  getThreadCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.community.threadList,
+      count: state.community.threadCount,
+      currentPage: state.community.threadCurrentPageNumber,
+      searchFormParameters: state.community.threadSearchFormParameters,
+      loading: state.community.loading,
+      owner: {type:'community',id:state.community.id}//this is for model namespace and 
+    }))(ThreadCreateForm);
   }
   
   
@@ -333,20 +429,36 @@ getPageTitle() {
             <Switch>
     
           <Route path="/community/:id/list/invitationCodeList" component={this.getInvitationCodeSearch()} />
+          <Route path="/community/:id/list/invitationCodeCreateForm" component={this.getInvitationCodeCreateForm()} />
+          
 
           <Route path="/community/:id/list/homePageList" component={this.getHomePageSearch()} />
+          <Route path="/community/:id/list/homePageCreateForm" component={this.getHomePageCreateForm()} />
+          
 
           <Route path="/community/:id/list/encyclopediaItemList" component={this.getEncyclopediaItemSearch()} />
+          <Route path="/community/:id/list/encyclopediaItemCreateForm" component={this.getEncyclopediaItemCreateForm()} />
+          
 
           <Route path="/community/:id/list/taskPageList" component={this.getTaskPageSearch()} />
+          <Route path="/community/:id/list/taskPageCreateForm" component={this.getTaskPageCreateForm()} />
+          
 
           <Route path="/community/:id/list/communityUserList" component={this.getCommunityUserSearch()} />
+          <Route path="/community/:id/list/communityUserCreateForm" component={this.getCommunityUserCreateForm()} />
+          
 
           <Route path="/community/:id/list/taskList" component={this.getTaskSearch()} />
+          <Route path="/community/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+          
 
           <Route path="/community/:id/list/groupPageList" component={this.getGroupPageSearch()} />
+          <Route path="/community/:id/list/groupPageCreateForm" component={this.getGroupPageCreateForm()} />
+          
 
           <Route path="/community/:id/list/threadList" component={this.getThreadSearch()} />
+          <Route path="/community/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          
               
              
 </Switch>

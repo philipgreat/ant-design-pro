@@ -14,7 +14,7 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import TaskSearch from '../task/Task.search'
-
+import TaskCreateForm from '../task/Task.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -120,6 +120,18 @@ class TaskResolvingBizApp extends React.PureComponent {
       owner: {type:'taskResolving',id:state.taskResolving.id}//this is for model namespace and 
     }))(TaskSearch);
   }
+  getTaskCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.taskResolving.taskList,
+      count: state.taskResolving.taskCount,
+      currentPage: state.taskResolving.taskCurrentPageNumber,
+      searchFormParameters: state.taskResolving.taskSearchFormParameters,
+      loading: state.taskResolving.loading,
+      owner: {type:'taskResolving',id:state.taskResolving.id}//this is for model namespace and 
+    }))(TaskCreateForm);
+  }
   
   
   
@@ -186,6 +198,8 @@ getPageTitle() {
             <Switch>
     
           <Route path="/taskResolving/:id/list/taskList" component={this.getTaskSearch()} />
+          <Route path="/taskResolving/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+          
               
              
 </Switch>

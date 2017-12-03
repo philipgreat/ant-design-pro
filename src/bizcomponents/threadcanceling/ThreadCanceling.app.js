@@ -14,7 +14,7 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import ThreadSearch from '../thread/Thread.search'
-
+import ThreadCreateForm from '../thread/Thread.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -120,6 +120,18 @@ class ThreadCancelingBizApp extends React.PureComponent {
       owner: {type:'threadCanceling',id:state.threadCanceling.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
+  getThreadCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.threadCanceling.threadList,
+      count: state.threadCanceling.threadCount,
+      currentPage: state.threadCanceling.threadCurrentPageNumber,
+      searchFormParameters: state.threadCanceling.threadSearchFormParameters,
+      loading: state.threadCanceling.loading,
+      owner: {type:'threadCanceling',id:state.threadCanceling.id}//this is for model namespace and 
+    }))(ThreadCreateForm);
+  }
   
   
   
@@ -186,6 +198,8 @@ getPageTitle() {
             <Switch>
     
           <Route path="/threadCanceling/:id/list/threadList" component={this.getThreadSearch()} />
+          <Route path="/threadCanceling/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          
               
              
 </Switch>

@@ -1,6 +1,3 @@
-
-
-
 import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 import { connect } from 'dva';
@@ -8,29 +5,30 @@ import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
 import FooterToolbar from '../../components/FooterToolbar';
 
-import styles from './Task.createform.less';
+import styles from './SecUser.createform.less';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
 const fieldLabels = {
-  name: '仓库名',
-  url: '仓库域名',
-  owner: '仓库管理员',
-  approver: '审批人',
-  dateRange: '生效日期',
-  type: '仓库类型',
-  name2: '任务名',
-  url2: '任务描述',
-  owner2: '执行人',
-  approver2: '责任人',
-  dateRange2: '生效日期',
-  type2: '任务类型',
+id: '序号',
+login: '登录',
+mobile: '手机',
+email: '电子邮件',
+pwd: 'PWD',
+verificationCode: '验证码',
+verificationCodeExpire: '验证码过期',
+lastLoginTime: '最后登录时间',
+domain: '域',
+blocking: '屏蔽',
+currentStatus: '当前状态',
+
+
 };
 
 
 
-class TaskCreateForm extends PureComponent {
+class SecUserCreateForm extends PureComponent {
   render() {
     const { form, dispatch, submitting } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
@@ -86,162 +84,142 @@ class TaskCreateForm extends PureComponent {
     };
     return (
       <PageHeaderLayout
-        title="新建一个任务"
-        content="为自己新建一个任务"
+        title="新建一个SEC的用户"
+        content="新建一个SEC的用户"
         wrapperClassName={styles.advancedForm}
       >
-        <Card title="仓库管理" className={styles.card} bordered={false}>
+        <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.name}>
-                  {getFieldDecorator('name', {
-                    rules: [{ required: true, message: '请输入仓库名称' }],
+            
+            
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.login}>
+                  {getFieldDecorator('login', {
+                    rules: [{ required: true, message: '请输入登录' }],
                   })(
-                    <Input placeholder="请输入仓库名称" />
+                    <Input placeholder="请输入请输入登录string" />
                   )}
                 </Form.Item>
-              </Col>
-              <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-                <Form.Item label={fieldLabels.url}>
-                  {getFieldDecorator('url', {
-                    rules: [{ required: true, message: '请选择' }],
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mobile}>
+                  {getFieldDecorator('mobile', {
+                    rules: [{ required: true, message: '请输入手机' }],
                   })(
-                    <Input
-                      style={{ width: '100%' }}
-                      addonBefore="http://"
-                      addonAfter=".com"
-                      placeholder="请输入"
-                    />
+                    <Input placeholder="请输入请输入手机string_china_mobile_phone" />
                   )}
                 </Form.Item>
-              </Col>
-              <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-                <Form.Item label={fieldLabels.owner}>
-                  {getFieldDecorator('owner', {
-                    rules: [{ required: true, message: '请选择管理员' }],
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.email}>
+                  {getFieldDecorator('email', {
+                    rules: [{ required: true, message: '请输入电子邮件' }],
                   })(
-                    <Select placeholder="请选择管理员">
-                      <Option value="xiao">付晓晓</Option>
-                      <Option value="mao">周毛毛</Option>
-                    </Select>
+                    <Input placeholder="请输入请输入电子邮件string_email" />
                   )}
                 </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={16}>
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.approver}>
-                  {getFieldDecorator('approver', {
-                    rules: [{ required: true, message: '请选择审批员' }],
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.pwd}>
+                  {getFieldDecorator('pwd', {
+                    rules: [{ required: true, message: '请输入PWD' }],
                   })(
-                    <Select placeholder="请选择审批员">
-                      <Option value="xiao">付晓晓</Option>
-                      <Option value="mao">周毛毛</Option>
-                    </Select>
+                    <Input placeholder="请输入请输入PWDstring_password" />
                   )}
                 </Form.Item>
-              </Col>
-              <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-                <Form.Item label={fieldLabels.dateRange}>
-                  {getFieldDecorator('dateRange', {
-                    rules: [{ required: true, message: '请选择生效日期' }],
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.verificationCode}>
+                  {getFieldDecorator('verificationCode', {
+                    rules: [{ required: true, message: '请输入验证码' }],
                   })(
-                    <RangePicker placeholder={['开始日期', '结束日期']} style={{ width: '100%' }} />
+                    <Input placeholder="请输入请输入验证码int" />
                   )}
                 </Form.Item>
-              </Col>
-              <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-                <Form.Item label={fieldLabels.type}>
-                  {getFieldDecorator('type', {
-                    rules: [{ required: true, message: '请选择仓库类型' }],
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.verificationCodeExpire}>
+                  {getFieldDecorator('verificationCodeExpire', {
+                    rules: [{ required: true, message: '请输入验证码过期' }],
                   })(
-                    <Select placeholder="请选择仓库类型">
-                      <Option value="private">私密</Option>
-                      <Option value="public">公开</Option>
-                    </Select>
+                    <Input placeholder="请输入请输入验证码过期date_time" />
                   )}
                 </Form.Item>
-              </Col>
-            </Row>
-          </Form>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.lastLoginTime}>
+                  {getFieldDecorator('lastLoginTime', {
+                    rules: [{ required: true, message: '请输入最后登录时间' }],
+                  })(
+                    <Input placeholder="请输入请输入最后登录时间date_time" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.currentStatus}>
+                  {getFieldDecorator('currentStatus', {
+                    rules: [{ required: true, message: '请输入当前状态' }],
+                  })(
+                    <Input placeholder="请输入请输入当前状态string" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+            
+          </Row>    
+          </Form>  
         </Card>
-        <Card title="任务管理" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+        
+        
+        
+         
+        
+        
+        
+                 
+        
+        <Card title="关联" className={styles.card} bordered={false}>
+           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.name2}>
-                  {getFieldDecorator('name2', {
-                    rules: [{ required: true, message: '请输入' }],
+            
+            
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.domain}>
+                  {getFieldDecorator('domain', {
+                    rules: [{ required: true, message: '请输入域' }],
                   })(
-                    <Input placeholder="请输入" />
+                    <Input placeholder="请输入请输入域user_domain" />
                   )}
                 </Form.Item>
-              </Col>
-              <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-                <Form.Item label={fieldLabels.url2}>
-                  {getFieldDecorator('url2', {
-                    rules: [{ required: true, message: '请选择' }],
-                  })(
-                    <Input placeholder="请输入" />
-                  )}
-                </Form.Item>
-              </Col>
-              <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-                <Form.Item label={fieldLabels.owner2}>
-                  {getFieldDecorator('owner2', {
-                    rules: [{ required: true, message: '请选择管理员' }],
-                  })(
-                    <Select placeholder="请选择管理员">
-                      <Option value="xiao">付晓晓</Option>
-                      <Option value="mao">周毛毛</Option>
-                    </Select>
-                  )}
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={16}>
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.approver2}>
-                  {getFieldDecorator('approver2', {
-                    rules: [{ required: true, message: '请选择审批员' }],
-                  })(
-                    <Select placeholder="请选择审批员">
-                      <Option value="xiao">付晓晓</Option>
-                      <Option value="mao">周毛毛</Option>
-                    </Select>
-                  )}
-                </Form.Item>
-              </Col>
-              <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-                <Form.Item label={fieldLabels.dateRange2}>
-                  {getFieldDecorator('dateRange2', {
-                    rules: [{ required: true, message: '请输入' }],
-                  })(
-                    <TimePicker
-                      placeholder="提醒时间"
-                      style={{ width: '100%' }}
-                      getPopupContainer={trigger => trigger.parentNode}
-                    />
-                  )}
-                </Form.Item>
-              </Col>
-              <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-                <Form.Item label={fieldLabels.type2}>
-                  {getFieldDecorator('type2', {
-                    rules: [{ required: true, message: '请选择仓库类型' }],
-                  })(
-                    <Select placeholder="请选择仓库类型">
-                      <Option value="private">私密</Option>
-                      <Option value="public">公开</Option>
-                    </Select>
-                  )}
-                </Form.Item>
-              </Col>
-            </Row>
-          </Form>
+              </Col>			
+			
+			
+            
+          </Row>    
+          </Form>  
+         
         </Card>
        
+        
+        
+        
+        
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={validate} loading={submitting}>
@@ -256,6 +234,8 @@ class TaskCreateForm extends PureComponent {
 export default connect(state => ({
   collapsed: state.global.collapsed,
   submitting: state.formtest.advancedFormSubmitting,
-}))(Form.create()(TaskCreateForm));
+}))(Form.create()(SecUserCreateForm));
+
+
 
 

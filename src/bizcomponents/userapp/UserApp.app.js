@@ -14,7 +14,7 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import ObjectAccessSearch from '../objectaccess/ObjectAccess.search'
-
+import ObjectAccessCreateForm from '../objectaccess/ObjectAccess.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -120,6 +120,18 @@ class UserAppBizApp extends React.PureComponent {
       owner: {type:'userApp',id:state.userApp.id}//this is for model namespace and 
     }))(ObjectAccessSearch);
   }
+  getObjectAccessCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.userApp.objectAccessList,
+      count: state.userApp.objectAccessCount,
+      currentPage: state.userApp.objectAccessCurrentPageNumber,
+      searchFormParameters: state.userApp.objectAccessSearchFormParameters,
+      loading: state.userApp.loading,
+      owner: {type:'userApp',id:state.userApp.id}//this is for model namespace and 
+    }))(ObjectAccessCreateForm);
+  }
   
   
   
@@ -186,6 +198,8 @@ getPageTitle() {
             <Switch>
     
           <Route path="/userApp/:id/list/objectAccessList" component={this.getObjectAccessSearch()} />
+          <Route path="/userApp/:id/list/objectAccessCreateForm" component={this.getObjectAccessCreateForm()} />
+          
               
              
 </Switch>

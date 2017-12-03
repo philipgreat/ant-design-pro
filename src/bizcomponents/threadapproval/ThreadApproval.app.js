@@ -14,7 +14,7 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import ThreadSearch from '../thread/Thread.search'
-
+import ThreadCreateForm from '../thread/Thread.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -120,6 +120,18 @@ class ThreadApprovalBizApp extends React.PureComponent {
       owner: {type:'threadApproval',id:state.threadApproval.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
+  getThreadCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.threadApproval.threadList,
+      count: state.threadApproval.threadCount,
+      currentPage: state.threadApproval.threadCurrentPageNumber,
+      searchFormParameters: state.threadApproval.threadSearchFormParameters,
+      loading: state.threadApproval.loading,
+      owner: {type:'threadApproval',id:state.threadApproval.id}//this is for model namespace and 
+    }))(ThreadCreateForm);
+  }
   
   
   
@@ -186,6 +198,8 @@ getPageTitle() {
             <Switch>
     
           <Route path="/threadApproval/:id/list/threadList" component={this.getThreadSearch()} />
+          <Route path="/threadApproval/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          
               
              
 </Switch>

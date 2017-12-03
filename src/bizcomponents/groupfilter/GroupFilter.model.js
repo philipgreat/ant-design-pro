@@ -56,6 +56,12 @@ export default {
       console.log("this is the data id: ", data.id)
       yield put({type:"updateState",payload:newPlayload});
     },
+    *gotoCreateForm({ payload }, { call, put }) {
+    	const {id,type}=payload;
+    	yield put(routerRedux.push('/groupFilter/'+id+'/list/'+type+'CreateForm'));
+     },
+    
+    
   },
   
   reducers: {

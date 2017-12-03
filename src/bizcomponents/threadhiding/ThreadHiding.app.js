@@ -14,7 +14,7 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import ThreadSearch from '../thread/Thread.search'
-
+import ThreadCreateForm from '../thread/Thread.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -120,6 +120,18 @@ class ThreadHidingBizApp extends React.PureComponent {
       owner: {type:'threadHiding',id:state.threadHiding.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
+  getThreadCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.threadHiding.threadList,
+      count: state.threadHiding.threadCount,
+      currentPage: state.threadHiding.threadCurrentPageNumber,
+      searchFormParameters: state.threadHiding.threadSearchFormParameters,
+      loading: state.threadHiding.loading,
+      owner: {type:'threadHiding',id:state.threadHiding.id}//this is for model namespace and 
+    }))(ThreadCreateForm);
+  }
   
   
   
@@ -186,6 +198,8 @@ getPageTitle() {
             <Switch>
     
           <Route path="/threadHiding/:id/list/threadList" component={this.getThreadSearch()} />
+          <Route path="/threadHiding/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          
               
              
 </Switch>

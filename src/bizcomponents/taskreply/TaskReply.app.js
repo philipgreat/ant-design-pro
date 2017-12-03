@@ -14,7 +14,7 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import TaskReplyLikeSearch from '../taskreplylike/TaskReplyLike.search'
-
+import TaskReplyLikeCreateForm from '../taskreplylike/TaskReplyLike.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -120,6 +120,18 @@ class TaskReplyBizApp extends React.PureComponent {
       owner: {type:'taskReply',id:state.taskReply.id}//this is for model namespace and 
     }))(TaskReplyLikeSearch);
   }
+  getTaskReplyLikeCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.taskReply.taskReplyLikeList,
+      count: state.taskReply.taskReplyLikeCount,
+      currentPage: state.taskReply.taskReplyLikeCurrentPageNumber,
+      searchFormParameters: state.taskReply.taskReplyLikeSearchFormParameters,
+      loading: state.taskReply.loading,
+      owner: {type:'taskReply',id:state.taskReply.id}//this is for model namespace and 
+    }))(TaskReplyLikeCreateForm);
+  }
   
   
   
@@ -186,6 +198,8 @@ getPageTitle() {
             <Switch>
     
           <Route path="/taskReply/:id/list/taskReplyLikeList" component={this.getTaskReplyLikeSearch()} />
+          <Route path="/taskReply/:id/list/taskReplyLikeCreateForm" component={this.getTaskReplyLikeCreateForm()} />
+          
               
              
 </Switch>

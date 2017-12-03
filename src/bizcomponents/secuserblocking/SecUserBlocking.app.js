@@ -14,7 +14,7 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import SecUserSearch from '../secuser/SecUser.search'
-
+import SecUserCreateForm from '../secuser/SecUser.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -120,6 +120,18 @@ class SecUserBlockingBizApp extends React.PureComponent {
       owner: {type:'secUserBlocking',id:state.secUserBlocking.id}//this is for model namespace and 
     }))(SecUserSearch);
   }
+  getSecUserCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.secUserBlocking.secUserList,
+      count: state.secUserBlocking.secUserCount,
+      currentPage: state.secUserBlocking.secUserCurrentPageNumber,
+      searchFormParameters: state.secUserBlocking.secUserSearchFormParameters,
+      loading: state.secUserBlocking.loading,
+      owner: {type:'secUserBlocking',id:state.secUserBlocking.id}//this is for model namespace and 
+    }))(SecUserCreateForm);
+  }
   
   
   
@@ -186,6 +198,8 @@ getPageTitle() {
             <Switch>
     
           <Route path="/secUserBlocking/:id/list/secUserList" component={this.getSecUserSearch()} />
+          <Route path="/secUserBlocking/:id/list/secUserCreateForm" component={this.getSecUserCreateForm()} />
+          
               
              
 </Switch>

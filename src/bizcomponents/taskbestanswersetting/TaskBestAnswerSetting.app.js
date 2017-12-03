@@ -14,7 +14,7 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import TaskReplySearch from '../taskreply/TaskReply.search'
-
+import TaskReplyCreateForm from '../taskreply/TaskReply.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -120,6 +120,18 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
       owner: {type:'taskBestAnswerSetting',id:state.taskBestAnswerSetting.id}//this is for model namespace and 
     }))(TaskReplySearch);
   }
+  getTaskReplyCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.taskBestAnswerSetting.taskReplyList,
+      count: state.taskBestAnswerSetting.taskReplyCount,
+      currentPage: state.taskBestAnswerSetting.taskReplyCurrentPageNumber,
+      searchFormParameters: state.taskBestAnswerSetting.taskReplySearchFormParameters,
+      loading: state.taskBestAnswerSetting.loading,
+      owner: {type:'taskBestAnswerSetting',id:state.taskBestAnswerSetting.id}//this is for model namespace and 
+    }))(TaskReplyCreateForm);
+  }
   
   
   
@@ -186,6 +198,8 @@ getPageTitle() {
             <Switch>
     
           <Route path="/taskBestAnswerSetting/:id/list/taskReplyList" component={this.getTaskReplySearch()} />
+          <Route path="/taskBestAnswerSetting/:id/list/taskReplyCreateForm" component={this.getTaskReplyCreateForm()} />
+          
               
              
 </Switch>

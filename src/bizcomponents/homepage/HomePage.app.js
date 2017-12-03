@@ -14,15 +14,15 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import SlideSearch from '../slide/Slide.search'
-
+import SlideCreateForm from '../slide/Slide.createform'
 import EncyclopediaItemSearch from '../encyclopediaitem/EncyclopediaItem.search'
-
+import EncyclopediaItemCreateForm from '../encyclopediaitem/EncyclopediaItem.createform'
 import TaskFilterSearch from '../taskfilter/TaskFilter.search'
-
+import TaskFilterCreateForm from '../taskfilter/TaskFilter.createform'
 import TaskSearch from '../task/Task.search'
-
+import TaskCreateForm from '../task/Task.createform'
 import ThreadSearch from '../thread/Thread.search'
-
+import ThreadCreateForm from '../thread/Thread.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -148,6 +148,18 @@ class HomePageBizApp extends React.PureComponent {
       owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
     }))(SlideSearch);
   }
+  getSlideCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.homePage.slideList,
+      count: state.homePage.slideCount,
+      currentPage: state.homePage.slideCurrentPageNumber,
+      searchFormParameters: state.homePage.slideSearchFormParameters,
+      loading: state.homePage.loading,
+      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+    }))(SlideCreateForm);
+  }
   
 
   getEncyclopediaItemSearch() {
@@ -161,6 +173,18 @@ class HomePageBizApp extends React.PureComponent {
       loading: state.homePage.loading,
       owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
     }))(EncyclopediaItemSearch);
+  }
+  getEncyclopediaItemCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.homePage.encyclopediaItemList,
+      count: state.homePage.encyclopediaItemCount,
+      currentPage: state.homePage.encyclopediaItemCurrentPageNumber,
+      searchFormParameters: state.homePage.encyclopediaItemSearchFormParameters,
+      loading: state.homePage.loading,
+      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+    }))(EncyclopediaItemCreateForm);
   }
   
 
@@ -176,6 +200,18 @@ class HomePageBizApp extends React.PureComponent {
       owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
     }))(TaskFilterSearch);
   }
+  getTaskFilterCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.homePage.taskFilterList,
+      count: state.homePage.taskFilterCount,
+      currentPage: state.homePage.taskFilterCurrentPageNumber,
+      searchFormParameters: state.homePage.taskFilterSearchFormParameters,
+      loading: state.homePage.loading,
+      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+    }))(TaskFilterCreateForm);
+  }
   
 
   getTaskSearch() {
@@ -190,6 +226,18 @@ class HomePageBizApp extends React.PureComponent {
       owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
     }))(TaskSearch);
   }
+  getTaskCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.homePage.taskList,
+      count: state.homePage.taskCount,
+      currentPage: state.homePage.taskCurrentPageNumber,
+      searchFormParameters: state.homePage.taskSearchFormParameters,
+      loading: state.homePage.loading,
+      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+    }))(TaskCreateForm);
+  }
   
 
   getThreadSearch() {
@@ -203,6 +251,18 @@ class HomePageBizApp extends React.PureComponent {
       loading: state.homePage.loading,
       owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
     }))(ThreadSearch);
+  }
+  getThreadCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.homePage.threadList,
+      count: state.homePage.threadCount,
+      currentPage: state.homePage.threadCurrentPageNumber,
+      searchFormParameters: state.homePage.threadSearchFormParameters,
+      loading: state.homePage.loading,
+      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+    }))(ThreadCreateForm);
   }
   
   
@@ -270,14 +330,24 @@ getPageTitle() {
             <Switch>
     
           <Route path="/homePage/:id/list/slideList" component={this.getSlideSearch()} />
+          <Route path="/homePage/:id/list/slideCreateForm" component={this.getSlideCreateForm()} />
+          
 
           <Route path="/homePage/:id/list/encyclopediaItemList" component={this.getEncyclopediaItemSearch()} />
+          <Route path="/homePage/:id/list/encyclopediaItemCreateForm" component={this.getEncyclopediaItemCreateForm()} />
+          
 
           <Route path="/homePage/:id/list/taskFilterList" component={this.getTaskFilterSearch()} />
+          <Route path="/homePage/:id/list/taskFilterCreateForm" component={this.getTaskFilterCreateForm()} />
+          
 
           <Route path="/homePage/:id/list/taskList" component={this.getTaskSearch()} />
+          <Route path="/homePage/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+          
 
           <Route path="/homePage/:id/list/threadList" component={this.getThreadSearch()} />
+          <Route path="/homePage/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          
               
              
 </Switch>

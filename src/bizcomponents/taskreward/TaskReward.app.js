@@ -14,7 +14,7 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import TaskSearch from '../task/Task.search'
-
+import TaskCreateForm from '../task/Task.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -120,6 +120,18 @@ class TaskRewardBizApp extends React.PureComponent {
       owner: {type:'taskReward',id:state.taskReward.id}//this is for model namespace and 
     }))(TaskSearch);
   }
+  getTaskCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.taskReward.taskList,
+      count: state.taskReward.taskCount,
+      currentPage: state.taskReward.taskCurrentPageNumber,
+      searchFormParameters: state.taskReward.taskSearchFormParameters,
+      loading: state.taskReward.loading,
+      owner: {type:'taskReward',id:state.taskReward.id}//this is for model namespace and 
+    }))(TaskCreateForm);
+  }
   
   
   
@@ -186,6 +198,8 @@ getPageTitle() {
             <Switch>
     
           <Route path="/taskReward/:id/list/taskList" component={this.getTaskSearch()} />
+          <Route path="/taskReward/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+          
               
              
 </Switch>

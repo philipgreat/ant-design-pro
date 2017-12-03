@@ -14,7 +14,7 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import SecUserSearch from '../secuser/SecUser.search'
-
+import SecUserCreateForm from '../secuser/SecUser.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -120,6 +120,18 @@ class UserDomainBizApp extends React.PureComponent {
       owner: {type:'userDomain',id:state.userDomain.id}//this is for model namespace and 
     }))(SecUserSearch);
   }
+  getSecUserCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.userDomain.secUserList,
+      count: state.userDomain.secUserCount,
+      currentPage: state.userDomain.secUserCurrentPageNumber,
+      searchFormParameters: state.userDomain.secUserSearchFormParameters,
+      loading: state.userDomain.loading,
+      owner: {type:'userDomain',id:state.userDomain.id}//this is for model namespace and 
+    }))(SecUserCreateForm);
+  }
   
   
   
@@ -186,6 +198,8 @@ getPageTitle() {
             <Switch>
     
           <Route path="/userDomain/:id/list/secUserList" component={this.getSecUserSearch()} />
+          <Route path="/userDomain/:id/list/secUserCreateForm" component={this.getSecUserCreateForm()} />
+          
               
              
 </Switch>

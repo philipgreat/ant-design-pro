@@ -14,7 +14,7 @@ import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
 import ThreadReplyLikeSearch from '../threadreplylike/ThreadReplyLike.search'
-
+import ThreadReplyLikeCreateForm from '../threadreplylike/ThreadReplyLike.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -120,6 +120,18 @@ class ThreadReplyBizApp extends React.PureComponent {
       owner: {type:'threadReply',id:state.threadReply.id}//this is for model namespace and 
     }))(ThreadReplyLikeSearch);
   }
+  getThreadReplyLikeCreateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state.threadReply.threadReplyLikeList,
+      count: state.threadReply.threadReplyLikeCount,
+      currentPage: state.threadReply.threadReplyLikeCurrentPageNumber,
+      searchFormParameters: state.threadReply.threadReplyLikeSearchFormParameters,
+      loading: state.threadReply.loading,
+      owner: {type:'threadReply',id:state.threadReply.id}//this is for model namespace and 
+    }))(ThreadReplyLikeCreateForm);
+  }
   
   
   
@@ -186,6 +198,8 @@ getPageTitle() {
             <Switch>
     
           <Route path="/threadReply/:id/list/threadReplyLikeList" component={this.getThreadReplyLikeSearch()} />
+          <Route path="/threadReply/:id/list/threadReplyLikeCreateForm" component={this.getThreadReplyLikeCreateForm()} />
+          
               
              
 </Switch>

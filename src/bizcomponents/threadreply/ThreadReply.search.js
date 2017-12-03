@@ -99,6 +99,16 @@ export default class ThreadReplySearch extends PureComponent {
       modalVisible: !!flag,
     });
   }
+  
+  
+  handleCreate = () => {
+ 
+   	const {dispatch,owner} = this.props;
+	dispatch({
+       type: owner.type+'/gotoCreateForm',
+       payload: {id:owner.id,type:'threadReply'},
+    });
+  }
 
   handleAddInput = (e) => {
     this.setState({
@@ -142,7 +152,7 @@ export default class ThreadReplySearch extends PureComponent {
               <ThreadReplySearchForm {...this.props}/>
             </div>
             <div className={styles.tableListOperator}>
-              <Button icon="plus" type="primary" onClick={() => this.handleModalVisible(true)}>新建</Button>
+              <Button icon="plus" type="primary" onClick={() => this.handleCreate()}>新建</Button>
               {
                 selectedRows.length > 0 && (
                   <span>
