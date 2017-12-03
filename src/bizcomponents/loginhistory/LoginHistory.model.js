@@ -60,6 +60,10 @@ export default {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/loginHistory/'+id+'/list/'+type+'CreateForm'));
      },
+     *goback({ payload }, { call, put }) {
+    	const {id,type}=payload;
+    	yield put(routerRedux.push('/loginHistory/'+id+'/list/'+type+'List'));
+     },
     
     
   },
@@ -77,15 +81,6 @@ export default {
   },
 
 };
-
-
-
-
-
-
-
-
-
 
 
 

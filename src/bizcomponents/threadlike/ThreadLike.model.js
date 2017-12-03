@@ -60,6 +60,10 @@ export default {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/threadLike/'+id+'/list/'+type+'CreateForm'));
      },
+     *goback({ payload }, { call, put }) {
+    	const {id,type}=payload;
+    	yield put(routerRedux.push('/threadLike/'+id+'/list/'+type+'List'));
+     },
     
     
   },

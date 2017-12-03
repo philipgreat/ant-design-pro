@@ -38,6 +38,14 @@ class EncyclopediaItemCreateForm extends PureComponent {
         }
       });
     };
+    
+    const goback = () => {
+      const {owner} = this.props;
+      dispatch({
+         type: owner.type+'/goback',
+         payload: {id:owner.id,type:'encyclopediaItem'},
+      }); 
+    };
     const errors = getFieldsError();
     const getErrorInfo = () => {
       const errorCount = Object.keys(errors).filter(key => errors[key]).length;
@@ -175,6 +183,9 @@ class EncyclopediaItemCreateForm extends PureComponent {
           {getErrorInfo()}
           <Button type="primary" onClick={validate} loading={submitting}>
             提交
+          </Button>
+          <Button type="danger" onClick={goback} loading={submitting}>
+            放弃
           </Button>
         </FooterToolbar>
       </PageHeaderLayout>
