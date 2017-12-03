@@ -176,11 +176,18 @@ export default class TaskSearch extends PureComponent {
         >
           <FormItem
             labelCol={{ span: 5 }}
-            wrapperCol={{ span: 15 }}
+            wrapperCol={{ span: 5 }}
+            label="描述"
+          >
+            <Input placeholder="请输入" onChange={this.handleAddInput} value={addInputValue} />
+          </FormItem><FormItem
+            labelCol={{ span: 5 }}
+            wrapperCol={{ span: 5 }}
             label="描述"
           >
             <Input placeholder="请输入" onChange={this.handleAddInput} value={addInputValue} />
           </FormItem>
+          
         </Modal>
       </PageHeaderLayout>
     );

@@ -49,6 +49,7 @@ import BonusPointSearch from '../bonuspoint/BonusPoint.search'
 
 import ExperiencePointSearch from '../experiencepoint/ExperiencePoint.search'
 
+import TaskCreateForm from '../task/Task.createform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -295,7 +296,18 @@ class CommunityUserBizApp extends React.PureComponent {
       owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
     }))(TaskSearch);
   }
-  
+  getTaskCreateForm() {
+    
+       return connect(state => ({
+         rule: state.rule,
+         data: state.communityUser.taskList,
+         count: state.communityUser.taskCount,
+         currentPage: state.communityUser.taskCurrentPageNumber,
+         searchFormParameters: state.communityUser.taskSearchFormParameters,
+         loading: state.communityUser.loading,
+         owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+       }))(TaskCreateForm);
+     }
 
   getTaskAssigmentSearch() {
  
@@ -542,8 +554,9 @@ getPageTitle() {
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
     
-          <Route path="/communityUser/:id/list/patientInfoList" component={this.getPatientInfoSearch()} />
-
+            <Route path="/communityUser/:id/list/patientInfoList" component={this.getPatientInfoSearch()} />
+            <Route path="/communityUser/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+            
           <Route path="/communityUser/:id/list/userSkillList" component={this.getUserSkillSearch()} />
 
           <Route path="/communityUser/:id/list/messageFilterList" component={this.getMessageFilterSearch()} />

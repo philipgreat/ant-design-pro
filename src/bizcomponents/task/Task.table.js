@@ -71,7 +71,7 @@ class TaskTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data,count,current, owner,loading } = this.props;
+    const { data,count,current, owner } = this.props;
 
    
     
@@ -99,6 +99,7 @@ class TaskTable extends PureComponent {
           <Alert
             message={(
               <p>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
                 已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
                 
                 <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
@@ -109,7 +110,7 @@ class TaskTable extends PureComponent {
           />
         </div>
         <Table
-          loading={loading}
+          loading={false}
           rowKey={record => record.id}
           rowSelection={rowSelection}
           dataSource={data}

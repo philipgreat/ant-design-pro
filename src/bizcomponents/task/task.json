@@ -1,0 +1,657 @@
+{
+    "class": "com.terapico.bbt.communityuser.CommunityUser",
+    "id": "CU000001",
+    "mobile": "136****8888",
+    "nickName": "喀拉",
+    "gender": "男",
+    "userType": "患者",
+    "avatar": "avatar.jpg",
+    "birthday": 2150899200000,
+    "experiencePoint": 9561,
+    "bonusPoint": 712989,
+    "city": "北京",
+    "status": "迎接更光明的明天",
+    "hideInfo": true,
+    "administrator": true,
+    "community": {
+        "id": "C000001",
+        "version": 0
+    },
+    "version": 2,
+    "patientInfoCurrentPageNumber": 1,
+    "userSkillCurrentPageNumber": 1,
+    "messageFilterCurrentPageNumber": 1,
+    "userMessageCurrentPageNumber": 1,
+    "taskCurrentPageNumber": 1,
+    "taskAssigmentCurrentPageNumber": 1,
+    "taskLikeCurrentPageNumber": 1,
+    "taskReplyCurrentPageNumber": 1,
+    "taskReplyLikeCurrentPageNumber": 1,
+    "threadCurrentPageNumber": 1,
+    "threadReplyCurrentPageNumber": 1,
+    "threadRegistrationCurrentPageNumber": 1,
+    "threadLikeCurrentPageNumber": 1,
+    "threadReplyLikeCurrentPageNumber": 1,
+    "fanCurrentPageNumber": 1,
+    "followCurrentPageNumber": 1,
+    "bonusPointCurrentPageNumber": 1,
+    "experiencePointCurrentPageNumber": 1,
+    "actionList": [
+        {
+            "actionName": null,
+            "actionPath": "view/CU000001/",
+            "actionKey": "view",
+            "localeKey": "@view",
+            "actionGroup": "main",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "createCommunityUser/",
+            "actionKey": "createCommunityUser",
+            "localeKey": "@create",
+            "actionGroup": "main",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateCommunityUser/CU000001/",
+            "actionKey": "updateCommunityUser",
+            "localeKey": "@update",
+            "actionGroup": "main",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "cloneCommunityUser/CU000001/",
+            "actionKey": "cloneCommunityUser",
+            "localeKey": "@copy",
+            "actionGroup": "main",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "transferToAnotherCommunity/CU000001/",
+            "actionKey": "transferToAnotherCommunity",
+            "localeKey": "community_user.transfer_to_community",
+            "actionGroup": "main",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addPatientInfo/CU000001/",
+            "actionKey": "addPatientInfo",
+            "localeKey": "community_user.addPatientInfo",
+            "actionGroup": "patientInfoList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removePatientInfo/CU000001/",
+            "actionKey": "removePatientInfo",
+            "localeKey": "community_user.removePatientInfo",
+            "actionGroup": "patientInfoList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updatePatientInfo/CU000001/",
+            "actionKey": "updatePatientInfo",
+            "localeKey": "community_user.updatePatientInfo",
+            "actionGroup": "patientInfoList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyPatientInfoFrom/CU000001/",
+            "actionKey": "copyPatientInfoFrom",
+            "localeKey": "community_user.copyPatientInfoFrom",
+            "actionGroup": "patientInfoList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addUserSkill/CU000001/",
+            "actionKey": "addUserSkill",
+            "localeKey": "community_user.addUserSkill",
+            "actionGroup": "userSkillList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeUserSkill/CU000001/",
+            "actionKey": "removeUserSkill",
+            "localeKey": "community_user.removeUserSkill",
+            "actionGroup": "userSkillList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateUserSkill/CU000001/",
+            "actionKey": "updateUserSkill",
+            "localeKey": "community_user.updateUserSkill",
+            "actionGroup": "userSkillList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyUserSkillFrom/CU000001/",
+            "actionKey": "copyUserSkillFrom",
+            "localeKey": "community_user.copyUserSkillFrom",
+            "actionGroup": "userSkillList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addMessageFilter/CU000001/",
+            "actionKey": "addMessageFilter",
+            "localeKey": "community_user.addMessageFilter",
+            "actionGroup": "messageFilterList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeMessageFilter/CU000001/",
+            "actionKey": "removeMessageFilter",
+            "localeKey": "community_user.removeMessageFilter",
+            "actionGroup": "messageFilterList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateMessageFilter/CU000001/",
+            "actionKey": "updateMessageFilter",
+            "localeKey": "community_user.updateMessageFilter",
+            "actionGroup": "messageFilterList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyMessageFilterFrom/CU000001/",
+            "actionKey": "copyMessageFilterFrom",
+            "localeKey": "community_user.copyMessageFilterFrom",
+            "actionGroup": "messageFilterList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addUserMessage/CU000001/",
+            "actionKey": "addUserMessage",
+            "localeKey": "community_user.addUserMessage",
+            "actionGroup": "userMessageList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeUserMessage/CU000001/",
+            "actionKey": "removeUserMessage",
+            "localeKey": "community_user.removeUserMessage",
+            "actionGroup": "userMessageList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateUserMessage/CU000001/",
+            "actionKey": "updateUserMessage",
+            "localeKey": "community_user.updateUserMessage",
+            "actionGroup": "userMessageList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyUserMessageFrom/CU000001/",
+            "actionKey": "copyUserMessageFrom",
+            "localeKey": "community_user.copyUserMessageFrom",
+            "actionGroup": "userMessageList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addTask/CU000001/",
+            "actionKey": "addTask",
+            "localeKey": "community_user.addTask",
+            "actionGroup": "taskList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeTask/CU000001/",
+            "actionKey": "removeTask",
+            "localeKey": "community_user.removeTask",
+            "actionGroup": "taskList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateTask/CU000001/",
+            "actionKey": "updateTask",
+            "localeKey": "community_user.updateTask",
+            "actionGroup": "taskList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyTaskFrom/CU000001/",
+            "actionKey": "copyTaskFrom",
+            "localeKey": "community_user.copyTaskFrom",
+            "actionGroup": "taskList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addTaskAssigment/CU000001/",
+            "actionKey": "addTaskAssigment",
+            "localeKey": "community_user.addTaskAssigment",
+            "actionGroup": "taskAssigmentList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeTaskAssigment/CU000001/",
+            "actionKey": "removeTaskAssigment",
+            "localeKey": "community_user.removeTaskAssigment",
+            "actionGroup": "taskAssigmentList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateTaskAssigment/CU000001/",
+            "actionKey": "updateTaskAssigment",
+            "localeKey": "community_user.updateTaskAssigment",
+            "actionGroup": "taskAssigmentList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyTaskAssigmentFrom/CU000001/",
+            "actionKey": "copyTaskAssigmentFrom",
+            "localeKey": "community_user.copyTaskAssigmentFrom",
+            "actionGroup": "taskAssigmentList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addTaskLike/CU000001/",
+            "actionKey": "addTaskLike",
+            "localeKey": "community_user.addTaskLike",
+            "actionGroup": "taskLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeTaskLike/CU000001/",
+            "actionKey": "removeTaskLike",
+            "localeKey": "community_user.removeTaskLike",
+            "actionGroup": "taskLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateTaskLike/CU000001/",
+            "actionKey": "updateTaskLike",
+            "localeKey": "community_user.updateTaskLike",
+            "actionGroup": "taskLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyTaskLikeFrom/CU000001/",
+            "actionKey": "copyTaskLikeFrom",
+            "localeKey": "community_user.copyTaskLikeFrom",
+            "actionGroup": "taskLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addTaskReply/CU000001/",
+            "actionKey": "addTaskReply",
+            "localeKey": "community_user.addTaskReply",
+            "actionGroup": "taskReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeTaskReply/CU000001/",
+            "actionKey": "removeTaskReply",
+            "localeKey": "community_user.removeTaskReply",
+            "actionGroup": "taskReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateTaskReply/CU000001/",
+            "actionKey": "updateTaskReply",
+            "localeKey": "community_user.updateTaskReply",
+            "actionGroup": "taskReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyTaskReplyFrom/CU000001/",
+            "actionKey": "copyTaskReplyFrom",
+            "localeKey": "community_user.copyTaskReplyFrom",
+            "actionGroup": "taskReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addTaskReplyLike/CU000001/",
+            "actionKey": "addTaskReplyLike",
+            "localeKey": "community_user.addTaskReplyLike",
+            "actionGroup": "taskReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeTaskReplyLike/CU000001/",
+            "actionKey": "removeTaskReplyLike",
+            "localeKey": "community_user.removeTaskReplyLike",
+            "actionGroup": "taskReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateTaskReplyLike/CU000001/",
+            "actionKey": "updateTaskReplyLike",
+            "localeKey": "community_user.updateTaskReplyLike",
+            "actionGroup": "taskReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyTaskReplyLikeFrom/CU000001/",
+            "actionKey": "copyTaskReplyLikeFrom",
+            "localeKey": "community_user.copyTaskReplyLikeFrom",
+            "actionGroup": "taskReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addThread/CU000001/",
+            "actionKey": "addThread",
+            "localeKey": "community_user.addThread",
+            "actionGroup": "threadList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeThread/CU000001/",
+            "actionKey": "removeThread",
+            "localeKey": "community_user.removeThread",
+            "actionGroup": "threadList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateThread/CU000001/",
+            "actionKey": "updateThread",
+            "localeKey": "community_user.updateThread",
+            "actionGroup": "threadList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyThreadFrom/CU000001/",
+            "actionKey": "copyThreadFrom",
+            "localeKey": "community_user.copyThreadFrom",
+            "actionGroup": "threadList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addThreadReply/CU000001/",
+            "actionKey": "addThreadReply",
+            "localeKey": "community_user.addThreadReply",
+            "actionGroup": "threadReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeThreadReply/CU000001/",
+            "actionKey": "removeThreadReply",
+            "localeKey": "community_user.removeThreadReply",
+            "actionGroup": "threadReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateThreadReply/CU000001/",
+            "actionKey": "updateThreadReply",
+            "localeKey": "community_user.updateThreadReply",
+            "actionGroup": "threadReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyThreadReplyFrom/CU000001/",
+            "actionKey": "copyThreadReplyFrom",
+            "localeKey": "community_user.copyThreadReplyFrom",
+            "actionGroup": "threadReplyList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addThreadRegistration/CU000001/",
+            "actionKey": "addThreadRegistration",
+            "localeKey": "community_user.addThreadRegistration",
+            "actionGroup": "threadRegistrationList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeThreadRegistration/CU000001/",
+            "actionKey": "removeThreadRegistration",
+            "localeKey": "community_user.removeThreadRegistration",
+            "actionGroup": "threadRegistrationList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateThreadRegistration/CU000001/",
+            "actionKey": "updateThreadRegistration",
+            "localeKey": "community_user.updateThreadRegistration",
+            "actionGroup": "threadRegistrationList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyThreadRegistrationFrom/CU000001/",
+            "actionKey": "copyThreadRegistrationFrom",
+            "localeKey": "community_user.copyThreadRegistrationFrom",
+            "actionGroup": "threadRegistrationList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addThreadLike/CU000001/",
+            "actionKey": "addThreadLike",
+            "localeKey": "community_user.addThreadLike",
+            "actionGroup": "threadLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeThreadLike/CU000001/",
+            "actionKey": "removeThreadLike",
+            "localeKey": "community_user.removeThreadLike",
+            "actionGroup": "threadLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateThreadLike/CU000001/",
+            "actionKey": "updateThreadLike",
+            "localeKey": "community_user.updateThreadLike",
+            "actionGroup": "threadLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyThreadLikeFrom/CU000001/",
+            "actionKey": "copyThreadLikeFrom",
+            "localeKey": "community_user.copyThreadLikeFrom",
+            "actionGroup": "threadLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addThreadReplyLike/CU000001/",
+            "actionKey": "addThreadReplyLike",
+            "localeKey": "community_user.addThreadReplyLike",
+            "actionGroup": "threadReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeThreadReplyLike/CU000001/",
+            "actionKey": "removeThreadReplyLike",
+            "localeKey": "community_user.removeThreadReplyLike",
+            "actionGroup": "threadReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateThreadReplyLike/CU000001/",
+            "actionKey": "updateThreadReplyLike",
+            "localeKey": "community_user.updateThreadReplyLike",
+            "actionGroup": "threadReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyThreadReplyLikeFrom/CU000001/",
+            "actionKey": "copyThreadReplyLikeFrom",
+            "localeKey": "community_user.copyThreadReplyLikeFrom",
+            "actionGroup": "threadReplyLikeList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addFan/CU000001/",
+            "actionKey": "addFan",
+            "localeKey": "community_user.addFan",
+            "actionGroup": "fanList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeFan/CU000001/",
+            "actionKey": "removeFan",
+            "localeKey": "community_user.removeFan",
+            "actionGroup": "fanList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateFan/CU000001/",
+            "actionKey": "updateFan",
+            "localeKey": "community_user.updateFan",
+            "actionGroup": "fanList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyFanFrom/CU000001/",
+            "actionKey": "copyFanFrom",
+            "localeKey": "community_user.copyFanFrom",
+            "actionGroup": "fanList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addFollow/CU000001/",
+            "actionKey": "addFollow",
+            "localeKey": "community_user.addFollow",
+            "actionGroup": "followList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeFollow/CU000001/",
+            "actionKey": "removeFollow",
+            "localeKey": "community_user.removeFollow",
+            "actionGroup": "followList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateFollow/CU000001/",
+            "actionKey": "updateFollow",
+            "localeKey": "community_user.updateFollow",
+            "actionGroup": "followList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyFollowFrom/CU000001/",
+            "actionKey": "copyFollowFrom",
+            "localeKey": "community_user.copyFollowFrom",
+            "actionGroup": "followList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addBonusPoint/CU000001/",
+            "actionKey": "addBonusPoint",
+            "localeKey": "community_user.addBonusPoint",
+            "actionGroup": "bonusPointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeBonusPoint/CU000001/",
+            "actionKey": "removeBonusPoint",
+            "localeKey": "community_user.removeBonusPoint",
+            "actionGroup": "bonusPointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateBonusPoint/CU000001/",
+            "actionKey": "updateBonusPoint",
+            "localeKey": "community_user.updateBonusPoint",
+            "actionGroup": "bonusPointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyBonusPointFrom/CU000001/",
+            "actionKey": "copyBonusPointFrom",
+            "localeKey": "community_user.copyBonusPointFrom",
+            "actionGroup": "bonusPointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "addExperiencePoint/CU000001/",
+            "actionKey": "addExperiencePoint",
+            "localeKey": "community_user.addExperiencePoint",
+            "actionGroup": "experiencePointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "removeExperiencePoint/CU000001/",
+            "actionKey": "removeExperiencePoint",
+            "localeKey": "community_user.removeExperiencePoint",
+            "actionGroup": "experiencePointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "updateExperiencePoint/CU000001/",
+            "actionKey": "updateExperiencePoint",
+            "localeKey": "community_user.updateExperiencePoint",
+            "actionGroup": "experiencePointList",
+            "actionLevel": "primary"
+        },
+        {
+            "actionName": null,
+            "actionPath": "copyExperiencePointFrom/CU000001/",
+            "actionKey": "copyExperiencePointFrom",
+            "localeKey": "community_user.copyExperiencePointFrom",
+            "actionGroup": "experiencePointList",
+            "actionLevel": "primary"
+        }
+    ]
+}

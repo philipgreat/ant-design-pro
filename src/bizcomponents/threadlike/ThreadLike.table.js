@@ -77,6 +77,7 @@ class ThreadLikeTable extends PureComponent {
           <Alert
             message={(
               <p>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
                 已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
                 
                 <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
