@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-
+import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar';
 
 import styles from './Task.createform.less';
@@ -230,90 +230,42 @@ class TaskCreateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.coverImagePath1}>
-                  {getFieldDecorator('coverImagePath1', {
-                    rules: [{ required: true, message: '请输入封面图像路径1' }],
-                  })(
-                    <Input placeholder="请输入请输入封面图像路径1string_image" />
-                  )}
-                </Form.Item>
+                <PictureEdit buttonTitle={"封面图像路径1"}/> 
               </Col>			
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.coverImagePath2}>
-                  {getFieldDecorator('coverImagePath2', {
-                    rules: [{ required: true, message: '请输入封面图像路径2' }],
-                  })(
-                    <Input placeholder="请输入请输入封面图像路径2string_image" />
-                  )}
-                </Form.Item>
+                <PictureEdit buttonTitle={"封面图像路径2"}/> 
               </Col>			
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.coverImagePath3}>
-                  {getFieldDecorator('coverImagePath3', {
-                    rules: [{ required: true, message: '请输入封面图像路径3' }],
-                  })(
-                    <Input placeholder="请输入请输入封面图像路径3string_image" />
-                  )}
-                </Form.Item>
+                <PictureEdit buttonTitle={"封面图像路径3"}/> 
               </Col>			
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.imagePath1}>
-                  {getFieldDecorator('imagePath1', {
-                    rules: [{ required: true, message: '请输入图1' }],
-                  })(
-                    <Input placeholder="请输入请输入图1string_image" />
-                  )}
-                </Form.Item>
+                <PictureEdit buttonTitle={"图1"}/> 
               </Col>			
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.imagePath2}>
-                  {getFieldDecorator('imagePath2', {
-                    rules: [{ required: true, message: '请输入图2' }],
-                  })(
-                    <Input placeholder="请输入请输入图2string_image" />
-                  )}
-                </Form.Item>
+                <PictureEdit buttonTitle={"图2"}/> 
               </Col>			
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.imagePath3}>
-                  {getFieldDecorator('imagePath3', {
-                    rules: [{ required: true, message: '请输入图3' }],
-                  })(
-                    <Input placeholder="请输入请输入图3string_image" />
-                  )}
-                </Form.Item>
+                <PictureEdit buttonTitle={"图3"}/> 
               </Col>			
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.imagePath4}>
-                  {getFieldDecorator('imagePath4', {
-                    rules: [{ required: true, message: '请输入图4' }],
-                  })(
-                    <Input placeholder="请输入请输入图4string_image" />
-                  )}
-                </Form.Item>
+                <PictureEdit buttonTitle={"图4"}/> 
               </Col>			
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.imagePath5}>
-                  {getFieldDecorator('imagePath5', {
-                    rules: [{ required: true, message: '请输入图5' }],
-                  })(
-                    <Input placeholder="请输入请输入图5string_image" />
-                  )}
-                </Form.Item>
+                <PictureEdit buttonTitle={"图5"}/> 
               </Col>			
 			
 			

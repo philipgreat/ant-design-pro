@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-
+import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar';
 
 import styles from './CommunityUser.createform.less';
@@ -240,13 +240,7 @@ class CommunityUserCreateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.avatar}>
-                  {getFieldDecorator('avatar', {
-                    rules: [{ required: true, message: '请输入头像' }],
-                  })(
-                    <Input placeholder="请输入请输入头像string_image" />
-                  )}
-                </Form.Item>
+                <PictureEdit buttonTitle={"头像"}/> 
               </Col>			
 			
 			

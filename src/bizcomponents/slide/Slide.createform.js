@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-
+import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar';
 
 import styles from './Slide.createform.less';
@@ -132,13 +132,7 @@ class SlideCreateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.imageUrl}>
-                  {getFieldDecorator('imageUrl', {
-                    rules: [{ required: true, message: '请输入图像网址' }],
-                  })(
-                    <Input placeholder="请输入请输入图像网址string_image" />
-                  )}
-                </Form.Item>
+                <PictureEdit buttonTitle={"图像网址"}/> 
               </Col>			
 			
 			

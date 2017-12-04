@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-
+import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar';
 
 import styles from './TaskReplyLike.createform.less';
