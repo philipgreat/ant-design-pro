@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
+
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import PictureEdit from '../../components/PictureEdit'
@@ -9,7 +10,7 @@ import styles from './GroupFilter.createform.less';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
-
+const { TextArea } = Input;
 const fieldLabels = {
 id: '序号',
 filterLink: '滤波环节',
@@ -21,19 +22,57 @@ groupPage: '群组页面',
 
 
 
+const testValues={
+        
+      			title:'最新',
+			groupPageId:'GP000001',
+			filterLink:'groupPageManager/home/',
+
+        
+        };
+
+const imagesValues={
+        
+      
+        
+        };
+
+
+
+
 class GroupFilterCreateForm extends PureComponent {
+
+  handleChange = ({ fileList }) =>{
+    console.log("filelist", fileList);
+
+  }
+   componentDidMount() {
+        
+        
+ 
+           
+        const { getFieldDecorator,setFieldsValue } = this.props.form;               
+        setFieldsValue(testValues);
+        
+        
+  }
+
   render() {
     const { form, dispatch, submitting } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const validate = () => {
+    const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
-        if (!error) {
-          // submit the values
-          dispatch({
-            type: 'formtest/submitStepFormAdvancedForm',
-            payload: values,
-          });
+         if (error){
+          console.log("code go here", error);
+          return;
         }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addGroupFilter',
+         payload: {id:owner.id,type:'groupFilter', parameters: parameters},
+      }); 
       });
     };
     
@@ -95,17 +134,6 @@ class GroupFilterCreateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.filterLink}>
-                  {getFieldDecorator('filterLink', {
-                    rules: [{ required: true, message: '请输入滤波环节' }],
-                  })(
-                    <Input placeholder="请输入请输入滤波环节string" />
-                  )}
-                </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.title}>
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: '请输入标题' }],
@@ -121,7 +149,34 @@ class GroupFilterCreateForm extends PureComponent {
           </Form>  
         </Card>
         
+     
         
+ 
+        
+        <Card title="滤波环节" className={styles.card} bordered={false}>
+           <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+            
+           
+             <Col lg={24} md={24} sm={24}>
+                <Form.Item>
+                  {getFieldDecorator('filterLink', {
+                    rules: [{ required: true, message: '请输入滤波环节' }],
+                  })(
+                    <TextArea rows={4} placeholder="请输入请输入滤波环节" />
+                  )}
+                </Form.Item>
+              </Col>			
+			  </Row>    
+          </Form>  
+         
+        </Card>
+
+            
+        
+      
+      
+            
         
          
         
@@ -136,10 +191,10 @@ class GroupFilterCreateForm extends PureComponent {
             
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.groupPage}>
-                  {getFieldDecorator('groupPage', {
+                  {getFieldDecorator('groupPageId', {
                     rules: [{ required: true, message: '请输入群组页面' }],
                   })(
-                    <Input placeholder="请输入请输入群组页面group_page" />
+                    <Input placeholder="请输入请输入群组页面" />
                   )}
                 </Form.Item>
               </Col>			
@@ -152,12 +207,15 @@ class GroupFilterCreateForm extends PureComponent {
         </Card>
        
         
+     
+        
+        
         
         
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={validate} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
             提交
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>

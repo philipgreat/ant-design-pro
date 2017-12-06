@@ -44,7 +44,20 @@ const load=(targetObjectId,parameters)=>{
     });
 }
 
-const TaskReplyLikeService={view,load};
+
+const addTask=(targetObjectId,parameters)=>{
+    //var parametersExpr = joinParameters(parameters);
+    ///communityId/title/selectedTask/content/creatorId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/
+    const url = PREFIX+`taskReplyLikeManager/addTask/communityId/title/selectedTask/content/creatorId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/`;
+    const requestParameters={...parameters, tokensExpr:'none'};
+    return post({
+        url: url,
+		data: requestParameters
+    });
+}
+
+
+const TaskReplyLikeService={view,load,addTask};
 export default TaskReplyLikeService;
 
 

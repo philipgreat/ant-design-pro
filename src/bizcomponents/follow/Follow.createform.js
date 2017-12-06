@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
+
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import PictureEdit from '../../components/PictureEdit'
@@ -9,7 +10,7 @@ import styles from './Follow.createform.less';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
-
+const { TextArea } = Input;
 const fieldLabels = {
 id: '序号',
 user: '用户',
@@ -21,19 +22,56 @@ addingTime: '添加时间',
 
 
 
+const testValues={
+        
+      			followId:'CU000001',
+			userId:'CU000001',
+
+        
+        };
+
+const imagesValues={
+        
+      
+        
+        };
+
+
+
+
 class FollowCreateForm extends PureComponent {
+
+  handleChange = ({ fileList }) =>{
+    console.log("filelist", fileList);
+
+  }
+   componentDidMount() {
+        
+        
+ 
+           
+        const { getFieldDecorator,setFieldsValue } = this.props.form;               
+        setFieldsValue(testValues);
+        
+        
+  }
+
   render() {
     const { form, dispatch, submitting } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const validate = () => {
+    const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
-        if (!error) {
-          // submit the values
-          dispatch({
-            type: 'formtest/submitStepFormAdvancedForm',
-            payload: values,
-          });
+         if (error){
+          console.log("code go here", error);
+          return;
         }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addFollow',
+         payload: {id:owner.id,type:'follow', parameters: parameters},
+      }); 
       });
     };
     
@@ -110,7 +148,14 @@ class FollowCreateForm extends PureComponent {
           </Form>  
         </Card>
         
+     
         
+ 
+            
+        
+      
+      
+            
         
          
         
@@ -125,10 +170,10 @@ class FollowCreateForm extends PureComponent {
             
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.user}>
-                  {getFieldDecorator('user', {
+                  {getFieldDecorator('userId', {
                     rules: [{ required: true, message: '请输入用户' }],
                   })(
-                    <Input placeholder="请输入请输入用户community_user" />
+                    <Input placeholder="请输入请输入用户" />
                   )}
                 </Form.Item>
               </Col>			
@@ -141,12 +186,15 @@ class FollowCreateForm extends PureComponent {
         </Card>
        
         
+     
+        
+        
         
         
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={validate} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
             提交
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>

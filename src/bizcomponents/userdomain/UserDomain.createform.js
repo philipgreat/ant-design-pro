@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
+
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import PictureEdit from '../../components/PictureEdit'
@@ -9,7 +10,7 @@ import styles from './UserDomain.createform.less';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
-
+const { TextArea } = Input;
 const fieldLabels = {
 id: '序号',
 name: '名称',
@@ -19,19 +20,55 @@ name: '名称',
 
 
 
+const testValues={
+        
+      			name:'用户区域',
+
+        
+        };
+
+const imagesValues={
+        
+      
+        
+        };
+
+
+
+
 class UserDomainCreateForm extends PureComponent {
+
+  handleChange = ({ fileList }) =>{
+    console.log("filelist", fileList);
+
+  }
+   componentDidMount() {
+        
+        
+ 
+           
+        const { getFieldDecorator,setFieldsValue } = this.props.form;               
+        setFieldsValue(testValues);
+        
+        
+  }
+
   render() {
     const { form, dispatch, submitting } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const validate = () => {
+    const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
-        if (!error) {
-          // submit the values
-          dispatch({
-            type: 'formtest/submitStepFormAdvancedForm',
-            payload: values,
-          });
+         if (error){
+          console.log("code go here", error);
+          return;
         }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addUserDomain',
+         payload: {id:owner.id,type:'userDomain', parameters: parameters},
+      }); 
       });
     };
     
@@ -108,7 +145,14 @@ class UserDomainCreateForm extends PureComponent {
           </Form>  
         </Card>
         
+     
         
+ 
+            
+        
+      
+      
+            
         
          
         
@@ -116,12 +160,15 @@ class UserDomainCreateForm extends PureComponent {
         
                  
         
+     
+        
+        
         
         
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={validate} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
             提交
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>

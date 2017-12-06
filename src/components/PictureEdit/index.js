@@ -20,7 +20,7 @@ export default class PictureEdit extends React.Component {
 
   render() {
     const { previewVisible, previewImage, fileList } = this.state;
-    const {buttonTitle} = this.props;
+    const {buttonTitle, handleChange} = this.props;
     const uploadButton = (
       <div>
         <Icon type="plus" />

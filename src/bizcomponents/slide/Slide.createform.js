@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
+
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import PictureEdit from '../../components/PictureEdit'
@@ -9,7 +10,7 @@ import styles from './Slide.createform.less';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
-
+const { TextArea } = Input;
 const fieldLabels = {
 id: '序号',
 title: '标题',
@@ -22,19 +23,58 @@ homePage: '主页',
 
 
 
+const testValues={
+        
+      			title:'快来看看',
+			homePageId:'HP000001',
+			linkUrl:'taskPageManager/additionalBonusTask/',
+
+        
+        };
+
+const imagesValues={
+        
+      			imageUrl:'picture1.jpg',
+
+        
+        };
+
+
+
+
 class SlideCreateForm extends PureComponent {
+
+  handleChange = ({ fileList }) =>{
+    console.log("filelist", fileList);
+
+  }
+   componentDidMount() {
+        
+        
+ 
+           
+        const { getFieldDecorator,setFieldsValue } = this.props.form;               
+        setFieldsValue(testValues);
+        
+        
+  }
+
   render() {
     const { form, dispatch, submitting } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const validate = () => {
+    const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
-        if (!error) {
-          // submit the values
-          dispatch({
-            type: 'formtest/submitStepFormAdvancedForm',
-            payload: values,
-          });
+         if (error){
+          console.log("code go here", error);
+          return;
         }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addSlide',
+         payload: {id:owner.id,type:'slide', parameters: parameters},
+      }); 
       });
     };
     
@@ -106,23 +146,39 @@ class SlideCreateForm extends PureComponent {
               </Col>			
 			
 			
-             <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.linkUrl}>
-                  {getFieldDecorator('linkUrl', {
-                    rules: [{ required: true, message: '请输入链接网址' }],
-                  })(
-                    <Input placeholder="请输入请输入链接网址string" />
-                  )}
-                </Form.Item>
-              </Col>			
-			
-			
             
           </Row>    
           </Form>  
         </Card>
         
+     
         
+ 
+        
+        <Card title="链接网址" className={styles.card} bordered={false}>
+           <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+            
+           
+             <Col lg={24} md={24} sm={24}>
+                <Form.Item>
+                  {getFieldDecorator('linkUrl', {
+                    rules: [{ required: true, message: '请输入链接网址' }],
+                  })(
+                    <TextArea rows={4} placeholder="请输入请输入链接网址" />
+                  )}
+                </Form.Item>
+              </Col>			
+			  </Row>    
+          </Form>  
+         
+        </Card>
+
+            
+        
+      
+      
+            
         
          
         
@@ -132,7 +188,7 @@ class SlideCreateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"图像网址"}/> 
+                <PictureEdit buttonTitle={"图像网址"} handleChange={this.handleChange}/> 
               </Col>			
 			
 			
@@ -154,10 +210,10 @@ class SlideCreateForm extends PureComponent {
             
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.homePage}>
-                  {getFieldDecorator('homePage', {
+                  {getFieldDecorator('homePageId', {
                     rules: [{ required: true, message: '请输入主页' }],
                   })(
-                    <Input placeholder="请输入请输入主页home_page" />
+                    <Input placeholder="请输入请输入主页" />
                   )}
                 </Form.Item>
               </Col>			
@@ -170,12 +226,15 @@ class SlideCreateForm extends PureComponent {
         </Card>
        
         
+     
+        
+        
         
         
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={validate} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
             提交
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>

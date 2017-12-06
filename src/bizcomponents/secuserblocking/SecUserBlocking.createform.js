@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
+
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import PictureEdit from '../../components/PictureEdit'
@@ -9,7 +10,7 @@ import styles from './SecUserBlocking.createform.less';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
-
+const { TextArea } = Input;
 const fieldLabels = {
 id: '序号',
 who: '谁',
@@ -21,19 +22,56 @@ comments: '评论',
 
 
 
+const testValues={
+        
+      			who:'currentUser()',
+			comments:'这个用户多次发送违反社区的帖子，现在把他给屏蔽了',
+
+        
+        };
+
+const imagesValues={
+        
+      
+        
+        };
+
+
+
+
 class SecUserBlockingCreateForm extends PureComponent {
+
+  handleChange = ({ fileList }) =>{
+    console.log("filelist", fileList);
+
+  }
+   componentDidMount() {
+        
+        
+ 
+           
+        const { getFieldDecorator,setFieldsValue } = this.props.form;               
+        setFieldsValue(testValues);
+        
+        
+  }
+
   render() {
     const { form, dispatch, submitting } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const validate = () => {
+    const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
-        if (!error) {
-          // submit the values
-          dispatch({
-            type: 'formtest/submitStepFormAdvancedForm',
-            payload: values,
-          });
+         if (error){
+          console.log("code go here", error);
+          return;
         }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addSecUserBlocking',
+         payload: {id:owner.id,type:'secUserBlocking', parameters: parameters},
+      }); 
       });
     };
     
@@ -105,23 +143,39 @@ class SecUserBlockingCreateForm extends PureComponent {
               </Col>			
 			
 			
-             <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.comments}>
-                  {getFieldDecorator('comments', {
-                    rules: [{ required: true, message: '请输入评论' }],
-                  })(
-                    <Input placeholder="请输入请输入评论string" />
-                  )}
-                </Form.Item>
-              </Col>			
-			
-			
             
           </Row>    
           </Form>  
         </Card>
         
+     
         
+ 
+        
+        <Card title="评论" className={styles.card} bordered={false}>
+           <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+            
+           
+             <Col lg={24} md={24} sm={24}>
+                <Form.Item>
+                  {getFieldDecorator('comments', {
+                    rules: [{ required: true, message: '请输入评论' }],
+                  })(
+                    <TextArea rows={4} placeholder="请输入请输入评论" />
+                  )}
+                </Form.Item>
+              </Col>			
+			  </Row>    
+          </Form>  
+         
+        </Card>
+
+            
+        
+      
+      
+            
         
          
         
@@ -129,12 +183,15 @@ class SecUserBlockingCreateForm extends PureComponent {
         
                  
         
+     
+        
+        
         
         
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={validate} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
             提交
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>

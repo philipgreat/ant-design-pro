@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
+
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import PictureEdit from '../../components/PictureEdit'
@@ -9,7 +10,7 @@ import styles from './TaskAssigment.createform.less';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
-
+const { TextArea } = Input;
 const fieldLabels = {
 id: '序号',
 task: '任务',
@@ -22,19 +23,57 @@ comments: '评论',
 
 
 
+const testValues={
+        
+      			comments:'请立即帮助解决此问题,谢谢',
+			taskId:'T000001',
+			assigneeId:'CU000001',
+
+        
+        };
+
+const imagesValues={
+        
+      
+        
+        };
+
+
+
+
 class TaskAssigmentCreateForm extends PureComponent {
+
+  handleChange = ({ fileList }) =>{
+    console.log("filelist", fileList);
+
+  }
+   componentDidMount() {
+        
+        
+ 
+           
+        const { getFieldDecorator,setFieldsValue } = this.props.form;               
+        setFieldsValue(testValues);
+        
+        
+  }
+
   render() {
     const { form, dispatch, submitting } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const validate = () => {
+    const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
-        if (!error) {
-          // submit the values
-          dispatch({
-            type: 'formtest/submitStepFormAdvancedForm',
-            payload: values,
-          });
+         if (error){
+          console.log("code go here", error);
+          return;
         }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addTaskAssigment',
+         payload: {id:owner.id,type:'taskAssigment', parameters: parameters},
+      }); 
       });
     };
     
@@ -111,7 +150,14 @@ class TaskAssigmentCreateForm extends PureComponent {
           </Form>  
         </Card>
         
+     
         
+ 
+            
+        
+      
+      
+            
         
          
         
@@ -126,10 +172,10 @@ class TaskAssigmentCreateForm extends PureComponent {
             
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.task}>
-                  {getFieldDecorator('task', {
+                  {getFieldDecorator('taskId', {
                     rules: [{ required: true, message: '请输入任务' }],
                   })(
-                    <Input placeholder="请输入请输入任务task" />
+                    <Input placeholder="请输入请输入任务" />
                   )}
                 </Form.Item>
               </Col>			
@@ -137,10 +183,10 @@ class TaskAssigmentCreateForm extends PureComponent {
 			
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.assignee}>
-                  {getFieldDecorator('assignee', {
+                  {getFieldDecorator('assigneeId', {
                     rules: [{ required: true, message: '请输入受让人' }],
                   })(
-                    <Input placeholder="请输入请输入受让人community_user" />
+                    <Input placeholder="请输入请输入受让人" />
                   )}
                 </Form.Item>
               </Col>			
@@ -153,12 +199,15 @@ class TaskAssigmentCreateForm extends PureComponent {
         </Card>
        
         
+     
+        
+        
         
         
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={validate} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
             提交
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>

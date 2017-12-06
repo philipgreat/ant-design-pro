@@ -144,7 +144,7 @@ getPageTitle() {
           className={styles.sider}
         >
           <div className={styles.logo}>
-            <img src="https://gw.alipayobjects.com/zos/rmsportal/iwWyPinUoseUxIAeElSx.svg" alt="logo" onClick={this.toggle}/>          
+            <img src="/scm.svg" alt="logo" onClick={this.toggle}/>          
             <Link to="/home"> <h1>用户消息</h1></Link>
           </div>
           

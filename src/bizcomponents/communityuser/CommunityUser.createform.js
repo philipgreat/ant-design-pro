@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
+
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import PictureEdit from '../../components/PictureEdit'
@@ -9,7 +10,7 @@ import styles from './CommunityUser.createform.less';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
-
+const { TextArea } = Input;
 const fieldLabels = {
 id: '序号',
 mobile: '手机',
@@ -31,19 +32,67 @@ community: '社区',
 
 
 
+const testValues={
+        
+      			mobile:'13677778888',
+			nickName:'喀拉',
+			gender:'男',
+			userType:'患者',
+			birthday:'2037-03-03',
+			experiencePoint:'8504',
+			bonusPoint:'812130',
+			city:'北京',
+			status:'迎接更光明的明天',
+			hideInfo:'1',
+			administrator:'1',
+			communityId:'C000001',
+
+        
+        };
+
+const imagesValues={
+        
+      			avatar:'avatar.jpg',
+
+        
+        };
+
+
+
+
 class CommunityUserCreateForm extends PureComponent {
+
+  handleChange = ({ fileList }) =>{
+    console.log("filelist", fileList);
+
+  }
+   componentDidMount() {
+        
+        
+ 
+           
+        const { getFieldDecorator,setFieldsValue } = this.props.form;               
+        setFieldsValue(testValues);
+        
+        
+  }
+
   render() {
     const { form, dispatch, submitting } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const validate = () => {
+    const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
-        if (!error) {
-          // submit the values
-          dispatch({
-            type: 'formtest/submitStepFormAdvancedForm',
-            payload: values,
-          });
+         if (error){
+          console.log("code go here", error);
+          return;
         }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addCommunityUser',
+         payload: {id:owner.id,type:'communityUser', parameters: parameters},
+      }); 
       });
     };
     
@@ -230,7 +279,14 @@ class CommunityUserCreateForm extends PureComponent {
           </Form>  
         </Card>
         
+     
         
+ 
+            
+        
+      
+      
+            
         
          
         
@@ -240,7 +296,7 @@ class CommunityUserCreateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"头像"}/> 
+                <PictureEdit buttonTitle={"头像"} handleChange={this.handleChange}/> 
               </Col>			
 			
 			
@@ -262,10 +318,10 @@ class CommunityUserCreateForm extends PureComponent {
             
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.community}>
-                  {getFieldDecorator('community', {
+                  {getFieldDecorator('communityId', {
                     rules: [{ required: true, message: '请输入社区' }],
                   })(
-                    <Input placeholder="请输入请输入社区community" />
+                    <Input placeholder="请输入请输入社区" />
                   )}
                 </Form.Item>
               </Col>			
@@ -278,12 +334,15 @@ class CommunityUserCreateForm extends PureComponent {
         </Card>
        
         
+     
+        
+        
         
         
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={validate} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
             提交
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
