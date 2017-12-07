@@ -48,7 +48,8 @@ const testValues={
         
       			title:'听力损失儿童回归的优点',
 			selectedTask:'是',
-			creatorBonus:'95',
+			videoUrl:'https://player.youku.com/embed/XMzE0ODQ0NTA2NA',
+			creatorBonus:'86',
 			additionalBonus:'73',
 			likeByCurrentUser:'0',
 			repliedByCurrentUser:'0',
@@ -57,7 +58,6 @@ const testValues={
 			homePageId:'HP000001',
 			taskPageId:'TP000001',
 			content:'多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   ',
-			videoUrl:'https://player.youku.com/embed/XMzE0ODQ0NTA2NA',
 
         
         };
@@ -111,6 +111,22 @@ class TaskCreateForm extends PureComponent {
       	dispatch({
          type: owner.type+'/addTask',
          payload: {id:owner.id,type:'task', parameters: parameters},
+      }); 
+      });
+    };
+    
+    const submitCreateFormAndContinue = () => {
+      validateFieldsAndScroll((error, values) => {
+         if (error){
+          console.log("code go here", error);
+          return;
+        }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addTask',
+         payload: {id:owner.id,type:'task', parameters: parameters, continueNext:true},
       }); 
       });
     };
@@ -195,6 +211,17 @@ class TaskCreateForm extends PureComponent {
 			
 			
              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.videoUrl}>
+                  {getFieldDecorator('videoUrl', {
+                    rules: [{ required: true, message: '请输入视频网址' }],
+                  })(
+                    <Input placeholder="请输入请输入视频网址string_url" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.creatorBonus}>
                   {getFieldDecorator('creatorBonus', {
                     rules: [{ required: true, message: '请输入发布人的奖金' }],
@@ -258,26 +285,6 @@ class TaskCreateForm extends PureComponent {
                     rules: [{ required: true, message: '请输入内容' }],
                   })(
                     <TextArea rows={4} placeholder="请输入请输入内容" />
-                  )}
-                </Form.Item>
-              </Col>			
-			  </Row>    
-          </Form>  
-         
-        </Card>
-
-        
-        <Card title="视频网址" className={styles.card} bordered={false}>
-           <Form layout="vertical" hideRequiredMark>
-            <Row gutter={16}>
-            
-           
-             <Col lg={24} md={24} sm={24}>
-                <Form.Item>
-                  {getFieldDecorator('videoUrl', {
-                    rules: [{ required: true, message: '请输入视频网址' }],
-                  })(
-                    <TextArea rows={4} placeholder="请输入请输入视频网址" />
                   )}
                 </Form.Item>
               </Col>			
@@ -410,17 +417,19 @@ class TaskCreateForm extends PureComponent {
         
         
         
-        
-        
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting}>
-            提交
+          提交
+        </Button>
+        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交并建下一个
           </Button>
-          <Button type="danger" onClick={goback} loading={submitting}>
+        <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
+        
       </PageHeaderLayout>
     );
   }

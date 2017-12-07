@@ -64,24 +64,61 @@ export default {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/task/'+id+'/list/'+type+'List'));
      },
-     
-     *addTask({ payload }, { call, put }) {
-    	const {id,type,parameters}=payload;
+    
+    *addTaskAssigment({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
     	console.log("get form parameters", parameters);
     	
-    	const data = yield call(TaskService.addTask,payload.id,payload.parameters);
+    	const data = yield call(TaskService.addTaskAssigment,payload.id,payload.parameters);
       
       	const newPlayload={...payload,...data};
       
-      	console.log("this is the data id: ", data.id)
+      	//console.log("this is the data id: ", data.id)
       	yield put({type:"updateState",payload:newPlayload});
-    
-    	
-    	
-    	//yield put(routerRedux.push('/task/'+id+'/list/'+type+'List'));
+        if(continueNext){
+          //yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/task/'+id+'/list/'+type+'List'));
      },
-     
-     
+
+
+    *addTaskLike({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
+    	console.log("get form parameters", parameters);
+    	
+    	const data = yield call(TaskService.addTaskLike,payload.id,payload.parameters);
+      
+      	const newPlayload={...payload,...data};
+      
+      	//console.log("this is the data id: ", data.id)
+      	yield put({type:"updateState",payload:newPlayload});
+        if(continueNext){
+          //yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/task/'+id+'/list/'+type+'List'));
+     },
+
+
+    *addTaskReply({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
+    	console.log("get form parameters", parameters);
+    	
+    	const data = yield call(TaskService.addTaskReply,payload.id,payload.parameters);
+      
+      	const newPlayload={...payload,...data};
+      
+      	//console.log("this is the data id: ", data.id)
+      	yield put({type:"updateState",payload:newPlayload});
+        if(continueNext){
+          //yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/task/'+id+'/list/'+type+'List'));
+     },
+
+
     
     
   },

@@ -64,9 +64,99 @@ export default {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/community/'+id+'/list/'+type+'List'));
      },
-     
-     *addTask({ payload }, { call, put }) {
-    	const {id,type,parameters}=payload;
+    
+    *addInvitationCode({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
+    	console.log("get form parameters", parameters);
+    	
+    	const data = yield call(CommunityService.addInvitationCode,payload.id,payload.parameters);
+      
+      	const newPlayload={...payload,...data};
+      
+      	//console.log("this is the data id: ", data.id)
+      	yield put({type:"updateState",payload:newPlayload});
+        if(continueNext){
+          //yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/community/'+id+'/list/'+type+'List'));
+     },
+
+
+    *addHomePage({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
+    	console.log("get form parameters", parameters);
+    	
+    	const data = yield call(CommunityService.addHomePage,payload.id,payload.parameters);
+      
+      	const newPlayload={...payload,...data};
+      
+      	//console.log("this is the data id: ", data.id)
+      	yield put({type:"updateState",payload:newPlayload});
+        if(continueNext){
+          //yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/community/'+id+'/list/'+type+'List'));
+     },
+
+
+    *addEncyclopediaItem({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
+    	console.log("get form parameters", parameters);
+    	
+    	const data = yield call(CommunityService.addEncyclopediaItem,payload.id,payload.parameters);
+      
+      	const newPlayload={...payload,...data};
+      
+      	//console.log("this is the data id: ", data.id)
+      	yield put({type:"updateState",payload:newPlayload});
+        if(continueNext){
+          //yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/community/'+id+'/list/'+type+'List'));
+     },
+
+
+    *addTaskPage({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
+    	console.log("get form parameters", parameters);
+    	
+    	const data = yield call(CommunityService.addTaskPage,payload.id,payload.parameters);
+      
+      	const newPlayload={...payload,...data};
+      
+      	//console.log("this is the data id: ", data.id)
+      	yield put({type:"updateState",payload:newPlayload});
+        if(continueNext){
+          //yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/community/'+id+'/list/'+type+'List'));
+     },
+
+
+    *addCommunityUser({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
+    	console.log("get form parameters", parameters);
+    	
+    	const data = yield call(CommunityService.addCommunityUser,payload.id,payload.parameters);
+      
+      	const newPlayload={...payload,...data};
+      
+      	//console.log("this is the data id: ", data.id)
+      	yield put({type:"updateState",payload:newPlayload});
+        if(continueNext){
+          //yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/community/'+id+'/list/'+type+'List'));
+     },
+
+
+    *addTask({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
     	console.log("get form parameters", parameters);
     	
     	const data = yield call(CommunityService.addTask,payload.id,payload.parameters);
@@ -75,13 +165,50 @@ export default {
       
       	//console.log("this is the data id: ", data.id)
       	yield put({type:"updateState",payload:newPlayload});
-    
-    	
-    	
-    	//yield put(routerRedux.push('/community/'+id+'/list/'+type+'List'));
+        if(continueNext){
+          //yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/community/'+id+'/list/'+type+'List'));
      },
-     
-     
+
+
+    *addGroupPage({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
+    	console.log("get form parameters", parameters);
+    	
+    	const data = yield call(CommunityService.addGroupPage,payload.id,payload.parameters);
+      
+      	const newPlayload={...payload,...data};
+      
+      	//console.log("this is the data id: ", data.id)
+      	yield put({type:"updateState",payload:newPlayload});
+        if(continueNext){
+          //yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/community/'+id+'/list/'+type+'List'));
+     },
+
+
+    *addThread({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
+    	console.log("get form parameters", parameters);
+    	
+    	const data = yield call(CommunityService.addThread,payload.id,payload.parameters);
+      
+      	const newPlayload={...payload,...data};
+      
+      	//console.log("this is the data id: ", data.id)
+      	yield put({type:"updateState",payload:newPlayload});
+        if(continueNext){
+          //yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/community/'+id+'/list/'+type+'List'));
+     },
+
+
     
     
   },

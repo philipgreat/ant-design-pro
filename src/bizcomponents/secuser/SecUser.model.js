@@ -64,24 +64,43 @@ export default {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/secUser/'+id+'/list/'+type+'List'));
      },
-     
-     *addTask({ payload }, { call, put }) {
-    	const {id,type,parameters}=payload;
+    
+    *addUserApp({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
     	console.log("get form parameters", parameters);
     	
-    	const data = yield call(SecUserService.addTask,payload.id,payload.parameters);
+    	const data = yield call(SecUserService.addUserApp,payload.id,payload.parameters);
       
       	const newPlayload={...payload,...data};
       
-      	console.log("this is the data id: ", data.id)
+      	//console.log("this is the data id: ", data.id)
       	yield put({type:"updateState",payload:newPlayload});
-    
-    	
-    	
-    	//yield put(routerRedux.push('/secUser/'+id+'/list/'+type+'List'));
+        if(continueNext){
+          //yield put(routerRedux.push('/secUser/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/secUser/'+id+'/list/'+type+'List'));
      },
-     
-     
+
+
+    *addLoginHistory({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
+    	console.log("get form parameters", parameters);
+    	
+    	const data = yield call(SecUserService.addLoginHistory,payload.id,payload.parameters);
+      
+      	const newPlayload={...payload,...data};
+      
+      	//console.log("this is the data id: ", data.id)
+      	yield put({type:"updateState",payload:newPlayload});
+        if(continueNext){
+          //yield put(routerRedux.push('/secUser/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/secUser/'+id+'/list/'+type+'List'));
+     },
+
+
     
     
   },

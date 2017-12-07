@@ -29,8 +29,8 @@ const testValues={
       			name:'急待解决',
 			messageCount:'12',
 			filterKey:'URGENT_MESSAGE',
-			userId:'CU000001',
 			linkUrl:'communityUserManager/urgentMessages/',
+			userId:'CU000001',
 
         
         };
@@ -76,6 +76,22 @@ class MessageFilterCreateForm extends PureComponent {
       	dispatch({
          type: owner.type+'/addMessageFilter',
          payload: {id:owner.id,type:'messageFilter', parameters: parameters},
+      }); 
+      });
+    };
+    
+    const submitCreateFormAndContinue = () => {
+      validateFieldsAndScroll((error, values) => {
+         if (error){
+          console.log("code go here", error);
+          return;
+        }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addMessageFilter',
+         payload: {id:owner.id,type:'messageFilter', parameters: parameters, continueNext:true},
       }); 
       });
     };
@@ -170,6 +186,17 @@ class MessageFilterCreateForm extends PureComponent {
               </Col>			
 			
 			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.linkUrl}>
+                  {getFieldDecorator('linkUrl', {
+                    rules: [{ required: true, message: '请输入链接网址' }],
+                  })(
+                    <Input placeholder="请输入请输入链接网址string" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
             
           </Row>    
           </Form>  
@@ -178,26 +205,6 @@ class MessageFilterCreateForm extends PureComponent {
      
         
  
-        
-        <Card title="链接网址" className={styles.card} bordered={false}>
-           <Form layout="vertical" hideRequiredMark>
-            <Row gutter={16}>
-            
-           
-             <Col lg={24} md={24} sm={24}>
-                <Form.Item>
-                  {getFieldDecorator('linkUrl', {
-                    rules: [{ required: true, message: '请输入链接网址' }],
-                  })(
-                    <TextArea rows={4} placeholder="请输入请输入链接网址" />
-                  )}
-                </Form.Item>
-              </Col>			
-			  </Row>    
-          </Form>  
-         
-        </Card>
-
             
         
       
@@ -237,17 +244,19 @@ class MessageFilterCreateForm extends PureComponent {
         
         
         
-        
-        
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting}>
-            提交
+          提交
+        </Button>
+        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交并建下一个
           </Button>
-          <Button type="danger" onClick={goback} loading={submitting}>
+        <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
+        
       </PageHeaderLayout>
     );
   }

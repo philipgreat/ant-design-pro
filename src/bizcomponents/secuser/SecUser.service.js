@@ -24,15 +24,28 @@ const view=(targetObjectId)=>{
 }
 
 
+
 const joinParameters=(parameters)=>{
     var obj = parameters;//{value1: 'prop1', value2: 'prop2', value3: 'prop3'};
     var arr = [];
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
-            arr.push(key + '=' + obj[key]);
+            arr.push(key + '=' + encodeURIComponent(obj[key]));
         }
     };
     var result = arr.join(';');
+    return result;
+}
+
+const joinPostParameters=(parameters)=>{
+    var obj = parameters;//{value1: 'prop1', value2: 'prop2', value3: 'prop3'};
+    var arr = [];
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            arr.push(key + '=' + encodeURIComponent(obj[key]));
+        }
+    };
+    var result = arr.join('&');
     return result;
 }
 
@@ -45,19 +58,42 @@ const load=(targetObjectId,parameters)=>{
 }
 
 
-const addTask=(targetObjectId,parameters)=>{
-    //var parametersExpr = joinParameters(parameters);
-    ///communityId/title/selectedTask/content/creatorId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/
-    const url = PREFIX+`secUserManager/addTask/communityId/title/selectedTask/content/creatorId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/`;
+
+const addUserApp=(targetObjectId,parameters)=>{
+    const url = PREFIX+"secUserManager/addUserApp/secUserId/title/appIcon/fullAccess/permission/objectType/objectId/location/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
         url: url,
-		data: requestParameters
+        data: joinPostParameters(requestParameters),
+        headers: headers
     });
 }
 
 
-const SecUserService={view,load,addTask};
+
+
+
+
+const addLoginHistory=(targetObjectId,parameters)=>{
+    const url = PREFIX+"secUserManager/addLoginHistory/secUserId/fromIp/description/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
+
+
+
+
+
+const SecUserService={view,load,addUserApp,addLoginHistory};
 export default SecUserService;
 
 

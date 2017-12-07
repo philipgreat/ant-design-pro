@@ -26,7 +26,7 @@ user: '用户',
 const testValues={
         
       			name:'浏览求助',
-			points:'95',
+			points:'89',
 			userId:'CU000001',
 
         
@@ -73,6 +73,22 @@ class ExperiencePointCreateForm extends PureComponent {
       	dispatch({
          type: owner.type+'/addExperiencePoint',
          payload: {id:owner.id,type:'experiencePoint', parameters: parameters},
+      }); 
+      });
+    };
+    
+    const submitCreateFormAndContinue = () => {
+      validateFieldsAndScroll((error, values) => {
+         if (error){
+          console.log("code go here", error);
+          return;
+        }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addExperiencePoint',
+         payload: {id:owner.id,type:'experiencePoint', parameters: parameters, continueNext:true},
       }); 
       });
     };
@@ -203,17 +219,19 @@ class ExperiencePointCreateForm extends PureComponent {
         
         
         
-        
-        
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting}>
-            提交
+          提交
+        </Button>
+        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交并建下一个
           </Button>
-          <Button type="danger" onClick={goback} loading={submitting}>
+        <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
+        
       </PageHeaderLayout>
     );
   }

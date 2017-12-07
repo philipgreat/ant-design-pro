@@ -24,15 +24,28 @@ const view=(targetObjectId)=>{
 }
 
 
+
 const joinParameters=(parameters)=>{
     var obj = parameters;//{value1: 'prop1', value2: 'prop2', value3: 'prop3'};
     var arr = [];
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
-            arr.push(key + '=' + obj[key]);
+            arr.push(key + '=' + encodeURIComponent(obj[key]));
         }
     };
     var result = arr.join(';');
+    return result;
+}
+
+const joinPostParameters=(parameters)=>{
+    var obj = parameters;//{value1: 'prop1', value2: 'prop2', value3: 'prop3'};
+    var arr = [];
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            arr.push(key + '=' + encodeURIComponent(obj[key]));
+        }
+    };
+    var result = arr.join('&');
     return result;
 }
 
@@ -45,19 +58,8 @@ const load=(targetObjectId,parameters)=>{
 }
 
 
-const addTask=(targetObjectId,parameters)=>{
-    //var parametersExpr = joinParameters(parameters);
-    ///communityId/title/selectedTask/content/creatorId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/
-    const url = PREFIX+`threadReplyLikeManager/addTask/communityId/title/selectedTask/content/creatorId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/`;
-    const requestParameters={...parameters, tokensExpr:'none'};
-    return post({
-        url: url,
-		data: requestParameters
-    });
-}
 
-
-const ThreadReplyLikeService={view,load,addTask};
+const ThreadReplyLikeService={view,load,};
 export default ThreadReplyLikeService;
 
 

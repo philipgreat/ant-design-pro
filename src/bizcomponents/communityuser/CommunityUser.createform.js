@@ -38,9 +38,9 @@ const testValues={
 			nickName:'喀拉',
 			gender:'男',
 			userType:'患者',
-			birthday:'2037-03-03',
-			experiencePoint:'8504',
-			bonusPoint:'812130',
+			birthday:'2039-04-06',
+			experiencePoint:'7738',
+			bonusPoint:'818872',
 			city:'北京',
 			status:'迎接更光明的明天',
 			hideInfo:'1',
@@ -92,6 +92,22 @@ class CommunityUserCreateForm extends PureComponent {
       	dispatch({
          type: owner.type+'/addCommunityUser',
          payload: {id:owner.id,type:'communityUser', parameters: parameters},
+      }); 
+      });
+    };
+    
+    const submitCreateFormAndContinue = () => {
+      validateFieldsAndScroll((error, values) => {
+         if (error){
+          console.log("code go here", error);
+          return;
+        }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addCommunityUser',
+         payload: {id:owner.id,type:'communityUser', parameters: parameters, continueNext:true},
       }); 
       });
     };
@@ -338,17 +354,19 @@ class CommunityUserCreateForm extends PureComponent {
         
         
         
-        
-        
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting}>
-            提交
+          提交
+        </Button>
+        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交并建下一个
           </Button>
-          <Button type="danger" onClick={goback} loading={submitting}>
+        <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
+        
       </PageHeaderLayout>
     );
   }

@@ -54,12 +54,13 @@ const testValues={
         
       			title:'听力损失儿童回归的优点',
 			displayOrder:'0',
-			eventTime:'2034-09-12 17:14:38',
-			registrationStopTime:'2035-12-19 13:05:58',
+			eventTime:'2034-07-02 20:38:27',
+			registrationStopTime:'2038-07-02 14:07:07',
 			eventLocation:'奥克斯广场阳光咖啡',
 			city:'成都',
 			communityGroup:'最新',
 			threadType:'TOPIC',
+			videoUrl:'https://player.youku.com/embed/XMzE0ODQ0NTA2NA',
 			likeByCurrentUser:'0',
 			repliedByCurrentUser:'0',
 			registeredByCurrentUser:'0',
@@ -67,7 +68,6 @@ const testValues={
 			creatorId:'CU000001',
 			homePageId:'HP000001',
 			groupPageId:'GP000001',
-			videoUrl:'https://player.youku.com/embed/XMzE0ODQ0NTA2NA',
 			content:'多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   ',
 
         
@@ -122,6 +122,22 @@ class ThreadCreateForm extends PureComponent {
       	dispatch({
          type: owner.type+'/addThread',
          payload: {id:owner.id,type:'thread', parameters: parameters},
+      }); 
+      });
+    };
+    
+    const submitCreateFormAndContinue = () => {
+      validateFieldsAndScroll((error, values) => {
+         if (error){
+          console.log("code go here", error);
+          return;
+        }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addThread',
+         payload: {id:owner.id,type:'thread', parameters: parameters, continueNext:true},
       }); 
       });
     };
@@ -272,6 +288,17 @@ class ThreadCreateForm extends PureComponent {
 			
 			
              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.videoUrl}>
+                  {getFieldDecorator('videoUrl', {
+                    rules: [{ required: true, message: '请输入视频网址' }],
+                  })(
+                    <Input placeholder="请输入请输入视频网址string_url" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.likeByCurrentUser}>
                   {getFieldDecorator('likeByCurrentUser', {
                     rules: [{ required: true, message: '请输入当前用户已点赞' }],
@@ -312,26 +339,6 @@ class ThreadCreateForm extends PureComponent {
      
         
  
-        
-        <Card title="视频网址" className={styles.card} bordered={false}>
-           <Form layout="vertical" hideRequiredMark>
-            <Row gutter={16}>
-            
-           
-             <Col lg={24} md={24} sm={24}>
-                <Form.Item>
-                  {getFieldDecorator('videoUrl', {
-                    rules: [{ required: true, message: '请输入视频网址' }],
-                  })(
-                    <TextArea rows={4} placeholder="请输入请输入视频网址" />
-                  )}
-                </Form.Item>
-              </Col>			
-			  </Row>    
-          </Form>  
-         
-        </Card>
-
         
         <Card title="内容" className={styles.card} bordered={false}>
            <Form layout="vertical" hideRequiredMark>
@@ -476,17 +483,19 @@ class ThreadCreateForm extends PureComponent {
         
         
         
-        
-        
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting}>
-            提交
+          提交
+        </Button>
+        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交并建下一个
           </Button>
-          <Button type="danger" onClick={goback} loading={submitting}>
+        <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
+        
       </PageHeaderLayout>
     );
   }

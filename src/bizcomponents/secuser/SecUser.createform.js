@@ -36,8 +36,8 @@ const testValues={
 			email:'suddy_chang@163.com',
 			pwd:'C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95',
 			verificationCode:'9981727',
-			verificationCodeExpire:'2037-04-06 20:44:54',
-			lastLoginTime:'2038-01-11 21:00:04',
+			verificationCodeExpire:'2038-11-08 01:17:24',
+			lastLoginTime:'2038-03-12 20:46:56',
 			domainId:'UD000001',
 
         
@@ -84,6 +84,22 @@ class SecUserCreateForm extends PureComponent {
       	dispatch({
          type: owner.type+'/addSecUser',
          payload: {id:owner.id,type:'secUser', parameters: parameters},
+      }); 
+      });
+    };
+    
+    const submitCreateFormAndContinue = () => {
+      validateFieldsAndScroll((error, values) => {
+         if (error){
+          console.log("code go here", error);
+          return;
+        }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addSecUser',
+         payload: {id:owner.id,type:'secUser', parameters: parameters, continueNext:true},
       }); 
       });
     };
@@ -269,17 +285,19 @@ class SecUserCreateForm extends PureComponent {
         
         
         
-        
-        
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting}>
-            提交
+          提交
+        </Button>
+        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交并建下一个
           </Button>
-          <Button type="danger" onClick={goback} loading={submitting}>
+        <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
+        
       </PageHeaderLayout>
     );
   }

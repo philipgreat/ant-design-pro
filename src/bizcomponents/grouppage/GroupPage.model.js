@@ -64,24 +64,43 @@ export default {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'List'));
      },
-     
-     *addTask({ payload }, { call, put }) {
-    	const {id,type,parameters}=payload;
+    
+    *addGroupFilter({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
     	console.log("get form parameters", parameters);
     	
-    	const data = yield call(GroupPageService.addTask,payload.id,payload.parameters);
+    	const data = yield call(GroupPageService.addGroupFilter,payload.id,payload.parameters);
       
       	const newPlayload={...payload,...data};
       
-      	console.log("this is the data id: ", data.id)
+      	//console.log("this is the data id: ", data.id)
       	yield put({type:"updateState",payload:newPlayload});
-    
-    	
-    	
-    	//yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'List'));
+        if(continueNext){
+          //yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'List'));
      },
-     
-     
+
+
+    *addThread({ payload }, { call, put }) {
+    	const {id,type,parameters,continueNext}=payload;
+    	console.log("get form parameters", parameters);
+    	
+    	const data = yield call(GroupPageService.addThread,payload.id,payload.parameters);
+      
+      	const newPlayload={...payload,...data};
+      
+      	//console.log("this is the data id: ", data.id)
+      	yield put({type:"updateState",payload:newPlayload});
+        if(continueNext){
+          //yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
+          return;
+        }
+      	yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'List'));
+     },
+
+
     
     
   },

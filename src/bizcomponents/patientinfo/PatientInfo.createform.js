@@ -33,11 +33,11 @@ const testValues={
       			name:'刘利',
 			nickName:'喀拉',
 			gender:'男',
-			birthday:'2036-10-23',
+			birthday:'2037-12-22',
 			wearDeviceType:'新发现',
-			wearStartTime:'2033-10-08',
+			wearStartTime:'2033-07-16',
 			recoverPlan:'幼儿龄段（0-3岁）',
-			recoverStartTime:'2031-12-04',
+			recoverStartTime:'2030-09-17',
 			userId:'CU000001',
 
         
@@ -84,6 +84,22 @@ class PatientInfoCreateForm extends PureComponent {
       	dispatch({
          type: owner.type+'/addPatientInfo',
          payload: {id:owner.id,type:'patientInfo', parameters: parameters},
+      }); 
+      });
+    };
+    
+    const submitCreateFormAndContinue = () => {
+      validateFieldsAndScroll((error, values) => {
+         if (error){
+          console.log("code go here", error);
+          return;
+        }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addPatientInfo',
+         payload: {id:owner.id,type:'patientInfo', parameters: parameters, continueNext:true},
       }); 
       });
     };
@@ -280,17 +296,19 @@ class PatientInfoCreateForm extends PureComponent {
         
         
         
-        
-        
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting}>
-            提交
+          提交
+        </Button>
+        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交并建下一个
           </Button>
-          <Button type="danger" onClick={goback} loading={submitting}>
+        <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
+        
       </PageHeaderLayout>
     );
   }

@@ -64,24 +64,7 @@ export default {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/slide/'+id+'/list/'+type+'List'));
      },
-     
-     *addTask({ payload }, { call, put }) {
-    	const {id,type,parameters}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(SlideService.addTask,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
     
-    	
-    	
-    	//yield put(routerRedux.push('/slide/'+id+'/list/'+type+'List'));
-     },
-     
-     
     
     
   },

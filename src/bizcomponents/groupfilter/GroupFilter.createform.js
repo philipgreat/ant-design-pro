@@ -24,9 +24,9 @@ groupPage: '群组页面',
 
 const testValues={
         
-      			title:'最新',
+      			filterLink:'groupPageManager/home/',
+			title:'最新',
 			groupPageId:'GP000001',
-			filterLink:'groupPageManager/home/',
 
         
         };
@@ -72,6 +72,22 @@ class GroupFilterCreateForm extends PureComponent {
       	dispatch({
          type: owner.type+'/addGroupFilter',
          payload: {id:owner.id,type:'groupFilter', parameters: parameters},
+      }); 
+      });
+    };
+    
+    const submitCreateFormAndContinue = () => {
+      validateFieldsAndScroll((error, values) => {
+         if (error){
+          console.log("code go here", error);
+          return;
+        }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addGroupFilter',
+         payload: {id:owner.id,type:'groupFilter', parameters: parameters, continueNext:true},
       }); 
       });
     };
@@ -134,6 +150,17 @@ class GroupFilterCreateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.filterLink}>
+                  {getFieldDecorator('filterLink', {
+                    rules: [{ required: true, message: '请输入滤波环节' }],
+                  })(
+                    <Input placeholder="请输入请输入滤波环节string" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.title}>
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: '请输入标题' }],
@@ -152,26 +179,6 @@ class GroupFilterCreateForm extends PureComponent {
      
         
  
-        
-        <Card title="滤波环节" className={styles.card} bordered={false}>
-           <Form layout="vertical" hideRequiredMark>
-            <Row gutter={16}>
-            
-           
-             <Col lg={24} md={24} sm={24}>
-                <Form.Item>
-                  {getFieldDecorator('filterLink', {
-                    rules: [{ required: true, message: '请输入滤波环节' }],
-                  })(
-                    <TextArea rows={4} placeholder="请输入请输入滤波环节" />
-                  )}
-                </Form.Item>
-              </Col>			
-			  </Row>    
-          </Form>  
-         
-        </Card>
-
             
         
       
@@ -211,17 +218,19 @@ class GroupFilterCreateForm extends PureComponent {
         
         
         
-        
-        
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting}>
-            提交
+          提交
+        </Button>
+        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交并建下一个
           </Button>
-          <Button type="danger" onClick={goback} loading={submitting}>
+        <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
+        
       </PageHeaderLayout>
     );
   }

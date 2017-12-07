@@ -27,10 +27,10 @@ homePage: '主页',
 const testValues={
         
       			name:'最新求助',
-			taskPageId:'TP000001',
-			homePageId:'HP000001',
 			filterKey:'LATEST_TASK',
 			linkUrl:'taskPageManager/latestTask/',
+			taskPageId:'TP000001',
+			homePageId:'HP000001',
 
         
         };
@@ -76,6 +76,22 @@ class TaskFilterCreateForm extends PureComponent {
       	dispatch({
          type: owner.type+'/addTaskFilter',
          payload: {id:owner.id,type:'taskFilter', parameters: parameters},
+      }); 
+      });
+    };
+    
+    const submitCreateFormAndContinue = () => {
+      validateFieldsAndScroll((error, values) => {
+         if (error){
+          console.log("code go here", error);
+          return;
+        }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addTaskFilter',
+         payload: {id:owner.id,type:'taskFilter', parameters: parameters, continueNext:true},
       }); 
       });
     };
@@ -148,6 +164,28 @@ class TaskFilterCreateForm extends PureComponent {
               </Col>			
 			
 			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.filterKey}>
+                  {getFieldDecorator('filterKey', {
+                    rules: [{ required: true, message: '请输入过滤器健值' }],
+                  })(
+                    <Input placeholder="请输入请输入过滤器健值string" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.linkUrl}>
+                  {getFieldDecorator('linkUrl', {
+                    rules: [{ required: true, message: '请输入链接网址' }],
+                  })(
+                    <Input placeholder="请输入请输入链接网址string" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
             
           </Row>    
           </Form>  
@@ -156,46 +194,6 @@ class TaskFilterCreateForm extends PureComponent {
      
         
  
-        
-        <Card title="过滤器健值" className={styles.card} bordered={false}>
-           <Form layout="vertical" hideRequiredMark>
-            <Row gutter={16}>
-            
-           
-             <Col lg={24} md={24} sm={24}>
-                <Form.Item>
-                  {getFieldDecorator('filterKey', {
-                    rules: [{ required: true, message: '请输入过滤器健值' }],
-                  })(
-                    <TextArea rows={4} placeholder="请输入请输入过滤器健值" />
-                  )}
-                </Form.Item>
-              </Col>			
-			  </Row>    
-          </Form>  
-         
-        </Card>
-
-        
-        <Card title="链接网址" className={styles.card} bordered={false}>
-           <Form layout="vertical" hideRequiredMark>
-            <Row gutter={16}>
-            
-           
-             <Col lg={24} md={24} sm={24}>
-                <Form.Item>
-                  {getFieldDecorator('linkUrl', {
-                    rules: [{ required: true, message: '请输入链接网址' }],
-                  })(
-                    <TextArea rows={4} placeholder="请输入请输入链接网址" />
-                  )}
-                </Form.Item>
-              </Col>			
-			  </Row>    
-          </Form>  
-         
-        </Card>
-
             
         
       
@@ -246,17 +244,19 @@ class TaskFilterCreateForm extends PureComponent {
         
         
         
-        
-        
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting}>
-            提交
+          提交
+        </Button>
+        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交并建下一个
           </Button>
-          <Button type="danger" onClick={goback} loading={submitting}>
+        <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
+        
       </PageHeaderLayout>
     );
   }

@@ -79,6 +79,22 @@ class ThreadReplyCreateForm extends PureComponent {
       });
     };
     
+    const submitCreateFormAndContinue = () => {
+      validateFieldsAndScroll((error, values) => {
+         if (error){
+          console.log("code go here", error);
+          return;
+        }
+        
+        const {owner} = this.props;
+        const parameters={...values, ...imagesValues};
+      	dispatch({
+         type: owner.type+'/addThreadReply',
+         payload: {id:owner.id,type:'threadReply', parameters: parameters, continueNext:true},
+      }); 
+      });
+    };
+    
     const goback = () => {
       const {owner} = this.props;
       dispatch({
@@ -216,17 +232,19 @@ class ThreadReplyCreateForm extends PureComponent {
         
         
         
-        
-        
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting}>
-            提交
+          提交
+        </Button>
+        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交并建下一个
           </Button>
-          <Button type="danger" onClick={goback} loading={submitting}>
+        <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
+        
       </PageHeaderLayout>
     );
   }
