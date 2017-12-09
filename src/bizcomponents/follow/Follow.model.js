@@ -28,6 +28,13 @@ export default {
    
           return;
         }
+        const dashboardmatch = pathToRegexp('/follow/:id/dashboard').exec(pathname);
+        if (dashboardmatch) {
+          const id = dashboardmatch[1];
+          dispatch({type:"view",payload:{id}});
+          return;
+
+        }
         const match = pathToRegexp('/follow/:id/list/:listName').exec(pathname);
         if (!match) {
           return;

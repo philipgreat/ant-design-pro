@@ -9,6 +9,7 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './TaskHiding.app.less';
+import TaskHidingDashboard from './TaskHiding.dashboard';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
@@ -196,6 +197,9 @@ getPageTitle() {
         
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
+            <Route path="/taskHiding/:id/dashboard" component={TaskHidingDashboard} />
+          
+            
     
           <Route path="/taskHiding/:id/list/taskList" component={this.getTaskSearch()} />
           <Route path="/taskHiding/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />

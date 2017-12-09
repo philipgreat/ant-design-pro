@@ -9,6 +9,7 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './Thread.app.less';
+import ThreadDashboard from './Thread.dashboard';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
@@ -262,6 +263,9 @@ getPageTitle() {
         
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
+            <Route path="/thread/:id/dashboard" component={ThreadDashboard} />
+          
+            
     
           <Route path="/thread/:id/list/threadReplyList" component={this.getThreadReplySearch()} />
           <Route path="/thread/:id/list/threadReplyCreateForm" component={this.getThreadReplyCreateForm()} />

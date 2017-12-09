@@ -28,6 +28,13 @@ export default {
    
           return;
         }
+        const dashboardmatch = pathToRegexp('/loginHistory/:id/dashboard').exec(pathname);
+        if (dashboardmatch) {
+          const id = dashboardmatch[1];
+          dispatch({type:"view",payload:{id}});
+          return;
+
+        }
         const match = pathToRegexp('/loginHistory/:id/list/:listName').exec(pathname);
         if (!match) {
           return;
@@ -82,6 +89,14 @@ export default {
   },
 
 };
+
+
+
+
+
+
+
+
 
 
 

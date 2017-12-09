@@ -9,6 +9,7 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './TaskReply.app.less';
+import TaskReplyDashboard from './TaskReply.dashboard';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
@@ -196,6 +197,9 @@ getPageTitle() {
         
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
+            <Route path="/taskReply/:id/dashboard" component={TaskReplyDashboard} />
+          
+            
     
           <Route path="/taskReply/:id/list/taskReplyLikeList" component={this.getTaskReplyLikeSearch()} />
           <Route path="/taskReply/:id/list/taskReplyLikeCreateForm" component={this.getTaskReplyLikeCreateForm()} />

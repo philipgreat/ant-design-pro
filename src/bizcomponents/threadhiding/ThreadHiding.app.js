@@ -9,6 +9,7 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './ThreadHiding.app.less';
+import ThreadHidingDashboard from './ThreadHiding.dashboard';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
@@ -196,6 +197,9 @@ getPageTitle() {
         
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
+            <Route path="/threadHiding/:id/dashboard" component={ThreadHidingDashboard} />
+          
+            
     
           <Route path="/threadHiding/:id/list/threadList" component={this.getThreadSearch()} />
           <Route path="/threadHiding/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />

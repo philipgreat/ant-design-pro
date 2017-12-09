@@ -9,6 +9,7 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './SecUser.app.less';
+import SecUserDashboard from './SecUser.dashboard';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
@@ -229,6 +230,9 @@ getPageTitle() {
         
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
+            <Route path="/secUser/:id/dashboard" component={SecUserDashboard} />
+          
+            
     
           <Route path="/secUser/:id/list/userAppList" component={this.getUserAppSearch()} />
           <Route path="/secUser/:id/list/userAppCreateForm" component={this.getUserAppCreateForm()} />

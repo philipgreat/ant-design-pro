@@ -9,6 +9,7 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './GroupPage.app.less';
+import GroupPageDashboard from './GroupPage.dashboard';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
@@ -229,6 +230,9 @@ getPageTitle() {
         
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
+            <Route path="/groupPage/:id/dashboard" component={GroupPageDashboard} />
+          
+            
     
           <Route path="/groupPage/:id/list/groupFilterList" component={this.getGroupFilterSearch()} />
           <Route path="/groupPage/:id/list/groupFilterCreateForm" component={this.getGroupFilterCreateForm()} />

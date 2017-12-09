@@ -9,6 +9,7 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './ThreadCanceling.app.less';
+import ThreadCancelingDashboard from './ThreadCanceling.dashboard';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
@@ -196,6 +197,9 @@ getPageTitle() {
         
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
+            <Route path="/threadCanceling/:id/dashboard" component={ThreadCancelingDashboard} />
+          
+            
     
           <Route path="/threadCanceling/:id/list/threadList" component={this.getThreadSearch()} />
           <Route path="/threadCanceling/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />

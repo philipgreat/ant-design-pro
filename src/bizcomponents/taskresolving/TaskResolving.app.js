@@ -9,6 +9,7 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './TaskResolving.app.less';
+import TaskResolvingDashboard from './TaskResolving.dashboard';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
@@ -196,6 +197,9 @@ getPageTitle() {
         
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
+            <Route path="/taskResolving/:id/dashboard" component={TaskResolvingDashboard} />
+          
+            
     
           <Route path="/taskResolving/:id/list/taskList" component={this.getTaskSearch()} />
           <Route path="/taskResolving/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />

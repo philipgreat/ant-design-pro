@@ -9,6 +9,7 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './Community.app.less';
+import CommunityDashboard from './Community.dashboard';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
@@ -427,6 +428,9 @@ getPageTitle() {
         
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
+            <Route path="/community/:id/dashboard" component={CommunityDashboard} />
+          
+            
     
           <Route path="/community/:id/list/invitationCodeList" component={this.getInvitationCodeSearch()} />
           <Route path="/community/:id/list/invitationCodeCreateForm" component={this.getInvitationCodeCreateForm()} />

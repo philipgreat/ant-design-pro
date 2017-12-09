@@ -28,6 +28,13 @@ export default {
    
           return;
         }
+        const dashboardmatch = pathToRegexp('/taskHiding/:id/dashboard').exec(pathname);
+        if (dashboardmatch) {
+          const id = dashboardmatch[1];
+          dispatch({type:"view",payload:{id}});
+          return;
+
+        }
         const match = pathToRegexp('/taskHiding/:id/list/:listName').exec(pathname);
         if (!match) {
           return;

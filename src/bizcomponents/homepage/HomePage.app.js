@@ -9,6 +9,7 @@ import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './HomePage.app.less';
+import HomePageDashboard from './HomePage.dashboard';
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
@@ -328,6 +329,9 @@ getPageTitle() {
         
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
+            <Route path="/homePage/:id/dashboard" component={HomePageDashboard} />
+          
+            
     
           <Route path="/homePage/:id/list/slideList" component={this.getSlideSearch()} />
           <Route path="/homePage/:id/list/slideCreateForm" component={this.getSlideCreateForm()} />
