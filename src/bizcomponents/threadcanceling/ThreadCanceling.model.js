@@ -120,7 +120,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/threadCanceling/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/threadCanceling/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
     

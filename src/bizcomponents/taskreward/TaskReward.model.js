@@ -120,7 +120,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/taskReward/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/taskReward/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
     

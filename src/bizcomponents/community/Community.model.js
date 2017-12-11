@@ -120,7 +120,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/community/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
 	*addHomePage({ payload }, { call, put }) {
@@ -170,7 +171,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/community/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
 	*addEncyclopediaItem({ payload }, { call, put }) {
@@ -220,7 +222,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/community/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
 	*addTaskPage({ payload }, { call, put }) {
@@ -270,7 +273,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/community/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
 	*addCommunityUser({ payload }, { call, put }) {
@@ -320,7 +324,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/community/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
 	*addTask({ payload }, { call, put }) {
@@ -370,7 +375,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/community/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
 	*addGroupPage({ payload }, { call, put }) {
@@ -420,7 +426,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/community/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
 	*addThread({ payload }, { call, put }) {
@@ -470,7 +477,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/community/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
     

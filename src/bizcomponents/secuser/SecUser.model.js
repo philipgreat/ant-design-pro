@@ -120,7 +120,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/secUser/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/secUser/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
 	*addLoginHistory({ payload }, { call, put }) {
@@ -170,7 +171,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/secUser/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/secUser/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
     

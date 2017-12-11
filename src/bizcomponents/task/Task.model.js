@@ -120,7 +120,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/task/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
 	*addTaskLike({ payload }, { call, put }) {
@@ -170,7 +171,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/task/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
 	*addTaskReply({ payload }, { call, put }) {
@@ -220,7 +222,8 @@ export default {
 					message: "执行成功",
 					description:"执行成功",
 				});
-			yield put(routerRedux.push('/task/' + id + '/list/' + type + 'List'));
+			const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
 		},
 
     
