@@ -54,8 +54,8 @@ const testValues={
         
       			title:'听力损失儿童回归的优点',
 			displayOrder:'0',
-			eventTime:'2034-07-02 20:38:27',
-			registrationStopTime:'2038-07-02 14:07:07',
+			eventTime:'2035-04-24 23:47:24',
+			registrationStopTime:'2039-06-02 06:52:58',
 			eventLocation:'奥克斯广场阳光咖啡',
 			city:'成都',
 			communityGroup:'最新',
@@ -485,7 +485,7 @@ class ThreadCreateForm extends PureComponent {
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
           提交
         </Button>
         <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>

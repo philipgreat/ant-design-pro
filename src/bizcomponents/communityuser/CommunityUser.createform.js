@@ -38,9 +38,9 @@ const testValues={
 			nickName:'喀拉',
 			gender:'男',
 			userType:'患者',
-			birthday:'2039-04-06',
-			experiencePoint:'7738',
-			bonusPoint:'818872',
+			birthday:'2038-01-24',
+			experiencePoint:'7991',
+			bonusPoint:'847375',
 			city:'北京',
 			status:'迎接更光明的明天',
 			hideInfo:'1',
@@ -356,7 +356,7 @@ class CommunityUserCreateForm extends PureComponent {
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
           提交
         </Button>
         <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>

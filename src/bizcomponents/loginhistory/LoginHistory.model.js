@@ -1,6 +1,7 @@
 
 import pathToRegexp from 'path-to-regexp';
 import { routerRedux } from 'dva/router';
+import { notification } from 'antd';
 //import key from 'keymaster';
 import LoginHistoryService from './LoginHistory.service';
 
@@ -89,12 +90,6 @@ export default {
   },
 
 };
-
-
-
-
-
-
 
 
 

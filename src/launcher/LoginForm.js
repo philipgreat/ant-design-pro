@@ -37,22 +37,22 @@ class NormalLoginForm extends Component {
            
     <div className={styles.login}>
                 <div className={styles.loginForm} >
-                    <div className="login-logo">
+                    <div className={styles.loginLogo}>
                         <span>跨境供应链管理系统</span>
                     </div>
-            <Form onSubmit={this.handleSubmit} style={{maxWidth: '300px'}}>
+            <Form onSubmit={this.handleSubmit} >
                 <FormItem>
                     {getFieldDecorator('username', {
                         rules: [{ required: true, message: '请输入用户名!' }],
                     })(
-                        <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
+                        <Input prefix={<Icon type="user" style={{ fontSize: 20 }} />} placeholder="用户名" />
                     )}
                 </FormItem>
                 <FormItem>
                     {getFieldDecorator('password', {
                         rules: [{ required: true, message: '请输入密码!' }],
                     })(
-                        <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
+                        <Input prefix={<Icon type="lock" style={{ fontSize: 20 }} />} type="password" placeholder="密码" />
                     )}
                 </FormItem>
                 <FormItem>
@@ -60,7 +60,7 @@ class NormalLoginForm extends Component {
                         valuePropName: 'checked',
                         initialValue: true,
                     })(
-                        <Checkbox>记住我</Checkbox>
+                        <Checkbox style={{float: 'left'}}>记住我</Checkbox>
                     )}
                     <a className="login-form-forgot" href="" style={{float: 'right'}}>忘记密码</a>
                     <Button type="primary" htmlType="submit" className="login-form-button" style={{width: '100%'}}>

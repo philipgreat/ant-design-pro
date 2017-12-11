@@ -49,8 +49,8 @@ const testValues={
       			title:'听力损失儿童回归的优点',
 			selectedTask:'是',
 			videoUrl:'https://player.youku.com/embed/XMzE0ODQ0NTA2NA',
-			creatorBonus:'86',
-			additionalBonus:'73',
+			creatorBonus:'91',
+			additionalBonus:'94',
 			likeByCurrentUser:'0',
 			repliedByCurrentUser:'0',
 			creatorId:'CU000001',
@@ -419,7 +419,7 @@ class TaskCreateForm extends PureComponent {
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
           提交
         </Button>
         <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>

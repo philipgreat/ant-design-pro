@@ -26,7 +26,7 @@ user: '用户',
 const testValues={
         
       			name:'浏览求助',
-			points:'89',
+			points:'71',
 			userId:'CU000001',
 
         
@@ -221,7 +221,7 @@ class ExperiencePointCreateForm extends PureComponent {
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
           提交
         </Button>
         <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>

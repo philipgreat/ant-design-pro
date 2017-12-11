@@ -1,6 +1,7 @@
 
 import pathToRegexp from 'path-to-regexp';
 import { routerRedux } from 'dva/router';
+import { notification } from 'antd';
 //import key from 'keymaster';
 import CommunityUserService from './CommunityUser.service';
 
@@ -72,329 +73,905 @@ export default {
     	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
      },
     
-    *addPatientInfo({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addPatientInfo,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+	*addPatientInfo({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
 
+			const data = yield call(CommunityUserService.addPatientInfo, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
 
-    *addUserSkill({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addUserSkill,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
 
+				}
 
-    *addMessageFilter({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addMessageFilter,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+			}
+			const newPlayload = { ...payload, ...data };
 
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
 
-    *addUserMessage({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addUserMessage,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+	*addUserSkill({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
 
+			const data = yield call(CommunityUserService.addUserSkill, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
 
-    *addTask({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addTask,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
 
+				}
 
-    *addTaskAssigment({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addTaskAssigment,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+			}
+			const newPlayload = { ...payload, ...data };
 
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
 
-    *addTaskLike({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addTaskLike,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+	*addMessageFilter({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
 
+			const data = yield call(CommunityUserService.addMessageFilter, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
 
-    *addTaskReply({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addTaskReply,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
 
+				}
 
-    *addTaskReplyLike({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addTaskReplyLike,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+			}
+			const newPlayload = { ...payload, ...data };
 
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
 
-    *addThread({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addThread,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+	*addUserMessage({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
 
+			const data = yield call(CommunityUserService.addUserMessage, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
 
-    *addThreadReply({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addThreadReply,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
 
+				}
 
-    *addThreadRegistration({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addThreadRegistration,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+			}
+			const newPlayload = { ...payload, ...data };
 
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
 
-    *addThreadLike({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addThreadLike,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+	*addTask({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
 
+			const data = yield call(CommunityUserService.addTask, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
 
-    *addThreadReplyLike({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addThreadReplyLike,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
 
+				}
 
-    *addFan({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addFan,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+			}
+			const newPlayload = { ...payload, ...data };
 
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
 
-    *addFollow({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addFollow,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+	*addTaskAssigment({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
 
+			const data = yield call(CommunityUserService.addTaskAssigment, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
 
-    *addBonusPoint({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addBonusPoint,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
 
+				}
 
-    *addExperiencePoint({ payload }, { call, put }) {
-    	const {id,type,parameters,continueNext}=payload;
-    	console.log("get form parameters", parameters);
-    	
-    	const data = yield call(CommunityUserService.addExperiencePoint,payload.id,payload.parameters);
-      
-      	const newPlayload={...payload,...data};
-      
-      	//console.log("this is the data id: ", data.id)
-      	yield put({type:"updateState",payload:newPlayload});
-        if(continueNext){
-          //yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
-          return;
-        }
-      	yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'List'));
-     },
+			}
+			const newPlayload = { ...payload, ...data };
 
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
+
+	*addTaskLike({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityUserService.addTaskLike, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
+
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
+
+				}
+
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
+
+	*addTaskReply({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityUserService.addTaskReply, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
+
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
+
+				}
+
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
+
+	*addTaskReplyLike({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityUserService.addTaskReplyLike, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
+
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
+
+				}
+
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
+
+	*addThread({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityUserService.addThread, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
+
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
+
+				}
+
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
+
+	*addThreadReply({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityUserService.addThreadReply, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
+
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
+
+				}
+
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
+
+	*addThreadRegistration({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityUserService.addThreadRegistration, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
+
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
+
+				}
+
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
+
+	*addThreadLike({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityUserService.addThreadLike, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
+
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
+
+				}
+
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
+
+	*addThreadReplyLike({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityUserService.addThreadReplyLike, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
+
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
+
+				}
+
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
+
+	*addFan({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityUserService.addFan, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
+
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
+
+				}
+
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
+
+	*addFollow({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityUserService.addFollow, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
+
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
+
+				}
+
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
+
+	*addBonusPoint({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityUserService.addBonusPoint, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
+
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
+
+				}
+
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
+
+	*addExperiencePoint({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityUserService.addExperiencePoint, payload.id, payload.parameters);
+			if (data.class && data.class.indexOf("LoginForm") > 0) {
+
+				notification.error({
+					message: data.messageList[0].sourcePosition,
+					description: data.messageList[0].body,
+				});
+				return;
+			}
+			if (data.class && data.class.indexOf("Exception") > 0) {
+				if (data.message) {
+					notification.error({
+						message: data.message,
+						description: data.message,
+					});
+					return;
+				}
+				if (data.messageList[0]) {
+					//console.error("error ", data.messageList[0].sourcePosition);
+					notification.error({
+						message: data.messageList[0].sourcePosition,
+						description: data.messageList[0].body,
+					});
+					return;
+
+				}
+
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			if (continueNext) {
+				//yield put(routerRedux.push('/communityUser/'+id+'/list/'+type+'CreateForm'));
+				notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+				return;
+			}
+			notification.success({
+					message: "执行成功",
+					description:"执行成功",
+				});
+			yield put(routerRedux.push('/communityUser/' + id + '/list/' + type + 'List'));
+		},
 
     
     

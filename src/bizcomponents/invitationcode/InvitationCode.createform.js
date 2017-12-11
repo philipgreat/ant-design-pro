@@ -27,7 +27,7 @@ used: '用',
 const testValues={
         
       			name:'邀请码',
-			code:'784011',
+			code:'700696',
 			used:'1',
 			communityId:'C000001',
 
@@ -234,7 +234,7 @@ class InvitationCodeCreateForm extends PureComponent {
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
           提交
         </Button>
         <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>

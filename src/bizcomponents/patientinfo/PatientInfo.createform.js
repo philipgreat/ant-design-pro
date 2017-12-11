@@ -33,11 +33,11 @@ const testValues={
       			name:'刘利',
 			nickName:'喀拉',
 			gender:'男',
-			birthday:'2037-12-22',
+			birthday:'2037-09-06',
 			wearDeviceType:'新发现',
-			wearStartTime:'2033-07-16',
+			wearStartTime:'2034-05-11',
 			recoverPlan:'幼儿龄段（0-3岁）',
-			recoverStartTime:'2030-09-17',
+			recoverStartTime:'2034-01-27',
 			userId:'CU000001',
 
         
@@ -298,7 +298,7 @@ class PatientInfoCreateForm extends PureComponent {
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
           提交
         </Button>
         <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>

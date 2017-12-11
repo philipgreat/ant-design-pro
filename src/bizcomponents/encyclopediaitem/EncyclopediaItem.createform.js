@@ -27,7 +27,7 @@ homePage: '主页',
 const testValues={
         
       			title:'听力损失儿童回归的优点',
-			publishTime:'2037-04-12',
+			publishTime:'2034-05-20',
 			communityId:'C000001',
 			homePageId:'HP000001',
 			content:'多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   ',
@@ -255,7 +255,7 @@ class EncyclopediaItemCreateForm extends PureComponent {
         
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting}>
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
           提交
         </Button>
         <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
