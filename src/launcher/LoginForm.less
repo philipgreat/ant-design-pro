@@ -13,7 +13,17 @@
     box-shadow: 0 0 100px rgba(0,0,0,.08);
     background: rgb(99, 95, 104);
     padding-left: 50px;
-   
+    :global {
+      .ant-input {
+        height: 40px;
+        font-size: 28px;
+        padding-left: 50px;
+      }
+      .ant-btn {
+        height: 40px;
+        font-size: 28px;
+      }
+    }
     .loginLogo{
       text-align: center;
       height: 100px;
@@ -22,30 +32,15 @@
       margin-bottom: 24px;
       span {
         vertical-align: center;
-        font-size: 30px;
+        font-size: 40px;
         color:#fff;
         height: 100px;
         text-transform: uppercase;
         display: inline-block;
       }
+     
+      
     }
   }
 }
 
-:global(.ant-form-item ) * {
-  
-  > input {
-    font-size: 26px;
-    height: 40px;
-    padding-left: 60px;
-  }
-}
-
-:global(.ant-form-item-control ) * {
-  
-  > input {
-    font-size: 26px;
-    height: 40px;
-    padding-left: 60px;
-  }
-}
