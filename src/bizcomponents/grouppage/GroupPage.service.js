@@ -4,15 +4,18 @@ import { get,post } from '../../axios/tools';
 
 
 
-const parseHost=()=>{
+const getURLPrefix=()=>{
 
     const url = new URL(window.location)
-    return url.hostname;
+
+    if(url.hostname=="localhost"){
+        return "http://"+url.hostname+":8080/naf/";
+    }
+    return url.origin+"/bbt/";
 
 }
 
-const PREFIX="http://"+parseHost()+":8080/naf/";
-
+const PREFIX=getURLPrefix();
 
 
 
@@ -73,9 +76,6 @@ const addGroupFilter=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addThread=(targetObjectId,parameters)=>{
     const url = PREFIX+"groupPageManager/addThread/groupPageId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/communityId/creatorId/homePageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -87,9 +87,6 @@ const addThread=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 

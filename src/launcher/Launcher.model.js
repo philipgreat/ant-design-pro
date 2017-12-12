@@ -94,7 +94,14 @@ export default {
             yield put({type:"showlogin",payload:{data}});
             return;
         }
-        yield put({type:"showhome",payload:{data}});
+        if(data.class.indexOf("SecUser")>0){
+          yield put({type:"showhome",payload:{data}});
+          return;
+        }
+        const locationPath = calcLocationPath(data.class,data.id,"dashboard");
+        const location = {pathname:"/"+locationPath,state:data};
+        yield put(routerRedux.push(location));
+        
     },
     *gotoApp({ payload }, { call, put }) { 
         //console.log("gotoApp has been called", payload);

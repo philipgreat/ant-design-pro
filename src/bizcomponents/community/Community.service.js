@@ -4,15 +4,18 @@ import { get,post } from '../../axios/tools';
 
 
 
-const parseHost=()=>{
+const getURLPrefix=()=>{
 
     const url = new URL(window.location)
-    return url.hostname;
+
+    if(url.hostname=="localhost"){
+        return "http://"+url.hostname+":8080/naf/";
+    }
+    return url.origin+"/bbt/";
 
 }
 
-const PREFIX="http://"+parseHost()+":8080/naf/";
-
+const PREFIX=getURLPrefix();
 
 
 
@@ -73,9 +76,6 @@ const addInvitationCode=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addHomePage=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityManager/addHomePage/communityId/title/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -87,9 +87,6 @@ const addHomePage=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
@@ -107,9 +104,6 @@ const addEncyclopediaItem=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addTaskPage=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityManager/addTaskPage/communityId/title/currentKey/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -121,9 +115,6 @@ const addTaskPage=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
@@ -141,9 +132,6 @@ const addCommunityUser=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addTask=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityManager/addTask/communityId/title/selectedTask/content/creatorId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -155,9 +143,6 @@ const addTask=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
@@ -175,9 +160,6 @@ const addGroupPage=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addThread=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityManager/addThread/communityId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/creatorId/homePageId/groupPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -189,9 +171,6 @@ const addThread=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 

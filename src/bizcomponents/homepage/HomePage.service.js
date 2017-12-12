@@ -4,15 +4,18 @@ import { get,post } from '../../axios/tools';
 
 
 
-const parseHost=()=>{
+const getURLPrefix=()=>{
 
     const url = new URL(window.location)
-    return url.hostname;
+
+    if(url.hostname=="localhost"){
+        return "http://"+url.hostname+":8080/naf/";
+    }
+    return url.origin+"/bbt/";
 
 }
 
-const PREFIX="http://"+parseHost()+":8080/naf/";
-
+const PREFIX=getURLPrefix();
 
 
 
@@ -73,9 +76,6 @@ const addSlide=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addEncyclopediaItem=(targetObjectId,parameters)=>{
     const url = PREFIX+"homePageManager/addEncyclopediaItem/homePageId/title/publishTime/content/communityId/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -87,9 +87,6 @@ const addEncyclopediaItem=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
@@ -107,9 +104,6 @@ const addTaskFilter=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addTask=(targetObjectId,parameters)=>{
     const url = PREFIX+"homePageManager/addTask/homePageId/title/selectedTask/content/creatorId/communityId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -124,9 +118,6 @@ const addTask=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addThread=(targetObjectId,parameters)=>{
     const url = PREFIX+"homePageManager/addThread/homePageId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/communityId/creatorId/groupPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -138,9 +129,6 @@ const addThread=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 

@@ -4,15 +4,18 @@ import { get,post } from '../../axios/tools';
 
 
 
-const parseHost=()=>{
+const getURLPrefix=()=>{
 
     const url = new URL(window.location)
-    return url.hostname;
+
+    if(url.hostname=="localhost"){
+        return "http://"+url.hostname+":8080/naf/";
+    }
+    return url.origin+"/bbt/";
 
 }
 
-const PREFIX="http://"+parseHost()+":8080/naf/";
-
+const PREFIX=getURLPrefix();
 
 
 
@@ -70,9 +73,6 @@ const addSecUser=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 

@@ -4,15 +4,18 @@ import { get,post } from '../../axios/tools';
 
 
 
-const parseHost=()=>{
+const getURLPrefix=()=>{
 
     const url = new URL(window.location)
-    return url.hostname;
+
+    if(url.hostname=="localhost"){
+        return "http://"+url.hostname+":8080/naf/";
+    }
+    return url.origin+"/bbt/";
 
 }
 
-const PREFIX="http://"+parseHost()+":8080/naf/";
-
+const PREFIX=getURLPrefix();
 
 
 
@@ -73,9 +76,6 @@ const addUserApp=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addLoginHistory=(targetObjectId,parameters)=>{
     const url = PREFIX+"secUserManager/addLoginHistory/secUserId/fromIp/description/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -87,9 +87,6 @@ const addLoginHistory=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 

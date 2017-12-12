@@ -4,15 +4,18 @@ import { get,post } from '../../axios/tools';
 
 
 
-const parseHost=()=>{
+const getURLPrefix=()=>{
 
     const url = new URL(window.location)
-    return url.hostname;
+
+    if(url.hostname=="localhost"){
+        return "http://"+url.hostname+":8080/naf/";
+    }
+    return url.origin+"/bbt/";
 
 }
 
-const PREFIX="http://"+parseHost()+":8080/naf/";
-
+const PREFIX=getURLPrefix();
 
 
 
@@ -73,9 +76,6 @@ const addThreadReply=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addThreadRegistration=(targetObjectId,parameters)=>{
     const url = PREFIX+"threadManager/addThreadRegistration/threadId/participantId/comments/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -90,9 +90,6 @@ const addThreadRegistration=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addThreadLike=(targetObjectId,parameters)=>{
     const url = PREFIX+"threadManager/addThreadLike/threadId/replierId/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -104,9 +101,6 @@ const addThreadLike=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 

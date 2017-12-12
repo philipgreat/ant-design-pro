@@ -4,15 +4,18 @@ import { get,post } from '../../axios/tools';
 
 
 
-const parseHost=()=>{
+const getURLPrefix=()=>{
 
     const url = new URL(window.location)
-    return url.hostname;
+
+    if(url.hostname=="localhost"){
+        return "http://"+url.hostname+":8080/naf/";
+    }
+    return url.origin+"/bbt/";
 
 }
 
-const PREFIX="http://"+parseHost()+":8080/naf/";
-
+const PREFIX=getURLPrefix();
 
 
 
@@ -73,9 +76,6 @@ const addPatientInfo=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addUserSkill=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityUserManager/addUserSkill/userId/skillName/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -87,9 +87,6 @@ const addUserSkill=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
@@ -107,9 +104,6 @@ const addMessageFilter=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addUserMessage=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityUserManager/addUserMessage/receiverId/title/messageKey/content/linkUrl/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -121,9 +115,6 @@ const addUserMessage=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
@@ -141,9 +132,6 @@ const addTask=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addTaskAssigment=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityUserManager/addTaskAssigment/assigneeId/taskId/comments/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -155,9 +143,6 @@ const addTaskAssigment=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
@@ -175,9 +160,6 @@ const addTaskLike=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addTaskReply=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityUserManager/addTaskReply/replierId/content/taskId/likeByCurrentUser/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -189,9 +171,6 @@ const addTaskReply=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
@@ -209,9 +188,6 @@ const addTaskReplyLike=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addThread=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityUserManager/addThread/creatorId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/communityId/homePageId/groupPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -223,9 +199,6 @@ const addThread=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
@@ -243,9 +216,6 @@ const addThreadReply=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addThreadRegistration=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityUserManager/addThreadRegistration/participantId/threadId/comments/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -257,9 +227,6 @@ const addThreadRegistration=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
@@ -277,9 +244,6 @@ const addThreadLike=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addThreadReplyLike=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityUserManager/addThreadReplyLike/replierId/threadReplyId/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -291,9 +255,6 @@ const addThreadReplyLike=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
@@ -311,9 +272,6 @@ const addFan=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addFollow=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityUserManager/addFollow/userId/followId/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -325,9 +283,6 @@ const addFollow=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
@@ -345,9 +300,6 @@ const addBonusPoint=(targetObjectId,parameters)=>{
 
 
 
-
-
-
 const addExperiencePoint=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityUserManager/addExperiencePoint/userId/name/points/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
@@ -359,9 +311,6 @@ const addExperiencePoint=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
-
-
-
 
 
 
