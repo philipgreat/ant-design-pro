@@ -120,24 +120,24 @@ class TaskPageBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.taskPage.taskFilterList,
-      count: state.taskPage.taskFilterCount,
-      currentPage: state.taskPage.taskFilterCurrentPageNumber,
-      searchFormParameters: state.taskPage.taskFilterSearchFormParameters,
-      loading: state.taskPage.loading,
-      owner: {type:'taskPage',id:state.taskPage.id}//this is for model namespace and 
+      data: state._taskPage.taskFilterList,
+      count: state._taskPage.taskFilterCount,
+      currentPage: state._taskPage.taskFilterCurrentPageNumber,
+      searchFormParameters: state._taskPage.taskFilterSearchFormParameters,
+      loading: state._taskPage.loading,
+      owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
     }))(TaskFilterSearch);
   }
   getTaskFilterCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.taskPage.taskFilterList,
-      count: state.taskPage.taskFilterCount,
-      currentPage: state.taskPage.taskFilterCurrentPageNumber,
-      searchFormParameters: state.taskPage.taskFilterSearchFormParameters,
-      loading: state.taskPage.loading,
-      owner: {type:'taskPage',id:state.taskPage.id}//this is for model namespace and 
+      data: state._taskPage.taskFilterList,
+      count: state._taskPage.taskFilterCount,
+      currentPage: state._taskPage.taskFilterCurrentPageNumber,
+      searchFormParameters: state._taskPage.taskFilterSearchFormParameters,
+      loading: state._taskPage.loading,
+      owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
     }))(TaskFilterCreateForm);
   }
   
@@ -146,24 +146,24 @@ class TaskPageBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.taskPage.taskList,
-      count: state.taskPage.taskCount,
-      currentPage: state.taskPage.taskCurrentPageNumber,
-      searchFormParameters: state.taskPage.taskSearchFormParameters,
-      loading: state.taskPage.loading,
-      owner: {type:'taskPage',id:state.taskPage.id}//this is for model namespace and 
+      data: state._taskPage.taskList,
+      count: state._taskPage.taskCount,
+      currentPage: state._taskPage.taskCurrentPageNumber,
+      searchFormParameters: state._taskPage.taskSearchFormParameters,
+      loading: state._taskPage.loading,
+      owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
     }))(TaskSearch);
   }
   getTaskCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.taskPage.taskList,
-      count: state.taskPage.taskCount,
-      currentPage: state.taskPage.taskCurrentPageNumber,
-      searchFormParameters: state.taskPage.taskSearchFormParameters,
-      loading: state.taskPage.loading,
-      owner: {type:'taskPage',id:state.taskPage.id}//this is for model namespace and 
+      data: state._taskPage.taskList,
+      count: state._taskPage.taskCount,
+      currentPage: state._taskPage.taskCurrentPageNumber,
+      searchFormParameters: state._taskPage.taskSearchFormParameters,
+      loading: state._taskPage.loading,
+      owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
     }))(TaskCreateForm);
   }
   
@@ -192,7 +192,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -261,10 +261,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  taskPage: state._taskPage,
   ...state
 }))(TaskPageBizApp);
 

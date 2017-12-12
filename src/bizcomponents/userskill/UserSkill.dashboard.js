@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  userSkill: state.userSkill,
+  userSkill: state._userSkill,
 }))
 export default class UserSkillDashboard extends Component {
  

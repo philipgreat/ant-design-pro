@@ -232,24 +232,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.patientInfoList,
-      count: state.communityUser.patientInfoCount,
-      currentPage: state.communityUser.patientInfoCurrentPageNumber,
-      searchFormParameters: state.communityUser.patientInfoSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.patientInfoList,
+      count: state._communityUser.patientInfoCount,
+      currentPage: state._communityUser.patientInfoCurrentPageNumber,
+      searchFormParameters: state._communityUser.patientInfoSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(PatientInfoSearch);
   }
   getPatientInfoCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.patientInfoList,
-      count: state.communityUser.patientInfoCount,
-      currentPage: state.communityUser.patientInfoCurrentPageNumber,
-      searchFormParameters: state.communityUser.patientInfoSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.patientInfoList,
+      count: state._communityUser.patientInfoCount,
+      currentPage: state._communityUser.patientInfoCurrentPageNumber,
+      searchFormParameters: state._communityUser.patientInfoSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(PatientInfoCreateForm);
   }
   
@@ -258,24 +258,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.userSkillList,
-      count: state.communityUser.userSkillCount,
-      currentPage: state.communityUser.userSkillCurrentPageNumber,
-      searchFormParameters: state.communityUser.userSkillSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.userSkillList,
+      count: state._communityUser.userSkillCount,
+      currentPage: state._communityUser.userSkillCurrentPageNumber,
+      searchFormParameters: state._communityUser.userSkillSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(UserSkillSearch);
   }
   getUserSkillCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.userSkillList,
-      count: state.communityUser.userSkillCount,
-      currentPage: state.communityUser.userSkillCurrentPageNumber,
-      searchFormParameters: state.communityUser.userSkillSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.userSkillList,
+      count: state._communityUser.userSkillCount,
+      currentPage: state._communityUser.userSkillCurrentPageNumber,
+      searchFormParameters: state._communityUser.userSkillSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(UserSkillCreateForm);
   }
   
@@ -284,24 +284,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.messageFilterList,
-      count: state.communityUser.messageFilterCount,
-      currentPage: state.communityUser.messageFilterCurrentPageNumber,
-      searchFormParameters: state.communityUser.messageFilterSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.messageFilterList,
+      count: state._communityUser.messageFilterCount,
+      currentPage: state._communityUser.messageFilterCurrentPageNumber,
+      searchFormParameters: state._communityUser.messageFilterSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(MessageFilterSearch);
   }
   getMessageFilterCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.messageFilterList,
-      count: state.communityUser.messageFilterCount,
-      currentPage: state.communityUser.messageFilterCurrentPageNumber,
-      searchFormParameters: state.communityUser.messageFilterSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.messageFilterList,
+      count: state._communityUser.messageFilterCount,
+      currentPage: state._communityUser.messageFilterCurrentPageNumber,
+      searchFormParameters: state._communityUser.messageFilterSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(MessageFilterCreateForm);
   }
   
@@ -310,24 +310,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.userMessageList,
-      count: state.communityUser.userMessageCount,
-      currentPage: state.communityUser.userMessageCurrentPageNumber,
-      searchFormParameters: state.communityUser.userMessageSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.userMessageList,
+      count: state._communityUser.userMessageCount,
+      currentPage: state._communityUser.userMessageCurrentPageNumber,
+      searchFormParameters: state._communityUser.userMessageSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(UserMessageSearch);
   }
   getUserMessageCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.userMessageList,
-      count: state.communityUser.userMessageCount,
-      currentPage: state.communityUser.userMessageCurrentPageNumber,
-      searchFormParameters: state.communityUser.userMessageSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.userMessageList,
+      count: state._communityUser.userMessageCount,
+      currentPage: state._communityUser.userMessageCurrentPageNumber,
+      searchFormParameters: state._communityUser.userMessageSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(UserMessageCreateForm);
   }
   
@@ -336,24 +336,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.taskList,
-      count: state.communityUser.taskCount,
-      currentPage: state.communityUser.taskCurrentPageNumber,
-      searchFormParameters: state.communityUser.taskSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.taskList,
+      count: state._communityUser.taskCount,
+      currentPage: state._communityUser.taskCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskSearch);
   }
   getTaskCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.taskList,
-      count: state.communityUser.taskCount,
-      currentPage: state.communityUser.taskCurrentPageNumber,
-      searchFormParameters: state.communityUser.taskSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.taskList,
+      count: state._communityUser.taskCount,
+      currentPage: state._communityUser.taskCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskCreateForm);
   }
   
@@ -362,24 +362,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.taskAssigmentList,
-      count: state.communityUser.taskAssigmentCount,
-      currentPage: state.communityUser.taskAssigmentCurrentPageNumber,
-      searchFormParameters: state.communityUser.taskAssigmentSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.taskAssigmentList,
+      count: state._communityUser.taskAssigmentCount,
+      currentPage: state._communityUser.taskAssigmentCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskAssigmentSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskAssigmentSearch);
   }
   getTaskAssigmentCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.taskAssigmentList,
-      count: state.communityUser.taskAssigmentCount,
-      currentPage: state.communityUser.taskAssigmentCurrentPageNumber,
-      searchFormParameters: state.communityUser.taskAssigmentSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.taskAssigmentList,
+      count: state._communityUser.taskAssigmentCount,
+      currentPage: state._communityUser.taskAssigmentCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskAssigmentSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskAssigmentCreateForm);
   }
   
@@ -388,24 +388,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.taskLikeList,
-      count: state.communityUser.taskLikeCount,
-      currentPage: state.communityUser.taskLikeCurrentPageNumber,
-      searchFormParameters: state.communityUser.taskLikeSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.taskLikeList,
+      count: state._communityUser.taskLikeCount,
+      currentPage: state._communityUser.taskLikeCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskLikeSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskLikeSearch);
   }
   getTaskLikeCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.taskLikeList,
-      count: state.communityUser.taskLikeCount,
-      currentPage: state.communityUser.taskLikeCurrentPageNumber,
-      searchFormParameters: state.communityUser.taskLikeSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.taskLikeList,
+      count: state._communityUser.taskLikeCount,
+      currentPage: state._communityUser.taskLikeCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskLikeSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskLikeCreateForm);
   }
   
@@ -414,24 +414,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.taskReplyList,
-      count: state.communityUser.taskReplyCount,
-      currentPage: state.communityUser.taskReplyCurrentPageNumber,
-      searchFormParameters: state.communityUser.taskReplySearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.taskReplyList,
+      count: state._communityUser.taskReplyCount,
+      currentPage: state._communityUser.taskReplyCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskReplySearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskReplySearch);
   }
   getTaskReplyCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.taskReplyList,
-      count: state.communityUser.taskReplyCount,
-      currentPage: state.communityUser.taskReplyCurrentPageNumber,
-      searchFormParameters: state.communityUser.taskReplySearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.taskReplyList,
+      count: state._communityUser.taskReplyCount,
+      currentPage: state._communityUser.taskReplyCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskReplySearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskReplyCreateForm);
   }
   
@@ -440,24 +440,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.taskReplyLikeList,
-      count: state.communityUser.taskReplyLikeCount,
-      currentPage: state.communityUser.taskReplyLikeCurrentPageNumber,
-      searchFormParameters: state.communityUser.taskReplyLikeSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.taskReplyLikeList,
+      count: state._communityUser.taskReplyLikeCount,
+      currentPage: state._communityUser.taskReplyLikeCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskReplyLikeSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskReplyLikeSearch);
   }
   getTaskReplyLikeCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.taskReplyLikeList,
-      count: state.communityUser.taskReplyLikeCount,
-      currentPage: state.communityUser.taskReplyLikeCurrentPageNumber,
-      searchFormParameters: state.communityUser.taskReplyLikeSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.taskReplyLikeList,
+      count: state._communityUser.taskReplyLikeCount,
+      currentPage: state._communityUser.taskReplyLikeCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskReplyLikeSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskReplyLikeCreateForm);
   }
   
@@ -466,24 +466,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.threadList,
-      count: state.communityUser.threadCount,
-      currentPage: state.communityUser.threadCurrentPageNumber,
-      searchFormParameters: state.communityUser.threadSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.threadList,
+      count: state._communityUser.threadCount,
+      currentPage: state._communityUser.threadCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
   getThreadCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.threadList,
-      count: state.communityUser.threadCount,
-      currentPage: state.communityUser.threadCurrentPageNumber,
-      searchFormParameters: state.communityUser.threadSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.threadList,
+      count: state._communityUser.threadCount,
+      currentPage: state._communityUser.threadCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadCreateForm);
   }
   
@@ -492,24 +492,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.threadReplyList,
-      count: state.communityUser.threadReplyCount,
-      currentPage: state.communityUser.threadReplyCurrentPageNumber,
-      searchFormParameters: state.communityUser.threadReplySearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.threadReplyList,
+      count: state._communityUser.threadReplyCount,
+      currentPage: state._communityUser.threadReplyCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadReplySearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadReplySearch);
   }
   getThreadReplyCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.threadReplyList,
-      count: state.communityUser.threadReplyCount,
-      currentPage: state.communityUser.threadReplyCurrentPageNumber,
-      searchFormParameters: state.communityUser.threadReplySearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.threadReplyList,
+      count: state._communityUser.threadReplyCount,
+      currentPage: state._communityUser.threadReplyCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadReplySearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadReplyCreateForm);
   }
   
@@ -518,24 +518,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.threadRegistrationList,
-      count: state.communityUser.threadRegistrationCount,
-      currentPage: state.communityUser.threadRegistrationCurrentPageNumber,
-      searchFormParameters: state.communityUser.threadRegistrationSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.threadRegistrationList,
+      count: state._communityUser.threadRegistrationCount,
+      currentPage: state._communityUser.threadRegistrationCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadRegistrationSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadRegistrationSearch);
   }
   getThreadRegistrationCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.threadRegistrationList,
-      count: state.communityUser.threadRegistrationCount,
-      currentPage: state.communityUser.threadRegistrationCurrentPageNumber,
-      searchFormParameters: state.communityUser.threadRegistrationSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.threadRegistrationList,
+      count: state._communityUser.threadRegistrationCount,
+      currentPage: state._communityUser.threadRegistrationCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadRegistrationSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadRegistrationCreateForm);
   }
   
@@ -544,24 +544,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.threadLikeList,
-      count: state.communityUser.threadLikeCount,
-      currentPage: state.communityUser.threadLikeCurrentPageNumber,
-      searchFormParameters: state.communityUser.threadLikeSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.threadLikeList,
+      count: state._communityUser.threadLikeCount,
+      currentPage: state._communityUser.threadLikeCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadLikeSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadLikeSearch);
   }
   getThreadLikeCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.threadLikeList,
-      count: state.communityUser.threadLikeCount,
-      currentPage: state.communityUser.threadLikeCurrentPageNumber,
-      searchFormParameters: state.communityUser.threadLikeSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.threadLikeList,
+      count: state._communityUser.threadLikeCount,
+      currentPage: state._communityUser.threadLikeCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadLikeSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadLikeCreateForm);
   }
   
@@ -570,24 +570,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.threadReplyLikeList,
-      count: state.communityUser.threadReplyLikeCount,
-      currentPage: state.communityUser.threadReplyLikeCurrentPageNumber,
-      searchFormParameters: state.communityUser.threadReplyLikeSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.threadReplyLikeList,
+      count: state._communityUser.threadReplyLikeCount,
+      currentPage: state._communityUser.threadReplyLikeCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadReplyLikeSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadReplyLikeSearch);
   }
   getThreadReplyLikeCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.threadReplyLikeList,
-      count: state.communityUser.threadReplyLikeCount,
-      currentPage: state.communityUser.threadReplyLikeCurrentPageNumber,
-      searchFormParameters: state.communityUser.threadReplyLikeSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.threadReplyLikeList,
+      count: state._communityUser.threadReplyLikeCount,
+      currentPage: state._communityUser.threadReplyLikeCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadReplyLikeSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadReplyLikeCreateForm);
   }
   
@@ -596,24 +596,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.fanList,
-      count: state.communityUser.fanCount,
-      currentPage: state.communityUser.fanCurrentPageNumber,
-      searchFormParameters: state.communityUser.fanSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.fanList,
+      count: state._communityUser.fanCount,
+      currentPage: state._communityUser.fanCurrentPageNumber,
+      searchFormParameters: state._communityUser.fanSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(FanSearch);
   }
   getFanCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.fanList,
-      count: state.communityUser.fanCount,
-      currentPage: state.communityUser.fanCurrentPageNumber,
-      searchFormParameters: state.communityUser.fanSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.fanList,
+      count: state._communityUser.fanCount,
+      currentPage: state._communityUser.fanCurrentPageNumber,
+      searchFormParameters: state._communityUser.fanSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(FanCreateForm);
   }
   
@@ -622,24 +622,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.followList,
-      count: state.communityUser.followCount,
-      currentPage: state.communityUser.followCurrentPageNumber,
-      searchFormParameters: state.communityUser.followSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.followList,
+      count: state._communityUser.followCount,
+      currentPage: state._communityUser.followCurrentPageNumber,
+      searchFormParameters: state._communityUser.followSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(FollowSearch);
   }
   getFollowCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.followList,
-      count: state.communityUser.followCount,
-      currentPage: state.communityUser.followCurrentPageNumber,
-      searchFormParameters: state.communityUser.followSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.followList,
+      count: state._communityUser.followCount,
+      currentPage: state._communityUser.followCurrentPageNumber,
+      searchFormParameters: state._communityUser.followSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(FollowCreateForm);
   }
   
@@ -648,24 +648,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.bonusPointList,
-      count: state.communityUser.bonusPointCount,
-      currentPage: state.communityUser.bonusPointCurrentPageNumber,
-      searchFormParameters: state.communityUser.bonusPointSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.bonusPointList,
+      count: state._communityUser.bonusPointCount,
+      currentPage: state._communityUser.bonusPointCurrentPageNumber,
+      searchFormParameters: state._communityUser.bonusPointSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(BonusPointSearch);
   }
   getBonusPointCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.bonusPointList,
-      count: state.communityUser.bonusPointCount,
-      currentPage: state.communityUser.bonusPointCurrentPageNumber,
-      searchFormParameters: state.communityUser.bonusPointSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.bonusPointList,
+      count: state._communityUser.bonusPointCount,
+      currentPage: state._communityUser.bonusPointCurrentPageNumber,
+      searchFormParameters: state._communityUser.bonusPointSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(BonusPointCreateForm);
   }
   
@@ -674,24 +674,24 @@ class CommunityUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.experiencePointList,
-      count: state.communityUser.experiencePointCount,
-      currentPage: state.communityUser.experiencePointCurrentPageNumber,
-      searchFormParameters: state.communityUser.experiencePointSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.experiencePointList,
+      count: state._communityUser.experiencePointCount,
+      currentPage: state._communityUser.experiencePointCurrentPageNumber,
+      searchFormParameters: state._communityUser.experiencePointSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ExperiencePointSearch);
   }
   getExperiencePointCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.communityUser.experiencePointList,
-      count: state.communityUser.experiencePointCount,
-      currentPage: state.communityUser.experiencePointCurrentPageNumber,
-      searchFormParameters: state.communityUser.experiencePointSearchFormParameters,
-      loading: state.communityUser.loading,
-      owner: {type:'communityUser',id:state.communityUser.id}//this is for model namespace and 
+      data: state._communityUser.experiencePointList,
+      count: state._communityUser.experiencePointCount,
+      currentPage: state._communityUser.experiencePointCurrentPageNumber,
+      searchFormParameters: state._communityUser.experiencePointSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ExperiencePointCreateForm);
   }
   
@@ -720,7 +720,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -853,10 +853,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  communityUser: state._communityUser,
   ...state
 }))(CommunityUserBizApp);
 

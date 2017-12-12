@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  threadApproval: state.threadApproval,
+  threadApproval: state._threadApproval,
 }))
 export default class ThreadApprovalDashboard extends Component {
  

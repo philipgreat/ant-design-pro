@@ -7,7 +7,7 @@ import ThreadRegistrationService from './ThreadRegistration.service';
 
 export default {
 
-  namespace: 'threadRegistration',
+  namespace: '_threadRegistration',
 
   state: {},
 

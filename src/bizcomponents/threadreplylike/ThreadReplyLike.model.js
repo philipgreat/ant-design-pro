@@ -7,7 +7,7 @@ import ThreadReplyLikeService from './ThreadReplyLike.service';
 
 export default {
 
-  namespace: 'threadReplyLike',
+  namespace: '_threadReplyLike',
 
   state: {},
 

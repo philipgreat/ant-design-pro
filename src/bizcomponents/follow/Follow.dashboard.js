@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  follow: state.follow,
+  follow: state._follow,
 }))
 export default class FollowDashboard extends Component {
  

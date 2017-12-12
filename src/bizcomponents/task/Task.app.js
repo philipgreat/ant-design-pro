@@ -127,24 +127,24 @@ class TaskBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.task.taskAssigmentList,
-      count: state.task.taskAssigmentCount,
-      currentPage: state.task.taskAssigmentCurrentPageNumber,
-      searchFormParameters: state.task.taskAssigmentSearchFormParameters,
-      loading: state.task.loading,
-      owner: {type:'task',id:state.task.id}//this is for model namespace and 
+      data: state._task.taskAssigmentList,
+      count: state._task.taskAssigmentCount,
+      currentPage: state._task.taskAssigmentCurrentPageNumber,
+      searchFormParameters: state._task.taskAssigmentSearchFormParameters,
+      loading: state._task.loading,
+      owner: {type:'_task',id:state._task.id}//this is for model namespace and 
     }))(TaskAssigmentSearch);
   }
   getTaskAssigmentCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.task.taskAssigmentList,
-      count: state.task.taskAssigmentCount,
-      currentPage: state.task.taskAssigmentCurrentPageNumber,
-      searchFormParameters: state.task.taskAssigmentSearchFormParameters,
-      loading: state.task.loading,
-      owner: {type:'task',id:state.task.id}//this is for model namespace and 
+      data: state._task.taskAssigmentList,
+      count: state._task.taskAssigmentCount,
+      currentPage: state._task.taskAssigmentCurrentPageNumber,
+      searchFormParameters: state._task.taskAssigmentSearchFormParameters,
+      loading: state._task.loading,
+      owner: {type:'_task',id:state._task.id}//this is for model namespace and 
     }))(TaskAssigmentCreateForm);
   }
   
@@ -153,24 +153,24 @@ class TaskBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.task.taskLikeList,
-      count: state.task.taskLikeCount,
-      currentPage: state.task.taskLikeCurrentPageNumber,
-      searchFormParameters: state.task.taskLikeSearchFormParameters,
-      loading: state.task.loading,
-      owner: {type:'task',id:state.task.id}//this is for model namespace and 
+      data: state._task.taskLikeList,
+      count: state._task.taskLikeCount,
+      currentPage: state._task.taskLikeCurrentPageNumber,
+      searchFormParameters: state._task.taskLikeSearchFormParameters,
+      loading: state._task.loading,
+      owner: {type:'_task',id:state._task.id}//this is for model namespace and 
     }))(TaskLikeSearch);
   }
   getTaskLikeCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.task.taskLikeList,
-      count: state.task.taskLikeCount,
-      currentPage: state.task.taskLikeCurrentPageNumber,
-      searchFormParameters: state.task.taskLikeSearchFormParameters,
-      loading: state.task.loading,
-      owner: {type:'task',id:state.task.id}//this is for model namespace and 
+      data: state._task.taskLikeList,
+      count: state._task.taskLikeCount,
+      currentPage: state._task.taskLikeCurrentPageNumber,
+      searchFormParameters: state._task.taskLikeSearchFormParameters,
+      loading: state._task.loading,
+      owner: {type:'_task',id:state._task.id}//this is for model namespace and 
     }))(TaskLikeCreateForm);
   }
   
@@ -179,24 +179,24 @@ class TaskBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.task.taskReplyList,
-      count: state.task.taskReplyCount,
-      currentPage: state.task.taskReplyCurrentPageNumber,
-      searchFormParameters: state.task.taskReplySearchFormParameters,
-      loading: state.task.loading,
-      owner: {type:'task',id:state.task.id}//this is for model namespace and 
+      data: state._task.taskReplyList,
+      count: state._task.taskReplyCount,
+      currentPage: state._task.taskReplyCurrentPageNumber,
+      searchFormParameters: state._task.taskReplySearchFormParameters,
+      loading: state._task.loading,
+      owner: {type:'_task',id:state._task.id}//this is for model namespace and 
     }))(TaskReplySearch);
   }
   getTaskReplyCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.task.taskReplyList,
-      count: state.task.taskReplyCount,
-      currentPage: state.task.taskReplyCurrentPageNumber,
-      searchFormParameters: state.task.taskReplySearchFormParameters,
-      loading: state.task.loading,
-      owner: {type:'task',id:state.task.id}//this is for model namespace and 
+      data: state._task.taskReplyList,
+      count: state._task.taskReplyCount,
+      currentPage: state._task.taskReplyCurrentPageNumber,
+      searchFormParameters: state._task.taskReplySearchFormParameters,
+      loading: state._task.loading,
+      owner: {type:'_task',id:state._task.id}//this is for model namespace and 
     }))(TaskReplyCreateForm);
   }
   
@@ -225,7 +225,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -298,10 +298,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  task: state._task,
   ...state
 }))(TaskBizApp);
 

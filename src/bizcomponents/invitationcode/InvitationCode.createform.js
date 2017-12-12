@@ -27,7 +27,7 @@ used: '用',
 const testValues={
         
       			name:'邀请码',
-			code:'640702',
+			code:'809747',
 			used:'1',
 			communityId:'C000001',
 
@@ -252,7 +252,6 @@ class InvitationCodeCreateForm extends PureComponent {
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-  submitting: state.formtest.advancedFormSubmitting,
 }))(Form.create()(InvitationCodeCreateForm));
 
 

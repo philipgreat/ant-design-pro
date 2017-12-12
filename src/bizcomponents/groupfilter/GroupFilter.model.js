@@ -7,7 +7,7 @@ import GroupFilterService from './GroupFilter.service';
 
 export default {
 
-  namespace: 'groupFilter',
+  namespace: '_groupFilter',
 
   state: {},
 

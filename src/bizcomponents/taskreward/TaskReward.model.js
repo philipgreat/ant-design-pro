@@ -7,7 +7,7 @@ import TaskRewardService from './TaskReward.service';
 
 export default {
 
-  namespace: 'taskReward',
+  namespace: '_taskReward',
 
   state: {},
 

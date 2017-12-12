@@ -7,7 +7,7 @@ import ThreadLikeService from './ThreadLike.service';
 
 export default {
 
-  namespace: 'threadLike',
+  namespace: '_threadLike',
 
   state: {},
 

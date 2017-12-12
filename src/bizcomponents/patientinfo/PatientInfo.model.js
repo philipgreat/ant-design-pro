@@ -7,7 +7,7 @@ import PatientInfoService from './PatientInfo.service';
 
 export default {
 
-  namespace: 'patientInfo',
+  namespace: '_patientInfo',
 
   state: {},
 

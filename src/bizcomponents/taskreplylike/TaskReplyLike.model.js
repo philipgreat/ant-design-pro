@@ -7,7 +7,7 @@ import TaskReplyLikeService from './TaskReplyLike.service';
 
 export default {
 
-  namespace: 'taskReplyLike',
+  namespace: '_taskReplyLike',
 
   state: {},
 

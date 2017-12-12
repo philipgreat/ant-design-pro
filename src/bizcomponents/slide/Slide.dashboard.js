@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  slide: state.slide,
+  slide: state._slide,
 }))
 export default class SlideDashboard extends Component {
  

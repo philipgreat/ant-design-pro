@@ -7,7 +7,7 @@ import ObjectAccessService from './ObjectAccess.service';
 
 export default {
 
-  namespace: 'objectAccess',
+  namespace: '_objectAccess',
 
   state: {},
 

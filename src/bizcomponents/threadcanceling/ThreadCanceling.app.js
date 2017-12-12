@@ -113,24 +113,24 @@ class ThreadCancelingBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.threadCanceling.threadList,
-      count: state.threadCanceling.threadCount,
-      currentPage: state.threadCanceling.threadCurrentPageNumber,
-      searchFormParameters: state.threadCanceling.threadSearchFormParameters,
-      loading: state.threadCanceling.loading,
-      owner: {type:'threadCanceling',id:state.threadCanceling.id}//this is for model namespace and 
+      data: state._threadCanceling.threadList,
+      count: state._threadCanceling.threadCount,
+      currentPage: state._threadCanceling.threadCurrentPageNumber,
+      searchFormParameters: state._threadCanceling.threadSearchFormParameters,
+      loading: state._threadCanceling.loading,
+      owner: {type:'_threadCanceling',id:state._threadCanceling.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
   getThreadCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.threadCanceling.threadList,
-      count: state.threadCanceling.threadCount,
-      currentPage: state.threadCanceling.threadCurrentPageNumber,
-      searchFormParameters: state.threadCanceling.threadSearchFormParameters,
-      loading: state.threadCanceling.loading,
-      owner: {type:'threadCanceling',id:state.threadCanceling.id}//this is for model namespace and 
+      data: state._threadCanceling.threadList,
+      count: state._threadCanceling.threadCount,
+      currentPage: state._threadCanceling.threadCurrentPageNumber,
+      searchFormParameters: state._threadCanceling.threadSearchFormParameters,
+      loading: state._threadCanceling.loading,
+      owner: {type:'_threadCanceling',id:state._threadCanceling.id}//this is for model namespace and 
     }))(ThreadCreateForm);
   }
   
@@ -159,7 +159,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -224,10 +224,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  threadCanceling: state._threadCanceling,
   ...state
 }))(ThreadCancelingBizApp);
 

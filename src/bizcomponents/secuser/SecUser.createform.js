@@ -36,8 +36,8 @@ const testValues={
 			email:'suddy_chang@163.com',
 			pwd:'C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95',
 			verificationCode:'9981727',
-			verificationCodeExpire:'2035-03-17 18:33:14',
-			lastLoginTime:'2035-07-21 14:04:58',
+			verificationCodeExpire:'2037-05-15 14:14:41',
+			lastLoginTime:'2034-07-26 02:44:13',
 			domainId:'UD000001',
 
         
@@ -305,7 +305,6 @@ class SecUserCreateForm extends PureComponent {
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-  submitting: state.formtest.advancedFormSubmitting,
 }))(Form.create()(SecUserCreateForm));
 
 

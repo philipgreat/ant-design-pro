@@ -7,7 +7,7 @@ import ThreadHidingService from './ThreadHiding.service';
 
 export default {
 
-  namespace: 'threadHiding',
+  namespace: '_threadHiding',
 
   state: {},
 

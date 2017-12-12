@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  threadRegistration: state.threadRegistration,
+  threadRegistration: state._threadRegistration,
 }))
 export default class ThreadRegistrationDashboard extends Component {
  

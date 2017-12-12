@@ -113,24 +113,24 @@ class ThreadHidingBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.threadHiding.threadList,
-      count: state.threadHiding.threadCount,
-      currentPage: state.threadHiding.threadCurrentPageNumber,
-      searchFormParameters: state.threadHiding.threadSearchFormParameters,
-      loading: state.threadHiding.loading,
-      owner: {type:'threadHiding',id:state.threadHiding.id}//this is for model namespace and 
+      data: state._threadHiding.threadList,
+      count: state._threadHiding.threadCount,
+      currentPage: state._threadHiding.threadCurrentPageNumber,
+      searchFormParameters: state._threadHiding.threadSearchFormParameters,
+      loading: state._threadHiding.loading,
+      owner: {type:'_threadHiding',id:state._threadHiding.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
   getThreadCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.threadHiding.threadList,
-      count: state.threadHiding.threadCount,
-      currentPage: state.threadHiding.threadCurrentPageNumber,
-      searchFormParameters: state.threadHiding.threadSearchFormParameters,
-      loading: state.threadHiding.loading,
-      owner: {type:'threadHiding',id:state.threadHiding.id}//this is for model namespace and 
+      data: state._threadHiding.threadList,
+      count: state._threadHiding.threadCount,
+      currentPage: state._threadHiding.threadCurrentPageNumber,
+      searchFormParameters: state._threadHiding.threadSearchFormParameters,
+      loading: state._threadHiding.loading,
+      owner: {type:'_threadHiding',id:state._threadHiding.id}//this is for model namespace and 
     }))(ThreadCreateForm);
   }
   
@@ -159,7 +159,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -224,10 +224,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  threadHiding: state._threadHiding,
   ...state
 }))(ThreadHidingBizApp);
 

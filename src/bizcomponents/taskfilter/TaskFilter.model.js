@@ -7,7 +7,7 @@ import TaskFilterService from './TaskFilter.service';
 
 export default {
 
-  namespace: 'taskFilter',
+  namespace: '_taskFilter',
 
   state: {},
 

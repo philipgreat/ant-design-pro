@@ -7,7 +7,7 @@ import CommunityService from './Community.service';
 
 export default {
 
-  namespace: 'community',
+  namespace: '_community',
 
   state: {},
 

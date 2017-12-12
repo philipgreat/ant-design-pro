@@ -7,7 +7,7 @@ import MessageFilterService from './MessageFilter.service';
 
 export default {
 
-  namespace: 'messageFilter',
+  namespace: '_messageFilter',
 
   state: {},
 

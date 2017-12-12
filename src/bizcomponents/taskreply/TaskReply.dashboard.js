@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  taskReply: state.taskReply,
+  taskReply: state._taskReply,
 }))
 export default class TaskReplyDashboard extends Component {
  

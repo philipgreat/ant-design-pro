@@ -214,7 +214,6 @@ class SecUserBlockingCreateForm extends PureComponent {
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-  submitting: state.formtest.advancedFormSubmitting,
 }))(Form.create()(SecUserBlockingCreateForm));
 
 

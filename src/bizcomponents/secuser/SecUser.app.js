@@ -120,24 +120,24 @@ class SecUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.secUser.userAppList,
-      count: state.secUser.userAppCount,
-      currentPage: state.secUser.userAppCurrentPageNumber,
-      searchFormParameters: state.secUser.userAppSearchFormParameters,
-      loading: state.secUser.loading,
-      owner: {type:'secUser',id:state.secUser.id}//this is for model namespace and 
+      data: state._secUser.userAppList,
+      count: state._secUser.userAppCount,
+      currentPage: state._secUser.userAppCurrentPageNumber,
+      searchFormParameters: state._secUser.userAppSearchFormParameters,
+      loading: state._secUser.loading,
+      owner: {type:'_secUser',id:state._secUser.id}//this is for model namespace and 
     }))(UserAppSearch);
   }
   getUserAppCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.secUser.userAppList,
-      count: state.secUser.userAppCount,
-      currentPage: state.secUser.userAppCurrentPageNumber,
-      searchFormParameters: state.secUser.userAppSearchFormParameters,
-      loading: state.secUser.loading,
-      owner: {type:'secUser',id:state.secUser.id}//this is for model namespace and 
+      data: state._secUser.userAppList,
+      count: state._secUser.userAppCount,
+      currentPage: state._secUser.userAppCurrentPageNumber,
+      searchFormParameters: state._secUser.userAppSearchFormParameters,
+      loading: state._secUser.loading,
+      owner: {type:'_secUser',id:state._secUser.id}//this is for model namespace and 
     }))(UserAppCreateForm);
   }
   
@@ -146,24 +146,24 @@ class SecUserBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.secUser.loginHistoryList,
-      count: state.secUser.loginHistoryCount,
-      currentPage: state.secUser.loginHistoryCurrentPageNumber,
-      searchFormParameters: state.secUser.loginHistorySearchFormParameters,
-      loading: state.secUser.loading,
-      owner: {type:'secUser',id:state.secUser.id}//this is for model namespace and 
+      data: state._secUser.loginHistoryList,
+      count: state._secUser.loginHistoryCount,
+      currentPage: state._secUser.loginHistoryCurrentPageNumber,
+      searchFormParameters: state._secUser.loginHistorySearchFormParameters,
+      loading: state._secUser.loading,
+      owner: {type:'_secUser',id:state._secUser.id}//this is for model namespace and 
     }))(LoginHistorySearch);
   }
   getLoginHistoryCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.secUser.loginHistoryList,
-      count: state.secUser.loginHistoryCount,
-      currentPage: state.secUser.loginHistoryCurrentPageNumber,
-      searchFormParameters: state.secUser.loginHistorySearchFormParameters,
-      loading: state.secUser.loading,
-      owner: {type:'secUser',id:state.secUser.id}//this is for model namespace and 
+      data: state._secUser.loginHistoryList,
+      count: state._secUser.loginHistoryCount,
+      currentPage: state._secUser.loginHistoryCurrentPageNumber,
+      searchFormParameters: state._secUser.loginHistorySearchFormParameters,
+      loading: state._secUser.loading,
+      owner: {type:'_secUser',id:state._secUser.id}//this is for model namespace and 
     }))(LoginHistoryCreateForm);
   }
   
@@ -192,7 +192,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -261,10 +261,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  secUser: state._secUser,
   ...state
 }))(SecUserBizApp);
 

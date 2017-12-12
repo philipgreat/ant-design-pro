@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  invitationCode: state.invitationCode,
+  invitationCode: state._invitationCode,
 }))
 export default class InvitationCodeDashboard extends Component {
  

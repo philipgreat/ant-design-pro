@@ -7,7 +7,7 @@ import TaskBestAnswerSettingService from './TaskBestAnswerSetting.service';
 
 export default {
 
-  namespace: 'taskBestAnswerSetting',
+  namespace: '_taskBestAnswerSetting',
 
   state: {},
 

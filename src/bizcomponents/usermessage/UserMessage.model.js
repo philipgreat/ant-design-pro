@@ -7,7 +7,7 @@ import UserMessageService from './UserMessage.service';
 
 export default {
 
-  namespace: 'userMessage',
+  namespace: '_userMessage',
 
   state: {},
 

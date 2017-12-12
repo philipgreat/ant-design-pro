@@ -113,24 +113,24 @@ class TaskRewardBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.taskReward.taskList,
-      count: state.taskReward.taskCount,
-      currentPage: state.taskReward.taskCurrentPageNumber,
-      searchFormParameters: state.taskReward.taskSearchFormParameters,
-      loading: state.taskReward.loading,
-      owner: {type:'taskReward',id:state.taskReward.id}//this is for model namespace and 
+      data: state._taskReward.taskList,
+      count: state._taskReward.taskCount,
+      currentPage: state._taskReward.taskCurrentPageNumber,
+      searchFormParameters: state._taskReward.taskSearchFormParameters,
+      loading: state._taskReward.loading,
+      owner: {type:'_taskReward',id:state._taskReward.id}//this is for model namespace and 
     }))(TaskSearch);
   }
   getTaskCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.taskReward.taskList,
-      count: state.taskReward.taskCount,
-      currentPage: state.taskReward.taskCurrentPageNumber,
-      searchFormParameters: state.taskReward.taskSearchFormParameters,
-      loading: state.taskReward.loading,
-      owner: {type:'taskReward',id:state.taskReward.id}//this is for model namespace and 
+      data: state._taskReward.taskList,
+      count: state._taskReward.taskCount,
+      currentPage: state._taskReward.taskCurrentPageNumber,
+      searchFormParameters: state._taskReward.taskSearchFormParameters,
+      loading: state._taskReward.loading,
+      owner: {type:'_taskReward',id:state._taskReward.id}//this is for model namespace and 
     }))(TaskCreateForm);
   }
   
@@ -159,7 +159,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -224,10 +224,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  taskReward: state._taskReward,
   ...state
 }))(TaskRewardBizApp);
 

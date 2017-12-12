@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  userMessage: state.userMessage,
+  userMessage: state._userMessage,
 }))
 export default class UserMessageDashboard extends Component {
  

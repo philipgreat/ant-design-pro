@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  encyclopediaItem: state.encyclopediaItem,
+  encyclopediaItem: state._encyclopediaItem,
 }))
 export default class EncyclopediaItemDashboard extends Component {
  

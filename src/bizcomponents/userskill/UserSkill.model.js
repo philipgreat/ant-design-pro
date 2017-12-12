@@ -7,7 +7,7 @@ import UserSkillService from './UserSkill.service';
 
 export default {
 
-  namespace: 'userSkill',
+  namespace: '_userSkill',
 
   state: {},
 

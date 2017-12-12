@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  threadHiding: state.threadHiding,
+  threadHiding: state._threadHiding,
 }))
 export default class ThreadHidingDashboard extends Component {
  

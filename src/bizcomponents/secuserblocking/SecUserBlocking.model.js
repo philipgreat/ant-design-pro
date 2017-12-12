@@ -7,7 +7,7 @@ import SecUserBlockingService from './SecUserBlocking.service';
 
 export default {
 
-  namespace: 'secUserBlocking',
+  namespace: '_secUserBlocking',
 
   state: {},
 

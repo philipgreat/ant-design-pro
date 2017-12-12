@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  threadLike: state.threadLike,
+  threadLike: state._threadLike,
 }))
 export default class ThreadLikeDashboard extends Component {
  

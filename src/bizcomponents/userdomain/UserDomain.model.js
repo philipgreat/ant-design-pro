@@ -7,7 +7,7 @@ import UserDomainService from './UserDomain.service';
 
 export default {
 
-  namespace: 'userDomain',
+  namespace: '_userDomain',
 
   state: {},
 

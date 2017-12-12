@@ -7,7 +7,7 @@ import TaskHidingService from './TaskHiding.service';
 
 export default {
 
-  namespace: 'taskHiding',
+  namespace: '_taskHiding',
 
   state: {},
 

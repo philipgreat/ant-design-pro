@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  messageFilter: state.messageFilter,
+  messageFilter: state._messageFilter,
 }))
 export default class MessageFilterDashboard extends Component {
  

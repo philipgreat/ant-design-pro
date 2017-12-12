@@ -127,24 +127,24 @@ class ThreadBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.thread.threadReplyList,
-      count: state.thread.threadReplyCount,
-      currentPage: state.thread.threadReplyCurrentPageNumber,
-      searchFormParameters: state.thread.threadReplySearchFormParameters,
-      loading: state.thread.loading,
-      owner: {type:'thread',id:state.thread.id}//this is for model namespace and 
+      data: state._thread.threadReplyList,
+      count: state._thread.threadReplyCount,
+      currentPage: state._thread.threadReplyCurrentPageNumber,
+      searchFormParameters: state._thread.threadReplySearchFormParameters,
+      loading: state._thread.loading,
+      owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadReplySearch);
   }
   getThreadReplyCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.thread.threadReplyList,
-      count: state.thread.threadReplyCount,
-      currentPage: state.thread.threadReplyCurrentPageNumber,
-      searchFormParameters: state.thread.threadReplySearchFormParameters,
-      loading: state.thread.loading,
-      owner: {type:'thread',id:state.thread.id}//this is for model namespace and 
+      data: state._thread.threadReplyList,
+      count: state._thread.threadReplyCount,
+      currentPage: state._thread.threadReplyCurrentPageNumber,
+      searchFormParameters: state._thread.threadReplySearchFormParameters,
+      loading: state._thread.loading,
+      owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadReplyCreateForm);
   }
   
@@ -153,24 +153,24 @@ class ThreadBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.thread.threadRegistrationList,
-      count: state.thread.threadRegistrationCount,
-      currentPage: state.thread.threadRegistrationCurrentPageNumber,
-      searchFormParameters: state.thread.threadRegistrationSearchFormParameters,
-      loading: state.thread.loading,
-      owner: {type:'thread',id:state.thread.id}//this is for model namespace and 
+      data: state._thread.threadRegistrationList,
+      count: state._thread.threadRegistrationCount,
+      currentPage: state._thread.threadRegistrationCurrentPageNumber,
+      searchFormParameters: state._thread.threadRegistrationSearchFormParameters,
+      loading: state._thread.loading,
+      owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadRegistrationSearch);
   }
   getThreadRegistrationCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.thread.threadRegistrationList,
-      count: state.thread.threadRegistrationCount,
-      currentPage: state.thread.threadRegistrationCurrentPageNumber,
-      searchFormParameters: state.thread.threadRegistrationSearchFormParameters,
-      loading: state.thread.loading,
-      owner: {type:'thread',id:state.thread.id}//this is for model namespace and 
+      data: state._thread.threadRegistrationList,
+      count: state._thread.threadRegistrationCount,
+      currentPage: state._thread.threadRegistrationCurrentPageNumber,
+      searchFormParameters: state._thread.threadRegistrationSearchFormParameters,
+      loading: state._thread.loading,
+      owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadRegistrationCreateForm);
   }
   
@@ -179,24 +179,24 @@ class ThreadBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.thread.threadLikeList,
-      count: state.thread.threadLikeCount,
-      currentPage: state.thread.threadLikeCurrentPageNumber,
-      searchFormParameters: state.thread.threadLikeSearchFormParameters,
-      loading: state.thread.loading,
-      owner: {type:'thread',id:state.thread.id}//this is for model namespace and 
+      data: state._thread.threadLikeList,
+      count: state._thread.threadLikeCount,
+      currentPage: state._thread.threadLikeCurrentPageNumber,
+      searchFormParameters: state._thread.threadLikeSearchFormParameters,
+      loading: state._thread.loading,
+      owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadLikeSearch);
   }
   getThreadLikeCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.thread.threadLikeList,
-      count: state.thread.threadLikeCount,
-      currentPage: state.thread.threadLikeCurrentPageNumber,
-      searchFormParameters: state.thread.threadLikeSearchFormParameters,
-      loading: state.thread.loading,
-      owner: {type:'thread',id:state.thread.id}//this is for model namespace and 
+      data: state._thread.threadLikeList,
+      count: state._thread.threadLikeCount,
+      currentPage: state._thread.threadLikeCurrentPageNumber,
+      searchFormParameters: state._thread.threadLikeSearchFormParameters,
+      loading: state._thread.loading,
+      owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadLikeCreateForm);
   }
   
@@ -225,7 +225,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -298,10 +298,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  thread: state._thread,
   ...state
 }))(ThreadBizApp);
 

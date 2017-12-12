@@ -7,7 +7,7 @@ import ThreadCancelingService from './ThreadCanceling.service';
 
 export default {
 
-  namespace: 'threadCanceling',
+  namespace: '_threadCanceling',
 
   state: {},
 

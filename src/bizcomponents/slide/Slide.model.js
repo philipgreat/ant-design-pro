@@ -7,7 +7,7 @@ import SlideService from './Slide.service';
 
 export default {
 
-  namespace: 'slide',
+  namespace: '_slide',
 
   state: {},
 

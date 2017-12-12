@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  taskFilter: state.taskFilter,
+  taskFilter: state._taskFilter,
 }))
 export default class TaskFilterDashboard extends Component {
  

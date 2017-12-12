@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  loginHistory: state.loginHistory,
+  loginHistory: state._loginHistory,
 }))
 export default class LoginHistoryDashboard extends Component {
  

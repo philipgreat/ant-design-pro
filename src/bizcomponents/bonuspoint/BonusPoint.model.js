@@ -7,7 +7,7 @@ import BonusPointService from './BonusPoint.service';
 
 export default {
 
-  namespace: 'bonusPoint',
+  namespace: '_bonusPoint',
 
   state: {},
 

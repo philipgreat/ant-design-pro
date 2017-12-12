@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  patientInfo: state.patientInfo,
+  patientInfo: state._patientInfo,
 }))
 export default class PatientInfoDashboard extends Component {
  

@@ -49,8 +49,8 @@ const testValues={
       			title:'听力损失儿童回归的优点',
 			selectedTask:'是',
 			videoUrl:'https://player.youku.com/embed/XMzE0ODQ0NTA2NA',
-			creatorBonus:'99',
-			additionalBonus:'99',
+			creatorBonus:'82',
+			additionalBonus:'71',
 			likeByCurrentUser:'0',
 			repliedByCurrentUser:'0',
 			creatorId:'CU000001',
@@ -437,7 +437,6 @@ class TaskCreateForm extends PureComponent {
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-  submitting: state.formtest.advancedFormSubmitting,
 }))(Form.create()(TaskCreateForm));
 
 

@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  threadReply: state.threadReply,
+  threadReply: state._threadReply,
 }))
 export default class ThreadReplyDashboard extends Component {
  

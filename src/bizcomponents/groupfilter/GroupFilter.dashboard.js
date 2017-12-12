@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  groupFilter: state.groupFilter,
+  groupFilter: state._groupFilter,
 }))
 export default class GroupFilterDashboard extends Component {
  

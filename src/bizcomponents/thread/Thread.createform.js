@@ -54,8 +54,8 @@ const testValues={
         
       			title:'听力损失儿童回归的优点',
 			displayOrder:'0',
-			eventTime:'2035-03-13 20:44:31',
-			registrationStopTime:'2035-07-10 12:27:54',
+			eventTime:'2037-02-20 01:59:22',
+			registrationStopTime:'2038-09-11 13:49:43',
 			eventLocation:'奥克斯广场阳光咖啡',
 			city:'成都',
 			communityGroup:'最新',
@@ -503,7 +503,6 @@ class ThreadCreateForm extends PureComponent {
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-  submitting: state.formtest.advancedFormSubmitting,
 }))(Form.create()(ThreadCreateForm));
 
 

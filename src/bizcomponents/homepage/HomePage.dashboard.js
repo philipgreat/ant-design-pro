@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  homePage: state.homePage,
+  homePage: state._homePage,
 }))
 export default class HomePageDashboard extends Component {
  

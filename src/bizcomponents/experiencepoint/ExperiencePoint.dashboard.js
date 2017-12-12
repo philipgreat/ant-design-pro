@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  experiencePoint: state.experiencePoint,
+  experiencePoint: state._experiencePoint,
 }))
 export default class ExperiencePointDashboard extends Component {
  

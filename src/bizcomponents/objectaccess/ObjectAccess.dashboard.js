@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  objectAccess: state.objectAccess,
+  objectAccess: state._objectAccess,
 }))
 export default class ObjectAccessDashboard extends Component {
  

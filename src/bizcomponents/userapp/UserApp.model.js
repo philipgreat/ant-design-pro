@@ -7,7 +7,7 @@ import UserAppService from './UserApp.service';
 
 export default {
 
-  namespace: 'userApp',
+  namespace: '_userApp',
 
   state: {},
 

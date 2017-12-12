@@ -33,11 +33,11 @@ const testValues={
       			name:'刘利',
 			nickName:'喀拉',
 			gender:'男',
-			birthday:'2036-10-13',
+			birthday:'2037-03-13',
 			wearDeviceType:'新发现',
-			wearStartTime:'2033-07-10',
+			wearStartTime:'2033-03-07',
 			recoverPlan:'幼儿龄段（0-3岁）',
-			recoverStartTime:'2033-04-03',
+			recoverStartTime:'2034-08-06',
 			userId:'CU000001',
 
         
@@ -316,7 +316,6 @@ class PatientInfoCreateForm extends PureComponent {
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-  submitting: state.formtest.advancedFormSubmitting,
 }))(Form.create()(PatientInfoCreateForm));
 
 

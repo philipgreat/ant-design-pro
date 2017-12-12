@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  threadCompletion: state.threadCompletion,
+  threadCompletion: state._threadCompletion,
 }))
 export default class ThreadCompletionDashboard extends Component {
  

@@ -7,7 +7,7 @@ import TaskLikeService from './TaskLike.service';
 
 export default {
 
-  namespace: 'taskLike',
+  namespace: '_taskLike',
 
   state: {},
 

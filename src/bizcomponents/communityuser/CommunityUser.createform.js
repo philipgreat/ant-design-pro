@@ -38,9 +38,9 @@ const testValues={
 			nickName:'喀拉',
 			gender:'男',
 			userType:'患者',
-			birthday:'2037-11-26',
-			experiencePoint:'7577',
-			bonusPoint:'943198',
+			birthday:'2034-12-20',
+			experiencePoint:'7153',
+			bonusPoint:'768828',
 			city:'北京',
 			status:'迎接更光明的明天',
 			hideInfo:'1',
@@ -374,7 +374,6 @@ class CommunityUserCreateForm extends PureComponent {
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-  submitting: state.formtest.advancedFormSubmitting,
 }))(Form.create()(CommunityUserCreateForm));
 
 

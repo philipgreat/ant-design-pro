@@ -7,7 +7,7 @@ import CommunityUserService from './CommunityUser.service';
 
 export default {
 
-  namespace: 'communityUser',
+  namespace: '_communityUser',
 
   state: {},
 

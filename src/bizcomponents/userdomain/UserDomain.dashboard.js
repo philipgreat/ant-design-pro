@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  userDomain: state.userDomain,
+  userDomain: state._userDomain,
 }))
 export default class UserDomainDashboard extends Component {
  

@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  fan: state.fan,
+  fan: state._fan,
 }))
 export default class FanDashboard extends Component {
  

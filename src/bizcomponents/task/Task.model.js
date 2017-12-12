@@ -7,7 +7,7 @@ import TaskService from './Task.service';
 
 export default {
 
-  namespace: 'task',
+  namespace: '_task',
 
   state: {},
 

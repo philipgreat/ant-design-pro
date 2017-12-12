@@ -113,24 +113,24 @@ class SecUserBlockingBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.secUserBlocking.secUserList,
-      count: state.secUserBlocking.secUserCount,
-      currentPage: state.secUserBlocking.secUserCurrentPageNumber,
-      searchFormParameters: state.secUserBlocking.secUserSearchFormParameters,
-      loading: state.secUserBlocking.loading,
-      owner: {type:'secUserBlocking',id:state.secUserBlocking.id}//this is for model namespace and 
+      data: state._secUserBlocking.secUserList,
+      count: state._secUserBlocking.secUserCount,
+      currentPage: state._secUserBlocking.secUserCurrentPageNumber,
+      searchFormParameters: state._secUserBlocking.secUserSearchFormParameters,
+      loading: state._secUserBlocking.loading,
+      owner: {type:'_secUserBlocking',id:state._secUserBlocking.id}//this is for model namespace and 
     }))(SecUserSearch);
   }
   getSecUserCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.secUserBlocking.secUserList,
-      count: state.secUserBlocking.secUserCount,
-      currentPage: state.secUserBlocking.secUserCurrentPageNumber,
-      searchFormParameters: state.secUserBlocking.secUserSearchFormParameters,
-      loading: state.secUserBlocking.loading,
-      owner: {type:'secUserBlocking',id:state.secUserBlocking.id}//this is for model namespace and 
+      data: state._secUserBlocking.secUserList,
+      count: state._secUserBlocking.secUserCount,
+      currentPage: state._secUserBlocking.secUserCurrentPageNumber,
+      searchFormParameters: state._secUserBlocking.secUserSearchFormParameters,
+      loading: state._secUserBlocking.loading,
+      owner: {type:'_secUserBlocking',id:state._secUserBlocking.id}//this is for model namespace and 
     }))(SecUserCreateForm);
   }
   
@@ -159,7 +159,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -224,10 +224,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  secUserBlocking: state._secUserBlocking,
   ...state
 }))(SecUserBlockingBizApp);
 

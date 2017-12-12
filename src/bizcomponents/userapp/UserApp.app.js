@@ -113,24 +113,24 @@ class UserAppBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.userApp.objectAccessList,
-      count: state.userApp.objectAccessCount,
-      currentPage: state.userApp.objectAccessCurrentPageNumber,
-      searchFormParameters: state.userApp.objectAccessSearchFormParameters,
-      loading: state.userApp.loading,
-      owner: {type:'userApp',id:state.userApp.id}//this is for model namespace and 
+      data: state._userApp.objectAccessList,
+      count: state._userApp.objectAccessCount,
+      currentPage: state._userApp.objectAccessCurrentPageNumber,
+      searchFormParameters: state._userApp.objectAccessSearchFormParameters,
+      loading: state._userApp.loading,
+      owner: {type:'_userApp',id:state._userApp.id}//this is for model namespace and 
     }))(ObjectAccessSearch);
   }
   getObjectAccessCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.userApp.objectAccessList,
-      count: state.userApp.objectAccessCount,
-      currentPage: state.userApp.objectAccessCurrentPageNumber,
-      searchFormParameters: state.userApp.objectAccessSearchFormParameters,
-      loading: state.userApp.loading,
-      owner: {type:'userApp',id:state.userApp.id}//this is for model namespace and 
+      data: state._userApp.objectAccessList,
+      count: state._userApp.objectAccessCount,
+      currentPage: state._userApp.objectAccessCurrentPageNumber,
+      searchFormParameters: state._userApp.objectAccessSearchFormParameters,
+      loading: state._userApp.loading,
+      owner: {type:'_userApp',id:state._userApp.id}//this is for model namespace and 
     }))(ObjectAccessCreateForm);
   }
   
@@ -159,7 +159,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -224,10 +224,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  userApp: state._userApp,
   ...state
 }))(UserAppBizApp);
 

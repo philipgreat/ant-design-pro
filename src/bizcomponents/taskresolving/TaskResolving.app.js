@@ -113,24 +113,24 @@ class TaskResolvingBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.taskResolving.taskList,
-      count: state.taskResolving.taskCount,
-      currentPage: state.taskResolving.taskCurrentPageNumber,
-      searchFormParameters: state.taskResolving.taskSearchFormParameters,
-      loading: state.taskResolving.loading,
-      owner: {type:'taskResolving',id:state.taskResolving.id}//this is for model namespace and 
+      data: state._taskResolving.taskList,
+      count: state._taskResolving.taskCount,
+      currentPage: state._taskResolving.taskCurrentPageNumber,
+      searchFormParameters: state._taskResolving.taskSearchFormParameters,
+      loading: state._taskResolving.loading,
+      owner: {type:'_taskResolving',id:state._taskResolving.id}//this is for model namespace and 
     }))(TaskSearch);
   }
   getTaskCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.taskResolving.taskList,
-      count: state.taskResolving.taskCount,
-      currentPage: state.taskResolving.taskCurrentPageNumber,
-      searchFormParameters: state.taskResolving.taskSearchFormParameters,
-      loading: state.taskResolving.loading,
-      owner: {type:'taskResolving',id:state.taskResolving.id}//this is for model namespace and 
+      data: state._taskResolving.taskList,
+      count: state._taskResolving.taskCount,
+      currentPage: state._taskResolving.taskCurrentPageNumber,
+      searchFormParameters: state._taskResolving.taskSearchFormParameters,
+      loading: state._taskResolving.loading,
+      owner: {type:'_taskResolving',id:state._taskResolving.id}//this is for model namespace and 
     }))(TaskCreateForm);
   }
   
@@ -159,7 +159,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -224,10 +224,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  taskResolving: state._taskResolving,
   ...state
 }))(TaskResolvingBizApp);
 

@@ -7,7 +7,7 @@ import ThreadService from './Thread.service';
 
 export default {
 
-  namespace: 'thread',
+  namespace: '_thread',
 
   state: {},
 

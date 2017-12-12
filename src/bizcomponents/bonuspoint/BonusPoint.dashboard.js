@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  bonusPoint: state.bonusPoint,
+  bonusPoint: state._bonusPoint,
 }))
 export default class BonusPointDashboard extends Component {
  

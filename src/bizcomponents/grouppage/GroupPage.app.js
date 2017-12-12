@@ -120,24 +120,24 @@ class GroupPageBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.groupPage.groupFilterList,
-      count: state.groupPage.groupFilterCount,
-      currentPage: state.groupPage.groupFilterCurrentPageNumber,
-      searchFormParameters: state.groupPage.groupFilterSearchFormParameters,
-      loading: state.groupPage.loading,
-      owner: {type:'groupPage',id:state.groupPage.id}//this is for model namespace and 
+      data: state._groupPage.groupFilterList,
+      count: state._groupPage.groupFilterCount,
+      currentPage: state._groupPage.groupFilterCurrentPageNumber,
+      searchFormParameters: state._groupPage.groupFilterSearchFormParameters,
+      loading: state._groupPage.loading,
+      owner: {type:'_groupPage',id:state._groupPage.id}//this is for model namespace and 
     }))(GroupFilterSearch);
   }
   getGroupFilterCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.groupPage.groupFilterList,
-      count: state.groupPage.groupFilterCount,
-      currentPage: state.groupPage.groupFilterCurrentPageNumber,
-      searchFormParameters: state.groupPage.groupFilterSearchFormParameters,
-      loading: state.groupPage.loading,
-      owner: {type:'groupPage',id:state.groupPage.id}//this is for model namespace and 
+      data: state._groupPage.groupFilterList,
+      count: state._groupPage.groupFilterCount,
+      currentPage: state._groupPage.groupFilterCurrentPageNumber,
+      searchFormParameters: state._groupPage.groupFilterSearchFormParameters,
+      loading: state._groupPage.loading,
+      owner: {type:'_groupPage',id:state._groupPage.id}//this is for model namespace and 
     }))(GroupFilterCreateForm);
   }
   
@@ -146,24 +146,24 @@ class GroupPageBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.groupPage.threadList,
-      count: state.groupPage.threadCount,
-      currentPage: state.groupPage.threadCurrentPageNumber,
-      searchFormParameters: state.groupPage.threadSearchFormParameters,
-      loading: state.groupPage.loading,
-      owner: {type:'groupPage',id:state.groupPage.id}//this is for model namespace and 
+      data: state._groupPage.threadList,
+      count: state._groupPage.threadCount,
+      currentPage: state._groupPage.threadCurrentPageNumber,
+      searchFormParameters: state._groupPage.threadSearchFormParameters,
+      loading: state._groupPage.loading,
+      owner: {type:'_groupPage',id:state._groupPage.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
   getThreadCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.groupPage.threadList,
-      count: state.groupPage.threadCount,
-      currentPage: state.groupPage.threadCurrentPageNumber,
-      searchFormParameters: state.groupPage.threadSearchFormParameters,
-      loading: state.groupPage.loading,
-      owner: {type:'groupPage',id:state.groupPage.id}//this is for model namespace and 
+      data: state._groupPage.threadList,
+      count: state._groupPage.threadCount,
+      currentPage: state._groupPage.threadCurrentPageNumber,
+      searchFormParameters: state._groupPage.threadSearchFormParameters,
+      loading: state._groupPage.loading,
+      owner: {type:'_groupPage',id:state._groupPage.id}//this is for model namespace and 
     }))(ThreadCreateForm);
   }
   
@@ -192,7 +192,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -261,10 +261,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  groupPage: state._groupPage,
   ...state
 }))(GroupPageBizApp);
 

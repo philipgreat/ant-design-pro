@@ -7,7 +7,7 @@ import ThreadReplyService from './ThreadReply.service';
 
 export default {
 
-  namespace: 'threadReply',
+  namespace: '_threadReply',
 
   state: {},
 

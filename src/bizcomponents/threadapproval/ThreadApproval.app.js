@@ -113,24 +113,24 @@ class ThreadApprovalBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.threadApproval.threadList,
-      count: state.threadApproval.threadCount,
-      currentPage: state.threadApproval.threadCurrentPageNumber,
-      searchFormParameters: state.threadApproval.threadSearchFormParameters,
-      loading: state.threadApproval.loading,
-      owner: {type:'threadApproval',id:state.threadApproval.id}//this is for model namespace and 
+      data: state._threadApproval.threadList,
+      count: state._threadApproval.threadCount,
+      currentPage: state._threadApproval.threadCurrentPageNumber,
+      searchFormParameters: state._threadApproval.threadSearchFormParameters,
+      loading: state._threadApproval.loading,
+      owner: {type:'_threadApproval',id:state._threadApproval.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
   getThreadCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.threadApproval.threadList,
-      count: state.threadApproval.threadCount,
-      currentPage: state.threadApproval.threadCurrentPageNumber,
-      searchFormParameters: state.threadApproval.threadSearchFormParameters,
-      loading: state.threadApproval.loading,
-      owner: {type:'threadApproval',id:state.threadApproval.id}//this is for model namespace and 
+      data: state._threadApproval.threadList,
+      count: state._threadApproval.threadCount,
+      currentPage: state._threadApproval.threadCurrentPageNumber,
+      searchFormParameters: state._threadApproval.threadSearchFormParameters,
+      loading: state._threadApproval.loading,
+      owner: {type:'_threadApproval',id:state._threadApproval.id}//this is for model namespace and 
     }))(ThreadCreateForm);
   }
   
@@ -159,7 +159,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -224,10 +224,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  threadApproval: state._threadApproval,
   ...state
 }))(ThreadApprovalBizApp);
 

@@ -7,7 +7,7 @@ import TaskPageService from './TaskPage.service';
 
 export default {
 
-  namespace: 'taskPage',
+  namespace: '_taskPage',
 
   state: {},
 

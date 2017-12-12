@@ -26,7 +26,7 @@ user: '用户',
 const testValues={
         
       			name:'完成求助奖励',
-			points:'811',
+			points:'978',
 			userId:'CU000001',
 
         
@@ -239,7 +239,6 @@ class BonusPointCreateForm extends PureComponent {
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-  submitting: state.formtest.advancedFormSubmitting,
 }))(Form.create()(BonusPointCreateForm));
 
 

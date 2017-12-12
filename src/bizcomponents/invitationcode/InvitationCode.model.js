@@ -7,7 +7,7 @@ import InvitationCodeService from './InvitationCode.service';
 
 export default {
 
-  namespace: 'invitationCode',
+  namespace: '_invitationCode',
 
   state: {},
 

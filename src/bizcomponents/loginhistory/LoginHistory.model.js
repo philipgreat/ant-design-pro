@@ -7,7 +7,7 @@ import LoginHistoryService from './LoginHistory.service';
 
 export default {
 
-  namespace: 'loginHistory',
+  namespace: '_loginHistory',
 
   state: {},
 
@@ -90,6 +90,12 @@ export default {
   },
 
 };
+
+
+
+
+
+
 
 
 

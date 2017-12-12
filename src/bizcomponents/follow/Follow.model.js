@@ -7,7 +7,7 @@ import FollowService from './Follow.service';
 
 export default {
 
-  namespace: 'follow',
+  namespace: '_follow',
 
   state: {},
 

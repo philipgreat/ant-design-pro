@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  secUserBlocking: state.secUserBlocking,
+  secUserBlocking: state._secUserBlocking,
 }))
 export default class SecUserBlockingDashboard extends Component {
  

@@ -7,7 +7,7 @@ import ThreadCompletionService from './ThreadCompletion.service';
 
 export default {
 
-  namespace: 'threadCompletion',
+  namespace: '_threadCompletion',
 
   state: {},
 

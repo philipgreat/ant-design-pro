@@ -7,7 +7,7 @@ import TaskAssigmentService from './TaskAssigment.service';
 
 export default {
 
-  namespace: 'taskAssigment',
+  namespace: '_taskAssigment',
 
   state: {},
 

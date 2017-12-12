@@ -7,7 +7,7 @@ import ExperiencePointService from './ExperiencePoint.service';
 
 export default {
 
-  namespace: 'experiencePoint',
+  namespace: '_experiencePoint',
 
   state: {},
 

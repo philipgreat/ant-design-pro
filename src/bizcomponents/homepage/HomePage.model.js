@@ -7,7 +7,7 @@ import HomePageService from './HomePage.service';
 
 export default {
 
-  namespace: 'homePage',
+  namespace: '_homePage',
 
   state: {},
 

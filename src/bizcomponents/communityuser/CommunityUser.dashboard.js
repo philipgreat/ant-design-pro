@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  communityUser: state.communityUser,
+  communityUser: state._communityUser,
 }))
 export default class CommunityUserDashboard extends Component {
  

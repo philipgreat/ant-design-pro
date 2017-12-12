@@ -113,24 +113,24 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.taskBestAnswerSetting.taskReplyList,
-      count: state.taskBestAnswerSetting.taskReplyCount,
-      currentPage: state.taskBestAnswerSetting.taskReplyCurrentPageNumber,
-      searchFormParameters: state.taskBestAnswerSetting.taskReplySearchFormParameters,
-      loading: state.taskBestAnswerSetting.loading,
-      owner: {type:'taskBestAnswerSetting',id:state.taskBestAnswerSetting.id}//this is for model namespace and 
+      data: state._taskBestAnswerSetting.taskReplyList,
+      count: state._taskBestAnswerSetting.taskReplyCount,
+      currentPage: state._taskBestAnswerSetting.taskReplyCurrentPageNumber,
+      searchFormParameters: state._taskBestAnswerSetting.taskReplySearchFormParameters,
+      loading: state._taskBestAnswerSetting.loading,
+      owner: {type:'_taskBestAnswerSetting',id:state._taskBestAnswerSetting.id}//this is for model namespace and 
     }))(TaskReplySearch);
   }
   getTaskReplyCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.taskBestAnswerSetting.taskReplyList,
-      count: state.taskBestAnswerSetting.taskReplyCount,
-      currentPage: state.taskBestAnswerSetting.taskReplyCurrentPageNumber,
-      searchFormParameters: state.taskBestAnswerSetting.taskReplySearchFormParameters,
-      loading: state.taskBestAnswerSetting.loading,
-      owner: {type:'taskBestAnswerSetting',id:state.taskBestAnswerSetting.id}//this is for model namespace and 
+      data: state._taskBestAnswerSetting.taskReplyList,
+      count: state._taskBestAnswerSetting.taskReplyCount,
+      currentPage: state._taskBestAnswerSetting.taskReplyCurrentPageNumber,
+      searchFormParameters: state._taskBestAnswerSetting.taskReplySearchFormParameters,
+      loading: state._taskBestAnswerSetting.loading,
+      owner: {type:'_taskBestAnswerSetting',id:state._taskBestAnswerSetting.id}//this is for model namespace and 
     }))(TaskReplyCreateForm);
   }
   
@@ -159,7 +159,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -224,10 +224,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  taskBestAnswerSetting: state._taskBestAnswerSetting,
   ...state
 }))(TaskBestAnswerSettingBizApp);
 

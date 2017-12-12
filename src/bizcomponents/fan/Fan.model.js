@@ -7,7 +7,7 @@ import FanService from './Fan.service';
 
 export default {
 
-  namespace: 'fan',
+  namespace: '_fan',
 
   state: {},
 

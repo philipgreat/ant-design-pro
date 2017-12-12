@@ -7,7 +7,7 @@ import TaskReplyService from './TaskReply.service';
 
 export default {
 
-  namespace: 'taskReply',
+  namespace: '_taskReply',
 
   state: {},
 

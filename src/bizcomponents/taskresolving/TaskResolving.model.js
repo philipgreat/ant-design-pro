@@ -7,7 +7,7 @@ import TaskResolvingService from './TaskResolving.service';
 
 export default {
 
-  namespace: 'taskResolving',
+  namespace: '_taskResolving',
 
   state: {},
 

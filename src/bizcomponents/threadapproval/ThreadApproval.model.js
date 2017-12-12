@@ -7,7 +7,7 @@ import ThreadApprovalService from './ThreadApproval.service';
 
 export default {
 
-  namespace: 'threadApproval',
+  namespace: '_threadApproval',
 
   state: {},
 

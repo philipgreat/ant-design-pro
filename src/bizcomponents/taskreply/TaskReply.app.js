@@ -113,24 +113,24 @@ class TaskReplyBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.taskReply.taskReplyLikeList,
-      count: state.taskReply.taskReplyLikeCount,
-      currentPage: state.taskReply.taskReplyLikeCurrentPageNumber,
-      searchFormParameters: state.taskReply.taskReplyLikeSearchFormParameters,
-      loading: state.taskReply.loading,
-      owner: {type:'taskReply',id:state.taskReply.id}//this is for model namespace and 
+      data: state._taskReply.taskReplyLikeList,
+      count: state._taskReply.taskReplyLikeCount,
+      currentPage: state._taskReply.taskReplyLikeCurrentPageNumber,
+      searchFormParameters: state._taskReply.taskReplyLikeSearchFormParameters,
+      loading: state._taskReply.loading,
+      owner: {type:'_taskReply',id:state._taskReply.id}//this is for model namespace and 
     }))(TaskReplyLikeSearch);
   }
   getTaskReplyLikeCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.taskReply.taskReplyLikeList,
-      count: state.taskReply.taskReplyLikeCount,
-      currentPage: state.taskReply.taskReplyLikeCurrentPageNumber,
-      searchFormParameters: state.taskReply.taskReplyLikeSearchFormParameters,
-      loading: state.taskReply.loading,
-      owner: {type:'taskReply',id:state.taskReply.id}//this is for model namespace and 
+      data: state._taskReply.taskReplyLikeList,
+      count: state._taskReply.taskReplyLikeCount,
+      currentPage: state._taskReply.taskReplyLikeCurrentPageNumber,
+      searchFormParameters: state._taskReply.taskReplyLikeSearchFormParameters,
+      loading: state._taskReply.loading,
+      owner: {type:'_taskReply',id:state._taskReply.id}//this is for model namespace and 
     }))(TaskReplyLikeCreateForm);
   }
   
@@ -159,7 +159,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -224,10 +224,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  taskReply: state._taskReply,
   ...state
 }))(TaskReplyBizApp);
 

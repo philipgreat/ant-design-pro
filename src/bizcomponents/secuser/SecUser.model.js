@@ -7,7 +7,7 @@ import SecUserService from './SecUser.service';
 
 export default {
 
-  namespace: 'secUser',
+  namespace: '_secUser',
 
   state: {},
 

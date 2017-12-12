@@ -7,7 +7,7 @@ import GroupPageService from './GroupPage.service';
 
 export default {
 
-  namespace: 'groupPage',
+  namespace: '_groupPage',
 
   state: {},
 

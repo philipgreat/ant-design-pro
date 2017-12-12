@@ -7,7 +7,7 @@ import EncyclopediaItemService from './EncyclopediaItem.service';
 
 export default {
 
-  namespace: 'encyclopediaItem',
+  namespace: '_encyclopediaItem',
 
   state: {},
 

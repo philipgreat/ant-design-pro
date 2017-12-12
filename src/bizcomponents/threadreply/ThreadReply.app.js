@@ -113,24 +113,24 @@ class ThreadReplyBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.threadReply.threadReplyLikeList,
-      count: state.threadReply.threadReplyLikeCount,
-      currentPage: state.threadReply.threadReplyLikeCurrentPageNumber,
-      searchFormParameters: state.threadReply.threadReplyLikeSearchFormParameters,
-      loading: state.threadReply.loading,
-      owner: {type:'threadReply',id:state.threadReply.id}//this is for model namespace and 
+      data: state._threadReply.threadReplyLikeList,
+      count: state._threadReply.threadReplyLikeCount,
+      currentPage: state._threadReply.threadReplyLikeCurrentPageNumber,
+      searchFormParameters: state._threadReply.threadReplyLikeSearchFormParameters,
+      loading: state._threadReply.loading,
+      owner: {type:'_threadReply',id:state._threadReply.id}//this is for model namespace and 
     }))(ThreadReplyLikeSearch);
   }
   getThreadReplyLikeCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.threadReply.threadReplyLikeList,
-      count: state.threadReply.threadReplyLikeCount,
-      currentPage: state.threadReply.threadReplyLikeCurrentPageNumber,
-      searchFormParameters: state.threadReply.threadReplyLikeSearchFormParameters,
-      loading: state.threadReply.loading,
-      owner: {type:'threadReply',id:state.threadReply.id}//this is for model namespace and 
+      data: state._threadReply.threadReplyLikeList,
+      count: state._threadReply.threadReplyLikeCount,
+      currentPage: state._threadReply.threadReplyLikeCurrentPageNumber,
+      searchFormParameters: state._threadReply.threadReplyLikeSearchFormParameters,
+      loading: state._threadReply.loading,
+      owner: {type:'_threadReply',id:state._threadReply.id}//this is for model namespace and 
     }))(ThreadReplyLikeCreateForm);
   }
   
@@ -159,7 +159,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -224,10 +224,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  threadReply: state._threadReply,
   ...state
 }))(ThreadReplyBizApp);
 

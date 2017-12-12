@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  taskHiding: state.taskHiding,
+  taskHiding: state._taskHiding,
 }))
 export default class TaskHidingDashboard extends Component {
  

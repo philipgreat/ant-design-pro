@@ -141,24 +141,24 @@ class HomePageBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.homePage.slideList,
-      count: state.homePage.slideCount,
-      currentPage: state.homePage.slideCurrentPageNumber,
-      searchFormParameters: state.homePage.slideSearchFormParameters,
-      loading: state.homePage.loading,
-      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+      data: state._homePage.slideList,
+      count: state._homePage.slideCount,
+      currentPage: state._homePage.slideCurrentPageNumber,
+      searchFormParameters: state._homePage.slideSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(SlideSearch);
   }
   getSlideCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.homePage.slideList,
-      count: state.homePage.slideCount,
-      currentPage: state.homePage.slideCurrentPageNumber,
-      searchFormParameters: state.homePage.slideSearchFormParameters,
-      loading: state.homePage.loading,
-      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+      data: state._homePage.slideList,
+      count: state._homePage.slideCount,
+      currentPage: state._homePage.slideCurrentPageNumber,
+      searchFormParameters: state._homePage.slideSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(SlideCreateForm);
   }
   
@@ -167,24 +167,24 @@ class HomePageBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.homePage.encyclopediaItemList,
-      count: state.homePage.encyclopediaItemCount,
-      currentPage: state.homePage.encyclopediaItemCurrentPageNumber,
-      searchFormParameters: state.homePage.encyclopediaItemSearchFormParameters,
-      loading: state.homePage.loading,
-      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+      data: state._homePage.encyclopediaItemList,
+      count: state._homePage.encyclopediaItemCount,
+      currentPage: state._homePage.encyclopediaItemCurrentPageNumber,
+      searchFormParameters: state._homePage.encyclopediaItemSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(EncyclopediaItemSearch);
   }
   getEncyclopediaItemCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.homePage.encyclopediaItemList,
-      count: state.homePage.encyclopediaItemCount,
-      currentPage: state.homePage.encyclopediaItemCurrentPageNumber,
-      searchFormParameters: state.homePage.encyclopediaItemSearchFormParameters,
-      loading: state.homePage.loading,
-      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+      data: state._homePage.encyclopediaItemList,
+      count: state._homePage.encyclopediaItemCount,
+      currentPage: state._homePage.encyclopediaItemCurrentPageNumber,
+      searchFormParameters: state._homePage.encyclopediaItemSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(EncyclopediaItemCreateForm);
   }
   
@@ -193,24 +193,24 @@ class HomePageBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.homePage.taskFilterList,
-      count: state.homePage.taskFilterCount,
-      currentPage: state.homePage.taskFilterCurrentPageNumber,
-      searchFormParameters: state.homePage.taskFilterSearchFormParameters,
-      loading: state.homePage.loading,
-      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+      data: state._homePage.taskFilterList,
+      count: state._homePage.taskFilterCount,
+      currentPage: state._homePage.taskFilterCurrentPageNumber,
+      searchFormParameters: state._homePage.taskFilterSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(TaskFilterSearch);
   }
   getTaskFilterCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.homePage.taskFilterList,
-      count: state.homePage.taskFilterCount,
-      currentPage: state.homePage.taskFilterCurrentPageNumber,
-      searchFormParameters: state.homePage.taskFilterSearchFormParameters,
-      loading: state.homePage.loading,
-      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+      data: state._homePage.taskFilterList,
+      count: state._homePage.taskFilterCount,
+      currentPage: state._homePage.taskFilterCurrentPageNumber,
+      searchFormParameters: state._homePage.taskFilterSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(TaskFilterCreateForm);
   }
   
@@ -219,24 +219,24 @@ class HomePageBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.homePage.taskList,
-      count: state.homePage.taskCount,
-      currentPage: state.homePage.taskCurrentPageNumber,
-      searchFormParameters: state.homePage.taskSearchFormParameters,
-      loading: state.homePage.loading,
-      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+      data: state._homePage.taskList,
+      count: state._homePage.taskCount,
+      currentPage: state._homePage.taskCurrentPageNumber,
+      searchFormParameters: state._homePage.taskSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(TaskSearch);
   }
   getTaskCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.homePage.taskList,
-      count: state.homePage.taskCount,
-      currentPage: state.homePage.taskCurrentPageNumber,
-      searchFormParameters: state.homePage.taskSearchFormParameters,
-      loading: state.homePage.loading,
-      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+      data: state._homePage.taskList,
+      count: state._homePage.taskCount,
+      currentPage: state._homePage.taskCurrentPageNumber,
+      searchFormParameters: state._homePage.taskSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(TaskCreateForm);
   }
   
@@ -245,24 +245,24 @@ class HomePageBizApp extends React.PureComponent {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.homePage.threadList,
-      count: state.homePage.threadCount,
-      currentPage: state.homePage.threadCurrentPageNumber,
-      searchFormParameters: state.homePage.threadSearchFormParameters,
-      loading: state.homePage.loading,
-      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+      data: state._homePage.threadList,
+      count: state._homePage.threadCount,
+      currentPage: state._homePage.threadCurrentPageNumber,
+      searchFormParameters: state._homePage.threadSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(ThreadSearch);
   }
   getThreadCreateForm() {
  
     return connect(state => ({
       rule: state.rule,
-      data: state.homePage.threadList,
-      count: state.homePage.threadCount,
-      currentPage: state.homePage.threadCurrentPageNumber,
-      searchFormParameters: state.homePage.threadSearchFormParameters,
-      loading: state.homePage.loading,
-      owner: {type:'homePage',id:state.homePage.id}//this is for model namespace and 
+      data: state._homePage.threadList,
+      count: state._homePage.threadCount,
+      currentPage: state._homePage.threadCurrentPageNumber,
+      searchFormParameters: state._homePage.threadSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(ThreadCreateForm);
   }
   
@@ -291,7 +291,7 @@ getPageTitle() {
   }
 
   render() {
-    const { currentUser, collapsed, fetchingNotices,loading } = this.props;
+    const {  collapsed, fetchingNotices,loading } = this.props;
     console.log("test value",this.props)
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -372,10 +372,10 @@ getPageTitle() {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
+  homePage: state._homePage,
   ...state
 }))(HomePageBizApp);
 

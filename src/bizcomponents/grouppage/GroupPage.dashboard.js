@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  groupPage: state.groupPage,
+  groupPage: state._groupPage,
 }))
 export default class GroupPageDashboard extends Component {
  

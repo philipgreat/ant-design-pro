@@ -28,7 +28,7 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  threadCanceling: state.threadCanceling,
+  threadCanceling: state._threadCanceling,
 }))
 export default class ThreadCancelingDashboard extends Component {
  
