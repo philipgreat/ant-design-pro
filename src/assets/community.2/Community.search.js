@@ -95,6 +95,7 @@ export default class CommunitySearch extends PureComponent {
   
 
   handleModalVisible = (flag) => {
+    console.log("change the visible", flag)
     this.setState({
       modalVisible: !!flag,
     });

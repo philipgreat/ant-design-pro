@@ -3,6 +3,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
 import ThreadCompletionTable from './ThreadCompletion.table';
+import ThreadCompletionConfirmationTable from './ThreadCompletion.confirmmationtable';
+
 import ThreadCompletionSearchForm from './ThreadCompletion.searchform';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
@@ -156,7 +158,7 @@ export default class ThreadCompletionSearch extends PureComponent {
               {
                 selectedRows.length > 0 && (
                   <span>
-                    <Button>批量操作</Button>
+                     <Button onClick={this.handleModalVisible} >批量删除</Button>
                     <Dropdown overlay={menu}>
                       <Button>
                         更多操作 <Icon type="down" />
@@ -179,19 +181,24 @@ export default class ThreadCompletionSearch extends PureComponent {
           </div>
         </Card>
         <Modal
-          title="新建规则"
+          title={"注意！你正在删除数据，执行之后不可恢复"}
           visible={modalVisible}
-          onOk={this.handleAdd}
+          onOk={this.handleDelete}
           onCancel={() => this.handleModalVisible()}
+          width={920}
+          style={{ top: 40 }}
+
         >
-          <FormItem
-            labelCol={{ span: 5 }}
-            wrapperCol={{ span: 15 }}
-            label="描述"
-          >
-            <Input placeholder="请输入" onChange={this.handleAddInput} value={addInputValue} />
-          </FormItem>
+         
+        <ThreadCompletionConfirmationTable
+         
+          data={selectedRows}
+          owner={owner}
+        />
+
         </Modal>
+        
+        
       </PageHeaderLayout>
     );
   }
