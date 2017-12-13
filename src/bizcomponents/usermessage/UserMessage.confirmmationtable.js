@@ -34,7 +34,7 @@ class UserMessageConfirmationTable extends PureComponent {
                
               </p>
             )}
-            type="info"
+            type="warning"
             showIcon
           />
         </div>

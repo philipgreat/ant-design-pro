@@ -40,7 +40,7 @@ class ObjectAccessConfirmationTable extends PureComponent {
                
               </p>
             )}
-            type="info"
+            type="warning"
             showIcon
           />
         </div>

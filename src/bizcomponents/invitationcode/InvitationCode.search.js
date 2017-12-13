@@ -2,6 +2,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
+import Result from '../../components/Result';
+
 import InvitationCodeTable from './InvitationCode.table';
 import InvitationCodeConfirmationTable from './InvitationCode.confirmmationtable';
 
@@ -24,6 +26,7 @@ export default class InvitationCodeSearch extends PureComponent {
     expandForm: false,
     selectedRows: [],
     formValues: {},
+    showDeleteResult: false
   };
 
   componentDidMount() {
@@ -92,6 +95,10 @@ export default class InvitationCodeSearch extends PureComponent {
     this.setState({
       selectedRows: rows,
     });
+
+
+
+
   }
 
   
@@ -100,6 +107,16 @@ export default class InvitationCodeSearch extends PureComponent {
     this.setState({
       modalVisible: !!flag,
     });
+  }
+  handleDelete = () => {
+    const { selectedRows } = this.state;
+    const {dispatch,owner} = this.props;
+    console.log("things to delete", selectedRows)
+    this.setState({
+      modalVisible: true,
+      showDeleteResult: true
+    });
+    
   }
   
   
@@ -137,7 +154,7 @@ export default class InvitationCodeSearch extends PureComponent {
 
   render() {
     const { data,loading,count,currentPage,owner } = this.props;
-    const { selectedRows, modalVisible, addInputValue } = this.state;
+    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
@@ -146,6 +163,29 @@ export default class InvitationCodeSearch extends PureComponent {
       </Menu>
     );
 
+
+    const modalContent =(data, owner)=>{
+
+      if(showDeleteResult){
+        return (<Result
+        type="success"
+        title="提交成功"
+        description="提交结果页用于反馈一系列操作任务的处理结果，
+        如果仅是简单操作，使用 Message 全局提示反馈即可。
+        本文字区域可以展示简单的补充说明，如果有类似展示
+        “单据”的需求，下面这个灰色区域可以呈现比较复杂的内容。"
+       
+        style={{ marginTop: 48, marginBottom: 16 }} />)
+      }
+
+      return (<InvitationCodeConfirmationTable
+        
+         data={selectedRows}
+         owner={owner}
+       />);
+
+
+    }
     return (
       <PageHeaderLayout title="邀请码列表">
         <Card bordered={false}>
@@ -158,7 +198,7 @@ export default class InvitationCodeSearch extends PureComponent {
               {
                 selectedRows.length > 0 && (
                   <span>
-                     <Button onClick={this.handleModalVisible} >批量删除</Button>
+                     <Button onClick={this.handleModalVisible} type="danger" icon="delete">批量删除</Button>
                     <Dropdown overlay={menu}>
                       <Button>
                         更多操作 <Icon type="down" />
@@ -189,13 +229,9 @@ export default class InvitationCodeSearch extends PureComponent {
           style={{ top: 40 }}
 
         >
-         
-        <InvitationCodeConfirmationTable
-         
-          data={selectedRows}
-          owner={owner}
-        />
-
+   
+      
+          {modalContent(data,owner)}
         </Modal>
         
         
