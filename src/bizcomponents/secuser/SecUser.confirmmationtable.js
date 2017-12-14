@@ -16,7 +16,7 @@ const columns = [
 {title:'验证码过期',dataIndex: 'verificationCodeExpire',render: (text,record)=>moment(record.verificationCodeExpire).format('YYYY-MM-DD')},
 {title:'最后登录时间',dataIndex: 'lastLoginTime',render: (text,record)=>moment(record.lastLoginTime).format('YYYY-MM-DD')},
 {title:'域',debugtype:'user_domain',dataIndex: 'domain',width:'13'},
-{title:'屏蔽',debugtype:'sec_user_blocking',dataIndex: 'blocking',width:'13'},
+{title:'舞台调度',debugtype:'sec_user_blocking',dataIndex: 'blocking',width:'13'},
 {title:'当前状态',debugtype:'string',dataIndex: 'currentStatus',width:'11'},
 
       

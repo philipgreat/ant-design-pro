@@ -21,7 +21,7 @@ verificationCode: '验证码',
 verificationCodeExpire: '验证码过期',
 lastLoginTime: '最后登录时间',
 domain: '域',
-blocking: '屏蔽',
+blocking: '舞台调度',
 currentStatus: '当前状态',
 
 
@@ -36,8 +36,8 @@ const testValues={
 			email:'suddy_chang@163.com',
 			pwd:'C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95',
 			verificationCode:'9981727',
-			verificationCodeExpire:'2037-05-15 14:14:41',
-			lastLoginTime:'2034-07-26 02:44:13',
+			verificationCodeExpire:'2038-01-24 09:39:04',
+			lastLoginTime:'2037-07-28 05:18:15',
 			domainId:'UD000001',
 
         

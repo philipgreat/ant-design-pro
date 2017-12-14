@@ -248,9 +248,9 @@ export default class UserDomainSearch extends PureComponent {
               {
                 selectedRows.length > 0 && (
                   <span>
-                     <Button onClick={this.handleModalVisible} type="danger">批量删除</Button>
+                     <Button onClick={this.handleModalVisible} type="danger" icon="delete">批量删除</Button>
                     <Dropdown overlay={menu}>
-                      <Button icon="delete">
+                      <Button >
                         更多操作 <Icon type="down" />
                       </Button>
                     </Dropdown>

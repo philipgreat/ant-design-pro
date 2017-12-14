@@ -13,8 +13,8 @@ const columns = [
 {title:'应用程序图标',debugtype:'string',dataIndex: 'appIcon',width:'13'},
 {title:'完全访问',debugtype:'bool',dataIndex: 'fullAccess',width:'8'},
 {title:'许可',debugtype:'string',dataIndex: 'permission',width:'8'},
-{title:'对象类型',debugtype:'string',dataIndex: 'objectType',width:'17'},
-{title:'对象ID',debugtype:'string',dataIndex: 'objectId',width:'12'},
+{title:'对象类型',debugtype:'string',dataIndex: 'objectType',width:'25'},
+{title:'对象ID',debugtype:'string',dataIndex: 'objectId',width:'13'},
 {title:'位置',debugtype:'string',dataIndex: 'location',width:'16'},
 
       
@@ -100,7 +100,7 @@ class UserAppTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{x:1035}}
+          scroll={{x:1170}}
         />
       </div>
     );

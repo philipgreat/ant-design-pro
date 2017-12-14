@@ -29,12 +29,12 @@ location: '位置',
 
 const testValues={
         
-      			title:'用户中心',
+      			title:'审车平台',
 			appIcon:'users',
 			fullAccess:'1',
 			permission:'MXWR',
-			objectType:'Community',
-			objectId:'C000001',
+			objectType:'CarInspectionPlatform',
+			objectId:'CIP000001',
 			location:'/link/to/app',
 			secUserId:'SU000001',
 
