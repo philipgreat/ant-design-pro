@@ -1,6 +1,8 @@
 
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
+import Result from '../../components/Result';
+
 import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
 import ThreadLikeTable from './ThreadLike.table';
 import ThreadLikeConfirmationTable from './ThreadLike.confirmmationtable';
@@ -24,6 +26,7 @@ export default class ThreadLikeSearch extends PureComponent {
     expandForm: false,
     selectedRows: [],
     formValues: {},
+    showDeleteResult: false
   };
 
   componentDidMount() {
@@ -96,11 +99,44 @@ export default class ThreadLikeSearch extends PureComponent {
 
   
 
+
   handleModalVisible = (flag) => {
     this.setState({
       modalVisible: !!flag,
+      showDeleteResult: false
     });
   }
+  handleDelete = () => {
+    const { selectedRows } = this.state;
+    const {dispatch,owner} = this.props;
+    console.log("things to delete", selectedRows)
+    this.setState({
+      modalVisible: true,
+      showDeleteResult: true
+    });
+
+  }
+  
+  showModal = () => {
+    const { selectedRows } = this.state;
+    const {dispatch,owner} = this.props;
+    this.setState({
+      modalVisible: true,
+      showDeleteResult: false
+    });
+
+  }
+
+  confirmAfterDelete = () => {
+    const { selectedRows } = this.state;
+    const {dispatch,owner} = this.props;
+    this.setState({
+      modalVisible: false,
+      showDeleteResult: true
+    });
+
+  }
+  
   
   
   handleCreate = () => {
@@ -137,7 +173,7 @@ export default class ThreadLikeSearch extends PureComponent {
 
   render() {
     const { data,loading,count,currentPage,owner } = this.props;
-    const { selectedRows, modalVisible, addInputValue } = this.state;
+	const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
@@ -145,6 +181,51 @@ export default class ThreadLikeSearch extends PureComponent {
         <Menu.Item key="approval">批量审批</Menu.Item>
       </Menu>
     );
+
+
+   const modalContent =(data, owner)=>{
+
+      if(showDeleteResult){
+        return (<Modal
+          title={"成功删除"}
+          visible={modalVisible}
+          onOk={() => this.confirmAfterDelete()}
+          onCancel={() => this.confirmAfterDelete()}
+          width={920}
+          style={{ top: 40 }}
+
+        ><Result
+        type="success"
+        title="删除成功，干得漂亮"
+        description=""
+       
+        style={{ marginTop: 48, marginBottom: 16 }} />
+         </Modal>
+        )
+      }
+
+      return (<Modal
+        title={"注意！你正在删除数据，执行之后不可恢复"}
+        visible={modalVisible}
+        onOk={this.handleDelete}
+        onCancel={() => this.handleModalVisible()}
+        width={920}
+        style={{ top: 40 }}
+
+      ><ThreadLikeConfirmationTable
+        
+         data={selectedRows}
+         owner={owner}
+       /></Modal>);
+
+
+    }
+    
+    
+    
+
+
+
 
     return (
       <PageHeaderLayout title="主贴点赞列表">
@@ -160,7 +241,7 @@ export default class ThreadLikeSearch extends PureComponent {
                   <span>
                      <Button onClick={this.handleModalVisible} type="danger">批量删除</Button>
                     <Dropdown overlay={menu}>
-                      <Button>
+                      <Button icon="delete">
                         更多操作 <Icon type="down" />
                       </Button>
                     </Dropdown>
@@ -180,24 +261,7 @@ export default class ThreadLikeSearch extends PureComponent {
             />
           </div>
         </Card>
-        <Modal
-          title={"注意！你正在删除数据，执行之后不可恢复"}
-          visible={modalVisible}
-          onOk={this.handleDelete}
-          onCancel={() => this.handleModalVisible()}
-          width={920}
-          style={{ top: 40 }}
-
-        >
-         
-        <ThreadLikeConfirmationTable
-         
-          data={selectedRows}
-          owner={owner}
-        />
-
-        </Modal>
-        
+        {modalContent(data,owner)}
         
       </PageHeaderLayout>
     );

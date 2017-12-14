@@ -5,6 +5,44 @@ import { notification } from 'antd';
 //import key from 'keymaster';
 import ThreadRegistrationService from './ThreadRegistration.service';
 
+
+
+const hasError = (data) =>{
+	
+	if (!data.class){
+		return false;
+	}
+	if(data.class.indexOf("Exception") > 0){
+		return true;
+	}
+	if(data.class.indexOf("LoginForm") > 0){
+		return true;
+	}
+	return false;
+
+}
+
+const handleServerError = (data) => {
+	if (data.message) {
+		notification.error({
+			message: data.message,
+			description: data.message,
+		});
+		return;
+	}
+	
+	if (data.messageList[0]) {
+		//console.error("error ", data.messageList[0].sourcePosition);
+		notification.error({
+			message: data.messageList[0].sourcePosition,
+			description: data.messageList[0].body,
+		});
+		return;
+
+	}
+
+}
+
 export default {
 
   namespace: '_threadRegistration',

@@ -5,6 +5,44 @@ import { notification } from 'antd';
 //import key from 'keymaster';
 import TaskService from './Task.service';
 
+
+
+const hasError = (data) =>{
+	
+	if (!data.class){
+		return false;
+	}
+	if(data.class.indexOf("Exception") > 0){
+		return true;
+	}
+	if(data.class.indexOf("LoginForm") > 0){
+		return true;
+	}
+	return false;
+
+}
+
+const handleServerError = (data) => {
+	if (data.message) {
+		notification.error({
+			message: data.message,
+			description: data.message,
+		});
+		return;
+	}
+	
+	if (data.messageList[0]) {
+		//console.error("error ", data.messageList[0].sourcePosition);
+		notification.error({
+			message: data.messageList[0].sourcePosition,
+			description: data.messageList[0].body,
+		});
+		return;
+
+	}
+
+}
+
 export default {
 
   namespace: '_task',
@@ -77,49 +115,52 @@ export default {
 			const { id, type, parameters, continueNext } = payload;
 			console.log("get form parameters", parameters);
 
-			const data = yield call(TaskService.addTaskAssigment, payload.id, payload.parameters);
-			if (data.class && data.class.indexOf("LoginForm") > 0) {
-
-				notification.error({
-					message: data.messageList[0].sourcePosition,
-					description: data.messageList[0].body,
-				});
+			const data = yield call(TaskService.addTaskAssigment, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
 				return;
-			}
-			if (data.class && data.class.indexOf("Exception") > 0) {
-				if (data.message) {
-					notification.error({
-						message: data.message,
-						description: data.message,
-					});
-					return;
-				}
-				if (data.messageList[0]) {
-					//console.error("error ", data.messageList[0].sourcePosition);
-					notification.error({
-						message: data.messageList[0].sourcePosition,
-						description: data.messageList[0].body,
-					});
-					return;
-
-				}
-
 			}
 			const newPlayload = { ...payload, ...data };
 
 			yield put({ type: "updateState", payload: newPlayload });
-			if (continueNext) {
+			
 				//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
-				notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+			notification.success({
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
 				return;
 			}
+			const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
+		},
+		
+		*removeTaskAssigmentList({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(TaskService.removeTaskAssigmentList, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
+				return;
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			
+				//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
 			notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
+				return;
+			}
 			const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
 			yield put(routerRedux.push(location));
 		},
@@ -128,49 +169,52 @@ export default {
 			const { id, type, parameters, continueNext } = payload;
 			console.log("get form parameters", parameters);
 
-			const data = yield call(TaskService.addTaskLike, payload.id, payload.parameters);
-			if (data.class && data.class.indexOf("LoginForm") > 0) {
-
-				notification.error({
-					message: data.messageList[0].sourcePosition,
-					description: data.messageList[0].body,
-				});
+			const data = yield call(TaskService.addTaskLike, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
 				return;
-			}
-			if (data.class && data.class.indexOf("Exception") > 0) {
-				if (data.message) {
-					notification.error({
-						message: data.message,
-						description: data.message,
-					});
-					return;
-				}
-				if (data.messageList[0]) {
-					//console.error("error ", data.messageList[0].sourcePosition);
-					notification.error({
-						message: data.messageList[0].sourcePosition,
-						description: data.messageList[0].body,
-					});
-					return;
-
-				}
-
 			}
 			const newPlayload = { ...payload, ...data };
 
 			yield put({ type: "updateState", payload: newPlayload });
-			if (continueNext) {
+			
 				//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
-				notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+			notification.success({
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
 				return;
 			}
+			const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
+		},
+		
+		*removeTaskLikeList({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(TaskService.removeTaskLikeList, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
+				return;
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			
+				//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
 			notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
+				return;
+			}
 			const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
 			yield put(routerRedux.push(location));
 		},
@@ -179,49 +223,52 @@ export default {
 			const { id, type, parameters, continueNext } = payload;
 			console.log("get form parameters", parameters);
 
-			const data = yield call(TaskService.addTaskReply, payload.id, payload.parameters);
-			if (data.class && data.class.indexOf("LoginForm") > 0) {
-
-				notification.error({
-					message: data.messageList[0].sourcePosition,
-					description: data.messageList[0].body,
-				});
+			const data = yield call(TaskService.addTaskReply, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
 				return;
-			}
-			if (data.class && data.class.indexOf("Exception") > 0) {
-				if (data.message) {
-					notification.error({
-						message: data.message,
-						description: data.message,
-					});
-					return;
-				}
-				if (data.messageList[0]) {
-					//console.error("error ", data.messageList[0].sourcePosition);
-					notification.error({
-						message: data.messageList[0].sourcePosition,
-						description: data.messageList[0].body,
-					});
-					return;
-
-				}
-
 			}
 			const newPlayload = { ...payload, ...data };
 
 			yield put({ type: "updateState", payload: newPlayload });
-			if (continueNext) {
+			
 				//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
-				notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+			notification.success({
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
 				return;
 			}
+			const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
+		},
+		
+		*removeTaskReplyList({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(TaskService.removeTaskReplyList, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
+				return;
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			
+				//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
 			notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
+				return;
+			}
 			const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
 			yield put(routerRedux.push(location));
 		},

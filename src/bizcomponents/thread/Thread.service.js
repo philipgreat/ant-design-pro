@@ -45,7 +45,17 @@ const joinPostParameters=(parameters)=>{
     var arr = [];
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
-            arr.push(key + '=' + encodeURIComponent(obj[key]));
+            const value = obj[key]
+            if(!Array.isArray(value)){
+                arr.push(key + '=' + encodeURIComponent(value));
+                continue;
+            }
+            for (var subKey in value) {
+                const subvalue = value[subKey];
+                arr.push(key + '=' + encodeURIComponent(subvalue));
+
+            }
+            
         }
     };
     var result = arr.join('&');
@@ -74,11 +84,35 @@ const addThreadReply=(targetObjectId,parameters)=>{
     });
 }
 
+const removeThreadReplyList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"threadManager/removeThreadReplyList/threadId/threadReplyIds/tokensExpr/";
+    const requestParameters={...parameters, threadId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
 
 
 const addThreadRegistration=(targetObjectId,parameters)=>{
     const url = PREFIX+"threadManager/addThreadRegistration/threadId/participantId/comments/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
+const removeThreadRegistrationList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"threadManager/removeThreadRegistrationList/threadId/threadRegistrationIds/tokensExpr/";
+    const requestParameters={...parameters, threadId:targetObjectId,tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -102,9 +136,21 @@ const addThreadLike=(targetObjectId,parameters)=>{
     });
 }
 
+const removeThreadLikeList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"threadManager/removeThreadLikeList/threadId/threadLikeIds/tokensExpr/";
+    const requestParameters={...parameters, threadId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 
-const ThreadService={view,load,addThreadReply,addThreadRegistration,addThreadLike};
+
+const ThreadService={view,load,addThreadReply,addThreadRegistration,addThreadLike,removeThreadReplyList,removeThreadRegistrationList,removeThreadLikeList};
 export default ThreadService;
 
 

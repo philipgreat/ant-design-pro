@@ -45,7 +45,17 @@ const joinPostParameters=(parameters)=>{
     var arr = [];
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
-            arr.push(key + '=' + encodeURIComponent(obj[key]));
+            const value = obj[key]
+            if(!Array.isArray(value)){
+                arr.push(key + '=' + encodeURIComponent(value));
+                continue;
+            }
+            for (var subKey in value) {
+                const subvalue = value[subKey];
+                arr.push(key + '=' + encodeURIComponent(subvalue));
+
+            }
+            
         }
     };
     var result = arr.join('&');
@@ -74,9 +84,21 @@ const addThread=(targetObjectId,parameters)=>{
     });
 }
 
+const removeThreadList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"threadHidingManager/removeThreadList/threadHidingId/threadIds/tokensExpr/";
+    const requestParameters={...parameters, threadHidingId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 
-const ThreadHidingService={view,load,addThread};
+
+const ThreadHidingService={view,load,addThread,removeThreadList};
 export default ThreadHidingService;
 
 

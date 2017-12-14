@@ -45,7 +45,17 @@ const joinPostParameters=(parameters)=>{
     var arr = [];
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
-            arr.push(key + '=' + encodeURIComponent(obj[key]));
+            const value = obj[key]
+            if(!Array.isArray(value)){
+                arr.push(key + '=' + encodeURIComponent(value));
+                continue;
+            }
+            for (var subKey in value) {
+                const subvalue = value[subKey];
+                arr.push(key + '=' + encodeURIComponent(subvalue));
+
+            }
+            
         }
     };
     var result = arr.join('&');
@@ -74,11 +84,35 @@ const addInvitationCode=(targetObjectId,parameters)=>{
     });
 }
 
+const removeInvitationCodeList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"communityManager/removeInvitationCodeList/communityId/invitationCodeIds/tokensExpr/";
+    const requestParameters={...parameters, communityId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
 
 
 const addHomePage=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityManager/addHomePage/communityId/title/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
+const removeHomePageList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"communityManager/removeHomePageList/communityId/homePageIds/tokensExpr/";
+    const requestParameters={...parameters, communityId:targetObjectId,tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -102,11 +136,35 @@ const addEncyclopediaItem=(targetObjectId,parameters)=>{
     });
 }
 
+const removeEncyclopediaItemList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"communityManager/removeEncyclopediaItemList/communityId/encyclopediaItemIds/tokensExpr/";
+    const requestParameters={...parameters, communityId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
 
 
 const addTaskPage=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityManager/addTaskPage/communityId/title/currentKey/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
+const removeTaskPageList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"communityManager/removeTaskPageList/communityId/taskPageIds/tokensExpr/";
+    const requestParameters={...parameters, communityId:targetObjectId,tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -130,11 +188,35 @@ const addCommunityUser=(targetObjectId,parameters)=>{
     });
 }
 
+const removeCommunityUserList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"communityManager/removeCommunityUserList/communityId/communityUserIds/tokensExpr/";
+    const requestParameters={...parameters, communityId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
 
 
 const addTask=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityManager/addTask/communityId/title/selectedTask/content/creatorId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
+const removeTaskList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"communityManager/removeTaskList/communityId/taskIds/tokensExpr/";
+    const requestParameters={...parameters, communityId:targetObjectId,tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -158,6 +240,18 @@ const addGroupPage=(targetObjectId,parameters)=>{
     });
 }
 
+const removeGroupPageList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"communityManager/removeGroupPageList/communityId/groupPageIds/tokensExpr/";
+    const requestParameters={...parameters, communityId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
 
 
 const addThread=(targetObjectId,parameters)=>{
@@ -172,9 +266,21 @@ const addThread=(targetObjectId,parameters)=>{
     });
 }
 
+const removeThreadList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"communityManager/removeThreadList/communityId/threadIds/tokensExpr/";
+    const requestParameters={...parameters, communityId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 
-const CommunityService={view,load,addInvitationCode,addHomePage,addEncyclopediaItem,addTaskPage,addCommunityUser,addTask,addGroupPage,addThread};
+
+const CommunityService={view,load,addInvitationCode,addHomePage,addEncyclopediaItem,addTaskPage,addCommunityUser,addTask,addGroupPage,addThread,removeInvitationCodeList,removeHomePageList,removeEncyclopediaItemList,removeTaskPageList,removeCommunityUserList,removeTaskList,removeGroupPageList,removeThreadList};
 export default CommunityService;
 
 

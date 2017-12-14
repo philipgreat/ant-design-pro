@@ -45,7 +45,17 @@ const joinPostParameters=(parameters)=>{
     var arr = [];
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
-            arr.push(key + '=' + encodeURIComponent(obj[key]));
+            const value = obj[key]
+            if(!Array.isArray(value)){
+                arr.push(key + '=' + encodeURIComponent(value));
+                continue;
+            }
+            for (var subKey in value) {
+                const subvalue = value[subKey];
+                arr.push(key + '=' + encodeURIComponent(subvalue));
+
+            }
+            
         }
     };
     var result = arr.join('&');
@@ -74,6 +84,18 @@ const addGroupFilter=(targetObjectId,parameters)=>{
     });
 }
 
+const removeGroupFilterList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"groupPageManager/removeGroupFilterList/groupPageId/groupFilterIds/tokensExpr/";
+    const requestParameters={...parameters, groupPageId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
 
 
 const addThread=(targetObjectId,parameters)=>{
@@ -88,9 +110,21 @@ const addThread=(targetObjectId,parameters)=>{
     });
 }
 
+const removeThreadList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"groupPageManager/removeThreadList/groupPageId/threadIds/tokensExpr/";
+    const requestParameters={...parameters, groupPageId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 
-const GroupPageService={view,load,addGroupFilter,addThread};
+
+const GroupPageService={view,load,addGroupFilter,addThread,removeGroupFilterList,removeThreadList};
 export default GroupPageService;
 
 

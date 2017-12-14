@@ -45,7 +45,17 @@ const joinPostParameters=(parameters)=>{
     var arr = [];
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
-            arr.push(key + '=' + encodeURIComponent(obj[key]));
+            const value = obj[key]
+            if(!Array.isArray(value)){
+                arr.push(key + '=' + encodeURIComponent(value));
+                continue;
+            }
+            for (var subKey in value) {
+                const subvalue = value[subKey];
+                arr.push(key + '=' + encodeURIComponent(subvalue));
+
+            }
+            
         }
     };
     var result = arr.join('&');
@@ -74,6 +84,18 @@ const addUserApp=(targetObjectId,parameters)=>{
     });
 }
 
+const removeUserAppList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"secUserManager/removeUserAppList/secUserId/userAppIds/tokensExpr/";
+    const requestParameters={...parameters, secUserId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
 
 
 const addLoginHistory=(targetObjectId,parameters)=>{
@@ -88,9 +110,21 @@ const addLoginHistory=(targetObjectId,parameters)=>{
     });
 }
 
+const removeLoginHistoryList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"secUserManager/removeLoginHistoryList/secUserId/loginHistoryIds/tokensExpr/";
+    const requestParameters={...parameters, secUserId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 
-const SecUserService={view,load,addUserApp,addLoginHistory};
+
+const SecUserService={view,load,addUserApp,addLoginHistory,removeUserAppList,removeLoginHistoryList};
 export default SecUserService;
 
 

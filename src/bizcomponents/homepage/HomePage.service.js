@@ -45,7 +45,17 @@ const joinPostParameters=(parameters)=>{
     var arr = [];
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
-            arr.push(key + '=' + encodeURIComponent(obj[key]));
+            const value = obj[key]
+            if(!Array.isArray(value)){
+                arr.push(key + '=' + encodeURIComponent(value));
+                continue;
+            }
+            for (var subKey in value) {
+                const subvalue = value[subKey];
+                arr.push(key + '=' + encodeURIComponent(subvalue));
+
+            }
+            
         }
     };
     var result = arr.join('&');
@@ -74,11 +84,35 @@ const addSlide=(targetObjectId,parameters)=>{
     });
 }
 
+const removeSlideList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"homePageManager/removeSlideList/homePageId/slideIds/tokensExpr/";
+    const requestParameters={...parameters, homePageId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
 
 
 const addEncyclopediaItem=(targetObjectId,parameters)=>{
     const url = PREFIX+"homePageManager/addEncyclopediaItem/homePageId/title/publishTime/content/communityId/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
+const removeEncyclopediaItemList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"homePageManager/removeEncyclopediaItemList/homePageId/encyclopediaItemIds/tokensExpr/";
+    const requestParameters={...parameters, homePageId:targetObjectId,tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -102,11 +136,35 @@ const addTaskFilter=(targetObjectId,parameters)=>{
     });
 }
 
+const removeTaskFilterList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"homePageManager/removeTaskFilterList/homePageId/taskFilterIds/tokensExpr/";
+    const requestParameters={...parameters, homePageId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
 
 
 const addTask=(targetObjectId,parameters)=>{
     const url = PREFIX+"homePageManager/addTask/homePageId/title/selectedTask/content/creatorId/communityId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
+const removeTaskList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"homePageManager/removeTaskList/homePageId/taskIds/tokensExpr/";
+    const requestParameters={...parameters, homePageId:targetObjectId,tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -130,9 +188,21 @@ const addThread=(targetObjectId,parameters)=>{
     });
 }
 
+const removeThreadList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"homePageManager/removeThreadList/homePageId/threadIds/tokensExpr/";
+    const requestParameters={...parameters, homePageId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 
-const HomePageService={view,load,addSlide,addEncyclopediaItem,addTaskFilter,addTask,addThread};
+
+const HomePageService={view,load,addSlide,addEncyclopediaItem,addTaskFilter,addTask,addThread,removeSlideList,removeEncyclopediaItemList,removeTaskFilterList,removeTaskList,removeThreadList};
 export default HomePageService;
 
 

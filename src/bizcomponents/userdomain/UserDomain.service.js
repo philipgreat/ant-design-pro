@@ -45,7 +45,17 @@ const joinPostParameters=(parameters)=>{
     var arr = [];
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
-            arr.push(key + '=' + encodeURIComponent(obj[key]));
+            const value = obj[key]
+            if(!Array.isArray(value)){
+                arr.push(key + '=' + encodeURIComponent(value));
+                continue;
+            }
+            for (var subKey in value) {
+                const subvalue = value[subKey];
+                arr.push(key + '=' + encodeURIComponent(subvalue));
+
+            }
+            
         }
     };
     var result = arr.join('&');
@@ -74,9 +84,21 @@ const addSecUser=(targetObjectId,parameters)=>{
     });
 }
 
+const removeSecUserList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"userDomainManager/removeSecUserList/userDomainId/secUserIds/tokensExpr/";
+    const requestParameters={...parameters, userDomainId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 
-const UserDomainService={view,load,addSecUser};
+
+const UserDomainService={view,load,addSecUser,removeSecUserList};
 export default UserDomainService;
 
 

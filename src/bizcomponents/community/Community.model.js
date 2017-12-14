@@ -5,6 +5,44 @@ import { notification } from 'antd';
 //import key from 'keymaster';
 import CommunityService from './Community.service';
 
+
+
+const hasError = (data) =>{
+	
+	if (!data.class){
+		return false;
+	}
+	if(data.class.indexOf("Exception") > 0){
+		return true;
+	}
+	if(data.class.indexOf("LoginForm") > 0){
+		return true;
+	}
+	return false;
+
+}
+
+const handleServerError = (data) => {
+	if (data.message) {
+		notification.error({
+			message: data.message,
+			description: data.message,
+		});
+		return;
+	}
+	
+	if (data.messageList[0]) {
+		//console.error("error ", data.messageList[0].sourcePosition);
+		notification.error({
+			message: data.messageList[0].sourcePosition,
+			description: data.messageList[0].body,
+		});
+		return;
+
+	}
+
+}
+
 export default {
 
   namespace: '_community',
@@ -77,49 +115,52 @@ export default {
 			const { id, type, parameters, continueNext } = payload;
 			console.log("get form parameters", parameters);
 
-			const data = yield call(CommunityService.addInvitationCode, payload.id, payload.parameters);
-			if (data.class && data.class.indexOf("LoginForm") > 0) {
-
-				notification.error({
-					message: data.messageList[0].sourcePosition,
-					description: data.messageList[0].body,
-				});
+			const data = yield call(CommunityService.addInvitationCode, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
 				return;
-			}
-			if (data.class && data.class.indexOf("Exception") > 0) {
-				if (data.message) {
-					notification.error({
-						message: data.message,
-						description: data.message,
-					});
-					return;
-				}
-				if (data.messageList[0]) {
-					//console.error("error ", data.messageList[0].sourcePosition);
-					notification.error({
-						message: data.messageList[0].sourcePosition,
-						description: data.messageList[0].body,
-					});
-					return;
-
-				}
-
 			}
 			const newPlayload = { ...payload, ...data };
 
 			yield put({ type: "updateState", payload: newPlayload });
-			if (continueNext) {
+			
 				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
-				notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+			notification.success({
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
 				return;
 			}
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
+		},
+		
+		*removeInvitationCodeList({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityService.removeInvitationCodeList, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
+				return;
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			
+				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 			notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
+				return;
+			}
 			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
 			yield put(routerRedux.push(location));
 		},
@@ -128,49 +169,52 @@ export default {
 			const { id, type, parameters, continueNext } = payload;
 			console.log("get form parameters", parameters);
 
-			const data = yield call(CommunityService.addHomePage, payload.id, payload.parameters);
-			if (data.class && data.class.indexOf("LoginForm") > 0) {
-
-				notification.error({
-					message: data.messageList[0].sourcePosition,
-					description: data.messageList[0].body,
-				});
+			const data = yield call(CommunityService.addHomePage, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
 				return;
-			}
-			if (data.class && data.class.indexOf("Exception") > 0) {
-				if (data.message) {
-					notification.error({
-						message: data.message,
-						description: data.message,
-					});
-					return;
-				}
-				if (data.messageList[0]) {
-					//console.error("error ", data.messageList[0].sourcePosition);
-					notification.error({
-						message: data.messageList[0].sourcePosition,
-						description: data.messageList[0].body,
-					});
-					return;
-
-				}
-
 			}
 			const newPlayload = { ...payload, ...data };
 
 			yield put({ type: "updateState", payload: newPlayload });
-			if (continueNext) {
+			
 				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
-				notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+			notification.success({
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
 				return;
 			}
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
+		},
+		
+		*removeHomePageList({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityService.removeHomePageList, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
+				return;
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			
+				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 			notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
+				return;
+			}
 			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
 			yield put(routerRedux.push(location));
 		},
@@ -179,49 +223,52 @@ export default {
 			const { id, type, parameters, continueNext } = payload;
 			console.log("get form parameters", parameters);
 
-			const data = yield call(CommunityService.addEncyclopediaItem, payload.id, payload.parameters);
-			if (data.class && data.class.indexOf("LoginForm") > 0) {
-
-				notification.error({
-					message: data.messageList[0].sourcePosition,
-					description: data.messageList[0].body,
-				});
+			const data = yield call(CommunityService.addEncyclopediaItem, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
 				return;
-			}
-			if (data.class && data.class.indexOf("Exception") > 0) {
-				if (data.message) {
-					notification.error({
-						message: data.message,
-						description: data.message,
-					});
-					return;
-				}
-				if (data.messageList[0]) {
-					//console.error("error ", data.messageList[0].sourcePosition);
-					notification.error({
-						message: data.messageList[0].sourcePosition,
-						description: data.messageList[0].body,
-					});
-					return;
-
-				}
-
 			}
 			const newPlayload = { ...payload, ...data };
 
 			yield put({ type: "updateState", payload: newPlayload });
-			if (continueNext) {
+			
 				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
-				notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+			notification.success({
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
 				return;
 			}
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
+		},
+		
+		*removeEncyclopediaItemList({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityService.removeEncyclopediaItemList, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
+				return;
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			
+				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 			notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
+				return;
+			}
 			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
 			yield put(routerRedux.push(location));
 		},
@@ -230,49 +277,52 @@ export default {
 			const { id, type, parameters, continueNext } = payload;
 			console.log("get form parameters", parameters);
 
-			const data = yield call(CommunityService.addTaskPage, payload.id, payload.parameters);
-			if (data.class && data.class.indexOf("LoginForm") > 0) {
-
-				notification.error({
-					message: data.messageList[0].sourcePosition,
-					description: data.messageList[0].body,
-				});
+			const data = yield call(CommunityService.addTaskPage, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
 				return;
-			}
-			if (data.class && data.class.indexOf("Exception") > 0) {
-				if (data.message) {
-					notification.error({
-						message: data.message,
-						description: data.message,
-					});
-					return;
-				}
-				if (data.messageList[0]) {
-					//console.error("error ", data.messageList[0].sourcePosition);
-					notification.error({
-						message: data.messageList[0].sourcePosition,
-						description: data.messageList[0].body,
-					});
-					return;
-
-				}
-
 			}
 			const newPlayload = { ...payload, ...data };
 
 			yield put({ type: "updateState", payload: newPlayload });
-			if (continueNext) {
+			
 				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
-				notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+			notification.success({
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
 				return;
 			}
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
+		},
+		
+		*removeTaskPageList({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityService.removeTaskPageList, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
+				return;
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			
+				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 			notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
+				return;
+			}
 			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
 			yield put(routerRedux.push(location));
 		},
@@ -281,49 +331,52 @@ export default {
 			const { id, type, parameters, continueNext } = payload;
 			console.log("get form parameters", parameters);
 
-			const data = yield call(CommunityService.addCommunityUser, payload.id, payload.parameters);
-			if (data.class && data.class.indexOf("LoginForm") > 0) {
-
-				notification.error({
-					message: data.messageList[0].sourcePosition,
-					description: data.messageList[0].body,
-				});
+			const data = yield call(CommunityService.addCommunityUser, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
 				return;
-			}
-			if (data.class && data.class.indexOf("Exception") > 0) {
-				if (data.message) {
-					notification.error({
-						message: data.message,
-						description: data.message,
-					});
-					return;
-				}
-				if (data.messageList[0]) {
-					//console.error("error ", data.messageList[0].sourcePosition);
-					notification.error({
-						message: data.messageList[0].sourcePosition,
-						description: data.messageList[0].body,
-					});
-					return;
-
-				}
-
 			}
 			const newPlayload = { ...payload, ...data };
 
 			yield put({ type: "updateState", payload: newPlayload });
-			if (continueNext) {
+			
 				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
-				notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+			notification.success({
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
 				return;
 			}
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
+		},
+		
+		*removeCommunityUserList({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityService.removeCommunityUserList, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
+				return;
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			
+				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 			notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
+				return;
+			}
 			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
 			yield put(routerRedux.push(location));
 		},
@@ -332,49 +385,52 @@ export default {
 			const { id, type, parameters, continueNext } = payload;
 			console.log("get form parameters", parameters);
 
-			const data = yield call(CommunityService.addTask, payload.id, payload.parameters);
-			if (data.class && data.class.indexOf("LoginForm") > 0) {
-
-				notification.error({
-					message: data.messageList[0].sourcePosition,
-					description: data.messageList[0].body,
-				});
+			const data = yield call(CommunityService.addTask, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
 				return;
-			}
-			if (data.class && data.class.indexOf("Exception") > 0) {
-				if (data.message) {
-					notification.error({
-						message: data.message,
-						description: data.message,
-					});
-					return;
-				}
-				if (data.messageList[0]) {
-					//console.error("error ", data.messageList[0].sourcePosition);
-					notification.error({
-						message: data.messageList[0].sourcePosition,
-						description: data.messageList[0].body,
-					});
-					return;
-
-				}
-
 			}
 			const newPlayload = { ...payload, ...data };
 
 			yield put({ type: "updateState", payload: newPlayload });
-			if (continueNext) {
+			
 				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
-				notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+			notification.success({
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
 				return;
 			}
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
+		},
+		
+		*removeTaskList({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityService.removeTaskList, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
+				return;
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			
+				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 			notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
+				return;
+			}
 			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
 			yield put(routerRedux.push(location));
 		},
@@ -383,49 +439,52 @@ export default {
 			const { id, type, parameters, continueNext } = payload;
 			console.log("get form parameters", parameters);
 
-			const data = yield call(CommunityService.addGroupPage, payload.id, payload.parameters);
-			if (data.class && data.class.indexOf("LoginForm") > 0) {
-
-				notification.error({
-					message: data.messageList[0].sourcePosition,
-					description: data.messageList[0].body,
-				});
+			const data = yield call(CommunityService.addGroupPage, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
 				return;
-			}
-			if (data.class && data.class.indexOf("Exception") > 0) {
-				if (data.message) {
-					notification.error({
-						message: data.message,
-						description: data.message,
-					});
-					return;
-				}
-				if (data.messageList[0]) {
-					//console.error("error ", data.messageList[0].sourcePosition);
-					notification.error({
-						message: data.messageList[0].sourcePosition,
-						description: data.messageList[0].body,
-					});
-					return;
-
-				}
-
 			}
 			const newPlayload = { ...payload, ...data };
 
 			yield put({ type: "updateState", payload: newPlayload });
-			if (continueNext) {
+			
 				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
-				notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+			notification.success({
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
 				return;
 			}
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
+		},
+		
+		*removeGroupPageList({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityService.removeGroupPageList, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
+				return;
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			
+				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 			notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
+				return;
+			}
 			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
 			yield put(routerRedux.push(location));
 		},
@@ -434,49 +493,52 @@ export default {
 			const { id, type, parameters, continueNext } = payload;
 			console.log("get form parameters", parameters);
 
-			const data = yield call(CommunityService.addThread, payload.id, payload.parameters);
-			if (data.class && data.class.indexOf("LoginForm") > 0) {
-
-				notification.error({
-					message: data.messageList[0].sourcePosition,
-					description: data.messageList[0].body,
-				});
+			const data = yield call(CommunityService.addThread, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
 				return;
-			}
-			if (data.class && data.class.indexOf("Exception") > 0) {
-				if (data.message) {
-					notification.error({
-						message: data.message,
-						description: data.message,
-					});
-					return;
-				}
-				if (data.messageList[0]) {
-					//console.error("error ", data.messageList[0].sourcePosition);
-					notification.error({
-						message: data.messageList[0].sourcePosition,
-						description: data.messageList[0].body,
-					});
-					return;
-
-				}
-
 			}
 			const newPlayload = { ...payload, ...data };
 
 			yield put({ type: "updateState", payload: newPlayload });
-			if (continueNext) {
+			
 				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
-				notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+			notification.success({
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
 				return;
 			}
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			yield put(routerRedux.push(location));
+		},
+		
+		*removeThreadList({ payload }, { call, put }) {
+			const { id, type, parameters, continueNext } = payload;
+			console.log("get form parameters", parameters);
+
+			const data = yield call(CommunityService.removeThreadList, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
+				return;
+			}
+			const newPlayload = { ...payload, ...data };
+
+			yield put({ type: "updateState", payload: newPlayload });
+			
+				//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 			notification.success({
-					message: "执行成功",
-					description:"执行成功",
-				});
+				message: "执行成功",
+				description:"执行成功",
+			});
+			
+			
+			if (continueNext) {
+				return;
+			}
 			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
 			yield put(routerRedux.push(location));
 		},

@@ -1,9 +1,9 @@
 
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
 import Result from '../../components/Result';
 
+import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
 import InvitationCodeTable from './InvitationCode.table';
 import InvitationCodeConfirmationTable from './InvitationCode.confirmmationtable';
 
@@ -95,17 +95,15 @@ export default class InvitationCodeSearch extends PureComponent {
     this.setState({
       selectedRows: rows,
     });
-
-
-
-
   }
 
   
 
+
   handleModalVisible = (flag) => {
     this.setState({
       modalVisible: !!flag,
+      showDeleteResult: false
     });
   }
   handleDelete = () => {
@@ -116,8 +114,29 @@ export default class InvitationCodeSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
-    
+
   }
+  
+  showModal = () => {
+    const { selectedRows } = this.state;
+    const {dispatch,owner} = this.props;
+    this.setState({
+      modalVisible: true,
+      showDeleteResult: false
+    });
+
+  }
+
+  confirmAfterDelete = () => {
+    const { selectedRows } = this.state;
+    const {dispatch,owner} = this.props;
+    this.setState({
+      modalVisible: false,
+      showDeleteResult: true
+    });
+
+  }
+  
   
   
   handleCreate = () => {
@@ -154,7 +173,7 @@ export default class InvitationCodeSearch extends PureComponent {
 
   render() {
     const { data,loading,count,currentPage,owner } = this.props;
-    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+	const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
@@ -164,28 +183,50 @@ export default class InvitationCodeSearch extends PureComponent {
     );
 
 
-    const modalContent =(data, owner)=>{
+   const modalContent =(data, owner)=>{
 
       if(showDeleteResult){
-        return (<Result
+        return (<Modal
+          title={"成功删除"}
+          visible={modalVisible}
+          onOk={() => this.confirmAfterDelete()}
+          onCancel={() => this.confirmAfterDelete()}
+          width={920}
+          style={{ top: 40 }}
+
+        ><Result
         type="success"
-        title="提交成功"
-        description="提交结果页用于反馈一系列操作任务的处理结果，
-        如果仅是简单操作，使用 Message 全局提示反馈即可。
-        本文字区域可以展示简单的补充说明，如果有类似展示
-        “单据”的需求，下面这个灰色区域可以呈现比较复杂的内容。"
+        title="删除成功，干得漂亮"
+        description=""
        
-        style={{ marginTop: 48, marginBottom: 16 }} />)
+        style={{ marginTop: 48, marginBottom: 16 }} />
+         </Modal>
+        )
       }
 
-      return (<InvitationCodeConfirmationTable
+      return (<Modal
+        title={"注意！你正在删除数据，执行之后不可恢复"}
+        visible={modalVisible}
+        onOk={this.handleDelete}
+        onCancel={() => this.handleModalVisible()}
+        width={920}
+        style={{ top: 40 }}
+
+      ><InvitationCodeConfirmationTable
         
          data={selectedRows}
          owner={owner}
-       />);
+       /></Modal>);
 
 
     }
+    
+    
+    
+
+
+
+
     return (
       <PageHeaderLayout title="邀请码列表">
         <Card bordered={false}>
@@ -198,9 +239,9 @@ export default class InvitationCodeSearch extends PureComponent {
               {
                 selectedRows.length > 0 && (
                   <span>
-                     <Button onClick={this.handleModalVisible} type="danger" icon="delete">批量删除</Button>
+                     <Button onClick={this.handleModalVisible} type="danger">批量删除</Button>
                     <Dropdown overlay={menu}>
-                      <Button>
+                      <Button icon="delete">
                         更多操作 <Icon type="down" />
                       </Button>
                     </Dropdown>
@@ -220,20 +261,7 @@ export default class InvitationCodeSearch extends PureComponent {
             />
           </div>
         </Card>
-        <Modal
-          title={"注意！你正在删除数据，执行之后不可恢复"}
-          visible={modalVisible}
-          onOk={this.handleDelete}
-          onCancel={() => this.handleModalVisible()}
-          width={920}
-          style={{ top: 40 }}
-
-        >
-   
-      
-          {modalContent(data,owner)}
-        </Modal>
-        
+        {modalContent(data,owner)}
         
       </PageHeaderLayout>
     );

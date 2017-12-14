@@ -1,17 +1,17 @@
 
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
+import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
 import Result from '../../components/Result';
 
-import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
-import TaskReplyTable from './TaskReply.table';
-import TaskReplyConfirmationTable from './TaskReply.confirmmationtable';
+import InvitationCodeTable from './InvitationCode.table';
+import InvitationCodeConfirmationTable from './InvitationCode.confirmmationtable';
 
-import TaskReplySearchForm from './TaskReply.searchform';
+import InvitationCodeSearchForm from './InvitationCode.searchform';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
-import styles from './TaskReply.search.less';
+import styles from './InvitationCode.search.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -19,7 +19,7 @@ const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',');
 
 
 @Form.create()
-export default class TaskReplySearch extends PureComponent {
+export default class InvitationCodeSearch extends PureComponent {
  state = {
     addInputValue: '',
     modalVisible: false,
@@ -45,9 +45,9 @@ export default class TaskReplySearch extends PureComponent {
     }, {});
 
     const params = {
-      taskReplyList:1,
-      taskReplyListCurrentPage: pagination.current,
-      taskReplyListRowsPerPage: pagination.pageSize,
+      invitationCodeList:1,
+      invitationCodeListCurrentPage: pagination.current,
+      invitationCodeListRowsPerPage: pagination.pageSize,
       ...formValues,
       ...filters,
     };
@@ -95,10 +95,13 @@ export default class TaskReplySearch extends PureComponent {
     this.setState({
       selectedRows: rows,
     });
+
+
+
+
   }
 
   
-
 
   handleModalVisible = (flag) => {
     this.setState({
@@ -137,14 +140,12 @@ export default class TaskReplySearch extends PureComponent {
 
   }
   
-  
-  
   handleCreate = () => {
  
    	const {dispatch,owner} = this.props;
-	dispatch({
+	  dispatch({
        type: owner.type+'/gotoCreateForm',
-       payload: {id:owner.id,type:'taskReply'},
+       payload: {id:owner.id,type:'invitationCode'},
     });
   }
 
@@ -173,7 +174,7 @@ export default class TaskReplySearch extends PureComponent {
 
   render() {
     const { data,loading,count,currentPage,owner } = this.props;
-	const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
 
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
@@ -183,7 +184,7 @@ export default class TaskReplySearch extends PureComponent {
     );
 
 
-   const modalContent =(data, owner)=>{
+    const modalContent =(data, owner)=>{
 
       if(showDeleteResult){
         return (<Modal
@@ -212,7 +213,7 @@ export default class TaskReplySearch extends PureComponent {
         width={920}
         style={{ top: 40 }}
 
-      ><TaskReplyConfirmationTable
+      ><InvitationCodeConfirmationTable
         
          data={selectedRows}
          owner={owner}
@@ -220,28 +221,21 @@ export default class TaskReplySearch extends PureComponent {
 
 
     }
-    
-    
-    
-
-
-
-
     return (
-      <PageHeaderLayout title="回复任务列表">
+      <PageHeaderLayout title="邀请码列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>
-              <TaskReplySearchForm {...this.props}/>
+              <InvitationCodeSearchForm {...this.props}/>
             </div>
             <div className={styles.tableListOperator}>
               <Button icon="plus" type="primary" onClick={() => this.handleCreate()}>新建</Button>
               {
                 selectedRows.length > 0 && (
                   <span>
-                     <Button onClick={this.handleModalVisible} type="danger">批量删除</Button>
+                     <Button onClick={this.showModal} type="danger" icon="delete">批量删除</Button>
                     <Dropdown overlay={menu}>
-                      <Button icon="delete">
+                      <Button>
                         更多操作 <Icon type="down" />
                       </Button>
                     </Dropdown>
@@ -249,7 +243,7 @@ export default class TaskReplySearch extends PureComponent {
                 )
               }
             </div>
-            <TaskReplyTable
+            <InvitationCodeTable
               selectedRows={selectedRows}
               loading={loading}
               data={data}
@@ -261,7 +255,12 @@ export default class TaskReplySearch extends PureComponent {
             />
           </div>
         </Card>
-        {modalContent(data,owner)}
+        
+   
+      
+          {modalContent(data,owner)}
+       
+        
         
       </PageHeaderLayout>
     );

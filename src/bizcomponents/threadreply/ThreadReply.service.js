@@ -45,7 +45,17 @@ const joinPostParameters=(parameters)=>{
     var arr = [];
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
-            arr.push(key + '=' + encodeURIComponent(obj[key]));
+            const value = obj[key]
+            if(!Array.isArray(value)){
+                arr.push(key + '=' + encodeURIComponent(value));
+                continue;
+            }
+            for (var subKey in value) {
+                const subvalue = value[subKey];
+                arr.push(key + '=' + encodeURIComponent(subvalue));
+
+            }
+            
         }
     };
     var result = arr.join('&');
@@ -74,9 +84,21 @@ const addThreadReplyLike=(targetObjectId,parameters)=>{
     });
 }
 
+const removeThreadReplyLikeList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"threadReplyManager/removeThreadReplyLikeList/threadReplyId/threadReplyLikeIds/tokensExpr/";
+    const requestParameters={...parameters, threadReplyId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 
-const ThreadReplyService={view,load,addThreadReplyLike};
+
+const ThreadReplyService={view,load,addThreadReplyLike,removeThreadReplyLikeList};
 export default ThreadReplyService;
 
 

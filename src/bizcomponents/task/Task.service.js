@@ -45,7 +45,17 @@ const joinPostParameters=(parameters)=>{
     var arr = [];
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
-            arr.push(key + '=' + encodeURIComponent(obj[key]));
+            const value = obj[key]
+            if(!Array.isArray(value)){
+                arr.push(key + '=' + encodeURIComponent(value));
+                continue;
+            }
+            for (var subKey in value) {
+                const subvalue = value[subKey];
+                arr.push(key + '=' + encodeURIComponent(subvalue));
+
+            }
+            
         }
     };
     var result = arr.join('&');
@@ -74,11 +84,35 @@ const addTaskAssigment=(targetObjectId,parameters)=>{
     });
 }
 
+const removeTaskAssigmentList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"taskManager/removeTaskAssigmentList/taskId/taskAssigmentIds/tokensExpr/";
+    const requestParameters={...parameters, taskId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
 
 
 const addTaskLike=(targetObjectId,parameters)=>{
     const url = PREFIX+"taskManager/addTaskLike/taskId/replierId/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+
+const removeTaskLikeList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"taskManager/removeTaskLikeList/taskId/taskLikeIds/tokensExpr/";
+    const requestParameters={...parameters, taskId:targetObjectId,tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -102,9 +136,21 @@ const addTaskReply=(targetObjectId,parameters)=>{
     });
 }
 
+const removeTaskReplyList=(targetObjectId,parameters)=>{
+    const url = PREFIX+"taskManager/removeTaskReplyList/taskId/taskReplyIds/tokensExpr/";
+    const requestParameters={...parameters, taskId:targetObjectId,tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 
-const TaskService={view,load,addTaskAssigment,addTaskLike,addTaskReply};
+
+const TaskService={view,load,addTaskAssigment,addTaskLike,addTaskReply,removeTaskAssigmentList,removeTaskLikeList,removeTaskReplyList};
 export default TaskService;
 
 
