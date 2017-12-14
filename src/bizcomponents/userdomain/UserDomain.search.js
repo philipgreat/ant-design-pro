@@ -114,6 +114,15 @@ export default class UserDomainSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var userDomainIds = selectedRows.map((item)=>{return item.id})
+    console.log("userDomainIds",userDomainIds);
+    var parameters ={userDomainIds};
+    dispatch({
+      type: owner.type+'/removeUserDomainList',
+      payload: {id:owner.id,type:'userDomain',parameters},
+    });
+    
 
   }
   

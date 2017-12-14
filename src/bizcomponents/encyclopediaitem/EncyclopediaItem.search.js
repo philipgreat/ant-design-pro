@@ -114,6 +114,15 @@ export default class EncyclopediaItemSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var encyclopediaItemIds = selectedRows.map((item)=>{return item.id})
+    console.log("encyclopediaItemIds",encyclopediaItemIds);
+    var parameters ={encyclopediaItemIds};
+    dispatch({
+      type: owner.type+'/removeEncyclopediaItemList',
+      payload: {id:owner.id,type:'encyclopediaItem',parameters},
+    });
+    
 
   }
   

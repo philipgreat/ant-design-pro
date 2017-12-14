@@ -158,11 +158,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addEncyclopediaItem({ payload }, { call, put }) {
@@ -212,11 +210,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addTaskFilter({ payload }, { call, put }) {
@@ -266,11 +262,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addTask({ payload }, { call, put }) {
@@ -320,11 +314,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addThread({ payload }, { call, put }) {
@@ -374,11 +366,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
     

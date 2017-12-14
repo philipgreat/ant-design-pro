@@ -114,6 +114,15 @@ export default class FanSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var fanIds = selectedRows.map((item)=>{return item.id})
+    console.log("fanIds",fanIds);
+    var parameters ={fanIds};
+    dispatch({
+      type: owner.type+'/removeFanList',
+      payload: {id:owner.id,type:'fan',parameters},
+    });
+    
 
   }
   

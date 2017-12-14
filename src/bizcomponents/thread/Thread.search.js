@@ -114,6 +114,15 @@ export default class ThreadSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var threadIds = selectedRows.map((item)=>{return item.id})
+    console.log("threadIds",threadIds);
+    var parameters ={threadIds};
+    dispatch({
+      type: owner.type+'/removeThreadList',
+      payload: {id:owner.id,type:'thread',parameters},
+    });
+    
 
   }
   

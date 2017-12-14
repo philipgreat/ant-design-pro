@@ -158,11 +158,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/taskPage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/taskPage/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addTask({ payload }, { call, put }) {
@@ -212,11 +210,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/taskPage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/taskPage/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
     

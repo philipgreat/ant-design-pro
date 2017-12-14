@@ -114,6 +114,15 @@ export default class ThreadReplySearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var threadReplyIds = selectedRows.map((item)=>{return item.id})
+    console.log("threadReplyIds",threadReplyIds);
+    var parameters ={threadReplyIds};
+    dispatch({
+      type: owner.type+'/removeThreadReplyList',
+      payload: {id:owner.id,type:'threadReply',parameters},
+    });
+    
 
   }
   

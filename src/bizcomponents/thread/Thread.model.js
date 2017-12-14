@@ -158,11 +158,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/thread/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/thread/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addThreadRegistration({ payload }, { call, put }) {
@@ -212,11 +210,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/thread/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/thread/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addThreadLike({ payload }, { call, put }) {
@@ -266,11 +262,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/thread/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/thread/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
     

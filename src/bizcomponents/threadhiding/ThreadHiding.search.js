@@ -114,6 +114,15 @@ export default class ThreadHidingSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var threadHidingIds = selectedRows.map((item)=>{return item.id})
+    console.log("threadHidingIds",threadHidingIds);
+    var parameters ={threadHidingIds};
+    dispatch({
+      type: owner.type+'/removeThreadHidingList',
+      payload: {id:owner.id,type:'threadHiding',parameters},
+    });
+    
 
   }
   

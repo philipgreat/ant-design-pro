@@ -114,6 +114,15 @@ export default class TaskFilterSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var taskFilterIds = selectedRows.map((item)=>{return item.id})
+    console.log("taskFilterIds",taskFilterIds);
+    var parameters ={taskFilterIds};
+    dispatch({
+      type: owner.type+'/removeTaskFilterList',
+      payload: {id:owner.id,type:'taskFilter',parameters},
+    });
+    
 
   }
   

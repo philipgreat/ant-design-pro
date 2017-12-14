@@ -158,11 +158,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/secUser/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/secUser/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addLoginHistory({ payload }, { call, put }) {
@@ -212,11 +210,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/secUser/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/secUser/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
     

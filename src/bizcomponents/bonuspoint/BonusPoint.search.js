@@ -114,6 +114,15 @@ export default class BonusPointSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var bonusPointIds = selectedRows.map((item)=>{return item.id})
+    console.log("bonusPointIds",bonusPointIds);
+    var parameters ={bonusPointIds};
+    dispatch({
+      type: owner.type+'/removeBonusPointList',
+      payload: {id:owner.id,type:'bonusPoint',parameters},
+    });
+    
 
   }
   

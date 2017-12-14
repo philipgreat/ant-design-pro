@@ -114,6 +114,15 @@ export default class SecUserBlockingSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var secUserBlockingIds = selectedRows.map((item)=>{return item.id})
+    console.log("secUserBlockingIds",secUserBlockingIds);
+    var parameters ={secUserBlockingIds};
+    dispatch({
+      type: owner.type+'/removeSecUserBlockingList',
+      payload: {id:owner.id,type:'secUserBlocking',parameters},
+    });
+    
 
   }
   

@@ -114,6 +114,15 @@ export default class MessageFilterSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var messageFilterIds = selectedRows.map((item)=>{return item.id})
+    console.log("messageFilterIds",messageFilterIds);
+    var parameters ={messageFilterIds};
+    dispatch({
+      type: owner.type+'/removeMessageFilterList',
+      payload: {id:owner.id,type:'messageFilter',parameters},
+    });
+    
 
   }
   

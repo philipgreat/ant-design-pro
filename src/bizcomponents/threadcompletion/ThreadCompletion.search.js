@@ -114,6 +114,15 @@ export default class ThreadCompletionSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var threadCompletionIds = selectedRows.map((item)=>{return item.id})
+    console.log("threadCompletionIds",threadCompletionIds);
+    var parameters ={threadCompletionIds};
+    dispatch({
+      type: owner.type+'/removeThreadCompletionList',
+      payload: {id:owner.id,type:'threadCompletion',parameters},
+    });
+    
 
   }
   

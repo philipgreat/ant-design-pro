@@ -114,6 +114,15 @@ export default class ThreadCancelingSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var threadCancelingIds = selectedRows.map((item)=>{return item.id})
+    console.log("threadCancelingIds",threadCancelingIds);
+    var parameters ={threadCancelingIds};
+    dispatch({
+      type: owner.type+'/removeThreadCancelingList',
+      payload: {id:owner.id,type:'threadCanceling',parameters},
+    });
+    
 
   }
   

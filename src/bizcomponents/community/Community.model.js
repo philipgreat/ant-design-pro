@@ -158,11 +158,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addHomePage({ payload }, { call, put }) {
@@ -212,11 +210,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addEncyclopediaItem({ payload }, { call, put }) {
@@ -266,11 +262,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addTaskPage({ payload }, { call, put }) {
@@ -320,11 +314,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addCommunityUser({ payload }, { call, put }) {
@@ -374,11 +366,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addTask({ payload }, { call, put }) {
@@ -428,11 +418,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addGroupPage({ payload }, { call, put }) {
@@ -482,11 +470,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
 	*addThread({ payload }, { call, put }) {
@@ -536,11 +522,9 @@ export default {
 			});
 			
 			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
+
+			//const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+			//yield put(routerRedux.push(location));
 		},
 
     

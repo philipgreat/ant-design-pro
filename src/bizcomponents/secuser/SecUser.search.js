@@ -114,6 +114,15 @@ export default class SecUserSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var secUserIds = selectedRows.map((item)=>{return item.id})
+    console.log("secUserIds",secUserIds);
+    var parameters ={secUserIds};
+    dispatch({
+      type: owner.type+'/removeSecUserList',
+      payload: {id:owner.id,type:'secUser',parameters},
+    });
+    
 
   }
   

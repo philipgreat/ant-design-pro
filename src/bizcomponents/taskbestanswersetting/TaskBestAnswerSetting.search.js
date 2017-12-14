@@ -114,6 +114,15 @@ export default class TaskBestAnswerSettingSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var taskBestAnswerSettingIds = selectedRows.map((item)=>{return item.id})
+    console.log("taskBestAnswerSettingIds",taskBestAnswerSettingIds);
+    var parameters ={taskBestAnswerSettingIds};
+    dispatch({
+      type: owner.type+'/removeTaskBestAnswerSettingList',
+      payload: {id:owner.id,type:'taskBestAnswerSetting',parameters},
+    });
+    
 
   }
   

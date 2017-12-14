@@ -114,6 +114,15 @@ export default class GroupPageSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var groupPageIds = selectedRows.map((item)=>{return item.id})
+    console.log("groupPageIds",groupPageIds);
+    var parameters ={groupPageIds};
+    dispatch({
+      type: owner.type+'/removeGroupPageList',
+      payload: {id:owner.id,type:'groupPage',parameters},
+    });
+    
 
   }
   

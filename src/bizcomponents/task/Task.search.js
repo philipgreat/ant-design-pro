@@ -114,6 +114,15 @@ export default class TaskSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var taskIds = selectedRows.map((item)=>{return item.id})
+    console.log("taskIds",taskIds);
+    var parameters ={taskIds};
+    dispatch({
+      type: owner.type+'/removeTaskList',
+      payload: {id:owner.id,type:'task',parameters},
+    });
+    
 
   }
   

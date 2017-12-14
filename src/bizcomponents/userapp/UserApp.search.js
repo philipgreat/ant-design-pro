@@ -114,6 +114,15 @@ export default class UserAppSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var userAppIds = selectedRows.map((item)=>{return item.id})
+    console.log("userAppIds",userAppIds);
+    var parameters ={userAppIds};
+    dispatch({
+      type: owner.type+'/removeUserAppList',
+      payload: {id:owner.id,type:'userApp',parameters},
+    });
+    
 
   }
   

@@ -114,6 +114,15 @@ export default class ExperiencePointSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var experiencePointIds = selectedRows.map((item)=>{return item.id})
+    console.log("experiencePointIds",experiencePointIds);
+    var parameters ={experiencePointIds};
+    dispatch({
+      type: owner.type+'/removeExperiencePointList',
+      payload: {id:owner.id,type:'experiencePoint',parameters},
+    });
+    
 
   }
   

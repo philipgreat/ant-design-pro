@@ -114,6 +114,15 @@ export default class TaskPageSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var taskPageIds = selectedRows.map((item)=>{return item.id})
+    console.log("taskPageIds",taskPageIds);
+    var parameters ={taskPageIds};
+    dispatch({
+      type: owner.type+'/removeTaskPageList',
+      payload: {id:owner.id,type:'taskPage',parameters},
+    });
+    
 
   }
   

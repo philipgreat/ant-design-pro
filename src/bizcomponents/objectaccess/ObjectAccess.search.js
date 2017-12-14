@@ -114,6 +114,15 @@ export default class ObjectAccessSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var objectAccessIds = selectedRows.map((item)=>{return item.id})
+    console.log("objectAccessIds",objectAccessIds);
+    var parameters ={objectAccessIds};
+    dispatch({
+      type: owner.type+'/removeObjectAccessList',
+      payload: {id:owner.id,type:'objectAccess',parameters},
+    });
+    
 
   }
   

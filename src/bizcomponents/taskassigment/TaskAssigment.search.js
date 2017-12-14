@@ -114,6 +114,15 @@ export default class TaskAssigmentSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var taskAssigmentIds = selectedRows.map((item)=>{return item.id})
+    console.log("taskAssigmentIds",taskAssigmentIds);
+    var parameters ={taskAssigmentIds};
+    dispatch({
+      type: owner.type+'/removeTaskAssigmentList',
+      payload: {id:owner.id,type:'taskAssigment',parameters},
+    });
+    
 
   }
   

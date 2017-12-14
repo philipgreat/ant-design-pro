@@ -114,6 +114,15 @@ export default class GroupFilterSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var groupFilterIds = selectedRows.map((item)=>{return item.id})
+    console.log("groupFilterIds",groupFilterIds);
+    var parameters ={groupFilterIds};
+    dispatch({
+      type: owner.type+'/removeGroupFilterList',
+      payload: {id:owner.id,type:'groupFilter',parameters},
+    });
+    
 
   }
   

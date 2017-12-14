@@ -114,6 +114,15 @@ export default class LoginHistorySearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var loginHistoryIds = selectedRows.map((item)=>{return item.id})
+    console.log("loginHistoryIds",loginHistoryIds);
+    var parameters ={loginHistoryIds};
+    dispatch({
+      type: owner.type+'/removeLoginHistoryList',
+      payload: {id:owner.id,type:'loginHistory',parameters},
+    });
+    
 
   }
   

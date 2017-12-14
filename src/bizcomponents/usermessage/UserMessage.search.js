@@ -114,6 +114,15 @@ export default class UserMessageSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var userMessageIds = selectedRows.map((item)=>{return item.id})
+    console.log("userMessageIds",userMessageIds);
+    var parameters ={userMessageIds};
+    dispatch({
+      type: owner.type+'/removeUserMessageList',
+      payload: {id:owner.id,type:'userMessage',parameters},
+    });
+    
 
   }
   

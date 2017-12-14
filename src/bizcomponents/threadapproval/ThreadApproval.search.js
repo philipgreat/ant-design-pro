@@ -114,6 +114,15 @@ export default class ThreadApprovalSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var threadApprovalIds = selectedRows.map((item)=>{return item.id})
+    console.log("threadApprovalIds",threadApprovalIds);
+    var parameters ={threadApprovalIds};
+    dispatch({
+      type: owner.type+'/removeThreadApprovalList',
+      payload: {id:owner.id,type:'threadApproval',parameters},
+    });
+    
 
   }
   

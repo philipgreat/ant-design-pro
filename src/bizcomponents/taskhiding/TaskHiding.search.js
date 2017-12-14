@@ -114,6 +114,15 @@ export default class TaskHidingSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var taskHidingIds = selectedRows.map((item)=>{return item.id})
+    console.log("taskHidingIds",taskHidingIds);
+    var parameters ={taskHidingIds};
+    dispatch({
+      type: owner.type+'/removeTaskHidingList',
+      payload: {id:owner.id,type:'taskHiding',parameters},
+    });
+    
 
   }
   

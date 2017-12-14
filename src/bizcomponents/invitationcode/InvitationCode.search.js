@@ -114,6 +114,15 @@ export default class InvitationCodeSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var invitationCodeIds = selectedRows.map((item)=>{return item.id})
+    console.log("invitationCodeIds",invitationCodeIds);
+    var parameters ={invitationCodeIds};
+    dispatch({
+      type: owner.type+'/removeInvitationCodeList',
+      payload: {id:owner.id,type:'invitationCode',parameters},
+    });
+    
 
   }
   

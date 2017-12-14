@@ -114,6 +114,15 @@ export default class UserSkillSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var userSkillIds = selectedRows.map((item)=>{return item.id})
+    console.log("userSkillIds",userSkillIds);
+    var parameters ={userSkillIds};
+    dispatch({
+      type: owner.type+'/removeUserSkillList',
+      payload: {id:owner.id,type:'userSkill',parameters},
+    });
+    
 
   }
   

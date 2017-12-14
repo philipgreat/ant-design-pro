@@ -114,6 +114,15 @@ export default class CommunityUserSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var communityUserIds = selectedRows.map((item)=>{return item.id})
+    console.log("communityUserIds",communityUserIds);
+    var parameters ={communityUserIds};
+    dispatch({
+      type: owner.type+'/removeCommunityUserList',
+      payload: {id:owner.id,type:'communityUser',parameters},
+    });
+    
 
   }
   

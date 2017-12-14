@@ -114,6 +114,15 @@ export default class FollowSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var followIds = selectedRows.map((item)=>{return item.id})
+    console.log("followIds",followIds);
+    var parameters ={followIds};
+    dispatch({
+      type: owner.type+'/removeFollowList',
+      payload: {id:owner.id,type:'follow',parameters},
+    });
+    
 
   }
   

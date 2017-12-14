@@ -114,6 +114,15 @@ export default class TaskReplyLikeSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var taskReplyLikeIds = selectedRows.map((item)=>{return item.id})
+    console.log("taskReplyLikeIds",taskReplyLikeIds);
+    var parameters ={taskReplyLikeIds};
+    dispatch({
+      type: owner.type+'/removeTaskReplyLikeList',
+      payload: {id:owner.id,type:'taskReplyLike',parameters},
+    });
+    
 
   }
   

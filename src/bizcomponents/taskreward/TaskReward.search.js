@@ -114,6 +114,15 @@ export default class TaskRewardSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var taskRewardIds = selectedRows.map((item)=>{return item.id})
+    console.log("taskRewardIds",taskRewardIds);
+    var parameters ={taskRewardIds};
+    dispatch({
+      type: owner.type+'/removeTaskRewardList',
+      payload: {id:owner.id,type:'taskReward',parameters},
+    });
+    
 
   }
   

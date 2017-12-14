@@ -114,6 +114,15 @@ export default class PatientInfoSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var patientInfoIds = selectedRows.map((item)=>{return item.id})
+    console.log("patientInfoIds",patientInfoIds);
+    var parameters ={patientInfoIds};
+    dispatch({
+      type: owner.type+'/removePatientInfoList',
+      payload: {id:owner.id,type:'patientInfo',parameters},
+    });
+    
 
   }
   

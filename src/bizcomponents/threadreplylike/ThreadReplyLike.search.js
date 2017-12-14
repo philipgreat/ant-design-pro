@@ -114,6 +114,15 @@ export default class ThreadReplyLikeSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var threadReplyLikeIds = selectedRows.map((item)=>{return item.id})
+    console.log("threadReplyLikeIds",threadReplyLikeIds);
+    var parameters ={threadReplyLikeIds};
+    dispatch({
+      type: owner.type+'/removeThreadReplyLikeList',
+      payload: {id:owner.id,type:'threadReplyLike',parameters},
+    });
+    
 
   }
   

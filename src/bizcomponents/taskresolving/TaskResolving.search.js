@@ -114,6 +114,15 @@ export default class TaskResolvingSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var taskResolvingIds = selectedRows.map((item)=>{return item.id})
+    console.log("taskResolvingIds",taskResolvingIds);
+    var parameters ={taskResolvingIds};
+    dispatch({
+      type: owner.type+'/removeTaskResolvingList',
+      payload: {id:owner.id,type:'taskResolving',parameters},
+    });
+    
 
   }
   

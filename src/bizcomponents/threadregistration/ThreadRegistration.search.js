@@ -114,6 +114,15 @@ export default class ThreadRegistrationSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var threadRegistrationIds = selectedRows.map((item)=>{return item.id})
+    console.log("threadRegistrationIds",threadRegistrationIds);
+    var parameters ={threadRegistrationIds};
+    dispatch({
+      type: owner.type+'/removeThreadRegistrationList',
+      payload: {id:owner.id,type:'threadRegistration',parameters},
+    });
+    
 
   }
   

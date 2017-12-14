@@ -114,6 +114,15 @@ export default class SlideSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var slideIds = selectedRows.map((item)=>{return item.id})
+    console.log("slideIds",slideIds);
+    var parameters ={slideIds};
+    dispatch({
+      type: owner.type+'/removeSlideList',
+      payload: {id:owner.id,type:'slide',parameters},
+    });
+    
 
   }
   

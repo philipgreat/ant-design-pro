@@ -114,6 +114,15 @@ export default class HomePageSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true
     });
+    
+    var homePageIds = selectedRows.map((item)=>{return item.id})
+    console.log("homePageIds",homePageIds);
+    var parameters ={homePageIds};
+    dispatch({
+      type: owner.type+'/removeHomePageList',
+      payload: {id:owner.id,type:'homePage',parameters},
+    });
+    
 
   }
   
