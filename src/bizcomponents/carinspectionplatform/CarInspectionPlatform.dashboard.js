@@ -38,7 +38,7 @@ export default class CarInspectionPlatformDashboard extends Component {
     
     const {id,customerInfoCount,carReceivingServiceCompanyCount,carInspectionServiceCompanyCount,carRepairingServiceCompanyCount,carInfoCount,carInspectionOrderCount} = this.props.carInspectionPlatform;
 	
-	
+	  console.log("id of the object", id);
     
     return (
 

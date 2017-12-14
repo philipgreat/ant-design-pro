@@ -20,10 +20,11 @@ const PREFIX=getURLPrefix();
 
 
 const view=(targetObjectId)=>{
+    console.log("the is =====》》》 ",targetObjectId );
     return get({
         url: PREFIX+`carInspectionPlatformManager/view/${targetObjectId}/`
-
     });
+    
 }
 
 

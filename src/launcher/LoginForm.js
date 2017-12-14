@@ -38,7 +38,7 @@ class NormalLoginForm extends Component {
     <div className={styles.login}>
                 <div className={styles.loginForm} >
                     <div className={styles.loginLogo}>
-                        <span>跨境供应链管理系统</span>
+                        <span>审车平台</span>
                     </div>
             <Form onSubmit={this.handleSubmit} >
                 <FormItem>

@@ -62,6 +62,9 @@ export default {
         
         const newstate = location.state;
 
+
+		console.log("find the new state", newstate);
+
         if(newstate){
           dispatch({type:"updateState",payload:newstate});
    
@@ -69,7 +72,8 @@ export default {
         }
         const dashboardmatch = pathToRegexp('/carInspectionPlatform/:id/dashboard').exec(pathname);
         if (dashboardmatch) {
-          const id = dashboardmatch[1];
+		  const id = dashboardmatch[1];
+		  console.log("find the new id", id);
           dispatch({type:"view",payload:{id}});
           return;
 
@@ -88,9 +92,11 @@ export default {
 
   effects: {
     *view({ payload }, { call, put }) { 
-      yield put({type:"showLoading",payload:payload});
+	  console.log("find the new id in view", payload.id);
+	  yield put({type:"showLoading",payload:payload});
+	  yield console.log("===========>this is the data id: ", payload.id)
       const data = yield call(CarInspectionPlatformService.view,payload.id);
-      console.log("this is the data id: ", data.id)
+      yield console.log("/===========>this is the data id: ", data.id)
       yield put({type:"updateState",payload:data});
     },
     *load({ payload }, { call, put }) { 

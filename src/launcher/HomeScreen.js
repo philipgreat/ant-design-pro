@@ -72,7 +72,7 @@ class HomeScreen extends React.Component {
                 </Row>
                 <Row key="2" gutter={16}>
                     <Col className="gutter-row" span={24} style={{ paddingTop: "20px", textAlign: "center" }}>
-                        <h1>跨境供应链管理系统</h1>
+                        <h1>审车平台</h1>
                     </Col>
                 </Row>
                 <Row key="3" gutter={16} justify="center" align="center" >

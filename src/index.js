@@ -6,7 +6,7 @@ import './polyfill';
 import './g2';
 // import { browserHistory } from 'dva/router';
 import './index.less';
-
+import RouterConfig from './router'
 import LauncherModel from './launcher/Launcher.model'
 
 import CarInspectionPlatformModel from './bizcomponents/carinspectionplatform/CarInspectionPlatform.model'
@@ -82,7 +82,7 @@ models.forEach((m) => {
 });
 
 // 4. Router
-app.router(require('./router'));
+app.router(RouterConfig);
 
 // 5. Start
 app.start('#root');

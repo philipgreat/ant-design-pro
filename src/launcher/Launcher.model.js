@@ -6,9 +6,35 @@ import { routerRedux } from 'dva/router';
 import key from 'keymaster';
 const  apps = {
 
-  "com.terapico.bbt.community.Community": "community",
-  "com.terapico.bbt.communityuser.CommunityUser": "communityUser",
-  "com.terapico.bbt.userdomain.UserDomain": "userDomain",
+
+"com.terapico.cis.carinspectionplatform.CarInspectionPlatform":"carInspectionPlatform",
+"com.terapico.cis.customerinfo.CustomerInfo":"customerInfo",
+"com.terapico.cis.carreceivingservicecompany.CarReceivingServiceCompany":"carReceivingServiceCompany",
+"com.terapico.cis.carinspectionservicecompany.CarInspectionServiceCompany":"carInspectionServiceCompany",
+"com.terapico.cis.carrepairingservicecompany.CarRepairingServiceCompany":"carRepairingServiceCompany",
+"com.terapico.cis.carinfo.CarInfo":"carInfo",
+"com.terapico.cis.carinspectionorder.CarInspectionOrder":"carInspectionOrder",
+"com.terapico.cis.carreceivingserviceorder.CarReceivingServiceOrder":"carReceivingServiceOrder",
+"com.terapico.cis.carreceivereceiving.CarReceiveReceiving":"carReceiveReceiving",
+"com.terapico.cis.carreceiveworking.CarReceiveWorking":"carReceiveWorking",
+"com.terapico.cis.carreceivereturning.CarReceiveReturning":"carReceiveReturning",
+"com.terapico.cis.carinspectionserviceorder.CarInspectionServiceOrder":"carInspectionServiceOrder",
+"com.terapico.cis.carinspectreceiving.CarInspectReceiving":"carInspectReceiving",
+"com.terapico.cis.carinspectworking.CarInspectWorking":"carInspectWorking",
+"com.terapico.cis.carinspectreturning.CarInspectReturning":"carInspectReturning",
+"com.terapico.cis.carrepairingserviceorder.CarRepairingServiceOrder":"carRepairingServiceOrder",
+"com.terapico.cis.carrepairreceiving.CarRepairReceiving":"carRepairReceiving",
+"com.terapico.cis.carrepairworking.CarRepairWorking":"carRepairWorking",
+"com.terapico.cis.carrepairreturning.CarRepairReturning":"carRepairReturning",
+"com.terapico.cis.userdomain.UserDomain":"userDomain",
+"com.terapico.cis.secuser.SecUser":"secUser",
+"com.terapico.cis.secuserblocking.SecUserBlocking":"secUserBlocking",
+"com.terapico.cis.userapp.UserApp":"userApp",
+"com.terapico.cis.objectaccess.ObjectAccess":"objectAccess",
+"com.terapico.cis.loginhistory.LoginHistory":"loginHistory",
+
+
+
 
 };
 const rootElement = document.getElementById("root");
@@ -108,6 +134,7 @@ export default {
         const data = yield call(LauncherService.gotoApp,payload.appId);
         const locationPath = calcLocationPath(data.class,data.id,"dashboard");
         const location = {pathname:"/"+locationPath,state:data};
+        console.log("location", location);
         yield put(routerRedux.push(location));
         //yield put({type:"showApp",payload:{data}});
 
@@ -147,19 +174,10 @@ export default {
 
 
 
-/*
-
-console.log(this.props);
-        const loggedIn = yield select(state => state.loggedIn);
-        if(loggedIn){
-
-            this.props.router.push({ pathname: '/home'});
-            return;
-        }
-
-        this.props.router.push({ pathname: '/login'});
 
 
 
 
-*/
+
+
+
