@@ -237,7 +237,7 @@ export default class CarReceivingServiceOrderSearch extends PureComponent {
 
 
     return (
-      <PageHeaderLayout title="车辆接收服务令列表">
+      <PageHeaderLayout title="接车服务订单列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

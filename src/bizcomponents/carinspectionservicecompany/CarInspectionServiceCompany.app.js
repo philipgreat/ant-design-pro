@@ -89,7 +89,7 @@ class CarInspectionServiceCompanyBizApp extends React.PureComponent {
     return (
       <SubMenu title={<span>
         <Icon type='dashboard' />
-        <span>汽车检验服务公司</span>
+        <span>汽车代检服务公司</span>
       </span>} >
       
       
@@ -179,7 +179,7 @@ getPageTitle() {
         >
           <div className={styles.logo}>
             <img src="/scm.svg" alt="logo" onClick={this.toggle}/>          
-            <Link to="/home"> <h1>汽车检验服务公司</h1></Link>
+            <Link to="/home"> <h1>汽车代检服务公司</h1></Link>
           </div>
           
           <Menu

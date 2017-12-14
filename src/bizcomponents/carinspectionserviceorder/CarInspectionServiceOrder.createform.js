@@ -15,8 +15,8 @@ const fieldLabels = {
 id: '序号',
 title: '标题',
 carInspectionOrder: '审车订单',
-carInspectReceiving: '汽车检查接收',
-carInspectWorking: '检查工作车',
+carInspectReceiving: '还车接收',
+carInspectWorking: '正在审车',
 carInspectReturning: '汽车检查返回',
 currentStatus: '当前状态',
 

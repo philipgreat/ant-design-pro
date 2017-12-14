@@ -38,7 +38,7 @@ export default class CarInspectionPlatformDashboard extends Component {
     
     const {id,customerInfoCount,carReceivingServiceCompanyCount,carInspectionServiceCompanyCount,carRepairingServiceCompanyCount,carInfoCount,carInspectionOrderCount} = this.props.carInspectionPlatform;
 	
-	  console.log("id of the object", id);
+	
     
     return (
 
@@ -92,8 +92,8 @@ export default class CarInspectionPlatformDashboard extends Component {
           <Col {...topColResponsiveProps}>
             <ChartCard
               bordered={false}
-              title="汽车检验服务公司"
-              action={<Tooltip title="汽车检验服务公司"><Icon type="info-circle-o" /></Tooltip>}
+              title="汽车代检服务公司"
+              action={<Tooltip title="汽车代检服务公司"><Icon type="info-circle-o" /></Tooltip>}
               total={numeral(carInspectionServiceCompanyCount).format('0,0')}
               footer={<Field label="状态" value="良好" />}
               contentHeight={46}

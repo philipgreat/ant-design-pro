@@ -237,7 +237,7 @@ export default class CarReceiveReturningSearch extends PureComponent {
 
 
     return (
-      <PageHeaderLayout title="收到返回的车列表">
+      <PageHeaderLayout title="收车返还列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

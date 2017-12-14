@@ -237,7 +237,7 @@ export default class CarInspectionServiceCompanySearch extends PureComponent {
 
 
     return (
-      <PageHeaderLayout title="汽车检验服务公司列表">
+      <PageHeaderLayout title="汽车代检服务公司列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

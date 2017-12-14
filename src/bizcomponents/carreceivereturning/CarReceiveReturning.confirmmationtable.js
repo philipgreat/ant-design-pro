@@ -9,7 +9,7 @@ import styles from './CarReceiveReturning.table.less';
 const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
 {title:'谁',debugtype:'string',dataIndex: 'who',width:'7'},
-{title:'返回时间',dataIndex: 'returnTime',render: (text,record)=>moment(record.returnTime).format('YYYY-MM-DD')},
+{title:'还车时间',dataIndex: 'returnTime',render: (text,record)=>moment(record.returnTime).format('YYYY-MM-DD')},
 {title:'评论',debugtype:'string',dataIndex: 'comments',width:'11'},
 
       

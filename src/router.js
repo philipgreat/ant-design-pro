@@ -5,7 +5,6 @@ import { Router, Route, Switch, Redirect } from 'dva/router';
 import { LocaleProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import enUS from 'antd/lib/locale-provider/en_US';
-
 import Launcher from './launcher/Launcher'
 
 
@@ -90,4 +89,4 @@ export default RouterConfig;
 
 
 
-
+	

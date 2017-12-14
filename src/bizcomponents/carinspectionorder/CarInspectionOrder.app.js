@@ -98,7 +98,7 @@ class CarInspectionOrderBizApp extends React.PureComponent {
       
       
       <Menu.Item >   
-        <Link to={"/carInspectionOrder/"+objectId+"/list/carReceivingServiceOrderList"}>车辆接收服务令</Link>
+        <Link to={"/carInspectionOrder/"+objectId+"/list/carReceivingServiceOrderList"}>接车服务订单</Link>
       </Menu.Item>
   
 

@@ -10,8 +10,8 @@ const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
 {title:'标题',debugtype:'string',dataIndex: 'title',width:'10'},
 {title:'审车订单',debugtype:'car_inspection_order',dataIndex: 'carInspectionOrder',width:'13'},
-{title:'汽车检查接收',debugtype:'car_inspect_receiving',dataIndex: 'carInspectReceiving',width:'13'},
-{title:'检查工作车',debugtype:'car_inspect_working',dataIndex: 'carInspectWorking',width:'13'},
+{title:'还车接收',debugtype:'car_inspect_receiving',dataIndex: 'carInspectReceiving',width:'13'},
+{title:'正在审车',debugtype:'car_inspect_working',dataIndex: 'carInspectWorking',width:'13'},
 {title:'汽车检查返回',debugtype:'car_inspect_returning',dataIndex: 'carInspectReturning',width:'13'},
 {title:'当前状态',debugtype:'string',dataIndex: 'currentStatus',width:'24'},
 

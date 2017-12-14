@@ -13,12 +13,12 @@ const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 const fieldLabels = {
 id: '序号',
-platform: '站台',
+platform: '平台',
 customerName: '客户名称',
 customerPhoneNumber: '客户的电话号码',
-customerIdentifyCardNumber: '客户识别卡号',
-customerIdentifyCardFrontImage: '客户识别卡前端图像',
-customerIdentifyCardBackImage: '客户识别卡背面图像',
+customerIdentifyCardNumber: '客户身份证号',
+customerIdentifyCardFrontImage: '客户身份证正面照片',
+customerIdentifyCardBackImage: '客户身份证背面照片',
 
 
 };
@@ -180,9 +180,9 @@ class CustomerInfoCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.customerIdentifyCardNumber}>
                   {getFieldDecorator('customerIdentifyCardNumber', {
-                    rules: [{ required: true, message: '请输入客户识别卡号' }],
+                    rules: [{ required: true, message: '请输入客户身份证号' }],
                   })(
-                    <Input placeholder="请输入请输入客户识别卡号string" />
+                    <Input placeholder="请输入请输入客户身份证号string" />
                   )}
                 </Form.Item>
               </Col>			
@@ -191,9 +191,9 @@ class CustomerInfoCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.customerIdentifyCardFrontImage}>
                   {getFieldDecorator('customerIdentifyCardFrontImage', {
-                    rules: [{ required: true, message: '请输入客户识别卡前端图像' }],
+                    rules: [{ required: true, message: '请输入客户身份证正面照片' }],
                   })(
-                    <Input placeholder="请输入请输入客户识别卡前端图像string" />
+                    <Input placeholder="请输入请输入客户身份证正面照片string" />
                   )}
                 </Form.Item>
               </Col>			
@@ -202,9 +202,9 @@ class CustomerInfoCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.customerIdentifyCardBackImage}>
                   {getFieldDecorator('customerIdentifyCardBackImage', {
-                    rules: [{ required: true, message: '请输入客户识别卡背面图像' }],
+                    rules: [{ required: true, message: '请输入客户身份证背面照片' }],
                   })(
-                    <Input placeholder="请输入请输入客户识别卡背面图像string" />
+                    <Input placeholder="请输入请输入客户身份证背面照片string" />
                   )}
                 </Form.Item>
               </Col>			
@@ -238,9 +238,9 @@ class CustomerInfoCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.platform}>
                   {getFieldDecorator('platformId', {
-                    rules: [{ required: true, message: '请输入站台' }],
+                    rules: [{ required: true, message: '请输入平台' }],
                   })(
-                    <Input placeholder="请输入请输入站台" />
+                    <Input placeholder="请输入请输入平台" />
                   )}
                 </Form.Item>
               </Col>			

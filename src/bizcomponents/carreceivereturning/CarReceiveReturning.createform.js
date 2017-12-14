@@ -14,7 +14,7 @@ const { TextArea } = Input;
 const fieldLabels = {
 id: '序号',
 who: '谁',
-returnTime: '返回时间',
+returnTime: '还车时间',
 comments: '评论',
 
 
@@ -139,8 +139,8 @@ class CarReceiveReturningCreateForm extends PureComponent {
     };
     return (
       <PageHeaderLayout
-        title="新建一个收到返回的车"
-        content="新建一个收到返回的车"
+        title="新建一个收车返还"
+        content="新建一个收车返还"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>

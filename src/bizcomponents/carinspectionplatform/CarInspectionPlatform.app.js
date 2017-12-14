@@ -114,7 +114,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
   
 
       <Menu.Item >   
-        <Link to={"/carInspectionPlatform/"+objectId+"/list/carInspectionServiceCompanyList"}>汽车检验服务公司</Link>
+        <Link to={"/carInspectionPlatform/"+objectId+"/list/carInspectionServiceCompanyList"}>汽车代检服务公司</Link>
       </Menu.Item>
   
 

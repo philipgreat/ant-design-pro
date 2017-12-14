@@ -162,9 +162,9 @@ export default class CarInspectionOrderSearchForm extends PureComponent {
                     
                     
                     <Col md={8} sm={24}>
-                        <FormItem label="车辆识别号码">
+                        <FormItem label="车架号">
                             {getFieldDecorator('vehicleIdentificationNumber')(
-                                <Input placeholder="请输入车辆识别号码" />
+                                <Input placeholder="请输入车架号" />
                             )}
                         </FormItem>
                     </Col>

@@ -9,7 +9,7 @@ import styles from './CarInspectionServiceCompany.table.less';
 const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
 {title:'名称',debugtype:'string',dataIndex: 'name',width:'13'},
-{title:'站台',debugtype:'car_inspection_platform',dataIndex: 'platform',width:'13'},
+{title:'平台',debugtype:'car_inspection_platform',dataIndex: 'platform',width:'13'},
 
       
     ];

@@ -175,9 +175,9 @@ export default class CustomerInfoSearchForm extends PureComponent {
                     
                     
                     <Col md={8} sm={24}>
-                        <FormItem label="客户识别卡号">
+                        <FormItem label="客户身份证号">
                             {getFieldDecorator('customerIdentifyCardNumber')(
-                                <Input placeholder="请输入客户识别卡号" />
+                                <Input placeholder="请输入客户身份证号" />
                             )}
                         </FormItem>
                     </Col>
@@ -185,9 +185,9 @@ export default class CustomerInfoSearchForm extends PureComponent {
                     
                     
                     <Col md={8} sm={24}>
-                        <FormItem label="客户识别卡前端图像">
+                        <FormItem label="客户身份证正面照片">
                             {getFieldDecorator('customerIdentifyCardFrontImage')(
-                                <Input placeholder="请输入客户识别卡前端图像" />
+                                <Input placeholder="请输入客户身份证正面照片" />
                             )}
                         </FormItem>
                     </Col>
@@ -195,9 +195,9 @@ export default class CustomerInfoSearchForm extends PureComponent {
                     
                     
                     <Col md={8} sm={24}>
-                        <FormItem label="客户识别卡背面图像">
+                        <FormItem label="客户身份证背面照片">
                             {getFieldDecorator('customerIdentifyCardBackImage')(
-                                <Input placeholder="请输入客户识别卡背面图像" />
+                                <Input placeholder="请输入客户身份证背面照片" />
                             )}
                         </FormItem>
                     </Col>

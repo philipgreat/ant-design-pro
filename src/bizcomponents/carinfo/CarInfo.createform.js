@@ -17,12 +17,12 @@ carLicensePlateNumber: '车牌号',
 carType: '汽车类型',
 carSeatsQuantity: '汽车座椅的数量',
 carRegistrationDate: '汽车登记日期',
-carInspectionValidationDate: '汽车检验确认日期',
+carInspectionValidationDate: '汽车年检有效期至',
 carEngineNumber: '汽车发动机号码',
-vehicleIdentificationNumber: '车辆识别号码',
-carInsuranceValidationDate: '汽车保险有效期',
-platform: '站台',
-owner: '业主',
+vehicleIdentificationNumber: '车架号',
+carInsuranceValidationDate: '汽车保险有效期至',
+platform: '平台',
+owner: '车主',
 
 
 };
@@ -34,11 +34,11 @@ const testValues={
       			carLicensePlateNumber:'川ACD234',
 			carType:'面包车',
 			carSeatsQuantity:'5',
-			carRegistrationDate:'2039-02-08',
-			carInspectionValidationDate:'2035-06-20',
-			carEngineNumber:'3620',
+			carRegistrationDate:'2034-09-26',
+			carInspectionValidationDate:'2038-09-11',
+			carEngineNumber:'3756',
 			vehicleIdentificationNumber:'WAUZZZ4E24N016553',
-			carInsuranceValidationDate:'2038-08-25',
+			carInsuranceValidationDate:'2035-07-15',
 			platformId:'CIP000001',
 			ownerId:'CI000001',
 
@@ -210,9 +210,9 @@ class CarInfoCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.carInspectionValidationDate}>
                   {getFieldDecorator('carInspectionValidationDate', {
-                    rules: [{ required: true, message: '请输入汽车检验确认日期' }],
+                    rules: [{ required: true, message: '请输入汽车年检有效期至' }],
                   })(
-                    <Input placeholder="请输入请输入汽车检验确认日期date" />
+                    <Input placeholder="请输入请输入汽车年检有效期至date" />
                   )}
                 </Form.Item>
               </Col>			
@@ -232,9 +232,9 @@ class CarInfoCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.vehicleIdentificationNumber}>
                   {getFieldDecorator('vehicleIdentificationNumber', {
-                    rules: [{ required: true, message: '请输入车辆识别号码' }],
+                    rules: [{ required: true, message: '请输入车架号' }],
                   })(
-                    <Input placeholder="请输入请输入车辆识别号码string" />
+                    <Input placeholder="请输入请输入车架号string" />
                   )}
                 </Form.Item>
               </Col>			
@@ -243,9 +243,9 @@ class CarInfoCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.carInsuranceValidationDate}>
                   {getFieldDecorator('carInsuranceValidationDate', {
-                    rules: [{ required: true, message: '请输入汽车保险有效期' }],
+                    rules: [{ required: true, message: '请输入汽车保险有效期至' }],
                   })(
-                    <Input placeholder="请输入请输入汽车保险有效期date" />
+                    <Input placeholder="请输入请输入汽车保险有效期至date" />
                   )}
                 </Form.Item>
               </Col>			
@@ -279,9 +279,9 @@ class CarInfoCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.platform}>
                   {getFieldDecorator('platformId', {
-                    rules: [{ required: true, message: '请输入站台' }],
+                    rules: [{ required: true, message: '请输入平台' }],
                   })(
-                    <Input placeholder="请输入请输入站台" />
+                    <Input placeholder="请输入请输入平台" />
                   )}
                 </Form.Item>
               </Col>			
@@ -290,9 +290,9 @@ class CarInfoCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.owner}>
                   {getFieldDecorator('ownerId', {
-                    rules: [{ required: true, message: '请输入业主' }],
+                    rules: [{ required: true, message: '请输入车主' }],
                   })(
-                    <Input placeholder="请输入请输入业主" />
+                    <Input placeholder="请输入请输入车主" />
                   )}
                 </Form.Item>
               </Col>			

@@ -43,8 +43,8 @@ export default class CarInspectWorkingDashboard extends Component {
     return (
 
      <PageHeaderLayout
-        title="检查工作车总览"
-        content="检查工作车总览"
+        title="正在审车总览"
+        content="正在审车总览"
         wrapperClassName={styles.advancedForm}
       >
       <div>

@@ -4,9 +4,10 @@ import 'moment/locale/zh-cn';
 import models from './models';
 import './polyfill';
 import './g2';
+import RouterConfig from './router'
 // import { browserHistory } from 'dva/router';
 import './index.less';
-import RouterConfig from './router'
+
 import LauncherModel from './launcher/Launcher.model'
 
 import CarInspectionPlatformModel from './bizcomponents/carinspectionplatform/CarInspectionPlatform.model'

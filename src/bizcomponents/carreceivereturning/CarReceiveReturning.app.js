@@ -89,12 +89,12 @@ class CarReceiveReturningBizApp extends React.PureComponent {
     return (
       <SubMenu title={<span>
         <Icon type='dashboard' />
-        <span>收到返回的车</span>
+        <span>收车返还</span>
       </span>} >
       
       
       <Menu.Item >   
-        <Link to={"/carReceiveReturning/"+objectId+"/list/carReceivingServiceOrderList"}>车辆接收服务令</Link>
+        <Link to={"/carReceiveReturning/"+objectId+"/list/carReceivingServiceOrderList"}>接车服务订单</Link>
       </Menu.Item>
   
   
@@ -179,7 +179,7 @@ getPageTitle() {
         >
           <div className={styles.logo}>
             <img src="/scm.svg" alt="logo" onClick={this.toggle}/>          
-            <Link to="/home"> <h1>收到返回的车</h1></Link>
+            <Link to="/home"> <h1>收车返还</h1></Link>
           </div>
           
           <Menu

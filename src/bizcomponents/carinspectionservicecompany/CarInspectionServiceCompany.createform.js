@@ -14,7 +14,7 @@ const { TextArea } = Input;
 const fieldLabels = {
 id: '序号',
 name: '名称',
-platform: '站台',
+platform: '平台',
 
 
 };
@@ -138,8 +138,8 @@ class CarInspectionServiceCompanyCreateForm extends PureComponent {
     };
     return (
       <PageHeaderLayout
-        title="新建一个汽车检验服务公司"
-        content="新建一个汽车检验服务公司"
+        title="新建一个汽车代检服务公司"
+        content="新建一个汽车代检服务公司"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
@@ -186,9 +186,9 @@ class CarInspectionServiceCompanyCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.platform}>
                   {getFieldDecorator('platformId', {
-                    rules: [{ required: true, message: '请输入站台' }],
+                    rules: [{ required: true, message: '请输入平台' }],
                   })(
-                    <Input placeholder="请输入请输入站台" />
+                    <Input placeholder="请输入请输入平台" />
                   )}
                 </Form.Item>
               </Col>			

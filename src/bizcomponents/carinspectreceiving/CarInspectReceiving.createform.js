@@ -139,8 +139,8 @@ class CarInspectReceivingCreateForm extends PureComponent {
     };
     return (
       <PageHeaderLayout
-        title="新建一个汽车检查接收"
-        content="新建一个汽车检查接收"
+        title="新建一个还车接收"
+        content="新建一个还车接收"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>

@@ -43,8 +43,8 @@ export default class CarReceiveReceivingDashboard extends Component {
     return (
 
      <PageHeaderLayout
-        title="汽车接收总览"
-        content="汽车接收总览"
+        title="已收到车总览"
+        content="已收到车总览"
         wrapperClassName={styles.advancedForm}
       >
       <div>
@@ -54,8 +54,8 @@ export default class CarReceiveReceivingDashboard extends Component {
           <Col {...topColResponsiveProps}>
             <ChartCard
               bordered={false}
-              title="车辆接收服务令"
-              action={<Tooltip title="车辆接收服务令"><Icon type="info-circle-o" /></Tooltip>}
+              title="接车服务订单"
+              action={<Tooltip title="接车服务订单"><Icon type="info-circle-o" /></Tooltip>}
               total={numeral(carReceivingServiceOrderCount).format('0,0')}
               footer={<Field label="状态" value="良好" />}
               contentHeight={46}

@@ -8,12 +8,12 @@ import styles from './CustomerInfo.table.less';
 
 const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
-{title:'站台',debugtype:'car_inspection_platform',dataIndex: 'platform',width:'13'},
+{title:'平台',debugtype:'car_inspection_platform',dataIndex: 'platform',width:'13'},
 {title:'客户名称',debugtype:'string',dataIndex: 'customerName',width:'7'},
 {title:'客户的电话号码',debugtype:'string',dataIndex: 'customerPhoneNumber',width:'15'},
-{title:'客户识别卡号',debugtype:'string',dataIndex: 'customerIdentifyCardNumber',width:'22'},
-{title:'客户识别卡前端图像',debugtype:'string',dataIndex: 'customerIdentifyCardFrontImage',width:'13'},
-{title:'客户识别卡背面图像',debugtype:'string',dataIndex: 'customerIdentifyCardBackImage',width:'13'},
+{title:'客户身份证号',debugtype:'string',dataIndex: 'customerIdentifyCardNumber',width:'22'},
+{title:'客户身份证正面照片',debugtype:'string',dataIndex: 'customerIdentifyCardFrontImage',width:'13'},
+{title:'客户身份证背面照片',debugtype:'string',dataIndex: 'customerIdentifyCardBackImage',width:'13'},
 
       
     ];

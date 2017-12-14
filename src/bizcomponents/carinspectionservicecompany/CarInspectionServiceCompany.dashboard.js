@@ -43,8 +43,8 @@ export default class CarInspectionServiceCompanyDashboard extends Component {
     return (
 
      <PageHeaderLayout
-        title="汽车检验服务公司总览"
-        content="汽车检验服务公司总览"
+        title="汽车代检服务公司总览"
+        content="汽车代检服务公司总览"
         wrapperClassName={styles.advancedForm}
       >
       <div>

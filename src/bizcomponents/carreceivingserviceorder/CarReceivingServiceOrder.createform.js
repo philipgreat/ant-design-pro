@@ -15,9 +15,9 @@ const fieldLabels = {
 id: '序号',
 title: '标题',
 carInspectionOrder: '审车订单',
-carReceiveReceiving: '汽车接收',
-carReceiveWorking: '汽车接收工作',
-carReceiveReturning: '收到返回的车',
+carReceiveReceiving: '已收到车',
+carReceiveWorking: '收车检查',
+carReceiveReturning: '收车返还',
 currentStatus: '当前状态',
 
 
@@ -142,8 +142,8 @@ class CarReceivingServiceOrderCreateForm extends PureComponent {
     };
     return (
       <PageHeaderLayout
-        title="新建一个车辆接收服务令"
-        content="新建一个车辆接收服务令"
+        title="新建一个接车服务订单"
+        content="新建一个接车服务订单"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>

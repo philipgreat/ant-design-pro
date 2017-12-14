@@ -15,12 +15,12 @@ const fieldLabels = {
 id: '序号',
 carLicensePlateNumber: '车牌号',
 carEngineNumber: '汽车发动机号码',
-vehicleIdentificationNumber: '车辆识别号码',
-platform: '站台',
-owner: '业主',
-receivingServiceCompany: '接受服务的公司',
-inspectionServiceCompany: '检验服务有限公司',
-repairingServiceCompany: '维修服务有限公司',
+vehicleIdentificationNumber: '车架号',
+platform: '平台',
+owner: '车主',
+receivingServiceCompany: '接车商户',
+inspectionServiceCompany: '汽车代检服务公司',
+repairingServiceCompany: '汽车维修服务公司',
 
 
 };
@@ -30,7 +30,7 @@ repairingServiceCompany: '维修服务有限公司',
 const testValues={
         
       			carLicensePlateNumber:'川ACD234',
-			carEngineNumber:'4081',
+			carEngineNumber:'3463',
 			vehicleIdentificationNumber:'WAUZZZ4E24N016',
 			platformId:'CIP000001',
 			ownerId:'CI000001',
@@ -184,9 +184,9 @@ class CarInspectionOrderCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.vehicleIdentificationNumber}>
                   {getFieldDecorator('vehicleIdentificationNumber', {
-                    rules: [{ required: true, message: '请输入车辆识别号码' }],
+                    rules: [{ required: true, message: '请输入车架号' }],
                   })(
-                    <Input placeholder="请输入请输入车辆识别号码string" />
+                    <Input placeholder="请输入请输入车架号string" />
                   )}
                 </Form.Item>
               </Col>			
@@ -220,9 +220,9 @@ class CarInspectionOrderCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.platform}>
                   {getFieldDecorator('platformId', {
-                    rules: [{ required: true, message: '请输入站台' }],
+                    rules: [{ required: true, message: '请输入平台' }],
                   })(
-                    <Input placeholder="请输入请输入站台" />
+                    <Input placeholder="请输入请输入平台" />
                   )}
                 </Form.Item>
               </Col>			
@@ -231,9 +231,9 @@ class CarInspectionOrderCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.owner}>
                   {getFieldDecorator('ownerId', {
-                    rules: [{ required: true, message: '请输入业主' }],
+                    rules: [{ required: true, message: '请输入车主' }],
                   })(
-                    <Input placeholder="请输入请输入业主" />
+                    <Input placeholder="请输入请输入车主" />
                   )}
                 </Form.Item>
               </Col>			
@@ -242,9 +242,9 @@ class CarInspectionOrderCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.receivingServiceCompany}>
                   {getFieldDecorator('receivingServiceCompanyId', {
-                    rules: [{ required: true, message: '请输入接受服务的公司' }],
+                    rules: [{ required: true, message: '请输入接车商户' }],
                   })(
-                    <Input placeholder="请输入请输入接受服务的公司" />
+                    <Input placeholder="请输入请输入接车商户" />
                   )}
                 </Form.Item>
               </Col>			
@@ -253,9 +253,9 @@ class CarInspectionOrderCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.inspectionServiceCompany}>
                   {getFieldDecorator('inspectionServiceCompanyId', {
-                    rules: [{ required: true, message: '请输入检验服务有限公司' }],
+                    rules: [{ required: true, message: '请输入汽车代检服务公司' }],
                   })(
-                    <Input placeholder="请输入请输入检验服务有限公司" />
+                    <Input placeholder="请输入请输入汽车代检服务公司" />
                   )}
                 </Form.Item>
               </Col>			
@@ -264,9 +264,9 @@ class CarInspectionOrderCreateForm extends PureComponent {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.repairingServiceCompany}>
                   {getFieldDecorator('repairingServiceCompanyId', {
-                    rules: [{ required: true, message: '请输入维修服务有限公司' }],
+                    rules: [{ required: true, message: '请输入汽车维修服务公司' }],
                   })(
-                    <Input placeholder="请输入请输入维修服务有限公司" />
+                    <Input placeholder="请输入请输入汽车维修服务公司" />
                   )}
                 </Form.Item>
               </Col>			

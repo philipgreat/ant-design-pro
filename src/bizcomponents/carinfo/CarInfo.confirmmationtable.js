@@ -12,12 +12,12 @@ const columns = [
 {title:'汽车类型',debugtype:'string',dataIndex: 'carType',width:'7'},
 {title:'汽车座椅的数量',debugtype:'int',dataIndex: 'carSeatsQuantity',width:'5'},
 {title:'汽车登记日期',dataIndex: 'carRegistrationDate',render: (text,record)=>moment(record.carRegistrationDate).format('YYYY-MM-DD')},
-{title:'汽车检验确认日期',dataIndex: 'carInspectionValidationDate',render: (text,record)=>moment(record.carInspectionValidationDate).format('YYYY-MM-DD')},
+{title:'汽车年检有效期至',dataIndex: 'carInspectionValidationDate',render: (text,record)=>moment(record.carInspectionValidationDate).format('YYYY-MM-DD')},
 {title:'汽车发动机号码',debugtype:'int',dataIndex: 'carEngineNumber',width:'8'},
-{title:'车辆识别号码',debugtype:'string',dataIndex: 'vehicleIdentificationNumber',width:'21'},
-{title:'汽车保险有效期',dataIndex: 'carInsuranceValidationDate',render: (text,record)=>moment(record.carInsuranceValidationDate).format('YYYY-MM-DD')},
-{title:'站台',debugtype:'car_inspection_platform',dataIndex: 'platform',width:'13'},
-{title:'业主',debugtype:'customer_info',dataIndex: 'owner',width:'13'},
+{title:'车架号',debugtype:'string',dataIndex: 'vehicleIdentificationNumber',width:'21'},
+{title:'汽车保险有效期至',dataIndex: 'carInsuranceValidationDate',render: (text,record)=>moment(record.carInsuranceValidationDate).format('YYYY-MM-DD')},
+{title:'平台',debugtype:'car_inspection_platform',dataIndex: 'platform',width:'13'},
+{title:'车主',debugtype:'customer_info',dataIndex: 'owner',width:'13'},
 
       
     ];
