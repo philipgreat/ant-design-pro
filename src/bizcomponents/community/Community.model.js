@@ -107,8 +107,13 @@ export default {
     	yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
      },    
      *gotoUpdateForm({ payload }, { call, put }) {
-    	const {id,type}=payload;
-    	yield put(routerRedux.push('/community/'+id+'/list/'+type+'UpdateForm'));
+		const {id,type,selectedRows}=payload;
+
+		const state={id,type,selectedRows};
+		const location = {pathname:'/community/'+id+'/list/'+type+'UpdateForm',state};
+
+
+    	yield put(routerRedux.push(location));
      },
      *goback({ payload }, { call, put }) {
     	const {id,type}=payload;

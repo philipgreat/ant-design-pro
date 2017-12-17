@@ -199,12 +199,8 @@ class CommunityBizApp extends React.PureComponent {
   getInvitationCodeUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._community.invitationCodeList,
-      count: state._community.invitationCodeCount,
-      currentPage: state._community.invitationCodeCurrentPageNumber,
-      searchFormParameters: state._community.invitationCodeSearchFormParameters,
-      loading: state._community.loading,
+
+      selectedRows: state._community.selectedRows,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(InvitationCodeUpdateForm);
   }
