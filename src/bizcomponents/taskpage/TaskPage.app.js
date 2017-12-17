@@ -16,13 +16,14 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import TaskFilterSearch from '../taskfilter/TaskFilter.search'
 import TaskFilterCreateForm from '../taskfilter/TaskFilter.createform'
+import TaskFilterUpdateForm from '../taskfilter/TaskFilter.updateform'
+
 import TaskSearch from '../task/Task.search'
 import TaskCreateForm from '../task/Task.createform'
+import TaskUpdateForm from '../task/Task.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -141,6 +142,19 @@ class TaskPageBizApp extends React.PureComponent {
     }))(TaskFilterCreateForm);
   }
   
+  getTaskFilterUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._taskPage.taskFilterList,
+      count: state._taskPage.taskFilterCount,
+      currentPage: state._taskPage.taskFilterCurrentPageNumber,
+      searchFormParameters: state._taskPage.taskFilterSearchFormParameters,
+      loading: state._taskPage.loading,
+      owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
+    }))(TaskFilterUpdateForm);
+  }
+  
 
   getTaskSearch() {
  
@@ -165,6 +179,19 @@ class TaskPageBizApp extends React.PureComponent {
       loading: state._taskPage.loading,
       owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
     }))(TaskCreateForm);
+  }
+  
+  getTaskUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._taskPage.taskList,
+      count: state._taskPage.taskCount,
+      currentPage: state._taskPage.taskCurrentPageNumber,
+      searchFormParameters: state._taskPage.taskSearchFormParameters,
+      loading: state._taskPage.loading,
+      owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
+    }))(TaskUpdateForm);
   }
   
   
@@ -236,10 +263,12 @@ getPageTitle() {
     
           <Route path="/taskPage/:id/list/taskFilterList" component={this.getTaskFilterSearch()} />
           <Route path="/taskPage/:id/list/taskFilterCreateForm" component={this.getTaskFilterCreateForm()} />
+          <Route path="/taskPage/:id/list/taskFilterUpdateForm" component={this.getTaskFilterUpdateForm()} />
           
 
           <Route path="/taskPage/:id/list/taskList" component={this.getTaskSearch()} />
           <Route path="/taskPage/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+          <Route path="/taskPage/:id/list/taskUpdateForm" component={this.getTaskUpdateForm()} />
           
               
              

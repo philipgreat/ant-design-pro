@@ -54,8 +54,8 @@ const testValues={
         
       			title:'听力损失儿童回归的优点',
 			displayOrder:'0',
-			eventTime:'2037-02-20 01:59:22',
-			registrationStopTime:'2038-09-11 13:49:43',
+			eventTime:'2037-05-10 03:04:20',
+			registrationStopTime:'2035-04-09 19:39:18',
 			eventLocation:'奥克斯广场阳光咖啡',
 			city:'成都',
 			communityGroup:'最新',

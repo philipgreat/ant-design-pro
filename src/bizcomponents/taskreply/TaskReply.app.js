@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import TaskReplyLikeSearch from '../taskreplylike/TaskReplyLike.search'
 import TaskReplyLikeCreateForm from '../taskreplylike/TaskReplyLike.createform'
+import TaskReplyLikeUpdateForm from '../taskreplylike/TaskReplyLike.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class TaskReplyBizApp extends React.PureComponent {
     }))(TaskReplyLikeCreateForm);
   }
   
+  getTaskReplyLikeUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._taskReply.taskReplyLikeList,
+      count: state._taskReply.taskReplyLikeCount,
+      currentPage: state._taskReply.taskReplyLikeCurrentPageNumber,
+      searchFormParameters: state._taskReply.taskReplyLikeSearchFormParameters,
+      loading: state._taskReply.loading,
+      owner: {type:'_taskReply',id:state._taskReply.id}//this is for model namespace and 
+    }))(TaskReplyLikeUpdateForm);
+  }
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/taskReply/:id/list/taskReplyLikeList" component={this.getTaskReplyLikeSearch()} />
           <Route path="/taskReply/:id/list/taskReplyLikeCreateForm" component={this.getTaskReplyLikeCreateForm()} />
+          <Route path="/taskReply/:id/list/taskReplyLikeUpdateForm" component={this.getTaskReplyLikeUpdateForm()} />
           
               
              

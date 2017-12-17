@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import ThreadReplyLikeSearch from '../threadreplylike/ThreadReplyLike.search'
 import ThreadReplyLikeCreateForm from '../threadreplylike/ThreadReplyLike.createform'
+import ThreadReplyLikeUpdateForm from '../threadreplylike/ThreadReplyLike.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class ThreadReplyBizApp extends React.PureComponent {
     }))(ThreadReplyLikeCreateForm);
   }
   
+  getThreadReplyLikeUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._threadReply.threadReplyLikeList,
+      count: state._threadReply.threadReplyLikeCount,
+      currentPage: state._threadReply.threadReplyLikeCurrentPageNumber,
+      searchFormParameters: state._threadReply.threadReplyLikeSearchFormParameters,
+      loading: state._threadReply.loading,
+      owner: {type:'_threadReply',id:state._threadReply.id}//this is for model namespace and 
+    }))(ThreadReplyLikeUpdateForm);
+  }
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/threadReply/:id/list/threadReplyLikeList" component={this.getThreadReplyLikeSearch()} />
           <Route path="/threadReply/:id/list/threadReplyLikeCreateForm" component={this.getThreadReplyLikeCreateForm()} />
+          <Route path="/threadReply/:id/list/threadReplyLikeUpdateForm" component={this.getThreadReplyLikeUpdateForm()} />
           
               
              

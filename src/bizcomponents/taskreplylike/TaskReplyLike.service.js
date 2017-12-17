@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const TaskReplyLikeService={view,load};
+const TaskReplyLikeService={view,
+load};
 export default TaskReplyLikeService;
 
 

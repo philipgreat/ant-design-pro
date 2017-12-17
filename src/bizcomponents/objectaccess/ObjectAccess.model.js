@@ -105,6 +105,10 @@ export default {
     *gotoCreateForm({ payload }, { call, put }) {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/objectAccess/'+id+'/list/'+type+'CreateForm'));
+     },    
+     *gotoUpdateForm({ payload }, { call, put }) {
+    	const {id,type}=payload;
+    	yield put(routerRedux.push('/objectAccess/'+id+'/list/'+type+'UpdateForm'));
      },
      *goback({ payload }, { call, put }) {
     	const {id,type}=payload;

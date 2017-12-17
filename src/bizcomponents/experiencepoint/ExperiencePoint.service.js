@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const ExperiencePointService={view,load};
+const ExperiencePointService={view,
+load};
 export default ExperiencePointService;
 
 

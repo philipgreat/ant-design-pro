@@ -16,19 +16,26 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import SlideSearch from '../slide/Slide.search'
 import SlideCreateForm from '../slide/Slide.createform'
+import SlideUpdateForm from '../slide/Slide.updateform'
+
 import EncyclopediaItemSearch from '../encyclopediaitem/EncyclopediaItem.search'
 import EncyclopediaItemCreateForm from '../encyclopediaitem/EncyclopediaItem.createform'
+import EncyclopediaItemUpdateForm from '../encyclopediaitem/EncyclopediaItem.updateform'
+
 import TaskFilterSearch from '../taskfilter/TaskFilter.search'
 import TaskFilterCreateForm from '../taskfilter/TaskFilter.createform'
+import TaskFilterUpdateForm from '../taskfilter/TaskFilter.updateform'
+
 import TaskSearch from '../task/Task.search'
 import TaskCreateForm from '../task/Task.createform'
+import TaskUpdateForm from '../task/Task.updateform'
+
 import ThreadSearch from '../thread/Thread.search'
 import ThreadCreateForm from '../thread/Thread.createform'
+import ThreadUpdateForm from '../thread/Thread.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -162,6 +169,19 @@ class HomePageBizApp extends React.PureComponent {
     }))(SlideCreateForm);
   }
   
+  getSlideUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._homePage.slideList,
+      count: state._homePage.slideCount,
+      currentPage: state._homePage.slideCurrentPageNumber,
+      searchFormParameters: state._homePage.slideSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
+    }))(SlideUpdateForm);
+  }
+  
 
   getEncyclopediaItemSearch() {
  
@@ -186,6 +206,19 @@ class HomePageBizApp extends React.PureComponent {
       loading: state._homePage.loading,
       owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(EncyclopediaItemCreateForm);
+  }
+  
+  getEncyclopediaItemUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._homePage.encyclopediaItemList,
+      count: state._homePage.encyclopediaItemCount,
+      currentPage: state._homePage.encyclopediaItemCurrentPageNumber,
+      searchFormParameters: state._homePage.encyclopediaItemSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
+    }))(EncyclopediaItemUpdateForm);
   }
   
 
@@ -214,6 +247,19 @@ class HomePageBizApp extends React.PureComponent {
     }))(TaskFilterCreateForm);
   }
   
+  getTaskFilterUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._homePage.taskFilterList,
+      count: state._homePage.taskFilterCount,
+      currentPage: state._homePage.taskFilterCurrentPageNumber,
+      searchFormParameters: state._homePage.taskFilterSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
+    }))(TaskFilterUpdateForm);
+  }
+  
 
   getTaskSearch() {
  
@@ -240,6 +286,19 @@ class HomePageBizApp extends React.PureComponent {
     }))(TaskCreateForm);
   }
   
+  getTaskUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._homePage.taskList,
+      count: state._homePage.taskCount,
+      currentPage: state._homePage.taskCurrentPageNumber,
+      searchFormParameters: state._homePage.taskSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
+    }))(TaskUpdateForm);
+  }
+  
 
   getThreadSearch() {
  
@@ -264,6 +323,19 @@ class HomePageBizApp extends React.PureComponent {
       loading: state._homePage.loading,
       owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(ThreadCreateForm);
+  }
+  
+  getThreadUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._homePage.threadList,
+      count: state._homePage.threadCount,
+      currentPage: state._homePage.threadCurrentPageNumber,
+      searchFormParameters: state._homePage.threadSearchFormParameters,
+      loading: state._homePage.loading,
+      owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
+    }))(ThreadUpdateForm);
   }
   
   
@@ -335,22 +407,27 @@ getPageTitle() {
     
           <Route path="/homePage/:id/list/slideList" component={this.getSlideSearch()} />
           <Route path="/homePage/:id/list/slideCreateForm" component={this.getSlideCreateForm()} />
+          <Route path="/homePage/:id/list/slideUpdateForm" component={this.getSlideUpdateForm()} />
           
 
           <Route path="/homePage/:id/list/encyclopediaItemList" component={this.getEncyclopediaItemSearch()} />
           <Route path="/homePage/:id/list/encyclopediaItemCreateForm" component={this.getEncyclopediaItemCreateForm()} />
+          <Route path="/homePage/:id/list/encyclopediaItemUpdateForm" component={this.getEncyclopediaItemUpdateForm()} />
           
 
           <Route path="/homePage/:id/list/taskFilterList" component={this.getTaskFilterSearch()} />
           <Route path="/homePage/:id/list/taskFilterCreateForm" component={this.getTaskFilterCreateForm()} />
+          <Route path="/homePage/:id/list/taskFilterUpdateForm" component={this.getTaskFilterUpdateForm()} />
           
 
           <Route path="/homePage/:id/list/taskList" component={this.getTaskSearch()} />
           <Route path="/homePage/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+          <Route path="/homePage/:id/list/taskUpdateForm" component={this.getTaskUpdateForm()} />
           
 
           <Route path="/homePage/:id/list/threadList" component={this.getThreadSearch()} />
           <Route path="/homePage/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          <Route path="/homePage/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
           
               
              

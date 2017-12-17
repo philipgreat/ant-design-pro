@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const BonusPointService={view,load};
+const BonusPointService={view,
+load};
 export default BonusPointService;
 
 

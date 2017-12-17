@@ -16,25 +16,38 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import InvitationCodeSearch from '../invitationcode/InvitationCode.search'
 import InvitationCodeCreateForm from '../invitationcode/InvitationCode.createform'
+import InvitationCodeUpdateForm from '../invitationcode/InvitationCode.updateform'
+
 import HomePageSearch from '../homepage/HomePage.search'
 import HomePageCreateForm from '../homepage/HomePage.createform'
+import HomePageUpdateForm from '../homepage/HomePage.updateform'
+
 import EncyclopediaItemSearch from '../encyclopediaitem/EncyclopediaItem.search'
 import EncyclopediaItemCreateForm from '../encyclopediaitem/EncyclopediaItem.createform'
+import EncyclopediaItemUpdateForm from '../encyclopediaitem/EncyclopediaItem.updateform'
+
 import TaskPageSearch from '../taskpage/TaskPage.search'
 import TaskPageCreateForm from '../taskpage/TaskPage.createform'
+import TaskPageUpdateForm from '../taskpage/TaskPage.updateform'
+
 import CommunityUserSearch from '../communityuser/CommunityUser.search'
 import CommunityUserCreateForm from '../communityuser/CommunityUser.createform'
+import CommunityUserUpdateForm from '../communityuser/CommunityUser.updateform'
+
 import TaskSearch from '../task/Task.search'
 import TaskCreateForm from '../task/Task.createform'
+import TaskUpdateForm from '../task/Task.updateform'
+
 import GroupPageSearch from '../grouppage/GroupPage.search'
 import GroupPageCreateForm from '../grouppage/GroupPage.createform'
+import GroupPageUpdateForm from '../grouppage/GroupPage.updateform'
+
 import ThreadSearch from '../thread/Thread.search'
 import ThreadCreateForm from '../thread/Thread.createform'
+import ThreadUpdateForm from '../thread/Thread.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -183,6 +196,19 @@ class CommunityBizApp extends React.PureComponent {
     }))(InvitationCodeCreateForm);
   }
   
+  getInvitationCodeUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._community.invitationCodeList,
+      count: state._community.invitationCodeCount,
+      currentPage: state._community.invitationCodeCurrentPageNumber,
+      searchFormParameters: state._community.invitationCodeSearchFormParameters,
+      loading: state._community.loading,
+      owner: {type:'_community',id:state._community.id}//this is for model namespace and 
+    }))(InvitationCodeUpdateForm);
+  }
+  
 
   getHomePageSearch() {
  
@@ -207,6 +233,19 @@ class CommunityBizApp extends React.PureComponent {
       loading: state._community.loading,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(HomePageCreateForm);
+  }
+  
+  getHomePageUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._community.homePageList,
+      count: state._community.homePageCount,
+      currentPage: state._community.homePageCurrentPageNumber,
+      searchFormParameters: state._community.homePageSearchFormParameters,
+      loading: state._community.loading,
+      owner: {type:'_community',id:state._community.id}//this is for model namespace and 
+    }))(HomePageUpdateForm);
   }
   
 
@@ -235,6 +274,19 @@ class CommunityBizApp extends React.PureComponent {
     }))(EncyclopediaItemCreateForm);
   }
   
+  getEncyclopediaItemUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._community.encyclopediaItemList,
+      count: state._community.encyclopediaItemCount,
+      currentPage: state._community.encyclopediaItemCurrentPageNumber,
+      searchFormParameters: state._community.encyclopediaItemSearchFormParameters,
+      loading: state._community.loading,
+      owner: {type:'_community',id:state._community.id}//this is for model namespace and 
+    }))(EncyclopediaItemUpdateForm);
+  }
+  
 
   getTaskPageSearch() {
  
@@ -259,6 +311,19 @@ class CommunityBizApp extends React.PureComponent {
       loading: state._community.loading,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(TaskPageCreateForm);
+  }
+  
+  getTaskPageUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._community.taskPageList,
+      count: state._community.taskPageCount,
+      currentPage: state._community.taskPageCurrentPageNumber,
+      searchFormParameters: state._community.taskPageSearchFormParameters,
+      loading: state._community.loading,
+      owner: {type:'_community',id:state._community.id}//this is for model namespace and 
+    }))(TaskPageUpdateForm);
   }
   
 
@@ -287,6 +352,19 @@ class CommunityBizApp extends React.PureComponent {
     }))(CommunityUserCreateForm);
   }
   
+  getCommunityUserUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._community.communityUserList,
+      count: state._community.communityUserCount,
+      currentPage: state._community.communityUserCurrentPageNumber,
+      searchFormParameters: state._community.communityUserSearchFormParameters,
+      loading: state._community.loading,
+      owner: {type:'_community',id:state._community.id}//this is for model namespace and 
+    }))(CommunityUserUpdateForm);
+  }
+  
 
   getTaskSearch() {
  
@@ -311,6 +389,19 @@ class CommunityBizApp extends React.PureComponent {
       loading: state._community.loading,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(TaskCreateForm);
+  }
+  
+  getTaskUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._community.taskList,
+      count: state._community.taskCount,
+      currentPage: state._community.taskCurrentPageNumber,
+      searchFormParameters: state._community.taskSearchFormParameters,
+      loading: state._community.loading,
+      owner: {type:'_community',id:state._community.id}//this is for model namespace and 
+    }))(TaskUpdateForm);
   }
   
 
@@ -339,6 +430,19 @@ class CommunityBizApp extends React.PureComponent {
     }))(GroupPageCreateForm);
   }
   
+  getGroupPageUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._community.groupPageList,
+      count: state._community.groupPageCount,
+      currentPage: state._community.groupPageCurrentPageNumber,
+      searchFormParameters: state._community.groupPageSearchFormParameters,
+      loading: state._community.loading,
+      owner: {type:'_community',id:state._community.id}//this is for model namespace and 
+    }))(GroupPageUpdateForm);
+  }
+  
 
   getThreadSearch() {
  
@@ -363,6 +467,19 @@ class CommunityBizApp extends React.PureComponent {
       loading: state._community.loading,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(ThreadCreateForm);
+  }
+  
+  getThreadUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._community.threadList,
+      count: state._community.threadCount,
+      currentPage: state._community.threadCurrentPageNumber,
+      searchFormParameters: state._community.threadSearchFormParameters,
+      loading: state._community.loading,
+      owner: {type:'_community',id:state._community.id}//this is for model namespace and 
+    }))(ThreadUpdateForm);
   }
   
   
@@ -434,34 +551,42 @@ getPageTitle() {
     
           <Route path="/community/:id/list/invitationCodeList" component={this.getInvitationCodeSearch()} />
           <Route path="/community/:id/list/invitationCodeCreateForm" component={this.getInvitationCodeCreateForm()} />
+          <Route path="/community/:id/list/invitationCodeUpdateForm" component={this.getInvitationCodeUpdateForm()} />
           
 
           <Route path="/community/:id/list/homePageList" component={this.getHomePageSearch()} />
           <Route path="/community/:id/list/homePageCreateForm" component={this.getHomePageCreateForm()} />
+          <Route path="/community/:id/list/homePageUpdateForm" component={this.getHomePageUpdateForm()} />
           
 
           <Route path="/community/:id/list/encyclopediaItemList" component={this.getEncyclopediaItemSearch()} />
           <Route path="/community/:id/list/encyclopediaItemCreateForm" component={this.getEncyclopediaItemCreateForm()} />
+          <Route path="/community/:id/list/encyclopediaItemUpdateForm" component={this.getEncyclopediaItemUpdateForm()} />
           
 
           <Route path="/community/:id/list/taskPageList" component={this.getTaskPageSearch()} />
           <Route path="/community/:id/list/taskPageCreateForm" component={this.getTaskPageCreateForm()} />
+          <Route path="/community/:id/list/taskPageUpdateForm" component={this.getTaskPageUpdateForm()} />
           
 
           <Route path="/community/:id/list/communityUserList" component={this.getCommunityUserSearch()} />
           <Route path="/community/:id/list/communityUserCreateForm" component={this.getCommunityUserCreateForm()} />
+          <Route path="/community/:id/list/communityUserUpdateForm" component={this.getCommunityUserUpdateForm()} />
           
 
           <Route path="/community/:id/list/taskList" component={this.getTaskSearch()} />
           <Route path="/community/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+          <Route path="/community/:id/list/taskUpdateForm" component={this.getTaskUpdateForm()} />
           
 
           <Route path="/community/:id/list/groupPageList" component={this.getGroupPageSearch()} />
           <Route path="/community/:id/list/groupPageCreateForm" component={this.getGroupPageCreateForm()} />
+          <Route path="/community/:id/list/groupPageUpdateForm" component={this.getGroupPageUpdateForm()} />
           
 
           <Route path="/community/:id/list/threadList" component={this.getThreadSearch()} />
           <Route path="/community/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          <Route path="/community/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
           
               
              

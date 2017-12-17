@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const PatientInfoService={view,load};
+const PatientInfoService={view,
+load};
 export default PatientInfoService;
 
 

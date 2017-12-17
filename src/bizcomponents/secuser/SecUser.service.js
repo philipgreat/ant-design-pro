@@ -83,6 +83,17 @@ const addUserApp=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateUserApp=(targetObjectId,parameters)=>{
+    const url = PREFIX+"secUserManager/updateUserAppProperties/secUserId/userAppId/title/appIcon/fullAccess/permission/objectType/objectId/location/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeUserAppList=(targetObjectId,parameters)=>{
     const url = PREFIX+"secUserManager/removeUserAppList/secUserId/userAppIds/tokensExpr/";
@@ -109,6 +120,17 @@ const addLoginHistory=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateLoginHistory=(targetObjectId,parameters)=>{
+    const url = PREFIX+"secUserManager/updateLoginHistoryProperties/secUserId/loginHistoryId/fromIp/description/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeLoginHistoryList=(targetObjectId,parameters)=>{
     const url = PREFIX+"secUserManager/removeLoginHistoryList/secUserId/loginHistoryIds/tokensExpr/";
@@ -124,7 +146,14 @@ const removeLoginHistoryList=(targetObjectId,parameters)=>{
 
 
 
-const SecUserService={view,load,addUserApp,addLoginHistory,removeUserAppList,removeLoginHistoryList};
+const SecUserService={view,
+load,
+addUserApp,
+addLoginHistory,
+updateUserApp,
+updateLoginHistory,
+removeUserAppList,
+removeLoginHistoryList};
 export default SecUserService;
 
 

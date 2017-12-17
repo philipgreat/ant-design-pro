@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const UserSkillService={view,load};
+const UserSkillService={view,
+load};
 export default UserSkillService;
 
 

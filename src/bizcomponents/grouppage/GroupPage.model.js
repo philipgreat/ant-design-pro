@@ -105,6 +105,10 @@ export default {
     *gotoCreateForm({ payload }, { call, put }) {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
+     },    
+     *gotoUpdateForm({ payload }, { call, put }) {
+    	const {id,type}=payload;
+    	yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'UpdateForm'));
      },
      *goback({ payload }, { call, put }) {
     	const {id,type}=payload;
@@ -112,108 +116,158 @@ export default {
      },
     
 	*addGroupFilter({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(GroupPageService.addGroupFilter, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(GroupPageService.addGroupFilter, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/groupPage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
-		},
+		yield put({ type: "updateState", payload: newPlayload });
 		
-		*removeGroupFilterList({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+			//yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/groupPage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},
+	*updateGroupFilter({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(GroupPageService.removeGroupFilterList, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(GroupPageService.updateGroupFilter, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/groupPage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},		
+	*removeGroupFilterList({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			//const location = {pathname:'/groupPage/' + id + '/list/' + type + 'List',state:data};
-			//yield put(routerRedux.push(location));
-		},
+		const data = yield call(GroupPageService.removeGroupFilterList, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+
+		//const location = {pathname:'/groupPage/' + id + '/list/' + type + 'List',state:data};
+		//yield put(routerRedux.push(location));
+	},
 
 	*addThread({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(GroupPageService.addThread, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(GroupPageService.addThread, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/groupPage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
-		},
+		yield put({ type: "updateState", payload: newPlayload });
 		
-		*removeThreadList({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+			//yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/groupPage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},
+	*updateThread({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(GroupPageService.removeThreadList, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(GroupPageService.updateThread, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/groupPage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},		
+	*removeThreadList({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			//const location = {pathname:'/groupPage/' + id + '/list/' + type + 'List',state:data};
-			//yield put(routerRedux.push(location));
-		},
+		const data = yield call(GroupPageService.removeThreadList, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/groupPage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+
+		//const location = {pathname:'/groupPage/' + id + '/list/' + type + 'List',state:data};
+		//yield put(routerRedux.push(location));
+	},
 
     
     

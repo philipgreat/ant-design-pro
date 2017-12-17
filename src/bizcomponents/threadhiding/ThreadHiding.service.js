@@ -83,6 +83,17 @@ const addThread=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateThread=(targetObjectId,parameters)=>{
+    const url = PREFIX+"threadHidingManager/updateThreadProperties/hidingId/threadId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/communityId/creatorId/homePageId/groupPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeThreadList=(targetObjectId,parameters)=>{
     const url = PREFIX+"threadHidingManager/removeThreadList/threadHidingId/threadIds/tokensExpr/";
@@ -98,7 +109,11 @@ const removeThreadList=(targetObjectId,parameters)=>{
 
 
 
-const ThreadHidingService={view,load,addThread,removeThreadList};
+const ThreadHidingService={view,
+load,
+addThread,
+updateThread,
+removeThreadList};
 export default ThreadHidingService;
 
 

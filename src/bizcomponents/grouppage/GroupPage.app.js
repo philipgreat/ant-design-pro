@@ -16,13 +16,14 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import GroupFilterSearch from '../groupfilter/GroupFilter.search'
 import GroupFilterCreateForm from '../groupfilter/GroupFilter.createform'
+import GroupFilterUpdateForm from '../groupfilter/GroupFilter.updateform'
+
 import ThreadSearch from '../thread/Thread.search'
 import ThreadCreateForm from '../thread/Thread.createform'
+import ThreadUpdateForm from '../thread/Thread.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -141,6 +142,19 @@ class GroupPageBizApp extends React.PureComponent {
     }))(GroupFilterCreateForm);
   }
   
+  getGroupFilterUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._groupPage.groupFilterList,
+      count: state._groupPage.groupFilterCount,
+      currentPage: state._groupPage.groupFilterCurrentPageNumber,
+      searchFormParameters: state._groupPage.groupFilterSearchFormParameters,
+      loading: state._groupPage.loading,
+      owner: {type:'_groupPage',id:state._groupPage.id}//this is for model namespace and 
+    }))(GroupFilterUpdateForm);
+  }
+  
 
   getThreadSearch() {
  
@@ -165,6 +179,19 @@ class GroupPageBizApp extends React.PureComponent {
       loading: state._groupPage.loading,
       owner: {type:'_groupPage',id:state._groupPage.id}//this is for model namespace and 
     }))(ThreadCreateForm);
+  }
+  
+  getThreadUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._groupPage.threadList,
+      count: state._groupPage.threadCount,
+      currentPage: state._groupPage.threadCurrentPageNumber,
+      searchFormParameters: state._groupPage.threadSearchFormParameters,
+      loading: state._groupPage.loading,
+      owner: {type:'_groupPage',id:state._groupPage.id}//this is for model namespace and 
+    }))(ThreadUpdateForm);
   }
   
   
@@ -236,10 +263,12 @@ getPageTitle() {
     
           <Route path="/groupPage/:id/list/groupFilterList" component={this.getGroupFilterSearch()} />
           <Route path="/groupPage/:id/list/groupFilterCreateForm" component={this.getGroupFilterCreateForm()} />
+          <Route path="/groupPage/:id/list/groupFilterUpdateForm" component={this.getGroupFilterUpdateForm()} />
           
 
           <Route path="/groupPage/:id/list/threadList" component={this.getThreadSearch()} />
           <Route path="/groupPage/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          <Route path="/groupPage/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
           
               
              

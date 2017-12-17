@@ -105,6 +105,10 @@ export default {
     *gotoCreateForm({ payload }, { call, put }) {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+     },    
+     *gotoUpdateForm({ payload }, { call, put }) {
+    	const {id,type}=payload;
+    	yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'UpdateForm'));
      },
      *goback({ payload }, { call, put }) {
     	const {id,type}=payload;
@@ -112,264 +116,389 @@ export default {
      },
     
 	*addSlide({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(HomePageService.addSlide, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(HomePageService.addSlide, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
-		},
+		yield put({ type: "updateState", payload: newPlayload });
 		
-		*removeSlideList({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},
+	*updateSlide({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(HomePageService.removeSlideList, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(HomePageService.updateSlide, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},		
+	*removeSlideList({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			//yield put(routerRedux.push(location));
-		},
+		const data = yield call(HomePageService.removeSlideList, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+
+		//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		//yield put(routerRedux.push(location));
+	},
 
 	*addEncyclopediaItem({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(HomePageService.addEncyclopediaItem, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(HomePageService.addEncyclopediaItem, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
-		},
+		yield put({ type: "updateState", payload: newPlayload });
 		
-		*removeEncyclopediaItemList({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},
+	*updateEncyclopediaItem({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(HomePageService.removeEncyclopediaItemList, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(HomePageService.updateEncyclopediaItem, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},		
+	*removeEncyclopediaItemList({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			//yield put(routerRedux.push(location));
-		},
+		const data = yield call(HomePageService.removeEncyclopediaItemList, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+
+		//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		//yield put(routerRedux.push(location));
+	},
 
 	*addTaskFilter({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(HomePageService.addTaskFilter, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(HomePageService.addTaskFilter, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
-		},
+		yield put({ type: "updateState", payload: newPlayload });
 		
-		*removeTaskFilterList({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},
+	*updateTaskFilter({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(HomePageService.removeTaskFilterList, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(HomePageService.updateTaskFilter, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},		
+	*removeTaskFilterList({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			//yield put(routerRedux.push(location));
-		},
+		const data = yield call(HomePageService.removeTaskFilterList, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+
+		//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		//yield put(routerRedux.push(location));
+	},
 
 	*addTask({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(HomePageService.addTask, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(HomePageService.addTask, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
-		},
+		yield put({ type: "updateState", payload: newPlayload });
 		
-		*removeTaskList({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},
+	*updateTask({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(HomePageService.removeTaskList, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(HomePageService.updateTask, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},		
+	*removeTaskList({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			//yield put(routerRedux.push(location));
-		},
+		const data = yield call(HomePageService.removeTaskList, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+
+		//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		//yield put(routerRedux.push(location));
+	},
 
 	*addThread({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(HomePageService.addThread, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(HomePageService.addThread, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
-		},
+		yield put({ type: "updateState", payload: newPlayload });
 		
-		*removeThreadList({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},
+	*updateThread({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(HomePageService.removeThreadList, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(HomePageService.updateThread, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},		
+	*removeThreadList({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
-			//yield put(routerRedux.push(location));
-		},
+		const data = yield call(HomePageService.removeThreadList, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/homePage/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+
+		//const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:data};
+		//yield put(routerRedux.push(location));
+	},
 
     
     

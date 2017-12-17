@@ -83,6 +83,17 @@ const addTask=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateTask=(targetObjectId,parameters)=>{
+    const url = PREFIX+"taskResolvingManager/updateTaskProperties/resolvingId/taskId/title/selectedTask/content/creatorId/communityId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeTaskList=(targetObjectId,parameters)=>{
     const url = PREFIX+"taskResolvingManager/removeTaskList/taskResolvingId/taskIds/tokensExpr/";
@@ -98,7 +109,11 @@ const removeTaskList=(targetObjectId,parameters)=>{
 
 
 
-const TaskResolvingService={view,load,addTask,removeTaskList};
+const TaskResolvingService={view,
+load,
+addTask,
+updateTask,
+removeTaskList};
 export default TaskResolvingService;
 
 

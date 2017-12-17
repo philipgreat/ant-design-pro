@@ -105,6 +105,10 @@ export default {
     *gotoCreateForm({ payload }, { call, put }) {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+     },    
+     *gotoUpdateForm({ payload }, { call, put }) {
+    	const {id,type}=payload;
+    	yield put(routerRedux.push('/task/'+id+'/list/'+type+'UpdateForm'));
      },
      *goback({ payload }, { call, put }) {
     	const {id,type}=payload;
@@ -112,160 +116,235 @@ export default {
      },
     
 	*addTaskAssigment({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(TaskService.addTaskAssigment, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(TaskService.addTaskAssigment, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
-		},
+		yield put({ type: "updateState", payload: newPlayload });
 		
-		*removeTaskAssigmentList({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+			//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},
+	*updateTaskAssigment({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(TaskService.removeTaskAssigmentList, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(TaskService.updateTaskAssigment, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},		
+	*removeTaskAssigmentList({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			//const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
-			//yield put(routerRedux.push(location));
-		},
+		const data = yield call(TaskService.removeTaskAssigmentList, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+
+		//const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+		//yield put(routerRedux.push(location));
+	},
 
 	*addTaskLike({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(TaskService.addTaskLike, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(TaskService.addTaskLike, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
-		},
+		yield put({ type: "updateState", payload: newPlayload });
 		
-		*removeTaskLikeList({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+			//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},
+	*updateTaskLike({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(TaskService.removeTaskLikeList, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(TaskService.updateTaskLike, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},		
+	*removeTaskLikeList({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			//const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
-			//yield put(routerRedux.push(location));
-		},
+		const data = yield call(TaskService.removeTaskLikeList, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+
+		//const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+		//yield put(routerRedux.push(location));
+	},
 
 	*addTaskReply({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(TaskService.addTaskReply, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(TaskService.addTaskReply, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
-		},
+		yield put({ type: "updateState", payload: newPlayload });
 		
-		*removeTaskReplyList({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+			//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},
+	*updateTaskReply({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(TaskService.removeTaskReplyList, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(TaskService.updateTaskReply, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},		
+	*removeTaskReplyList({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			//const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
-			//yield put(routerRedux.push(location));
-		},
+		const data = yield call(TaskService.removeTaskReplyList, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/task/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+
+		//const location = {pathname:'/task/' + id + '/list/' + type + 'List',state:data};
+		//yield put(routerRedux.push(location));
+	},
 
     
     

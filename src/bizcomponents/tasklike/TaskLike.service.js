@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const TaskLikeService={view,load};
+const TaskLikeService={view,
+load};
 export default TaskLikeService;
 
 

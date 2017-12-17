@@ -83,6 +83,17 @@ const addTask=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateTask=(targetObjectId,parameters)=>{
+    const url = PREFIX+"taskHidingManager/updateTaskProperties/hidingId/taskId/title/selectedTask/content/creatorId/communityId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeTaskList=(targetObjectId,parameters)=>{
     const url = PREFIX+"taskHidingManager/removeTaskList/taskHidingId/taskIds/tokensExpr/";
@@ -98,7 +109,11 @@ const removeTaskList=(targetObjectId,parameters)=>{
 
 
 
-const TaskHidingService={view,load,addTask,removeTaskList};
+const TaskHidingService={view,
+load,
+addTask,
+updateTask,
+removeTaskList};
 export default TaskHidingService;
 
 

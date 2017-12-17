@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const ThreadRegistrationService={view,load};
+const ThreadRegistrationService={view,
+load};
 export default ThreadRegistrationService;
 
 

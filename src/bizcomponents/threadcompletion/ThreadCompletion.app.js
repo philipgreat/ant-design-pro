@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import ThreadSearch from '../thread/Thread.search'
 import ThreadCreateForm from '../thread/Thread.createform'
+import ThreadUpdateForm from '../thread/Thread.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class ThreadCompletionBizApp extends React.PureComponent {
     }))(ThreadCreateForm);
   }
   
+  getThreadUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._threadCompletion.threadList,
+      count: state._threadCompletion.threadCount,
+      currentPage: state._threadCompletion.threadCurrentPageNumber,
+      searchFormParameters: state._threadCompletion.threadSearchFormParameters,
+      loading: state._threadCompletion.loading,
+      owner: {type:'_threadCompletion',id:state._threadCompletion.id}//this is for model namespace and 
+    }))(ThreadUpdateForm);
+  }
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/threadCompletion/:id/list/threadList" component={this.getThreadSearch()} />
           <Route path="/threadCompletion/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          <Route path="/threadCompletion/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
           
               
              

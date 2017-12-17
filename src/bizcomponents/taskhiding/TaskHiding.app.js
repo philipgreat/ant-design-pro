@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import TaskSearch from '../task/Task.search'
 import TaskCreateForm from '../task/Task.createform'
+import TaskUpdateForm from '../task/Task.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class TaskHidingBizApp extends React.PureComponent {
     }))(TaskCreateForm);
   }
   
+  getTaskUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._taskHiding.taskList,
+      count: state._taskHiding.taskCount,
+      currentPage: state._taskHiding.taskCurrentPageNumber,
+      searchFormParameters: state._taskHiding.taskSearchFormParameters,
+      loading: state._taskHiding.loading,
+      owner: {type:'_taskHiding',id:state._taskHiding.id}//this is for model namespace and 
+    }))(TaskUpdateForm);
+  }
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/taskHiding/:id/list/taskList" component={this.getTaskSearch()} />
           <Route path="/taskHiding/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+          <Route path="/taskHiding/:id/list/taskUpdateForm" component={this.getTaskUpdateForm()} />
           
               
              

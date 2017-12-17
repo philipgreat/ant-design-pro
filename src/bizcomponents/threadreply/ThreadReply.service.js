@@ -83,6 +83,17 @@ const addThreadReplyLike=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateThreadReplyLike=(targetObjectId,parameters)=>{
+    const url = PREFIX+"threadReplyManager/updateThreadReplyLikeProperties/threadReplyId/threadReplyLikeId/replierId/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeThreadReplyLikeList=(targetObjectId,parameters)=>{
     const url = PREFIX+"threadReplyManager/removeThreadReplyLikeList/threadReplyId/threadReplyLikeIds/tokensExpr/";
@@ -98,7 +109,11 @@ const removeThreadReplyLikeList=(targetObjectId,parameters)=>{
 
 
 
-const ThreadReplyService={view,load,addThreadReplyLike,removeThreadReplyLikeList};
+const ThreadReplyService={view,
+load,
+addThreadReplyLike,
+updateThreadReplyLike,
+removeThreadReplyLikeList};
 export default ThreadReplyService;
 
 

@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const EncyclopediaItemService={view,load};
+const EncyclopediaItemService={view,
+load};
 export default EncyclopediaItemService;
 
 

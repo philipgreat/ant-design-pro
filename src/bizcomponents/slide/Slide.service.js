@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const SlideService={view,load};
+const SlideService={view,
+load};
 export default SlideService;
 
 

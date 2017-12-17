@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const GroupFilterService={view,load};
+const GroupFilterService={view,
+load};
 export default GroupFilterService;
 
 

@@ -16,15 +16,18 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import TaskAssigmentSearch from '../taskassigment/TaskAssigment.search'
 import TaskAssigmentCreateForm from '../taskassigment/TaskAssigment.createform'
+import TaskAssigmentUpdateForm from '../taskassigment/TaskAssigment.updateform'
+
 import TaskLikeSearch from '../tasklike/TaskLike.search'
 import TaskLikeCreateForm from '../tasklike/TaskLike.createform'
+import TaskLikeUpdateForm from '../tasklike/TaskLike.updateform'
+
 import TaskReplySearch from '../taskreply/TaskReply.search'
 import TaskReplyCreateForm from '../taskreply/TaskReply.createform'
+import TaskReplyUpdateForm from '../taskreply/TaskReply.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -148,6 +151,19 @@ class TaskBizApp extends React.PureComponent {
     }))(TaskAssigmentCreateForm);
   }
   
+  getTaskAssigmentUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._task.taskAssigmentList,
+      count: state._task.taskAssigmentCount,
+      currentPage: state._task.taskAssigmentCurrentPageNumber,
+      searchFormParameters: state._task.taskAssigmentSearchFormParameters,
+      loading: state._task.loading,
+      owner: {type:'_task',id:state._task.id}//this is for model namespace and 
+    }))(TaskAssigmentUpdateForm);
+  }
+  
 
   getTaskLikeSearch() {
  
@@ -174,6 +190,19 @@ class TaskBizApp extends React.PureComponent {
     }))(TaskLikeCreateForm);
   }
   
+  getTaskLikeUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._task.taskLikeList,
+      count: state._task.taskLikeCount,
+      currentPage: state._task.taskLikeCurrentPageNumber,
+      searchFormParameters: state._task.taskLikeSearchFormParameters,
+      loading: state._task.loading,
+      owner: {type:'_task',id:state._task.id}//this is for model namespace and 
+    }))(TaskLikeUpdateForm);
+  }
+  
 
   getTaskReplySearch() {
  
@@ -198,6 +227,19 @@ class TaskBizApp extends React.PureComponent {
       loading: state._task.loading,
       owner: {type:'_task',id:state._task.id}//this is for model namespace and 
     }))(TaskReplyCreateForm);
+  }
+  
+  getTaskReplyUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._task.taskReplyList,
+      count: state._task.taskReplyCount,
+      currentPage: state._task.taskReplyCurrentPageNumber,
+      searchFormParameters: state._task.taskReplySearchFormParameters,
+      loading: state._task.loading,
+      owner: {type:'_task',id:state._task.id}//this is for model namespace and 
+    }))(TaskReplyUpdateForm);
   }
   
   
@@ -269,14 +311,17 @@ getPageTitle() {
     
           <Route path="/task/:id/list/taskAssigmentList" component={this.getTaskAssigmentSearch()} />
           <Route path="/task/:id/list/taskAssigmentCreateForm" component={this.getTaskAssigmentCreateForm()} />
+          <Route path="/task/:id/list/taskAssigmentUpdateForm" component={this.getTaskAssigmentUpdateForm()} />
           
 
           <Route path="/task/:id/list/taskLikeList" component={this.getTaskLikeSearch()} />
           <Route path="/task/:id/list/taskLikeCreateForm" component={this.getTaskLikeCreateForm()} />
+          <Route path="/task/:id/list/taskLikeUpdateForm" component={this.getTaskLikeUpdateForm()} />
           
 
           <Route path="/task/:id/list/taskReplyList" component={this.getTaskReplySearch()} />
           <Route path="/task/:id/list/taskReplyCreateForm" component={this.getTaskReplyCreateForm()} />
+          <Route path="/task/:id/list/taskReplyUpdateForm" component={this.getTaskReplyUpdateForm()} />
           
               
              

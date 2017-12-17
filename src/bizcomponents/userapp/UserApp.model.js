@@ -105,6 +105,10 @@ export default {
     *gotoCreateForm({ payload }, { call, put }) {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/userApp/'+id+'/list/'+type+'CreateForm'));
+     },    
+     *gotoUpdateForm({ payload }, { call, put }) {
+    	const {id,type}=payload;
+    	yield put(routerRedux.push('/userApp/'+id+'/list/'+type+'UpdateForm'));
      },
      *goback({ payload }, { call, put }) {
     	const {id,type}=payload;
@@ -112,56 +116,81 @@ export default {
      },
     
 	*addObjectAccess({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(UserAppService.addObjectAccess, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(UserAppService.addObjectAccess, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/userApp/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/userApp/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
-		},
+		yield put({ type: "updateState", payload: newPlayload });
 		
-		*removeObjectAccessList({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+			//yield put(routerRedux.push('/userApp/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/userApp/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},
+	*updateObjectAccess({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(UserAppService.removeObjectAccessList, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(UserAppService.updateObjectAccess, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/userApp/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/userApp/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/userApp/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},		
+	*removeObjectAccessList({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			//const location = {pathname:'/userApp/' + id + '/list/' + type + 'List',state:data};
-			//yield put(routerRedux.push(location));
-		},
+		const data = yield call(UserAppService.removeObjectAccessList, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/userApp/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+
+		//const location = {pathname:'/userApp/' + id + '/list/' + type + 'List',state:data};
+		//yield put(routerRedux.push(location));
+	},
 
     
     

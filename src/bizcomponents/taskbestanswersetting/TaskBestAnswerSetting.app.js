@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import TaskReplySearch from '../taskreply/TaskReply.search'
 import TaskReplyCreateForm from '../taskreply/TaskReply.createform'
+import TaskReplyUpdateForm from '../taskreply/TaskReply.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
     }))(TaskReplyCreateForm);
   }
   
+  getTaskReplyUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._taskBestAnswerSetting.taskReplyList,
+      count: state._taskBestAnswerSetting.taskReplyCount,
+      currentPage: state._taskBestAnswerSetting.taskReplyCurrentPageNumber,
+      searchFormParameters: state._taskBestAnswerSetting.taskReplySearchFormParameters,
+      loading: state._taskBestAnswerSetting.loading,
+      owner: {type:'_taskBestAnswerSetting',id:state._taskBestAnswerSetting.id}//this is for model namespace and 
+    }))(TaskReplyUpdateForm);
+  }
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/taskBestAnswerSetting/:id/list/taskReplyList" component={this.getTaskReplySearch()} />
           <Route path="/taskBestAnswerSetting/:id/list/taskReplyCreateForm" component={this.getTaskReplyCreateForm()} />
+          <Route path="/taskBestAnswerSetting/:id/list/taskReplyUpdateForm" component={this.getTaskReplyUpdateForm()} />
           
               
              

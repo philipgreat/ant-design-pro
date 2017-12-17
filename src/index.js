@@ -4,6 +4,7 @@ import 'moment/locale/zh-cn';
 import models from './models';
 import './polyfill';
 import './g2';
+import RouterConfig from './router'
 // import { browserHistory } from 'dva/router';
 import './index.less';
 
@@ -116,7 +117,7 @@ models.forEach((m) => {
 });
 
 // 4. Router
-app.router(require('./router'));
+app.router(RouterConfig);
 
 // 5. Start
 app.start('#root');
@@ -127,3 +128,10 @@ app.start('#root');
 
 
 
+
+
+
+
+
+
+	

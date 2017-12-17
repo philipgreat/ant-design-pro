@@ -83,6 +83,17 @@ const addTaskAssigment=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateTaskAssigment=(targetObjectId,parameters)=>{
+    const url = PREFIX+"taskManager/updateTaskAssigmentProperties/taskId/taskAssigmentId/assigneeId/comments/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeTaskAssigmentList=(targetObjectId,parameters)=>{
     const url = PREFIX+"taskManager/removeTaskAssigmentList/taskId/taskAssigmentIds/tokensExpr/";
@@ -100,6 +111,17 @@ const removeTaskAssigmentList=(targetObjectId,parameters)=>{
 
 const addTaskLike=(targetObjectId,parameters)=>{
     const url = PREFIX+"taskManager/addTaskLike/taskId/replierId/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+const updateTaskLike=(targetObjectId,parameters)=>{
+    const url = PREFIX+"taskManager/updateTaskLikeProperties/taskId/taskLikeId/replierId/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
@@ -135,6 +157,17 @@ const addTaskReply=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateTaskReply=(targetObjectId,parameters)=>{
+    const url = PREFIX+"taskManager/updateTaskReplyProperties/taskId/taskReplyId/content/replierId/likeByCurrentUser/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeTaskReplyList=(targetObjectId,parameters)=>{
     const url = PREFIX+"taskManager/removeTaskReplyList/taskId/taskReplyIds/tokensExpr/";
@@ -150,7 +183,17 @@ const removeTaskReplyList=(targetObjectId,parameters)=>{
 
 
 
-const TaskService={view,load,addTaskAssigment,addTaskLike,addTaskReply,removeTaskAssigmentList,removeTaskLikeList,removeTaskReplyList};
+const TaskService={view,
+load,
+addTaskAssigment,
+addTaskLike,
+addTaskReply,
+updateTaskAssigment,
+updateTaskLike,
+updateTaskReply,
+removeTaskAssigmentList,
+removeTaskLikeList,
+removeTaskReplyList};
 export default TaskService;
 
 

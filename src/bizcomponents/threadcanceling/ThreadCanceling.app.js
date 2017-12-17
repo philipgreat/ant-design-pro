@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import ThreadSearch from '../thread/Thread.search'
 import ThreadCreateForm from '../thread/Thread.createform'
+import ThreadUpdateForm from '../thread/Thread.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class ThreadCancelingBizApp extends React.PureComponent {
     }))(ThreadCreateForm);
   }
   
+  getThreadUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._threadCanceling.threadList,
+      count: state._threadCanceling.threadCount,
+      currentPage: state._threadCanceling.threadCurrentPageNumber,
+      searchFormParameters: state._threadCanceling.threadSearchFormParameters,
+      loading: state._threadCanceling.loading,
+      owner: {type:'_threadCanceling',id:state._threadCanceling.id}//this is for model namespace and 
+    }))(ThreadUpdateForm);
+  }
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/threadCanceling/:id/list/threadList" component={this.getThreadSearch()} />
           <Route path="/threadCanceling/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          <Route path="/threadCanceling/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
           
               
              

@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import SecUserSearch from '../secuser/SecUser.search'
 import SecUserCreateForm from '../secuser/SecUser.createform'
+import SecUserUpdateForm from '../secuser/SecUser.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class UserDomainBizApp extends React.PureComponent {
     }))(SecUserCreateForm);
   }
   
+  getSecUserUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._userDomain.secUserList,
+      count: state._userDomain.secUserCount,
+      currentPage: state._userDomain.secUserCurrentPageNumber,
+      searchFormParameters: state._userDomain.secUserSearchFormParameters,
+      loading: state._userDomain.loading,
+      owner: {type:'_userDomain',id:state._userDomain.id}//this is for model namespace and 
+    }))(SecUserUpdateForm);
+  }
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/userDomain/:id/list/secUserList" component={this.getSecUserSearch()} />
           <Route path="/userDomain/:id/list/secUserCreateForm" component={this.getSecUserCreateForm()} />
+          <Route path="/userDomain/:id/list/secUserUpdateForm" component={this.getSecUserUpdateForm()} />
           
               
              

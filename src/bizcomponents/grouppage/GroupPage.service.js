@@ -83,6 +83,17 @@ const addGroupFilter=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateGroupFilter=(targetObjectId,parameters)=>{
+    const url = PREFIX+"groupPageManager/updateGroupFilterProperties/groupPageId/groupFilterId/filterLink/title/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeGroupFilterList=(targetObjectId,parameters)=>{
     const url = PREFIX+"groupPageManager/removeGroupFilterList/groupPageId/groupFilterIds/tokensExpr/";
@@ -109,6 +120,17 @@ const addThread=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateThread=(targetObjectId,parameters)=>{
+    const url = PREFIX+"groupPageManager/updateThreadProperties/groupPageId/threadId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/communityId/creatorId/homePageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeThreadList=(targetObjectId,parameters)=>{
     const url = PREFIX+"groupPageManager/removeThreadList/groupPageId/threadIds/tokensExpr/";
@@ -124,7 +146,14 @@ const removeThreadList=(targetObjectId,parameters)=>{
 
 
 
-const GroupPageService={view,load,addGroupFilter,addThread,removeGroupFilterList,removeThreadList};
+const GroupPageService={view,
+load,
+addGroupFilter,
+addThread,
+updateGroupFilter,
+updateThread,
+removeGroupFilterList,
+removeThreadList};
 export default GroupPageService;
 
 

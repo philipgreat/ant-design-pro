@@ -148,12 +148,22 @@ export default class FanSearch extends PureComponent {
   
   
   
+
+
   handleCreate = () => {
  
    	const {dispatch,owner} = this.props;
-	dispatch({
-       type: owner.type+'/gotoCreateForm',
-       payload: {id:owner.id,type:'fan'},
+	  dispatch({
+      type: owner.type+'/gotoCreateForm',
+      payload: {id:owner.id,type:'fan'},
+    });
+  }
+  handleUpdate = () => {
+    
+    const {dispatch,owner} = this.props;
+    dispatch({
+      type: owner.type+'/gotoUpdateForm',
+      payload: {id:owner.id,type:'fan'},
     });
   }
 
@@ -248,9 +258,11 @@ export default class FanSearch extends PureComponent {
               {
                 selectedRows.length > 0 && (
                   <span>
-                     <Button onClick={this.handleModalVisible} type="danger">批量删除</Button>
+                    <Button onClick={this.handleModalVisible} type="danger" icon="delete">批量删除</Button>
+                    <Button onClick={this.handleUpdate} type="primary" icon="update">批量更新</Button>
+                     
                     <Dropdown overlay={menu}>
-                      <Button icon="delete">
+                      <Button >
                         更多操作 <Icon type="down" />
                       </Button>
                     </Dropdown>

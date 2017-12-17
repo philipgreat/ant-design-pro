@@ -16,15 +16,18 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import ThreadReplySearch from '../threadreply/ThreadReply.search'
 import ThreadReplyCreateForm from '../threadreply/ThreadReply.createform'
+import ThreadReplyUpdateForm from '../threadreply/ThreadReply.updateform'
+
 import ThreadRegistrationSearch from '../threadregistration/ThreadRegistration.search'
 import ThreadRegistrationCreateForm from '../threadregistration/ThreadRegistration.createform'
+import ThreadRegistrationUpdateForm from '../threadregistration/ThreadRegistration.updateform'
+
 import ThreadLikeSearch from '../threadlike/ThreadLike.search'
 import ThreadLikeCreateForm from '../threadlike/ThreadLike.createform'
+import ThreadLikeUpdateForm from '../threadlike/ThreadLike.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -148,6 +151,19 @@ class ThreadBizApp extends React.PureComponent {
     }))(ThreadReplyCreateForm);
   }
   
+  getThreadReplyUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._thread.threadReplyList,
+      count: state._thread.threadReplyCount,
+      currentPage: state._thread.threadReplyCurrentPageNumber,
+      searchFormParameters: state._thread.threadReplySearchFormParameters,
+      loading: state._thread.loading,
+      owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
+    }))(ThreadReplyUpdateForm);
+  }
+  
 
   getThreadRegistrationSearch() {
  
@@ -174,6 +190,19 @@ class ThreadBizApp extends React.PureComponent {
     }))(ThreadRegistrationCreateForm);
   }
   
+  getThreadRegistrationUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._thread.threadRegistrationList,
+      count: state._thread.threadRegistrationCount,
+      currentPage: state._thread.threadRegistrationCurrentPageNumber,
+      searchFormParameters: state._thread.threadRegistrationSearchFormParameters,
+      loading: state._thread.loading,
+      owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
+    }))(ThreadRegistrationUpdateForm);
+  }
+  
 
   getThreadLikeSearch() {
  
@@ -198,6 +227,19 @@ class ThreadBizApp extends React.PureComponent {
       loading: state._thread.loading,
       owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadLikeCreateForm);
+  }
+  
+  getThreadLikeUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._thread.threadLikeList,
+      count: state._thread.threadLikeCount,
+      currentPage: state._thread.threadLikeCurrentPageNumber,
+      searchFormParameters: state._thread.threadLikeSearchFormParameters,
+      loading: state._thread.loading,
+      owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
+    }))(ThreadLikeUpdateForm);
   }
   
   
@@ -269,14 +311,17 @@ getPageTitle() {
     
           <Route path="/thread/:id/list/threadReplyList" component={this.getThreadReplySearch()} />
           <Route path="/thread/:id/list/threadReplyCreateForm" component={this.getThreadReplyCreateForm()} />
+          <Route path="/thread/:id/list/threadReplyUpdateForm" component={this.getThreadReplyUpdateForm()} />
           
 
           <Route path="/thread/:id/list/threadRegistrationList" component={this.getThreadRegistrationSearch()} />
           <Route path="/thread/:id/list/threadRegistrationCreateForm" component={this.getThreadRegistrationCreateForm()} />
+          <Route path="/thread/:id/list/threadRegistrationUpdateForm" component={this.getThreadRegistrationUpdateForm()} />
           
 
           <Route path="/thread/:id/list/threadLikeList" component={this.getThreadLikeSearch()} />
           <Route path="/thread/:id/list/threadLikeCreateForm" component={this.getThreadLikeCreateForm()} />
+          <Route path="/thread/:id/list/threadLikeUpdateForm" component={this.getThreadLikeUpdateForm()} />
           
               
              

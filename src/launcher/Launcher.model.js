@@ -6,9 +6,52 @@ import { routerRedux } from 'dva/router';
 import key from 'keymaster';
 const  apps = {
 
-  "com.terapico.bbt.community.Community": "community",
-  "com.terapico.bbt.communityuser.CommunityUser": "communityUser",
-  "com.terapico.bbt.userdomain.UserDomain": "userDomain",
+
+"com.terapico.bbt.community.Community":"community",
+"com.terapico.bbt.invitationcode.InvitationCode":"invitationCode",
+"com.terapico.bbt.homepage.HomePage":"homePage",
+"com.terapico.bbt.slide.Slide":"slide",
+"com.terapico.bbt.encyclopediaitem.EncyclopediaItem":"encyclopediaItem",
+"com.terapico.bbt.taskpage.TaskPage":"taskPage",
+"com.terapico.bbt.taskfilter.TaskFilter":"taskFilter",
+"com.terapico.bbt.communityuser.CommunityUser":"communityUser",
+"com.terapico.bbt.patientinfo.PatientInfo":"patientInfo",
+"com.terapico.bbt.userskill.UserSkill":"userSkill",
+"com.terapico.bbt.messagefilter.MessageFilter":"messageFilter",
+"com.terapico.bbt.usermessage.UserMessage":"userMessage",
+"com.terapico.bbt.task.Task":"task",
+"com.terapico.bbt.taskassigment.TaskAssigment":"taskAssigment",
+"com.terapico.bbt.taskhiding.TaskHiding":"taskHiding",
+"com.terapico.bbt.taskresolving.TaskResolving":"taskResolving",
+"com.terapico.bbt.taskreward.TaskReward":"taskReward",
+"com.terapico.bbt.tasklike.TaskLike":"taskLike",
+"com.terapico.bbt.taskreply.TaskReply":"taskReply",
+"com.terapico.bbt.taskbestanswersetting.TaskBestAnswerSetting":"taskBestAnswerSetting",
+"com.terapico.bbt.taskreplylike.TaskReplyLike":"taskReplyLike",
+"com.terapico.bbt.grouppage.GroupPage":"groupPage",
+"com.terapico.bbt.groupfilter.GroupFilter":"groupFilter",
+"com.terapico.bbt.thread.Thread":"thread",
+"com.terapico.bbt.threadhiding.ThreadHiding":"threadHiding",
+"com.terapico.bbt.threadreply.ThreadReply":"threadReply",
+"com.terapico.bbt.threadapproval.ThreadApproval":"threadApproval",
+"com.terapico.bbt.threadcompletion.ThreadCompletion":"threadCompletion",
+"com.terapico.bbt.threadcanceling.ThreadCanceling":"threadCanceling",
+"com.terapico.bbt.threadregistration.ThreadRegistration":"threadRegistration",
+"com.terapico.bbt.threadlike.ThreadLike":"threadLike",
+"com.terapico.bbt.threadreplylike.ThreadReplyLike":"threadReplyLike",
+"com.terapico.bbt.fan.Fan":"fan",
+"com.terapico.bbt.follow.Follow":"follow",
+"com.terapico.bbt.bonuspoint.BonusPoint":"bonusPoint",
+"com.terapico.bbt.experiencepoint.ExperiencePoint":"experiencePoint",
+"com.terapico.bbt.userdomain.UserDomain":"userDomain",
+"com.terapico.bbt.secuser.SecUser":"secUser",
+"com.terapico.bbt.secuserblocking.SecUserBlocking":"secUserBlocking",
+"com.terapico.bbt.userapp.UserApp":"userApp",
+"com.terapico.bbt.objectaccess.ObjectAccess":"objectAccess",
+"com.terapico.bbt.loginhistory.LoginHistory":"loginHistory",
+
+
+
 
 };
 const rootElement = document.getElementById("root");
@@ -108,6 +151,7 @@ export default {
         const data = yield call(LauncherService.gotoApp,payload.appId);
         const locationPath = calcLocationPath(data.class,data.id,"dashboard");
         const location = {pathname:"/"+locationPath,state:data};
+        console.log("location", location);
         yield put(routerRedux.push(location));
         //yield put({type:"showApp",payload:{data}});
 
@@ -147,19 +191,15 @@ export default {
 
 
 
-/*
-
-console.log(this.props);
-        const loggedIn = yield select(state => state.loggedIn);
-        if(loggedIn){
-
-            this.props.router.push({ pathname: '/home'});
-            return;
-        }
-
-        this.props.router.push({ pathname: '/login'});
 
 
 
 
-*/
+
+
+
+
+
+
+
+

@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import ThreadSearch from '../thread/Thread.search'
 import ThreadCreateForm from '../thread/Thread.createform'
+import ThreadUpdateForm from '../thread/Thread.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class ThreadHidingBizApp extends React.PureComponent {
     }))(ThreadCreateForm);
   }
   
+  getThreadUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._threadHiding.threadList,
+      count: state._threadHiding.threadCount,
+      currentPage: state._threadHiding.threadCurrentPageNumber,
+      searchFormParameters: state._threadHiding.threadSearchFormParameters,
+      loading: state._threadHiding.loading,
+      owner: {type:'_threadHiding',id:state._threadHiding.id}//this is for model namespace and 
+    }))(ThreadUpdateForm);
+  }
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/threadHiding/:id/list/threadList" component={this.getThreadSearch()} />
           <Route path="/threadHiding/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          <Route path="/threadHiding/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
           
               
              

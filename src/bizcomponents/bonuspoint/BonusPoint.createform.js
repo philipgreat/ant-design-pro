@@ -26,7 +26,7 @@ user: '用户',
 const testValues={
         
       			name:'完成求助奖励',
-			points:'978',
+			points:'935',
 			userId:'CU000001',
 
         

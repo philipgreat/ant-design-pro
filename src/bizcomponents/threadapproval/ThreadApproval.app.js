@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import ThreadSearch from '../thread/Thread.search'
 import ThreadCreateForm from '../thread/Thread.createform'
+import ThreadUpdateForm from '../thread/Thread.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class ThreadApprovalBizApp extends React.PureComponent {
     }))(ThreadCreateForm);
   }
   
+  getThreadUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._threadApproval.threadList,
+      count: state._threadApproval.threadCount,
+      currentPage: state._threadApproval.threadCurrentPageNumber,
+      searchFormParameters: state._threadApproval.threadSearchFormParameters,
+      loading: state._threadApproval.loading,
+      owner: {type:'_threadApproval',id:state._threadApproval.id}//this is for model namespace and 
+    }))(ThreadUpdateForm);
+  }
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/threadApproval/:id/list/threadList" component={this.getThreadSearch()} />
           <Route path="/threadApproval/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          <Route path="/threadApproval/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
           
               
              

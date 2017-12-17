@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const FanService={view,load};
+const FanService={view,
+load};
 export default FanService;
 
 

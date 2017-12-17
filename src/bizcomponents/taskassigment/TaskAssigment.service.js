@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const TaskAssigmentService={view,load};
+const TaskAssigmentService={view,
+load};
 export default TaskAssigmentService;
 
 

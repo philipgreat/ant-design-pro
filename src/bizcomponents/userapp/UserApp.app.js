@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import ObjectAccessSearch from '../objectaccess/ObjectAccess.search'
 import ObjectAccessCreateForm from '../objectaccess/ObjectAccess.createform'
+import ObjectAccessUpdateForm from '../objectaccess/ObjectAccess.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class UserAppBizApp extends React.PureComponent {
     }))(ObjectAccessCreateForm);
   }
   
+  getObjectAccessUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._userApp.objectAccessList,
+      count: state._userApp.objectAccessCount,
+      currentPage: state._userApp.objectAccessCurrentPageNumber,
+      searchFormParameters: state._userApp.objectAccessSearchFormParameters,
+      loading: state._userApp.loading,
+      owner: {type:'_userApp',id:state._userApp.id}//this is for model namespace and 
+    }))(ObjectAccessUpdateForm);
+  }
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/userApp/:id/list/objectAccessList" component={this.getObjectAccessSearch()} />
           <Route path="/userApp/:id/list/objectAccessCreateForm" component={this.getObjectAccessCreateForm()} />
+          <Route path="/userApp/:id/list/objectAccessUpdateForm" component={this.getObjectAccessUpdateForm()} />
           
               
              

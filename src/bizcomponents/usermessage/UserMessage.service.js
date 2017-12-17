@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const UserMessageService={view,load};
+const UserMessageService={view,
+load};
 export default UserMessageService;
 
 

@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const FollowService={view,load};
+const FollowService={view,
+load};
 export default FollowService;
 
 

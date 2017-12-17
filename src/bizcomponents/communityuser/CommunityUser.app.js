@@ -16,45 +16,78 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import PatientInfoSearch from '../patientinfo/PatientInfo.search'
 import PatientInfoCreateForm from '../patientinfo/PatientInfo.createform'
+import PatientInfoUpdateForm from '../patientinfo/PatientInfo.updateform'
+
 import UserSkillSearch from '../userskill/UserSkill.search'
 import UserSkillCreateForm from '../userskill/UserSkill.createform'
+import UserSkillUpdateForm from '../userskill/UserSkill.updateform'
+
 import MessageFilterSearch from '../messagefilter/MessageFilter.search'
 import MessageFilterCreateForm from '../messagefilter/MessageFilter.createform'
+import MessageFilterUpdateForm from '../messagefilter/MessageFilter.updateform'
+
 import UserMessageSearch from '../usermessage/UserMessage.search'
 import UserMessageCreateForm from '../usermessage/UserMessage.createform'
+import UserMessageUpdateForm from '../usermessage/UserMessage.updateform'
+
 import TaskSearch from '../task/Task.search'
 import TaskCreateForm from '../task/Task.createform'
+import TaskUpdateForm from '../task/Task.updateform'
+
 import TaskAssigmentSearch from '../taskassigment/TaskAssigment.search'
 import TaskAssigmentCreateForm from '../taskassigment/TaskAssigment.createform'
+import TaskAssigmentUpdateForm from '../taskassigment/TaskAssigment.updateform'
+
 import TaskLikeSearch from '../tasklike/TaskLike.search'
 import TaskLikeCreateForm from '../tasklike/TaskLike.createform'
+import TaskLikeUpdateForm from '../tasklike/TaskLike.updateform'
+
 import TaskReplySearch from '../taskreply/TaskReply.search'
 import TaskReplyCreateForm from '../taskreply/TaskReply.createform'
+import TaskReplyUpdateForm from '../taskreply/TaskReply.updateform'
+
 import TaskReplyLikeSearch from '../taskreplylike/TaskReplyLike.search'
 import TaskReplyLikeCreateForm from '../taskreplylike/TaskReplyLike.createform'
+import TaskReplyLikeUpdateForm from '../taskreplylike/TaskReplyLike.updateform'
+
 import ThreadSearch from '../thread/Thread.search'
 import ThreadCreateForm from '../thread/Thread.createform'
+import ThreadUpdateForm from '../thread/Thread.updateform'
+
 import ThreadReplySearch from '../threadreply/ThreadReply.search'
 import ThreadReplyCreateForm from '../threadreply/ThreadReply.createform'
+import ThreadReplyUpdateForm from '../threadreply/ThreadReply.updateform'
+
 import ThreadRegistrationSearch from '../threadregistration/ThreadRegistration.search'
 import ThreadRegistrationCreateForm from '../threadregistration/ThreadRegistration.createform'
+import ThreadRegistrationUpdateForm from '../threadregistration/ThreadRegistration.updateform'
+
 import ThreadLikeSearch from '../threadlike/ThreadLike.search'
 import ThreadLikeCreateForm from '../threadlike/ThreadLike.createform'
+import ThreadLikeUpdateForm from '../threadlike/ThreadLike.updateform'
+
 import ThreadReplyLikeSearch from '../threadreplylike/ThreadReplyLike.search'
 import ThreadReplyLikeCreateForm from '../threadreplylike/ThreadReplyLike.createform'
+import ThreadReplyLikeUpdateForm from '../threadreplylike/ThreadReplyLike.updateform'
+
 import FanSearch from '../fan/Fan.search'
 import FanCreateForm from '../fan/Fan.createform'
+import FanUpdateForm from '../fan/Fan.updateform'
+
 import FollowSearch from '../follow/Follow.search'
 import FollowCreateForm from '../follow/Follow.createform'
+import FollowUpdateForm from '../follow/Follow.updateform'
+
 import BonusPointSearch from '../bonuspoint/BonusPoint.search'
 import BonusPointCreateForm from '../bonuspoint/BonusPoint.createform'
+import BonusPointUpdateForm from '../bonuspoint/BonusPoint.updateform'
+
 import ExperiencePointSearch from '../experiencepoint/ExperiencePoint.search'
 import ExperiencePointCreateForm from '../experiencepoint/ExperiencePoint.createform'
+import ExperiencePointUpdateForm from '../experiencepoint/ExperiencePoint.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -253,6 +286,19 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(PatientInfoCreateForm);
   }
   
+  getPatientInfoUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.patientInfoList,
+      count: state._communityUser.patientInfoCount,
+      currentPage: state._communityUser.patientInfoCurrentPageNumber,
+      searchFormParameters: state._communityUser.patientInfoSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(PatientInfoUpdateForm);
+  }
+  
 
   getUserSkillSearch() {
  
@@ -277,6 +323,19 @@ class CommunityUserBizApp extends React.PureComponent {
       loading: state._communityUser.loading,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(UserSkillCreateForm);
+  }
+  
+  getUserSkillUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.userSkillList,
+      count: state._communityUser.userSkillCount,
+      currentPage: state._communityUser.userSkillCurrentPageNumber,
+      searchFormParameters: state._communityUser.userSkillSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(UserSkillUpdateForm);
   }
   
 
@@ -305,6 +364,19 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(MessageFilterCreateForm);
   }
   
+  getMessageFilterUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.messageFilterList,
+      count: state._communityUser.messageFilterCount,
+      currentPage: state._communityUser.messageFilterCurrentPageNumber,
+      searchFormParameters: state._communityUser.messageFilterSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(MessageFilterUpdateForm);
+  }
+  
 
   getUserMessageSearch() {
  
@@ -329,6 +401,19 @@ class CommunityUserBizApp extends React.PureComponent {
       loading: state._communityUser.loading,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(UserMessageCreateForm);
+  }
+  
+  getUserMessageUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.userMessageList,
+      count: state._communityUser.userMessageCount,
+      currentPage: state._communityUser.userMessageCurrentPageNumber,
+      searchFormParameters: state._communityUser.userMessageSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(UserMessageUpdateForm);
   }
   
 
@@ -357,6 +442,19 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(TaskCreateForm);
   }
   
+  getTaskUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.taskList,
+      count: state._communityUser.taskCount,
+      currentPage: state._communityUser.taskCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(TaskUpdateForm);
+  }
+  
 
   getTaskAssigmentSearch() {
  
@@ -381,6 +479,19 @@ class CommunityUserBizApp extends React.PureComponent {
       loading: state._communityUser.loading,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskAssigmentCreateForm);
+  }
+  
+  getTaskAssigmentUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.taskAssigmentList,
+      count: state._communityUser.taskAssigmentCount,
+      currentPage: state._communityUser.taskAssigmentCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskAssigmentSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(TaskAssigmentUpdateForm);
   }
   
 
@@ -409,6 +520,19 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(TaskLikeCreateForm);
   }
   
+  getTaskLikeUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.taskLikeList,
+      count: state._communityUser.taskLikeCount,
+      currentPage: state._communityUser.taskLikeCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskLikeSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(TaskLikeUpdateForm);
+  }
+  
 
   getTaskReplySearch() {
  
@@ -433,6 +557,19 @@ class CommunityUserBizApp extends React.PureComponent {
       loading: state._communityUser.loading,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskReplyCreateForm);
+  }
+  
+  getTaskReplyUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.taskReplyList,
+      count: state._communityUser.taskReplyCount,
+      currentPage: state._communityUser.taskReplyCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskReplySearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(TaskReplyUpdateForm);
   }
   
 
@@ -461,6 +598,19 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(TaskReplyLikeCreateForm);
   }
   
+  getTaskReplyLikeUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.taskReplyLikeList,
+      count: state._communityUser.taskReplyLikeCount,
+      currentPage: state._communityUser.taskReplyLikeCurrentPageNumber,
+      searchFormParameters: state._communityUser.taskReplyLikeSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(TaskReplyLikeUpdateForm);
+  }
+  
 
   getThreadSearch() {
  
@@ -485,6 +635,19 @@ class CommunityUserBizApp extends React.PureComponent {
       loading: state._communityUser.loading,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadCreateForm);
+  }
+  
+  getThreadUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.threadList,
+      count: state._communityUser.threadCount,
+      currentPage: state._communityUser.threadCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(ThreadUpdateForm);
   }
   
 
@@ -513,6 +676,19 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(ThreadReplyCreateForm);
   }
   
+  getThreadReplyUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.threadReplyList,
+      count: state._communityUser.threadReplyCount,
+      currentPage: state._communityUser.threadReplyCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadReplySearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(ThreadReplyUpdateForm);
+  }
+  
 
   getThreadRegistrationSearch() {
  
@@ -537,6 +713,19 @@ class CommunityUserBizApp extends React.PureComponent {
       loading: state._communityUser.loading,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadRegistrationCreateForm);
+  }
+  
+  getThreadRegistrationUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.threadRegistrationList,
+      count: state._communityUser.threadRegistrationCount,
+      currentPage: state._communityUser.threadRegistrationCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadRegistrationSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(ThreadRegistrationUpdateForm);
   }
   
 
@@ -565,6 +754,19 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(ThreadLikeCreateForm);
   }
   
+  getThreadLikeUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.threadLikeList,
+      count: state._communityUser.threadLikeCount,
+      currentPage: state._communityUser.threadLikeCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadLikeSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(ThreadLikeUpdateForm);
+  }
+  
 
   getThreadReplyLikeSearch() {
  
@@ -589,6 +791,19 @@ class CommunityUserBizApp extends React.PureComponent {
       loading: state._communityUser.loading,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadReplyLikeCreateForm);
+  }
+  
+  getThreadReplyLikeUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.threadReplyLikeList,
+      count: state._communityUser.threadReplyLikeCount,
+      currentPage: state._communityUser.threadReplyLikeCurrentPageNumber,
+      searchFormParameters: state._communityUser.threadReplyLikeSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(ThreadReplyLikeUpdateForm);
   }
   
 
@@ -617,6 +832,19 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(FanCreateForm);
   }
   
+  getFanUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.fanList,
+      count: state._communityUser.fanCount,
+      currentPage: state._communityUser.fanCurrentPageNumber,
+      searchFormParameters: state._communityUser.fanSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(FanUpdateForm);
+  }
+  
 
   getFollowSearch() {
  
@@ -641,6 +869,19 @@ class CommunityUserBizApp extends React.PureComponent {
       loading: state._communityUser.loading,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(FollowCreateForm);
+  }
+  
+  getFollowUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.followList,
+      count: state._communityUser.followCount,
+      currentPage: state._communityUser.followCurrentPageNumber,
+      searchFormParameters: state._communityUser.followSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(FollowUpdateForm);
   }
   
 
@@ -669,6 +910,19 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(BonusPointCreateForm);
   }
   
+  getBonusPointUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.bonusPointList,
+      count: state._communityUser.bonusPointCount,
+      currentPage: state._communityUser.bonusPointCurrentPageNumber,
+      searchFormParameters: state._communityUser.bonusPointSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(BonusPointUpdateForm);
+  }
+  
 
   getExperiencePointSearch() {
  
@@ -693,6 +947,19 @@ class CommunityUserBizApp extends React.PureComponent {
       loading: state._communityUser.loading,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ExperiencePointCreateForm);
+  }
+  
+  getExperiencePointUpdateForm() {
+ 
+    return connect(state => ({
+      rule: state.rule,
+      data: state._communityUser.experiencePointList,
+      count: state._communityUser.experiencePointCount,
+      currentPage: state._communityUser.experiencePointCurrentPageNumber,
+      searchFormParameters: state._communityUser.experiencePointSearchFormParameters,
+      loading: state._communityUser.loading,
+      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+    }))(ExperiencePointUpdateForm);
   }
   
   
@@ -764,74 +1031,92 @@ getPageTitle() {
     
           <Route path="/communityUser/:id/list/patientInfoList" component={this.getPatientInfoSearch()} />
           <Route path="/communityUser/:id/list/patientInfoCreateForm" component={this.getPatientInfoCreateForm()} />
+          <Route path="/communityUser/:id/list/patientInfoUpdateForm" component={this.getPatientInfoUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/userSkillList" component={this.getUserSkillSearch()} />
           <Route path="/communityUser/:id/list/userSkillCreateForm" component={this.getUserSkillCreateForm()} />
+          <Route path="/communityUser/:id/list/userSkillUpdateForm" component={this.getUserSkillUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/messageFilterList" component={this.getMessageFilterSearch()} />
           <Route path="/communityUser/:id/list/messageFilterCreateForm" component={this.getMessageFilterCreateForm()} />
+          <Route path="/communityUser/:id/list/messageFilterUpdateForm" component={this.getMessageFilterUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/userMessageList" component={this.getUserMessageSearch()} />
           <Route path="/communityUser/:id/list/userMessageCreateForm" component={this.getUserMessageCreateForm()} />
+          <Route path="/communityUser/:id/list/userMessageUpdateForm" component={this.getUserMessageUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/taskList" component={this.getTaskSearch()} />
           <Route path="/communityUser/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+          <Route path="/communityUser/:id/list/taskUpdateForm" component={this.getTaskUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/taskAssigmentList" component={this.getTaskAssigmentSearch()} />
           <Route path="/communityUser/:id/list/taskAssigmentCreateForm" component={this.getTaskAssigmentCreateForm()} />
+          <Route path="/communityUser/:id/list/taskAssigmentUpdateForm" component={this.getTaskAssigmentUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/taskLikeList" component={this.getTaskLikeSearch()} />
           <Route path="/communityUser/:id/list/taskLikeCreateForm" component={this.getTaskLikeCreateForm()} />
+          <Route path="/communityUser/:id/list/taskLikeUpdateForm" component={this.getTaskLikeUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/taskReplyList" component={this.getTaskReplySearch()} />
           <Route path="/communityUser/:id/list/taskReplyCreateForm" component={this.getTaskReplyCreateForm()} />
+          <Route path="/communityUser/:id/list/taskReplyUpdateForm" component={this.getTaskReplyUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/taskReplyLikeList" component={this.getTaskReplyLikeSearch()} />
           <Route path="/communityUser/:id/list/taskReplyLikeCreateForm" component={this.getTaskReplyLikeCreateForm()} />
+          <Route path="/communityUser/:id/list/taskReplyLikeUpdateForm" component={this.getTaskReplyLikeUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/threadList" component={this.getThreadSearch()} />
           <Route path="/communityUser/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+          <Route path="/communityUser/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/threadReplyList" component={this.getThreadReplySearch()} />
           <Route path="/communityUser/:id/list/threadReplyCreateForm" component={this.getThreadReplyCreateForm()} />
+          <Route path="/communityUser/:id/list/threadReplyUpdateForm" component={this.getThreadReplyUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/threadRegistrationList" component={this.getThreadRegistrationSearch()} />
           <Route path="/communityUser/:id/list/threadRegistrationCreateForm" component={this.getThreadRegistrationCreateForm()} />
+          <Route path="/communityUser/:id/list/threadRegistrationUpdateForm" component={this.getThreadRegistrationUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/threadLikeList" component={this.getThreadLikeSearch()} />
           <Route path="/communityUser/:id/list/threadLikeCreateForm" component={this.getThreadLikeCreateForm()} />
+          <Route path="/communityUser/:id/list/threadLikeUpdateForm" component={this.getThreadLikeUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/threadReplyLikeList" component={this.getThreadReplyLikeSearch()} />
           <Route path="/communityUser/:id/list/threadReplyLikeCreateForm" component={this.getThreadReplyLikeCreateForm()} />
+          <Route path="/communityUser/:id/list/threadReplyLikeUpdateForm" component={this.getThreadReplyLikeUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/fanList" component={this.getFanSearch()} />
           <Route path="/communityUser/:id/list/fanCreateForm" component={this.getFanCreateForm()} />
+          <Route path="/communityUser/:id/list/fanUpdateForm" component={this.getFanUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/followList" component={this.getFollowSearch()} />
           <Route path="/communityUser/:id/list/followCreateForm" component={this.getFollowCreateForm()} />
+          <Route path="/communityUser/:id/list/followUpdateForm" component={this.getFollowUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/bonusPointList" component={this.getBonusPointSearch()} />
           <Route path="/communityUser/:id/list/bonusPointCreateForm" component={this.getBonusPointCreateForm()} />
+          <Route path="/communityUser/:id/list/bonusPointUpdateForm" component={this.getBonusPointUpdateForm()} />
           
 
           <Route path="/communityUser/:id/list/experiencePointList" component={this.getExperiencePointSearch()} />
           <Route path="/communityUser/:id/list/experiencePointCreateForm" component={this.getExperiencePointCreateForm()} />
+          <Route path="/communityUser/:id/list/experiencePointUpdateForm" component={this.getExperiencePointUpdateForm()} />
           
               
              

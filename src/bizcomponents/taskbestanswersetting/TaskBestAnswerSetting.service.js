@@ -83,6 +83,17 @@ const addTaskReply=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateTaskReply=(targetObjectId,parameters)=>{
+    const url = PREFIX+"taskBestAnswerSettingManager/updateTaskReplyProperties/bestAnswerSettingId/taskReplyId/content/replierId/taskId/likeByCurrentUser/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeTaskReplyList=(targetObjectId,parameters)=>{
     const url = PREFIX+"taskBestAnswerSettingManager/removeTaskReplyList/taskBestAnswerSettingId/taskReplyIds/tokensExpr/";
@@ -98,7 +109,11 @@ const removeTaskReplyList=(targetObjectId,parameters)=>{
 
 
 
-const TaskBestAnswerSettingService={view,load,addTaskReply,removeTaskReplyList};
+const TaskBestAnswerSettingService={view,
+load,
+addTaskReply,
+updateTaskReply,
+removeTaskReplyList};
 export default TaskBestAnswerSettingService;
 
 

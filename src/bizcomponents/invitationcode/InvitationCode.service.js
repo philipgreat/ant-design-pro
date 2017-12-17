@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const InvitationCodeService={view,load};
+const InvitationCodeService={view,
+load};
 export default InvitationCodeService;
 
 

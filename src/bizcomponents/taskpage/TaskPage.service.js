@@ -83,6 +83,17 @@ const addTaskFilter=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateTaskFilter=(targetObjectId,parameters)=>{
+    const url = PREFIX+"taskPageManager/updateTaskFilterProperties/taskPageId/taskFilterId/name/filterKey/linkUrl/homePageId/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeTaskFilterList=(targetObjectId,parameters)=>{
     const url = PREFIX+"taskPageManager/removeTaskFilterList/taskPageId/taskFilterIds/tokensExpr/";
@@ -109,6 +120,17 @@ const addTask=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateTask=(targetObjectId,parameters)=>{
+    const url = PREFIX+"taskPageManager/updateTaskProperties/taskPageId/taskId/title/selectedTask/content/creatorId/communityId/homePageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeTaskList=(targetObjectId,parameters)=>{
     const url = PREFIX+"taskPageManager/removeTaskList/taskPageId/taskIds/tokensExpr/";
@@ -124,7 +146,14 @@ const removeTaskList=(targetObjectId,parameters)=>{
 
 
 
-const TaskPageService={view,load,addTaskFilter,addTask,removeTaskFilterList,removeTaskList};
+const TaskPageService={view,
+load,
+addTaskFilter,
+addTask,
+updateTaskFilter,
+updateTask,
+removeTaskFilterList,
+removeTaskList};
 export default TaskPageService;
 
 

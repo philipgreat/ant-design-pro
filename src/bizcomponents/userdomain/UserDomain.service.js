@@ -83,6 +83,17 @@ const addSecUser=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateSecUser=(targetObjectId,parameters)=>{
+    const url = PREFIX+"userDomainManager/updateSecUserProperties/domainId/secUserId/login/mobile/email/pwd/verificationCode/verificationCodeExpire/lastLoginTime/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeSecUserList=(targetObjectId,parameters)=>{
     const url = PREFIX+"userDomainManager/removeSecUserList/userDomainId/secUserIds/tokensExpr/";
@@ -98,7 +109,11 @@ const removeSecUserList=(targetObjectId,parameters)=>{
 
 
 
-const UserDomainService={view,load,addSecUser,removeSecUserList};
+const UserDomainService={view,
+load,
+addSecUser,
+updateSecUser,
+removeSecUserList};
 export default UserDomainService;
 
 

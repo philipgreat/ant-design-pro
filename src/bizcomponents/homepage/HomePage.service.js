@@ -83,6 +83,17 @@ const addSlide=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateSlide=(targetObjectId,parameters)=>{
+    const url = PREFIX+"homePageManager/updateSlideProperties/homePageId/slideId/title/imageUrl/linkUrl/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeSlideList=(targetObjectId,parameters)=>{
     const url = PREFIX+"homePageManager/removeSlideList/homePageId/slideIds/tokensExpr/";
@@ -100,6 +111,17 @@ const removeSlideList=(targetObjectId,parameters)=>{
 
 const addEncyclopediaItem=(targetObjectId,parameters)=>{
     const url = PREFIX+"homePageManager/addEncyclopediaItem/homePageId/title/publishTime/content/communityId/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+const updateEncyclopediaItem=(targetObjectId,parameters)=>{
+    const url = PREFIX+"homePageManager/updateEncyclopediaItemProperties/homePageId/encyclopediaItemId/title/publishTime/content/communityId/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
@@ -135,6 +157,17 @@ const addTaskFilter=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateTaskFilter=(targetObjectId,parameters)=>{
+    const url = PREFIX+"homePageManager/updateTaskFilterProperties/homePageId/taskFilterId/name/filterKey/linkUrl/taskPageId/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeTaskFilterList=(targetObjectId,parameters)=>{
     const url = PREFIX+"homePageManager/removeTaskFilterList/homePageId/taskFilterIds/tokensExpr/";
@@ -152,6 +185,17 @@ const removeTaskFilterList=(targetObjectId,parameters)=>{
 
 const addTask=(targetObjectId,parameters)=>{
     const url = PREFIX+"homePageManager/addTask/homePageId/title/selectedTask/content/creatorId/communityId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+const updateTask=(targetObjectId,parameters)=>{
+    const url = PREFIX+"homePageManager/updateTaskProperties/homePageId/taskId/title/selectedTask/content/creatorId/communityId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
@@ -187,6 +231,17 @@ const addThread=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateThread=(targetObjectId,parameters)=>{
+    const url = PREFIX+"homePageManager/updateThreadProperties/homePageId/threadId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/communityId/creatorId/groupPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeThreadList=(targetObjectId,parameters)=>{
     const url = PREFIX+"homePageManager/removeThreadList/homePageId/threadIds/tokensExpr/";
@@ -202,7 +257,23 @@ const removeThreadList=(targetObjectId,parameters)=>{
 
 
 
-const HomePageService={view,load,addSlide,addEncyclopediaItem,addTaskFilter,addTask,addThread,removeSlideList,removeEncyclopediaItemList,removeTaskFilterList,removeTaskList,removeThreadList};
+const HomePageService={view,
+load,
+addSlide,
+addEncyclopediaItem,
+addTaskFilter,
+addTask,
+addThread,
+updateSlide,
+updateEncyclopediaItem,
+updateTaskFilter,
+updateTask,
+updateThread,
+removeSlideList,
+removeEncyclopediaItemList,
+removeTaskFilterList,
+removeTaskList,
+removeThreadList};
 export default HomePageService;
 
 

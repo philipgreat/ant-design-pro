@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const ThreadLikeService={view,load};
+const ThreadLikeService={view,
+load};
 export default ThreadLikeService;
 
 

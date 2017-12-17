@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const TaskFilterService={view,load};
+const TaskFilterService={view,
+load};
 export default TaskFilterService;
 
 

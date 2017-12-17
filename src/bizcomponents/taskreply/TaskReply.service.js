@@ -83,6 +83,17 @@ const addTaskReplyLike=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateTaskReplyLike=(targetObjectId,parameters)=>{
+    const url = PREFIX+"taskReplyManager/updateTaskReplyLikeProperties/taskReplyId/taskReplyLikeId/replierId/tokensExpr/";
+    const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeTaskReplyLikeList=(targetObjectId,parameters)=>{
     const url = PREFIX+"taskReplyManager/removeTaskReplyLikeList/taskReplyId/taskReplyLikeIds/tokensExpr/";
@@ -98,7 +109,11 @@ const removeTaskReplyLikeList=(targetObjectId,parameters)=>{
 
 
 
-const TaskReplyService={view,load,addTaskReplyLike,removeTaskReplyLikeList};
+const TaskReplyService={view,
+load,
+addTaskReplyLike,
+updateTaskReplyLike,
+removeTaskReplyLikeList};
 export default TaskReplyService;
 
 

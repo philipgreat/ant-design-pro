@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const MessageFilterService={view,load};
+const MessageFilterService={view,
+load};
 export default MessageFilterService;
 
 
