@@ -136,15 +136,14 @@ class TaskReplyBizApp extends React.PureComponent {
   getTaskReplyLikeUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._taskReply.taskReplyLikeList,
-      count: state._taskReply.taskReplyLikeCount,
-      currentPage: state._taskReply.taskReplyLikeCurrentPageNumber,
-      searchFormParameters: state._taskReply.taskReplyLikeSearchFormParameters,
-      loading: state._taskReply.loading,
+      
+      selectedRows: state._taskReply.selectedRows,
       owner: {type:'_taskReply',id:state._taskReply.id}//this is for model namespace and 
     }))(TaskReplyLikeUpdateForm);
+    
+
   }
+
   
   
   

@@ -161,10 +161,14 @@ export default class SlideSearch extends PureComponent {
   handleUpdate = () => {
     
     const {dispatch,owner} = this.props;
+    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+   
     dispatch({
       type: owner.type+'/gotoUpdateForm',
-      payload: {id:owner.id,type:'slide'},
+      payload: {id:owner.id,type:'slide',selectedRows},
     });
+    
+    
   }
 
   handleAddInput = (e) => {

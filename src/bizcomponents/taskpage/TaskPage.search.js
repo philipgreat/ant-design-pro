@@ -161,10 +161,14 @@ export default class TaskPageSearch extends PureComponent {
   handleUpdate = () => {
     
     const {dispatch,owner} = this.props;
+    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+   
     dispatch({
       type: owner.type+'/gotoUpdateForm',
-      payload: {id:owner.id,type:'taskPage'},
+      payload: {id:owner.id,type:'taskPage',selectedRows},
     });
+    
+    
   }
 
   handleAddInput = (e) => {

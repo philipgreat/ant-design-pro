@@ -136,15 +136,14 @@ class ThreadCancelingBizApp extends React.PureComponent {
   getThreadUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._threadCanceling.threadList,
-      count: state._threadCanceling.threadCount,
-      currentPage: state._threadCanceling.threadCurrentPageNumber,
-      searchFormParameters: state._threadCanceling.threadSearchFormParameters,
-      loading: state._threadCanceling.loading,
+      
+      selectedRows: state._threadCanceling.selectedRows,
       owner: {type:'_threadCanceling',id:state._threadCanceling.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
+    
+
   }
+
   
   
   

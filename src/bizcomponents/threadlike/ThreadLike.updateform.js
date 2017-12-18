@@ -22,11 +22,7 @@ thread: '主贴',
 
 
 
-const testValues={
-        
-      
-        
-        };
+
 
 const imagesValues={
         
@@ -39,24 +35,37 @@ const imagesValues={
 
 class ThreadLikeUpdateForm extends PureComponent {
 
+  state = {
+    currentUpdateIndex: 0,
+  };
+
   handleChange = ({ fileList }) =>{
     console.log("filelist", fileList);
 
   }
    componentDidMount() {
         
-        
- 
-           
-        const { getFieldDecorator,setFieldsValue } = this.props.form;               
-        setFieldsValue(testValues);
+    const { form, dispatch, submitting,selectedRows } = this.props;
+    const { currentUpdateIndex } = this.state;
+
+    const { getFieldDecorator, setFieldsValue } = this.props.form;
+    if(!selectedRows){
+      return;
+    }
+    if(currentUpdateIndex<selectedRows.length){
+      setFieldsValue(selectedRows[currentUpdateIndex]);
+    }
+    
         
         
   }
 
   render() {
-    const { form, dispatch, submitting } = this.props;
+    const { form, dispatch, submitting,selectedRows } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
+    const { currentUpdateIndex } = this.state;
+    const { setFieldsValue } = this.props.form;
+    
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
          if (error){
@@ -75,17 +84,26 @@ class ThreadLikeUpdateForm extends PureComponent {
     
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
-         if (error){
+        if (error) {
           console.log("code go here", error);
           return;
         }
+
+        const { owner } = this.props;
+        const parameters = { ...values, ...imagesValues };
+
+        const { currentUpdateIndex } = this.state;
         
-        const {owner} = this.props;
-        const parameters={...values, ...imagesValues};
-      	dispatch({
-         type: owner.type+'/updateThreadLike',
-         payload: {id:owner.id,type:'threadLike', parameters: parameters, continueNext:true},
-      }); 
+       if(currentUpdateIndex>=selectedRows.length-1){
+          return;
+       }
+       this.setState({
+        currentUpdateIndex: currentUpdateIndex+1,
+       });
+        setFieldsValue(selectedRows[currentUpdateIndex+1]);
+
+        
+       
       });
     };
     
@@ -137,7 +155,8 @@ class ThreadLikeUpdateForm extends PureComponent {
     };
     return (
       <PageHeaderLayout
-        title="更新主贴点赞"
+        
+        title={"更新主贴点赞"+(currentUpdateIndex+1)+"/"+selectedRows.length}
         content="更新主贴点赞"
         wrapperClassName={styles.advancedForm}
       >

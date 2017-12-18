@@ -136,15 +136,14 @@ class TaskRewardBizApp extends React.PureComponent {
   getTaskUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._taskReward.taskList,
-      count: state._taskReward.taskCount,
-      currentPage: state._taskReward.taskCurrentPageNumber,
-      searchFormParameters: state._taskReward.taskSearchFormParameters,
-      loading: state._taskReward.loading,
+      
+      selectedRows: state._taskReward.selectedRows,
       owner: {type:'_taskReward',id:state._taskReward.id}//this is for model namespace and 
     }))(TaskUpdateForm);
+    
+
   }
+
   
   
   

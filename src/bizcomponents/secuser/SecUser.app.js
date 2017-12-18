@@ -145,15 +145,14 @@ class SecUserBizApp extends React.PureComponent {
   getUserAppUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._secUser.userAppList,
-      count: state._secUser.userAppCount,
-      currentPage: state._secUser.userAppCurrentPageNumber,
-      searchFormParameters: state._secUser.userAppSearchFormParameters,
-      loading: state._secUser.loading,
+      
+      selectedRows: state._secUser.selectedRows,
       owner: {type:'_secUser',id:state._secUser.id}//this is for model namespace and 
     }))(UserAppUpdateForm);
+    
+
   }
+
   
 
   getLoginHistorySearch() {
@@ -184,15 +183,14 @@ class SecUserBizApp extends React.PureComponent {
   getLoginHistoryUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._secUser.loginHistoryList,
-      count: state._secUser.loginHistoryCount,
-      currentPage: state._secUser.loginHistoryCurrentPageNumber,
-      searchFormParameters: state._secUser.loginHistorySearchFormParameters,
-      loading: state._secUser.loading,
+      
+      selectedRows: state._secUser.selectedRows,
       owner: {type:'_secUser',id:state._secUser.id}//this is for model namespace and 
     }))(LoginHistoryUpdateForm);
+    
+
   }
+
   
   
   

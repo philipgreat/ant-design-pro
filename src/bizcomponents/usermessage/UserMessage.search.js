@@ -161,10 +161,14 @@ export default class UserMessageSearch extends PureComponent {
   handleUpdate = () => {
     
     const {dispatch,owner} = this.props;
+    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+   
     dispatch({
       type: owner.type+'/gotoUpdateForm',
-      payload: {id:owner.id,type:'userMessage'},
+      payload: {id:owner.id,type:'userMessage',selectedRows},
     });
+    
+    
   }
 
   handleAddInput = (e) => {

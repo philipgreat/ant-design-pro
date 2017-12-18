@@ -136,15 +136,14 @@ class ThreadApprovalBizApp extends React.PureComponent {
   getThreadUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._threadApproval.threadList,
-      count: state._threadApproval.threadCount,
-      currentPage: state._threadApproval.threadCurrentPageNumber,
-      searchFormParameters: state._threadApproval.threadSearchFormParameters,
-      loading: state._threadApproval.loading,
+      
+      selectedRows: state._threadApproval.selectedRows,
       owner: {type:'_threadApproval',id:state._threadApproval.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
+    
+
   }
+
   
   
   

@@ -161,10 +161,14 @@ export default class HomePageSearch extends PureComponent {
   handleUpdate = () => {
     
     const {dispatch,owner} = this.props;
+    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+   
     dispatch({
       type: owner.type+'/gotoUpdateForm',
-      payload: {id:owner.id,type:'homePage'},
+      payload: {id:owner.id,type:'homePage',selectedRows},
     });
+    
+    
   }
 
   handleAddInput = (e) => {

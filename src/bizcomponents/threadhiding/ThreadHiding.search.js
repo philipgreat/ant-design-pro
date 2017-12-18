@@ -161,10 +161,14 @@ export default class ThreadHidingSearch extends PureComponent {
   handleUpdate = () => {
     
     const {dispatch,owner} = this.props;
+    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+   
     dispatch({
       type: owner.type+'/gotoUpdateForm',
-      payload: {id:owner.id,type:'threadHiding'},
+      payload: {id:owner.id,type:'threadHiding',selectedRows},
     });
+    
+    
   }
 
   handleAddInput = (e) => {

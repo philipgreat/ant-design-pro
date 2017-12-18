@@ -24,14 +24,7 @@ homePage: '主页',
 
 
 
-const testValues={
-        
-      			title:'听力损失儿童回归的优点',
-			publishTime:'2034-05-20',
-			content:'多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   ',
 
-        
-        };
 
 const imagesValues={
         
@@ -44,24 +37,37 @@ const imagesValues={
 
 class EncyclopediaItemUpdateForm extends PureComponent {
 
+  state = {
+    currentUpdateIndex: 0,
+  };
+
   handleChange = ({ fileList }) =>{
     console.log("filelist", fileList);
 
   }
    componentDidMount() {
         
-        
- 
-           
-        const { getFieldDecorator,setFieldsValue } = this.props.form;               
-        setFieldsValue(testValues);
+    const { form, dispatch, submitting,selectedRows } = this.props;
+    const { currentUpdateIndex } = this.state;
+
+    const { getFieldDecorator, setFieldsValue } = this.props.form;
+    if(!selectedRows){
+      return;
+    }
+    if(currentUpdateIndex<selectedRows.length){
+      setFieldsValue(selectedRows[currentUpdateIndex]);
+    }
+    
         
         
   }
 
   render() {
-    const { form, dispatch, submitting } = this.props;
+    const { form, dispatch, submitting,selectedRows } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
+    const { currentUpdateIndex } = this.state;
+    const { setFieldsValue } = this.props.form;
+    
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
          if (error){
@@ -80,17 +86,26 @@ class EncyclopediaItemUpdateForm extends PureComponent {
     
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
-         if (error){
+        if (error) {
           console.log("code go here", error);
           return;
         }
+
+        const { owner } = this.props;
+        const parameters = { ...values, ...imagesValues };
+
+        const { currentUpdateIndex } = this.state;
         
-        const {owner} = this.props;
-        const parameters={...values, ...imagesValues};
-      	dispatch({
-         type: owner.type+'/updateEncyclopediaItem',
-         payload: {id:owner.id,type:'encyclopediaItem', parameters: parameters, continueNext:true},
-      }); 
+       if(currentUpdateIndex>=selectedRows.length-1){
+          return;
+       }
+       this.setState({
+        currentUpdateIndex: currentUpdateIndex+1,
+       });
+        setFieldsValue(selectedRows[currentUpdateIndex+1]);
+
+        
+       
       });
     };
     
@@ -142,7 +157,8 @@ class EncyclopediaItemUpdateForm extends PureComponent {
     };
     return (
       <PageHeaderLayout
-        title="更新百科全书条目"
+        
+        title={"更新百科全书条目"+(currentUpdateIndex+1)+"/"+selectedRows.length}
         content="更新百科全书条目"
         wrapperClassName={styles.advancedForm}
       >

@@ -161,10 +161,14 @@ export default class UserDomainSearch extends PureComponent {
   handleUpdate = () => {
     
     const {dispatch,owner} = this.props;
+    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+   
     dispatch({
       type: owner.type+'/gotoUpdateForm',
-      payload: {id:owner.id,type:'userDomain'},
+      payload: {id:owner.id,type:'userDomain',selectedRows},
     });
+    
+    
   }
 
   handleAddInput = (e) => {

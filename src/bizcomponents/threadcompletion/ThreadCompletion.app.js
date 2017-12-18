@@ -136,15 +136,14 @@ class ThreadCompletionBizApp extends React.PureComponent {
   getThreadUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._threadCompletion.threadList,
-      count: state._threadCompletion.threadCount,
-      currentPage: state._threadCompletion.threadCurrentPageNumber,
-      searchFormParameters: state._threadCompletion.threadSearchFormParameters,
-      loading: state._threadCompletion.loading,
+      
+      selectedRows: state._threadCompletion.selectedRows,
       owner: {type:'_threadCompletion',id:state._threadCompletion.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
+    
+
   }
+
   
   
   

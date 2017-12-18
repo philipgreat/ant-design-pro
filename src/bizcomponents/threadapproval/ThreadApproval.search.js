@@ -161,10 +161,14 @@ export default class ThreadApprovalSearch extends PureComponent {
   handleUpdate = () => {
     
     const {dispatch,owner} = this.props;
+    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+   
     dispatch({
       type: owner.type+'/gotoUpdateForm',
-      payload: {id:owner.id,type:'threadApproval'},
+      payload: {id:owner.id,type:'threadApproval',selectedRows},
     });
+    
+    
   }
 
   handleAddInput = (e) => {

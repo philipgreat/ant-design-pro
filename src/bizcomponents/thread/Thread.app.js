@@ -154,15 +154,14 @@ class ThreadBizApp extends React.PureComponent {
   getThreadReplyUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._thread.threadReplyList,
-      count: state._thread.threadReplyCount,
-      currentPage: state._thread.threadReplyCurrentPageNumber,
-      searchFormParameters: state._thread.threadReplySearchFormParameters,
-      loading: state._thread.loading,
+      
+      selectedRows: state._thread.selectedRows,
       owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadReplyUpdateForm);
+    
+
   }
+
   
 
   getThreadRegistrationSearch() {
@@ -193,15 +192,14 @@ class ThreadBizApp extends React.PureComponent {
   getThreadRegistrationUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._thread.threadRegistrationList,
-      count: state._thread.threadRegistrationCount,
-      currentPage: state._thread.threadRegistrationCurrentPageNumber,
-      searchFormParameters: state._thread.threadRegistrationSearchFormParameters,
-      loading: state._thread.loading,
+      
+      selectedRows: state._thread.selectedRows,
       owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadRegistrationUpdateForm);
+    
+
   }
+
   
 
   getThreadLikeSearch() {
@@ -232,15 +230,14 @@ class ThreadBizApp extends React.PureComponent {
   getThreadLikeUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._thread.threadLikeList,
-      count: state._thread.threadLikeCount,
-      currentPage: state._thread.threadLikeCurrentPageNumber,
-      searchFormParameters: state._thread.threadLikeSearchFormParameters,
-      loading: state._thread.loading,
+      
+      selectedRows: state._thread.selectedRows,
       owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadLikeUpdateForm);
+    
+
   }
+
   
   
   

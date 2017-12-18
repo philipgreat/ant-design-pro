@@ -136,15 +136,14 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
   getTaskReplyUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._taskBestAnswerSetting.taskReplyList,
-      count: state._taskBestAnswerSetting.taskReplyCount,
-      currentPage: state._taskBestAnswerSetting.taskReplyCurrentPageNumber,
-      searchFormParameters: state._taskBestAnswerSetting.taskReplySearchFormParameters,
-      loading: state._taskBestAnswerSetting.loading,
+      
+      selectedRows: state._taskBestAnswerSetting.selectedRows,
       owner: {type:'_taskBestAnswerSetting',id:state._taskBestAnswerSetting.id}//this is for model namespace and 
     }))(TaskReplyUpdateForm);
+    
+
   }
+
   
   
   

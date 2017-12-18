@@ -172,15 +172,14 @@ class HomePageBizApp extends React.PureComponent {
   getSlideUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._homePage.slideList,
-      count: state._homePage.slideCount,
-      currentPage: state._homePage.slideCurrentPageNumber,
-      searchFormParameters: state._homePage.slideSearchFormParameters,
-      loading: state._homePage.loading,
+      
+      selectedRows: state._homePage.selectedRows,
       owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(SlideUpdateForm);
+    
+
   }
+
   
 
   getEncyclopediaItemSearch() {
@@ -211,15 +210,14 @@ class HomePageBizApp extends React.PureComponent {
   getEncyclopediaItemUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._homePage.encyclopediaItemList,
-      count: state._homePage.encyclopediaItemCount,
-      currentPage: state._homePage.encyclopediaItemCurrentPageNumber,
-      searchFormParameters: state._homePage.encyclopediaItemSearchFormParameters,
-      loading: state._homePage.loading,
+      
+      selectedRows: state._homePage.selectedRows,
       owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(EncyclopediaItemUpdateForm);
+    
+
   }
+
   
 
   getTaskFilterSearch() {
@@ -250,15 +248,14 @@ class HomePageBizApp extends React.PureComponent {
   getTaskFilterUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._homePage.taskFilterList,
-      count: state._homePage.taskFilterCount,
-      currentPage: state._homePage.taskFilterCurrentPageNumber,
-      searchFormParameters: state._homePage.taskFilterSearchFormParameters,
-      loading: state._homePage.loading,
+      
+      selectedRows: state._homePage.selectedRows,
       owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(TaskFilterUpdateForm);
+    
+
   }
+
   
 
   getTaskSearch() {
@@ -289,15 +286,14 @@ class HomePageBizApp extends React.PureComponent {
   getTaskUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._homePage.taskList,
-      count: state._homePage.taskCount,
-      currentPage: state._homePage.taskCurrentPageNumber,
-      searchFormParameters: state._homePage.taskSearchFormParameters,
-      loading: state._homePage.loading,
+      
+      selectedRows: state._homePage.selectedRows,
       owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(TaskUpdateForm);
+    
+
   }
+
   
 
   getThreadSearch() {
@@ -328,15 +324,14 @@ class HomePageBizApp extends React.PureComponent {
   getThreadUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._homePage.threadList,
-      count: state._homePage.threadCount,
-      currentPage: state._homePage.threadCurrentPageNumber,
-      searchFormParameters: state._homePage.threadSearchFormParameters,
-      loading: state._homePage.loading,
+      
+      selectedRows: state._homePage.selectedRows,
       owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
+    
+
   }
+
   
   
   

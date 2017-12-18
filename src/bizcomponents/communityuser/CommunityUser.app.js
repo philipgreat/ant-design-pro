@@ -289,15 +289,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getPatientInfoUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.patientInfoList,
-      count: state._communityUser.patientInfoCount,
-      currentPage: state._communityUser.patientInfoCurrentPageNumber,
-      searchFormParameters: state._communityUser.patientInfoSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(PatientInfoUpdateForm);
+    
+
   }
+
   
 
   getUserSkillSearch() {
@@ -328,15 +327,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getUserSkillUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.userSkillList,
-      count: state._communityUser.userSkillCount,
-      currentPage: state._communityUser.userSkillCurrentPageNumber,
-      searchFormParameters: state._communityUser.userSkillSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(UserSkillUpdateForm);
+    
+
   }
+
   
 
   getMessageFilterSearch() {
@@ -367,15 +365,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getMessageFilterUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.messageFilterList,
-      count: state._communityUser.messageFilterCount,
-      currentPage: state._communityUser.messageFilterCurrentPageNumber,
-      searchFormParameters: state._communityUser.messageFilterSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(MessageFilterUpdateForm);
+    
+
   }
+
   
 
   getUserMessageSearch() {
@@ -406,15 +403,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getUserMessageUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.userMessageList,
-      count: state._communityUser.userMessageCount,
-      currentPage: state._communityUser.userMessageCurrentPageNumber,
-      searchFormParameters: state._communityUser.userMessageSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(UserMessageUpdateForm);
+    
+
   }
+
   
 
   getTaskSearch() {
@@ -445,15 +441,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getTaskUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.taskList,
-      count: state._communityUser.taskCount,
-      currentPage: state._communityUser.taskCurrentPageNumber,
-      searchFormParameters: state._communityUser.taskSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskUpdateForm);
+    
+
   }
+
   
 
   getTaskAssigmentSearch() {
@@ -484,15 +479,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getTaskAssigmentUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.taskAssigmentList,
-      count: state._communityUser.taskAssigmentCount,
-      currentPage: state._communityUser.taskAssigmentCurrentPageNumber,
-      searchFormParameters: state._communityUser.taskAssigmentSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskAssigmentUpdateForm);
+    
+
   }
+
   
 
   getTaskLikeSearch() {
@@ -523,15 +517,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getTaskLikeUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.taskLikeList,
-      count: state._communityUser.taskLikeCount,
-      currentPage: state._communityUser.taskLikeCurrentPageNumber,
-      searchFormParameters: state._communityUser.taskLikeSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskLikeUpdateForm);
+    
+
   }
+
   
 
   getTaskReplySearch() {
@@ -562,15 +555,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getTaskReplyUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.taskReplyList,
-      count: state._communityUser.taskReplyCount,
-      currentPage: state._communityUser.taskReplyCurrentPageNumber,
-      searchFormParameters: state._communityUser.taskReplySearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskReplyUpdateForm);
+    
+
   }
+
   
 
   getTaskReplyLikeSearch() {
@@ -601,15 +593,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getTaskReplyLikeUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.taskReplyLikeList,
-      count: state._communityUser.taskReplyLikeCount,
-      currentPage: state._communityUser.taskReplyLikeCurrentPageNumber,
-      searchFormParameters: state._communityUser.taskReplyLikeSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskReplyLikeUpdateForm);
+    
+
   }
+
   
 
   getThreadSearch() {
@@ -640,15 +631,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getThreadUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.threadList,
-      count: state._communityUser.threadCount,
-      currentPage: state._communityUser.threadCurrentPageNumber,
-      searchFormParameters: state._communityUser.threadSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
+    
+
   }
+
   
 
   getThreadReplySearch() {
@@ -679,15 +669,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getThreadReplyUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.threadReplyList,
-      count: state._communityUser.threadReplyCount,
-      currentPage: state._communityUser.threadReplyCurrentPageNumber,
-      searchFormParameters: state._communityUser.threadReplySearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadReplyUpdateForm);
+    
+
   }
+
   
 
   getThreadRegistrationSearch() {
@@ -718,15 +707,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getThreadRegistrationUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.threadRegistrationList,
-      count: state._communityUser.threadRegistrationCount,
-      currentPage: state._communityUser.threadRegistrationCurrentPageNumber,
-      searchFormParameters: state._communityUser.threadRegistrationSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadRegistrationUpdateForm);
+    
+
   }
+
   
 
   getThreadLikeSearch() {
@@ -757,15 +745,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getThreadLikeUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.threadLikeList,
-      count: state._communityUser.threadLikeCount,
-      currentPage: state._communityUser.threadLikeCurrentPageNumber,
-      searchFormParameters: state._communityUser.threadLikeSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadLikeUpdateForm);
+    
+
   }
+
   
 
   getThreadReplyLikeSearch() {
@@ -796,15 +783,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getThreadReplyLikeUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.threadReplyLikeList,
-      count: state._communityUser.threadReplyLikeCount,
-      currentPage: state._communityUser.threadReplyLikeCurrentPageNumber,
-      searchFormParameters: state._communityUser.threadReplyLikeSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadReplyLikeUpdateForm);
+    
+
   }
+
   
 
   getFanSearch() {
@@ -835,15 +821,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getFanUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.fanList,
-      count: state._communityUser.fanCount,
-      currentPage: state._communityUser.fanCurrentPageNumber,
-      searchFormParameters: state._communityUser.fanSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(FanUpdateForm);
+    
+
   }
+
   
 
   getFollowSearch() {
@@ -874,15 +859,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getFollowUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.followList,
-      count: state._communityUser.followCount,
-      currentPage: state._communityUser.followCurrentPageNumber,
-      searchFormParameters: state._communityUser.followSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(FollowUpdateForm);
+    
+
   }
+
   
 
   getBonusPointSearch() {
@@ -913,15 +897,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getBonusPointUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.bonusPointList,
-      count: state._communityUser.bonusPointCount,
-      currentPage: state._communityUser.bonusPointCurrentPageNumber,
-      searchFormParameters: state._communityUser.bonusPointSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(BonusPointUpdateForm);
+    
+
   }
+
   
 
   getExperiencePointSearch() {
@@ -952,15 +935,14 @@ class CommunityUserBizApp extends React.PureComponent {
   getExperiencePointUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._communityUser.experiencePointList,
-      count: state._communityUser.experiencePointCount,
-      currentPage: state._communityUser.experiencePointCurrentPageNumber,
-      searchFormParameters: state._communityUser.experiencePointSearchFormParameters,
-      loading: state._communityUser.loading,
+      
+      selectedRows: state._communityUser.selectedRows,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ExperiencePointUpdateForm);
+    
+
   }
+
   
   
   

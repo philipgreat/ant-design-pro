@@ -22,12 +22,7 @@ comment: '评论',
 
 
 
-const testValues={
-        
-      			comment:'收到求助',
 
-        
-        };
 
 const imagesValues={
         
@@ -40,24 +35,37 @@ const imagesValues={
 
 class ThreadApprovalUpdateForm extends PureComponent {
 
+  state = {
+    currentUpdateIndex: 0,
+  };
+
   handleChange = ({ fileList }) =>{
     console.log("filelist", fileList);
 
   }
    componentDidMount() {
         
-        
- 
-           
-        const { getFieldDecorator,setFieldsValue } = this.props.form;               
-        setFieldsValue(testValues);
+    const { form, dispatch, submitting,selectedRows } = this.props;
+    const { currentUpdateIndex } = this.state;
+
+    const { getFieldDecorator, setFieldsValue } = this.props.form;
+    if(!selectedRows){
+      return;
+    }
+    if(currentUpdateIndex<selectedRows.length){
+      setFieldsValue(selectedRows[currentUpdateIndex]);
+    }
+    
         
         
   }
 
   render() {
-    const { form, dispatch, submitting } = this.props;
+    const { form, dispatch, submitting,selectedRows } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
+    const { currentUpdateIndex } = this.state;
+    const { setFieldsValue } = this.props.form;
+    
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
          if (error){
@@ -76,17 +84,26 @@ class ThreadApprovalUpdateForm extends PureComponent {
     
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
-         if (error){
+        if (error) {
           console.log("code go here", error);
           return;
         }
+
+        const { owner } = this.props;
+        const parameters = { ...values, ...imagesValues };
+
+        const { currentUpdateIndex } = this.state;
         
-        const {owner} = this.props;
-        const parameters={...values, ...imagesValues};
-      	dispatch({
-         type: owner.type+'/updateThreadApproval',
-         payload: {id:owner.id,type:'threadApproval', parameters: parameters, continueNext:true},
-      }); 
+       if(currentUpdateIndex>=selectedRows.length-1){
+          return;
+       }
+       this.setState({
+        currentUpdateIndex: currentUpdateIndex+1,
+       });
+        setFieldsValue(selectedRows[currentUpdateIndex+1]);
+
+        
+       
       });
     };
     
@@ -138,7 +155,8 @@ class ThreadApprovalUpdateForm extends PureComponent {
     };
     return (
       <PageHeaderLayout
-        title="更新线审批"
+        
+        title={"更新线审批"+(currentUpdateIndex+1)+"/"+selectedRows.length}
         content="更新线审批"
         wrapperClassName={styles.advancedForm}
       >

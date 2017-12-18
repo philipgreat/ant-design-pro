@@ -161,10 +161,14 @@ export default class ExperiencePointSearch extends PureComponent {
   handleUpdate = () => {
     
     const {dispatch,owner} = this.props;
+    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+   
     dispatch({
       type: owner.type+'/gotoUpdateForm',
-      payload: {id:owner.id,type:'experiencePoint'},
+      payload: {id:owner.id,type:'experiencePoint',selectedRows},
     });
+    
+    
   }
 
   handleAddInput = (e) => {

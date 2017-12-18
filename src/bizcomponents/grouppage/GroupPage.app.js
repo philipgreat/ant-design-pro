@@ -145,15 +145,14 @@ class GroupPageBizApp extends React.PureComponent {
   getGroupFilterUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._groupPage.groupFilterList,
-      count: state._groupPage.groupFilterCount,
-      currentPage: state._groupPage.groupFilterCurrentPageNumber,
-      searchFormParameters: state._groupPage.groupFilterSearchFormParameters,
-      loading: state._groupPage.loading,
+      
+      selectedRows: state._groupPage.selectedRows,
       owner: {type:'_groupPage',id:state._groupPage.id}//this is for model namespace and 
     }))(GroupFilterUpdateForm);
+    
+
   }
+
   
 
   getThreadSearch() {
@@ -184,15 +183,14 @@ class GroupPageBizApp extends React.PureComponent {
   getThreadUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._groupPage.threadList,
-      count: state._groupPage.threadCount,
-      currentPage: state._groupPage.threadCurrentPageNumber,
-      searchFormParameters: state._groupPage.threadSearchFormParameters,
-      loading: state._groupPage.loading,
+      
+      selectedRows: state._groupPage.selectedRows,
       owner: {type:'_groupPage',id:state._groupPage.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
+    
+
   }
+
   
   
   

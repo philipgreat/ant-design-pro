@@ -31,22 +31,7 @@ app: '应用程序',
 
 
 
-const testValues={
-        
-      			displayName:'控制访问列表1',
-			objectType:'FranchiseeStoreCountryCenter',
-			list1:'catalogList',
-			list2:'catalogList',
-			list3:'catalogList',
-			list4:'catalogList',
-			list5:'catalogList',
-			list6:'catalogList',
-			list7:'catalogList',
-			list8:'catalogList',
-			list9:'catalogList',
 
-        
-        };
 
 const imagesValues={
         
@@ -59,24 +44,37 @@ const imagesValues={
 
 class ObjectAccessUpdateForm extends PureComponent {
 
+  state = {
+    currentUpdateIndex: 0,
+  };
+
   handleChange = ({ fileList }) =>{
     console.log("filelist", fileList);
 
   }
    componentDidMount() {
         
-        
- 
-           
-        const { getFieldDecorator,setFieldsValue } = this.props.form;               
-        setFieldsValue(testValues);
+    const { form, dispatch, submitting,selectedRows } = this.props;
+    const { currentUpdateIndex } = this.state;
+
+    const { getFieldDecorator, setFieldsValue } = this.props.form;
+    if(!selectedRows){
+      return;
+    }
+    if(currentUpdateIndex<selectedRows.length){
+      setFieldsValue(selectedRows[currentUpdateIndex]);
+    }
+    
         
         
   }
 
   render() {
-    const { form, dispatch, submitting } = this.props;
+    const { form, dispatch, submitting,selectedRows } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
+    const { currentUpdateIndex } = this.state;
+    const { setFieldsValue } = this.props.form;
+    
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
          if (error){
@@ -95,17 +93,26 @@ class ObjectAccessUpdateForm extends PureComponent {
     
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
-         if (error){
+        if (error) {
           console.log("code go here", error);
           return;
         }
+
+        const { owner } = this.props;
+        const parameters = { ...values, ...imagesValues };
+
+        const { currentUpdateIndex } = this.state;
         
-        const {owner} = this.props;
-        const parameters={...values, ...imagesValues};
-      	dispatch({
-         type: owner.type+'/updateObjectAccess',
-         payload: {id:owner.id,type:'objectAccess', parameters: parameters, continueNext:true},
-      }); 
+       if(currentUpdateIndex>=selectedRows.length-1){
+          return;
+       }
+       this.setState({
+        currentUpdateIndex: currentUpdateIndex+1,
+       });
+        setFieldsValue(selectedRows[currentUpdateIndex+1]);
+
+        
+       
       });
     };
     
@@ -157,7 +164,8 @@ class ObjectAccessUpdateForm extends PureComponent {
     };
     return (
       <PageHeaderLayout
-        title="更新对象访问"
+        
+        title={"更新对象访问"+(currentUpdateIndex+1)+"/"+selectedRows.length}
         content="更新对象访问"
         wrapperClassName={styles.advancedForm}
       >

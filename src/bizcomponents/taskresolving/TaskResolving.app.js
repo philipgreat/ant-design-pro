@@ -136,15 +136,14 @@ class TaskResolvingBizApp extends React.PureComponent {
   getTaskUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._taskResolving.taskList,
-      count: state._taskResolving.taskCount,
-      currentPage: state._taskResolving.taskCurrentPageNumber,
-      searchFormParameters: state._taskResolving.taskSearchFormParameters,
-      loading: state._taskResolving.loading,
+      
+      selectedRows: state._taskResolving.selectedRows,
       owner: {type:'_taskResolving',id:state._taskResolving.id}//this is for model namespace and 
     }))(TaskUpdateForm);
+    
+
   }
+
   
   
   

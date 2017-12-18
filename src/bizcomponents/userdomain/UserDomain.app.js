@@ -136,15 +136,14 @@ class UserDomainBizApp extends React.PureComponent {
   getSecUserUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._userDomain.secUserList,
-      count: state._userDomain.secUserCount,
-      currentPage: state._userDomain.secUserCurrentPageNumber,
-      searchFormParameters: state._userDomain.secUserSearchFormParameters,
-      loading: state._userDomain.loading,
+      
+      selectedRows: state._userDomain.selectedRows,
       owner: {type:'_userDomain',id:state._userDomain.id}//this is for model namespace and 
     }))(SecUserUpdateForm);
+    
+
   }
+
   
   
   

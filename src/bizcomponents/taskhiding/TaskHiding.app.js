@@ -136,15 +136,14 @@ class TaskHidingBizApp extends React.PureComponent {
   getTaskUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._taskHiding.taskList,
-      count: state._taskHiding.taskCount,
-      currentPage: state._taskHiding.taskCurrentPageNumber,
-      searchFormParameters: state._taskHiding.taskSearchFormParameters,
-      loading: state._taskHiding.loading,
+      
+      selectedRows: state._taskHiding.selectedRows,
       owner: {type:'_taskHiding',id:state._taskHiding.id}//this is for model namespace and 
     }))(TaskUpdateForm);
+    
+
   }
+
   
   
   

@@ -199,11 +199,14 @@ class CommunityBizApp extends React.PureComponent {
   getInvitationCodeUpdateForm() {
  
     return connect(state => ({
-
+      
       selectedRows: state._community.selectedRows,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(InvitationCodeUpdateForm);
+    
+
   }
+
   
 
   getHomePageSearch() {
@@ -234,15 +237,14 @@ class CommunityBizApp extends React.PureComponent {
   getHomePageUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._community.homePageList,
-      count: state._community.homePageCount,
-      currentPage: state._community.homePageCurrentPageNumber,
-      searchFormParameters: state._community.homePageSearchFormParameters,
-      loading: state._community.loading,
+      
+      selectedRows: state._community.selectedRows,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(HomePageUpdateForm);
+    
+
   }
+
   
 
   getEncyclopediaItemSearch() {
@@ -273,15 +275,14 @@ class CommunityBizApp extends React.PureComponent {
   getEncyclopediaItemUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._community.encyclopediaItemList,
-      count: state._community.encyclopediaItemCount,
-      currentPage: state._community.encyclopediaItemCurrentPageNumber,
-      searchFormParameters: state._community.encyclopediaItemSearchFormParameters,
-      loading: state._community.loading,
+      
+      selectedRows: state._community.selectedRows,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(EncyclopediaItemUpdateForm);
+    
+
   }
+
   
 
   getTaskPageSearch() {
@@ -312,15 +313,14 @@ class CommunityBizApp extends React.PureComponent {
   getTaskPageUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._community.taskPageList,
-      count: state._community.taskPageCount,
-      currentPage: state._community.taskPageCurrentPageNumber,
-      searchFormParameters: state._community.taskPageSearchFormParameters,
-      loading: state._community.loading,
+      
+      selectedRows: state._community.selectedRows,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(TaskPageUpdateForm);
+    
+
   }
+
   
 
   getCommunityUserSearch() {
@@ -351,15 +351,14 @@ class CommunityBizApp extends React.PureComponent {
   getCommunityUserUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._community.communityUserList,
-      count: state._community.communityUserCount,
-      currentPage: state._community.communityUserCurrentPageNumber,
-      searchFormParameters: state._community.communityUserSearchFormParameters,
-      loading: state._community.loading,
+      
+      selectedRows: state._community.selectedRows,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(CommunityUserUpdateForm);
+    
+
   }
+
   
 
   getTaskSearch() {
@@ -390,15 +389,14 @@ class CommunityBizApp extends React.PureComponent {
   getTaskUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._community.taskList,
-      count: state._community.taskCount,
-      currentPage: state._community.taskCurrentPageNumber,
-      searchFormParameters: state._community.taskSearchFormParameters,
-      loading: state._community.loading,
+      
+      selectedRows: state._community.selectedRows,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(TaskUpdateForm);
+    
+
   }
+
   
 
   getGroupPageSearch() {
@@ -429,15 +427,14 @@ class CommunityBizApp extends React.PureComponent {
   getGroupPageUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._community.groupPageList,
-      count: state._community.groupPageCount,
-      currentPage: state._community.groupPageCurrentPageNumber,
-      searchFormParameters: state._community.groupPageSearchFormParameters,
-      loading: state._community.loading,
+      
+      selectedRows: state._community.selectedRows,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(GroupPageUpdateForm);
+    
+
   }
+
   
 
   getThreadSearch() {
@@ -468,15 +465,14 @@ class CommunityBizApp extends React.PureComponent {
   getThreadUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._community.threadList,
-      count: state._community.threadCount,
-      currentPage: state._community.threadCurrentPageNumber,
-      searchFormParameters: state._community.threadSearchFormParameters,
-      loading: state._community.loading,
+      
+      selectedRows: state._community.selectedRows,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
+    
+
   }
+
   
   
   

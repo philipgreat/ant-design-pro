@@ -136,15 +136,14 @@ class ThreadReplyBizApp extends React.PureComponent {
   getThreadReplyLikeUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._threadReply.threadReplyLikeList,
-      count: state._threadReply.threadReplyLikeCount,
-      currentPage: state._threadReply.threadReplyLikeCurrentPageNumber,
-      searchFormParameters: state._threadReply.threadReplyLikeSearchFormParameters,
-      loading: state._threadReply.loading,
+      
+      selectedRows: state._threadReply.selectedRows,
       owner: {type:'_threadReply',id:state._threadReply.id}//this is for model namespace and 
     }))(ThreadReplyLikeUpdateForm);
+    
+
   }
+
   
   
   

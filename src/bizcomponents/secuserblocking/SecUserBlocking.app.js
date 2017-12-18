@@ -136,15 +136,14 @@ class SecUserBlockingBizApp extends React.PureComponent {
   getSecUserUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._secUserBlocking.secUserList,
-      count: state._secUserBlocking.secUserCount,
-      currentPage: state._secUserBlocking.secUserCurrentPageNumber,
-      searchFormParameters: state._secUserBlocking.secUserSearchFormParameters,
-      loading: state._secUserBlocking.loading,
+      
+      selectedRows: state._secUserBlocking.selectedRows,
       owner: {type:'_secUserBlocking',id:state._secUserBlocking.id}//this is for model namespace and 
     }))(SecUserUpdateForm);
+    
+
   }
+
   
   
   

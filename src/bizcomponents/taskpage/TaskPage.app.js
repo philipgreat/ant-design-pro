@@ -145,15 +145,14 @@ class TaskPageBizApp extends React.PureComponent {
   getTaskFilterUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._taskPage.taskFilterList,
-      count: state._taskPage.taskFilterCount,
-      currentPage: state._taskPage.taskFilterCurrentPageNumber,
-      searchFormParameters: state._taskPage.taskFilterSearchFormParameters,
-      loading: state._taskPage.loading,
+      
+      selectedRows: state._taskPage.selectedRows,
       owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
     }))(TaskFilterUpdateForm);
+    
+
   }
+
   
 
   getTaskSearch() {
@@ -184,15 +183,14 @@ class TaskPageBizApp extends React.PureComponent {
   getTaskUpdateForm() {
  
     return connect(state => ({
-      rule: state.rule,
-      data: state._taskPage.taskList,
-      count: state._taskPage.taskCount,
-      currentPage: state._taskPage.taskCurrentPageNumber,
-      searchFormParameters: state._taskPage.taskSearchFormParameters,
-      loading: state._taskPage.loading,
+      
+      selectedRows: state._taskPage.selectedRows,
       owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
     }))(TaskUpdateForm);
+    
+
   }
+
   
   
   
