@@ -29,7 +29,9 @@ customerIdentifyCardBackImage: '客户身份证背面照片',
 
 const imagesValues={
         
-      
+      			customerIdentifyCardFrontImage:'身份证正面.jpg',
+			customerIdentifyCardBackImage:'身份证反面.jpg',
+
         
         };
 
@@ -236,28 +238,6 @@ class CustomerInfoUpdateForm extends PureComponent {
               </Col>			
 			
 			
-             <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.customerIdentifyCardFrontImage}>
-                  {getFieldDecorator('customerIdentifyCardFrontImage', {
-                    rules: [{ required: true, message: '请输入客户身份证正面照片' }],
-                  })(
-                    <Input placeholder="请输入请输入客户身份证正面照片string" />
-                  )}
-                </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.customerIdentifyCardBackImage}>
-                  {getFieldDecorator('customerIdentifyCardBackImage', {
-                    rules: [{ required: true, message: '请输入客户身份证背面照片' }],
-                  })(
-                    <Input placeholder="请输入请输入客户身份证背面照片string" />
-                  )}
-                </Form.Item>
-              </Col>			
-			
-			
             
           </Row>    
           </Form>  
@@ -273,6 +253,28 @@ class CustomerInfoUpdateForm extends PureComponent {
             
         
          
+        
+        <Card title="附件" className={styles.card} bordered={false}>
+           <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+            
+            
+             <Col lg={6} md={12} sm={24}>
+                <PictureEdit buttonTitle={"客户身份证正面照片"} handleChange={this.handleChange}/> 
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <PictureEdit buttonTitle={"客户身份证背面照片"} handleChange={this.handleChange}/> 
+              </Col>			
+			
+			
+            
+          </Row>    
+          </Form>  
+         
+        </Card>
+       
         
         
         

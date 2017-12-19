@@ -12,8 +12,8 @@ const columns = [
 {title:'客户名称',debugtype:'string',dataIndex: 'customerName',width:'7'},
 {title:'客户的电话号码',debugtype:'string',dataIndex: 'customerPhoneNumber',width:'15'},
 {title:'客户身份证号',debugtype:'string',dataIndex: 'customerIdentifyCardNumber',width:'22'},
-{title:'客户身份证正面照片',debugtype:'string',dataIndex: 'customerIdentifyCardFrontImage',width:'13'},
-{title:'客户身份证背面照片',debugtype:'string',dataIndex: 'customerIdentifyCardBackImage',width:'13'},
+{title:'客户身份证正面照片',debugtype:'string_image',dataIndex: 'customerIdentifyCardFrontImage',width:'13'},
+{title:'客户身份证背面照片',debugtype:'string_image',dataIndex: 'customerIdentifyCardBackImage',width:'13'},
 
       
     ];
