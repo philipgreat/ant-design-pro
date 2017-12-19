@@ -162,15 +162,16 @@ export default class InvitationCodeSearch extends PureComponent {
     
     const {dispatch,owner} = this.props;
     const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
-   
+    const currentUpdateIndex = 0;
     dispatch({
       type: owner.type+'/gotoUpdateForm',
-      payload: {id:owner.id,type:'invitationCode',selectedRows,currentUpdateIndex:0},
+      payload: {id:owner.id,type:'invitationCode',selectedRows,currentUpdateIndex},
     });
     
     
   }
-
+  
+ 
   handleAddInput = (e) => {
     this.setState({
       addInputValue: e.target.value,

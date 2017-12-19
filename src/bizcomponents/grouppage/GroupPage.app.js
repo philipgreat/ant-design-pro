@@ -147,6 +147,7 @@ class GroupPageBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._groupPage.selectedRows,
+      currentUpdateIndex: state._groupPage.currentUpdateIndex,
       owner: {type:'_groupPage',id:state._groupPage.id}//this is for model namespace and 
     }))(GroupFilterUpdateForm);
     
@@ -185,6 +186,7 @@ class GroupPageBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._groupPage.selectedRows,
+      currentUpdateIndex: state._groupPage.currentUpdateIndex,
       owner: {type:'_groupPage',id:state._groupPage.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
     

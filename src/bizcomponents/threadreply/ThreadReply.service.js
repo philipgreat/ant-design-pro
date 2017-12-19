@@ -84,8 +84,9 @@ const addThreadReplyLike=(targetObjectId,parameters)=>{
     });
 }
 const updateThreadReplyLike=(targetObjectId,parameters)=>{
-    const url = PREFIX+"threadReplyManager/updateThreadReplyLikeProperties/threadReplyId/threadReplyLikeId/replierId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"threadReplyManager/updateThreadReplyLikeProperties/threadReplyId/id/tokensExpr/";
+    const threadReplyId = targetObjectId;
+    const requestParameters={...parameters, threadReplyId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({

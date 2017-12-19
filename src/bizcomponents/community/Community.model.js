@@ -107,8 +107,7 @@ export default {
     	yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
      }, 
      *gotoUpdateForm({ payload }, { call, put }) {
-		const {id,type,selectedRows,currentUpdateIndex}=payload;
-		console.log("update form payload", payload);
+        const {id,type,selectedRows,currentUpdateIndex}=payload;
         const state={id,type,selectedRows,currentUpdateIndex};
         const location = {pathname:'/community/'+id+'/list/'+type+'UpdateForm',state};
 		yield put(routerRedux.push(location));
@@ -147,29 +146,28 @@ export default {
 	},
 	*updateInvitationCode({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
-		console.log("get form parameters", payload);
+		
+		console.log("get form parameters", parameters);
 
 		const data = yield call(CommunityService.updateInvitationCode, id, parameters);
 		if(hasError(data)){
 			handleServerError(data);
 			return;
 		}
+		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
 
-		
-			//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
+		yield put({ type: "updateState", payload: newPlayload });
 		notification.success({
 			message: "执行成功",
 			description:"执行成功",
 		});
-		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
-
-		yield put({ type: "updateState", payload: newPlayload });
-		
 		
 		if (continueNext) {
 			return;
 		}
-		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+		
+		
+		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
 	},		
 	*removeInvitationCodeList({ payload }, { call, put }) {
@@ -224,7 +222,8 @@ export default {
 		yield put(routerRedux.push(location));
 	},
 	*updateHomePage({ payload }, { call, put }) {
-		const { id, type, parameters, continueNext } = payload;
+		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+		
 		console.log("get form parameters", parameters);
 
 		const data = yield call(CommunityService.updateHomePage, id, parameters);
@@ -232,21 +231,20 @@ export default {
 			handleServerError(data);
 			return;
 		}
-		const newPlayload = { ...payload, ...data };
+		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
 
 		yield put({ type: "updateState", payload: newPlayload });
-		
-			//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 		notification.success({
 			message: "执行成功",
 			description:"执行成功",
 		});
 		
-		
 		if (continueNext) {
 			return;
 		}
-		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+		
+		
+		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
 	},		
 	*removeHomePageList({ payload }, { call, put }) {
@@ -301,7 +299,8 @@ export default {
 		yield put(routerRedux.push(location));
 	},
 	*updateEncyclopediaItem({ payload }, { call, put }) {
-		const { id, type, parameters, continueNext } = payload;
+		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+		
 		console.log("get form parameters", parameters);
 
 		const data = yield call(CommunityService.updateEncyclopediaItem, id, parameters);
@@ -309,21 +308,20 @@ export default {
 			handleServerError(data);
 			return;
 		}
-		const newPlayload = { ...payload, ...data };
+		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
 
 		yield put({ type: "updateState", payload: newPlayload });
-		
-			//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 		notification.success({
 			message: "执行成功",
 			description:"执行成功",
 		});
 		
-		
 		if (continueNext) {
 			return;
 		}
-		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+		
+		
+		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
 	},		
 	*removeEncyclopediaItemList({ payload }, { call, put }) {
@@ -378,7 +376,8 @@ export default {
 		yield put(routerRedux.push(location));
 	},
 	*updateTaskPage({ payload }, { call, put }) {
-		const { id, type, parameters, continueNext } = payload;
+		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+		
 		console.log("get form parameters", parameters);
 
 		const data = yield call(CommunityService.updateTaskPage, id, parameters);
@@ -386,21 +385,20 @@ export default {
 			handleServerError(data);
 			return;
 		}
-		const newPlayload = { ...payload, ...data };
+		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
 
 		yield put({ type: "updateState", payload: newPlayload });
-		
-			//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 		notification.success({
 			message: "执行成功",
 			description:"执行成功",
 		});
 		
-		
 		if (continueNext) {
 			return;
 		}
-		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+		
+		
+		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
 	},		
 	*removeTaskPageList({ payload }, { call, put }) {
@@ -455,7 +453,8 @@ export default {
 		yield put(routerRedux.push(location));
 	},
 	*updateCommunityUser({ payload }, { call, put }) {
-		const { id, type, parameters, continueNext } = payload;
+		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+		
 		console.log("get form parameters", parameters);
 
 		const data = yield call(CommunityService.updateCommunityUser, id, parameters);
@@ -463,21 +462,20 @@ export default {
 			handleServerError(data);
 			return;
 		}
-		const newPlayload = { ...payload, ...data };
+		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
 
 		yield put({ type: "updateState", payload: newPlayload });
-		
-			//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 		notification.success({
 			message: "执行成功",
 			description:"执行成功",
 		});
 		
-		
 		if (continueNext) {
 			return;
 		}
-		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+		
+		
+		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
 	},		
 	*removeCommunityUserList({ payload }, { call, put }) {
@@ -532,7 +530,8 @@ export default {
 		yield put(routerRedux.push(location));
 	},
 	*updateTask({ payload }, { call, put }) {
-		const { id, type, parameters, continueNext } = payload;
+		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+		
 		console.log("get form parameters", parameters);
 
 		const data = yield call(CommunityService.updateTask, id, parameters);
@@ -540,21 +539,20 @@ export default {
 			handleServerError(data);
 			return;
 		}
-		const newPlayload = { ...payload, ...data };
+		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
 
 		yield put({ type: "updateState", payload: newPlayload });
-		
-			//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 		notification.success({
 			message: "执行成功",
 			description:"执行成功",
 		});
 		
-		
 		if (continueNext) {
 			return;
 		}
-		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+		
+		
+		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
 	},		
 	*removeTaskList({ payload }, { call, put }) {
@@ -609,7 +607,8 @@ export default {
 		yield put(routerRedux.push(location));
 	},
 	*updateGroupPage({ payload }, { call, put }) {
-		const { id, type, parameters, continueNext } = payload;
+		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+		
 		console.log("get form parameters", parameters);
 
 		const data = yield call(CommunityService.updateGroupPage, id, parameters);
@@ -617,21 +616,20 @@ export default {
 			handleServerError(data);
 			return;
 		}
-		const newPlayload = { ...payload, ...data };
+		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
 
 		yield put({ type: "updateState", payload: newPlayload });
-		
-			//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 		notification.success({
 			message: "执行成功",
 			description:"执行成功",
 		});
 		
-		
 		if (continueNext) {
 			return;
 		}
-		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+		
+		
+		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
 	},		
 	*removeGroupPageList({ payload }, { call, put }) {
@@ -686,7 +684,8 @@ export default {
 		yield put(routerRedux.push(location));
 	},
 	*updateThread({ payload }, { call, put }) {
-		const { id, type, parameters, continueNext } = payload;
+		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+		
 		console.log("get form parameters", parameters);
 
 		const data = yield call(CommunityService.updateThread, id, parameters);
@@ -694,21 +693,20 @@ export default {
 			handleServerError(data);
 			return;
 		}
-		const newPlayload = { ...payload, ...data };
+		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
 
 		yield put({ type: "updateState", payload: newPlayload });
-		
-			//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 		notification.success({
 			message: "执行成功",
 			description:"执行成功",
 		});
 		
-		
 		if (continueNext) {
 			return;
 		}
-		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:data};
+		
+		
+		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
 	},		
 	*removeThreadList({ payload }, { call, put }) {

@@ -138,6 +138,7 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._taskBestAnswerSetting.selectedRows,
+      currentUpdateIndex: state._taskBestAnswerSetting.currentUpdateIndex,
       owner: {type:'_taskBestAnswerSetting',id:state._taskBestAnswerSetting.id}//this is for model namespace and 
     }))(TaskReplyUpdateForm);
     

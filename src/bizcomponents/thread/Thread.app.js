@@ -156,6 +156,7 @@ class ThreadBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._thread.selectedRows,
+      currentUpdateIndex: state._thread.currentUpdateIndex,
       owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadReplyUpdateForm);
     
@@ -194,6 +195,7 @@ class ThreadBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._thread.selectedRows,
+      currentUpdateIndex: state._thread.currentUpdateIndex,
       owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadRegistrationUpdateForm);
     
@@ -232,6 +234,7 @@ class ThreadBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._thread.selectedRows,
+      currentUpdateIndex: state._thread.currentUpdateIndex,
       owner: {type:'_thread',id:state._thread.id}//this is for model namespace and 
     }))(ThreadLikeUpdateForm);
     

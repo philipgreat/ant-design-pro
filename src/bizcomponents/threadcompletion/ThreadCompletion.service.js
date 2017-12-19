@@ -84,8 +84,9 @@ const addThread=(targetObjectId,parameters)=>{
     });
 }
 const updateThread=(targetObjectId,parameters)=>{
-    const url = PREFIX+"threadCompletionManager/updateThreadProperties/completionId/threadId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/communityId/creatorId/homePageId/groupPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"threadCompletionManager/updateThreadProperties/threadCompletionId/id/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
+    const threadCompletionId = targetObjectId;
+    const requestParameters={...parameters, threadCompletionId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({

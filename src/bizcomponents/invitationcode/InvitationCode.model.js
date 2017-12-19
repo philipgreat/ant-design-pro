@@ -107,8 +107,8 @@ export default {
     	yield put(routerRedux.push('/invitationCode/'+id+'/list/'+type+'CreateForm'));
      }, 
      *gotoUpdateForm({ payload }, { call, put }) {
-        const {id,type,selectedRows}=payload;
-        const state={id,type,selectedRows};
+        const {id,type,selectedRows,currentUpdateIndex}=payload;
+        const state={id,type,selectedRows,currentUpdateIndex};
         const location = {pathname:'/community/'+id+'/list/'+type+'UpdateForm',state};
 		yield put(routerRedux.push(location));
 		

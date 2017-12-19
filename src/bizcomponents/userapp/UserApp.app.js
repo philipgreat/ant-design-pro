@@ -138,6 +138,7 @@ class UserAppBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._userApp.selectedRows,
+      currentUpdateIndex: state._userApp.currentUpdateIndex,
       owner: {type:'_userApp',id:state._userApp.id}//this is for model namespace and 
     }))(ObjectAccessUpdateForm);
     

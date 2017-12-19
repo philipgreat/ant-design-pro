@@ -35,9 +35,7 @@ const imagesValues={
 
 class TaskPageUpdateForm extends PureComponent {
 
-  state = {
-    currentUpdateIndex: 0,
-  };
+
 
   handleChange = ({ fileList }) =>{
     console.log("filelist", fileList);
@@ -45,8 +43,8 @@ class TaskPageUpdateForm extends PureComponent {
   }
    componentDidMount() {
         
-    const { form, dispatch, submitting,selectedRows } = this.props;
-    const { currentUpdateIndex } = this.state;
+    const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
+ 
 
     const { getFieldDecorator, setFieldsValue } = this.props.form;
     if(!selectedRows){
@@ -61,25 +59,35 @@ class TaskPageUpdateForm extends PureComponent {
   }
 
   render() {
-    const { form, dispatch, submitting,selectedRows } = this.props;
+    const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const { currentUpdateIndex } = this.state;
+    
     const { setFieldsValue } = this.props.form;
     
     const submitUpdateForm = () => {
-      validateFieldsAndScroll((error, values) => {
-         if (error){
+     validateFieldsAndScroll((error, values) => {
+        if (error) {
           console.log("code go here", error);
           return;
         }
+
+        const { owner } = this.props;
+        const taskPageId = values.id;
+        const parameters = { ...values,taskPageId, ...imagesValues };
+
+       
+       setFieldsValue(selectedRows[currentUpdateIndex+1]);
+       const newIndex= currentUpdateIndex+1;
+       dispatch({
+          type: owner.type+'/updateTaskPage',
+          payload: {id:owner.id,type:'taskPage', 
+            parameters: parameters,
+            selectedRows,currentUpdateIndex:0,continueNext:false},
+       });
         
-        const {owner} = this.props;
-        const parameters={...values, ...imagesValues};
-      	dispatch({
-         type: owner.type+'/updateTaskPage',
-         payload: {id:owner.id,type:'taskPage', parameters: parameters},
-      }); 
+       
       });
+      
     };
     
     const submitUpdateFormAndContinue = () => {
@@ -90,18 +98,25 @@ class TaskPageUpdateForm extends PureComponent {
         }
 
         const { owner } = this.props;
-        const parameters = { ...values, ...imagesValues };
+        const taskPageId = values.id;
+        const parameters = { ...values,taskPageId, ...imagesValues };
 
-        const { currentUpdateIndex } = this.state;
+        const { currentUpdateIndex } = this.props;
         
-       if(currentUpdateIndex>=selectedRows.length-1){
+        if(currentUpdateIndex>=selectedRows.length-1){
           return;
        }
        this.setState({
         currentUpdateIndex: currentUpdateIndex+1,
        });
-        setFieldsValue(selectedRows[currentUpdateIndex+1]);
-
+       setFieldsValue(selectedRows[currentUpdateIndex+1]);
+       const newIndex= currentUpdateIndex+1;
+       dispatch({
+          type: owner.type+'/updateTaskPage',
+          payload: {id:owner.id,type:'taskPage', 
+            parameters: parameters,
+            selectedRows,currentUpdateIndex:newIndex,continueNext:true},
+       });
         
        
       });
@@ -170,7 +185,7 @@ class TaskPageUpdateForm extends PureComponent {
                   {getFieldDecorator('id', {
                     rules: [{ required: true, message: '请输入序号' }],
                   })(
-                    <Input placeholder="请输入请输入序号string" disabled='true'/>
+                    <Input placeholder="请输入请输入序号string" disabled={true}/>
                   )}
                 </Form.Item>
               </Col>			
@@ -226,7 +241,7 @@ class TaskPageUpdateForm extends PureComponent {
           <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
           更新
         </Button>
-        <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting}>
+        <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex+1>=selectedRows.length}>
             更新并装载下一个
           </Button>
         <Button type="info" onClick={goback} loading={submitting}>

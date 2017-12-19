@@ -84,8 +84,9 @@ const addGroupFilter=(targetObjectId,parameters)=>{
     });
 }
 const updateGroupFilter=(targetObjectId,parameters)=>{
-    const url = PREFIX+"groupPageManager/updateGroupFilterProperties/groupPageId/groupFilterId/filterLink/title/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"groupPageManager/updateGroupFilterProperties/groupPageId/id/filterLink/title/tokensExpr/";
+    const groupPageId = targetObjectId;
+    const requestParameters={...parameters, groupPageId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -121,8 +122,9 @@ const addThread=(targetObjectId,parameters)=>{
     });
 }
 const updateThread=(targetObjectId,parameters)=>{
-    const url = PREFIX+"groupPageManager/updateThreadProperties/groupPageId/threadId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/communityId/creatorId/homePageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"groupPageManager/updateThreadProperties/groupPageId/id/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
+    const groupPageId = targetObjectId;
+    const requestParameters={...parameters, groupPageId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({

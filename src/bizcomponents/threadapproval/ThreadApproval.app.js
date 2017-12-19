@@ -138,6 +138,7 @@ class ThreadApprovalBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._threadApproval.selectedRows,
+      currentUpdateIndex: state._threadApproval.currentUpdateIndex,
       owner: {type:'_threadApproval',id:state._threadApproval.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
     

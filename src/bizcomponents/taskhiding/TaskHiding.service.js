@@ -84,8 +84,9 @@ const addTask=(targetObjectId,parameters)=>{
     });
 }
 const updateTask=(targetObjectId,parameters)=>{
-    const url = PREFIX+"taskHidingManager/updateTaskProperties/hidingId/taskId/title/selectedTask/content/creatorId/communityId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"taskHidingManager/updateTaskProperties/taskHidingId/id/title/selectedTask/content/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
+    const taskHidingId = targetObjectId;
+    const requestParameters={...parameters, taskHidingId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({

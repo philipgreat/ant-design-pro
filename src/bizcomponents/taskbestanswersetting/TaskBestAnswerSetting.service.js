@@ -84,8 +84,9 @@ const addTaskReply=(targetObjectId,parameters)=>{
     });
 }
 const updateTaskReply=(targetObjectId,parameters)=>{
-    const url = PREFIX+"taskBestAnswerSettingManager/updateTaskReplyProperties/bestAnswerSettingId/taskReplyId/content/replierId/taskId/likeByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"taskBestAnswerSettingManager/updateTaskReplyProperties/taskBestAnswerSettingId/id/content/likeByCurrentUser/tokensExpr/";
+    const taskBestAnswerSettingId = targetObjectId;
+    const requestParameters={...parameters, taskBestAnswerSettingId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({

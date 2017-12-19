@@ -138,6 +138,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._secUserBlocking.selectedRows,
+      currentUpdateIndex: state._secUserBlocking.currentUpdateIndex,
       owner: {type:'_secUserBlocking',id:state._secUserBlocking.id}//this is for model namespace and 
     }))(SecUserUpdateForm);
     

@@ -138,6 +138,7 @@ class TaskResolvingBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._taskResolving.selectedRows,
+      currentUpdateIndex: state._taskResolving.currentUpdateIndex,
       owner: {type:'_taskResolving',id:state._taskResolving.id}//this is for model namespace and 
     }))(TaskUpdateForm);
     

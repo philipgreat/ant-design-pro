@@ -174,6 +174,7 @@ class HomePageBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._homePage.selectedRows,
+      currentUpdateIndex: state._homePage.currentUpdateIndex,
       owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(SlideUpdateForm);
     
@@ -212,6 +213,7 @@ class HomePageBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._homePage.selectedRows,
+      currentUpdateIndex: state._homePage.currentUpdateIndex,
       owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(EncyclopediaItemUpdateForm);
     
@@ -250,6 +252,7 @@ class HomePageBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._homePage.selectedRows,
+      currentUpdateIndex: state._homePage.currentUpdateIndex,
       owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(TaskFilterUpdateForm);
     
@@ -288,6 +291,7 @@ class HomePageBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._homePage.selectedRows,
+      currentUpdateIndex: state._homePage.currentUpdateIndex,
       owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(TaskUpdateForm);
     
@@ -326,6 +330,7 @@ class HomePageBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._homePage.selectedRows,
+      currentUpdateIndex: state._homePage.currentUpdateIndex,
       owner: {type:'_homePage',id:state._homePage.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
     

@@ -84,8 +84,9 @@ const addTaskReplyLike=(targetObjectId,parameters)=>{
     });
 }
 const updateTaskReplyLike=(targetObjectId,parameters)=>{
-    const url = PREFIX+"taskReplyManager/updateTaskReplyLikeProperties/taskReplyId/taskReplyLikeId/replierId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"taskReplyManager/updateTaskReplyLikeProperties/taskReplyId/id/tokensExpr/";
+    const taskReplyId = targetObjectId;
+    const requestParameters={...parameters, taskReplyId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({

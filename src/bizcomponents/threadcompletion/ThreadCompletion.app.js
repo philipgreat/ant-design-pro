@@ -138,6 +138,7 @@ class ThreadCompletionBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._threadCompletion.selectedRows,
+      currentUpdateIndex: state._threadCompletion.currentUpdateIndex,
       owner: {type:'_threadCompletion',id:state._threadCompletion.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
     

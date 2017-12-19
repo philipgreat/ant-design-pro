@@ -36,9 +36,7 @@ const imagesValues={
 
 class TaskRewardUpdateForm extends PureComponent {
 
-  state = {
-    currentUpdateIndex: 0,
-  };
+
 
   handleChange = ({ fileList }) =>{
     console.log("filelist", fileList);
@@ -46,8 +44,8 @@ class TaskRewardUpdateForm extends PureComponent {
   }
    componentDidMount() {
         
-    const { form, dispatch, submitting,selectedRows } = this.props;
-    const { currentUpdateIndex } = this.state;
+    const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
+ 
 
     const { getFieldDecorator, setFieldsValue } = this.props.form;
     if(!selectedRows){
@@ -62,25 +60,35 @@ class TaskRewardUpdateForm extends PureComponent {
   }
 
   render() {
-    const { form, dispatch, submitting,selectedRows } = this.props;
+    const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const { currentUpdateIndex } = this.state;
+    
     const { setFieldsValue } = this.props.form;
     
     const submitUpdateForm = () => {
-      validateFieldsAndScroll((error, values) => {
-         if (error){
+     validateFieldsAndScroll((error, values) => {
+        if (error) {
           console.log("code go here", error);
           return;
         }
+
+        const { owner } = this.props;
+        const taskRewardId = values.id;
+        const parameters = { ...values,taskRewardId, ...imagesValues };
+
+       
+       setFieldsValue(selectedRows[currentUpdateIndex+1]);
+       const newIndex= currentUpdateIndex+1;
+       dispatch({
+          type: owner.type+'/updateTaskReward',
+          payload: {id:owner.id,type:'taskReward', 
+            parameters: parameters,
+            selectedRows,currentUpdateIndex:0,continueNext:false},
+       });
         
-        const {owner} = this.props;
-        const parameters={...values, ...imagesValues};
-      	dispatch({
-         type: owner.type+'/updateTaskReward',
-         payload: {id:owner.id,type:'taskReward', parameters: parameters},
-      }); 
+       
       });
+      
     };
     
     const submitUpdateFormAndContinue = () => {
@@ -91,18 +99,25 @@ class TaskRewardUpdateForm extends PureComponent {
         }
 
         const { owner } = this.props;
-        const parameters = { ...values, ...imagesValues };
+        const taskRewardId = values.id;
+        const parameters = { ...values,taskRewardId, ...imagesValues };
 
-        const { currentUpdateIndex } = this.state;
+        const { currentUpdateIndex } = this.props;
         
-       if(currentUpdateIndex>=selectedRows.length-1){
+        if(currentUpdateIndex>=selectedRows.length-1){
           return;
        }
        this.setState({
         currentUpdateIndex: currentUpdateIndex+1,
        });
-        setFieldsValue(selectedRows[currentUpdateIndex+1]);
-
+       setFieldsValue(selectedRows[currentUpdateIndex+1]);
+       const newIndex= currentUpdateIndex+1;
+       dispatch({
+          type: owner.type+'/updateTaskReward',
+          payload: {id:owner.id,type:'taskReward', 
+            parameters: parameters,
+            selectedRows,currentUpdateIndex:newIndex,continueNext:true},
+       });
         
        
       });
@@ -171,18 +186,7 @@ class TaskRewardUpdateForm extends PureComponent {
                   {getFieldDecorator('id', {
                     rules: [{ required: true, message: '请输入序号' }],
                   })(
-                    <Input placeholder="请输入请输入序号string" disabled='true'/>
-                  )}
-                </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.who}>
-                  {getFieldDecorator('who', {
-                    rules: [{ required: true, message: '请输入谁' }],
-                  })(
-                    <Input placeholder="请输入请输入谁string_current_user_name" />
+                    <Input placeholder="请输入请输入序号string" disabled={true}/>
                   )}
                 </Form.Item>
               </Col>			
@@ -194,17 +198,6 @@ class TaskRewardUpdateForm extends PureComponent {
                     rules: [{ required: true, message: '请输入改写点' }],
                   })(
                     <Input placeholder="请输入请输入改写点int" />
-                  )}
-                </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.actionTime}>
-                  {getFieldDecorator('actionTime', {
-                    rules: [{ required: true, message: '请输入行动时间' }],
-                  })(
-                    <Input placeholder="请输入请输入行动时间date_time_now" />
                   )}
                 </Form.Item>
               </Col>			
@@ -249,7 +242,7 @@ class TaskRewardUpdateForm extends PureComponent {
           <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
           更新
         </Button>
-        <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting}>
+        <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex+1>=selectedRows.length}>
             更新并装载下一个
           </Button>
         <Button type="info" onClick={goback} loading={submitting}>

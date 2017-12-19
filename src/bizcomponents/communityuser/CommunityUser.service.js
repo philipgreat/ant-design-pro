@@ -84,8 +84,9 @@ const addPatientInfo=(targetObjectId,parameters)=>{
     });
 }
 const updatePatientInfo=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updatePatientInfoProperties/userId/patientInfoId/name/nickName/gender/birthday/wearDeviceType/wearStartTime/recoverPlan/recoverStartTime/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updatePatientInfoProperties/communityUserId/id/name/nickName/gender/birthday/wearDeviceType/wearStartTime/recoverPlan/recoverStartTime/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -121,8 +122,9 @@ const addUserSkill=(targetObjectId,parameters)=>{
     });
 }
 const updateUserSkill=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateUserSkillProperties/userId/userSkillId/skillName/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateUserSkillProperties/communityUserId/id/skillName/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -158,8 +160,9 @@ const addMessageFilter=(targetObjectId,parameters)=>{
     });
 }
 const updateMessageFilter=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateMessageFilterProperties/userId/messageFilterId/name/messageCount/filterKey/linkUrl/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateMessageFilterProperties/communityUserId/id/name/messageCount/filterKey/linkUrl/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -195,8 +198,9 @@ const addUserMessage=(targetObjectId,parameters)=>{
     });
 }
 const updateUserMessage=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateUserMessageProperties/receiverId/userMessageId/title/messageKey/content/linkUrl/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateUserMessageProperties/communityUserId/id/title/messageKey/content/linkUrl/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -232,8 +236,9 @@ const addTask=(targetObjectId,parameters)=>{
     });
 }
 const updateTask=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateTaskProperties/creatorId/taskId/title/selectedTask/content/communityId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateTaskProperties/communityUserId/id/title/selectedTask/content/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -269,8 +274,9 @@ const addTaskAssigment=(targetObjectId,parameters)=>{
     });
 }
 const updateTaskAssigment=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateTaskAssigmentProperties/assigneeId/taskAssigmentId/taskId/comments/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateTaskAssigmentProperties/communityUserId/id/comments/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -306,8 +312,9 @@ const addTaskLike=(targetObjectId,parameters)=>{
     });
 }
 const updateTaskLike=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateTaskLikeProperties/replierId/taskLikeId/taskId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateTaskLikeProperties/communityUserId/id/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -343,8 +350,9 @@ const addTaskReply=(targetObjectId,parameters)=>{
     });
 }
 const updateTaskReply=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateTaskReplyProperties/replierId/taskReplyId/content/taskId/likeByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateTaskReplyProperties/communityUserId/id/content/likeByCurrentUser/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -380,8 +388,9 @@ const addTaskReplyLike=(targetObjectId,parameters)=>{
     });
 }
 const updateTaskReplyLike=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateTaskReplyLikeProperties/replierId/taskReplyLikeId/taskReplyId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateTaskReplyLikeProperties/communityUserId/id/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -417,8 +426,9 @@ const addThread=(targetObjectId,parameters)=>{
     });
 }
 const updateThread=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateThreadProperties/creatorId/threadId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/communityId/homePageId/groupPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateThreadProperties/communityUserId/id/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -454,8 +464,9 @@ const addThreadReply=(targetObjectId,parameters)=>{
     });
 }
 const updateThreadReply=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateThreadReplyProperties/replierId/threadReplyId/content/threadId/likeByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateThreadReplyProperties/communityUserId/id/content/likeByCurrentUser/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -491,8 +502,9 @@ const addThreadRegistration=(targetObjectId,parameters)=>{
     });
 }
 const updateThreadRegistration=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateThreadRegistrationProperties/participantId/threadRegistrationId/threadId/comments/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateThreadRegistrationProperties/communityUserId/id/comments/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -528,8 +540,9 @@ const addThreadLike=(targetObjectId,parameters)=>{
     });
 }
 const updateThreadLike=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateThreadLikeProperties/replierId/threadLikeId/threadId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateThreadLikeProperties/communityUserId/id/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -565,8 +578,9 @@ const addThreadReplyLike=(targetObjectId,parameters)=>{
     });
 }
 const updateThreadReplyLike=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateThreadReplyLikeProperties/replierId/threadReplyLikeId/threadReplyId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateThreadReplyLikeProperties/communityUserId/id/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -602,8 +616,9 @@ const addFan=(targetObjectId,parameters)=>{
     });
 }
 const updateFan=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateFanProperties/userId/fanId/fanId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateFanProperties/communityUserId/id/fanId/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -639,8 +654,9 @@ const addFollow=(targetObjectId,parameters)=>{
     });
 }
 const updateFollow=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateFollowProperties/userId/followId/followId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateFollowProperties/communityUserId/id/followId/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -676,8 +692,9 @@ const addBonusPoint=(targetObjectId,parameters)=>{
     });
 }
 const updateBonusPoint=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateBonusPointProperties/userId/bonusPointId/name/points/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateBonusPointProperties/communityUserId/id/name/points/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -713,8 +730,9 @@ const addExperiencePoint=(targetObjectId,parameters)=>{
     });
 }
 const updateExperiencePoint=(targetObjectId,parameters)=>{
-    const url = PREFIX+"communityUserManager/updateExperiencePointProperties/userId/experiencePointId/name/points/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"communityUserManager/updateExperiencePointProperties/communityUserId/id/name/points/tokensExpr/";
+    const communityUserId = targetObjectId;
+    const requestParameters={...parameters, communityUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({

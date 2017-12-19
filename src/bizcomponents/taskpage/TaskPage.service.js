@@ -84,8 +84,9 @@ const addTaskFilter=(targetObjectId,parameters)=>{
     });
 }
 const updateTaskFilter=(targetObjectId,parameters)=>{
-    const url = PREFIX+"taskPageManager/updateTaskFilterProperties/taskPageId/taskFilterId/name/filterKey/linkUrl/homePageId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"taskPageManager/updateTaskFilterProperties/taskPageId/id/name/filterKey/linkUrl/tokensExpr/";
+    const taskPageId = targetObjectId;
+    const requestParameters={...parameters, taskPageId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -121,8 +122,9 @@ const addTask=(targetObjectId,parameters)=>{
     });
 }
 const updateTask=(targetObjectId,parameters)=>{
-    const url = PREFIX+"taskPageManager/updateTaskProperties/taskPageId/taskId/title/selectedTask/content/creatorId/communityId/homePageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"taskPageManager/updateTaskProperties/taskPageId/id/title/selectedTask/content/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
+    const taskPageId = targetObjectId;
+    const requestParameters={...parameters, taskPageId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({

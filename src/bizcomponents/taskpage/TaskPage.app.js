@@ -147,6 +147,7 @@ class TaskPageBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._taskPage.selectedRows,
+      currentUpdateIndex: state._taskPage.currentUpdateIndex,
       owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
     }))(TaskFilterUpdateForm);
     
@@ -185,6 +186,7 @@ class TaskPageBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._taskPage.selectedRows,
+      currentUpdateIndex: state._taskPage.currentUpdateIndex,
       owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
     }))(TaskUpdateForm);
     

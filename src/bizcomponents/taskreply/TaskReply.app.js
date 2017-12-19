@@ -138,6 +138,7 @@ class TaskReplyBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._taskReply.selectedRows,
+      currentUpdateIndex: state._taskReply.currentUpdateIndex,
       owner: {type:'_taskReply',id:state._taskReply.id}//this is for model namespace and 
     }))(TaskReplyLikeUpdateForm);
     

@@ -138,6 +138,7 @@ class ThreadReplyBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._threadReply.selectedRows,
+      currentUpdateIndex: state._threadReply.currentUpdateIndex,
       owner: {type:'_threadReply',id:state._threadReply.id}//this is for model namespace and 
     }))(ThreadReplyLikeUpdateForm);
     

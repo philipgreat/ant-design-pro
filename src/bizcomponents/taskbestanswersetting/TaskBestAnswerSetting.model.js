@@ -107,8 +107,8 @@ export default {
     	yield put(routerRedux.push('/taskBestAnswerSetting/'+id+'/list/'+type+'CreateForm'));
      }, 
      *gotoUpdateForm({ payload }, { call, put }) {
-        const {id,type,selectedRows}=payload;
-        const state={id,type,selectedRows};
+        const {id,type,selectedRows,currentUpdateIndex}=payload;
+        const state={id,type,selectedRows,currentUpdateIndex};
         const location = {pathname:'/community/'+id+'/list/'+type+'UpdateForm',state};
 		yield put(routerRedux.push(location));
 		
@@ -145,7 +145,8 @@ export default {
 		yield put(routerRedux.push(location));
 	},
 	*updateTaskReply({ payload }, { call, put }) {
-		const { id, type, parameters, continueNext } = payload;
+		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+		
 		console.log("get form parameters", parameters);
 
 		const data = yield call(TaskBestAnswerSettingService.updateTaskReply, id, parameters);
@@ -153,21 +154,20 @@ export default {
 			handleServerError(data);
 			return;
 		}
-		const newPlayload = { ...payload, ...data };
+		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
 
 		yield put({ type: "updateState", payload: newPlayload });
-		
-			//yield put(routerRedux.push('/taskBestAnswerSetting/'+id+'/list/'+type+'CreateForm'));
 		notification.success({
 			message: "执行成功",
 			description:"执行成功",
 		});
 		
-		
 		if (continueNext) {
 			return;
 		}
-		const location = {pathname:'/taskBestAnswerSetting/' + id + '/list/' + type + 'List',state:data};
+		
+		
+		const location = {pathname:'/taskBestAnswerSetting/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
 	},		
 	*removeTaskReplyList({ payload }, { call, put }) {

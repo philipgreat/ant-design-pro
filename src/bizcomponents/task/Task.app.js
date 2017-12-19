@@ -156,6 +156,7 @@ class TaskBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._task.selectedRows,
+      currentUpdateIndex: state._task.currentUpdateIndex,
       owner: {type:'_task',id:state._task.id}//this is for model namespace and 
     }))(TaskAssigmentUpdateForm);
     
@@ -194,6 +195,7 @@ class TaskBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._task.selectedRows,
+      currentUpdateIndex: state._task.currentUpdateIndex,
       owner: {type:'_task',id:state._task.id}//this is for model namespace and 
     }))(TaskLikeUpdateForm);
     
@@ -232,6 +234,7 @@ class TaskBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._task.selectedRows,
+      currentUpdateIndex: state._task.currentUpdateIndex,
       owner: {type:'_task',id:state._task.id}//this is for model namespace and 
     }))(TaskReplyUpdateForm);
     

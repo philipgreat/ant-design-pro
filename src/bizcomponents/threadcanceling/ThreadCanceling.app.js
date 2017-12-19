@@ -138,6 +138,7 @@ class ThreadCancelingBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._threadCanceling.selectedRows,
+      currentUpdateIndex: state._threadCanceling.currentUpdateIndex,
       owner: {type:'_threadCanceling',id:state._threadCanceling.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
     

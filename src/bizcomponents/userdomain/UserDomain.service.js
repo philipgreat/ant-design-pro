@@ -84,8 +84,9 @@ const addSecUser=(targetObjectId,parameters)=>{
     });
 }
 const updateSecUser=(targetObjectId,parameters)=>{
-    const url = PREFIX+"userDomainManager/updateSecUserProperties/domainId/secUserId/login/mobile/email/pwd/verificationCode/verificationCodeExpire/lastLoginTime/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"userDomainManager/updateSecUserProperties/userDomainId/id/login/mobile/email/pwd/verificationCode/verificationCodeExpire/lastLoginTime/tokensExpr/";
+    const userDomainId = targetObjectId;
+    const requestParameters={...parameters, userDomainId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({

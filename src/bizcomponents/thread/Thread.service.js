@@ -84,8 +84,9 @@ const addThreadReply=(targetObjectId,parameters)=>{
     });
 }
 const updateThreadReply=(targetObjectId,parameters)=>{
-    const url = PREFIX+"threadManager/updateThreadReplyProperties/threadId/threadReplyId/content/replierId/likeByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"threadManager/updateThreadReplyProperties/threadId/id/content/likeByCurrentUser/tokensExpr/";
+    const threadId = targetObjectId;
+    const requestParameters={...parameters, threadId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -121,8 +122,9 @@ const addThreadRegistration=(targetObjectId,parameters)=>{
     });
 }
 const updateThreadRegistration=(targetObjectId,parameters)=>{
-    const url = PREFIX+"threadManager/updateThreadRegistrationProperties/threadId/threadRegistrationId/participantId/comments/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"threadManager/updateThreadRegistrationProperties/threadId/id/comments/tokensExpr/";
+    const threadId = targetObjectId;
+    const requestParameters={...parameters, threadId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -158,8 +160,9 @@ const addThreadLike=(targetObjectId,parameters)=>{
     });
 }
 const updateThreadLike=(targetObjectId,parameters)=>{
-    const url = PREFIX+"threadManager/updateThreadLikeProperties/threadId/threadLikeId/replierId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"threadManager/updateThreadLikeProperties/threadId/id/tokensExpr/";
+    const threadId = targetObjectId;
+    const requestParameters={...parameters, threadId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({

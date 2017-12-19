@@ -138,6 +138,7 @@ class ThreadHidingBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._threadHiding.selectedRows,
+      currentUpdateIndex: state._threadHiding.currentUpdateIndex,
       owner: {type:'_threadHiding',id:state._threadHiding.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
     

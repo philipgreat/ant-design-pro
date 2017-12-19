@@ -291,6 +291,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(PatientInfoUpdateForm);
     
@@ -329,6 +330,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(UserSkillUpdateForm);
     
@@ -367,6 +369,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(MessageFilterUpdateForm);
     
@@ -405,6 +408,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(UserMessageUpdateForm);
     
@@ -443,6 +447,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskUpdateForm);
     
@@ -481,6 +486,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskAssigmentUpdateForm);
     
@@ -519,6 +525,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskLikeUpdateForm);
     
@@ -557,6 +564,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskReplyUpdateForm);
     
@@ -595,6 +603,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(TaskReplyLikeUpdateForm);
     
@@ -633,6 +642,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadUpdateForm);
     
@@ -671,6 +681,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadReplyUpdateForm);
     
@@ -709,6 +720,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadRegistrationUpdateForm);
     
@@ -747,6 +759,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadLikeUpdateForm);
     
@@ -785,6 +798,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ThreadReplyLikeUpdateForm);
     
@@ -823,6 +837,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(FanUpdateForm);
     
@@ -861,6 +876,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(FollowUpdateForm);
     
@@ -899,6 +915,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(BonusPointUpdateForm);
     
@@ -937,6 +954,7 @@ class CommunityUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._communityUser.selectedRows,
+      currentUpdateIndex: state._communityUser.currentUpdateIndex,
       owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
     }))(ExperiencePointUpdateForm);
     

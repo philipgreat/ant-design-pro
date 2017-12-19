@@ -84,8 +84,9 @@ const addSlide=(targetObjectId,parameters)=>{
     });
 }
 const updateSlide=(targetObjectId,parameters)=>{
-    const url = PREFIX+"homePageManager/updateSlideProperties/homePageId/slideId/title/imageUrl/linkUrl/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"homePageManager/updateSlideProperties/homePageId/id/title/imageUrl/linkUrl/tokensExpr/";
+    const homePageId = targetObjectId;
+    const requestParameters={...parameters, homePageId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -121,8 +122,9 @@ const addEncyclopediaItem=(targetObjectId,parameters)=>{
     });
 }
 const updateEncyclopediaItem=(targetObjectId,parameters)=>{
-    const url = PREFIX+"homePageManager/updateEncyclopediaItemProperties/homePageId/encyclopediaItemId/title/publishTime/content/communityId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"homePageManager/updateEncyclopediaItemProperties/homePageId/id/title/publishTime/content/tokensExpr/";
+    const homePageId = targetObjectId;
+    const requestParameters={...parameters, homePageId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -158,8 +160,9 @@ const addTaskFilter=(targetObjectId,parameters)=>{
     });
 }
 const updateTaskFilter=(targetObjectId,parameters)=>{
-    const url = PREFIX+"homePageManager/updateTaskFilterProperties/homePageId/taskFilterId/name/filterKey/linkUrl/taskPageId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"homePageManager/updateTaskFilterProperties/homePageId/id/name/filterKey/linkUrl/tokensExpr/";
+    const homePageId = targetObjectId;
+    const requestParameters={...parameters, homePageId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -195,8 +198,9 @@ const addTask=(targetObjectId,parameters)=>{
     });
 }
 const updateTask=(targetObjectId,parameters)=>{
-    const url = PREFIX+"homePageManager/updateTaskProperties/homePageId/taskId/title/selectedTask/content/creatorId/communityId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"homePageManager/updateTaskProperties/homePageId/id/title/selectedTask/content/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/";
+    const homePageId = targetObjectId;
+    const requestParameters={...parameters, homePageId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -232,8 +236,9 @@ const addThread=(targetObjectId,parameters)=>{
     });
 }
 const updateThread=(targetObjectId,parameters)=>{
-    const url = PREFIX+"homePageManager/updateThreadProperties/homePageId/threadId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/communityId/creatorId/groupPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"homePageManager/updateThreadProperties/homePageId/id/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
+    const homePageId = targetObjectId;
+    const requestParameters={...parameters, homePageId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({

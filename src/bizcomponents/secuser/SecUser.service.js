@@ -84,8 +84,9 @@ const addUserApp=(targetObjectId,parameters)=>{
     });
 }
 const updateUserApp=(targetObjectId,parameters)=>{
-    const url = PREFIX+"secUserManager/updateUserAppProperties/secUserId/userAppId/title/appIcon/fullAccess/permission/objectType/objectId/location/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"secUserManager/updateUserAppProperties/secUserId/id/title/appIcon/fullAccess/permission/objectType/objectId/location/tokensExpr/";
+    const secUserId = targetObjectId;
+    const requestParameters={...parameters, secUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -121,8 +122,9 @@ const addLoginHistory=(targetObjectId,parameters)=>{
     });
 }
 const updateLoginHistory=(targetObjectId,parameters)=>{
-    const url = PREFIX+"secUserManager/updateLoginHistoryProperties/secUserId/loginHistoryId/fromIp/description/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"secUserManager/updateLoginHistoryProperties/secUserId/id/fromIp/description/tokensExpr/";
+    const secUserId = targetObjectId;
+    const requestParameters={...parameters, secUserId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({

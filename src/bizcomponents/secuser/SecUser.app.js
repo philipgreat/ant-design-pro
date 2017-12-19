@@ -147,6 +147,7 @@ class SecUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._secUser.selectedRows,
+      currentUpdateIndex: state._secUser.currentUpdateIndex,
       owner: {type:'_secUser',id:state._secUser.id}//this is for model namespace and 
     }))(UserAppUpdateForm);
     
@@ -185,6 +186,7 @@ class SecUserBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._secUser.selectedRows,
+      currentUpdateIndex: state._secUser.currentUpdateIndex,
       owner: {type:'_secUser',id:state._secUser.id}//this is for model namespace and 
     }))(LoginHistoryUpdateForm);
     

@@ -84,8 +84,9 @@ const addTaskAssigment=(targetObjectId,parameters)=>{
     });
 }
 const updateTaskAssigment=(targetObjectId,parameters)=>{
-    const url = PREFIX+"taskManager/updateTaskAssigmentProperties/taskId/taskAssigmentId/assigneeId/comments/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"taskManager/updateTaskAssigmentProperties/taskId/id/comments/tokensExpr/";
+    const taskId = targetObjectId;
+    const requestParameters={...parameters, taskId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -121,8 +122,9 @@ const addTaskLike=(targetObjectId,parameters)=>{
     });
 }
 const updateTaskLike=(targetObjectId,parameters)=>{
-    const url = PREFIX+"taskManager/updateTaskLikeProperties/taskId/taskLikeId/replierId/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"taskManager/updateTaskLikeProperties/taskId/id/tokensExpr/";
+    const taskId = targetObjectId;
+    const requestParameters={...parameters, taskId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -158,8 +160,9 @@ const addTaskReply=(targetObjectId,parameters)=>{
     });
 }
 const updateTaskReply=(targetObjectId,parameters)=>{
-    const url = PREFIX+"taskManager/updateTaskReplyProperties/taskId/taskReplyId/content/replierId/likeByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const url = PREFIX+"taskManager/updateTaskReplyProperties/taskId/id/content/likeByCurrentUser/tokensExpr/";
+    const taskId = targetObjectId;
+    const requestParameters={...parameters, taskId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
