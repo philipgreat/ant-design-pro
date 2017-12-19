@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import CarRepairingServiceOrderSearch from '../carrepairingserviceorder/CarRepairingServiceOrder.search'
 import CarRepairingServiceOrderCreateForm from '../carrepairingserviceorder/CarRepairingServiceOrder.createform'
+import CarRepairingServiceOrderUpdateForm from '../carrepairingserviceorder/CarRepairingServiceOrder.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class CarRepairWorkingBizApp extends React.PureComponent {
     }))(CarRepairingServiceOrderCreateForm);
   }
   
+  getCarRepairingServiceOrderUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._carRepairWorking.selectedRows,
+      currentUpdateIndex: state._carRepairWorking.currentUpdateIndex,
+      owner: {type:'_carRepairWorking',id:state._carRepairWorking.id}//this is for model namespace and 
+    }))(CarRepairingServiceOrderUpdateForm);
+    
+
+  }
+
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/carRepairWorking/:id/list/carRepairingServiceOrderList" component={this.getCarRepairingServiceOrderSearch()} />
           <Route path="/carRepairWorking/:id/list/carRepairingServiceOrderCreateForm" component={this.getCarRepairingServiceOrderCreateForm()} />
+          <Route path="/carRepairWorking/:id/list/carRepairingServiceOrderUpdateForm" component={this.getCarRepairingServiceOrderUpdateForm()} />
           
               
              

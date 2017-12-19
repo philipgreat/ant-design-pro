@@ -83,6 +83,18 @@ const addCarReceivingServiceOrder=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateCarReceivingServiceOrder=(targetObjectId,parameters)=>{
+    const url = PREFIX+"carInspectionOrderManager/updateCarReceivingServiceOrderProperties/carInspectionOrderId/id/title/tokensExpr/";
+    const carInspectionOrderId = targetObjectId;
+    const requestParameters={...parameters, carInspectionOrderId, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeCarReceivingServiceOrderList=(targetObjectId,parameters)=>{
     const url = PREFIX+"carInspectionOrderManager/removeCarReceivingServiceOrderList/carInspectionOrderId/carReceivingServiceOrderIds/tokensExpr/";
@@ -101,6 +113,18 @@ const removeCarReceivingServiceOrderList=(targetObjectId,parameters)=>{
 const addCarInspectionServiceOrder=(targetObjectId,parameters)=>{
     const url = PREFIX+"carInspectionOrderManager/addCarInspectionServiceOrder/carInspectionOrderId/title/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+const updateCarInspectionServiceOrder=(targetObjectId,parameters)=>{
+    const url = PREFIX+"carInspectionOrderManager/updateCarInspectionServiceOrderProperties/carInspectionOrderId/id/title/tokensExpr/";
+    const carInspectionOrderId = targetObjectId;
+    const requestParameters={...parameters, carInspectionOrderId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -135,6 +159,18 @@ const addCarRepairingServiceOrder=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateCarRepairingServiceOrder=(targetObjectId,parameters)=>{
+    const url = PREFIX+"carInspectionOrderManager/updateCarRepairingServiceOrderProperties/carInspectionOrderId/id/title/tokensExpr/";
+    const carInspectionOrderId = targetObjectId;
+    const requestParameters={...parameters, carInspectionOrderId, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeCarRepairingServiceOrderList=(targetObjectId,parameters)=>{
     const url = PREFIX+"carInspectionOrderManager/removeCarRepairingServiceOrderList/carInspectionOrderId/carRepairingServiceOrderIds/tokensExpr/";
@@ -150,7 +186,17 @@ const removeCarRepairingServiceOrderList=(targetObjectId,parameters)=>{
 
 
 
-const CarInspectionOrderService={view,load,addCarReceivingServiceOrder,addCarInspectionServiceOrder,addCarRepairingServiceOrder,removeCarReceivingServiceOrderList,removeCarInspectionServiceOrderList,removeCarRepairingServiceOrderList};
+const CarInspectionOrderService={view,
+load,
+addCarReceivingServiceOrder,
+addCarInspectionServiceOrder,
+addCarRepairingServiceOrder,
+updateCarReceivingServiceOrder,
+updateCarInspectionServiceOrder,
+updateCarRepairingServiceOrder,
+removeCarReceivingServiceOrderList,
+removeCarInspectionServiceOrderList,
+removeCarRepairingServiceOrderList};
 export default CarInspectionOrderService;
 
 

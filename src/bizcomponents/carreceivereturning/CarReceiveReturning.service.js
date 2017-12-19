@@ -83,6 +83,18 @@ const addCarReceivingServiceOrder=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateCarReceivingServiceOrder=(targetObjectId,parameters)=>{
+    const url = PREFIX+"carReceiveReturningManager/updateCarReceivingServiceOrderProperties/carReceiveReturningId/id/title/tokensExpr/";
+    const carReceiveReturningId = targetObjectId;
+    const requestParameters={...parameters, carReceiveReturningId, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeCarReceivingServiceOrderList=(targetObjectId,parameters)=>{
     const url = PREFIX+"carReceiveReturningManager/removeCarReceivingServiceOrderList/carReceiveReturningId/carReceivingServiceOrderIds/tokensExpr/";
@@ -98,7 +110,11 @@ const removeCarReceivingServiceOrderList=(targetObjectId,parameters)=>{
 
 
 
-const CarReceiveReturningService={view,load,addCarReceivingServiceOrder,removeCarReceivingServiceOrderList};
+const CarReceiveReturningService={view,
+load,
+addCarReceivingServiceOrder,
+updateCarReceivingServiceOrder,
+removeCarReceivingServiceOrderList};
 export default CarReceiveReturningService;
 
 

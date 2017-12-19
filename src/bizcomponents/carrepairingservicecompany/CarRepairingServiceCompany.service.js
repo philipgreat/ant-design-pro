@@ -83,6 +83,18 @@ const addCarInspectionOrder=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateCarInspectionOrder=(targetObjectId,parameters)=>{
+    const url = PREFIX+"carRepairingServiceCompanyManager/updateCarInspectionOrderProperties/carRepairingServiceCompanyId/id/carLicensePlateNumber/carEngineNumber/vehicleIdentificationNumber/tokensExpr/";
+    const carRepairingServiceCompanyId = targetObjectId;
+    const requestParameters={...parameters, carRepairingServiceCompanyId, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeCarInspectionOrderList=(targetObjectId,parameters)=>{
     const url = PREFIX+"carRepairingServiceCompanyManager/removeCarInspectionOrderList/carRepairingServiceCompanyId/carInspectionOrderIds/tokensExpr/";
@@ -98,7 +110,11 @@ const removeCarInspectionOrderList=(targetObjectId,parameters)=>{
 
 
 
-const CarRepairingServiceCompanyService={view,load,addCarInspectionOrder,removeCarInspectionOrderList};
+const CarRepairingServiceCompanyService={view,
+load,
+addCarInspectionOrder,
+updateCarInspectionOrder,
+removeCarInspectionOrderList};
 export default CarRepairingServiceCompanyService;
 
 

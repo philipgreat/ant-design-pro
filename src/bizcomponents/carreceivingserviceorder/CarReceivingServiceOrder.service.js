@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const CarReceivingServiceOrderService={view,load};
+const CarReceivingServiceOrderService={view,
+load};
 export default CarReceivingServiceOrderService;
 
 

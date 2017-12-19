@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import CarInspectionServiceOrderSearch from '../carinspectionserviceorder/CarInspectionServiceOrder.search'
 import CarInspectionServiceOrderCreateForm from '../carinspectionserviceorder/CarInspectionServiceOrder.createform'
+import CarInspectionServiceOrderUpdateForm from '../carinspectionserviceorder/CarInspectionServiceOrder.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class CarInspectReturningBizApp extends React.PureComponent {
     }))(CarInspectionServiceOrderCreateForm);
   }
   
+  getCarInspectionServiceOrderUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._carInspectReturning.selectedRows,
+      currentUpdateIndex: state._carInspectReturning.currentUpdateIndex,
+      owner: {type:'_carInspectReturning',id:state._carInspectReturning.id}//this is for model namespace and 
+    }))(CarInspectionServiceOrderUpdateForm);
+    
+
+  }
+
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/carInspectReturning/:id/list/carInspectionServiceOrderList" component={this.getCarInspectionServiceOrderSearch()} />
           <Route path="/carInspectReturning/:id/list/carInspectionServiceOrderCreateForm" component={this.getCarInspectionServiceOrderCreateForm()} />
+          <Route path="/carInspectReturning/:id/list/carInspectionServiceOrderUpdateForm" component={this.getCarInspectionServiceOrderUpdateForm()} />
           
               
              

@@ -83,6 +83,18 @@ const addCarInfo=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateCarInfo=(targetObjectId,parameters)=>{
+    const url = PREFIX+"customerInfoManager/updateCarInfoProperties/customerInfoId/id/carLicensePlateNumber/carType/carSeatsQuantity/carRegistrationDate/carInspectionValidationDate/carEngineNumber/vehicleIdentificationNumber/carInsuranceValidationDate/tokensExpr/";
+    const customerInfoId = targetObjectId;
+    const requestParameters={...parameters, customerInfoId, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeCarInfoList=(targetObjectId,parameters)=>{
     const url = PREFIX+"customerInfoManager/removeCarInfoList/customerInfoId/carInfoIds/tokensExpr/";
@@ -109,6 +121,18 @@ const addCarInspectionOrder=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateCarInspectionOrder=(targetObjectId,parameters)=>{
+    const url = PREFIX+"customerInfoManager/updateCarInspectionOrderProperties/customerInfoId/id/carLicensePlateNumber/carEngineNumber/vehicleIdentificationNumber/tokensExpr/";
+    const customerInfoId = targetObjectId;
+    const requestParameters={...parameters, customerInfoId, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeCarInspectionOrderList=(targetObjectId,parameters)=>{
     const url = PREFIX+"customerInfoManager/removeCarInspectionOrderList/customerInfoId/carInspectionOrderIds/tokensExpr/";
@@ -124,7 +148,14 @@ const removeCarInspectionOrderList=(targetObjectId,parameters)=>{
 
 
 
-const CustomerInfoService={view,load,addCarInfo,addCarInspectionOrder,removeCarInfoList,removeCarInspectionOrderList};
+const CustomerInfoService={view,
+load,
+addCarInfo,
+addCarInspectionOrder,
+updateCarInfo,
+updateCarInspectionOrder,
+removeCarInfoList,
+removeCarInspectionOrderList};
 export default CustomerInfoService;
 
 

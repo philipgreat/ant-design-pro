@@ -16,21 +16,30 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import CustomerInfoSearch from '../customerinfo/CustomerInfo.search'
 import CustomerInfoCreateForm from '../customerinfo/CustomerInfo.createform'
+import CustomerInfoUpdateForm from '../customerinfo/CustomerInfo.updateform'
+
 import CarReceivingServiceCompanySearch from '../carreceivingservicecompany/CarReceivingServiceCompany.search'
 import CarReceivingServiceCompanyCreateForm from '../carreceivingservicecompany/CarReceivingServiceCompany.createform'
+import CarReceivingServiceCompanyUpdateForm from '../carreceivingservicecompany/CarReceivingServiceCompany.updateform'
+
 import CarInspectionServiceCompanySearch from '../carinspectionservicecompany/CarInspectionServiceCompany.search'
 import CarInspectionServiceCompanyCreateForm from '../carinspectionservicecompany/CarInspectionServiceCompany.createform'
+import CarInspectionServiceCompanyUpdateForm from '../carinspectionservicecompany/CarInspectionServiceCompany.updateform'
+
 import CarRepairingServiceCompanySearch from '../carrepairingservicecompany/CarRepairingServiceCompany.search'
 import CarRepairingServiceCompanyCreateForm from '../carrepairingservicecompany/CarRepairingServiceCompany.createform'
+import CarRepairingServiceCompanyUpdateForm from '../carrepairingservicecompany/CarRepairingServiceCompany.updateform'
+
 import CarInfoSearch from '../carinfo/CarInfo.search'
 import CarInfoCreateForm from '../carinfo/CarInfo.createform'
+import CarInfoUpdateForm from '../carinfo/CarInfo.updateform'
+
 import CarInspectionOrderSearch from '../carinspectionorder/CarInspectionOrder.search'
 import CarInspectionOrderCreateForm from '../carinspectionorder/CarInspectionOrder.createform'
+import CarInspectionOrderUpdateForm from '../carinspectionorder/CarInspectionOrder.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -169,6 +178,19 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
     }))(CustomerInfoCreateForm);
   }
   
+  getCustomerInfoUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._carInspectionPlatform.selectedRows,
+      currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
+      owner: {type:'_carInspectionPlatform',id:state._carInspectionPlatform.id}//this is for model namespace and 
+    }))(CustomerInfoUpdateForm);
+    
+
+  }
+
+  
 
   getCarReceivingServiceCompanySearch() {
  
@@ -194,6 +216,19 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       owner: {type:'_carInspectionPlatform',id:state._carInspectionPlatform.id}//this is for model namespace and 
     }))(CarReceivingServiceCompanyCreateForm);
   }
+  
+  getCarReceivingServiceCompanyUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._carInspectionPlatform.selectedRows,
+      currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
+      owner: {type:'_carInspectionPlatform',id:state._carInspectionPlatform.id}//this is for model namespace and 
+    }))(CarReceivingServiceCompanyUpdateForm);
+    
+
+  }
+
   
 
   getCarInspectionServiceCompanySearch() {
@@ -221,6 +256,19 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
     }))(CarInspectionServiceCompanyCreateForm);
   }
   
+  getCarInspectionServiceCompanyUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._carInspectionPlatform.selectedRows,
+      currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
+      owner: {type:'_carInspectionPlatform',id:state._carInspectionPlatform.id}//this is for model namespace and 
+    }))(CarInspectionServiceCompanyUpdateForm);
+    
+
+  }
+
+  
 
   getCarRepairingServiceCompanySearch() {
  
@@ -246,6 +294,19 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       owner: {type:'_carInspectionPlatform',id:state._carInspectionPlatform.id}//this is for model namespace and 
     }))(CarRepairingServiceCompanyCreateForm);
   }
+  
+  getCarRepairingServiceCompanyUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._carInspectionPlatform.selectedRows,
+      currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
+      owner: {type:'_carInspectionPlatform',id:state._carInspectionPlatform.id}//this is for model namespace and 
+    }))(CarRepairingServiceCompanyUpdateForm);
+    
+
+  }
+
   
 
   getCarInfoSearch() {
@@ -273,6 +334,19 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
     }))(CarInfoCreateForm);
   }
   
+  getCarInfoUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._carInspectionPlatform.selectedRows,
+      currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
+      owner: {type:'_carInspectionPlatform',id:state._carInspectionPlatform.id}//this is for model namespace and 
+    }))(CarInfoUpdateForm);
+    
+
+  }
+
+  
 
   getCarInspectionOrderSearch() {
  
@@ -298,6 +372,19 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       owner: {type:'_carInspectionPlatform',id:state._carInspectionPlatform.id}//this is for model namespace and 
     }))(CarInspectionOrderCreateForm);
   }
+  
+  getCarInspectionOrderUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._carInspectionPlatform.selectedRows,
+      currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
+      owner: {type:'_carInspectionPlatform',id:state._carInspectionPlatform.id}//this is for model namespace and 
+    }))(CarInspectionOrderUpdateForm);
+    
+
+  }
+
   
   
   
@@ -368,26 +455,32 @@ getPageTitle() {
     
           <Route path="/carInspectionPlatform/:id/list/customerInfoList" component={this.getCustomerInfoSearch()} />
           <Route path="/carInspectionPlatform/:id/list/customerInfoCreateForm" component={this.getCustomerInfoCreateForm()} />
+          <Route path="/carInspectionPlatform/:id/list/customerInfoUpdateForm" component={this.getCustomerInfoUpdateForm()} />
           
 
           <Route path="/carInspectionPlatform/:id/list/carReceivingServiceCompanyList" component={this.getCarReceivingServiceCompanySearch()} />
           <Route path="/carInspectionPlatform/:id/list/carReceivingServiceCompanyCreateForm" component={this.getCarReceivingServiceCompanyCreateForm()} />
+          <Route path="/carInspectionPlatform/:id/list/carReceivingServiceCompanyUpdateForm" component={this.getCarReceivingServiceCompanyUpdateForm()} />
           
 
           <Route path="/carInspectionPlatform/:id/list/carInspectionServiceCompanyList" component={this.getCarInspectionServiceCompanySearch()} />
           <Route path="/carInspectionPlatform/:id/list/carInspectionServiceCompanyCreateForm" component={this.getCarInspectionServiceCompanyCreateForm()} />
+          <Route path="/carInspectionPlatform/:id/list/carInspectionServiceCompanyUpdateForm" component={this.getCarInspectionServiceCompanyUpdateForm()} />
           
 
           <Route path="/carInspectionPlatform/:id/list/carRepairingServiceCompanyList" component={this.getCarRepairingServiceCompanySearch()} />
           <Route path="/carInspectionPlatform/:id/list/carRepairingServiceCompanyCreateForm" component={this.getCarRepairingServiceCompanyCreateForm()} />
+          <Route path="/carInspectionPlatform/:id/list/carRepairingServiceCompanyUpdateForm" component={this.getCarRepairingServiceCompanyUpdateForm()} />
           
 
           <Route path="/carInspectionPlatform/:id/list/carInfoList" component={this.getCarInfoSearch()} />
           <Route path="/carInspectionPlatform/:id/list/carInfoCreateForm" component={this.getCarInfoCreateForm()} />
+          <Route path="/carInspectionPlatform/:id/list/carInfoUpdateForm" component={this.getCarInfoUpdateForm()} />
           
 
           <Route path="/carInspectionPlatform/:id/list/carInspectionOrderList" component={this.getCarInspectionOrderSearch()} />
           <Route path="/carInspectionPlatform/:id/list/carInspectionOrderCreateForm" component={this.getCarInspectionOrderCreateForm()} />
+          <Route path="/carInspectionPlatform/:id/list/carInspectionOrderUpdateForm" component={this.getCarInspectionOrderUpdateForm()} />
           
               
              

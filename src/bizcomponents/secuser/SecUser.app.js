@@ -16,13 +16,14 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import UserAppSearch from '../userapp/UserApp.search'
 import UserAppCreateForm from '../userapp/UserApp.createform'
+import UserAppUpdateForm from '../userapp/UserApp.updateform'
+
 import LoginHistorySearch from '../loginhistory/LoginHistory.search'
 import LoginHistoryCreateForm from '../loginhistory/LoginHistory.createform'
+import LoginHistoryUpdateForm from '../loginhistory/LoginHistory.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -141,6 +142,19 @@ class SecUserBizApp extends React.PureComponent {
     }))(UserAppCreateForm);
   }
   
+  getUserAppUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._secUser.selectedRows,
+      currentUpdateIndex: state._secUser.currentUpdateIndex,
+      owner: {type:'_secUser',id:state._secUser.id}//this is for model namespace and 
+    }))(UserAppUpdateForm);
+    
+
+  }
+
+  
 
   getLoginHistorySearch() {
  
@@ -166,6 +180,19 @@ class SecUserBizApp extends React.PureComponent {
       owner: {type:'_secUser',id:state._secUser.id}//this is for model namespace and 
     }))(LoginHistoryCreateForm);
   }
+  
+  getLoginHistoryUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._secUser.selectedRows,
+      currentUpdateIndex: state._secUser.currentUpdateIndex,
+      owner: {type:'_secUser',id:state._secUser.id}//this is for model namespace and 
+    }))(LoginHistoryUpdateForm);
+    
+
+  }
+
   
   
   
@@ -236,10 +263,12 @@ getPageTitle() {
     
           <Route path="/secUser/:id/list/userAppList" component={this.getUserAppSearch()} />
           <Route path="/secUser/:id/list/userAppCreateForm" component={this.getUserAppCreateForm()} />
+          <Route path="/secUser/:id/list/userAppUpdateForm" component={this.getUserAppUpdateForm()} />
           
 
           <Route path="/secUser/:id/list/loginHistoryList" component={this.getLoginHistorySearch()} />
           <Route path="/secUser/:id/list/loginHistoryCreateForm" component={this.getLoginHistoryCreateForm()} />
+          <Route path="/secUser/:id/list/loginHistoryUpdateForm" component={this.getLoginHistoryUpdateForm()} />
           
               
              

@@ -20,11 +20,10 @@ const PREFIX=getURLPrefix();
 
 
 const view=(targetObjectId)=>{
-    console.log("the is =====》》》 ",targetObjectId );
     return get({
         url: PREFIX+`carInspectionPlatformManager/view/${targetObjectId}/`
+
     });
-    
 }
 
 
@@ -84,6 +83,18 @@ const addCustomerInfo=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateCustomerInfo=(targetObjectId,parameters)=>{
+    const url = PREFIX+"carInspectionPlatformManager/updateCustomerInfoProperties/carInspectionPlatformId/id/customerName/customerPhoneNumber/customerIdentifyCardNumber/customerIdentifyCardFrontImage/customerIdentifyCardBackImage/tokensExpr/";
+    const carInspectionPlatformId = targetObjectId;
+    const requestParameters={...parameters, carInspectionPlatformId, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeCustomerInfoList=(targetObjectId,parameters)=>{
     const url = PREFIX+"carInspectionPlatformManager/removeCustomerInfoList/carInspectionPlatformId/customerInfoIds/tokensExpr/";
@@ -102,6 +113,18 @@ const removeCustomerInfoList=(targetObjectId,parameters)=>{
 const addCarReceivingServiceCompany=(targetObjectId,parameters)=>{
     const url = PREFIX+"carInspectionPlatformManager/addCarReceivingServiceCompany/platformId/name/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+const updateCarReceivingServiceCompany=(targetObjectId,parameters)=>{
+    const url = PREFIX+"carInspectionPlatformManager/updateCarReceivingServiceCompanyProperties/carInspectionPlatformId/id/name/tokensExpr/";
+    const carInspectionPlatformId = targetObjectId;
+    const requestParameters={...parameters, carInspectionPlatformId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -136,6 +159,18 @@ const addCarInspectionServiceCompany=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateCarInspectionServiceCompany=(targetObjectId,parameters)=>{
+    const url = PREFIX+"carInspectionPlatformManager/updateCarInspectionServiceCompanyProperties/carInspectionPlatformId/id/name/tokensExpr/";
+    const carInspectionPlatformId = targetObjectId;
+    const requestParameters={...parameters, carInspectionPlatformId, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeCarInspectionServiceCompanyList=(targetObjectId,parameters)=>{
     const url = PREFIX+"carInspectionPlatformManager/removeCarInspectionServiceCompanyList/carInspectionPlatformId/carInspectionServiceCompanyIds/tokensExpr/";
@@ -154,6 +189,18 @@ const removeCarInspectionServiceCompanyList=(targetObjectId,parameters)=>{
 const addCarRepairingServiceCompany=(targetObjectId,parameters)=>{
     const url = PREFIX+"carInspectionPlatformManager/addCarRepairingServiceCompany/platformId/name/tokensExpr/";
     const requestParameters={...parameters, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
+const updateCarRepairingServiceCompany=(targetObjectId,parameters)=>{
+    const url = PREFIX+"carInspectionPlatformManager/updateCarRepairingServiceCompanyProperties/carInspectionPlatformId/id/name/tokensExpr/";
+    const carInspectionPlatformId = targetObjectId;
+    const requestParameters={...parameters, carInspectionPlatformId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -188,6 +235,18 @@ const addCarInfo=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateCarInfo=(targetObjectId,parameters)=>{
+    const url = PREFIX+"carInspectionPlatformManager/updateCarInfoProperties/carInspectionPlatformId/id/carLicensePlateNumber/carType/carSeatsQuantity/carRegistrationDate/carInspectionValidationDate/carEngineNumber/vehicleIdentificationNumber/carInsuranceValidationDate/tokensExpr/";
+    const carInspectionPlatformId = targetObjectId;
+    const requestParameters={...parameters, carInspectionPlatformId, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeCarInfoList=(targetObjectId,parameters)=>{
     const url = PREFIX+"carInspectionPlatformManager/removeCarInfoList/carInspectionPlatformId/carInfoIds/tokensExpr/";
@@ -214,6 +273,18 @@ const addCarInspectionOrder=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateCarInspectionOrder=(targetObjectId,parameters)=>{
+    const url = PREFIX+"carInspectionPlatformManager/updateCarInspectionOrderProperties/carInspectionPlatformId/id/carLicensePlateNumber/carEngineNumber/vehicleIdentificationNumber/tokensExpr/";
+    const carInspectionPlatformId = targetObjectId;
+    const requestParameters={...parameters, carInspectionPlatformId, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeCarInspectionOrderList=(targetObjectId,parameters)=>{
     const url = PREFIX+"carInspectionPlatformManager/removeCarInspectionOrderList/carInspectionPlatformId/carInspectionOrderIds/tokensExpr/";
@@ -229,7 +300,26 @@ const removeCarInspectionOrderList=(targetObjectId,parameters)=>{
 
 
 
-const CarInspectionPlatformService={view,load,addCustomerInfo,addCarReceivingServiceCompany,addCarInspectionServiceCompany,addCarRepairingServiceCompany,addCarInfo,addCarInspectionOrder,removeCustomerInfoList,removeCarReceivingServiceCompanyList,removeCarInspectionServiceCompanyList,removeCarRepairingServiceCompanyList,removeCarInfoList,removeCarInspectionOrderList};
+const CarInspectionPlatformService={view,
+load,
+addCustomerInfo,
+addCarReceivingServiceCompany,
+addCarInspectionServiceCompany,
+addCarRepairingServiceCompany,
+addCarInfo,
+addCarInspectionOrder,
+updateCustomerInfo,
+updateCarReceivingServiceCompany,
+updateCarInspectionServiceCompany,
+updateCarRepairingServiceCompany,
+updateCarInfo,
+updateCarInspectionOrder,
+removeCustomerInfoList,
+removeCarReceivingServiceCompanyList,
+removeCarInspectionServiceCompanyList,
+removeCarRepairingServiceCompanyList,
+removeCarInfoList,
+removeCarInspectionOrderList};
 export default CarInspectionPlatformService;
 
 

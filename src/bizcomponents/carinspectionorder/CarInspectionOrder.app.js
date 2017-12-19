@@ -16,15 +16,18 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import CarReceivingServiceOrderSearch from '../carreceivingserviceorder/CarReceivingServiceOrder.search'
 import CarReceivingServiceOrderCreateForm from '../carreceivingserviceorder/CarReceivingServiceOrder.createform'
+import CarReceivingServiceOrderUpdateForm from '../carreceivingserviceorder/CarReceivingServiceOrder.updateform'
+
 import CarInspectionServiceOrderSearch from '../carinspectionserviceorder/CarInspectionServiceOrder.search'
 import CarInspectionServiceOrderCreateForm from '../carinspectionserviceorder/CarInspectionServiceOrder.createform'
+import CarInspectionServiceOrderUpdateForm from '../carinspectionserviceorder/CarInspectionServiceOrder.updateform'
+
 import CarRepairingServiceOrderSearch from '../carrepairingserviceorder/CarRepairingServiceOrder.search'
 import CarRepairingServiceOrderCreateForm from '../carrepairingserviceorder/CarRepairingServiceOrder.createform'
+import CarRepairingServiceOrderUpdateForm from '../carrepairingserviceorder/CarRepairingServiceOrder.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -148,6 +151,19 @@ class CarInspectionOrderBizApp extends React.PureComponent {
     }))(CarReceivingServiceOrderCreateForm);
   }
   
+  getCarReceivingServiceOrderUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._carInspectionOrder.selectedRows,
+      currentUpdateIndex: state._carInspectionOrder.currentUpdateIndex,
+      owner: {type:'_carInspectionOrder',id:state._carInspectionOrder.id}//this is for model namespace and 
+    }))(CarReceivingServiceOrderUpdateForm);
+    
+
+  }
+
+  
 
   getCarInspectionServiceOrderSearch() {
  
@@ -174,6 +190,19 @@ class CarInspectionOrderBizApp extends React.PureComponent {
     }))(CarInspectionServiceOrderCreateForm);
   }
   
+  getCarInspectionServiceOrderUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._carInspectionOrder.selectedRows,
+      currentUpdateIndex: state._carInspectionOrder.currentUpdateIndex,
+      owner: {type:'_carInspectionOrder',id:state._carInspectionOrder.id}//this is for model namespace and 
+    }))(CarInspectionServiceOrderUpdateForm);
+    
+
+  }
+
+  
 
   getCarRepairingServiceOrderSearch() {
  
@@ -199,6 +228,19 @@ class CarInspectionOrderBizApp extends React.PureComponent {
       owner: {type:'_carInspectionOrder',id:state._carInspectionOrder.id}//this is for model namespace and 
     }))(CarRepairingServiceOrderCreateForm);
   }
+  
+  getCarRepairingServiceOrderUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._carInspectionOrder.selectedRows,
+      currentUpdateIndex: state._carInspectionOrder.currentUpdateIndex,
+      owner: {type:'_carInspectionOrder',id:state._carInspectionOrder.id}//this is for model namespace and 
+    }))(CarRepairingServiceOrderUpdateForm);
+    
+
+  }
+
   
   
   
@@ -269,14 +311,17 @@ getPageTitle() {
     
           <Route path="/carInspectionOrder/:id/list/carReceivingServiceOrderList" component={this.getCarReceivingServiceOrderSearch()} />
           <Route path="/carInspectionOrder/:id/list/carReceivingServiceOrderCreateForm" component={this.getCarReceivingServiceOrderCreateForm()} />
+          <Route path="/carInspectionOrder/:id/list/carReceivingServiceOrderUpdateForm" component={this.getCarReceivingServiceOrderUpdateForm()} />
           
 
           <Route path="/carInspectionOrder/:id/list/carInspectionServiceOrderList" component={this.getCarInspectionServiceOrderSearch()} />
           <Route path="/carInspectionOrder/:id/list/carInspectionServiceOrderCreateForm" component={this.getCarInspectionServiceOrderCreateForm()} />
+          <Route path="/carInspectionOrder/:id/list/carInspectionServiceOrderUpdateForm" component={this.getCarInspectionServiceOrderUpdateForm()} />
           
 
           <Route path="/carInspectionOrder/:id/list/carRepairingServiceOrderList" component={this.getCarRepairingServiceOrderSearch()} />
           <Route path="/carInspectionOrder/:id/list/carRepairingServiceOrderCreateForm" component={this.getCarRepairingServiceOrderCreateForm()} />
+          <Route path="/carInspectionOrder/:id/list/carRepairingServiceOrderUpdateForm" component={this.getCarRepairingServiceOrderUpdateForm()} />
           
               
              

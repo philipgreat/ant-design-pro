@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const ObjectAccessService={view,load};
+const ObjectAccessService={view,
+load};
 export default ObjectAccessService;
 
 

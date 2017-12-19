@@ -105,6 +105,13 @@ export default {
     *gotoCreateForm({ payload }, { call, put }) {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/carRepairWorking/'+id+'/list/'+type+'CreateForm'));
+     }, 
+     *gotoUpdateForm({ payload }, { call, put }) {
+        const {id,type,selectedRows,currentUpdateIndex}=payload;
+        const state={id,type,selectedRows,currentUpdateIndex};
+        const location = {pathname:'/carRepairWorking/'+id+'/list/'+type+'UpdateForm',state};
+		yield put(routerRedux.push(location));
+		
      },
      *goback({ payload }, { call, put }) {
     	const {id,type}=payload;
@@ -112,56 +119,81 @@ export default {
      },
     
 	*addCarRepairingServiceOrder({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			const data = yield call(CarRepairWorkingService.addCarRepairingServiceOrder, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(CarRepairWorkingService.addCarRepairingServiceOrder, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/carRepairWorking/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
-			if (continueNext) {
-				return;
-			}
-			const location = {pathname:'/carRepairWorking/' + id + '/list/' + type + 'List',state:data};
-			yield put(routerRedux.push(location));
-		},
+		yield put({ type: "updateState", payload: newPlayload });
 		
-		*removeCarRepairingServiceOrderList({ payload }, { call, put }) {
-			const { id, type, parameters, continueNext } = payload;
-			console.log("get form parameters", parameters);
+			//yield put(routerRedux.push('/carRepairWorking/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+		if (continueNext) {
+			return;
+		}
+		const location = {pathname:'/carRepairWorking/' + id + '/list/' + type + 'List',state:data};
+		yield put(routerRedux.push(location));
+	},
+	*updateCarRepairingServiceOrder({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+		
+		console.log("get form parameters", parameters);
 
-			const data = yield call(CarRepairWorkingService.removeCarRepairingServiceOrderList, id, parameters);
-			if(hasError(data)){
-				handleServerError(data);
-				return;
-			}
-			const newPlayload = { ...payload, ...data };
+		const data = yield call(CarRepairWorkingService.updateCarRepairingServiceOrder, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
 
-			yield put({ type: "updateState", payload: newPlayload });
-			
-				//yield put(routerRedux.push('/carRepairWorking/'+id+'/list/'+type+'CreateForm'));
-			notification.success({
-				message: "执行成功",
-				description:"执行成功",
-			});
-			
-			
+		yield put({ type: "updateState", payload: newPlayload });
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		if (continueNext) {
+			return;
+		}
+		
+		
+		const location = {pathname:'/carRepairWorking/' + id + '/list/' + type + 'List',state:newPlayload};
+		yield put(routerRedux.push(location));
+	},		
+	*removeCarRepairingServiceOrderList({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext } = payload;
+		console.log("get form parameters", parameters);
 
-			//const location = {pathname:'/carRepairWorking/' + id + '/list/' + type + 'List',state:data};
-			//yield put(routerRedux.push(location));
-		},
+		const data = yield call(CarRepairWorkingService.removeCarRepairingServiceOrderList, id, parameters);
+		if(hasError(data)){
+			handleServerError(data);
+			return;
+		}
+		const newPlayload = { ...payload, ...data };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+			//yield put(routerRedux.push('/carRepairWorking/'+id+'/list/'+type+'CreateForm'));
+		notification.success({
+			message: "执行成功",
+			description:"执行成功",
+		});
+		
+		
+
+		//const location = {pathname:'/carRepairWorking/' + id + '/list/' + type + 'List',state:data};
+		//yield put(routerRedux.push(location));
+	},
 
     
     

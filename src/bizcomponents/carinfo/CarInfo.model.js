@@ -105,6 +105,13 @@ export default {
     *gotoCreateForm({ payload }, { call, put }) {
     	const {id,type}=payload;
     	yield put(routerRedux.push('/carInfo/'+id+'/list/'+type+'CreateForm'));
+     }, 
+     *gotoUpdateForm({ payload }, { call, put }) {
+        const {id,type,selectedRows,currentUpdateIndex}=payload;
+        const state={id,type,selectedRows,currentUpdateIndex};
+        const location = {pathname:'/carInfo/'+id+'/list/'+type+'UpdateForm',state};
+		yield put(routerRedux.push(location));
+		
      },
      *goback({ payload }, { call, put }) {
     	const {id,type}=payload;

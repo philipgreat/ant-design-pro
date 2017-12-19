@@ -16,13 +16,14 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import CarInfoSearch from '../carinfo/CarInfo.search'
 import CarInfoCreateForm from '../carinfo/CarInfo.createform'
+import CarInfoUpdateForm from '../carinfo/CarInfo.updateform'
+
 import CarInspectionOrderSearch from '../carinspectionorder/CarInspectionOrder.search'
 import CarInspectionOrderCreateForm from '../carinspectionorder/CarInspectionOrder.createform'
+import CarInspectionOrderUpdateForm from '../carinspectionorder/CarInspectionOrder.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -141,6 +142,19 @@ class CustomerInfoBizApp extends React.PureComponent {
     }))(CarInfoCreateForm);
   }
   
+  getCarInfoUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._customerInfo.selectedRows,
+      currentUpdateIndex: state._customerInfo.currentUpdateIndex,
+      owner: {type:'_customerInfo',id:state._customerInfo.id}//this is for model namespace and 
+    }))(CarInfoUpdateForm);
+    
+
+  }
+
+  
 
   getCarInspectionOrderSearch() {
  
@@ -166,6 +180,19 @@ class CustomerInfoBizApp extends React.PureComponent {
       owner: {type:'_customerInfo',id:state._customerInfo.id}//this is for model namespace and 
     }))(CarInspectionOrderCreateForm);
   }
+  
+  getCarInspectionOrderUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._customerInfo.selectedRows,
+      currentUpdateIndex: state._customerInfo.currentUpdateIndex,
+      owner: {type:'_customerInfo',id:state._customerInfo.id}//this is for model namespace and 
+    }))(CarInspectionOrderUpdateForm);
+    
+
+  }
+
   
   
   
@@ -236,10 +263,12 @@ getPageTitle() {
     
           <Route path="/customerInfo/:id/list/carInfoList" component={this.getCarInfoSearch()} />
           <Route path="/customerInfo/:id/list/carInfoCreateForm" component={this.getCarInfoCreateForm()} />
+          <Route path="/customerInfo/:id/list/carInfoUpdateForm" component={this.getCarInfoUpdateForm()} />
           
 
           <Route path="/customerInfo/:id/list/carInspectionOrderList" component={this.getCarInspectionOrderSearch()} />
           <Route path="/customerInfo/:id/list/carInspectionOrderCreateForm" component={this.getCarInspectionOrderCreateForm()} />
+          <Route path="/customerInfo/:id/list/carInspectionOrderUpdateForm" component={this.getCarInspectionOrderUpdateForm()} />
           
               
              

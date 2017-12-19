@@ -83,6 +83,18 @@ const addObjectAccess=(targetObjectId,parameters)=>{
         headers: headers
     });
 }
+const updateObjectAccess=(targetObjectId,parameters)=>{
+    const url = PREFIX+"userAppManager/updateObjectAccessProperties/userAppId/id/displayName/objectType/list1/list2/list3/list4/list5/list6/list7/list8/list9/tokensExpr/";
+    const userAppId = targetObjectId;
+    const requestParameters={...parameters, userAppId, tokensExpr:'none'};
+
+    const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
+    return post({
+        url: url,
+        data: joinPostParameters(requestParameters),
+        headers: headers
+    });
+}
 
 const removeObjectAccessList=(targetObjectId,parameters)=>{
     const url = PREFIX+"userAppManager/removeObjectAccessList/userAppId/objectAccessIds/tokensExpr/";
@@ -98,7 +110,11 @@ const removeObjectAccessList=(targetObjectId,parameters)=>{
 
 
 
-const UserAppService={view,load,addObjectAccess,removeObjectAccessList};
+const UserAppService={view,
+load,
+addObjectAccess,
+updateObjectAccess,
+removeObjectAccessList};
 export default UserAppService;
 
 

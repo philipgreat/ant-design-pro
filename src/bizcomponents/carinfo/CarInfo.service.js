@@ -72,7 +72,8 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const CarInfoService={view,load};
+const CarInfoService={view,
+load};
 export default CarInfoService;
 
 

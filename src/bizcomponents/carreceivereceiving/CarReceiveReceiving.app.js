@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import CarReceivingServiceOrderSearch from '../carreceivingserviceorder/CarReceivingServiceOrder.search'
 import CarReceivingServiceOrderCreateForm from '../carreceivingserviceorder/CarReceivingServiceOrder.createform'
+import CarReceivingServiceOrderUpdateForm from '../carreceivingserviceorder/CarReceivingServiceOrder.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class CarReceiveReceivingBizApp extends React.PureComponent {
     }))(CarReceivingServiceOrderCreateForm);
   }
   
+  getCarReceivingServiceOrderUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._carReceiveReceiving.selectedRows,
+      currentUpdateIndex: state._carReceiveReceiving.currentUpdateIndex,
+      owner: {type:'_carReceiveReceiving',id:state._carReceiveReceiving.id}//this is for model namespace and 
+    }))(CarReceivingServiceOrderUpdateForm);
+    
+
+  }
+
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/carReceiveReceiving/:id/list/carReceivingServiceOrderList" component={this.getCarReceivingServiceOrderSearch()} />
           <Route path="/carReceiveReceiving/:id/list/carReceivingServiceOrderCreateForm" component={this.getCarReceivingServiceOrderCreateForm()} />
+          <Route path="/carReceiveReceiving/:id/list/carReceivingServiceOrderUpdateForm" component={this.getCarReceivingServiceOrderUpdateForm()} />
           
               
              

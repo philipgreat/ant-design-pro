@@ -16,11 +16,10 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 import SecUserSearch from '../secuser/SecUser.search'
 import SecUserCreateForm from '../secuser/SecUser.createform'
+import SecUserUpdateForm from '../secuser/SecUser.updateform'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-
-
 
 const query = {
   'screen-xs': {
@@ -134,6 +133,19 @@ class SecUserBlockingBizApp extends React.PureComponent {
     }))(SecUserCreateForm);
   }
   
+  getSecUserUpdateForm() {
+ 
+    return connect(state => ({
+      
+      selectedRows: state._secUserBlocking.selectedRows,
+      currentUpdateIndex: state._secUserBlocking.currentUpdateIndex,
+      owner: {type:'_secUserBlocking',id:state._secUserBlocking.id}//this is for model namespace and 
+    }))(SecUserUpdateForm);
+    
+
+  }
+
+  
   
   
 getPageTitle() {
@@ -203,6 +215,7 @@ getPageTitle() {
     
           <Route path="/secUserBlocking/:id/list/secUserList" component={this.getSecUserSearch()} />
           <Route path="/secUserBlocking/:id/list/secUserCreateForm" component={this.getSecUserCreateForm()} />
+          <Route path="/secUserBlocking/:id/list/secUserUpdateForm" component={this.getSecUserUpdateForm()} />
           
               
              

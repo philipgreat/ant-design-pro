@@ -148,15 +148,30 @@ export default class CarRepairingServiceCompanySearch extends PureComponent {
   
   
   
+
+
   handleCreate = () => {
  
    	const {dispatch,owner} = this.props;
-	dispatch({
-       type: owner.type+'/gotoCreateForm',
-       payload: {id:owner.id,type:'carRepairingServiceCompany'},
+	  dispatch({
+      type: owner.type+'/gotoCreateForm',
+      payload: {id:owner.id,type:'carRepairingServiceCompany'},
     });
   }
-
+  handleUpdate = () => {
+    
+    const {dispatch,owner} = this.props;
+    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+    const currentUpdateIndex = 0;
+    dispatch({
+      type: owner.type+'/gotoUpdateForm',
+      payload: {id:owner.id,type:'carRepairingServiceCompany',selectedRows,currentUpdateIndex},
+    });
+    
+    
+  }
+  
+ 
   handleAddInput = (e) => {
     this.setState({
       addInputValue: e.target.value,
@@ -248,7 +263,9 @@ export default class CarRepairingServiceCompanySearch extends PureComponent {
               {
                 selectedRows.length > 0 && (
                   <span>
-                     <Button onClick={this.handleModalVisible} type="danger" icon="delete">批量删除</Button>
+                    <Button onClick={this.handleModalVisible} type="danger" icon="delete">批量删除</Button>
+                    <Button onClick={this.handleUpdate} type="primary" icon="update">批量更新</Button>
+                     
                     <Dropdown overlay={menu}>
                       <Button >
                         更多操作 <Icon type="down" />

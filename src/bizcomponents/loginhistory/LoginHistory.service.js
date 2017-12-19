@@ -72,8 +72,10 @@ const load=(targetObjectId,parameters)=>{
 
 
 
-const LoginHistoryService={view,load};
+const LoginHistoryService={view,
+load};
 export default LoginHistoryService;
+
 
 
 
