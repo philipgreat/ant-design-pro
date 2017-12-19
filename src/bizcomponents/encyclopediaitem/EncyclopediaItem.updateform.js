@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
-
+import moment from 'moment';
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import PictureEdit from '../../components/PictureEdit'
@@ -53,7 +53,17 @@ class EncyclopediaItemUpdateForm extends PureComponent {
       return;
     }
     if(currentUpdateIndex<selectedRows.length){
-      setFieldsValue(selectedRows[currentUpdateIndex]);
+    	
+   	
+      const convertiedValues = selectedRows.map((item)=>{
+
+          return {...item, 
+			publishTime: moment(item.publishTime).format('YYYY-MM-DD'),
+  
+          }
+
+      });
+      setFieldsValue(convertiedValues[currentUpdateIndex]);
     }
     
         
@@ -111,7 +121,7 @@ class EncyclopediaItemUpdateForm extends PureComponent {
        this.setState({
         currentUpdateIndex: currentUpdateIndex+1,
        });
-       setFieldsValue(selectedRows[currentUpdateIndex+1]);
+       //setFieldsValue(selectedRows[currentUpdateIndex+1]);
        const newIndex= currentUpdateIndex+1;
        dispatch({
           type: owner.type+'/updateEncyclopediaItem',

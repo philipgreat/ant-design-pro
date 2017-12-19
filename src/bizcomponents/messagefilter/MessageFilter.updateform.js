@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
-
+import moment from 'moment';
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import PictureEdit from '../../components/PictureEdit'
@@ -53,7 +53,16 @@ class MessageFilterUpdateForm extends PureComponent {
       return;
     }
     if(currentUpdateIndex<selectedRows.length){
-      setFieldsValue(selectedRows[currentUpdateIndex]);
+    	
+   	
+      const convertiedValues = selectedRows.map((item)=>{
+
+          return {...item, 
+  
+          }
+
+      });
+      setFieldsValue(convertiedValues[currentUpdateIndex]);
     }
     
         
