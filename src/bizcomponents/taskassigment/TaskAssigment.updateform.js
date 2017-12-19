@@ -167,6 +167,28 @@ class TaskAssigmentUpdateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id}>
+                  {getFieldDecorator('id', {
+                    rules: [{ required: true, message: '请输入序号' }],
+                  })(
+                    <Input placeholder="请输入请输入序号string" disabled='true'/>
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.assignTime}>
+                  {getFieldDecorator('assignTime', {
+                    rules: [{ required: true, message: '请输入分配时间' }],
+                  })(
+                    <Input placeholder="请输入请输入分配时间date_time_now" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.comments}>
                   {getFieldDecorator('comments', {
                     rules: [{ required: true, message: '请输入评论' }],

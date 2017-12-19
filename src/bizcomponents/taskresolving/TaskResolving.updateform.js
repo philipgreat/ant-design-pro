@@ -166,6 +166,39 @@ class TaskResolvingUpdateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id}>
+                  {getFieldDecorator('id', {
+                    rules: [{ required: true, message: '请输入序号' }],
+                  })(
+                    <Input placeholder="请输入请输入序号string" disabled='true'/>
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.who}>
+                  {getFieldDecorator('who', {
+                    rules: [{ required: true, message: '请输入谁' }],
+                  })(
+                    <Input placeholder="请输入请输入谁string_current_user_name" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.actionTime}>
+                  {getFieldDecorator('actionTime', {
+                    rules: [{ required: true, message: '请输入行动时间' }],
+                  })(
+                    <Input placeholder="请输入请输入行动时间date_time_now" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.comment}>
                   {getFieldDecorator('comment', {
                     rules: [{ required: true, message: '请输入评论' }],

@@ -166,11 +166,33 @@ class FollowUpdateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id}>
+                  {getFieldDecorator('id', {
+                    rules: [{ required: true, message: '请输入序号' }],
+                  })(
+                    <Input placeholder="请输入请输入序号string" disabled='true'/>
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.followId}>
                   {getFieldDecorator('followId', {
                     rules: [{ required: true, message: '请输入关注的社区用户' }],
                   })(
                     <Input placeholder="请输入请输入关注的社区用户string" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.addingTime}>
+                  {getFieldDecorator('addingTime', {
+                    rules: [{ required: true, message: '请输入添加时间' }],
+                  })(
+                    <Input placeholder="请输入请输入添加时间date_time_now" />
                   )}
                 </Form.Item>
               </Col>			

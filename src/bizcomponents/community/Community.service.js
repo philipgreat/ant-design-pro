@@ -85,7 +85,8 @@ const addInvitationCode=(targetObjectId,parameters)=>{
 }
 const updateInvitationCode=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityManager/updateInvitationCodeProperties/communityId/invitationCodeId/name/code/used/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
+    const communityId = targetObjectId;
+    const requestParameters={...parameters,communityId, tokensExpr:'none'};
 
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
@@ -344,8 +345,9 @@ const addThread=(targetObjectId,parameters)=>{
 }
 const updateThread=(targetObjectId,parameters)=>{
     const url = PREFIX+"communityManager/updateThreadProperties/communityId/threadId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/creatorId/homePageId/groupPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/";
-    const requestParameters={...parameters, tokensExpr:'none'};
-
+    const communityId = targetObjectId;
+    const requestParameters={...parameters, communityId, tokensExpr:'none'};
+    
     const headers={ 'Content-Type': 'application/x-www-form-urlencoded' };
     return post({
         url: url,

@@ -107,8 +107,9 @@ export default {
     	yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
      }, 
      *gotoUpdateForm({ payload }, { call, put }) {
-        const {id,type,selectedRows}=payload;
-        const state={id,type,selectedRows};
+		const {id,type,selectedRows,currentUpdateIndex}=payload;
+		console.log("update form payload", payload);
+        const state={id,type,selectedRows,currentUpdateIndex};
         const location = {pathname:'/community/'+id+'/list/'+type+'UpdateForm',state};
 		yield put(routerRedux.push(location));
 		
@@ -145,23 +146,24 @@ export default {
 		yield put(routerRedux.push(location));
 	},
 	*updateInvitationCode({ payload }, { call, put }) {
-		const { id, type, parameters, continueNext } = payload;
-		console.log("get form parameters", parameters);
+		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+		console.log("get form parameters", payload);
 
 		const data = yield call(CommunityService.updateInvitationCode, id, parameters);
 		if(hasError(data)){
 			handleServerError(data);
 			return;
 		}
-		const newPlayload = { ...payload, ...data };
 
-		yield put({ type: "updateState", payload: newPlayload });
 		
 			//yield put(routerRedux.push('/community/'+id+'/list/'+type+'CreateForm'));
 		notification.success({
 			message: "执行成功",
 			description:"执行成功",
 		});
+		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
+
+		yield put({ type: "updateState", payload: newPlayload });
 		
 		
 		if (continueNext) {

@@ -47,8 +47,8 @@ class InvitationCodeUpdateForm extends PureComponent {
   }
    componentDidMount() {
         
-    const { form, dispatch, submitting,selectedRows } = this.props;
-    const { currentUpdateIndex } = this.state;
+    const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
+    
 
     const { getFieldDecorator, setFieldsValue } = this.props.form;
     if(!selectedRows){
@@ -63,9 +63,10 @@ class InvitationCodeUpdateForm extends PureComponent {
   }
 
   render() {
-    const { form, dispatch, submitting,selectedRows } = this.props;
+    console.log("current props",this.props)
+    const { form, dispatch, submitting,selectedRows,currentUpdateIndex} = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const { currentUpdateIndex } = this.state;
+   
     const { setFieldsValue } = this.props.form;
     
     const submitUpdateForm = () => {
@@ -80,7 +81,7 @@ class InvitationCodeUpdateForm extends PureComponent {
       	dispatch({
          type: owner.type+'/updateInvitationCode',
          payload: {id:owner.id,type:'invitationCode', parameters: parameters},
-      }); 
+        }); 
       });
     };
     
@@ -92,18 +93,25 @@ class InvitationCodeUpdateForm extends PureComponent {
         }
 
         const { owner } = this.props;
-        const parameters = { ...values, ...imagesValues };
+        const invitationCodeId = values.id;
+        const parameters = { ...values,invitationCodeId, ...imagesValues };
 
-        const { currentUpdateIndex } = this.state;
+        const { currentUpdateIndex } = this.props;
         
        if(currentUpdateIndex>=selectedRows.length-1){
-          return;
+        return;
        }
        this.setState({
         currentUpdateIndex: currentUpdateIndex+1,
        });
         setFieldsValue(selectedRows[currentUpdateIndex+1]);
-
+        const newIndex= currentUpdateIndex+1;
+        dispatch({
+          type: owner.type+'/updateInvitationCode',
+          payload: {id:owner.id,type:'invitationCode', 
+            parameters: parameters,
+            selectedRows,currentUpdateIndex:newIndex,continueNext:true},
+        });
         
        
       });
@@ -168,6 +176,17 @@ class InvitationCodeUpdateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id}>
+                  {getFieldDecorator('id', {
+                    rules: [{ required: true, message: '请输入序号' }],
+                  })(
+                    <Input placeholder="请输入请输入序号string" disabled={true}/>
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.name}>
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: '请输入名称' }],
@@ -184,6 +203,17 @@ class InvitationCodeUpdateForm extends PureComponent {
                     rules: [{ required: true, message: '请输入代码' }],
                   })(
                     <Input placeholder="请输入请输入代码int" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.createTime}>
+                  {getFieldDecorator('createTime', {
+                    rules: [{ required: true, message: '请输入创建时间' }],
+                  })(
+                    <Input placeholder="请输入请输入创建时间date_time_now" />
                   )}
                 </Form.Item>
               </Col>			

@@ -165,7 +165,7 @@ export default class InvitationCodeSearch extends PureComponent {
    
     dispatch({
       type: owner.type+'/gotoUpdateForm',
-      payload: {id:owner.id,type:'invitationCode',selectedRows},
+      payload: {id:owner.id,type:'invitationCode',selectedRows,currentUpdateIndex:0},
     });
     
     

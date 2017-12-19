@@ -173,6 +173,17 @@ class SecUserUpdateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id}>
+                  {getFieldDecorator('id', {
+                    rules: [{ required: true, message: '请输入序号' }],
+                  })(
+                    <Input placeholder="请输入请输入序号string" disabled='true'/>
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.login}>
                   {getFieldDecorator('login', {
                     rules: [{ required: true, message: '请输入登录' }],
@@ -244,6 +255,17 @@ class SecUserUpdateForm extends PureComponent {
                     rules: [{ required: true, message: '请输入最后登录时间' }],
                   })(
                     <Input placeholder="请输入请输入最后登录时间date_time" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.currentStatus}>
+                  {getFieldDecorator('currentStatus', {
+                    rules: [{ required: true, message: '请输入当前状态' }],
+                  })(
+                    <Input placeholder="请输入请输入当前状态string" />
                   )}
                 </Form.Item>
               </Col>			

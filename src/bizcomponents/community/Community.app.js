@@ -201,6 +201,7 @@ class CommunityBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._community.selectedRows,
+      currentUpdateIndex:state._community.currentUpdateIndex,
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(InvitationCodeUpdateForm);
     
@@ -239,6 +240,7 @@ class CommunityBizApp extends React.PureComponent {
     return connect(state => ({
       
       selectedRows: state._community.selectedRows,
+      
       owner: {type:'_community',id:state._community.id}//this is for model namespace and 
     }))(HomePageUpdateForm);
     

@@ -202,6 +202,17 @@ class ThreadUpdateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id}>
+                  {getFieldDecorator('id', {
+                    rules: [{ required: true, message: '请输入序号' }],
+                  })(
+                    <Input placeholder="请输入请输入序号string" disabled='true'/>
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.title}>
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: '请输入标题' }],
@@ -218,6 +229,17 @@ class ThreadUpdateForm extends PureComponent {
                     rules: [{ required: true, message: '请输入显示顺序' }],
                   })(
                     <Input placeholder="请输入请输入显示顺序int" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.createTime}>
+                  {getFieldDecorator('createTime', {
+                    rules: [{ required: true, message: '请输入创建时间' }],
+                  })(
+                    <Input placeholder="请输入请输入创建时间date_time_now" />
                   )}
                 </Form.Item>
               </Col>			
@@ -328,6 +350,17 @@ class ThreadUpdateForm extends PureComponent {
                     rules: [{ required: true, message: '请输入由当前用户注册' }],
                   })(
                     <Input placeholder="请输入请输入由当前用户注册bool" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.currentStatus}>
+                  {getFieldDecorator('currentStatus', {
+                    rules: [{ required: true, message: '请输入当前状态' }],
+                  })(
+                    <Input placeholder="请输入请输入当前状态string" />
                   )}
                 </Form.Item>
               </Col>			

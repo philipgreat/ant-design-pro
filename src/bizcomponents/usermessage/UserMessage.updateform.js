@@ -169,6 +169,17 @@ class UserMessageUpdateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id}>
+                  {getFieldDecorator('id', {
+                    rules: [{ required: true, message: '请输入序号' }],
+                  })(
+                    <Input placeholder="请输入请输入序号string" disabled='true'/>
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.title}>
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: '请输入标题' }],
@@ -207,6 +218,17 @@ class UserMessageUpdateForm extends PureComponent {
                     rules: [{ required: true, message: '请输入链接网址' }],
                   })(
                     <Input placeholder="请输入请输入链接网址string" />
+                  )}
+                </Form.Item>
+              </Col>			
+			
+			
+             <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.messageTime}>
+                  {getFieldDecorator('messageTime', {
+                    rules: [{ required: true, message: '请输入消息的时间' }],
+                  })(
+                    <Input placeholder="请输入请输入消息的时间date_time_now" />
                   )}
                 </Form.Item>
               </Col>			
