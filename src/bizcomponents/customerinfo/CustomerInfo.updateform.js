@@ -25,15 +25,13 @@ customerIdentifyCardBackImage: '客户身份证背面照片',
 
 
 
+const imageURLPrefix = "//localhost:2090"
 
 
-const imagesValues={
-        
-      			customerIdentifyCardFrontImage:'身份证正面.jpg',
-			customerIdentifyCardBackImage:'身份证反面.jpg',
-
-        
-        };
+const imageKeys = [
+  "customerIdentifyCardFrontImage",
+  "customerIdentifyCardBackImage"
+];
 
 
 
@@ -43,23 +41,9 @@ class CustomerInfoUpdateForm extends PureComponent {
   state = {
     previewVisible: false,
     previewImage: '',
-
-    convertedImagesValues:{
-        
-      customerIdentifyCardFrontImage:[
-        {key:'123',uid:'123',url:"//localhost:2090/private/2e695fff-0b3b-4ca9-aed3-134c8147d418"},
-      ],
-    customerIdentifyCardBackImage:[
-        {key:'123',uid:'123',url:"//localhost:2090/private/aa44c9e5-fbde-483e-8ce1-cd2799d987c7"},
-      ],
-
-  
-  }
-
-
+    convertedImagesValues: {}
   };
-  //fileList: []
-  // fileList: [{key:'123',uid:'123',url:"//localhost:2090/private/2e695fff-0b3b-4ca9-aed3-134c8147d418"}],
+
   handlePreview = (file) => {
     console.log("preview file", file)
     this.setState({
@@ -67,56 +51,122 @@ class CustomerInfoUpdateForm extends PureComponent {
       previewVisible: true,
     });
   }
-  shouldComponentUpdate(){
+  shouldComponentUpdate() {
     return true;
   }
 
-  handleChange = (event, source ) =>{ 
+  handleChange = (event, source) => {
     console.log("get file list from change in update change: ", source);
-   
-    const {fileList} = event;
+
+    const { fileList } = event;
     var convertedImagesValues = this.state.convertedImagesValues;
+
     convertedImagesValues[source] = fileList;
     this.setState({ convertedImagesValues })
 
 
     console.log("/get file list from change in update change: ", source);
-    
+
   }
 
-  componentDidMount() {
-        
-    const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
- 
+  mapBackToImageValues(convertedImagesValues) {
+    var targetImages = new Array()
+    Object.keys(convertedImagesValues).map((key) => {
+      if(!convertedImagesValues){
+        return;
+      }
+      if(!convertedImagesValues[key]){
+        return;
+      }
+      if(!convertedImagesValues[key][0]){
+        return;
+      }
+      const value = convertedImagesValues[key][0];
+      if(value.response){
+        targetImages[key] = imageURLPrefix + value.response;
+        return;
+      }
+      if(value.url){
+        targetImages[key] = value.url;
+        return;
+      }
+      
 
+    });
+    return targetImages;
+
+  }
+  
+  mapFromImageValues(selectedRow) {
+    var targetImages = new Object()
+    
+    const buildFileList=(key,value)=>{
+      if(value){
+        return [{ uid: key, url: value }];
+      }
+      return [];
+    }
+    imageKeys.map((key) => {
+      
+      targetImages[key] = buildFileList(key,selectedRow[key]);
+
+    });
+    console.log(targetImages);
+    return targetImages;
+
+  }
+  componentDidMount() {
+
+    //const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
     const { getFieldDecorator, setFieldsValue } = this.props.form;
-    if(!selectedRows){
+   
+    const selectedRow = this.getSelectedRow();
+    if(!selectedRow){
       return;
     }
-    if(currentUpdateIndex<selectedRows.length){
-    	
-   	
-      const convertiedValues = selectedRows.map((item)=>{
+    setFieldsValue(selectedRow);
+    
 
-          return {...item, 
-  
-          }
+  }
 
-      });
-      setFieldsValue(convertiedValues[currentUpdateIndex]);
+  componentWillMount() {
+
+    const selectedRow = this.getSelectedRow();
+    if(!selectedRow){
+      return;
     }
     
-        
-        
+    this.setState({
+      convertedImagesValues: this.mapFromImageValues(selectedRow)
+    });
+
+  }
+  
+  getSelectedRow(){
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
+    if (!selectedRows) {
+      return;
+    }
+    if (currentUpdateIndex >= selectedRows.length) {
+      return;
+    }
+    const convertiedValues = selectedRows.map((item) => {
+      return {
+        ...item,
+  
+      }
+    });
+    const selectedRow = convertiedValues[currentUpdateIndex];
+    return selectedRow;
+
   }
 
   render() {
     const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
-    const { fileList } = this.state;
-    console.log("render in updateform");
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const {convertedImagesValues} = this.state
+    const { convertedImagesValues } = this.state
     const { setFieldsValue } = this.props.form;
+    
     
     const submitUpdateForm = () => {
      validateFieldsAndScroll((error, values) => {
@@ -127,17 +177,16 @@ class CustomerInfoUpdateForm extends PureComponent {
 
         const { owner } = this.props;
         const customerInfoId = values.id;
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
         const parameters = { ...values,customerInfoId, ...imagesValues };
 
-       
-       //setFieldsValue(selectedRows[currentUpdateIndex+1]);
-       const newIndex= currentUpdateIndex+1;
-       dispatch({
+	    const newIndex= currentUpdateIndex+1;
+        dispatch({
           type: owner.type+'/updateCustomerInfo',
           payload: {id:owner.id,type:'customerInfo', 
             parameters: parameters,
             selectedRows,currentUpdateIndex:0,continueNext:false},
-       });
+       	});
         
        
       });
@@ -153,6 +202,7 @@ class CustomerInfoUpdateForm extends PureComponent {
 
         const { owner } = this.props;
         const customerInfoId = values.id;
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
         const parameters = { ...values,customerInfoId, ...imagesValues };
 
         const { currentUpdateIndex } = this.props;
@@ -222,12 +272,12 @@ class CustomerInfoUpdateForm extends PureComponent {
         </span>
       );
     };
-
-    if(!selectedRows){
+    
+    if (!selectedRows) {
       return (<div>缺少被更新的对象</div>)
     }
+    
     return (
-      
       <PageHeaderLayout
         
         title={"更新客户信息"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -301,26 +351,25 @@ class CustomerInfoUpdateForm extends PureComponent {
         
         <Card title="附件" className={styles.card} bordered={false}>
            <Form layout="vertical" hideRequiredMark>
-            <Row gutter={10}>
+            <Row gutter={16}>
             
             
-            <Col lg={6} md={12} sm={24}>
-            <PictureEdit buttonTitle={"客户身份证正面照片"} 
-            handleChange={(event)=>this.handleChange(event,"customerIdentifyCardFrontImage")} 
-            handlePreview={this.handlePreview}
-            
-            fileList={convertedImagesValues.customerIdentifyCardFrontImage}/> 
-          </Col>			
-          <Col lg={6} md={12} sm={24}>
+             <Col lg={6} md={12} sm={24}>
                 <PictureEdit buttonTitle={"客户身份证正面照片"} 
-                handleChange={(event)=>this.handleChange(event,"customerIdentifyCardBackImage")} 
-                handlePreview={this.handlePreview}
-                
-                fileList={convertedImagesValues.customerIdentifyCardBackImage}/> 
-              </Col>			
-  
+                	handlePreview={this.handlePreview}
+                	handleChange={(event) => this.handleChange(event, "customerIdentifyCardFrontImage")}
+                 	fileList={convertedImagesValues.customerIdentifyCardFrontImage} />
+                 
+              </Col>
 			
-             			
+			
+             <Col lg={6} md={12} sm={24}>
+                <PictureEdit buttonTitle={"客户身份证背面照片"} 
+                	handlePreview={this.handlePreview}
+                	handleChange={(event) => this.handleChange(event, "customerIdentifyCardBackImage")}
+                 	fileList={convertedImagesValues.customerIdentifyCardBackImage} />
+                 
+              </Col>
 			
 			
             
@@ -358,7 +407,4 @@ class CustomerInfoUpdateForm extends PureComponent {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(CustomerInfoUpdateForm));
-
-
-
 

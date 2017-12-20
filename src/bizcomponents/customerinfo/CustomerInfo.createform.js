@@ -24,47 +24,102 @@ customerIdentifyCardBackImage: '客户身份证背面照片',
 };
 
 
+const imageURLPrefix = "//localhost:2090"
 
-const testValues={
-        
-      			customerName:'张无忌',
-			customerPhoneNumber:'19922335566',
-			customerIdentifyCardNumber:'510124199012010000',
-			platformId:'CIP000001',
 
-        
-        };
-
-const imagesValues={
-        
-      			customerIdentifyCardFrontImage:'身份证正面.jpg',
-			customerIdentifyCardBackImage:'身份证反面.jpg',
-
-        
-        };
-
+const imageKeys = [
+  "customerIdentifyCardFrontImage",
+  "customerIdentifyCardBackImage"
+];
 
 
 
 class CustomerInfoCreateForm extends PureComponent {
 
-  handleChange = ({ fileList }) =>{
-    console.log("filelist", fileList);
+
+  state = {
+    previewVisible: false,
+    previewImage: '',
+    convertedImagesValues: {}
+  };
+
+  handlePreview = (file) => {
+    console.log("preview file", file)
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
+  }
+  shouldComponentUpdate() {
+    return true;
+  }
+
+  handleChange = (event, source) => {
+    console.log("get file list from change in update change: ", source);
+
+    const { fileList } = event;
+    var convertedImagesValues = this.state.convertedImagesValues;
+
+    convertedImagesValues[source] = fileList;
+    this.setState({ convertedImagesValues })
+
+
+    console.log("/get file list from change in update change: ", source);
 
   }
-   componentDidMount() {
-        
-        
- 
-           
-        const { getFieldDecorator,setFieldsValue } = this.props.form;               
-        setFieldsValue(testValues);
-        
-        
+
+  mapBackToImageValues(convertedImagesValues) {
+    var targetImages = new Array()
+    Object.keys(convertedImagesValues).map((key) => {
+      if(!convertedImagesValues){
+        return;
+      }
+      if(!convertedImagesValues[key]){
+        return;
+      }
+      if(!convertedImagesValues[key][0]){
+        return;
+      }
+      const value = convertedImagesValues[key][0];
+      if(value.response){
+        targetImages[key] = imageURLPrefix + value.response;
+        return;
+      }
+      if(value.url){
+        targetImages[key] = value.url;
+        return;
+      }
+      
+
+    });
+    return targetImages;
+
   }
+  
+  mapFromImageValues(selectedRow) {
+    var targetImages = new Object()
+    
+    const buildFileList=(key,value)=>{
+      if(value){
+        return [{ uid: key, url: value }];
+      }
+      return [];
+    }
+    imageKeys.map((key) => {
+      
+      targetImages[key] = buildFileList(key,selectedRow[key]);
+
+    });
+    console.log(targetImages);
+    return targetImages;
+
+  }
+  
 
   render() {
     const { form, dispatch, submitting } = this.props;
+    const { convertedImagesValues } = this.state
+    
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
     const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
@@ -74,6 +129,8 @@ class CustomerInfoCreateForm extends PureComponent {
         }
         
         const {owner} = this.props;
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        
         const parameters={...values, ...imagesValues};
       	dispatch({
          type: owner.type+'/addCustomerInfo',
@@ -90,6 +147,8 @@ class CustomerInfoCreateForm extends PureComponent {
         }
         
         const {owner} = this.props;
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        
         const parameters={...values, ...imagesValues};
       	dispatch({
          type: owner.type+'/addCustomerInfo',
@@ -202,7 +261,7 @@ class CustomerInfoCreateForm extends PureComponent {
       
             
         
-         
+
         
         <Card title="附件" className={styles.card} bordered={false}>
            <Form layout="vertical" hideRequiredMark>
@@ -210,13 +269,21 @@ class CustomerInfoCreateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"客户身份证正面照片"} handleChange={this.handleChange}/> 
-              </Col>			
+                <PictureEdit buttonTitle={"客户身份证正面照片"} 
+                	handlePreview={this.handlePreview}
+                	handleChange={(event) => this.handleChange(event, "customerIdentifyCardFrontImage")}
+                 	fileList={convertedImagesValues.customerIdentifyCardFrontImage} />
+                 
+              </Col>
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"客户身份证背面照片"} handleChange={this.handleChange}/> 
-              </Col>			
+                <PictureEdit buttonTitle={"客户身份证背面照片"} 
+                	handlePreview={this.handlePreview}
+                	handleChange={(event) => this.handleChange(event, "customerIdentifyCardBackImage")}
+                 	fileList={convertedImagesValues.customerIdentifyCardBackImage} />
+                 
+              </Col>
 			
 			
             
@@ -225,6 +292,7 @@ class CustomerInfoCreateForm extends PureComponent {
          
         </Card>
        
+        
         
         
         
@@ -278,7 +346,4 @@ class CustomerInfoCreateForm extends PureComponent {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(CustomerInfoCreateForm));
-
-
-
 

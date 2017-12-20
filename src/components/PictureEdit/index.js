@@ -35,7 +35,7 @@ export default class PictureEdit extends React.Component {
     const { previewVisible, previewImage} = this.state;
     const {fileList} = this.props;
     //const {fileList} = this.state;
-
+    const internalFileList = fileList?fileList:[];
     console.log("file list in render", fileList);
     
     const {buttonTitle, handleChange,handlePreview } = this.props;
@@ -50,12 +50,12 @@ export default class PictureEdit extends React.Component {
         <Upload
           action="//localhost:2090/upload/"
           listType="picture-card"
-          fileList={fileList}
+          fileList={internalFileList}
           onPreview={this.handlePreview}
           onChange={handleChange}
           multiple={false}
         >
-          {fileList.length >= 1 ? null : uploadButton}
+          {internalFileList.length >= 1 ? null : uploadButton}
         </Upload>
         <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
           <img alt="example" style={{ width: '100%' }} src={previewImage} />
