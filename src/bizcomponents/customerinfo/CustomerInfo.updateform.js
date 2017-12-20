@@ -43,9 +43,23 @@ class CustomerInfoUpdateForm extends PureComponent {
   state = {
     previewVisible: false,
     previewImage: '',
-    fileList: [],
-  };
+
+    convertedImagesValues:{
+        
+      customerIdentifyCardFrontImage:[
+        {key:'123',uid:'123',url:"//localhost:2090/private/2e695fff-0b3b-4ca9-aed3-134c8147d418"},
+      ],
+    customerIdentifyCardBackImage:[
+        {key:'123',uid:'123',url:"//localhost:2090/private/aa44c9e5-fbde-483e-8ce1-cd2799d987c7"},
+      ],
+
   
+  }
+
+
+  };
+  //fileList: []
+  // fileList: [{key:'123',uid:'123',url:"//localhost:2090/private/2e695fff-0b3b-4ca9-aed3-134c8147d418"}],
   handlePreview = (file) => {
     console.log("preview file", file)
     this.setState({
@@ -57,13 +71,20 @@ class CustomerInfoUpdateForm extends PureComponent {
     return true;
   }
 
-  handleChange = ({ fileList }) =>{ 
-    this.setState({ fileList })
-    console.log("get file list from change in update form", fileList);
+  handleChange = (event, source ) =>{ 
+    console.log("get file list from change in update change: ", source);
+   
+    const {fileList} = event;
+    var convertedImagesValues = this.state.convertedImagesValues;
+    convertedImagesValues[source] = fileList;
+    this.setState({ convertedImagesValues })
+
+
+    console.log("/get file list from change in update change: ", source);
     
   }
 
-   componentDidMount() {
+  componentDidMount() {
         
     const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
  
@@ -94,7 +115,7 @@ class CustomerInfoUpdateForm extends PureComponent {
     const { fileList } = this.state;
     console.log("render in updateform");
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    
+    const {convertedImagesValues} = this.state
     const { setFieldsValue } = this.props.form;
     
     const submitUpdateForm = () => {
@@ -201,7 +222,12 @@ class CustomerInfoUpdateForm extends PureComponent {
         </span>
       );
     };
+
+    if(!selectedRows){
+      return (<div>缺少被更新的对象</div>)
+    }
     return (
+      
       <PageHeaderLayout
         
         title={"更新客户信息"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -275,16 +301,24 @@ class CustomerInfoUpdateForm extends PureComponent {
         
         <Card title="附件" className={styles.card} bordered={false}>
            <Form layout="vertical" hideRequiredMark>
-            <Row gutter={0}>
+            <Row gutter={10}>
             
             
-             <Col lg={6} md={12} sm={24}>
+            <Col lg={6} md={12} sm={24}>
+            <PictureEdit buttonTitle={"客户身份证正面照片"} 
+            handleChange={(event)=>this.handleChange(event,"customerIdentifyCardFrontImage")} 
+            handlePreview={this.handlePreview}
+            
+            fileList={convertedImagesValues.customerIdentifyCardFrontImage}/> 
+          </Col>			
+          <Col lg={6} md={12} sm={24}>
                 <PictureEdit buttonTitle={"客户身份证正面照片"} 
-                handleChange={this.handleChange} 
+                handleChange={(event)=>this.handleChange(event,"customerIdentifyCardBackImage")} 
                 handlePreview={this.handlePreview}
-                fileList={fileList}/> 
+                
+                fileList={convertedImagesValues.customerIdentifyCardBackImage}/> 
               </Col>			
-			
+  
 			
              			
 			
