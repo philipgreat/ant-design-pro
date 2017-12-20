@@ -103,7 +103,7 @@ class CarReceivingServiceOrderBizApp extends React.PureComponent {
 getPageTitle() {
     const { location } = this.props;
     const { pathname } = location;
-    let title = '供应链系统';
+    let title = '代审车服务平台';
     
     return title;
   }

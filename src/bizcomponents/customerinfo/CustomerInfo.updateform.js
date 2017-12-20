@@ -40,12 +40,29 @@ const imagesValues={
 
 class CustomerInfoUpdateForm extends PureComponent {
 
-
-
-  handleChange = ({ fileList }) =>{
-    console.log("filelist", fileList);
-
+  state = {
+    previewVisible: false,
+    previewImage: '',
+    fileList: [],
+  };
+  
+  handlePreview = (file) => {
+    console.log("preview file", file)
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
   }
+  shouldComponentUpdate(){
+    return true;
+  }
+
+  handleChange = ({ fileList }) =>{ 
+    this.setState({ fileList })
+    console.log("get file list from change in update form", fileList);
+    
+  }
+
    componentDidMount() {
         
     const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
@@ -74,6 +91,8 @@ class CustomerInfoUpdateForm extends PureComponent {
 
   render() {
     const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
+    const { fileList } = this.state;
+    console.log("render in updateform");
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
     
     const { setFieldsValue } = this.props.form;
@@ -256,17 +275,18 @@ class CustomerInfoUpdateForm extends PureComponent {
         
         <Card title="附件" className={styles.card} bordered={false}>
            <Form layout="vertical" hideRequiredMark>
-            <Row gutter={16}>
+            <Row gutter={0}>
             
             
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"客户身份证正面照片"} handleChange={this.handleChange}/> 
+                <PictureEdit buttonTitle={"客户身份证正面照片"} 
+                handleChange={this.handleChange} 
+                handlePreview={this.handlePreview}
+                fileList={fileList}/> 
               </Col>			
 			
 			
-             <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"客户身份证背面照片"} handleChange={this.handleChange}/> 
-              </Col>			
+             			
 			
 			
             
