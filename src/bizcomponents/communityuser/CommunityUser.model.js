@@ -169,7 +169,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextPatientInfoUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removePatientInfoList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -246,7 +254,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextUserSkillUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeUserSkillList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -323,7 +339,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextMessageFilterUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeMessageFilterList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -400,7 +424,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextUserMessageUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeUserMessageList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -477,7 +509,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextTaskUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeTaskList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -554,7 +594,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextTaskAssigmentUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeTaskAssigmentList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -631,7 +679,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextTaskLikeUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeTaskLikeList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -708,7 +764,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextTaskReplyUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeTaskReplyList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -785,7 +849,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextTaskReplyLikeUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeTaskReplyLikeList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -862,7 +934,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextThreadUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeThreadList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -939,7 +1019,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextThreadReplyUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeThreadReplyList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -1016,7 +1104,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextThreadRegistrationUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeThreadRegistrationList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -1093,7 +1189,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextThreadLikeUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeThreadLikeList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -1170,7 +1274,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextThreadReplyLikeUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeThreadReplyLikeList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -1247,7 +1359,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextFanUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeFanList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -1324,7 +1444,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextFollowUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeFollowList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -1401,7 +1529,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextBonusPointUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeBonusPointList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -1478,7 +1614,15 @@ export default {
 		
 		const location = {pathname:'/communityUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextExperiencePointUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeExperiencePointList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);

@@ -169,7 +169,15 @@ export default {
 		
 		const location = {pathname:'/thread/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextThreadReplyUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeThreadReplyList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -246,7 +254,15 @@ export default {
 		
 		const location = {pathname:'/thread/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextThreadRegistrationUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeThreadRegistrationList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -323,7 +339,15 @@ export default {
 		
 		const location = {pathname:'/thread/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextThreadLikeUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeThreadLikeList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);

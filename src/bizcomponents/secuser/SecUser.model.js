@@ -169,7 +169,15 @@ export default {
 		
 		const location = {pathname:'/secUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextUserAppUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeUserAppList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -246,7 +254,15 @@ export default {
 		
 		const location = {pathname:'/secUser/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextLoginHistoryUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeLoginHistoryList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);

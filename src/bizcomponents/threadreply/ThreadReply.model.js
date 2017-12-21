@@ -169,7 +169,15 @@ export default {
 		
 		const location = {pathname:'/threadReply/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextThreadReplyLikeUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeThreadReplyLikeList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);

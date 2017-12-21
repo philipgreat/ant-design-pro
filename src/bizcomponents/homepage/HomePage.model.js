@@ -169,7 +169,15 @@ export default {
 		
 		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextSlideUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeSlideList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -246,7 +254,15 @@ export default {
 		
 		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextEncyclopediaItemUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeEncyclopediaItemList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -323,7 +339,15 @@ export default {
 		
 		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextTaskFilterUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeTaskFilterList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -400,7 +424,15 @@ export default {
 		
 		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextTaskUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeTaskList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -477,7 +509,15 @@ export default {
 		
 		const location = {pathname:'/homePage/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},
+	
+	*gotoNextThreadUpdateRow({ payload }, { call, put }) {
+        const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+        const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+        yield put({ type: "updateState", payload: newPlayload });
+
+    },
+	
 	*removeThreadList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);

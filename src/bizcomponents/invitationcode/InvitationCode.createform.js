@@ -26,7 +26,7 @@ used: '用',
 const testValues={
         
       			name:'邀请码',
-			code:'762090',
+			code:'822660',
 			used:'1',
 			communityId:'C000001',
 

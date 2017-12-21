@@ -219,6 +219,25 @@ class UserDomainUpdateForm extends PureComponent {
       });
     };
     
+    const skipToNext = () => {
+
+      const { currentUpdateIndex } = this.props;
+      const { owner } = this.props;
+        
+      const newIndex= currentUpdateIndex+1;
+      dispatch({
+          type: owner.type+'/gotoNextUserDomainUpdateRow',
+            payload: {
+              id:owner.id,type:'userDomain', 
+              selectedRows,currentUpdateIndex:newIndex,
+              continueNext:true,
+              update:false
+            },
+      });
+
+      
+    };
+    
     const goback = () => {
       const {owner} = this.props;
       dispatch({
@@ -334,7 +353,10 @@ class UserDomainUpdateForm extends PureComponent {
         </Button>
         <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex+1>=selectedRows.length}>
             更新并装载下一个
-          </Button>
+        </Button>
+        <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex+1>=selectedRows.length}>
+            略过
+        </Button>
         <Button type="info" onClick={goback} loading={submitting}>
             取消
           </Button>
