@@ -24,57 +24,147 @@ likeByCurrentUser: '当前用户已点赞',
 
 
 
+const imageURLPrefix = "//localhost:2090"
 
 
-const imagesValues={
-        
-      
-        
-        };
+const imageKeys = [
+];
 
 
 
 
 class ThreadReplyUpdateForm extends PureComponent {
 
+  state = {
+    previewVisible: false,
+    previewImage: '',
+    convertedImagesValues: {}
+  };
+
+  handlePreview = (file) => {
+    console.log("preview file", file)
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
+  }
+  shouldComponentUpdate() {
+    return true;
+  }
+
+  handleChange = (event, source) => {
+    console.log("get file list from change in update change: ", source);
+
+    const { fileList } = event;
+    var convertedImagesValues = this.state.convertedImagesValues;
+
+    convertedImagesValues[source] = fileList;
+    this.setState({ convertedImagesValues })
 
 
-  handleChange = ({ fileList }) =>{
-    console.log("filelist", fileList);
+    console.log("/get file list from change in update change: ", source);
 
   }
-   componentDidMount() {
-        
-    const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
- 
 
+ mapBackToImageValues(convertedImagesValues) {
+    var targetImages = new Array()
+    Object.keys(convertedImagesValues).map((key) => {
+      if(!convertedImagesValues){
+        return;
+      }
+      if(!convertedImagesValues[key]){
+        return;
+      }
+      if(!convertedImagesValues[key][0]){
+        return;
+      }
+      const value = convertedImagesValues[key][0];
+      if(value.response){
+        targetImages[key] = imageURLPrefix + value.response;
+        return;
+      }
+      if(value.url){
+        targetImages[key] = value.url;
+        return;
+      }
+      
+
+    });
+    return targetImages;
+
+  }
+  
+  mapFromImageValues(selectedRow) {
+    var targetImages = new Object()
+    
+    const buildFileList=(key,value)=>{
+      if(value){
+        return [{ uid: key, url: value }];
+      }
+      return [];
+    }
+    imageKeys.map((key) => {
+      
+      targetImages[key] = buildFileList(key,selectedRow[key]);
+
+    });
+    console.log(targetImages);
+    return targetImages;
+
+  }
+  componentDidMount() {
+
+    //const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
     const { getFieldDecorator, setFieldsValue } = this.props.form;
-    if(!selectedRows){
+   
+    const selectedRow = this.getSelectedRow();
+    if(!selectedRow){
       return;
     }
-    if(currentUpdateIndex<selectedRows.length){
-    	
-   	
-      const convertiedValues = selectedRows.map((item)=>{
+    setFieldsValue(selectedRow);
+    
 
-          return {...item, 
-			replyTime: moment(item.replyTime).format('YYYY-MM-DD'),
-  
-          }
+  }
 
-      });
-      setFieldsValue(convertiedValues[currentUpdateIndex]);
+  componentWillMount() {
+
+    const selectedRow = this.getSelectedRow();
+    if(!selectedRow){
+      return;
     }
     
-        
-        
+    this.setState({
+      convertedImagesValues: this.mapFromImageValues(selectedRow)
+    });
+
+  }
+  
+  getSelectedRow(){
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
+    if (!selectedRows) {
+      return;
+    }
+    if (currentUpdateIndex >= selectedRows.length) {
+      return;
+    }
+    const convertiedValues = selectedRows.map((item) => {
+      return {
+        ...item,
+			replyTime: moment(item.replyTime).format('YYYY-MM-DD'),
+  
+      }
+    });
+    const selectedRow = convertiedValues[currentUpdateIndex];
+    return selectedRow;
+
   }
 
   render() {
     const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    
+    const { convertedImagesValues } = this.state
     const { setFieldsValue } = this.props.form;
+    
     
     const submitUpdateForm = () => {
      validateFieldsAndScroll((error, values) => {
@@ -85,17 +175,16 @@ class ThreadReplyUpdateForm extends PureComponent {
 
         const { owner } = this.props;
         const threadReplyId = values.id;
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
         const parameters = { ...values,threadReplyId, ...imagesValues };
 
-       
-       setFieldsValue(selectedRows[currentUpdateIndex+1]);
-       const newIndex= currentUpdateIndex+1;
-       dispatch({
+	    const newIndex= currentUpdateIndex+1;
+        dispatch({
           type: owner.type+'/updateThreadReply',
           payload: {id:owner.id,type:'threadReply', 
             parameters: parameters,
             selectedRows,currentUpdateIndex:0,continueNext:false},
-       });
+       	});
         
        
       });
@@ -111,6 +200,7 @@ class ThreadReplyUpdateForm extends PureComponent {
 
         const { owner } = this.props;
         const threadReplyId = values.id;
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
         const parameters = { ...values,threadReplyId, ...imagesValues };
 
         const { currentUpdateIndex } = this.props;
@@ -121,7 +211,7 @@ class ThreadReplyUpdateForm extends PureComponent {
        this.setState({
         currentUpdateIndex: currentUpdateIndex+1,
        });
-       setFieldsValue(selectedRows[currentUpdateIndex+1]);
+       //setFieldsValue(selectedRows[currentUpdateIndex+1]);
        const newIndex= currentUpdateIndex+1;
        dispatch({
           type: owner.type+'/updateThreadReply',
@@ -180,6 +270,11 @@ class ThreadReplyUpdateForm extends PureComponent {
         </span>
       );
     };
+    
+    if (!selectedRows) {
+      return (<div>缺少被更新的对象</div>)
+    }
+    
     return (
       <PageHeaderLayout
         
@@ -269,7 +364,6 @@ class ThreadReplyUpdateForm extends PureComponent {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ThreadReplyUpdateForm));
-
 
 
 

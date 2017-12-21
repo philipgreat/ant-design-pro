@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { Table, Alert, Badge } from 'antd';
 import styles from './Task.table.less';
-
+import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
@@ -17,14 +17,14 @@ const columns = [
 {title:'主页',debugtype:'home_page',dataIndex: 'homePage',width:'13'},
 {title:'任务页面',debugtype:'task_page',dataIndex: 'taskPage',width:'13'},
 {title:'视频网址',debugtype:'string_url',dataIndex: 'videoUrl',width:'50'},
-{title:'封面图像路径1',debugtype:'string_image',dataIndex: 'coverImagePath1',width:'13'},
-{title:'封面图像路径2',debugtype:'string_image',dataIndex: 'coverImagePath2',width:'13'},
-{title:'封面图像路径3',debugtype:'string_image',dataIndex: 'coverImagePath3',width:'13'},
-{title:'图1',debugtype:'string_image',dataIndex: 'imagePath1',width:'13'},
-{title:'图2',debugtype:'string_image',dataIndex: 'imagePath2',width:'13'},
-{title:'图3',debugtype:'string_image',dataIndex: 'imagePath3',width:'13'},
-{title:'图4',debugtype:'string_image',dataIndex: 'imagePath4',width:'13'},
-{title:'图5',debugtype:'string_image',dataIndex: 'imagePath5',width:'13'},
+{title:'封面图像路径1',dataIndex: 'coverImagePath1',render: (text,record)=><ImagePreview imageLocation={record.coverImagePath1}/>},
+{title:'封面图像路径2',dataIndex: 'coverImagePath2',render: (text,record)=><ImagePreview imageLocation={record.coverImagePath2}/>},
+{title:'封面图像路径3',dataIndex: 'coverImagePath3',render: (text,record)=><ImagePreview imageLocation={record.coverImagePath3}/>},
+{title:'图1',dataIndex: 'imagePath1',render: (text,record)=><ImagePreview imageLocation={record.imagePath1}/>},
+{title:'图2',dataIndex: 'imagePath2',render: (text,record)=><ImagePreview imageLocation={record.imagePath2}/>},
+{title:'图3',dataIndex: 'imagePath3',render: (text,record)=><ImagePreview imageLocation={record.imagePath3}/>},
+{title:'图4',dataIndex: 'imagePath4',render: (text,record)=><ImagePreview imageLocation={record.imagePath4}/>},
+{title:'图5',dataIndex: 'imagePath5',render: (text,record)=><ImagePreview imageLocation={record.imagePath5}/>},
 {title:'发布人的奖金',debugtype:'int',dataIndex: 'creatorBonus',width:'7'},
 {title:'额外的奖金',debugtype:'int',dataIndex: 'additionalBonus',width:'7'},
 {title:'躲藏',debugtype:'task_hiding',dataIndex: 'hiding',width:'13'},

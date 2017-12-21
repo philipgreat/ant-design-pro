@@ -103,7 +103,7 @@ class ThreadRegistrationBizApp extends React.PureComponent {
 getPageTitle() {
     const { location } = this.props;
     const { pathname } = location;
-    let title = '供应链系统';
+    let title = '帮帮兔社区运营中心';
     
     return title;
   }

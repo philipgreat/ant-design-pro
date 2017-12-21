@@ -169,7 +169,22 @@ export default {
 		
 		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:newPlayload};
 		yield put(routerRedux.push(location));
-	},		
+	},	
+
+	*gotoNextInvitationCodeUpdateRow({ payload }, { call, put }) {
+		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+	
+		
+		const newPlayload = { ...payload, selectedRows,currentUpdateIndex };
+
+		yield put({ type: "updateState", payload: newPlayload });
+		
+		
+		
+	},
+
+
+
 	*removeInvitationCodeList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;
 		console.log("get form parameters", parameters);
@@ -376,30 +391,35 @@ export default {
 		yield put(routerRedux.push(location));
 	},
 	*updateTaskPage({ payload }, { call, put }) {
-		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex } = payload;
+		const { id, type, parameters, continueNext,selectedRows,currentUpdateIndex,update } = payload;
 		
 		console.log("get form parameters", parameters);
+		if(update){
+			const data = yield call(CommunityService.updateTaskPage, id, parameters);
+			if(hasError(data)){
+				handleServerError(data);
+				return;
+			}
+			const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
 
-		const data = yield call(CommunityService.updateTaskPage, id, parameters);
-		if(hasError(data)){
-			handleServerError(data);
+			yield put({ type: "updateState", payload: newPlayload });
+			notification.success({
+				message: "执行成功",
+				description:"执行成功",
+			});
+			if (continueNext) {
+				return;
+			}
+			const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:newPlayload};
+			yield put(routerRedux.push(location));
 			return;
 		}
-		const newPlayload = { ...payload, ...data, selectedRows,currentUpdateIndex };
-
-		yield put({ type: "updateState", payload: newPlayload });
-		notification.success({
-			message: "执行成功",
-			description:"执行成功",
-		});
 		
-		if (continueNext) {
-			return;
-		}
-		
-		
-		const location = {pathname:'/community/' + id + '/list/' + type + 'List',state:newPlayload};
+		const location = {pathname:'/community/' + id + '/list/' + type + 'List'};
 		yield put(routerRedux.push(location));
+		
+		
+		
 	},		
 	*removeTaskPageList({ payload }, { call, put }) {
 		const { id, type, parameters, continueNext } = payload;

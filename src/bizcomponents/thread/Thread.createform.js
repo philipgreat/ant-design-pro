@@ -49,13 +49,12 @@ currentStatus: '当前状态',
 };
 
 
-
 const testValues={
         
       			title:'听力损失儿童回归的优点',
 			displayOrder:'0',
-			eventTime:'2037-05-10 03:04:20',
-			registrationStopTime:'2035-04-09 19:39:18',
+			eventTime:'2034-06-19 18:13:01',
+			registrationStopTime:'2036-10-27 13:21:31',
 			eventLocation:'奥克斯广场阳光咖啡',
 			city:'成都',
 			communityGroup:'最新',
@@ -71,44 +70,114 @@ const testValues={
 			content:'多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   ',
 
         
-        };
+};
 
-const imagesValues={
-        
-      			coverImagePath1:'cover.jpg',
-			coverImagePath2:'cover.jpg',
-			coverImagePath3:'cover.jpg',
-			imagePath1:'image.jpg',
-			imagePath2:'image.jpg',
-			imagePath3:'image.jpg',
-			imagePath4:'image.jpg',
-			imagePath5:'image.jpg',
+const imageURLPrefix = "//localhost:2090"
 
-        
-        };
 
+const imageKeys = [
+  "coverImagePath1",
+  "coverImagePath2",
+  "coverImagePath3",
+  "imagePath1",
+  "imagePath2",
+  "imagePath3",
+  "imagePath4",
+  "imagePath5"
+];
 
 
 
 class ThreadCreateForm extends PureComponent {
 
-  handleChange = ({ fileList }) =>{
-    console.log("filelist", fileList);
 
+  state = {
+    previewVisible: false,
+    previewImage: '',
+    convertedImagesValues: {}
+  };
+
+  handlePreview = (file) => {
+    console.log("preview file", file)
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
   }
-   componentDidMount() {
-        
-        
+  shouldComponentUpdate() {
+    return true;
+  }
+  componentDidMount() {
  
-           
         const { getFieldDecorator,setFieldsValue } = this.props.form;               
         setFieldsValue(testValues);
-        
-        
   }
+  handleChange = (event, source) => {
+    console.log("get file list from change in update change: ", source);
+
+    const { fileList } = event;
+    var convertedImagesValues = this.state.convertedImagesValues;
+
+    convertedImagesValues[source] = fileList;
+    this.setState({ convertedImagesValues })
+
+
+    console.log("/get file list from change in update change: ", source);
+
+  }
+
+  mapBackToImageValues(convertedImagesValues) {
+    var targetImages = new Array()
+    Object.keys(convertedImagesValues).map((key) => {
+      if(!convertedImagesValues){
+        return;
+      }
+      if(!convertedImagesValues[key]){
+        return;
+      }
+      if(!convertedImagesValues[key][0]){
+        return;
+      }
+      const value = convertedImagesValues[key][0];
+      if(value.response){
+        targetImages[key] = imageURLPrefix + value.response;
+        return;
+      }
+      if(value.url){
+        targetImages[key] = value.url;
+        return;
+      }
+      
+
+    });
+    return targetImages;
+
+  }
+  
+  mapFromImageValues(selectedRow) {
+    var targetImages = new Object()
+    
+    const buildFileList=(key,value)=>{
+      if(value){
+        return [{ uid: key, url: value }];
+      }
+      return [];
+    }
+    imageKeys.map((key) => {
+      
+      targetImages[key] = buildFileList(key,selectedRow[key]);
+
+    });
+    console.log(targetImages);
+    return targetImages;
+
+  }
+  
 
   render() {
     const { form, dispatch, submitting } = this.props;
+    const { convertedImagesValues } = this.state
+    
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
     const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
@@ -118,6 +187,8 @@ class ThreadCreateForm extends PureComponent {
         }
         
         const {owner} = this.props;
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        
         const parameters={...values, ...imagesValues};
       	dispatch({
          type: owner.type+'/addThread',
@@ -134,6 +205,8 @@ class ThreadCreateForm extends PureComponent {
         }
         
         const {owner} = this.props;
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        
         const parameters={...values, ...imagesValues};
       	dispatch({
          type: owner.type+'/addThread',
@@ -365,7 +438,7 @@ class ThreadCreateForm extends PureComponent {
       
             
         
-         
+
         
         <Card title="附件" className={styles.card} bordered={false}>
            <Form layout="vertical" hideRequiredMark>
@@ -373,43 +446,75 @@ class ThreadCreateForm extends PureComponent {
             
             
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"封面图像路径1"} handleChange={this.handleChange}/> 
-              </Col>			
+                <PictureEdit buttonTitle={"封面图像路径1"} 
+                	handlePreview={this.handlePreview}
+                	handleChange={(event) => this.handleChange(event, "coverImagePath1")}
+                 	fileList={convertedImagesValues.coverImagePath1} />
+                 
+              </Col>
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"封面图像路径2"} handleChange={this.handleChange}/> 
-              </Col>			
+                <PictureEdit buttonTitle={"封面图像路径2"} 
+                	handlePreview={this.handlePreview}
+                	handleChange={(event) => this.handleChange(event, "coverImagePath2")}
+                 	fileList={convertedImagesValues.coverImagePath2} />
+                 
+              </Col>
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"封面图像路径3"} handleChange={this.handleChange}/> 
-              </Col>			
+                <PictureEdit buttonTitle={"封面图像路径3"} 
+                	handlePreview={this.handlePreview}
+                	handleChange={(event) => this.handleChange(event, "coverImagePath3")}
+                 	fileList={convertedImagesValues.coverImagePath3} />
+                 
+              </Col>
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"图1"} handleChange={this.handleChange}/> 
-              </Col>			
+                <PictureEdit buttonTitle={"图1"} 
+                	handlePreview={this.handlePreview}
+                	handleChange={(event) => this.handleChange(event, "imagePath1")}
+                 	fileList={convertedImagesValues.imagePath1} />
+                 
+              </Col>
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"图2"} handleChange={this.handleChange}/> 
-              </Col>			
+                <PictureEdit buttonTitle={"图2"} 
+                	handlePreview={this.handlePreview}
+                	handleChange={(event) => this.handleChange(event, "imagePath2")}
+                 	fileList={convertedImagesValues.imagePath2} />
+                 
+              </Col>
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"图3"} handleChange={this.handleChange}/> 
-              </Col>			
+                <PictureEdit buttonTitle={"图3"} 
+                	handlePreview={this.handlePreview}
+                	handleChange={(event) => this.handleChange(event, "imagePath3")}
+                 	fileList={convertedImagesValues.imagePath3} />
+                 
+              </Col>
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"图4"} handleChange={this.handleChange}/> 
-              </Col>			
+                <PictureEdit buttonTitle={"图4"} 
+                	handlePreview={this.handlePreview}
+                	handleChange={(event) => this.handleChange(event, "imagePath4")}
+                 	fileList={convertedImagesValues.imagePath4} />
+                 
+              </Col>
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"图5"} handleChange={this.handleChange}/> 
-              </Col>			
+                <PictureEdit buttonTitle={"图5"} 
+                	handlePreview={this.handlePreview}
+                	handleChange={(event) => this.handleChange(event, "imagePath5")}
+                 	fileList={convertedImagesValues.imagePath5} />
+                 
+              </Col>
 			
 			
             
@@ -418,6 +523,7 @@ class ThreadCreateForm extends PureComponent {
          
         </Card>
        
+        
         
         
         

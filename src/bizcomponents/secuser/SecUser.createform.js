@@ -28,7 +28,6 @@ currentStatus: '当前状态',
 };
 
 
-
 const testValues={
         
       			login:'login',
@@ -36,41 +35,111 @@ const testValues={
 			email:'suddy_chang@163.com',
 			pwd:'C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95',
 			verificationCode:'9981727',
-			verificationCodeExpire:'2038-07-17 17:19:57',
-			lastLoginTime:'2038-12-02 11:50:55',
+			verificationCodeExpire:'2035-05-09 19:33:04',
+			lastLoginTime:'2034-03-31 18:55:25',
 			domainId:'UD000001',
 
         
-        };
+};
 
-const imagesValues={
-        
-      
-        
-        };
+const imageURLPrefix = "//localhost:2090"
 
+
+const imageKeys = [
+];
 
 
 
 class SecUserCreateForm extends PureComponent {
 
-  handleChange = ({ fileList }) =>{
-    console.log("filelist", fileList);
 
+  state = {
+    previewVisible: false,
+    previewImage: '',
+    convertedImagesValues: {}
+  };
+
+  handlePreview = (file) => {
+    console.log("preview file", file)
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
   }
-   componentDidMount() {
-        
-        
+  shouldComponentUpdate() {
+    return true;
+  }
+  componentDidMount() {
  
-           
         const { getFieldDecorator,setFieldsValue } = this.props.form;               
         setFieldsValue(testValues);
-        
-        
   }
+  handleChange = (event, source) => {
+    console.log("get file list from change in update change: ", source);
+
+    const { fileList } = event;
+    var convertedImagesValues = this.state.convertedImagesValues;
+
+    convertedImagesValues[source] = fileList;
+    this.setState({ convertedImagesValues })
+
+
+    console.log("/get file list from change in update change: ", source);
+
+  }
+
+  mapBackToImageValues(convertedImagesValues) {
+    var targetImages = new Array()
+    Object.keys(convertedImagesValues).map((key) => {
+      if(!convertedImagesValues){
+        return;
+      }
+      if(!convertedImagesValues[key]){
+        return;
+      }
+      if(!convertedImagesValues[key][0]){
+        return;
+      }
+      const value = convertedImagesValues[key][0];
+      if(value.response){
+        targetImages[key] = imageURLPrefix + value.response;
+        return;
+      }
+      if(value.url){
+        targetImages[key] = value.url;
+        return;
+      }
+      
+
+    });
+    return targetImages;
+
+  }
+  
+  mapFromImageValues(selectedRow) {
+    var targetImages = new Object()
+    
+    const buildFileList=(key,value)=>{
+      if(value){
+        return [{ uid: key, url: value }];
+      }
+      return [];
+    }
+    imageKeys.map((key) => {
+      
+      targetImages[key] = buildFileList(key,selectedRow[key]);
+
+    });
+    console.log(targetImages);
+    return targetImages;
+
+  }
+  
 
   render() {
     const { form, dispatch, submitting } = this.props;
+    const { convertedImagesValues } = this.state
+    
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
     const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
@@ -80,6 +149,8 @@ class SecUserCreateForm extends PureComponent {
         }
         
         const {owner} = this.props;
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        
         const parameters={...values, ...imagesValues};
       	dispatch({
          type: owner.type+'/addSecUser',
@@ -96,6 +167,8 @@ class SecUserCreateForm extends PureComponent {
         }
         
         const {owner} = this.props;
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        
         const parameters={...values, ...imagesValues};
       	dispatch({
          type: owner.type+'/addSecUser',
@@ -252,7 +325,8 @@ class SecUserCreateForm extends PureComponent {
       
             
         
-         
+
+        
         
         
         

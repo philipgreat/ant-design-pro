@@ -109,7 +109,7 @@ export default {
      *gotoUpdateForm({ payload }, { call, put }) {
         const {id,type,selectedRows,currentUpdateIndex}=payload;
         const state={id,type,selectedRows,currentUpdateIndex};
-        const location = {pathname:'/community/'+id+'/list/'+type+'UpdateForm',state};
+        const location = {pathname:'/taskFilter/'+id+'/list/'+type+'UpdateForm',state};
 		yield put(routerRedux.push(location));
 		
      },

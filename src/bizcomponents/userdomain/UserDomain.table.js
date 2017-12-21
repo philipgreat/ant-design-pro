@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { Table, Alert, Badge } from 'antd';
 import styles from './UserDomain.table.less';
-
+import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [

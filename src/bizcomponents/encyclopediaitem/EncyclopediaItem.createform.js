@@ -23,46 +23,115 @@ homePage: '主页',
 };
 
 
-
 const testValues={
         
       			title:'听力损失儿童回归的优点',
-			publishTime:'2039-02-24',
+			publishTime:'2034-06-25',
 			communityId:'C000001',
 			homePageId:'HP000001',
 			content:'多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   ',
 
         
-        };
+};
 
-const imagesValues={
-        
-      
-        
-        };
+const imageURLPrefix = "//localhost:2090"
 
+
+const imageKeys = [
+];
 
 
 
 class EncyclopediaItemCreateForm extends PureComponent {
 
-  handleChange = ({ fileList }) =>{
-    console.log("filelist", fileList);
 
+  state = {
+    previewVisible: false,
+    previewImage: '',
+    convertedImagesValues: {}
+  };
+
+  handlePreview = (file) => {
+    console.log("preview file", file)
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
   }
-   componentDidMount() {
-        
-        
+  shouldComponentUpdate() {
+    return true;
+  }
+  componentDidMount() {
  
-           
         const { getFieldDecorator,setFieldsValue } = this.props.form;               
         setFieldsValue(testValues);
-        
-        
   }
+  handleChange = (event, source) => {
+    console.log("get file list from change in update change: ", source);
+
+    const { fileList } = event;
+    var convertedImagesValues = this.state.convertedImagesValues;
+
+    convertedImagesValues[source] = fileList;
+    this.setState({ convertedImagesValues })
+
+
+    console.log("/get file list from change in update change: ", source);
+
+  }
+
+  mapBackToImageValues(convertedImagesValues) {
+    var targetImages = new Array()
+    Object.keys(convertedImagesValues).map((key) => {
+      if(!convertedImagesValues){
+        return;
+      }
+      if(!convertedImagesValues[key]){
+        return;
+      }
+      if(!convertedImagesValues[key][0]){
+        return;
+      }
+      const value = convertedImagesValues[key][0];
+      if(value.response){
+        targetImages[key] = imageURLPrefix + value.response;
+        return;
+      }
+      if(value.url){
+        targetImages[key] = value.url;
+        return;
+      }
+      
+
+    });
+    return targetImages;
+
+  }
+  
+  mapFromImageValues(selectedRow) {
+    var targetImages = new Object()
+    
+    const buildFileList=(key,value)=>{
+      if(value){
+        return [{ uid: key, url: value }];
+      }
+      return [];
+    }
+    imageKeys.map((key) => {
+      
+      targetImages[key] = buildFileList(key,selectedRow[key]);
+
+    });
+    console.log(targetImages);
+    return targetImages;
+
+  }
+  
 
   render() {
     const { form, dispatch, submitting } = this.props;
+    const { convertedImagesValues } = this.state
+    
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
     const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
@@ -72,6 +141,8 @@ class EncyclopediaItemCreateForm extends PureComponent {
         }
         
         const {owner} = this.props;
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        
         const parameters={...values, ...imagesValues};
       	dispatch({
          type: owner.type+'/addEncyclopediaItem',
@@ -88,6 +159,8 @@ class EncyclopediaItemCreateForm extends PureComponent {
         }
         
         const {owner} = this.props;
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        
         const parameters={...values, ...imagesValues};
       	dispatch({
          type: owner.type+'/addEncyclopediaItem',
@@ -209,7 +282,8 @@ class EncyclopediaItemCreateForm extends PureComponent {
       
             
         
-         
+
+        
         
         
         

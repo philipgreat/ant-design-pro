@@ -3,13 +3,13 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { Table, Alert, Badge } from 'antd';
 import styles from './Slide.table.less';
-
+import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
 {title:'标题',debugtype:'string',dataIndex: 'title',width:'8'},
-{title:'图像网址',debugtype:'string_image',dataIndex: 'imageUrl',width:'16'},
+{title:'图像网址',dataIndex: 'imageUrl',render: (text,record)=><ImagePreview imageLocation={record.imageUrl}/>},
 {title:'链接网址',debugtype:'string',dataIndex: 'linkUrl',width:'40'},
 {title:'主页',debugtype:'home_page',dataIndex: 'homePage',width:'13'},
 
