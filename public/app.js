@@ -12,6 +12,7 @@ var applyTokenDo = function (func) {
     var creds = JSON.parse(result.data);
     console.log(creds);
     var client = new OSS({
+      endpoint:"https://oss-cn-shanghai.aliyuncs.com/",
       region: region,
       accessKeyId: creds.accessKeyId,
       accessKeySecret: creds.accessKeySecret,

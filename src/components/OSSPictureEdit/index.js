@@ -9,6 +9,7 @@ const client = (self) => {
     return;
   }
   return new window.OSS.Wrapper({
+    endpoint:"https://oss-cn-shanghai.aliyuncs.com/",
     accessKeyId: token.accessKeyId,
     accessKeySecret: token.accessKeySecret,
     stsToken: token.securityToken,
@@ -62,8 +63,8 @@ export default class OSSPictureEdit extends React.Component {
           status: "done",
           type: data.type,
           result: data.name,
-          url: "http://bbt-test.oss-cn-shanghai.aliyuncs.com/"+encodeURIComponent(data.name),
-          response: "http://bbt-test.oss-cn-shanghai.aliyuncs.com/"+encodeURIComponent(data.name)
+          url: "//bbt-test.oss-cn-shanghai.aliyuncs.com/"+encodeURIComponent(data.name),
+          response: "//bbt-test.oss-cn-shanghai.aliyuncs.com/"+encodeURIComponent(data.name)
         }];
         const event={fileList};
         handleChange(event);
@@ -74,7 +75,17 @@ export default class OSSPictureEdit extends React.Component {
 
 
   componentDidMount() {
-    axios.get(`http://localhost:8080/naf/secUserManager/testoss/`)
+    const getSTSURL=()=>{
+
+      const url = new URL(window.location)
+  
+      if(url.hostname=="localhost"){
+          return "http://"+url.hostname+":8080/naf/secUserManager/testoss/";
+      }
+      return url.origin+"/bbt/secUserManager/testoss/";
+  
+    }
+    axios.get(getSTSURL())
       .then(res => {
         const token = res.data;
         this.setState({ token });
