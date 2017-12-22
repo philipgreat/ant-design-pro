@@ -531,7 +531,7 @@ getPageTitle() {
           </div>
           
           <Menu
-            theme="dark"
+            theme="light"
             mode="inline"
             {...menuProps}
             onOpenChange={this.handleOpenChange}
