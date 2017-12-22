@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { Table, Alert, Badge } from 'antd';
 import styles from './Thread.table.less';
-
+import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
@@ -17,27 +17,27 @@ const columns = [
 {title:'城市',debugtype:'string',dataIndex: 'city',width:'6'},
 {title:'社区组',debugtype:'string',dataIndex: 'communityGroup',width:'8'},
 {title:'帖子类型',debugtype:'string',dataIndex: 'threadType',width:'9'},
-{title:'社区',debugtype:'community',dataIndex: 'community',width:'13'},
-{title:'创建者',debugtype:'community_user',dataIndex: 'creator',width:'13'},
-{title:'主页',debugtype:'home_page',dataIndex: 'homePage',width:'13'},
-{title:'群组页面',debugtype:'group_page',dataIndex: 'groupPage',width:'13'},
+{title:'社区',dataIndex: 'community',render: (text,record)=>(record.community?record.community.id:"暂无")},
+{title:'创建者',dataIndex: 'creator',render: (text,record)=>(record.creator?record.creator.id:"暂无")},
+{title:'主页',dataIndex: 'homePage',render: (text,record)=>(record.homePage?record.homePage.id:"暂无")},
+{title:'群组页面',dataIndex: 'groupPage',render: (text,record)=>(record.groupPage?record.groupPage.id:"暂无")},
 {title:'视频网址',debugtype:'string_url',dataIndex: 'videoUrl',width:'50'},
-{title:'封面图像路径1',debugtype:'string_image',dataIndex: 'coverImagePath1',width:'13'},
-{title:'封面图像路径2',debugtype:'string_image',dataIndex: 'coverImagePath2',width:'13'},
-{title:'封面图像路径3',debugtype:'string_image',dataIndex: 'coverImagePath3',width:'13'},
-{title:'图1',debugtype:'string_image',dataIndex: 'imagePath1',width:'13'},
-{title:'图2',debugtype:'string_image',dataIndex: 'imagePath2',width:'13'},
-{title:'图3',debugtype:'string_image',dataIndex: 'imagePath3',width:'13'},
-{title:'图4',debugtype:'string_image',dataIndex: 'imagePath4',width:'13'},
-{title:'图5',debugtype:'string_image',dataIndex: 'imagePath5',width:'13'},
+{title:'封面图像路径1',dataIndex: 'coverImagePath1',render: (text,record)=><ImagePreview imageLocation={record.coverImagePath1}/>},
+{title:'封面图像路径2',dataIndex: 'coverImagePath2',render: (text,record)=><ImagePreview imageLocation={record.coverImagePath2}/>},
+{title:'封面图像路径3',dataIndex: 'coverImagePath3',render: (text,record)=><ImagePreview imageLocation={record.coverImagePath3}/>},
+{title:'图1',dataIndex: 'imagePath1',render: (text,record)=><ImagePreview imageLocation={record.imagePath1}/>},
+{title:'图2',dataIndex: 'imagePath2',render: (text,record)=><ImagePreview imageLocation={record.imagePath2}/>},
+{title:'图3',dataIndex: 'imagePath3',render: (text,record)=><ImagePreview imageLocation={record.imagePath3}/>},
+{title:'图4',dataIndex: 'imagePath4',render: (text,record)=><ImagePreview imageLocation={record.imagePath4}/>},
+{title:'图5',dataIndex: 'imagePath5',render: (text,record)=><ImagePreview imageLocation={record.imagePath5}/>},
 {title:'内容',debugtype:'string',dataIndex: 'content',width:'107'},
-{title:'验收',debugtype:'thread_approval',dataIndex: 'approval',width:'13'},
-{title:'取消',debugtype:'thread_canceling',dataIndex: 'canceling',width:'13'},
-{title:'完成',debugtype:'thread_completion',dataIndex: 'completion',width:'13'},
-{title:'躲藏',debugtype:'thread_hiding',dataIndex: 'hiding',width:'13'},
-{title:'当前用户已点赞',debugtype:'bool',dataIndex: 'likeByCurrentUser',width:'9'},
-{title:'当前用户已回复',debugtype:'bool',dataIndex: 'repliedByCurrentUser',width:'9'},
-{title:'由当前用户注册',debugtype:'bool',dataIndex: 'registeredByCurrentUser',width:'9'},
+{title:'验收',dataIndex: 'approval',render: (text,record)=>(record.approval?record.approval.id:"暂无")},
+{title:'取消',dataIndex: 'canceling',render: (text,record)=>(record.canceling?record.canceling.id:"暂无")},
+{title:'完成',dataIndex: 'completion',render: (text,record)=>(record.completion?record.completion.id:"暂无")},
+{title:'躲藏',dataIndex: 'hiding',render: (text,record)=>(record.hiding?record.hiding.id:"暂无")},
+{title:'当前用户已点赞',dataIndex: 'likeByCurrentUser',render: (text,record)=>(record.likeByCurrentUser?"是":"否")},
+{title:'当前用户已回复',dataIndex: 'repliedByCurrentUser',render: (text,record)=>(record.repliedByCurrentUser?"是":"否")},
+{title:'由当前用户注册',dataIndex: 'registeredByCurrentUser',render: (text,record)=>(record.registeredByCurrentUser?"是":"否")},
 {title:'当前状态',debugtype:'string',dataIndex: 'currentStatus',width:'13'},
 
       

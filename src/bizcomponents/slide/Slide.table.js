@@ -11,7 +11,7 @@ const columns = [
 {title:'标题',debugtype:'string',dataIndex: 'title',width:'8'},
 {title:'图像网址',dataIndex: 'imageUrl',render: (text,record)=><ImagePreview imageLocation={record.imageUrl}/>},
 {title:'链接网址',debugtype:'string',dataIndex: 'linkUrl',width:'40'},
-{title:'主页',debugtype:'home_page',dataIndex: 'homePage',width:'13'},
+{title:'主页',dataIndex: 'homePage',render: (text,record)=>(record.homePage?record.homePage.id:"暂无")},
 
       
     ];

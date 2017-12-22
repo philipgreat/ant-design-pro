@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 
 import { connect } from 'dva';
@@ -53,8 +53,8 @@ const testValues={
         
       			title:'听力损失儿童回归的优点',
 			displayOrder:'0',
-			eventTime:'2038-09-10 21:43:28',
-			registrationStopTime:'2035-04-15 16:14:32',
+			eventTime:'2038-06-23 03:29:09',
+			registrationStopTime:'2037-02-28 22:40:32',
 			eventLocation:'奥克斯广场阳光咖啡',
 			city:'成都',
 			communityGroup:'最新',
@@ -88,7 +88,7 @@ const imageKeys = [
 
 
 
-class ThreadCreateForm extends PureComponent {
+class ThreadCreateForm extends Component {
 
 
   state = {

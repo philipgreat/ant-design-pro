@@ -8,8 +8,8 @@ import ImagePreview from '../../components/ImagePreview';
 
 const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
-{title:'任务',debugtype:'task',dataIndex: 'task',width:'13'},
-{title:'受让人',debugtype:'community_user',dataIndex: 'assignee',width:'13'},
+{title:'任务',dataIndex: 'task',render: (text,record)=>(record.task?record.task.id:"暂无")},
+{title:'受让人',dataIndex: 'assignee',render: (text,record)=>(record.assignee?record.assignee.id:"暂无")},
 {title:'分配时间',dataIndex: 'assignTime',render: (text,record)=>moment(record.assignTime).format('YYYY-MM-DD')},
 {title:'评论',debugtype:'string',dataIndex: 'comments',width:'17'},
 

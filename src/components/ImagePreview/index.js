@@ -43,6 +43,8 @@ export default class ImagePreview extends React.Component {
         <img
           src={imageLocation}
           style={{height:40, width:40}}
+          title={imageLocation}
+          alt={imageLocation}
           onClick={(event)=>this.handlePreview(event,imageLocation)}
         >
           

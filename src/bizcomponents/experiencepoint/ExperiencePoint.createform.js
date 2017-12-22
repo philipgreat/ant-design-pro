@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 
 import { connect } from 'dva';
@@ -25,7 +25,7 @@ user: '用户',
 const testValues={
         
       			name:'浏览求助',
-			points:'98',
+			points:'82',
 			userId:'CU000001',
 
         
@@ -39,7 +39,7 @@ const imageKeys = [
 
 
 
-class ExperiencePointCreateForm extends PureComponent {
+class ExperiencePointCreateForm extends Component {
 
 
   state = {

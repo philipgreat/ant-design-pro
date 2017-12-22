@@ -12,7 +12,7 @@ const columns = [
 {title:'消息计数',debugtype:'int',dataIndex: 'messageCount',width:'9'},
 {title:'过滤器健值',debugtype:'string',dataIndex: 'filterKey',width:'18'},
 {title:'链接网址',debugtype:'string',dataIndex: 'linkUrl',width:'40'},
-{title:'用户',debugtype:'community_user',dataIndex: 'user',width:'13'},
+{title:'用户',dataIndex: 'user',render: (text,record)=>(record.user?record.user.id:"暂无")},
 
       
     ];

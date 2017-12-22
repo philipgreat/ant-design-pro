@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 import moment from 'moment';
 import { connect } from 'dva';
@@ -33,7 +33,7 @@ const imageKeys = [
 
 
 
-class ThreadReplyUpdateForm extends PureComponent {
+class ThreadReplyUpdateForm extends Component {
 
   state = {
     previewVisible: false,

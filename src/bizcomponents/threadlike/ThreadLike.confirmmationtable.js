@@ -3,14 +3,14 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { Table, Alert, Badge } from 'antd';
 import styles from './ThreadLike.table.less';
-
+import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
 {title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
 {title:'点赞时间',dataIndex: 'likeTime',render: (text,record)=>moment(record.likeTime).format('YYYY-MM-DD')},
-{title:'应答者',debugtype:'community_user',dataIndex: 'replier',width:'13'},
-{title:'主贴',debugtype:'thread',dataIndex: 'thread',width:'13'},
+{title:'应答者',dataIndex: 'replier',render: (text,record)=>(record.replier?record.replier.id:"暂无")},
+{title:'主贴',dataIndex: 'thread',render: (text,record)=>(record.thread?record.thread.id:"暂无")},
 
       
     ];

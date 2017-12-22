@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 
 import { connect } from 'dva';
@@ -35,8 +35,8 @@ const testValues={
 			email:'suddy_chang@163.com',
 			pwd:'C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95',
 			verificationCode:'9981727',
-			verificationCodeExpire:'2034-09-08 11:15:27',
-			lastLoginTime:'2037-11-27 04:35:35',
+			verificationCodeExpire:'2036-08-17 09:47:24',
+			lastLoginTime:'2039-03-03 09:19:03',
 			domainId:'UD000001',
 
         
@@ -50,7 +50,7 @@ const imageKeys = [
 
 
 
-class SecUserCreateForm extends PureComponent {
+class SecUserCreateForm extends Component {
 
 
   state = {

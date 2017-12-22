@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 
 import { connect } from 'dva';
@@ -32,11 +32,11 @@ const testValues={
       			name:'刘利',
 			nickName:'喀拉',
 			gender:'男',
-			birthday:'2036-03-20',
+			birthday:'2035-05-11',
 			wearDeviceType:'新发现',
-			wearStartTime:'2032-06-16',
+			wearStartTime:'2030-05-17',
 			recoverPlan:'幼儿龄段（0-3岁）',
-			recoverStartTime:'2034-01-03',
+			recoverStartTime:'2032-09-30',
 			userId:'CU000001',
 
         
@@ -50,7 +50,7 @@ const imageKeys = [
 
 
 
-class PatientInfoCreateForm extends PureComponent {
+class PatientInfoCreateForm extends Component {
 
 
   state = {

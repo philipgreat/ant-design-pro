@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { Table, Alert, Badge } from 'antd';
 import styles from './LoginHistory.table.less';
-
+import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
@@ -11,7 +11,7 @@ const columns = [
 {title:'登录时间',dataIndex: 'loginTime',render: (text,record)=>moment(record.loginTime).format('YYYY-MM-DD')},
 {title:'从IP',debugtype:'string',dataIndex: 'fromIp',width:'15'},
 {title:'描述',debugtype:'string',dataIndex: 'description',width:'8'},
-{title:'SEC的用户',debugtype:'sec_user',dataIndex: 'secUser',width:'13'},
+{title:'SEC的用户',dataIndex: 'secUser',render: (text,record)=>(record.secUser?record.secUser.id:"暂无")},
 
       
     ];

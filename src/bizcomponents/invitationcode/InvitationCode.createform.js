@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 
 import { connect } from 'dva';
@@ -26,7 +26,7 @@ used: '用',
 const testValues={
         
       			name:'邀请码',
-			code:'822660',
+			code:'633005',
 			used:'1',
 			communityId:'C000001',
 
@@ -41,7 +41,7 @@ const imageKeys = [
 
 
 
-class InvitationCodeCreateForm extends PureComponent {
+class InvitationCodeCreateForm extends Component {
 
 
   state = {

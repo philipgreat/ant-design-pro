@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 
 import { connect } from 'dva';
@@ -48,8 +48,8 @@ const testValues={
       			title:'听力损失儿童回归的优点',
 			selectedTask:'是',
 			videoUrl:'https://player.youku.com/embed/XMzE0ODQ0NTA2NA',
-			creatorBonus:'87',
-			additionalBonus:'99',
+			creatorBonus:'74',
+			additionalBonus:'100',
 			likeByCurrentUser:'0',
 			repliedByCurrentUser:'0',
 			creatorId:'CU000001',
@@ -77,7 +77,7 @@ const imageKeys = [
 
 
 
-class TaskCreateForm extends PureComponent {
+class TaskCreateForm extends Component {
 
 
   state = {

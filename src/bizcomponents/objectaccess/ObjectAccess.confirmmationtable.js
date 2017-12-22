@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { Table, Alert, Badge } from 'antd';
 import styles from './ObjectAccess.table.less';
-
+import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
@@ -19,7 +19,7 @@ const columns = [
 {title:'列表7',debugtype:'string',dataIndex: 'list7',width:'24'},
 {title:'列表8',debugtype:'string',dataIndex: 'list8',width:'24'},
 {title:'列表9',debugtype:'string',dataIndex: 'list9',width:'24'},
-{title:'应用程序',debugtype:'user_app',dataIndex: 'app',width:'13'},
+{title:'应用程序',dataIndex: 'app',render: (text,record)=>(record.app?record.app.id:"暂无")},
 
       
     ];

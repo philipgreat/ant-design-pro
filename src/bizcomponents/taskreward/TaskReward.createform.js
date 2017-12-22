@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 
 import { connect } from 'dva';
@@ -38,7 +38,7 @@ const imageKeys = [
 
 
 
-class TaskRewardCreateForm extends PureComponent {
+class TaskRewardCreateForm extends Component {
 
 
   state = {

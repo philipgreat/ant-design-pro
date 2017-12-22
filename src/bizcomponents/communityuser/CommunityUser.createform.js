@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 
 import { connect } from 'dva';
@@ -37,9 +37,9 @@ const testValues={
 			nickName:'喀拉',
 			gender:'男',
 			userType:'患者',
-			birthday:'2039-02-19',
-			experiencePoint:'9841',
-			bonusPoint:'768732',
+			birthday:'2034-11-20',
+			experiencePoint:'9002',
+			bonusPoint:'723323',
 			city:'北京',
 			status:'迎接更光明的明天',
 			hideInfo:'1',
@@ -58,7 +58,7 @@ const imageKeys = [
 
 
 
-class CommunityUserCreateForm extends PureComponent {
+class CommunityUserCreateForm extends Component {
 
 
   state = {

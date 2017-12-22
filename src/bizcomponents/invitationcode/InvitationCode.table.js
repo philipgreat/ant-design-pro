@@ -11,8 +11,8 @@ const columns = [
 {title:'名称',debugtype:'string',dataIndex: 'name',width:'7'},
 {title:'代码',debugtype:'int',dataIndex: 'code',width:'10'},
 {title:'创建时间',dataIndex: 'createTime',render: (text,record)=>moment(record.createTime).format('YYYY-MM-DD')},
-{title:'社区',debugtype:'community',dataIndex: 'community',width:'13'},
-{title:'用',debugtype:'bool',dataIndex: 'used',width:'8'},
+{title:'社区',dataIndex: 'community',render: (text,record)=>(record.community?record.community.id:"暂无")},
+{title:'用',dataIndex: 'used',render: (text,record)=>(record.used?"是":"否")},
 
       
     ];

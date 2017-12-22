@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { Table, Alert, Badge } from 'antd';
 import styles from './CommunityUser.table.less';
-
+import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
@@ -12,15 +12,15 @@ const columns = [
 {title:'昵称',debugtype:'string',dataIndex: 'nickName',width:'6'},
 {title:'性别',debugtype:'string_gender',dataIndex: 'gender',width:'5'},
 {title:'用户类型',debugtype:'string',dataIndex: 'userType',width:'8'},
-{title:'头像',debugtype:'string_image',dataIndex: 'avatar',width:'14'},
+{title:'头像',dataIndex: 'avatar',render: (text,record)=><ImagePreview imageLocation={record.avatar}/>},
 {title:'生日',dataIndex: 'birthday',render: (text,record)=>moment(record.birthday).format('YYYY-MM-DD')},
 {title:'成长值',debugtype:'int',dataIndex: 'experiencePoint',width:'9'},
 {title:'积分',debugtype:'int',dataIndex: 'bonusPoint',width:'11'},
 {title:'城市',debugtype:'string',dataIndex: 'city',width:'7'},
 {title:'状态',debugtype:'string',dataIndex: 'status',width:'12'},
-{title:'隐藏的信息',debugtype:'bool',dataIndex: 'hideInfo',width:'8'},
-{title:'管理员',debugtype:'bool',dataIndex: 'administrator',width:'8'},
-{title:'社区',debugtype:'community',dataIndex: 'community',width:'13'},
+{title:'隐藏的信息',dataIndex: 'hideInfo',render: (text,record)=>(record.hideInfo?"是":"否")},
+{title:'管理员',dataIndex: 'administrator',render: (text,record)=>(record.administrator?"是":"否")},
+{title:'社区',dataIndex: 'community',render: (text,record)=>(record.community?record.community.id:"暂无")},
 
       
     ];
