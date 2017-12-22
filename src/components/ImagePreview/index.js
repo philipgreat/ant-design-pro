@@ -32,10 +32,11 @@ export default class ImagePreview extends React.Component {
 
   render() {
    
-    const {imageLocation} = this.props;
+    const {imageLocation,imageTitle} = this.props;
     const {previewVisible,previewImage} = this.state;
     //const {fileList} = this.state;
-    
+    const suffix = " | 图片预览";
+    const modalTitle = imageTitle?imageTitle+suffix:suffix;
     
 
     return (
@@ -49,7 +50,7 @@ export default class ImagePreview extends React.Component {
         >
           
         </img>
-        <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+        <Modal visible={previewVisible} title={modalTitle} footer={null} onCancel={this.handleCancel}>
           <img alt="example" style={{ width: '100%' }} src={previewImage} />
         </Modal>
       </div>

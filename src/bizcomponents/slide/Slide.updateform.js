@@ -4,6 +4,8 @@ import moment from 'moment';
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import PictureEdit from '../../components/PictureEdit'
+import OSSPictureEdit from '../../components/OSSPictureEdit'
+
 import FooterToolbar from '../../components/FooterToolbar';
 
 import styles from './Slide.updateform.less';
@@ -80,6 +82,18 @@ class SlideUpdateForm extends Component {
       }
       const value = convertedImagesValues[key][0];
       if(value.response){
+        if(value.response.indexOf("//")==0){
+          targetImages[key] = value.response;
+          return;
+        }
+        if(value.response.indexOf("http://")==0){
+          targetImages[key] = value.response;
+          return;
+        }
+        if(value.response.indexOf("https://")==0){
+          targetImages[key] = value.response;
+          return;
+        }
         targetImages[key] = imageURLPrefix + value.response;
         return;
       }
@@ -360,7 +374,7 @@ class SlideUpdateForm extends Component {
             
             
              <Col lg={6} md={12} sm={24}>
-                <PictureEdit buttonTitle={"图像网址"} 
+                <OSSPictureEdit buttonTitle={"图像网址"} 
                 	handlePreview={this.handlePreview}
                 	handleChange={(event) => this.handleChange(event, "imageUrl")}
                  	fileList={convertedImagesValues.imageUrl} />

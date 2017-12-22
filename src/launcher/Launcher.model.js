@@ -94,7 +94,7 @@ export default {
 
   namespace: 'launcher',
 
-  state: {loggedIn: false, name:"Philip"},
+  state: {loggedIn: false, name:"Philip",systemName:"帮帮兔社区运营中心"},
 
   subscriptions: {
     keyboard({dispatch}) {
@@ -186,16 +186,6 @@ export default {
   },
 
 };
-
-
-
-
-
-
-
-
-
-
 
 
 

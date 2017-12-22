@@ -4,6 +4,8 @@ import moment from 'moment';
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import PictureEdit from '../../components/PictureEdit'
+import OSSPictureEdit from '../../components/OSSPictureEdit'
+
 import FooterToolbar from '../../components/FooterToolbar';
 
 import styles from './ThreadLike.updateform.less';
@@ -78,6 +80,18 @@ class ThreadLikeUpdateForm extends Component {
       }
       const value = convertedImagesValues[key][0];
       if(value.response){
+        if(value.response.indexOf("//")==0){
+          targetImages[key] = value.response;
+          return;
+        }
+        if(value.response.indexOf("http://")==0){
+          targetImages[key] = value.response;
+          return;
+        }
+        if(value.response.indexOf("https://")==0){
+          targetImages[key] = value.response;
+          return;
+        }
         targetImages[key] = imageURLPrefix + value.response;
         return;
       }

@@ -32,13 +32,14 @@ class NormalLoginForm extends Component {
     };
     render() {
         const { getFieldDecorator } = this.props.form;
+        const { systemName }=this.props.launcher;
         //console.log("what the type",getFieldDecorator );
         return (
            
     <div className={styles.login}>
                 <div className={styles.loginForm} >
                     <div className={styles.loginLogo}>
-                        <span>跨境供应链管理系统</span>
+                        <span>{systemName}</span>
                     </div>
             <Form onSubmit={this.handleSubmit} >
                 <FormItem>

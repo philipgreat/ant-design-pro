@@ -64,6 +64,7 @@ class HomeScreen extends React.Component {
 
         const appList = this.props.launcher.data.userAppList;
         const calcLink = this.calcLink;
+        const { systemName }=this.props.launcher;
         return (<div style={{ height:"100%"} }>
                 <Row key="1" >
                     <Col className="gutter-row" span={24} >
@@ -72,7 +73,7 @@ class HomeScreen extends React.Component {
                 </Row>
                 <Row key="2" gutter={16}>
                     <Col className="gutter-row" span={24} style={{ paddingTop: "20px", textAlign: "center" }}>
-                        <h1>跨境供应链管理系统</h1>
+                        <h1>{systemName}</h1>
                     </Col>
                 </Row>
                 <Row key="3" gutter={16} justify="center" align="center" >
