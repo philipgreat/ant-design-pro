@@ -101,11 +101,14 @@ export default class OSSPictureEdit extends React.Component {
   render() {
     const { previewVisible, previewImage} = this.state;
     const {fileList} = this.props;
+    const {buttonTitle, handleChange,handlePreview } = this.props;
     //const {fileList} = this.state;
     const internalFileList = fileList?fileList:[];
     console.log("file list in render", fileList);
+    const suffix = " | 图片预览";
+    const modalTitle = buttonTitle?buttonTitle+suffix:suffix;
+  
     
-    const {buttonTitle, handleChange,handlePreview } = this.props;
     const uploadButton = (
       <div>
         <Icon type="plus" />
@@ -125,8 +128,8 @@ export default class OSSPictureEdit extends React.Component {
         >
           {internalFileList.length >= 1 ? null : uploadButton}
         </Upload>
-        <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-          <img alt="example" style={{ width: '100%' }} src={previewImage} />
+        <Modal visible={previewVisible} title={modalTitle} footer={null} onCancel={this.handleCancel}>
+          <img alt={buttonTitle} style={{ width: '100%' }} src={previewImage} />
         </Modal>
       </div>
     );

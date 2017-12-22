@@ -51,7 +51,7 @@ export default class ImagePreview extends React.Component {
           
         </img>
         <Modal visible={previewVisible} title={modalTitle} footer={null} onCancel={this.handleCancel}>
-          <img alt="example" style={{ width: '100%' }} src={previewImage} />
+          <img alt={imageTitle}  style={{ width: '100%' }} src={previewImage} />
         </Modal>
       </div>
     );
