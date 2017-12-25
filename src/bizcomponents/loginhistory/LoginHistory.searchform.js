@@ -109,9 +109,9 @@ export default class LoginHistorySearchForm extends PureComponent {
                     
                     
                     <Col md={8} sm={24}>
-                        <FormItem label="从IP">
+                        <FormItem label="来自IP">
                             {getFieldDecorator('fromIp')(
-                                <Input placeholder="请输入从IP" />
+                                <Input placeholder="请输入来自IP" />
                             )}
                         </FormItem>
                     </Col>
@@ -152,9 +152,9 @@ export default class LoginHistorySearchForm extends PureComponent {
                     
                     
                     <Col md={8} sm={24}>
-                        <FormItem label="从IP">
+                        <FormItem label="来自IP">
                             {getFieldDecorator('fromIp')(
-                                <Input placeholder="请输入从IP" />
+                                <Input placeholder="请输入来自IP" />
                             )}
                         </FormItem>
                     </Col>

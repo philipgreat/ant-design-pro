@@ -10,42 +10,25 @@ import Launcher from './launcher/Launcher'
 
 
 
-import CommunityBizApp from './bizcomponents/community/Community.app'
-import InvitationCodeBizApp from './bizcomponents/invitationcode/InvitationCode.app'
-import HomePageBizApp from './bizcomponents/homepage/HomePage.app'
-import SlideBizApp from './bizcomponents/slide/Slide.app'
-import EncyclopediaItemBizApp from './bizcomponents/encyclopediaitem/EncyclopediaItem.app'
-import TaskPageBizApp from './bizcomponents/taskpage/TaskPage.app'
-import TaskFilterBizApp from './bizcomponents/taskfilter/TaskFilter.app'
-import CommunityUserBizApp from './bizcomponents/communityuser/CommunityUser.app'
-import PatientInfoBizApp from './bizcomponents/patientinfo/PatientInfo.app'
-import UserSkillBizApp from './bizcomponents/userskill/UserSkill.app'
-import MessageFilterBizApp from './bizcomponents/messagefilter/MessageFilter.app'
-import UserMessageBizApp from './bizcomponents/usermessage/UserMessage.app'
-import TaskBizApp from './bizcomponents/task/Task.app'
-import TaskAssigmentBizApp from './bizcomponents/taskassigment/TaskAssigment.app'
-import TaskHidingBizApp from './bizcomponents/taskhiding/TaskHiding.app'
-import TaskResolvingBizApp from './bizcomponents/taskresolving/TaskResolving.app'
-import TaskRewardBizApp from './bizcomponents/taskreward/TaskReward.app'
-import TaskLikeBizApp from './bizcomponents/tasklike/TaskLike.app'
-import TaskReplyBizApp from './bizcomponents/taskreply/TaskReply.app'
-import TaskBestAnswerSettingBizApp from './bizcomponents/taskbestanswersetting/TaskBestAnswerSetting.app'
-import TaskReplyLikeBizApp from './bizcomponents/taskreplylike/TaskReplyLike.app'
-import GroupPageBizApp from './bizcomponents/grouppage/GroupPage.app'
-import GroupFilterBizApp from './bizcomponents/groupfilter/GroupFilter.app'
-import ThreadBizApp from './bizcomponents/thread/Thread.app'
-import ThreadHidingBizApp from './bizcomponents/threadhiding/ThreadHiding.app'
-import ThreadReplyBizApp from './bizcomponents/threadreply/ThreadReply.app'
-import ThreadApprovalBizApp from './bizcomponents/threadapproval/ThreadApproval.app'
-import ThreadCompletionBizApp from './bizcomponents/threadcompletion/ThreadCompletion.app'
-import ThreadCancelingBizApp from './bizcomponents/threadcanceling/ThreadCanceling.app'
-import ThreadRegistrationBizApp from './bizcomponents/threadregistration/ThreadRegistration.app'
-import ThreadLikeBizApp from './bizcomponents/threadlike/ThreadLike.app'
-import ThreadReplyLikeBizApp from './bizcomponents/threadreplylike/ThreadReplyLike.app'
-import FanBizApp from './bizcomponents/fan/Fan.app'
-import FollowBizApp from './bizcomponents/follow/Follow.app'
-import BonusPointBizApp from './bizcomponents/bonuspoint/BonusPoint.app'
-import ExperiencePointBizApp from './bizcomponents/experiencepoint/ExperiencePoint.app'
+import CarInspectionPlatformBizApp from './bizcomponents/carinspectionplatform/CarInspectionPlatform.app'
+import CustomerInfoBizApp from './bizcomponents/customerinfo/CustomerInfo.app'
+import CarReceivingServiceCompanyBizApp from './bizcomponents/carreceivingservicecompany/CarReceivingServiceCompany.app'
+import CarInspectionServiceCompanyBizApp from './bizcomponents/carinspectionservicecompany/CarInspectionServiceCompany.app'
+import CarRepairingServiceCompanyBizApp from './bizcomponents/carrepairingservicecompany/CarRepairingServiceCompany.app'
+import CarInfoBizApp from './bizcomponents/carinfo/CarInfo.app'
+import CarInspectionOrderBizApp from './bizcomponents/carinspectionorder/CarInspectionOrder.app'
+import CarReceivingServiceOrderBizApp from './bizcomponents/carreceivingserviceorder/CarReceivingServiceOrder.app'
+import CarReceiveReceivingBizApp from './bizcomponents/carreceivereceiving/CarReceiveReceiving.app'
+import CarReceiveWorkingBizApp from './bizcomponents/carreceiveworking/CarReceiveWorking.app'
+import CarReceiveReturningBizApp from './bizcomponents/carreceivereturning/CarReceiveReturning.app'
+import CarInspectionServiceOrderBizApp from './bizcomponents/carinspectionserviceorder/CarInspectionServiceOrder.app'
+import CarInspectReceivingBizApp from './bizcomponents/carinspectreceiving/CarInspectReceiving.app'
+import CarInspectWorkingBizApp from './bizcomponents/carinspectworking/CarInspectWorking.app'
+import CarInspectReturningBizApp from './bizcomponents/carinspectreturning/CarInspectReturning.app'
+import CarRepairingServiceOrderBizApp from './bizcomponents/carrepairingserviceorder/CarRepairingServiceOrder.app'
+import CarRepairReceivingBizApp from './bizcomponents/carrepairreceiving/CarRepairReceiving.app'
+import CarRepairWorkingBizApp from './bizcomponents/carrepairworking/CarRepairWorking.app'
+import CarRepairReturningBizApp from './bizcomponents/carrepairreturning/CarRepairReturning.app'
 import UserDomainBizApp from './bizcomponents/userdomain/UserDomain.app'
 import SecUserBizApp from './bizcomponents/secuser/SecUser.app'
 import SecUserBlockingBizApp from './bizcomponents/secuserblocking/SecUserBlocking.app'
@@ -60,42 +43,25 @@ function RouterConfig({ history }) {
       <Router history={history}>
         <Switch>
         <Route path="/home" component={Launcher} />
- 		<Route path="/community/" component={CommunityBizApp} />
-		<Route path="/invitationCode/" component={InvitationCodeBizApp} />
-		<Route path="/homePage/" component={HomePageBizApp} />
-		<Route path="/slide/" component={SlideBizApp} />
-		<Route path="/encyclopediaItem/" component={EncyclopediaItemBizApp} />
-		<Route path="/taskPage/" component={TaskPageBizApp} />
-		<Route path="/taskFilter/" component={TaskFilterBizApp} />
-		<Route path="/communityUser/" component={CommunityUserBizApp} />
-		<Route path="/patientInfo/" component={PatientInfoBizApp} />
-		<Route path="/userSkill/" component={UserSkillBizApp} />
-		<Route path="/messageFilter/" component={MessageFilterBizApp} />
-		<Route path="/userMessage/" component={UserMessageBizApp} />
-		<Route path="/task/" component={TaskBizApp} />
-		<Route path="/taskAssigment/" component={TaskAssigmentBizApp} />
-		<Route path="/taskHiding/" component={TaskHidingBizApp} />
-		<Route path="/taskResolving/" component={TaskResolvingBizApp} />
-		<Route path="/taskReward/" component={TaskRewardBizApp} />
-		<Route path="/taskLike/" component={TaskLikeBizApp} />
-		<Route path="/taskReply/" component={TaskReplyBizApp} />
-		<Route path="/taskBestAnswerSetting/" component={TaskBestAnswerSettingBizApp} />
-		<Route path="/taskReplyLike/" component={TaskReplyLikeBizApp} />
-		<Route path="/groupPage/" component={GroupPageBizApp} />
-		<Route path="/groupFilter/" component={GroupFilterBizApp} />
-		<Route path="/thread/" component={ThreadBizApp} />
-		<Route path="/threadHiding/" component={ThreadHidingBizApp} />
-		<Route path="/threadReply/" component={ThreadReplyBizApp} />
-		<Route path="/threadApproval/" component={ThreadApprovalBizApp} />
-		<Route path="/threadCompletion/" component={ThreadCompletionBizApp} />
-		<Route path="/threadCanceling/" component={ThreadCancelingBizApp} />
-		<Route path="/threadRegistration/" component={ThreadRegistrationBizApp} />
-		<Route path="/threadLike/" component={ThreadLikeBizApp} />
-		<Route path="/threadReplyLike/" component={ThreadReplyLikeBizApp} />
-		<Route path="/fan/" component={FanBizApp} />
-		<Route path="/follow/" component={FollowBizApp} />
-		<Route path="/bonusPoint/" component={BonusPointBizApp} />
-		<Route path="/experiencePoint/" component={ExperiencePointBizApp} />
+ 		<Route path="/carInspectionPlatform/" component={CarInspectionPlatformBizApp} />
+		<Route path="/customerInfo/" component={CustomerInfoBizApp} />
+		<Route path="/carReceivingServiceCompany/" component={CarReceivingServiceCompanyBizApp} />
+		<Route path="/carInspectionServiceCompany/" component={CarInspectionServiceCompanyBizApp} />
+		<Route path="/carRepairingServiceCompany/" component={CarRepairingServiceCompanyBizApp} />
+		<Route path="/carInfo/" component={CarInfoBizApp} />
+		<Route path="/carInspectionOrder/" component={CarInspectionOrderBizApp} />
+		<Route path="/carReceivingServiceOrder/" component={CarReceivingServiceOrderBizApp} />
+		<Route path="/carReceiveReceiving/" component={CarReceiveReceivingBizApp} />
+		<Route path="/carReceiveWorking/" component={CarReceiveWorkingBizApp} />
+		<Route path="/carReceiveReturning/" component={CarReceiveReturningBizApp} />
+		<Route path="/carInspectionServiceOrder/" component={CarInspectionServiceOrderBizApp} />
+		<Route path="/carInspectReceiving/" component={CarInspectReceivingBizApp} />
+		<Route path="/carInspectWorking/" component={CarInspectWorkingBizApp} />
+		<Route path="/carInspectReturning/" component={CarInspectReturningBizApp} />
+		<Route path="/carRepairingServiceOrder/" component={CarRepairingServiceOrderBizApp} />
+		<Route path="/carRepairReceiving/" component={CarRepairReceivingBizApp} />
+		<Route path="/carRepairWorking/" component={CarRepairWorkingBizApp} />
+		<Route path="/carRepairReturning/" component={CarRepairReturningBizApp} />
 		<Route path="/userDomain/" component={UserDomainBizApp} />
 		<Route path="/secUser/" component={SecUserBizApp} />
 		<Route path="/secUserBlocking/" component={SecUserBlockingBizApp} />

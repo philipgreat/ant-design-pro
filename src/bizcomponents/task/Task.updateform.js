@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 import moment from 'moment';
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import PictureEdit from '../../components/PictureEdit'
-import OSSPictureEdit from '../../components/OSSPictureEdit'
-
 import FooterToolbar from '../../components/FooterToolbar';
 
 import styles from './Task.updateform.less';
@@ -63,7 +61,7 @@ const imageKeys = [
 
 
 
-class TaskUpdateForm extends Component {
+class TaskUpdateForm extends PureComponent {
 
   state = {
     previewVisible: false,
@@ -110,18 +108,6 @@ class TaskUpdateForm extends Component {
       }
       const value = convertedImagesValues[key][0];
       if(value.response){
-        if(value.response.indexOf("//")==0){
-          targetImages[key] = value.response;
-          return;
-        }
-        if(value.response.indexOf("http://")==0){
-          targetImages[key] = value.response;
-          return;
-        }
-        if(value.response.indexOf("https://")==0){
-          targetImages[key] = value.response;
-          return;
-        }
         targetImages[key] = imageURLPrefix + value.response;
         return;
       }
@@ -270,7 +256,7 @@ class TaskUpdateForm extends Component {
 
       const { currentUpdateIndex } = this.props;
       const { owner } = this.props;
-        
+      console.log("skip to next???????????");
       const newIndex= currentUpdateIndex+1;
       dispatch({
           type: owner.type+'/gotoNextTaskUpdateRow',
@@ -478,7 +464,7 @@ class TaskUpdateForm extends Component {
             
             
              <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"封面图像路径1"} 
+                <PictureEdit buttonTitle={"封面图像路径1"} 
                 	handlePreview={this.handlePreview}
                 	handleChange={(event) => this.handleChange(event, "coverImagePath1")}
                  	fileList={convertedImagesValues.coverImagePath1} />
@@ -487,7 +473,7 @@ class TaskUpdateForm extends Component {
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"封面图像路径2"} 
+                <PictureEdit buttonTitle={"封面图像路径2"} 
                 	handlePreview={this.handlePreview}
                 	handleChange={(event) => this.handleChange(event, "coverImagePath2")}
                  	fileList={convertedImagesValues.coverImagePath2} />
@@ -496,7 +482,7 @@ class TaskUpdateForm extends Component {
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"封面图像路径3"} 
+                <PictureEdit buttonTitle={"封面图像路径3"} 
                 	handlePreview={this.handlePreview}
                 	handleChange={(event) => this.handleChange(event, "coverImagePath3")}
                  	fileList={convertedImagesValues.coverImagePath3} />
@@ -505,7 +491,7 @@ class TaskUpdateForm extends Component {
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"图1"} 
+                <PictureEdit buttonTitle={"图1"} 
                 	handlePreview={this.handlePreview}
                 	handleChange={(event) => this.handleChange(event, "imagePath1")}
                  	fileList={convertedImagesValues.imagePath1} />
@@ -514,7 +500,7 @@ class TaskUpdateForm extends Component {
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"图2"} 
+                <PictureEdit buttonTitle={"图2"} 
                 	handlePreview={this.handlePreview}
                 	handleChange={(event) => this.handleChange(event, "imagePath2")}
                  	fileList={convertedImagesValues.imagePath2} />
@@ -523,7 +509,7 @@ class TaskUpdateForm extends Component {
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"图3"} 
+                <PictureEdit buttonTitle={"图3"} 
                 	handlePreview={this.handlePreview}
                 	handleChange={(event) => this.handleChange(event, "imagePath3")}
                  	fileList={convertedImagesValues.imagePath3} />
@@ -532,7 +518,7 @@ class TaskUpdateForm extends Component {
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"图4"} 
+                <PictureEdit buttonTitle={"图4"} 
                 	handlePreview={this.handlePreview}
                 	handleChange={(event) => this.handleChange(event, "imagePath4")}
                  	fileList={convertedImagesValues.imagePath4} />
@@ -541,7 +527,7 @@ class TaskUpdateForm extends Component {
 			
 			
              <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"图5"} 
+                <PictureEdit buttonTitle={"图5"} 
                 	handlePreview={this.handlePreview}
                 	handleChange={(event) => this.handleChange(event, "imagePath5")}
                  	fileList={convertedImagesValues.imagePath5} />
