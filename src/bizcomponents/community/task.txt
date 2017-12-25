@@ -1,0 +1,13 @@
+		SmartList<ThreadLike> oldThreadLike = super.getThreadLikeList();
+		SmartList<ThreadLike> newThreadLike = new SmartList<ThreadLike>();
+		for(ThreadLike ThreadLike: oldThreadLike){
+			if(ThreadLike.getThread()==null){
+				continue;
+			}
+			if(ThreadLike.getThread().getCurrentStatus().equals("HIDDEN")){
+				continue;
+			}
+			newThreadLike.add(ThreadLike);
+		}
+		
+		return super.getThreadLikeList();

@@ -14,14 +14,14 @@ const { TextArea } = Input;
 const fieldLabels = {
 id: '序号',
 login: '登录',
-mobile: '手机',
+mobile: '手机号码',
 email: '电子邮件',
-pwd: 'PWD',
+pwd: '密码',
 verificationCode: '验证码',
 verificationCodeExpire: '验证码过期',
 lastLoginTime: '最后登录时间',
 domain: '域',
-blocking: '屏蔽',
+blocking: '舞台调度',
 currentStatus: '当前状态',
 
 
@@ -35,8 +35,8 @@ const testValues={
 			email:'suddy_chang@163.com',
 			pwd:'C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95',
 			verificationCode:'9981727',
-			verificationCodeExpire:'2036-08-17 09:47:24',
-			lastLoginTime:'2039-03-03 09:19:03',
+			verificationCodeExpire:'2036-06-27 13:28:51',
+			lastLoginTime:'2037-05-17 05:58:45',
 			domainId:'UD000001',
 
         
@@ -248,9 +248,9 @@ class SecUserCreateForm extends Component {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.mobile}>
                   {getFieldDecorator('mobile', {
-                    rules: [{ required: true, message: '请输入手机' }],
+                    rules: [{ required: true, message: '请输入手机号码' }],
                   })(
-                    <Input placeholder="请输入请输入手机string_china_mobile_phone" />
+                    <Input placeholder="请输入请输入手机号码string_china_mobile_phone" />
                   )}
                 </Form.Item>
               </Col>			
@@ -270,9 +270,9 @@ class SecUserCreateForm extends Component {
              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.pwd}>
                   {getFieldDecorator('pwd', {
-                    rules: [{ required: true, message: '请输入PWD' }],
+                    rules: [{ required: true, message: '请输入密码' }],
                   })(
-                    <Input placeholder="请输入请输入PWDstring_password" />
+                    <Input placeholder="请输入请输入密码string_password" />
                   )}
                 </Form.Item>
               </Col>			

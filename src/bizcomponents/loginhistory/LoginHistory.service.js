@@ -11,7 +11,7 @@ const getURLPrefix=()=>{
     if(url.hostname=="localhost"){
         return "http://"+url.hostname+":8080/naf/";
     }
-    return url.origin+"/bbt/";
+    return url.origin+"/cis/";
 
 }
 
@@ -75,9 +75,6 @@ const load=(targetObjectId,parameters)=>{
 const LoginHistoryService={view,
 load};
 export default LoginHistoryService;
-
-
-
 
 
 

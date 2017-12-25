@@ -1,0 +1,10 @@
+
+{
+    "status": "200",
+    "accessKeyId": "STS.E2AE324RGKZmgKT632Cv13aVY",
+    "accessKeySecret": "HCoRWrTiDUkWrLMJ23tkdcGmJUgnL2aLXdx1ZDc7Ans1",
+    "securityToken": "CAISswJ1q6Ft5B2yfSjIpPH0DomG2Y1m/JiGZW3l0jNnT/kd3KT9uzz2IHlKeXluB+wbs/k2nm9T7PsYlqFYdscdHRScN5OEGWXVHkfzDbDasumZsJYX6vT8a3bxZjf/2MjNGaqbKPrWZvaqbX3diyZ32sGUXD6+XlujQ/rr7Jl8dYYvQxWfZzhLD8ssCmkEksIBMmbLPvuAKwPjhnGqbHBloQ1hk2hym+TdjMSX8UjZl0aoiL1X9Y77Pt24YtJwe5Z6Wti4x6tdS/KZiHYIsV8I1t8v1/YaqGif4I/MXQMBsk3eCYeOrI0zdj0eT7MhBqtJoML7kfBFoeHJn+z1sU0UY7wFDXqDGd39mZGbQ7n0bMxKfLL6KmnL1cuUKp72vgUrbHQWLgpWfMA7LXt9GZC/raJEmWrNGoABX44mt9Tl9yrJw0Az1b4c/lRz3wYb1PWm+YtffxqoEh3w5jtlBX3sRA1nK/v5xokSSeyVRe6/CJZYyAATHDSp4i/QLAhgEnoE6a8NdncXW3/xKKEaSAX1GQX9AN0XOyS2xTefBaXRvT5fXihDELy4YF86rNSPk1Og0JrPHFXXeTE=",
+    "expiration": "2017-12-22T08:10:48Z",
+    "userHome": "images/CU000002",
+    "endpoint": "https://oss-cn-shanghai.aliyuncs.com"
+}

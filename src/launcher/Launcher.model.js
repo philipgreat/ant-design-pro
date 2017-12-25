@@ -7,48 +7,31 @@ import key from 'keymaster';
 const  apps = {
 
 
-"com.terapico.bbt.community.Community":"community",
-"com.terapico.bbt.invitationcode.InvitationCode":"invitationCode",
-"com.terapico.bbt.homepage.HomePage":"homePage",
-"com.terapico.bbt.slide.Slide":"slide",
-"com.terapico.bbt.encyclopediaitem.EncyclopediaItem":"encyclopediaItem",
-"com.terapico.bbt.taskpage.TaskPage":"taskPage",
-"com.terapico.bbt.taskfilter.TaskFilter":"taskFilter",
-"com.terapico.bbt.communityuser.CommunityUser":"communityUser",
-"com.terapico.bbt.patientinfo.PatientInfo":"patientInfo",
-"com.terapico.bbt.userskill.UserSkill":"userSkill",
-"com.terapico.bbt.messagefilter.MessageFilter":"messageFilter",
-"com.terapico.bbt.usermessage.UserMessage":"userMessage",
-"com.terapico.bbt.task.Task":"task",
-"com.terapico.bbt.taskassigment.TaskAssigment":"taskAssigment",
-"com.terapico.bbt.taskhiding.TaskHiding":"taskHiding",
-"com.terapico.bbt.taskresolving.TaskResolving":"taskResolving",
-"com.terapico.bbt.taskreward.TaskReward":"taskReward",
-"com.terapico.bbt.tasklike.TaskLike":"taskLike",
-"com.terapico.bbt.taskreply.TaskReply":"taskReply",
-"com.terapico.bbt.taskbestanswersetting.TaskBestAnswerSetting":"taskBestAnswerSetting",
-"com.terapico.bbt.taskreplylike.TaskReplyLike":"taskReplyLike",
-"com.terapico.bbt.grouppage.GroupPage":"groupPage",
-"com.terapico.bbt.groupfilter.GroupFilter":"groupFilter",
-"com.terapico.bbt.thread.Thread":"thread",
-"com.terapico.bbt.threadhiding.ThreadHiding":"threadHiding",
-"com.terapico.bbt.threadreply.ThreadReply":"threadReply",
-"com.terapico.bbt.threadapproval.ThreadApproval":"threadApproval",
-"com.terapico.bbt.threadcompletion.ThreadCompletion":"threadCompletion",
-"com.terapico.bbt.threadcanceling.ThreadCanceling":"threadCanceling",
-"com.terapico.bbt.threadregistration.ThreadRegistration":"threadRegistration",
-"com.terapico.bbt.threadlike.ThreadLike":"threadLike",
-"com.terapico.bbt.threadreplylike.ThreadReplyLike":"threadReplyLike",
-"com.terapico.bbt.fan.Fan":"fan",
-"com.terapico.bbt.follow.Follow":"follow",
-"com.terapico.bbt.bonuspoint.BonusPoint":"bonusPoint",
-"com.terapico.bbt.experiencepoint.ExperiencePoint":"experiencePoint",
-"com.terapico.bbt.userdomain.UserDomain":"userDomain",
-"com.terapico.bbt.secuser.SecUser":"secUser",
-"com.terapico.bbt.secuserblocking.SecUserBlocking":"secUserBlocking",
-"com.terapico.bbt.userapp.UserApp":"userApp",
-"com.terapico.bbt.objectaccess.ObjectAccess":"objectAccess",
-"com.terapico.bbt.loginhistory.LoginHistory":"loginHistory",
+"com.terapico.cis.carinspectionplatform.CarInspectionPlatform":"carInspectionPlatform",
+"com.terapico.cis.customerinfo.CustomerInfo":"customerInfo",
+"com.terapico.cis.carreceivingservicecompany.CarReceivingServiceCompany":"carReceivingServiceCompany",
+"com.terapico.cis.carinspectionservicecompany.CarInspectionServiceCompany":"carInspectionServiceCompany",
+"com.terapico.cis.carrepairingservicecompany.CarRepairingServiceCompany":"carRepairingServiceCompany",
+"com.terapico.cis.carinfo.CarInfo":"carInfo",
+"com.terapico.cis.carinspectionorder.CarInspectionOrder":"carInspectionOrder",
+"com.terapico.cis.carreceivingserviceorder.CarReceivingServiceOrder":"carReceivingServiceOrder",
+"com.terapico.cis.carreceivereceiving.CarReceiveReceiving":"carReceiveReceiving",
+"com.terapico.cis.carreceiveworking.CarReceiveWorking":"carReceiveWorking",
+"com.terapico.cis.carreceivereturning.CarReceiveReturning":"carReceiveReturning",
+"com.terapico.cis.carinspectionserviceorder.CarInspectionServiceOrder":"carInspectionServiceOrder",
+"com.terapico.cis.carinspectreceiving.CarInspectReceiving":"carInspectReceiving",
+"com.terapico.cis.carinspectworking.CarInspectWorking":"carInspectWorking",
+"com.terapico.cis.carinspectreturning.CarInspectReturning":"carInspectReturning",
+"com.terapico.cis.carrepairingserviceorder.CarRepairingServiceOrder":"carRepairingServiceOrder",
+"com.terapico.cis.carrepairreceiving.CarRepairReceiving":"carRepairReceiving",
+"com.terapico.cis.carrepairworking.CarRepairWorking":"carRepairWorking",
+"com.terapico.cis.carrepairreturning.CarRepairReturning":"carRepairReturning",
+"com.terapico.cis.userdomain.UserDomain":"userDomain",
+"com.terapico.cis.secuser.SecUser":"secUser",
+"com.terapico.cis.secuserblocking.SecUserBlocking":"secUserBlocking",
+"com.terapico.cis.userapp.UserApp":"userApp",
+"com.terapico.cis.objectaccess.ObjectAccess":"objectAccess",
+"com.terapico.cis.loginhistory.LoginHistory":"loginHistory",
 
 
 
@@ -94,7 +77,7 @@ export default {
 
   namespace: 'launcher',
 
-  state: {loggedIn: false, name:"Philip",systemName:"帮帮兔社区运营中心"},
+  state: {loggedIn: false, name:"Philip",systemName:"代审车服务平台"},
 
   subscriptions: {
     keyboard({dispatch}) {
@@ -186,6 +169,16 @@ export default {
   },
 
 };
+
+
+
+
+
+
+
+
+
+
 
 
 

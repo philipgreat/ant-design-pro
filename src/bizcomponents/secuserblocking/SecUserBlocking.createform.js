@@ -14,7 +14,7 @@ const { TextArea } = Input;
 const fieldLabels = {
 id: '序号',
 who: '谁',
-blockTime: '屏蔽时间',
+blockTime: '块时间',
 comments: '评论',
 
 

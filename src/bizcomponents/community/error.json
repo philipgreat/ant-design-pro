@@ -1,0 +1,19 @@
+public SmartList<TaskReply> getTaskReplyList() {
+    SmartList<TaskReply> oldTaskReply = super.getTaskReplyList();
+        if(oldTaskReply==null){
+            return oldTaskReply;
+        }
+        SmartList<TaskReply> newTaskReply = new SmartList<TaskReply>();
+        for(TaskReply TaskReply: oldTaskReply){
+            if(TaskReply.getThread()==null){
+                continue;
+            }
+            if(TaskReply.getThread().getCurrentStatus().equals("HIDDEN")){
+                continue;
+            }
+            newTaskReply.add(TaskReply);
+        }
+        
+        return super.getTaskReplyList();
+    
+}

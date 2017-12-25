@@ -63,8 +63,8 @@ export default class OSSPictureEdit extends React.Component {
           status: "done",
           type: data.type,
           result: data.name,
-          url: "//bbt-test.oss-cn-shanghai.aliyuncs.com/"+encodeURIComponent(data.name),
-          response: "//bbt-test.oss-cn-shanghai.aliyuncs.com/"+encodeURIComponent(data.name)
+          url: "https://bbt-test.oss-cn-shanghai.aliyuncs.com/"+encodeURIComponent(data.name),
+          response: "https://bbt-test.oss-cn-shanghai.aliyuncs.com/"+encodeURIComponent(data.name)
         }];
         const event={fileList};
         handleChange(event);
