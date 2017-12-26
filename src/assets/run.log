@@ -1,0 +1,22 @@
+	protected void enhanceThreadReplyWithLike(BbtUserContext userContext, Thread Thread,
+			Map<String, Object> tokens) {
+		
+		SmartList<ThreadReply> ThreadReplyList = Thread.getThreadReplyList();
+		
+		
+		MultipleAccessKey filterKey = new MultipleAccessKey();
+		filterKey.put(ThreadReplyLike.Thread_REPLY_PROPERTY,ThreadReplyList.mapWithId().keySet().toArray());
+		filterKey.put(ThreadReplyLike.REPLIER_PROPERTY,userContext.communityUserId());
+		
+		
+		Map<String,Object> emptyOptions = new HashMap<String,Object>();
+		Map<String, Integer>result = this.getThreadDAO().getThreadReplyDAO().getThreadReplyLikeDAO().countThreadReplyLikeWithGroupKey(ThreadReplyLike.Thread_REPLY_PROPERTY, filterKey, emptyOptions);
+		
+		for(ThreadReply ThreadReply: ThreadReplyList){
+			if(result.get(ThreadReply.getId())>0){
+				ThreadReply.setLikeByCurrentUser(true);
+			}
+			
+		}
+		
+	}

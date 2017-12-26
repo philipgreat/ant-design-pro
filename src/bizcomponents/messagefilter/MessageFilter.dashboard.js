@@ -18,45 +18,34 @@ const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
 const topColResponsiveProps = {
-    xs: 24,
-    sm: 12,
-    md: 12,
-    lg: 12,
-    xl: 6,
-    style: { marginBottom: 24 },
-  };
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+  style: { marginBottom: 24 },
+};
 
 
 @connect(state => ({
   messageFilter: state._messageFilter,
 }))
 export default class MessageFilterDashboard extends Component {
- 
-  
   render() {
-    
-    
-    const {id,} = this.props.messageFilter;
-	
-	
-    
+    // eslint-disable-next-line max-len
+    const { id, } = this.props.messageFilter;
     return (
 
-     <PageHeaderLayout
+      <PageHeaderLayout
         title="消息过滤总览"
         content="消息过滤总览"
         wrapperClassName={styles.advancedForm}
       >
-      <div>
-        <Row gutter={24}>
-         
+        <div>
+          <Row gutter={24}>
 
-        </Row>
-
-        
-
-       
-      </div>
+          </Row>
+        </div>
       </PageHeaderLayout>
     );
   }

@@ -18,45 +18,34 @@ const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
 const topColResponsiveProps = {
-    xs: 24,
-    sm: 12,
-    md: 12,
-    lg: 12,
-    xl: 6,
-    style: { marginBottom: 24 },
-  };
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+  style: { marginBottom: 24 },
+};
 
 
 @connect(state => ({
   threadRegistration: state._threadRegistration,
 }))
 export default class ThreadRegistrationDashboard extends Component {
- 
-  
   render() {
-    
-    
-    const {id,} = this.props.threadRegistration;
-	
-	
-    
+    // eslint-disable-next-line max-len
+    const { id, } = this.props.threadRegistration;
     return (
 
-     <PageHeaderLayout
+      <PageHeaderLayout
         title="活动注册总览"
         content="活动注册总览"
         wrapperClassName={styles.advancedForm}
       >
-      <div>
-        <Row gutter={24}>
-         
+        <div>
+          <Row gutter={24}>
 
-        </Row>
-
-        
-
-       
-      </div>
+          </Row>
+        </div>
       </PageHeaderLayout>
     );
   }

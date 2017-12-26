@@ -7,19 +7,17 @@ import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
-{title:'标题',debugtype:'string',dataIndex: 'title',width:'8'},
-{title:'图像网址',dataIndex: 'imageUrl',render: (text,record)=><ImagePreview imageLocation={record.图像网址}/>},
-{title:'链接网址',debugtype:'string',dataIndex: 'linkUrl',width:'40'},
-{title:'主页',dataIndex: 'homePage',render: (text,record)=>(record.homePage?record.homePage.id:"暂无")},
-
-      
-    ];
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8' },
+  { title: '图像网址', dataIndex: 'imageUrl', render: (text, record) => <ImagePreview imageLocation={record.图像网址}/> },
+  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '40' },
+  { title: '主页',dataIndex: 'homePage', render: (text, record) => (record.homePage ? record.homePage.id : '暂无') },
+];
 
 class SlideConfirmationTable extends PureComponent {
   render() {
-    
-    const { data,count,current, owner } = this.props;
+    // const { data,count,current, owner } = this.props;
+    const { data } = this.props;
 
 
     return (
@@ -29,7 +27,6 @@ class SlideConfirmationTable extends PureComponent {
             message={(
               <p>
                 一共 <a style={{ fontWeight: 600 }}>{data.length}</a> 项 
-               
               </p>
             )}
             type="warning"
@@ -40,9 +37,8 @@ class SlideConfirmationTable extends PureComponent {
           rowKey={record => record.id}
           dataSource={data}
           columns={columns}
-          
-          size={"small"}
-          scroll={{x:800}}
+          size="small"
+          scroll={{ x: 800 }}
         />
       </div>
     );

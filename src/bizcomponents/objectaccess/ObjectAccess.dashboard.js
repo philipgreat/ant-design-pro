@@ -18,45 +18,34 @@ const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
 const topColResponsiveProps = {
-    xs: 24,
-    sm: 12,
-    md: 12,
-    lg: 12,
-    xl: 6,
-    style: { marginBottom: 24 },
-  };
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+  style: { marginBottom: 24 },
+};
 
 
 @connect(state => ({
   objectAccess: state._objectAccess,
 }))
 export default class ObjectAccessDashboard extends Component {
- 
-  
   render() {
-    
-    
-    const {id,} = this.props.objectAccess;
-	
-	
-    
+    // eslint-disable-next-line max-len
+    const { id, } = this.props.objectAccess;
     return (
 
-     <PageHeaderLayout
+      <PageHeaderLayout
         title="对象访问总览"
         content="对象访问总览"
         wrapperClassName={styles.advancedForm}
       >
-      <div>
-        <Row gutter={24}>
-         
+        <div>
+          <Row gutter={24}>
 
-        </Row>
-
-        
-
-       
-      </div>
+          </Row>
+        </div>
       </PageHeaderLayout>
     );
   }

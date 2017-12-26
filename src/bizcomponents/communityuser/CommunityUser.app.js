@@ -10,81 +10,83 @@ import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './CommunityUser.app.less';
 import CommunityUserDashboard from './CommunityUser.dashboard';
+import CommunityUserEditDetail from './CommunityUser.editdetail';
+
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import PatientInfoSearch from '../patientinfo/PatientInfo.search'
-import PatientInfoCreateForm from '../patientinfo/PatientInfo.createform'
-import PatientInfoUpdateForm from '../patientinfo/PatientInfo.updateform'
+import PatientInfoSearch from '../patientinfo/PatientInfo.search';
+import PatientInfoCreateForm from '../patientinfo/PatientInfo.createform';
+import PatientInfoUpdateForm from '../patientinfo/PatientInfo.updateform';
 
-import UserSkillSearch from '../userskill/UserSkill.search'
-import UserSkillCreateForm from '../userskill/UserSkill.createform'
-import UserSkillUpdateForm from '../userskill/UserSkill.updateform'
+import UserSkillSearch from '../userskill/UserSkill.search';
+import UserSkillCreateForm from '../userskill/UserSkill.createform';
+import UserSkillUpdateForm from '../userskill/UserSkill.updateform';
 
-import MessageFilterSearch from '../messagefilter/MessageFilter.search'
-import MessageFilterCreateForm from '../messagefilter/MessageFilter.createform'
-import MessageFilterUpdateForm from '../messagefilter/MessageFilter.updateform'
+import MessageFilterSearch from '../messagefilter/MessageFilter.search';
+import MessageFilterCreateForm from '../messagefilter/MessageFilter.createform';
+import MessageFilterUpdateForm from '../messagefilter/MessageFilter.updateform';
 
-import UserMessageSearch from '../usermessage/UserMessage.search'
-import UserMessageCreateForm from '../usermessage/UserMessage.createform'
-import UserMessageUpdateForm from '../usermessage/UserMessage.updateform'
+import UserMessageSearch from '../usermessage/UserMessage.search';
+import UserMessageCreateForm from '../usermessage/UserMessage.createform';
+import UserMessageUpdateForm from '../usermessage/UserMessage.updateform';
 
-import TaskSearch from '../task/Task.search'
-import TaskCreateForm from '../task/Task.createform'
-import TaskUpdateForm from '../task/Task.updateform'
+import TaskSearch from '../task/Task.search';
+import TaskCreateForm from '../task/Task.createform';
+import TaskUpdateForm from '../task/Task.updateform';
 
-import TaskAssigmentSearch from '../taskassigment/TaskAssigment.search'
-import TaskAssigmentCreateForm from '../taskassigment/TaskAssigment.createform'
-import TaskAssigmentUpdateForm from '../taskassigment/TaskAssigment.updateform'
+import TaskAssigmentSearch from '../taskassigment/TaskAssigment.search';
+import TaskAssigmentCreateForm from '../taskassigment/TaskAssigment.createform';
+import TaskAssigmentUpdateForm from '../taskassigment/TaskAssigment.updateform';
 
-import TaskLikeSearch from '../tasklike/TaskLike.search'
-import TaskLikeCreateForm from '../tasklike/TaskLike.createform'
-import TaskLikeUpdateForm from '../tasklike/TaskLike.updateform'
+import TaskLikeSearch from '../tasklike/TaskLike.search';
+import TaskLikeCreateForm from '../tasklike/TaskLike.createform';
+import TaskLikeUpdateForm from '../tasklike/TaskLike.updateform';
 
-import TaskReplySearch from '../taskreply/TaskReply.search'
-import TaskReplyCreateForm from '../taskreply/TaskReply.createform'
-import TaskReplyUpdateForm from '../taskreply/TaskReply.updateform'
+import TaskReplySearch from '../taskreply/TaskReply.search';
+import TaskReplyCreateForm from '../taskreply/TaskReply.createform';
+import TaskReplyUpdateForm from '../taskreply/TaskReply.updateform';
 
-import TaskReplyLikeSearch from '../taskreplylike/TaskReplyLike.search'
-import TaskReplyLikeCreateForm from '../taskreplylike/TaskReplyLike.createform'
-import TaskReplyLikeUpdateForm from '../taskreplylike/TaskReplyLike.updateform'
+import TaskReplyLikeSearch from '../taskreplylike/TaskReplyLike.search';
+import TaskReplyLikeCreateForm from '../taskreplylike/TaskReplyLike.createform';
+import TaskReplyLikeUpdateForm from '../taskreplylike/TaskReplyLike.updateform';
 
-import ThreadSearch from '../thread/Thread.search'
-import ThreadCreateForm from '../thread/Thread.createform'
-import ThreadUpdateForm from '../thread/Thread.updateform'
+import ThreadSearch from '../thread/Thread.search';
+import ThreadCreateForm from '../thread/Thread.createform';
+import ThreadUpdateForm from '../thread/Thread.updateform';
 
-import ThreadReplySearch from '../threadreply/ThreadReply.search'
-import ThreadReplyCreateForm from '../threadreply/ThreadReply.createform'
-import ThreadReplyUpdateForm from '../threadreply/ThreadReply.updateform'
+import ThreadReplySearch from '../threadreply/ThreadReply.search';
+import ThreadReplyCreateForm from '../threadreply/ThreadReply.createform';
+import ThreadReplyUpdateForm from '../threadreply/ThreadReply.updateform';
 
-import ThreadRegistrationSearch from '../threadregistration/ThreadRegistration.search'
-import ThreadRegistrationCreateForm from '../threadregistration/ThreadRegistration.createform'
-import ThreadRegistrationUpdateForm from '../threadregistration/ThreadRegistration.updateform'
+import ThreadRegistrationSearch from '../threadregistration/ThreadRegistration.search';
+import ThreadRegistrationCreateForm from '../threadregistration/ThreadRegistration.createform';
+import ThreadRegistrationUpdateForm from '../threadregistration/ThreadRegistration.updateform';
 
-import ThreadLikeSearch from '../threadlike/ThreadLike.search'
-import ThreadLikeCreateForm from '../threadlike/ThreadLike.createform'
-import ThreadLikeUpdateForm from '../threadlike/ThreadLike.updateform'
+import ThreadLikeSearch from '../threadlike/ThreadLike.search';
+import ThreadLikeCreateForm from '../threadlike/ThreadLike.createform';
+import ThreadLikeUpdateForm from '../threadlike/ThreadLike.updateform';
 
-import ThreadReplyLikeSearch from '../threadreplylike/ThreadReplyLike.search'
-import ThreadReplyLikeCreateForm from '../threadreplylike/ThreadReplyLike.createform'
-import ThreadReplyLikeUpdateForm from '../threadreplylike/ThreadReplyLike.updateform'
+import ThreadReplyLikeSearch from '../threadreplylike/ThreadReplyLike.search';
+import ThreadReplyLikeCreateForm from '../threadreplylike/ThreadReplyLike.createform';
+import ThreadReplyLikeUpdateForm from '../threadreplylike/ThreadReplyLike.updateform';
 
-import FanSearch from '../fan/Fan.search'
-import FanCreateForm from '../fan/Fan.createform'
-import FanUpdateForm from '../fan/Fan.updateform'
+import FanSearch from '../fan/Fan.search';
+import FanCreateForm from '../fan/Fan.createform';
+import FanUpdateForm from '../fan/Fan.updateform';
 
-import FollowSearch from '../follow/Follow.search'
-import FollowCreateForm from '../follow/Follow.createform'
-import FollowUpdateForm from '../follow/Follow.updateform'
+import FollowSearch from '../follow/Follow.search';
+import FollowCreateForm from '../follow/Follow.createform';
+import FollowUpdateForm from '../follow/Follow.updateform';
 
-import BonusPointSearch from '../bonuspoint/BonusPoint.search'
-import BonusPointCreateForm from '../bonuspoint/BonusPoint.createform'
-import BonusPointUpdateForm from '../bonuspoint/BonusPoint.updateform'
+import BonusPointSearch from '../bonuspoint/BonusPoint.search';
+import BonusPointCreateForm from '../bonuspoint/BonusPoint.createform';
+import BonusPointUpdateForm from '../bonuspoint/BonusPoint.updateform';
 
-import ExperiencePointSearch from '../experiencepoint/ExperiencePoint.search'
-import ExperiencePointCreateForm from '../experiencepoint/ExperiencePoint.createform'
-import ExperiencePointUpdateForm from '../experiencepoint/ExperiencePoint.updateform'
+import ExperiencePointSearch from '../experiencepoint/ExperiencePoint.search';
+import ExperiencePointCreateForm from '../experiencepoint/ExperiencePoint.createform';
+import ExperiencePointUpdateForm from '../experiencepoint/ExperiencePoint.updateform';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -111,20 +113,16 @@ const query = {
 };
 
 class CommunityUserBizApp extends React.PureComponent {
-  
- constructor(props) {
+  constructor(props) {
     super(props);
     // 把一级 Layout 的 children 作为菜单项
-    
-    //this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), []);
+    // this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), []);
     this.state = {
       openKeys: this.getDefaultCollapsedSubMenus(props),
     };
   }
 
-  componentDidMount() {
-   
-  }
+  componentDidMount() {}
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout);
   }
@@ -135,7 +133,7 @@ class CommunityUserBizApp extends React.PureComponent {
     });
   }
 
-  getDefaultCollapsedSubMenus(props) {
+  getDefaultCollapsedSubMenus = (props) => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)];
     currentMenuSelectedKeys.splice(-1, 1);
     if (currentMenuSelectedKeys.length === 0) {
@@ -143,7 +141,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys;
   }
-  getCurrentMenuSelectedKeys(props) {
+  getCurrentMenuSelectedKeys = (props) => {
     const { location: { pathname } } = props || this.props;
     const keys = pathname.split('/').slice(1);
     if (keys.length === 1 && keys[0] === '') {
@@ -151,118 +149,75 @@ class CommunityUserBizApp extends React.PureComponent {
     }
     return keys;
   }
-  getNavMenuItems(objectId){
-
+  getNavMenuItems = (objectId) => {
     return (
-      <SubMenu title={<span>
-        <Icon type='dashboard' />
-        <span>社区用户</span>
-      </span>} >
-      
-      
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/patientInfoList"}>病人信息</Link>
-      </Menu.Item>
-  
+      <SubMenu title={
+        <span>
+          <Icon type="profile" />
+          <span>社区用户</span>
+        </span>}
+      >
 
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/userSkillList"}>用户技能</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/messageFilterList"}>消息过滤</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/userMessageList"}>用户消息</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/taskList"}>任务</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/taskAssigmentList"}>任务分配</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/taskLikeList"}>任务点赞</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/taskReplyList"}>回复任务</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/taskReplyLikeList"}>任务回复点赞</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/threadList"}>主贴</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/threadReplyList"}>跟帖回复</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/threadRegistrationList"}>活动注册</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/threadLikeList"}>主贴点赞</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/threadReplyLikeList"}>跟帖回复点赞</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/fanList"}>粉丝</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/followList"}>关注</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/bonusPointList"}>积分</Link>
-      </Menu.Item>
-  
-
-      <Menu.Item >   
-        <Link to={"/communityUser/"+objectId+"/list/experiencePointList"}>成长值</Link>
-      </Menu.Item>
-  
-  
- 
-      
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/patientInfoList`}>病人信息</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/userSkillList`}>用户技能</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/messageFilterList`}>消息过滤</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/userMessageList`}>用户消息</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/taskList`}>任务</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/taskAssigmentList`}>任务分配</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/taskLikeList`}>任务点赞</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/taskReplyList`}>回复任务</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/taskReplyLikeList`}>任务回复点赞</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/threadList`}>主贴</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/threadReplyList`}>跟帖回复</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/threadRegistrationList`}>活动注册</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/threadLikeList`}>主贴点赞</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/threadReplyLikeList`}>跟帖回复点赞</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/fanList`}>粉丝</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/followList`}>关注</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/bonusPointList`}>积分</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/communityUser/${objectId}/list/experiencePointList`}>成长值</Link>
+        </Menu.Item>
       </SubMenu>
-
     );
-
   }
 
 
-
-
-  getPatientInfoSearch() {
- 
+  getPatientInfoSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.patientInfoList,
@@ -270,11 +225,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.patientInfoCurrentPageNumber,
       searchFormParameters: state._communityUser.patientInfoSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(PatientInfoSearch);
   }
-  getPatientInfoCreateForm() {
- 
+  getPatientInfoCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.patientInfoList,
@@ -282,26 +236,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.patientInfoCurrentPageNumber,
       searchFormParameters: state._communityUser.patientInfoSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(PatientInfoCreateForm);
   }
   
-  getPatientInfoUpdateForm() {
- 
+  getPatientInfoUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(PatientInfoUpdateForm);
-    
-
   }
 
-  
-
-  getUserSkillSearch() {
- 
+  getUserSkillSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.userSkillList,
@@ -309,11 +256,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.userSkillCurrentPageNumber,
       searchFormParameters: state._communityUser.userSkillSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(UserSkillSearch);
   }
-  getUserSkillCreateForm() {
- 
+  getUserSkillCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.userSkillList,
@@ -321,26 +267,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.userSkillCurrentPageNumber,
       searchFormParameters: state._communityUser.userSkillSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(UserSkillCreateForm);
   }
   
-  getUserSkillUpdateForm() {
- 
+  getUserSkillUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(UserSkillUpdateForm);
-    
-
   }
 
-  
-
-  getMessageFilterSearch() {
- 
+  getMessageFilterSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.messageFilterList,
@@ -348,11 +287,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.messageFilterCurrentPageNumber,
       searchFormParameters: state._communityUser.messageFilterSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(MessageFilterSearch);
   }
-  getMessageFilterCreateForm() {
- 
+  getMessageFilterCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.messageFilterList,
@@ -360,26 +298,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.messageFilterCurrentPageNumber,
       searchFormParameters: state._communityUser.messageFilterSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(MessageFilterCreateForm);
   }
   
-  getMessageFilterUpdateForm() {
- 
+  getMessageFilterUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(MessageFilterUpdateForm);
-    
-
   }
 
-  
-
-  getUserMessageSearch() {
- 
+  getUserMessageSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.userMessageList,
@@ -387,11 +318,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.userMessageCurrentPageNumber,
       searchFormParameters: state._communityUser.userMessageSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(UserMessageSearch);
   }
-  getUserMessageCreateForm() {
- 
+  getUserMessageCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.userMessageList,
@@ -399,26 +329,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.userMessageCurrentPageNumber,
       searchFormParameters: state._communityUser.userMessageSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(UserMessageCreateForm);
   }
   
-  getUserMessageUpdateForm() {
- 
+  getUserMessageUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(UserMessageUpdateForm);
-    
-
   }
 
-  
-
-  getTaskSearch() {
- 
+  getTaskSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskList,
@@ -426,11 +349,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskCurrentPageNumber,
       searchFormParameters: state._communityUser.taskSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskSearch);
   }
-  getTaskCreateForm() {
- 
+  getTaskCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskList,
@@ -438,26 +360,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskCurrentPageNumber,
       searchFormParameters: state._communityUser.taskSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskCreateForm);
   }
   
-  getTaskUpdateForm() {
- 
+  getTaskUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskUpdateForm);
-    
-
   }
 
-  
-
-  getTaskAssigmentSearch() {
- 
+  getTaskAssigmentSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskAssigmentList,
@@ -465,11 +380,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskAssigmentCurrentPageNumber,
       searchFormParameters: state._communityUser.taskAssigmentSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskAssigmentSearch);
   }
-  getTaskAssigmentCreateForm() {
- 
+  getTaskAssigmentCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskAssigmentList,
@@ -477,26 +391,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskAssigmentCurrentPageNumber,
       searchFormParameters: state._communityUser.taskAssigmentSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskAssigmentCreateForm);
   }
   
-  getTaskAssigmentUpdateForm() {
- 
+  getTaskAssigmentUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskAssigmentUpdateForm);
-    
-
   }
 
-  
-
-  getTaskLikeSearch() {
- 
+  getTaskLikeSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskLikeList,
@@ -504,11 +411,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskLikeCurrentPageNumber,
       searchFormParameters: state._communityUser.taskLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskLikeSearch);
   }
-  getTaskLikeCreateForm() {
- 
+  getTaskLikeCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskLikeList,
@@ -516,26 +422,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskLikeCurrentPageNumber,
       searchFormParameters: state._communityUser.taskLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskLikeCreateForm);
   }
   
-  getTaskLikeUpdateForm() {
- 
+  getTaskLikeUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskLikeUpdateForm);
-    
-
   }
 
-  
-
-  getTaskReplySearch() {
- 
+  getTaskReplySearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskReplyList,
@@ -543,11 +442,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskReplyCurrentPageNumber,
       searchFormParameters: state._communityUser.taskReplySearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskReplySearch);
   }
-  getTaskReplyCreateForm() {
- 
+  getTaskReplyCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskReplyList,
@@ -555,26 +453,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskReplyCurrentPageNumber,
       searchFormParameters: state._communityUser.taskReplySearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskReplyCreateForm);
   }
   
-  getTaskReplyUpdateForm() {
- 
+  getTaskReplyUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskReplyUpdateForm);
-    
-
   }
 
-  
-
-  getTaskReplyLikeSearch() {
- 
+  getTaskReplyLikeSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskReplyLikeList,
@@ -582,11 +473,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskReplyLikeCurrentPageNumber,
       searchFormParameters: state._communityUser.taskReplyLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskReplyLikeSearch);
   }
-  getTaskReplyLikeCreateForm() {
- 
+  getTaskReplyLikeCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskReplyLikeList,
@@ -594,26 +484,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskReplyLikeCurrentPageNumber,
       searchFormParameters: state._communityUser.taskReplyLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskReplyLikeCreateForm);
   }
   
-  getTaskReplyLikeUpdateForm() {
- 
+  getTaskReplyLikeUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(TaskReplyLikeUpdateForm);
-    
-
   }
 
-  
-
-  getThreadSearch() {
- 
+  getThreadSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadList,
@@ -621,11 +504,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadCurrentPageNumber,
       searchFormParameters: state._communityUser.threadSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadSearch);
   }
-  getThreadCreateForm() {
- 
+  getThreadCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadList,
@@ -633,26 +515,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadCurrentPageNumber,
       searchFormParameters: state._communityUser.threadSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadCreateForm);
   }
   
-  getThreadUpdateForm() {
- 
+  getThreadUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadUpdateForm);
-    
-
   }
 
-  
-
-  getThreadReplySearch() {
- 
+  getThreadReplySearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadReplyList,
@@ -660,11 +535,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadReplyCurrentPageNumber,
       searchFormParameters: state._communityUser.threadReplySearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadReplySearch);
   }
-  getThreadReplyCreateForm() {
- 
+  getThreadReplyCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadReplyList,
@@ -672,26 +546,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadReplyCurrentPageNumber,
       searchFormParameters: state._communityUser.threadReplySearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadReplyCreateForm);
   }
   
-  getThreadReplyUpdateForm() {
- 
+  getThreadReplyUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadReplyUpdateForm);
-    
-
   }
 
-  
-
-  getThreadRegistrationSearch() {
- 
+  getThreadRegistrationSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadRegistrationList,
@@ -699,11 +566,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadRegistrationCurrentPageNumber,
       searchFormParameters: state._communityUser.threadRegistrationSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadRegistrationSearch);
   }
-  getThreadRegistrationCreateForm() {
- 
+  getThreadRegistrationCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadRegistrationList,
@@ -711,26 +577,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadRegistrationCurrentPageNumber,
       searchFormParameters: state._communityUser.threadRegistrationSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadRegistrationCreateForm);
   }
   
-  getThreadRegistrationUpdateForm() {
- 
+  getThreadRegistrationUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadRegistrationUpdateForm);
-    
-
   }
 
-  
-
-  getThreadLikeSearch() {
- 
+  getThreadLikeSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadLikeList,
@@ -738,11 +597,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadLikeCurrentPageNumber,
       searchFormParameters: state._communityUser.threadLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadLikeSearch);
   }
-  getThreadLikeCreateForm() {
- 
+  getThreadLikeCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadLikeList,
@@ -750,26 +608,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadLikeCurrentPageNumber,
       searchFormParameters: state._communityUser.threadLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadLikeCreateForm);
   }
   
-  getThreadLikeUpdateForm() {
- 
+  getThreadLikeUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadLikeUpdateForm);
-    
-
   }
 
-  
-
-  getThreadReplyLikeSearch() {
- 
+  getThreadReplyLikeSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadReplyLikeList,
@@ -777,11 +628,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadReplyLikeCurrentPageNumber,
       searchFormParameters: state._communityUser.threadReplyLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadReplyLikeSearch);
   }
-  getThreadReplyLikeCreateForm() {
- 
+  getThreadReplyLikeCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadReplyLikeList,
@@ -789,26 +639,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadReplyLikeCurrentPageNumber,
       searchFormParameters: state._communityUser.threadReplyLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadReplyLikeCreateForm);
   }
   
-  getThreadReplyLikeUpdateForm() {
- 
+  getThreadReplyLikeUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ThreadReplyLikeUpdateForm);
-    
-
   }
 
-  
-
-  getFanSearch() {
- 
+  getFanSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.fanList,
@@ -816,11 +659,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.fanCurrentPageNumber,
       searchFormParameters: state._communityUser.fanSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(FanSearch);
   }
-  getFanCreateForm() {
- 
+  getFanCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.fanList,
@@ -828,26 +670,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.fanCurrentPageNumber,
       searchFormParameters: state._communityUser.fanSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(FanCreateForm);
   }
   
-  getFanUpdateForm() {
- 
+  getFanUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(FanUpdateForm);
-    
-
   }
 
-  
-
-  getFollowSearch() {
- 
+  getFollowSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.followList,
@@ -855,11 +690,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.followCurrentPageNumber,
       searchFormParameters: state._communityUser.followSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(FollowSearch);
   }
-  getFollowCreateForm() {
- 
+  getFollowCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.followList,
@@ -867,26 +701,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.followCurrentPageNumber,
       searchFormParameters: state._communityUser.followSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(FollowCreateForm);
   }
   
-  getFollowUpdateForm() {
- 
+  getFollowUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(FollowUpdateForm);
-    
-
   }
 
-  
-
-  getBonusPointSearch() {
- 
+  getBonusPointSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.bonusPointList,
@@ -894,11 +721,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.bonusPointCurrentPageNumber,
       searchFormParameters: state._communityUser.bonusPointSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(BonusPointSearch);
   }
-  getBonusPointCreateForm() {
- 
+  getBonusPointCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.bonusPointList,
@@ -906,26 +732,19 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.bonusPointCurrentPageNumber,
       searchFormParameters: state._communityUser.bonusPointSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(BonusPointCreateForm);
   }
   
-  getBonusPointUpdateForm() {
- 
+  getBonusPointUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(BonusPointUpdateForm);
-    
-
   }
 
-  
-
-  getExperiencePointSearch() {
- 
+  getExperiencePointSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.experiencePointList,
@@ -933,11 +752,10 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.experiencePointCurrentPageNumber,
       searchFormParameters: state._communityUser.experiencePointSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ExperiencePointSearch);
   }
-  getExperiencePointCreateForm() {
- 
+  getExperiencePointCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.experiencePointList,
@@ -945,30 +763,22 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.experiencePointCurrentPageNumber,
       searchFormParameters: state._communityUser.experiencePointSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ExperiencePointCreateForm);
   }
   
-  getExperiencePointUpdateForm() {
- 
+  getExperiencePointUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {type:'_communityUser',id:state._communityUser.id}//this is for model namespace and 
+      owner: { type: '_communityUser', id: state._communityUser.id }, // this is for model namespace and
     }))(ExperiencePointUpdateForm);
-    
-
   }
 
-  
-  
-  
-getPageTitle() {
-    const { location } = this.props;
-    const { pathname } = location;
-    let title = '帮帮兔社区运营中心';
-    
+  getPageTitle = () => {
+    // const { location } = this.props;
+    // const { pathname } = location;
+    const title = '帮帮兔社区运营中心';
     return title;
   }
  
@@ -979,162 +789,147 @@ getPageTitle() {
     });
   }
    toggle = () => {
-    const { collapsed } = this.props;
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: !collapsed,
-    });
-  }
+     const { collapsed } = this.props;
+     this.props.dispatch({
+       type: 'global/changeLayoutCollapsed',
+       payload: !collapsed,
+     });
+   }
 
-  render() {
-    const {  collapsed, fetchingNotices,loading } = this.props;
-    console.log("test value",this.props)
-    // Don't show popup menu when it is been collapsed
-    const menuProps = collapsed ? {} : {
-      openKeys: this.state.openKeys,
-    };
+   render() {
+     // const { collapsed, fetchingNotices,loading } = this.props;
+     const { collapsed } = this.props;
+     // Don't show popup menu when it is been collapsed
+     const menuProps = collapsed ? {} : {
+       openKeys: this.state.openKeys,
+     };
+     const layout = (
+       <Layout>
+         <Sider
+           trigger={null}
+           collapsible
+           collapsed={collapsed}
+           breakpoint="md"
+           onCollapse={this.onCollapse}
+           width={256}
+           className={styles.sider}
+         >
+           <div className={styles.logo}>
+             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <Link to="/home"> <h1>社区用户</h1></Link>
+           </div>
 
-    const layout = (
-      <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          breakpoint="md"
-          onCollapse={this.onCollapse}
-          width={256}
-          className={styles.sider}
-        >
-          <div className={styles.logo}>
-            <img src="/scm.svg" alt="logo" onClick={this.toggle}/>          
-            <Link to="/home"> <h1>社区用户</h1></Link>
-          </div>
-          
-          <Menu
-            theme="dark"
-            mode="inline"
-            {...menuProps}
-            onOpenChange={this.handleOpenChange}
-            selectedKeys={this.getCurrentMenuSelectedKeys()}
-            style={{ margin: '16px 0', width: '100%' }}
-          >
-            {this.getNavMenuItems(this.props.communityUser.id)}
-          </Menu>
-        </Sider>
-        <Layout>
-        
-          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <Switch>
-            <Route path="/communityUser/:id/dashboard" component={CommunityUserDashboard} />
-          
-            
-    
-          <Route path="/communityUser/:id/list/patientInfoList" component={this.getPatientInfoSearch()} />
-          <Route path="/communityUser/:id/list/patientInfoCreateForm" component={this.getPatientInfoCreateForm()} />
-          <Route path="/communityUser/:id/list/patientInfoUpdateForm" component={this.getPatientInfoUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/userSkillList" component={this.getUserSkillSearch()} />
-          <Route path="/communityUser/:id/list/userSkillCreateForm" component={this.getUserSkillCreateForm()} />
-          <Route path="/communityUser/:id/list/userSkillUpdateForm" component={this.getUserSkillUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/messageFilterList" component={this.getMessageFilterSearch()} />
-          <Route path="/communityUser/:id/list/messageFilterCreateForm" component={this.getMessageFilterCreateForm()} />
-          <Route path="/communityUser/:id/list/messageFilterUpdateForm" component={this.getMessageFilterUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/userMessageList" component={this.getUserMessageSearch()} />
-          <Route path="/communityUser/:id/list/userMessageCreateForm" component={this.getUserMessageCreateForm()} />
-          <Route path="/communityUser/:id/list/userMessageUpdateForm" component={this.getUserMessageUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/taskList" component={this.getTaskSearch()} />
-          <Route path="/communityUser/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
-          <Route path="/communityUser/:id/list/taskUpdateForm" component={this.getTaskUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/taskAssigmentList" component={this.getTaskAssigmentSearch()} />
-          <Route path="/communityUser/:id/list/taskAssigmentCreateForm" component={this.getTaskAssigmentCreateForm()} />
-          <Route path="/communityUser/:id/list/taskAssigmentUpdateForm" component={this.getTaskAssigmentUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/taskLikeList" component={this.getTaskLikeSearch()} />
-          <Route path="/communityUser/:id/list/taskLikeCreateForm" component={this.getTaskLikeCreateForm()} />
-          <Route path="/communityUser/:id/list/taskLikeUpdateForm" component={this.getTaskLikeUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/taskReplyList" component={this.getTaskReplySearch()} />
-          <Route path="/communityUser/:id/list/taskReplyCreateForm" component={this.getTaskReplyCreateForm()} />
-          <Route path="/communityUser/:id/list/taskReplyUpdateForm" component={this.getTaskReplyUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/taskReplyLikeList" component={this.getTaskReplyLikeSearch()} />
-          <Route path="/communityUser/:id/list/taskReplyLikeCreateForm" component={this.getTaskReplyLikeCreateForm()} />
-          <Route path="/communityUser/:id/list/taskReplyLikeUpdateForm" component={this.getTaskReplyLikeUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/threadList" component={this.getThreadSearch()} />
-          <Route path="/communityUser/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
-          <Route path="/communityUser/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/threadReplyList" component={this.getThreadReplySearch()} />
-          <Route path="/communityUser/:id/list/threadReplyCreateForm" component={this.getThreadReplyCreateForm()} />
-          <Route path="/communityUser/:id/list/threadReplyUpdateForm" component={this.getThreadReplyUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/threadRegistrationList" component={this.getThreadRegistrationSearch()} />
-          <Route path="/communityUser/:id/list/threadRegistrationCreateForm" component={this.getThreadRegistrationCreateForm()} />
-          <Route path="/communityUser/:id/list/threadRegistrationUpdateForm" component={this.getThreadRegistrationUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/threadLikeList" component={this.getThreadLikeSearch()} />
-          <Route path="/communityUser/:id/list/threadLikeCreateForm" component={this.getThreadLikeCreateForm()} />
-          <Route path="/communityUser/:id/list/threadLikeUpdateForm" component={this.getThreadLikeUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/threadReplyLikeList" component={this.getThreadReplyLikeSearch()} />
-          <Route path="/communityUser/:id/list/threadReplyLikeCreateForm" component={this.getThreadReplyLikeCreateForm()} />
-          <Route path="/communityUser/:id/list/threadReplyLikeUpdateForm" component={this.getThreadReplyLikeUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/fanList" component={this.getFanSearch()} />
-          <Route path="/communityUser/:id/list/fanCreateForm" component={this.getFanCreateForm()} />
-          <Route path="/communityUser/:id/list/fanUpdateForm" component={this.getFanUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/followList" component={this.getFollowSearch()} />
-          <Route path="/communityUser/:id/list/followCreateForm" component={this.getFollowCreateForm()} />
-          <Route path="/communityUser/:id/list/followUpdateForm" component={this.getFollowUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/bonusPointList" component={this.getBonusPointSearch()} />
-          <Route path="/communityUser/:id/list/bonusPointCreateForm" component={this.getBonusPointCreateForm()} />
-          <Route path="/communityUser/:id/list/bonusPointUpdateForm" component={this.getBonusPointUpdateForm()} />
-          
-
-          <Route path="/communityUser/:id/list/experiencePointList" component={this.getExperiencePointSearch()} />
-          <Route path="/communityUser/:id/list/experiencePointCreateForm" component={this.getExperiencePointCreateForm()} />
-          <Route path="/communityUser/:id/list/experiencePointUpdateForm" component={this.getExperiencePointUpdateForm()} />
-          
-              
-             
-</Switch>
+           <Menu
+             theme="dark"
+             mode="inline"
+             {...menuProps}
+             onOpenChange={this.handleOpenChange}
+             selectedKeys={this.getCurrentMenuSelectedKeys()}
+             style={{ margin: '16px 0', width: '100%' }}
+           >
            
-          </Content>
-        </Layout>
-      </Layout>
-    );
+                 <Menu.Item >   
+        <Link to={"/communityUser/"+this.props.communityUser.id+"/dashboard"}><Icon type='dashboard' /><span>仪表板</span></Link>
+        
+      </Menu.Item>
+      <Menu.Item >   
+        <Link to={"/communityUser/"+this.props.communityUser.id+"/editDetail"}><Icon type='edit' /><span>详情编辑</span></Link>
+        
+      </Menu.Item>
+             {this.getNavMenuItems(this.props.communityUser.id)}
+           </Menu>
+         </Sider>
+         <Layout>
+           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+             <Switch>
+               <Route path="/communityUser/:id/dashboard" component={CommunityUserDashboard} />
+               <Route path="/communityUser/:id/editDetail" component={CommunityUserEditDetail} />
 
-    return (
-      <DocumentTitle title={this.getPageTitle()}>
-        <ContainerQuery query={query}>
-          {params => <div className={classNames(params)}>{layout}</div>}
-        </ContainerQuery>
-      </DocumentTitle>
-    );
-  }
+               <Route path="/communityUser/:id/list/patientInfoList" component={this.getPatientInfoSearch()} />
+               <Route path="/communityUser/:id/list/patientInfoCreateForm" component={this.getPatientInfoCreateForm()} />
+               <Route path="/communityUser/:id/list/patientInfoUpdateForm" component={this.getPatientInfoUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/userSkillList" component={this.getUserSkillSearch()} />
+               <Route path="/communityUser/:id/list/userSkillCreateForm" component={this.getUserSkillCreateForm()} />
+               <Route path="/communityUser/:id/list/userSkillUpdateForm" component={this.getUserSkillUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/messageFilterList" component={this.getMessageFilterSearch()} />
+               <Route path="/communityUser/:id/list/messageFilterCreateForm" component={this.getMessageFilterCreateForm()} />
+               <Route path="/communityUser/:id/list/messageFilterUpdateForm" component={this.getMessageFilterUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/userMessageList" component={this.getUserMessageSearch()} />
+               <Route path="/communityUser/:id/list/userMessageCreateForm" component={this.getUserMessageCreateForm()} />
+               <Route path="/communityUser/:id/list/userMessageUpdateForm" component={this.getUserMessageUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/taskList" component={this.getTaskSearch()} />
+               <Route path="/communityUser/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+               <Route path="/communityUser/:id/list/taskUpdateForm" component={this.getTaskUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/taskAssigmentList" component={this.getTaskAssigmentSearch()} />
+               <Route path="/communityUser/:id/list/taskAssigmentCreateForm" component={this.getTaskAssigmentCreateForm()} />
+               <Route path="/communityUser/:id/list/taskAssigmentUpdateForm" component={this.getTaskAssigmentUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/taskLikeList" component={this.getTaskLikeSearch()} />
+               <Route path="/communityUser/:id/list/taskLikeCreateForm" component={this.getTaskLikeCreateForm()} />
+               <Route path="/communityUser/:id/list/taskLikeUpdateForm" component={this.getTaskLikeUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/taskReplyList" component={this.getTaskReplySearch()} />
+               <Route path="/communityUser/:id/list/taskReplyCreateForm" component={this.getTaskReplyCreateForm()} />
+               <Route path="/communityUser/:id/list/taskReplyUpdateForm" component={this.getTaskReplyUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/taskReplyLikeList" component={this.getTaskReplyLikeSearch()} />
+               <Route path="/communityUser/:id/list/taskReplyLikeCreateForm" component={this.getTaskReplyLikeCreateForm()} />
+               <Route path="/communityUser/:id/list/taskReplyLikeUpdateForm" component={this.getTaskReplyLikeUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/threadList" component={this.getThreadSearch()} />
+               <Route path="/communityUser/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+               <Route path="/communityUser/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/threadReplyList" component={this.getThreadReplySearch()} />
+               <Route path="/communityUser/:id/list/threadReplyCreateForm" component={this.getThreadReplyCreateForm()} />
+               <Route path="/communityUser/:id/list/threadReplyUpdateForm" component={this.getThreadReplyUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/threadRegistrationList" component={this.getThreadRegistrationSearch()} />
+               <Route path="/communityUser/:id/list/threadRegistrationCreateForm" component={this.getThreadRegistrationCreateForm()} />
+               <Route path="/communityUser/:id/list/threadRegistrationUpdateForm" component={this.getThreadRegistrationUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/threadLikeList" component={this.getThreadLikeSearch()} />
+               <Route path="/communityUser/:id/list/threadLikeCreateForm" component={this.getThreadLikeCreateForm()} />
+               <Route path="/communityUser/:id/list/threadLikeUpdateForm" component={this.getThreadLikeUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/threadReplyLikeList" component={this.getThreadReplyLikeSearch()} />
+               <Route path="/communityUser/:id/list/threadReplyLikeCreateForm" component={this.getThreadReplyLikeCreateForm()} />
+               <Route path="/communityUser/:id/list/threadReplyLikeUpdateForm" component={this.getThreadReplyLikeUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/fanList" component={this.getFanSearch()} />
+               <Route path="/communityUser/:id/list/fanCreateForm" component={this.getFanCreateForm()} />
+               <Route path="/communityUser/:id/list/fanUpdateForm" component={this.getFanUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/followList" component={this.getFollowSearch()} />
+               <Route path="/communityUser/:id/list/followCreateForm" component={this.getFollowCreateForm()} />
+               <Route path="/communityUser/:id/list/followUpdateForm" component={this.getFollowUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/bonusPointList" component={this.getBonusPointSearch()} />
+               <Route path="/communityUser/:id/list/bonusPointCreateForm" component={this.getBonusPointCreateForm()} />
+               <Route path="/communityUser/:id/list/bonusPointUpdateForm" component={this.getBonusPointUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/experiencePointList" component={this.getExperiencePointSearch()} />
+               <Route path="/communityUser/:id/list/experiencePointCreateForm" component={this.getExperiencePointCreateForm()} />
+               <Route path="/communityUser/:id/list/experiencePointUpdateForm" component={this.getExperiencePointUpdateForm()} />
+              
+             </Switch>
+           </Content>
+         </Layout>
+       </Layout>
+     );
+     return (
+       <DocumentTitle title={this.getPageTitle()}>
+         <ContainerQuery query={query}>
+           {params => <div className={classNames(params)}>{layout}</div>}
+         </ContainerQuery>
+       </DocumentTitle>
+     );
+   }
 }
 
 export default connect(state => ({
@@ -1142,7 +937,7 @@ export default connect(state => ({
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
   communityUser: state._communityUser,
-  ...state
+  ...state,
 }))(CommunityUserBizApp);
 
 

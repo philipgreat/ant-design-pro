@@ -18,64 +18,52 @@ const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
 const topColResponsiveProps = {
-    xs: 24,
-    sm: 12,
-    md: 12,
-    lg: 12,
-    xl: 6,
-    style: { marginBottom: 24 },
-  };
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+  style: { marginBottom: 24 },
+};
 
 
 @connect(state => ({
   secUserBlocking: state._secUserBlocking,
 }))
 export default class SecUserBlockingDashboard extends Component {
- 
-  
   render() {
-    
-    
-    const {id,secUserCount} = this.props.secUserBlocking;
-	
-	
-    
+    // eslint-disable-next-line max-len
+    const { id, secUserCount} = this.props.secUserBlocking;
     return (
 
-     <PageHeaderLayout
+      <PageHeaderLayout
         title="SEC用户阻塞总览"
         content="SEC用户阻塞总览"
         wrapperClassName={styles.advancedForm}
       >
-      <div>
-        <Row gutter={24}>
-              
+        <div>
+          <Row gutter={24}>
+
           
-          <Col {...topColResponsiveProps}>
-            <ChartCard
-              bordered={false}
-              title="SEC的用户"
-              action={<Tooltip title="SEC的用户"><Icon type="info-circle-o" /></Tooltip>}
-              total={numeral(secUserCount).format('0,0')}
-              footer={<Field label="状态" value="良好" />}
-              contentHeight={46}
-            >
-            <Link to={"/secUserBlocking/"+id+"/list/secUserList"}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }}/></Link>
-            &nbsp;
-            <Link to={"/secUserBlocking/"+id+"/list/secUserCreateForm"}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }}/></Link>
-            &nbsp;
-            <Link to={"/secUserBlocking/"+id+"/list/secUserList"}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }}/></Link>
-            
-            </ChartCard>
-          </Col>
-          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="SEC的用户"
+                action={<Tooltip title="SEC的用户"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(secUserCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/secUserBlocking/${id}/list/secUserList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/secUserBlocking/${id}/list/secUserCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/secUserBlocking/${id}/list/secUserList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
 
-        </Row>
-
-        
-
-       
-      </div>
+          </Row>
+        </div>
       </PageHeaderLayout>
     );
   }

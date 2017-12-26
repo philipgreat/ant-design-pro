@@ -7,35 +7,31 @@ import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
-{title:'点赞时间',dataIndex: 'likeTime',render: (text,record)=>moment(record.likeTime).format('YYYY-MM-DD')},
-{title:'应答者',dataIndex: 'replier',render: (text,record)=>(record.replier?record.replier.id:"暂无")},
-{title:'跟帖回复',dataIndex: 'threadReply',render: (text,record)=>(record.threadReply?record.threadReply.id:"暂无")},
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: '点赞时间', dataIndex: 'likeTime', render: (text, record) => moment(record.likeTime).format('YYYY-MM-DD') },
+  { title: '应答者', dataIndex: 'replier', render: (text, record) => (record.replier ? record.replier.id : '暂无') },
+  { title: '跟帖回复', dataIndex: 'threadReply', render: (text, record) => (record.threadReply ? record.threadReply.id : '暂无') },
 
-      
-    ];
+];
 
 class ThreadReplyLikeTable extends PureComponent {
   state = {
-    selectedRowKeys: []
+    selectedRowKeys: [],
   };
 
   componentWillReceiveProps(nextProps) {
     // clean state
     if (nextProps.selectedRows.length === 0) {
       this.setState({
-        selectedRowKeys: []
+        selectedRowKeys: [],
       });
     }
   }
 
   handleRowSelectChange = (selectedRowKeys, selectedRows) => {
-    
-
     if (this.props.onSelectRow) {
       this.props.onSelectRow(selectedRows);
     }
-
     this.setState({ selectedRowKeys });
   }
 
@@ -49,17 +45,15 @@ class ThreadReplyLikeTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data,count,current, owner } = this.props;
-
-   
-    
+    // const { data, count, current, owner } = this.props;
+    const { data, count, current } = this.props;
 
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
       pageSize: 20,
       total: count,
-      current: current
+      current,
       
     };
 
@@ -79,7 +73,6 @@ class ThreadReplyLikeTable extends PureComponent {
               <p>
                 一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
                 已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                
                 <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
             )}
@@ -95,7 +88,7 @@ class ThreadReplyLikeTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{x:800}}
+          scroll={{ x: 800 }}
         />
       </div>
     );

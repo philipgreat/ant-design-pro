@@ -18,45 +18,34 @@ const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
 const topColResponsiveProps = {
-    xs: 24,
-    sm: 12,
-    md: 12,
-    lg: 12,
-    xl: 6,
-    style: { marginBottom: 24 },
-  };
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+  style: { marginBottom: 24 },
+};
 
 
 @connect(state => ({
   userSkill: state._userSkill,
 }))
 export default class UserSkillDashboard extends Component {
- 
-  
   render() {
-    
-    
-    const {id,} = this.props.userSkill;
-	
-	
-    
+    // eslint-disable-next-line max-len
+    const { id, } = this.props.userSkill;
     return (
 
-     <PageHeaderLayout
+      <PageHeaderLayout
         title="用户技能总览"
         content="用户技能总览"
         wrapperClassName={styles.advancedForm}
       >
-      <div>
-        <Row gutter={24}>
-         
+        <div>
+          <Row gutter={24}>
 
-        </Row>
-
-        
-
-       
-      </div>
+          </Row>
+        </div>
       </PageHeaderLayout>
     );
   }

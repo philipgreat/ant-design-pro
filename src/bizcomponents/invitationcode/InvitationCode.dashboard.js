@@ -18,45 +18,34 @@ const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
 const topColResponsiveProps = {
-    xs: 24,
-    sm: 12,
-    md: 12,
-    lg: 12,
-    xl: 6,
-    style: { marginBottom: 24 },
-  };
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+  style: { marginBottom: 24 },
+};
 
 
 @connect(state => ({
   invitationCode: state._invitationCode,
 }))
 export default class InvitationCodeDashboard extends Component {
- 
-  
   render() {
-    
-    
-    const {id,} = this.props.invitationCode;
-	
-	
-    
+    // eslint-disable-next-line max-len
+    const { id, } = this.props.invitationCode;
     return (
 
-     <PageHeaderLayout
+      <PageHeaderLayout
         title="邀请码总览"
         content="邀请码总览"
         wrapperClassName={styles.advancedForm}
       >
-      <div>
-        <Row gutter={24}>
-         
+        <div>
+          <Row gutter={24}>
 
-        </Row>
-
-        
-
-       
-      </div>
+          </Row>
+        </div>
       </PageHeaderLayout>
     );
   }

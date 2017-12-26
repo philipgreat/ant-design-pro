@@ -7,19 +7,17 @@ import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
-{title:'任务',dataIndex: 'task',render: (text,record)=>(record.task?record.task.id:"暂无")},
-{title:'受让人',dataIndex: 'assignee',render: (text,record)=>(record.assignee?record.assignee.id:"暂无")},
-{title:'分配时间',dataIndex: 'assignTime',render: (text,record)=>moment(record.assignTime).format('YYYY-MM-DD')},
-{title:'评论',debugtype:'string',dataIndex: 'comments',width:'17'},
-
-      
-    ];
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: '任务',dataIndex: 'task', render: (text, record) => (record.task ? record.task.id : '暂无') },
+  { title: '受让人',dataIndex: 'assignee', render: (text, record) => (record.assignee ? record.assignee.id : '暂无') },
+  { title: '分配时间', dataIndex: 'assignTime', render: (text, record) => moment(record.assignTime).format('YYYY-MM-DD') },
+  { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '17' },
+];
 
 class TaskAssigmentConfirmationTable extends PureComponent {
   render() {
-    
-    const { data,count,current, owner } = this.props;
+    // const { data,count,current, owner } = this.props;
+    const { data } = this.props;
 
 
     return (
@@ -29,7 +27,6 @@ class TaskAssigmentConfirmationTable extends PureComponent {
             message={(
               <p>
                 一共 <a style={{ fontWeight: 600 }}>{data.length}</a> 项 
-               
               </p>
             )}
             type="warning"
@@ -40,9 +37,8 @@ class TaskAssigmentConfirmationTable extends PureComponent {
           rowKey={record => record.id}
           dataSource={data}
           columns={columns}
-          
-          size={"small"}
-          scroll={{x:800}}
+          size="small"
+          scroll={{ x: 800 }}
         />
       </div>
     );

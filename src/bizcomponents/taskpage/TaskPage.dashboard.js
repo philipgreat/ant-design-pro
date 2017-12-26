@@ -18,83 +18,70 @@ const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
 const topColResponsiveProps = {
-    xs: 24,
-    sm: 12,
-    md: 12,
-    lg: 12,
-    xl: 6,
-    style: { marginBottom: 24 },
-  };
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+  style: { marginBottom: 24 },
+};
 
 
 @connect(state => ({
   taskPage: state._taskPage,
 }))
 export default class TaskPageDashboard extends Component {
- 
-  
   render() {
-    
-    
-    const {id,taskFilterCount,taskCount} = this.props.taskPage;
-	
-	
-    
+    // eslint-disable-next-line max-len
+    const { id, taskFilterCount,taskCount} = this.props.taskPage;
     return (
 
-     <PageHeaderLayout
+      <PageHeaderLayout
         title="任务页面总览"
         content="任务页面总览"
         wrapperClassName={styles.advancedForm}
       >
-      <div>
-        <Row gutter={24}>
-              
-          
-          <Col {...topColResponsiveProps}>
-            <ChartCard
-              bordered={false}
-              title="任务过滤器"
-              action={<Tooltip title="任务过滤器"><Icon type="info-circle-o" /></Tooltip>}
-              total={numeral(taskFilterCount).format('0,0')}
-              footer={<Field label="状态" value="良好" />}
-              contentHeight={46}
-            >
-            <Link to={"/taskPage/"+id+"/list/taskFilterList"}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }}/></Link>
-            &nbsp;
-            <Link to={"/taskPage/"+id+"/list/taskFilterCreateForm"}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }}/></Link>
-            &nbsp;
-            <Link to={"/taskPage/"+id+"/list/taskFilterList"}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }}/></Link>
-            
-            </ChartCard>
-          </Col>
-               
-          
-          <Col {...topColResponsiveProps}>
-            <ChartCard
-              bordered={false}
-              title="任务"
-              action={<Tooltip title="任务"><Icon type="info-circle-o" /></Tooltip>}
-              total={numeral(taskCount).format('0,0')}
-              footer={<Field label="状态" value="良好" />}
-              contentHeight={46}
-            >
-            <Link to={"/taskPage/"+id+"/list/taskList"}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }}/></Link>
-            &nbsp;
-            <Link to={"/taskPage/"+id+"/list/taskCreateForm"}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }}/></Link>
-            &nbsp;
-            <Link to={"/taskPage/"+id+"/list/taskList"}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }}/></Link>
-            
-            </ChartCard>
-          </Col>
-          
+        <div>
+          <Row gutter={24}>
 
-        </Row>
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="任务过滤器"
+                action={<Tooltip title="任务过滤器"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(taskFilterCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/taskPage/${id}/list/taskFilterList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/taskPage/${id}/list/taskFilterCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/taskPage/${id}/list/taskFilterList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
 
-        
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="任务"
+                action={<Tooltip title="任务"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(taskCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/taskPage/${id}/list/taskList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/taskPage/${id}/list/taskCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/taskPage/${id}/list/taskList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
 
-       
-      </div>
+          </Row>
+        </div>
       </PageHeaderLayout>
     );
   }

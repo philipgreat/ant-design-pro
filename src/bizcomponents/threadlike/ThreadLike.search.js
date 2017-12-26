@@ -20,19 +20,18 @@ const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',');
 
 @Form.create()
 export default class ThreadLikeSearch extends PureComponent {
- state = {
+  state = {
     addInputValue: '',
     modalVisible: false,
-    expandForm: false,
+    // expandForm: false,
     selectedRows: [],
     formValues: {},
-    showDeleteResult: false
+    showDeleteResult: false,
   };
 
-  componentDidMount() {
-    const { dispatch } = this.props;
-   
-  }
+  //  componentDidMount() {
+  //    const { dispatch } = this.props;
+  //  }
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
     const { dispatch } = this.props;
@@ -45,33 +44,26 @@ export default class ThreadLikeSearch extends PureComponent {
     }, {});
 
     const params = {
-      threadLikeList:1,
+      threadLikeList: 1,
       threadLikeListCurrentPage: pagination.current,
       threadLikeListRowsPerPage: pagination.pageSize,
       ...formValues,
       ...filters,
     };
     if (sorter.field) {
-      params.sorter = `_`;
+      params.sorter = '_';
     }
-	
-	const {owner} = this.props;
-	dispatch({
-       type: owner.type+'/load',
-       payload: {id:owner.id, parameters:params},
+    const { owner } = this.props;
+    dispatch({
+      type: `${owner.type}/load`,
+      payload: { id: owner.id, parameters: params },
     });
   }
-  
-
-
-
 
   handleMenuClick = (e) => {
     const { dispatch } = this.props;
     const { selectedRows } = this.state;
-
     if (!selectedRows) return;
-
     switch (e.key) {
       case 'remove':
         dispatch({
@@ -97,81 +89,68 @@ export default class ThreadLikeSearch extends PureComponent {
     });
   }
 
-  
-
-
   handleModalVisible = (flag) => {
     this.setState({
       modalVisible: !!flag,
-      showDeleteResult: false
+      showDeleteResult: false,
     });
   }
+
   handleDelete = () => {
     const { selectedRows } = this.state;
-    const {dispatch,owner} = this.props;
-    console.log("things to delete", selectedRows)
+    const { dispatch, owner } = this.props;
+    console.log('things to delete', selectedRows);
     this.setState({
       modalVisible: true,
-      showDeleteResult: true
+      showDeleteResult: true,
     });
     
-    var threadLikeIds = selectedRows.map((item)=>{return item.id})
-    console.log("threadLikeIds",threadLikeIds);
-    var parameters ={threadLikeIds};
+    const threadLikeIds = selectedRows.map((item) => { return item.id; });
+    console.log('threadLikeIds', threadLikeIds);
+    const parameters = { threadLikeIds };
     dispatch({
-      type: owner.type+'/removeThreadLikeList',
-      payload: {id:owner.id,type:'threadLike',parameters},
+      type: `${owner.type}/removeThreadLikeList`,
+      payload: { id: owner.id, type: 'threadLike', parameters },
     });
-    
-
   }
   
   showModal = () => {
-    const { selectedRows } = this.state;
-    const {dispatch,owner} = this.props;
+    // const { selectedRows } = this.state;
+    // const { dispatch, owner } = this.props;
     this.setState({
       modalVisible: true,
-      showDeleteResult: false
+      showDeleteResult: false,
     });
-
   }
 
   confirmAfterDelete = () => {
-    const { selectedRows } = this.state;
-    const {dispatch,owner} = this.props;
+    // const { selectedRows } = this.state;
+    // const { dispatch, owner } = this.props;
     this.setState({
       modalVisible: false,
-      showDeleteResult: true
+      showDeleteResult: true,
     });
-
   }
-  
-  
-  
-
 
   handleCreate = () => {
- 
-   	const {dispatch,owner} = this.props;
-	  dispatch({
-      type: owner.type+'/gotoCreateForm',
-      payload: {id:owner.id,type:'threadLike'},
+    const { dispatch, owner } = this.props;
+    dispatch({
+      type: `${owner.type}/gotoCreateForm`,
+      payload: { id: owner.id, type: 'threadLike' },
     });
   }
+
   handleUpdate = () => {
-    
-    const {dispatch,owner} = this.props;
-    const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+    const { dispatch, owner } = this.props;
+    // const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+    const { selectedRows } = this.state;
     const currentUpdateIndex = 0;
     dispatch({
-      type: owner.type+'/gotoUpdateForm',
-      payload: {id:owner.id,type:'threadLike',selectedRows,currentUpdateIndex},
+      type: `${owner.type}/gotoUpdateForm`,
+      payload: { id: owner.id, type: 'threadLike', selectedRows, currentUpdateIndex },
     });
-    
-    
   }
   
- 
   handleAddInput = (e) => {
     this.setState({
       addInputValue: e.target.value,
@@ -185,20 +164,16 @@ export default class ThreadLikeSearch extends PureComponent {
         description: this.state.addInputValue,
       },
     });
-
     message.success('添加成功');
     this.setState({
       modalVisible: false,
     });
   }
 
-  
-
-
   render() {
-    const { data,loading,count,currentPage,owner } = this.props;
-	const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
-
+    const { data, loading, count, currentPage, owner } = this.props;
+    const { showDeleteResult, selectedRows, modalVisible } = this.state;
+    // const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
         <Menu.Item key="remove">删除</Menu.Item>
@@ -206,57 +181,41 @@ export default class ThreadLikeSearch extends PureComponent {
       </Menu>
     );
 
-
-   const modalContent =(data, owner)=>{
-
-      if(showDeleteResult){
-        return (<Modal
-          title={"成功删除"}
+    // TODO some issue here
+    const modalContent = (data, owner) => {
+      if (showDeleteResult) {
+        return (
+        <Modal
+          title="成功删除"
           visible={modalVisible}
           onOk={() => this.confirmAfterDelete()}
           onCancel={() => this.confirmAfterDelete()}
           width={920}
           style={{ top: 40 }}
-
-        ><Result
-        type="success"
-        title="删除成功，干得漂亮"
-        description=""
-       
-        style={{ marginTop: 48, marginBottom: 16 }} />
-         </Modal>
-        )
+        >
+          <Result type="success" title="删除成功，干得漂亮" description="" style={{ marginTop: 48, marginBottom: 16 }} />
+        </Modal>);
       }
 
-      return (<Modal
-        title={"注意！你正在删除数据，执行之后不可恢复"}
-        visible={modalVisible}
-        onOk={this.handleDelete}
-        onCancel={() => this.handleModalVisible()}
-        width={920}
-        style={{ top: 40 }}
-
-      ><ThreadLikeConfirmationTable
-        
-         data={selectedRows}
-         owner={owner}
-       /></Modal>);
-
-
-    }
+      return (
+        <Modal
+          title="注意！你正在删除数据，执行之后不可恢复"
+          visible={modalVisible}
+          onOk={this.handleDelete}
+          onCancel={() => this.handleModalVisible()}
+          width={920}
+          style={{ top: 40 }}
+        >
+          <ThreadLikeConfirmationTable data={selectedRows} owner={owner} />
+        </Modal>);
+    };
     
-    
-    
-
-
-
-
     return (
       <PageHeaderLayout title="主贴点赞列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>
-              <ThreadLikeSearchForm {...this.props}/>
+              <ThreadLikeSearchForm {...this.props} />
             </div>
             <div className={styles.tableListOperator}>
               <Button icon="plus" type="primary" onClick={() => this.handleCreate()}>新建</Button>
@@ -265,9 +224,8 @@ export default class ThreadLikeSearch extends PureComponent {
                   <span>
                     <Button onClick={this.handleModalVisible} type="danger" icon="delete">批量删除</Button>
                     <Button onClick={this.handleUpdate} type="primary" icon="update">批量更新</Button>
-                     
                     <Dropdown overlay={menu}>
-                      <Button >
+                      <Button>
                         更多操作 <Icon type="down" />
                       </Button>
                     </Dropdown>
@@ -287,8 +245,7 @@ export default class ThreadLikeSearch extends PureComponent {
             />
           </div>
         </Card>
-        {modalContent(data,owner)}
-        
+        {modalContent(data, owner)}
       </PageHeaderLayout>
     );
   }

@@ -10,13 +10,15 @@ import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './TaskBestAnswerSetting.app.less';
 import TaskBestAnswerSettingDashboard from './TaskBestAnswerSetting.dashboard';
+import TaskBestAnswerSettingEditDetail from './TaskBestAnswerSetting.editdetail';
+
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import TaskReplySearch from '../taskreply/TaskReply.search'
-import TaskReplyCreateForm from '../taskreply/TaskReply.createform'
-import TaskReplyUpdateForm from '../taskreply/TaskReply.updateform'
+import TaskReplySearch from '../taskreply/TaskReply.search';
+import TaskReplyCreateForm from '../taskreply/TaskReply.createform';
+import TaskReplyUpdateForm from '../taskreply/TaskReply.updateform';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -43,20 +45,16 @@ const query = {
 };
 
 class TaskBestAnswerSettingBizApp extends React.PureComponent {
-  
- constructor(props) {
+  constructor(props) {
     super(props);
     // 把一级 Layout 的 children 作为菜单项
-    
-    //this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), []);
+    // this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), []);
     this.state = {
       openKeys: this.getDefaultCollapsedSubMenus(props),
     };
   }
 
-  componentDidMount() {
-   
-  }
+  componentDidMount() {}
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout);
   }
@@ -67,7 +65,7 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
     });
   }
 
-  getDefaultCollapsedSubMenus(props) {
+  getDefaultCollapsedSubMenus = (props) => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)];
     currentMenuSelectedKeys.splice(-1, 1);
     if (currentMenuSelectedKeys.length === 0) {
@@ -75,7 +73,7 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys;
   }
-  getCurrentMenuSelectedKeys(props) {
+  getCurrentMenuSelectedKeys = (props) => {
     const { location: { pathname } } = props || this.props;
     const keys = pathname.split('/').slice(1);
     if (keys.length === 1 && keys[0] === '') {
@@ -83,33 +81,24 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
     }
     return keys;
   }
-  getNavMenuItems(objectId){
-
+  getNavMenuItems = (objectId) => {
     return (
-      <SubMenu title={<span>
-        <Icon type='dashboard' />
-        <span>任务最佳答案设置</span>
-      </span>} >
-      
-      
-      <Menu.Item >   
-        <Link to={"/taskBestAnswerSetting/"+objectId+"/list/taskReplyList"}>回复任务</Link>
-      </Menu.Item>
-  
-  
- 
-      
+      <SubMenu title={
+        <span>
+          <Icon type="profile" />
+          <span>任务最佳答案设置</span>
+        </span>}
+      >
+
+        <Menu.Item>
+          <Link to={`/taskBestAnswerSetting/${objectId}/list/taskReplyList`}>回复任务</Link>
+        </Menu.Item>
       </SubMenu>
-
     );
-
   }
 
 
-
-
-  getTaskReplySearch() {
- 
+  getTaskReplySearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._taskBestAnswerSetting.taskReplyList,
@@ -117,11 +106,10 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
       currentPage: state._taskBestAnswerSetting.taskReplyCurrentPageNumber,
       searchFormParameters: state._taskBestAnswerSetting.taskReplySearchFormParameters,
       loading: state._taskBestAnswerSetting.loading,
-      owner: {type:'_taskBestAnswerSetting',id:state._taskBestAnswerSetting.id}//this is for model namespace and 
+      owner: { type: '_taskBestAnswerSetting', id: state._taskBestAnswerSetting.id }, // this is for model namespace and
     }))(TaskReplySearch);
   }
-  getTaskReplyCreateForm() {
- 
+  getTaskReplyCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._taskBestAnswerSetting.taskReplyList,
@@ -129,30 +117,22 @@ class TaskBestAnswerSettingBizApp extends React.PureComponent {
       currentPage: state._taskBestAnswerSetting.taskReplyCurrentPageNumber,
       searchFormParameters: state._taskBestAnswerSetting.taskReplySearchFormParameters,
       loading: state._taskBestAnswerSetting.loading,
-      owner: {type:'_taskBestAnswerSetting',id:state._taskBestAnswerSetting.id}//this is for model namespace and 
+      owner: { type: '_taskBestAnswerSetting', id: state._taskBestAnswerSetting.id }, // this is for model namespace and
     }))(TaskReplyCreateForm);
   }
   
-  getTaskReplyUpdateForm() {
- 
+  getTaskReplyUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._taskBestAnswerSetting.selectedRows,
       currentUpdateIndex: state._taskBestAnswerSetting.currentUpdateIndex,
-      owner: {type:'_taskBestAnswerSetting',id:state._taskBestAnswerSetting.id}//this is for model namespace and 
+      owner: { type: '_taskBestAnswerSetting', id: state._taskBestAnswerSetting.id }, // this is for model namespace and
     }))(TaskReplyUpdateForm);
-    
-
   }
 
-  
-  
-  
-getPageTitle() {
-    const { location } = this.props;
-    const { pathname } = location;
-    let title = '帮帮兔社区运营中心';
-    
+  getPageTitle = () => {
+    // const { location } = this.props;
+    // const { pathname } = location;
+    const title = '帮帮兔社区运营中心';
     return title;
   }
  
@@ -163,77 +143,79 @@ getPageTitle() {
     });
   }
    toggle = () => {
-    const { collapsed } = this.props;
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: !collapsed,
-    });
-  }
+     const { collapsed } = this.props;
+     this.props.dispatch({
+       type: 'global/changeLayoutCollapsed',
+       payload: !collapsed,
+     });
+   }
 
-  render() {
-    const {  collapsed, fetchingNotices,loading } = this.props;
-    console.log("test value",this.props)
-    // Don't show popup menu when it is been collapsed
-    const menuProps = collapsed ? {} : {
-      openKeys: this.state.openKeys,
-    };
+   render() {
+     // const { collapsed, fetchingNotices,loading } = this.props;
+     const { collapsed } = this.props;
+     // Don't show popup menu when it is been collapsed
+     const menuProps = collapsed ? {} : {
+       openKeys: this.state.openKeys,
+     };
+     const layout = (
+       <Layout>
+         <Sider
+           trigger={null}
+           collapsible
+           collapsed={collapsed}
+           breakpoint="md"
+           onCollapse={this.onCollapse}
+           width={256}
+           className={styles.sider}
+         >
+           <div className={styles.logo}>
+             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <Link to="/home"> <h1>任务最佳答案设置</h1></Link>
+           </div>
 
-    const layout = (
-      <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          breakpoint="md"
-          onCollapse={this.onCollapse}
-          width={256}
-          className={styles.sider}
-        >
-          <div className={styles.logo}>
-            <img src="/scm.svg" alt="logo" onClick={this.toggle}/>          
-            <Link to="/home"> <h1>任务最佳答案设置</h1></Link>
-          </div>
-          
-          <Menu
-            theme="dark"
-            mode="inline"
-            {...menuProps}
-            onOpenChange={this.handleOpenChange}
-            selectedKeys={this.getCurrentMenuSelectedKeys()}
-            style={{ margin: '16px 0', width: '100%' }}
-          >
-            {this.getNavMenuItems(this.props.taskBestAnswerSetting.id)}
-          </Menu>
-        </Sider>
-        <Layout>
-        
-          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <Switch>
-            <Route path="/taskBestAnswerSetting/:id/dashboard" component={TaskBestAnswerSettingDashboard} />
-          
-            
-    
-          <Route path="/taskBestAnswerSetting/:id/list/taskReplyList" component={this.getTaskReplySearch()} />
-          <Route path="/taskBestAnswerSetting/:id/list/taskReplyCreateForm" component={this.getTaskReplyCreateForm()} />
-          <Route path="/taskBestAnswerSetting/:id/list/taskReplyUpdateForm" component={this.getTaskReplyUpdateForm()} />
-          
-              
-             
-</Switch>
+           <Menu
+             theme="dark"
+             mode="inline"
+             {...menuProps}
+             onOpenChange={this.handleOpenChange}
+             selectedKeys={this.getCurrentMenuSelectedKeys()}
+             style={{ margin: '16px 0', width: '100%' }}
+           >
            
-          </Content>
-        </Layout>
-      </Layout>
-    );
+                 <Menu.Item >   
+        <Link to={"/taskBestAnswerSetting/"+this.props.taskBestAnswerSetting.id+"/dashboard"}><Icon type='dashboard' /><span>仪表板</span></Link>
+        
+      </Menu.Item>
+      <Menu.Item >   
+        <Link to={"/taskBestAnswerSetting/"+this.props.taskBestAnswerSetting.id+"/editDetail"}><Icon type='edit' /><span>详情编辑</span></Link>
+        
+      </Menu.Item>
+             {this.getNavMenuItems(this.props.taskBestAnswerSetting.id)}
+           </Menu>
+         </Sider>
+         <Layout>
+           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+             <Switch>
+               <Route path="/taskBestAnswerSetting/:id/dashboard" component={TaskBestAnswerSettingDashboard} />
+               <Route path="/taskBestAnswerSetting/:id/editDetail" component={TaskBestAnswerSettingEditDetail} />
 
-    return (
-      <DocumentTitle title={this.getPageTitle()}>
-        <ContainerQuery query={query}>
-          {params => <div className={classNames(params)}>{layout}</div>}
-        </ContainerQuery>
-      </DocumentTitle>
-    );
-  }
+               <Route path="/taskBestAnswerSetting/:id/list/taskReplyList" component={this.getTaskReplySearch()} />
+               <Route path="/taskBestAnswerSetting/:id/list/taskReplyCreateForm" component={this.getTaskReplyCreateForm()} />
+               <Route path="/taskBestAnswerSetting/:id/list/taskReplyUpdateForm" component={this.getTaskReplyUpdateForm()} />
+              
+             </Switch>
+           </Content>
+         </Layout>
+       </Layout>
+     );
+     return (
+       <DocumentTitle title={this.getPageTitle()}>
+         <ContainerQuery query={query}>
+           {params => <div className={classNames(params)}>{layout}</div>}
+         </ContainerQuery>
+       </DocumentTitle>
+     );
+   }
 }
 
 export default connect(state => ({
@@ -241,7 +223,7 @@ export default connect(state => ({
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
   taskBestAnswerSetting: state._taskBestAnswerSetting,
-  ...state
+  ...state,
 }))(TaskBestAnswerSettingBizApp);
 
 

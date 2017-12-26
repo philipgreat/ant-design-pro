@@ -12,174 +12,149 @@ const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 const fieldLabels = {
-id: '序号',
-title: '标题',
-secUser: 'SEC的用户',
-appIcon: '应用程序图标',
-fullAccess: '完全访问',
-permission: '许可',
-objectType: '对象类型',
-objectId: '对象ID',
-location: '位置',
-
-
+  id: '序号',
+  title: '标题',
+  secUser: 'SEC的用户',
+  appIcon: '应用程序图标',
+  fullAccess: '完全访问',
+  permission: '许可',
+  objectType: '对象类型',
+  objectId: '对象ID',
+  location: '位置',
 };
 
 
-const testValues={
-        
-      			title:'审车平台',
-			appIcon:'users',
-			fullAccess:'1',
-			permission:'MXWR',
-			objectType:'CarInspectionPlatform',
-			objectId:'CIP000001',
-			location:'/link/to/app',
-			secUserId:'SU000001',
-
-        
+const testValues = {
+  title: '用户中心',
+  appIcon: 'users',
+  fullAccess: '1',
+  permission: 'MXWR',
+  objectType: 'Community',
+  objectId: 'C000001',
+  location: '/link/to/app',
+  secUserId: 'SU000001',
 };
 
-const imageURLPrefix = "//localhost:2090"
+const imageURLPrefix = '//localhost:2090';
 
 
 const imageKeys = [
 ];
 
 
-
 class UserAppCreateForm extends Component {
-
-
   state = {
     previewVisible: false,
     previewImage: '',
-    convertedImagesValues: {}
+    convertedImagesValues: {},
   };
 
+  componentDidMount() {
+    // const { getFieldDecorator,setFieldsValue } = this.props.form;
+    const { setFieldsValue } = this.props.form;
+    setFieldsValue(testValues);
+  }
+  shouldComponentUpdate() {
+    return true;
+  }
   handlePreview = (file) => {
-    console.log("preview file", file)
+    console.log('preview file', file);
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
     });
   }
-  shouldComponentUpdate() {
-    return true;
-  }
-  componentDidMount() {
- 
-        const { getFieldDecorator,setFieldsValue } = this.props.form;               
-        setFieldsValue(testValues);
-  }
+
   handleChange = (event, source) => {
-    console.log("get file list from change in update change: ", source);
+    console.log('get file list from change in update change:', source);
 
     const { fileList } = event;
-    var convertedImagesValues = this.state.convertedImagesValues;
+    const { convertedImagesValues } = this.state;
 
     convertedImagesValues[source] = fileList;
-    this.setState({ convertedImagesValues })
-
-
-    console.log("/get file list from change in update change: ", source);
-
+    this.setState({ convertedImagesValues });
+    console.log('/get file list from change in update change:', source);
   }
 
-  mapBackToImageValues(convertedImagesValues) {
-    var targetImages = new Array()
+  mapBackToImageValues=(convertedImagesValues) => {
+    const targetImages = [];
     Object.keys(convertedImagesValues).map((key) => {
-      if(!convertedImagesValues){
-        return;
-      }
-      if(!convertedImagesValues[key]){
-        return;
-      }
-      if(!convertedImagesValues[key][0]){
-        return;
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
+        return
       }
       const value = convertedImagesValues[key][0];
-      if(value.response){
+      if (value.response) {
         targetImages[key] = imageURLPrefix + value.response;
         return;
       }
-      if(value.url){
+      if (value.url) {
         targetImages[key] = value.url;
         return;
       }
-      
-
     });
     return targetImages;
-
   }
-  
-  mapFromImageValues(selectedRow) {
-    var targetImages = new Object()
-    
-    const buildFileList=(key,value)=>{
-      if(value){
+
+  mapFromImageValues=(selectedRow) => {
+    const targetImages = {};
+    const buildFileList = (key, value) => {
+      if (value) {
         return [{ uid: key, url: value }];
       }
       return [];
-    }
+    };
     imageKeys.map((key) => {
-      
       targetImages[key] = buildFileList(key,selectedRow[key]);
-
     });
     console.log(targetImages);
     return targetImages;
-
   }
-  
 
   render() {
     const { form, dispatch, submitting } = this.props;
-    const { convertedImagesValues } = this.state
-    
+    const { convertedImagesValues } = this.state;
+
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
     const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
-         if (error){
-          console.log("code go here", error);
+        if (error) {
+          console.log('code go here', error);
           return;
         }
-        
-        const {owner} = this.props;
+
+        const { owner } = this.props;
         const imagesValues = this.mapBackToImageValues(convertedImagesValues);
-        
-        const parameters={...values, ...imagesValues};
-      	dispatch({
-         type: owner.type+'/addUserApp',
-         payload: {id:owner.id,type:'userApp', parameters: parameters},
-      }); 
+
+        const parameters = { ...values, ...imagesValues };
+        dispatch({
+          type: `${owner.type}/addUserApp`,
+          payload: { id: owner.id, type: 'userApp', parameters },
+        });
       });
     };
-    
     const submitCreateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
-         if (error){
-          console.log("code go here", error);
+        if (error) {
+          console.log('code go here', error);
           return;
         }
         
-        const {owner} = this.props;
+        const { owner } = this.props;
         const imagesValues = this.mapBackToImageValues(convertedImagesValues);
         
-        const parameters={...values, ...imagesValues};
-      	dispatch({
-         type: owner.type+'/addUserApp',
-         payload: {id:owner.id,type:'userApp', parameters: parameters, continueNext:true},
-      }); 
+        const parameters = { ...values, ...imagesValues };
+        dispatch({
+          type: `${owner.type}/addUserApp`,
+          payload: { id: owner.id, type: 'userApp', parameters, continueNext: true },
+        });
       });
     };
     
     const goback = () => {
-      const {owner} = this.props;
+      const { owner } = this.props;
       dispatch({
-         type: owner.type+'/goback',
-         payload: {id:owner.id,type:'userApp'},
+        type: `${owner.type}/goback`,
+        payload: { id: owner.id, type: 'userApp' },
       }); 
     };
     const errors = getFieldsError();
@@ -188,8 +163,9 @@ class UserAppCreateForm extends Component {
       if (!errors || errorCount === 0) {
         return null;
       }
+      // eslint-disable-next-line no-unused-vars
       const scrollToField = (fieldKey) => {
-        const labelNode = document.querySelector(`label[for=""]`);
+        const labelNode = document.querySelector('label[for="${fieldKey}"]');
         if (labelNode) {
           labelNode.scrollIntoView(true);
         }
@@ -230,9 +206,8 @@ class UserAppCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-            
-            
-             <Col lg={6} md={12} sm={24}>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.title}>
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: '请输入标题' }],
@@ -240,10 +215,9 @@ class UserAppCreateForm extends Component {
                     <Input placeholder="请输入请输入标题string" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.appIcon}>
                   {getFieldDecorator('appIcon', {
                     rules: [{ required: true, message: '请输入应用程序图标' }],
@@ -251,10 +225,9 @@ class UserAppCreateForm extends Component {
                     <Input placeholder="请输入请输入应用程序图标string" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.fullAccess}>
                   {getFieldDecorator('fullAccess', {
                     rules: [{ required: true, message: '请输入完全访问' }],
@@ -262,10 +235,9 @@ class UserAppCreateForm extends Component {
                     <Input placeholder="请输入请输入完全访问bool" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.permission}>
                   {getFieldDecorator('permission', {
                     rules: [{ required: true, message: '请输入许可' }],
@@ -273,10 +245,9 @@ class UserAppCreateForm extends Component {
                     <Input placeholder="请输入请输入许可string" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.objectType}>
                   {getFieldDecorator('objectType', {
                     rules: [{ required: true, message: '请输入对象类型' }],
@@ -284,10 +255,9 @@ class UserAppCreateForm extends Component {
                     <Input placeholder="请输入请输入对象类型string" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.objectId}>
                   {getFieldDecorator('objectId', {
                     rules: [{ required: true, message: '请输入对象ID' }],
@@ -295,10 +265,9 @@ class UserAppCreateForm extends Component {
                     <Input placeholder="请输入请输入对象IDstring" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.location}>
                   {getFieldDecorator('location', {
                     rules: [{ required: true, message: '请输入位置' }],
@@ -306,36 +275,22 @@ class UserAppCreateForm extends Component {
                     <Input placeholder="请输入请输入位置string" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-            
-          </Row>    
-          </Form>  
-        </Card>
-        
-     
-        
- 
-            
-        
-      
-      
-            
-        
+              </Col>
 
-        
-        
-        
-        
-                 
-        
+            </Row>
+          </Form>
+        </Card>
+
+
+
+
+
+
         <Card title="关联" className={styles.card} bordered={false}>
-           <Form layout="vertical" hideRequiredMark>
+          <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-            
-            
-             <Col lg={6} md={12} sm={24}>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.secUser}>
                   {getFieldDecorator('secUserId', {
                     rules: [{ required: true, message: '请输入SEC的用户' }],
@@ -343,33 +298,24 @@ class UserAppCreateForm extends Component {
                     <Input placeholder="请输入请输入SEC的用户" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-            
-          </Row>    
+              </Col>
+
+            </Row>
           </Form>  
-         
         </Card>
-       
-        
-     
-        
-        
-        
+
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
-          提交
-        </Button>
-        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交
+          </Button>
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
-        <Button type="danger" onClick={goback} loading={submitting}>
+          <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
-        
       </PageHeaderLayout>
     );
   }

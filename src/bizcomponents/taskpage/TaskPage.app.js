@@ -10,17 +10,19 @@ import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './TaskPage.app.less';
 import TaskPageDashboard from './TaskPage.dashboard';
+import TaskPageEditDetail from './TaskPage.editdetail';
+
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import TaskFilterSearch from '../taskfilter/TaskFilter.search'
-import TaskFilterCreateForm from '../taskfilter/TaskFilter.createform'
-import TaskFilterUpdateForm from '../taskfilter/TaskFilter.updateform'
+import TaskFilterSearch from '../taskfilter/TaskFilter.search';
+import TaskFilterCreateForm from '../taskfilter/TaskFilter.createform';
+import TaskFilterUpdateForm from '../taskfilter/TaskFilter.updateform';
 
-import TaskSearch from '../task/Task.search'
-import TaskCreateForm from '../task/Task.createform'
-import TaskUpdateForm from '../task/Task.updateform'
+import TaskSearch from '../task/Task.search';
+import TaskCreateForm from '../task/Task.createform';
+import TaskUpdateForm from '../task/Task.updateform';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -47,20 +49,16 @@ const query = {
 };
 
 class TaskPageBizApp extends React.PureComponent {
-  
- constructor(props) {
+  constructor(props) {
     super(props);
     // 把一级 Layout 的 children 作为菜单项
-    
-    //this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), []);
+    // this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), []);
     this.state = {
       openKeys: this.getDefaultCollapsedSubMenus(props),
     };
   }
 
-  componentDidMount() {
-   
-  }
+  componentDidMount() {}
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout);
   }
@@ -71,7 +69,7 @@ class TaskPageBizApp extends React.PureComponent {
     });
   }
 
-  getDefaultCollapsedSubMenus(props) {
+  getDefaultCollapsedSubMenus = (props) => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)];
     currentMenuSelectedKeys.splice(-1, 1);
     if (currentMenuSelectedKeys.length === 0) {
@@ -79,7 +77,7 @@ class TaskPageBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys;
   }
-  getCurrentMenuSelectedKeys(props) {
+  getCurrentMenuSelectedKeys = (props) => {
     const { location: { pathname } } = props || this.props;
     const keys = pathname.split('/').slice(1);
     if (keys.length === 1 && keys[0] === '') {
@@ -87,38 +85,27 @@ class TaskPageBizApp extends React.PureComponent {
     }
     return keys;
   }
-  getNavMenuItems(objectId){
-
+  getNavMenuItems = (objectId) => {
     return (
-      <SubMenu title={<span>
-        <Icon type='dashboard' />
-        <span>任务页面</span>
-      </span>} >
-      
-      
-      <Menu.Item >   
-        <Link to={"/taskPage/"+objectId+"/list/taskFilterList"}>任务过滤器</Link>
-      </Menu.Item>
-  
+      <SubMenu title={
+        <span>
+          <Icon type="profile" />
+          <span>任务页面</span>
+        </span>}
+      >
 
-      <Menu.Item >   
-        <Link to={"/taskPage/"+objectId+"/list/taskList"}>任务</Link>
-      </Menu.Item>
-  
-  
- 
-      
+        <Menu.Item>
+          <Link to={`/taskPage/${objectId}/list/taskFilterList`}>任务过滤器</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/taskPage/${objectId}/list/taskList`}>任务</Link>
+        </Menu.Item>
       </SubMenu>
-
     );
-
   }
 
 
-
-
-  getTaskFilterSearch() {
- 
+  getTaskFilterSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._taskPage.taskFilterList,
@@ -126,11 +113,10 @@ class TaskPageBizApp extends React.PureComponent {
       currentPage: state._taskPage.taskFilterCurrentPageNumber,
       searchFormParameters: state._taskPage.taskFilterSearchFormParameters,
       loading: state._taskPage.loading,
-      owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
+      owner: { type: '_taskPage', id: state._taskPage.id }, // this is for model namespace and
     }))(TaskFilterSearch);
   }
-  getTaskFilterCreateForm() {
- 
+  getTaskFilterCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._taskPage.taskFilterList,
@@ -138,26 +124,19 @@ class TaskPageBizApp extends React.PureComponent {
       currentPage: state._taskPage.taskFilterCurrentPageNumber,
       searchFormParameters: state._taskPage.taskFilterSearchFormParameters,
       loading: state._taskPage.loading,
-      owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
+      owner: { type: '_taskPage', id: state._taskPage.id }, // this is for model namespace and
     }))(TaskFilterCreateForm);
   }
   
-  getTaskFilterUpdateForm() {
- 
+  getTaskFilterUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._taskPage.selectedRows,
       currentUpdateIndex: state._taskPage.currentUpdateIndex,
-      owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
+      owner: { type: '_taskPage', id: state._taskPage.id }, // this is for model namespace and
     }))(TaskFilterUpdateForm);
-    
-
   }
 
-  
-
-  getTaskSearch() {
- 
+  getTaskSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._taskPage.taskList,
@@ -165,11 +144,10 @@ class TaskPageBizApp extends React.PureComponent {
       currentPage: state._taskPage.taskCurrentPageNumber,
       searchFormParameters: state._taskPage.taskSearchFormParameters,
       loading: state._taskPage.loading,
-      owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
+      owner: { type: '_taskPage', id: state._taskPage.id }, // this is for model namespace and
     }))(TaskSearch);
   }
-  getTaskCreateForm() {
- 
+  getTaskCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._taskPage.taskList,
@@ -177,30 +155,22 @@ class TaskPageBizApp extends React.PureComponent {
       currentPage: state._taskPage.taskCurrentPageNumber,
       searchFormParameters: state._taskPage.taskSearchFormParameters,
       loading: state._taskPage.loading,
-      owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
+      owner: { type: '_taskPage', id: state._taskPage.id }, // this is for model namespace and
     }))(TaskCreateForm);
   }
   
-  getTaskUpdateForm() {
- 
+  getTaskUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._taskPage.selectedRows,
       currentUpdateIndex: state._taskPage.currentUpdateIndex,
-      owner: {type:'_taskPage',id:state._taskPage.id}//this is for model namespace and 
+      owner: { type: '_taskPage', id: state._taskPage.id }, // this is for model namespace and
     }))(TaskUpdateForm);
-    
-
   }
 
-  
-  
-  
-getPageTitle() {
-    const { location } = this.props;
-    const { pathname } = location;
-    let title = '帮帮兔社区运营中心';
-    
+  getPageTitle = () => {
+    // const { location } = this.props;
+    // const { pathname } = location;
+    const title = '帮帮兔社区运营中心';
     return title;
   }
  
@@ -211,82 +181,83 @@ getPageTitle() {
     });
   }
    toggle = () => {
-    const { collapsed } = this.props;
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: !collapsed,
-    });
-  }
+     const { collapsed } = this.props;
+     this.props.dispatch({
+       type: 'global/changeLayoutCollapsed',
+       payload: !collapsed,
+     });
+   }
 
-  render() {
-    const {  collapsed, fetchingNotices,loading } = this.props;
-    console.log("test value",this.props)
-    // Don't show popup menu when it is been collapsed
-    const menuProps = collapsed ? {} : {
-      openKeys: this.state.openKeys,
-    };
+   render() {
+     // const { collapsed, fetchingNotices,loading } = this.props;
+     const { collapsed } = this.props;
+     // Don't show popup menu when it is been collapsed
+     const menuProps = collapsed ? {} : {
+       openKeys: this.state.openKeys,
+     };
+     const layout = (
+       <Layout>
+         <Sider
+           trigger={null}
+           collapsible
+           collapsed={collapsed}
+           breakpoint="md"
+           onCollapse={this.onCollapse}
+           width={256}
+           className={styles.sider}
+         >
+           <div className={styles.logo}>
+             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <Link to="/home"> <h1>任务页面</h1></Link>
+           </div>
 
-    const layout = (
-      <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          breakpoint="md"
-          onCollapse={this.onCollapse}
-          width={256}
-          className={styles.sider}
-        >
-          <div className={styles.logo}>
-            <img src="/scm.svg" alt="logo" onClick={this.toggle}/>          
-            <Link to="/home"> <h1>任务页面</h1></Link>
-          </div>
-          
-          <Menu
-            theme="dark"
-            mode="inline"
-            {...menuProps}
-            onOpenChange={this.handleOpenChange}
-            selectedKeys={this.getCurrentMenuSelectedKeys()}
-            style={{ margin: '16px 0', width: '100%' }}
-          >
-            {this.getNavMenuItems(this.props.taskPage.id)}
-          </Menu>
-        </Sider>
-        <Layout>
-        
-          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <Switch>
-            <Route path="/taskPage/:id/dashboard" component={TaskPageDashboard} />
-          
-            
-    
-          <Route path="/taskPage/:id/list/taskFilterList" component={this.getTaskFilterSearch()} />
-          <Route path="/taskPage/:id/list/taskFilterCreateForm" component={this.getTaskFilterCreateForm()} />
-          <Route path="/taskPage/:id/list/taskFilterUpdateForm" component={this.getTaskFilterUpdateForm()} />
-          
-
-          <Route path="/taskPage/:id/list/taskList" component={this.getTaskSearch()} />
-          <Route path="/taskPage/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
-          <Route path="/taskPage/:id/list/taskUpdateForm" component={this.getTaskUpdateForm()} />
-          
-              
-             
-</Switch>
+           <Menu
+             theme="dark"
+             mode="inline"
+             {...menuProps}
+             onOpenChange={this.handleOpenChange}
+             selectedKeys={this.getCurrentMenuSelectedKeys()}
+             style={{ margin: '16px 0', width: '100%' }}
+           >
            
-          </Content>
-        </Layout>
-      </Layout>
-    );
+                 <Menu.Item >   
+        <Link to={"/taskPage/"+this.props.taskPage.id+"/dashboard"}><Icon type='dashboard' /><span>仪表板</span></Link>
+        
+      </Menu.Item>
+      <Menu.Item >   
+        <Link to={"/taskPage/"+this.props.taskPage.id+"/editDetail"}><Icon type='edit' /><span>详情编辑</span></Link>
+        
+      </Menu.Item>
+             {this.getNavMenuItems(this.props.taskPage.id)}
+           </Menu>
+         </Sider>
+         <Layout>
+           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+             <Switch>
+               <Route path="/taskPage/:id/dashboard" component={TaskPageDashboard} />
+               <Route path="/taskPage/:id/editDetail" component={TaskPageEditDetail} />
 
-    return (
-      <DocumentTitle title={this.getPageTitle()}>
-        <ContainerQuery query={query}>
-          {params => <div className={classNames(params)}>{layout}</div>}
-        </ContainerQuery>
-      </DocumentTitle>
-    );
-  }
+               <Route path="/taskPage/:id/list/taskFilterList" component={this.getTaskFilterSearch()} />
+               <Route path="/taskPage/:id/list/taskFilterCreateForm" component={this.getTaskFilterCreateForm()} />
+               <Route path="/taskPage/:id/list/taskFilterUpdateForm" component={this.getTaskFilterUpdateForm()} />
+
+               <Route path="/taskPage/:id/list/taskList" component={this.getTaskSearch()} />
+               <Route path="/taskPage/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+               <Route path="/taskPage/:id/list/taskUpdateForm" component={this.getTaskUpdateForm()} />
+              
+             </Switch>
+           </Content>
+         </Layout>
+       </Layout>
+     );
+     return (
+       <DocumentTitle title={this.getPageTitle()}>
+         <ContainerQuery query={query}>
+           {params => <div className={classNames(params)}>{layout}</div>}
+         </ContainerQuery>
+       </DocumentTitle>
+     );
+   }
 }
 
 export default connect(state => ({
@@ -294,7 +265,7 @@ export default connect(state => ({
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
   taskPage: state._taskPage,
-  ...state
+  ...state,
 }))(TaskPageBizApp);
 
 

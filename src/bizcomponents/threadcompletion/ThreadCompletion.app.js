@@ -10,13 +10,15 @@ import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import styles from './ThreadCompletion.app.less';
 import ThreadCompletionDashboard from './ThreadCompletion.dashboard';
+import ThreadCompletionEditDetail from './ThreadCompletion.editdetail';
+
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import ThreadSearch from '../thread/Thread.search'
-import ThreadCreateForm from '../thread/Thread.createform'
-import ThreadUpdateForm from '../thread/Thread.updateform'
+import ThreadSearch from '../thread/Thread.search';
+import ThreadCreateForm from '../thread/Thread.createform';
+import ThreadUpdateForm from '../thread/Thread.updateform';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -43,20 +45,16 @@ const query = {
 };
 
 class ThreadCompletionBizApp extends React.PureComponent {
-  
- constructor(props) {
+  constructor(props) {
     super(props);
     // 把一级 Layout 的 children 作为菜单项
-    
-    //this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), []);
+    // this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), []);
     this.state = {
       openKeys: this.getDefaultCollapsedSubMenus(props),
     };
   }
 
-  componentDidMount() {
-   
-  }
+  componentDidMount() {}
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout);
   }
@@ -67,7 +65,7 @@ class ThreadCompletionBizApp extends React.PureComponent {
     });
   }
 
-  getDefaultCollapsedSubMenus(props) {
+  getDefaultCollapsedSubMenus = (props) => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)];
     currentMenuSelectedKeys.splice(-1, 1);
     if (currentMenuSelectedKeys.length === 0) {
@@ -75,7 +73,7 @@ class ThreadCompletionBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys;
   }
-  getCurrentMenuSelectedKeys(props) {
+  getCurrentMenuSelectedKeys = (props) => {
     const { location: { pathname } } = props || this.props;
     const keys = pathname.split('/').slice(1);
     if (keys.length === 1 && keys[0] === '') {
@@ -83,33 +81,24 @@ class ThreadCompletionBizApp extends React.PureComponent {
     }
     return keys;
   }
-  getNavMenuItems(objectId){
-
+  getNavMenuItems = (objectId) => {
     return (
-      <SubMenu title={<span>
-        <Icon type='dashboard' />
-        <span>线程完成</span>
-      </span>} >
-      
-      
-      <Menu.Item >   
-        <Link to={"/threadCompletion/"+objectId+"/list/threadList"}>主贴</Link>
-      </Menu.Item>
-  
-  
- 
-      
+      <SubMenu title={
+        <span>
+          <Icon type="profile" />
+          <span>线程完成</span>
+        </span>}
+      >
+
+        <Menu.Item>
+          <Link to={`/threadCompletion/${objectId}/list/threadList`}>主贴</Link>
+        </Menu.Item>
       </SubMenu>
-
     );
-
   }
 
 
-
-
-  getThreadSearch() {
- 
+  getThreadSearch = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._threadCompletion.threadList,
@@ -117,11 +106,10 @@ class ThreadCompletionBizApp extends React.PureComponent {
       currentPage: state._threadCompletion.threadCurrentPageNumber,
       searchFormParameters: state._threadCompletion.threadSearchFormParameters,
       loading: state._threadCompletion.loading,
-      owner: {type:'_threadCompletion',id:state._threadCompletion.id}//this is for model namespace and 
+      owner: { type: '_threadCompletion', id: state._threadCompletion.id }, // this is for model namespace and
     }))(ThreadSearch);
   }
-  getThreadCreateForm() {
- 
+  getThreadCreateForm = () => {
     return connect(state => ({
       rule: state.rule,
       data: state._threadCompletion.threadList,
@@ -129,30 +117,22 @@ class ThreadCompletionBizApp extends React.PureComponent {
       currentPage: state._threadCompletion.threadCurrentPageNumber,
       searchFormParameters: state._threadCompletion.threadSearchFormParameters,
       loading: state._threadCompletion.loading,
-      owner: {type:'_threadCompletion',id:state._threadCompletion.id}//this is for model namespace and 
+      owner: { type: '_threadCompletion', id: state._threadCompletion.id }, // this is for model namespace and
     }))(ThreadCreateForm);
   }
   
-  getThreadUpdateForm() {
- 
+  getThreadUpdateForm = () => {
     return connect(state => ({
-      
       selectedRows: state._threadCompletion.selectedRows,
       currentUpdateIndex: state._threadCompletion.currentUpdateIndex,
-      owner: {type:'_threadCompletion',id:state._threadCompletion.id}//this is for model namespace and 
+      owner: { type: '_threadCompletion', id: state._threadCompletion.id }, // this is for model namespace and
     }))(ThreadUpdateForm);
-    
-
   }
 
-  
-  
-  
-getPageTitle() {
-    const { location } = this.props;
-    const { pathname } = location;
-    let title = '帮帮兔社区运营中心';
-    
+  getPageTitle = () => {
+    // const { location } = this.props;
+    // const { pathname } = location;
+    const title = '帮帮兔社区运营中心';
     return title;
   }
  
@@ -163,77 +143,79 @@ getPageTitle() {
     });
   }
    toggle = () => {
-    const { collapsed } = this.props;
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: !collapsed,
-    });
-  }
+     const { collapsed } = this.props;
+     this.props.dispatch({
+       type: 'global/changeLayoutCollapsed',
+       payload: !collapsed,
+     });
+   }
 
-  render() {
-    const {  collapsed, fetchingNotices,loading } = this.props;
-    console.log("test value",this.props)
-    // Don't show popup menu when it is been collapsed
-    const menuProps = collapsed ? {} : {
-      openKeys: this.state.openKeys,
-    };
+   render() {
+     // const { collapsed, fetchingNotices,loading } = this.props;
+     const { collapsed } = this.props;
+     // Don't show popup menu when it is been collapsed
+     const menuProps = collapsed ? {} : {
+       openKeys: this.state.openKeys,
+     };
+     const layout = (
+       <Layout>
+         <Sider
+           trigger={null}
+           collapsible
+           collapsed={collapsed}
+           breakpoint="md"
+           onCollapse={this.onCollapse}
+           width={256}
+           className={styles.sider}
+         >
+           <div className={styles.logo}>
+             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <Link to="/home"> <h1>线程完成</h1></Link>
+           </div>
 
-    const layout = (
-      <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          breakpoint="md"
-          onCollapse={this.onCollapse}
-          width={256}
-          className={styles.sider}
-        >
-          <div className={styles.logo}>
-            <img src="/scm.svg" alt="logo" onClick={this.toggle}/>          
-            <Link to="/home"> <h1>线程完成</h1></Link>
-          </div>
-          
-          <Menu
-            theme="dark"
-            mode="inline"
-            {...menuProps}
-            onOpenChange={this.handleOpenChange}
-            selectedKeys={this.getCurrentMenuSelectedKeys()}
-            style={{ margin: '16px 0', width: '100%' }}
-          >
-            {this.getNavMenuItems(this.props.threadCompletion.id)}
-          </Menu>
-        </Sider>
-        <Layout>
-        
-          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <Switch>
-            <Route path="/threadCompletion/:id/dashboard" component={ThreadCompletionDashboard} />
-          
-            
-    
-          <Route path="/threadCompletion/:id/list/threadList" component={this.getThreadSearch()} />
-          <Route path="/threadCompletion/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
-          <Route path="/threadCompletion/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
-          
-              
-             
-</Switch>
+           <Menu
+             theme="dark"
+             mode="inline"
+             {...menuProps}
+             onOpenChange={this.handleOpenChange}
+             selectedKeys={this.getCurrentMenuSelectedKeys()}
+             style={{ margin: '16px 0', width: '100%' }}
+           >
            
-          </Content>
-        </Layout>
-      </Layout>
-    );
+                 <Menu.Item >   
+        <Link to={"/threadCompletion/"+this.props.threadCompletion.id+"/dashboard"}><Icon type='dashboard' /><span>仪表板</span></Link>
+        
+      </Menu.Item>
+      <Menu.Item >   
+        <Link to={"/threadCompletion/"+this.props.threadCompletion.id+"/editDetail"}><Icon type='edit' /><span>详情编辑</span></Link>
+        
+      </Menu.Item>
+             {this.getNavMenuItems(this.props.threadCompletion.id)}
+           </Menu>
+         </Sider>
+         <Layout>
+           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+             <Switch>
+               <Route path="/threadCompletion/:id/dashboard" component={ThreadCompletionDashboard} />
+               <Route path="/threadCompletion/:id/editDetail" component={ThreadCompletionEditDetail} />
 
-    return (
-      <DocumentTitle title={this.getPageTitle()}>
-        <ContainerQuery query={query}>
-          {params => <div className={classNames(params)}>{layout}</div>}
-        </ContainerQuery>
-      </DocumentTitle>
-    );
-  }
+               <Route path="/threadCompletion/:id/list/threadList" component={this.getThreadSearch()} />
+               <Route path="/threadCompletion/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+               <Route path="/threadCompletion/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
+              
+             </Switch>
+           </Content>
+         </Layout>
+       </Layout>
+     );
+     return (
+       <DocumentTitle title={this.getPageTitle()}>
+         <ContainerQuery query={query}>
+           {params => <div className={classNames(params)}>{layout}</div>}
+         </ContainerQuery>
+       </DocumentTitle>
+     );
+   }
 }
 
 export default connect(state => ({
@@ -241,7 +223,7 @@ export default connect(state => ({
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
   threadCompletion: state._threadCompletion,
-  ...state
+  ...state,
 }))(ThreadCompletionBizApp);
 
 

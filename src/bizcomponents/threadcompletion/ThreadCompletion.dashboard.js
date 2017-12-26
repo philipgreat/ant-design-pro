@@ -18,64 +18,52 @@ const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
 const topColResponsiveProps = {
-    xs: 24,
-    sm: 12,
-    md: 12,
-    lg: 12,
-    xl: 6,
-    style: { marginBottom: 24 },
-  };
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+  style: { marginBottom: 24 },
+};
 
 
 @connect(state => ({
   threadCompletion: state._threadCompletion,
 }))
 export default class ThreadCompletionDashboard extends Component {
- 
-  
   render() {
-    
-    
-    const {id,threadCount} = this.props.threadCompletion;
-	
-	
-    
+    // eslint-disable-next-line max-len
+    const { id, threadCount} = this.props.threadCompletion;
     return (
 
-     <PageHeaderLayout
+      <PageHeaderLayout
         title="线程完成总览"
         content="线程完成总览"
         wrapperClassName={styles.advancedForm}
       >
-      <div>
-        <Row gutter={24}>
-              
+        <div>
+          <Row gutter={24}>
+
           
-          <Col {...topColResponsiveProps}>
-            <ChartCard
-              bordered={false}
-              title="主贴"
-              action={<Tooltip title="主贴"><Icon type="info-circle-o" /></Tooltip>}
-              total={numeral(threadCount).format('0,0')}
-              footer={<Field label="状态" value="良好" />}
-              contentHeight={46}
-            >
-            <Link to={"/threadCompletion/"+id+"/list/threadList"}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }}/></Link>
-            &nbsp;
-            <Link to={"/threadCompletion/"+id+"/list/threadCreateForm"}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }}/></Link>
-            &nbsp;
-            <Link to={"/threadCompletion/"+id+"/list/threadList"}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }}/></Link>
-            
-            </ChartCard>
-          </Col>
-          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="主贴"
+                action={<Tooltip title="主贴"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(threadCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/threadCompletion/${id}/list/threadList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/threadCompletion/${id}/list/threadCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/threadCompletion/${id}/list/threadList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
 
-        </Row>
-
-        
-
-       
-      </div>
+          </Row>
+        </div>
       </PageHeaderLayout>
     );
   }

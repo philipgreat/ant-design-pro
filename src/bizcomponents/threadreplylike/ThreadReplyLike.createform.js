@@ -12,163 +12,138 @@ const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 const fieldLabels = {
-id: '序号',
-likeTime: '点赞时间',
-replier: '应答者',
-threadReply: '跟帖回复',
-
-
+  id: '序号',
+  likeTime: '点赞时间',
+  replier: '应答者',
+  threadReply: '跟帖回复',
 };
 
 
-const testValues={
-        
-      			replierId:'CU000001',
-			threadReplyId:'TR000001',
-
-        
+const testValues = {
+  replierId: 'CU000001',
+  threadReplyId: 'TR000001',
 };
 
-const imageURLPrefix = "//localhost:2090"
+const imageURLPrefix = '//localhost:2090';
 
 
 const imageKeys = [
 ];
 
 
-
 class ThreadReplyLikeCreateForm extends Component {
-
-
   state = {
     previewVisible: false,
     previewImage: '',
-    convertedImagesValues: {}
+    convertedImagesValues: {},
   };
 
+  componentDidMount() {
+    // const { getFieldDecorator,setFieldsValue } = this.props.form;
+    const { setFieldsValue } = this.props.form;
+    setFieldsValue(testValues);
+  }
+  shouldComponentUpdate() {
+    return true;
+  }
   handlePreview = (file) => {
-    console.log("preview file", file)
+    console.log('preview file', file);
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
     });
   }
-  shouldComponentUpdate() {
-    return true;
-  }
-  componentDidMount() {
- 
-        const { getFieldDecorator,setFieldsValue } = this.props.form;               
-        setFieldsValue(testValues);
-  }
+
   handleChange = (event, source) => {
-    console.log("get file list from change in update change: ", source);
+    console.log('get file list from change in update change:', source);
 
     const { fileList } = event;
-    var convertedImagesValues = this.state.convertedImagesValues;
+    const { convertedImagesValues } = this.state;
 
     convertedImagesValues[source] = fileList;
-    this.setState({ convertedImagesValues })
-
-
-    console.log("/get file list from change in update change: ", source);
-
+    this.setState({ convertedImagesValues });
+    console.log('/get file list from change in update change:', source);
   }
 
-  mapBackToImageValues(convertedImagesValues) {
-    var targetImages = new Array()
+  mapBackToImageValues=(convertedImagesValues) => {
+    const targetImages = [];
     Object.keys(convertedImagesValues).map((key) => {
-      if(!convertedImagesValues){
-        return;
-      }
-      if(!convertedImagesValues[key]){
-        return;
-      }
-      if(!convertedImagesValues[key][0]){
-        return;
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
+        return
       }
       const value = convertedImagesValues[key][0];
-      if(value.response){
+      if (value.response) {
         targetImages[key] = imageURLPrefix + value.response;
         return;
       }
-      if(value.url){
+      if (value.url) {
         targetImages[key] = value.url;
         return;
       }
-      
-
     });
     return targetImages;
-
   }
-  
-  mapFromImageValues(selectedRow) {
-    var targetImages = new Object()
-    
-    const buildFileList=(key,value)=>{
-      if(value){
+
+  mapFromImageValues=(selectedRow) => {
+    const targetImages = {};
+    const buildFileList = (key, value) => {
+      if (value) {
         return [{ uid: key, url: value }];
       }
       return [];
-    }
+    };
     imageKeys.map((key) => {
-      
       targetImages[key] = buildFileList(key,selectedRow[key]);
-
     });
     console.log(targetImages);
     return targetImages;
-
   }
-  
 
   render() {
     const { form, dispatch, submitting } = this.props;
-    const { convertedImagesValues } = this.state
-    
+    const { convertedImagesValues } = this.state;
+
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
     const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
-         if (error){
-          console.log("code go here", error);
+        if (error) {
+          console.log('code go here', error);
           return;
         }
-        
-        const {owner} = this.props;
+
+        const { owner } = this.props;
         const imagesValues = this.mapBackToImageValues(convertedImagesValues);
-        
-        const parameters={...values, ...imagesValues};
-      	dispatch({
-         type: owner.type+'/addThreadReplyLike',
-         payload: {id:owner.id,type:'threadReplyLike', parameters: parameters},
-      }); 
+
+        const parameters = { ...values, ...imagesValues };
+        dispatch({
+          type: `${owner.type}/addThreadReplyLike`,
+          payload: { id: owner.id, type: 'threadReplyLike', parameters },
+        });
       });
     };
-    
     const submitCreateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
-         if (error){
-          console.log("code go here", error);
+        if (error) {
+          console.log('code go here', error);
           return;
         }
         
-        const {owner} = this.props;
+        const { owner } = this.props;
         const imagesValues = this.mapBackToImageValues(convertedImagesValues);
         
-        const parameters={...values, ...imagesValues};
-      	dispatch({
-         type: owner.type+'/addThreadReplyLike',
-         payload: {id:owner.id,type:'threadReplyLike', parameters: parameters, continueNext:true},
-      }); 
+        const parameters = { ...values, ...imagesValues };
+        dispatch({
+          type: `${owner.type}/addThreadReplyLike`,
+          payload: { id: owner.id, type: 'threadReplyLike', parameters, continueNext: true },
+        });
       });
     };
     
     const goback = () => {
-      const {owner} = this.props;
+      const { owner } = this.props;
       dispatch({
-         type: owner.type+'/goback',
-         payload: {id:owner.id,type:'threadReplyLike'},
+        type: `${owner.type}/goback`,
+        payload: { id: owner.id, type: 'threadReplyLike' },
       }); 
     };
     const errors = getFieldsError();
@@ -177,8 +152,9 @@ class ThreadReplyLikeCreateForm extends Component {
       if (!errors || errorCount === 0) {
         return null;
       }
+      // eslint-disable-next-line no-unused-vars
       const scrollToField = (fieldKey) => {
-        const labelNode = document.querySelector(`label[for=""]`);
+        const labelNode = document.querySelector('label[for="${fieldKey}"]');
         if (labelNode) {
           labelNode.scrollIntoView(true);
         }
@@ -219,35 +195,21 @@ class ThreadReplyLikeCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-            
-            
-            
-          </Row>    
-          </Form>  
-        </Card>
-        
-     
-        
- 
-            
-        
-      
-      
-            
-        
 
-        
-        
-        
-        
-                 
-        
+            </Row>
+          </Form>
+        </Card>
+
+
+
+
+
+
         <Card title="关联" className={styles.card} bordered={false}>
-           <Form layout="vertical" hideRequiredMark>
+          <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-            
-            
-             <Col lg={6} md={12} sm={24}>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.replier}>
                   {getFieldDecorator('replierId', {
                     rules: [{ required: true, message: '请输入应答者' }],
@@ -255,10 +217,9 @@ class ThreadReplyLikeCreateForm extends Component {
                     <Input placeholder="请输入请输入应答者" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.threadReply}>
                   {getFieldDecorator('threadReplyId', {
                     rules: [{ required: true, message: '请输入跟帖回复' }],
@@ -266,33 +227,24 @@ class ThreadReplyLikeCreateForm extends Component {
                     <Input placeholder="请输入请输入跟帖回复" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-            
-          </Row>    
+              </Col>
+
+            </Row>
           </Form>  
-         
         </Card>
-       
-        
-     
-        
-        
-        
+
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
-          提交
-        </Button>
-        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交
+          </Button>
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
-        <Button type="danger" onClick={goback} loading={submitting}>
+          <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
-        
       </PageHeaderLayout>
     );
   }

@@ -7,36 +7,32 @@ import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
-{title:'登录时间',dataIndex: 'loginTime',render: (text,record)=>moment(record.loginTime).format('YYYY-MM-DD')},
-{title:'来自IP',debugtype:'string',dataIndex: 'fromIp',width:'15'},
-{title:'描述',debugtype:'string',dataIndex: 'description',width:'8'},
-{title:'SEC的用户',dataIndex: 'secUser',render: (text,record)=>(record.secUser?record.secUser.id:"暂无")},
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: '登录时间', dataIndex: 'loginTime', render: (text, record) => moment(record.loginTime).format('YYYY-MM-DD') },
+  { title: '从IP', debugtype: 'string', dataIndex: 'fromIp', width: '15' },
+  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8' },
+  { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
 
-      
-    ];
+];
 
 class LoginHistoryTable extends PureComponent {
   state = {
-    selectedRowKeys: []
+    selectedRowKeys: [],
   };
 
   componentWillReceiveProps(nextProps) {
     // clean state
     if (nextProps.selectedRows.length === 0) {
       this.setState({
-        selectedRowKeys: []
+        selectedRowKeys: [],
       });
     }
   }
 
   handleRowSelectChange = (selectedRowKeys, selectedRows) => {
-    
-
     if (this.props.onSelectRow) {
       this.props.onSelectRow(selectedRows);
     }
-
     this.setState({ selectedRowKeys });
   }
 
@@ -50,17 +46,15 @@ class LoginHistoryTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data,count,current, owner } = this.props;
-
-   
-    
+    // const { data, count, current, owner } = this.props;
+    const { data, count, current } = this.props;
 
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
       pageSize: 20,
       total: count,
-      current: current
+      current,
       
     };
 
@@ -80,7 +74,6 @@ class LoginHistoryTable extends PureComponent {
               <p>
                 一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
                 已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                
                 <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
             )}
@@ -96,7 +89,7 @@ class LoginHistoryTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{x:800}}
+          scroll={{ x: 800 }}
         />
       </div>
     );

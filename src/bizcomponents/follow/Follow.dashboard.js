@@ -18,45 +18,34 @@ const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
 const topColResponsiveProps = {
-    xs: 24,
-    sm: 12,
-    md: 12,
-    lg: 12,
-    xl: 6,
-    style: { marginBottom: 24 },
-  };
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+  style: { marginBottom: 24 },
+};
 
 
 @connect(state => ({
   follow: state._follow,
 }))
 export default class FollowDashboard extends Component {
- 
-  
   render() {
-    
-    
-    const {id,} = this.props.follow;
-	
-	
-    
+    // eslint-disable-next-line max-len
+    const { id, } = this.props.follow;
     return (
 
-     <PageHeaderLayout
+      <PageHeaderLayout
         title="关注总览"
         content="关注总览"
         wrapperClassName={styles.advancedForm}
       >
-      <div>
-        <Row gutter={24}>
-         
+        <div>
+          <Row gutter={24}>
 
-        </Row>
-
-        
-
-       
-      </div>
+          </Row>
+        </div>
       </PageHeaderLayout>
     );
   }

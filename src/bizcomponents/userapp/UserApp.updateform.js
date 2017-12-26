@@ -3,8 +3,8 @@ import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Sele
 import moment from 'moment';
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-import PictureEdit from '../../components/PictureEdit'
-import OSSPictureEdit from '../../components/OSSPictureEdit'
+import PictureEdit from '../../components/PictureEdit';
+import OSSPictureEdit from '../../components/OSSPictureEdit';
 
 import FooterToolbar from '../../components/FooterToolbar';
 
@@ -14,150 +14,60 @@ const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 const fieldLabels = {
-id: '序号',
-title: '标题',
-secUser: 'SEC的用户',
-appIcon: '应用程序图标',
-fullAccess: '完全访问',
-permission: '许可',
-objectType: '对象类型',
-objectId: '对象ID',
-location: '位置',
-
+  id: '序号',
+  title: '标题',
+  secUser: 'SEC的用户',
+  appIcon: '应用程序图标',
+  fullAccess: '完全访问',
+  permission: '许可',
+  objectType: '对象类型',
+  objectId: '对象ID',
+  location: '位置',
 
 };
 
-
-
-const imageURLPrefix = "//localhost:2090"
-
+const imageURLPrefix = '//localhost:2090';
 
 const imageKeys = [
 ];
 
 
-
-
 class UserAppUpdateForm extends Component {
-
   state = {
     previewVisible: false,
     previewImage: '',
-    convertedImagesValues: {}
+    convertedImagesValues: {},
   };
 
-  handlePreview = (file) => {
-    console.log("preview file", file)
+  componentWillMount() {
+    const selectedRow = this.getSelectedRow();
+    if (!selectedRow) {
+      return;
+    }
     this.setState({
-      previewImage: file.url || file.thumbUrl,
-      previewVisible: true,
+      convertedImagesValues: this.mapFromImageValues(selectedRow)
     });
   }
+
+  componentDidMount() {
+    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
+    // const { getFieldDecorator, setFieldsValue } = this.props.form;
+    const { setFieldsValue } = this.props.form;
+
+    const selectedRow = this.getSelectedRow();
+    if (!selectedRow) {
+      return;
+    }
+    setFieldsValue(selectedRow);
+  }
+
   shouldComponentUpdate() {
     return true;
   }
 
-  handleChange = (event, source) => {
-    console.log("get file list from change in update change: ", source);
-
-    const { fileList } = event;
-    var convertedImagesValues = this.state.convertedImagesValues;
-
-    convertedImagesValues[source] = fileList;
-    this.setState({ convertedImagesValues })
-
-
-    console.log("/get file list from change in update change: ", source);
-
-  }
-
- mapBackToImageValues(convertedImagesValues) {
-    var targetImages = new Array()
-    Object.keys(convertedImagesValues).map((key) => {
-      if(!convertedImagesValues){
-        return;
-      }
-      if(!convertedImagesValues[key]){
-        return;
-      }
-      if(!convertedImagesValues[key][0]){
-        return;
-      }
-      const value = convertedImagesValues[key][0];
-      if(value.response){
-        if(value.response.indexOf("//")==0){
-          targetImages[key] = value.response;
-          return;
-        }
-        if(value.response.indexOf("http://")==0){
-          targetImages[key] = value.response;
-          return;
-        }
-        if(value.response.indexOf("https://")==0){
-          targetImages[key] = value.response;
-          return;
-        }
-        targetImages[key] = imageURLPrefix + value.response;
-        return;
-      }
-      if(value.url){
-        targetImages[key] = value.url;
-        return;
-      }
-      
-
-    });
-    return targetImages;
-
-  }
-  
-  mapFromImageValues(selectedRow) {
-    var targetImages = new Object()
-    
-    const buildFileList=(key,value)=>{
-      if(value){
-        return [{ uid: key, url: value }];
-      }
-      return [];
-    }
-    imageKeys.map((key) => {
-      
-      targetImages[key] = buildFileList(key,selectedRow[key]);
-
-    });
-    console.log(targetImages);
-    return targetImages;
-
-  }
-  componentDidMount() {
-
-    //const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
-    const { getFieldDecorator, setFieldsValue } = this.props.form;
-   
-    const selectedRow = this.getSelectedRow();
-    if(!selectedRow){
-      return;
-    }
-    setFieldsValue(selectedRow);
-    
-
-  }
-
-  componentWillMount() {
-
-    const selectedRow = this.getSelectedRow();
-    if(!selectedRow){
-      return;
-    }
-    
-    this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow)
-    });
-
-  }
-  
-  getSelectedRow(){
-    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
+  getSelectedRow() {
+    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
+    const { selectedRows, currentUpdateIndex } = this.props;
     if (!selectedRows) {
       return;
     }
@@ -167,103 +77,173 @@ class UserAppUpdateForm extends Component {
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
-  
-      }
+
+      };
     });
     const selectedRow = convertiedValues[currentUpdateIndex];
     return selectedRow;
+  }
 
+  handleChange = (event, source) => {
+    console.log('get file list from change in update change: ', source);
+    const { fileList } = event;
+    const { convertedImagesValues } = this.state;
+    convertedImagesValues[source] = fileList;
+    this.setState({ convertedImagesValues });
+    console.log('/get file list from change in update change: ', source);
+  }
+
+  mapBackToImageValues = (convertedImagesValues) => {
+    const targetImages = [];
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
+        return;
+      }
+      const value = convertedImagesValues[key][0];
+      if (value.response) {
+        if (value.response.indexOf('//') === 0) {
+          targetImages[key] = value.response;
+          return;
+        }
+        if (value.response.indexOf('http://') === 0) {
+          targetImages[key] = value.response;
+          return;
+        }
+        if (value.response.indexOf('https://') === 0) {
+          targetImages[key] = value.response;
+          return;
+        }
+        targetImages[key] = imageURLPrefix + value.response;
+        return;
+      }
+      if (value.url) {
+        targetImages[key] = value.url;
+        return;
+      }
+    });
+    return targetImages;
+  }
+  
+  mapFromImageValues = (selectedRow) => {
+    const targetImages = {};
+    const buildFileList = (key, value) => {
+      if (value) {
+        return [{ uid: key, url: value }];
+      }
+      return [];
+    };
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key]);
+    });
+    console.log(targetImages);
+    return targetImages;
+  }
+
+  handlePreview = (file) => {
+    console.log('preview file', file);
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
   }
 
   render() {
-    const { form, dispatch, submitting,selectedRows,currentUpdateIndex } = this.props;
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const { convertedImagesValues } = this.state
+    const { convertedImagesValues } = this.state;
     const { setFieldsValue } = this.props.form;
     
     
     const submitUpdateForm = () => {
-     validateFieldsAndScroll((error, values) => {
+      validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log("code go here", error);
+          console.log('code go here', error);
           return;
         }
 
         const { owner } = this.props;
         const userAppId = values.id;
         const imagesValues = this.mapBackToImageValues(convertedImagesValues);
-        const parameters = { ...values,userAppId, ...imagesValues };
+        const parameters = { ...values, userAppId, ...imagesValues };
 
-	    const newIndex= currentUpdateIndex+1;
+        // const newIndex= currentUpdateIndex + 1;
         dispatch({
-          type: owner.type+'/updateUserApp',
-          payload: {id:owner.id,type:'userApp', 
-            parameters: parameters,
-            selectedRows,currentUpdateIndex:0,continueNext:false},
-       	});
-        
-       
+          type: `${owner.type}/updateUserApp`,
+          payload: {
+            id: owner.id,
+            type: 'userApp',
+            parameters,
+            selectedRows,
+            currentUpdateIndex: 0,
+            continueNext: false,
+          },
+        });
       });
-      
     };
     
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log("code go here", error);
+          console.log('code go here', error);
           return;
         }
 
         const { owner } = this.props;
         const userAppId = values.id;
         const imagesValues = this.mapBackToImageValues(convertedImagesValues);
-        const parameters = { ...values,userAppId, ...imagesValues };
+        const parameters = { ...values, userAppId, ...imagesValues };
 
+        // TODO
         const { currentUpdateIndex } = this.props;
         
-        if(currentUpdateIndex>=selectedRows.length-1){
+        if (currentUpdateIndex >= selectedRows.length - 1) {
           return;
-       }
-       this.setState({
-        currentUpdateIndex: currentUpdateIndex+1,
-       });
-       //setFieldsValue(selectedRows[currentUpdateIndex+1]);
-       const newIndex= currentUpdateIndex+1;
-       dispatch({
-          type: owner.type+'/updateUserApp',
-          payload: {id:owner.id,type:'userApp', 
-            parameters: parameters,
-            selectedRows,currentUpdateIndex:newIndex,continueNext:true},
-       });
-        
-       
+        }
+        this.setState({
+          currentUpdateIndex: currentUpdateIndex + 1,
+        });
+        setFieldsValue(selectedRows[currentUpdateIndex + 1]);
+        const newIndex = currentUpdateIndex + 1;
+        dispatch({
+          type: `${owner.type}/updateUserApp`,
+          payload: {
+            id: owner.id,
+            type: 'userApp',
+            parameters,
+            selectedRows,
+            currentUpdateIndex: newIndex,
+            continueNext: true,
+          },
+        });
       });
     };
     
     const skipToNext = () => {
-
       const { currentUpdateIndex } = this.props;
       const { owner } = this.props;
         
-      const newIndex= currentUpdateIndex+1;
+      const newIndex = currentUpdateIndex + 1;
       dispatch({
-          type: owner.type+'/gotoNextUserAppUpdateRow',
-            payload: {
-              id:owner.id,type:'userApp', 
-              selectedRows,currentUpdateIndex:newIndex,
-              continueNext:true,
-              update:false
-            },
+        type: `${owner.type}/gotoNextUserAppUpdateRow`,
+        payload: {
+          id: owner.id,
+          type: 'userApp',
+          selectedRows,
+          currentUpdateIndex: newIndex,
+          continueNext: true,
+          update: false,
+        },
       });
-
-      
     };
     
     const goback = () => {
-      const {owner} = this.props;
+      const { owner } = this.props;
       dispatch({
-         type: owner.type+'/goback',
-         payload: {id:owner.id,type:'userApp'},
+        type: `${owner.type}/goback`,
+        payload: {
+          id: owner.id,
+          type: 'userApp',
+        },
       }); 
     };
     const errors = getFieldsError();
@@ -273,7 +253,7 @@ class UserAppUpdateForm extends Component {
         return null;
       }
       const scrollToField = (fieldKey) => {
-        const labelNode = document.querySelector(`label[for=""]`);
+        const labelNode = document.querySelector(`label[for='${fieldKey}']`);
         if (labelNode) {
           labelNode.scrollIntoView(true);
         }
@@ -307,12 +287,12 @@ class UserAppUpdateForm extends Component {
     };
     
     if (!selectedRows) {
-      return (<div>缺少被更新的对象</div>)
+      return (<div>缺少被更新的对象</div>);
     }
-    
+
+    // TODO
     return (
       <PageHeaderLayout
-        
         title={"更新用户应用程序"+(currentUpdateIndex+1)+"/"+selectedRows.length}
         content="更新用户应用程序"
         wrapperClassName={styles.advancedForm}
@@ -321,134 +301,107 @@ class UserAppUpdateForm extends Component {
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
             
-            
-             <Col lg={6} md={12} sm={24}>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
                     rules: [{ required: true, message: '请输入序号' }],
                   })(
-                    <Input placeholder="请输入请输入序号string" disabled={true}/>
+                    <Input placeholder="请输入请输入序号string" disabled />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.title}>
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: '请输入标题' }],
                   })(
-                    <Input placeholder="请输入请输入标题string" />
+                    <Input placeholder="请输入请输入标题string"  />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.appIcon}>
                   {getFieldDecorator('appIcon', {
                     rules: [{ required: true, message: '请输入应用程序图标' }],
                   })(
-                    <Input placeholder="请输入请输入应用程序图标string" />
+                    <Input placeholder="请输入请输入应用程序图标string"  />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.fullAccess}>
                   {getFieldDecorator('fullAccess', {
                     rules: [{ required: true, message: '请输入完全访问' }],
                   })(
-                    <Input placeholder="请输入请输入完全访问bool" />
+                    <Input placeholder="请输入请输入完全访问bool"  />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.permission}>
                   {getFieldDecorator('permission', {
                     rules: [{ required: true, message: '请输入许可' }],
                   })(
-                    <Input placeholder="请输入请输入许可string" />
+                    <Input placeholder="请输入请输入许可string"  />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.objectType}>
                   {getFieldDecorator('objectType', {
                     rules: [{ required: true, message: '请输入对象类型' }],
                   })(
-                    <Input placeholder="请输入请输入对象类型string" />
+                    <Input placeholder="请输入请输入对象类型string"  />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.objectId}>
                   {getFieldDecorator('objectId', {
                     rules: [{ required: true, message: '请输入对象ID' }],
                   })(
-                    <Input placeholder="请输入请输入对象IDstring" />
+                    <Input placeholder="请输入请输入对象IDstring"  />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.location}>
                   {getFieldDecorator('location', {
                     rules: [{ required: true, message: '请输入位置' }],
                   })(
-                    <Input placeholder="请输入请输入位置string" />
+                    <Input placeholder="请输入请输入位置string"  />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-            
-          </Row>    
+              </Col>
+
+            </Row>
           </Form>  
         </Card>
-        
-     
-        
- 
-            
-        
-      
-      
-            
-        
-         
-        
-        
-        
- 
-     
-        
-        
-        
+
+
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
-          更新
-        </Button>
-        <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex+1>=selectedRows.length}>
+            更新
+          </Button>
+          <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             更新并装载下一个
-        </Button>
-        <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex+1>=selectedRows.length}>
+          </Button>
+          <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             略过
-        </Button>
-        <Button type="info" onClick={goback} loading={submitting}>
+          </Button>
+          <Button type="info" onClick={goback} loading={submitting}>
             取消
           </Button>
         </FooterToolbar>
-        
       </PageHeaderLayout>
     );
   }

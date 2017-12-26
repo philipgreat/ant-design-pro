@@ -18,45 +18,34 @@ const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
 const topColResponsiveProps = {
-    xs: 24,
-    sm: 12,
-    md: 12,
-    lg: 12,
-    xl: 6,
-    style: { marginBottom: 24 },
-  };
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+  style: { marginBottom: 24 },
+};
 
 
 @connect(state => ({
   experiencePoint: state._experiencePoint,
 }))
 export default class ExperiencePointDashboard extends Component {
- 
-  
   render() {
-    
-    
-    const {id,} = this.props.experiencePoint;
-	
-	
-    
+    // eslint-disable-next-line max-len
+    const { id, } = this.props.experiencePoint;
     return (
 
-     <PageHeaderLayout
+      <PageHeaderLayout
         title="成长值总览"
         content="成长值总览"
         wrapperClassName={styles.advancedForm}
       >
-      <div>
-        <Row gutter={24}>
-         
+        <div>
+          <Row gutter={24}>
 
-        </Row>
-
-        
-
-       
-      </div>
+          </Row>
+        </div>
       </PageHeaderLayout>
     );
   }

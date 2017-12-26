@@ -7,36 +7,32 @@ import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
-{title:'标题',debugtype:'string',dataIndex: 'title',width:'8'},
-{title:'图像网址',dataIndex: 'imageUrl',render: (text,record)=><ImagePreview imageTitle={"图像网址"} imageLocation={record.imageUrl}/>},
-{title:'链接网址',debugtype:'string',dataIndex: 'linkUrl',width:'40'},
-{title:'主页',dataIndex: 'homePage',render: (text,record)=>(record.homePage?record.homePage.id:"暂无")},
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8' },
+  { title: '图像网址', dataIndex: 'imageUrl', render: (text, record) => <ImagePreview imageTitle={"图像网址"} imageLocation={record.imageUrl}/> },
+  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '40' },
+  { title: '主页', dataIndex: 'homePage', render: (text, record) => (record.homePage ? record.homePage.id : '暂无') },
 
-      
-    ];
+];
 
 class SlideTable extends PureComponent {
   state = {
-    selectedRowKeys: []
+    selectedRowKeys: [],
   };
 
   componentWillReceiveProps(nextProps) {
     // clean state
     if (nextProps.selectedRows.length === 0) {
       this.setState({
-        selectedRowKeys: []
+        selectedRowKeys: [],
       });
     }
   }
 
   handleRowSelectChange = (selectedRowKeys, selectedRows) => {
-    
-
     if (this.props.onSelectRow) {
       this.props.onSelectRow(selectedRows);
     }
-
     this.setState({ selectedRowKeys });
   }
 
@@ -50,17 +46,15 @@ class SlideTable extends PureComponent {
 
   render() {
     const { selectedRowKeys } = this.state;
-    const { data,count,current, owner } = this.props;
-
-   
-    
+    // const { data, count, current, owner } = this.props;
+    const { data, count, current } = this.props;
 
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
       pageSize: 20,
       total: count,
-      current: current
+      current,
       
     };
 
@@ -80,7 +74,6 @@ class SlideTable extends PureComponent {
               <p>
                 一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
                 已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                
                 <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
             )}
@@ -96,7 +89,7 @@ class SlideTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{x:800}}
+          scroll={{ x: 800 }}
         />
       </div>
     );

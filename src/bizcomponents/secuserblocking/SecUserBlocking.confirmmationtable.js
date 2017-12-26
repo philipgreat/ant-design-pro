@@ -7,18 +7,16 @@ import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-{title:'序号',debugtype:'string',dataIndex: 'id',width:'20'},
-{title:'谁',debugtype:'string',dataIndex: 'who',width:'17'},
-{title:'块时间',dataIndex: 'blockTime',render: (text,record)=>moment(record.blockTime).format('YYYY-MM-DD')},
-{title:'评论',debugtype:'string',dataIndex: 'comments',width:'28'},
-
-      
-    ];
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17' },
+  { title: '屏蔽时间', dataIndex: 'blockTime', render: (text, record) => moment(record.blockTime).format('YYYY-MM-DD') },
+  { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '28' },
+];
 
 class SecUserBlockingConfirmationTable extends PureComponent {
   render() {
-    
-    const { data,count,current, owner } = this.props;
+    // const { data,count,current, owner } = this.props;
+    const { data } = this.props;
 
 
     return (
@@ -28,7 +26,6 @@ class SecUserBlockingConfirmationTable extends PureComponent {
             message={(
               <p>
                 一共 <a style={{ fontWeight: 600 }}>{data.length}</a> 项 
-               
               </p>
             )}
             type="warning"
@@ -39,9 +36,8 @@ class SecUserBlockingConfirmationTable extends PureComponent {
           rowKey={record => record.id}
           dataSource={data}
           columns={columns}
-          
-          size={"small"}
-          scroll={{x:800}}
+          size="small"
+          scroll={{ x: 800 }}
         />
       </div>
     );

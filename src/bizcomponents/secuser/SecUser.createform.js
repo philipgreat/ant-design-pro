@@ -12,176 +12,151 @@ const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 const fieldLabels = {
-id: '序号',
-login: '登录',
-mobile: '手机号码',
-email: '电子邮件',
-pwd: '密码',
-verificationCode: '验证码',
-verificationCodeExpire: '验证码过期',
-lastLoginTime: '最后登录时间',
-domain: '域',
-blocking: '舞台调度',
-currentStatus: '当前状态',
-
-
+  id: '序号',
+  login: '登录',
+  mobile: '手机',
+  email: '电子邮件',
+  pwd: 'PWD',
+  verificationCode: '验证码',
+  verificationCodeExpire: '验证码过期',
+  lastLoginTime: '最后登录时间',
+  domain: '域',
+  blocking: '屏蔽',
+  currentStatus: '当前状态',
 };
 
 
-const testValues={
-        
-      			login:'login',
-			mobile:'13977900987',
-			email:'suddy_chang@163.com',
-			pwd:'C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95',
-			verificationCode:'9981727',
-			verificationCodeExpire:'2036-06-27 13:28:51',
-			lastLoginTime:'2037-05-17 05:58:45',
-			domainId:'UD000001',
-
-        
+const testValues = {
+  login: 'login',
+  mobile: '13977900987',
+  email: 'suddy_chang@163.com',
+  pwd: 'C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95',
+  verificationCode: '9981727',
+  verificationCodeExpire: '2035-10-25 09:16:48',
+  lastLoginTime: '2038-10-11 10:19:06',
+  domainId: 'UD000001',
 };
 
-const imageURLPrefix = "//localhost:2090"
+const imageURLPrefix = '//localhost:2090';
 
 
 const imageKeys = [
 ];
 
 
-
 class SecUserCreateForm extends Component {
-
-
   state = {
     previewVisible: false,
     previewImage: '',
-    convertedImagesValues: {}
+    convertedImagesValues: {},
   };
 
+  componentDidMount() {
+    // const { getFieldDecorator,setFieldsValue } = this.props.form;
+    const { setFieldsValue } = this.props.form;
+    setFieldsValue(testValues);
+  }
+  shouldComponentUpdate() {
+    return true;
+  }
   handlePreview = (file) => {
-    console.log("preview file", file)
+    console.log('preview file', file);
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
     });
   }
-  shouldComponentUpdate() {
-    return true;
-  }
-  componentDidMount() {
- 
-        const { getFieldDecorator,setFieldsValue } = this.props.form;               
-        setFieldsValue(testValues);
-  }
+
   handleChange = (event, source) => {
-    console.log("get file list from change in update change: ", source);
+    console.log('get file list from change in update change:', source);
 
     const { fileList } = event;
-    var convertedImagesValues = this.state.convertedImagesValues;
+    const { convertedImagesValues } = this.state;
 
     convertedImagesValues[source] = fileList;
-    this.setState({ convertedImagesValues })
-
-
-    console.log("/get file list from change in update change: ", source);
-
+    this.setState({ convertedImagesValues });
+    console.log('/get file list from change in update change:', source);
   }
 
-  mapBackToImageValues(convertedImagesValues) {
-    var targetImages = new Array()
+  mapBackToImageValues=(convertedImagesValues) => {
+    const targetImages = [];
     Object.keys(convertedImagesValues).map((key) => {
-      if(!convertedImagesValues){
-        return;
-      }
-      if(!convertedImagesValues[key]){
-        return;
-      }
-      if(!convertedImagesValues[key][0]){
-        return;
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
+        return
       }
       const value = convertedImagesValues[key][0];
-      if(value.response){
+      if (value.response) {
         targetImages[key] = imageURLPrefix + value.response;
         return;
       }
-      if(value.url){
+      if (value.url) {
         targetImages[key] = value.url;
         return;
       }
-      
-
     });
     return targetImages;
-
   }
-  
-  mapFromImageValues(selectedRow) {
-    var targetImages = new Object()
-    
-    const buildFileList=(key,value)=>{
-      if(value){
+
+  mapFromImageValues=(selectedRow) => {
+    const targetImages = {};
+    const buildFileList = (key, value) => {
+      if (value) {
         return [{ uid: key, url: value }];
       }
       return [];
-    }
+    };
     imageKeys.map((key) => {
-      
       targetImages[key] = buildFileList(key,selectedRow[key]);
-
     });
     console.log(targetImages);
     return targetImages;
-
   }
-  
 
   render() {
     const { form, dispatch, submitting } = this.props;
-    const { convertedImagesValues } = this.state
-    
+    const { convertedImagesValues } = this.state;
+
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
     const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
-         if (error){
-          console.log("code go here", error);
+        if (error) {
+          console.log('code go here', error);
           return;
         }
-        
-        const {owner} = this.props;
+
+        const { owner } = this.props;
         const imagesValues = this.mapBackToImageValues(convertedImagesValues);
-        
-        const parameters={...values, ...imagesValues};
-      	dispatch({
-         type: owner.type+'/addSecUser',
-         payload: {id:owner.id,type:'secUser', parameters: parameters},
-      }); 
+
+        const parameters = { ...values, ...imagesValues };
+        dispatch({
+          type: `${owner.type}/addSecUser`,
+          payload: { id: owner.id, type: 'secUser', parameters },
+        });
       });
     };
-    
     const submitCreateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
-         if (error){
-          console.log("code go here", error);
+        if (error) {
+          console.log('code go here', error);
           return;
         }
         
-        const {owner} = this.props;
+        const { owner } = this.props;
         const imagesValues = this.mapBackToImageValues(convertedImagesValues);
         
-        const parameters={...values, ...imagesValues};
-      	dispatch({
-         type: owner.type+'/addSecUser',
-         payload: {id:owner.id,type:'secUser', parameters: parameters, continueNext:true},
-      }); 
+        const parameters = { ...values, ...imagesValues };
+        dispatch({
+          type: `${owner.type}/addSecUser`,
+          payload: { id: owner.id, type: 'secUser', parameters, continueNext: true },
+        });
       });
     };
     
     const goback = () => {
-      const {owner} = this.props;
+      const { owner } = this.props;
       dispatch({
-         type: owner.type+'/goback',
-         payload: {id:owner.id,type:'secUser'},
+        type: `${owner.type}/goback`,
+        payload: { id: owner.id, type: 'secUser' },
       }); 
     };
     const errors = getFieldsError();
@@ -190,8 +165,9 @@ class SecUserCreateForm extends Component {
       if (!errors || errorCount === 0) {
         return null;
       }
+      // eslint-disable-next-line no-unused-vars
       const scrollToField = (fieldKey) => {
-        const labelNode = document.querySelector(`label[for=""]`);
+        const labelNode = document.querySelector('label[for="${fieldKey}"]');
         if (labelNode) {
           labelNode.scrollIntoView(true);
         }
@@ -232,9 +208,8 @@ class SecUserCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-            
-            
-             <Col lg={6} md={12} sm={24}>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.login}>
                   {getFieldDecorator('login', {
                     rules: [{ required: true, message: '请输入登录' }],
@@ -242,21 +217,19 @@ class SecUserCreateForm extends Component {
                     <Input placeholder="请输入请输入登录string" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.mobile}>
                   {getFieldDecorator('mobile', {
-                    rules: [{ required: true, message: '请输入手机号码' }],
+                    rules: [{ required: true, message: '请输入手机' }],
                   })(
-                    <Input placeholder="请输入请输入手机号码string_china_mobile_phone" />
+                    <Input placeholder="请输入请输入手机string_china_mobile_phone" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.email}>
                   {getFieldDecorator('email', {
                     rules: [{ required: true, message: '请输入电子邮件' }],
@@ -264,21 +237,19 @@ class SecUserCreateForm extends Component {
                     <Input placeholder="请输入请输入电子邮件string_email" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.pwd}>
                   {getFieldDecorator('pwd', {
-                    rules: [{ required: true, message: '请输入密码' }],
+                    rules: [{ required: true, message: '请输入PWD' }],
                   })(
-                    <Input placeholder="请输入请输入密码string_password" />
+                    <Input placeholder="请输入请输入PWDstring_password" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.verificationCode}>
                   {getFieldDecorator('verificationCode', {
                     rules: [{ required: true, message: '请输入验证码' }],
@@ -286,10 +257,9 @@ class SecUserCreateForm extends Component {
                     <Input placeholder="请输入请输入验证码int" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.verificationCodeExpire}>
                   {getFieldDecorator('verificationCodeExpire', {
                     rules: [{ required: true, message: '请输入验证码过期' }],
@@ -297,10 +267,9 @@ class SecUserCreateForm extends Component {
                     <Input placeholder="请输入请输入验证码过期date_time" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-             <Col lg={6} md={12} sm={24}>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.lastLoginTime}>
                   {getFieldDecorator('lastLoginTime', {
                     rules: [{ required: true, message: '请输入最后登录时间' }],
@@ -308,36 +277,22 @@ class SecUserCreateForm extends Component {
                     <Input placeholder="请输入请输入最后登录时间date_time" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-            
-          </Row>    
-          </Form>  
-        </Card>
-        
-     
-        
- 
-            
-        
-      
-      
-            
-        
+              </Col>
 
-        
-        
-        
-        
-                 
-        
+            </Row>
+          </Form>
+        </Card>
+
+
+
+
+
+
         <Card title="关联" className={styles.card} bordered={false}>
-           <Form layout="vertical" hideRequiredMark>
+          <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-            
-            
-             <Col lg={6} md={12} sm={24}>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.domain}>
                   {getFieldDecorator('domainId', {
                     rules: [{ required: true, message: '请输入域' }],
@@ -345,33 +300,24 @@ class SecUserCreateForm extends Component {
                     <Input placeholder="请输入请输入域" />
                   )}
                 </Form.Item>
-              </Col>			
-			
-			
-            
-          </Row>    
+              </Col>
+
+            </Row>
           </Form>  
-         
         </Card>
-       
-        
-     
-        
-        
-        
+
         <FooterToolbar>
           {getErrorInfo()}
           <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
-          提交
-        </Button>
-        <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+            提交
+          </Button>
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
-        <Button type="danger" onClick={goback} loading={submitting}>
+          <Button type="danger" onClick={goback} loading={submitting}>
             放弃
           </Button>
         </FooterToolbar>
-        
       </PageHeaderLayout>
     );
   }

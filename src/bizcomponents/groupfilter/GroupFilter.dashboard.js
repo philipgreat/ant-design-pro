@@ -18,45 +18,34 @@ const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
 const topColResponsiveProps = {
-    xs: 24,
-    sm: 12,
-    md: 12,
-    lg: 12,
-    xl: 6,
-    style: { marginBottom: 24 },
-  };
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+  style: { marginBottom: 24 },
+};
 
 
 @connect(state => ({
   groupFilter: state._groupFilter,
 }))
 export default class GroupFilterDashboard extends Component {
- 
-  
   render() {
-    
-    
-    const {id,} = this.props.groupFilter;
-	
-	
-    
+    // eslint-disable-next-line max-len
+    const { id, } = this.props.groupFilter;
     return (
 
-     <PageHeaderLayout
+      <PageHeaderLayout
         title="群组过滤器总览"
         content="群组过滤器总览"
         wrapperClassName={styles.advancedForm}
       >
-      <div>
-        <Row gutter={24}>
-         
+        <div>
+          <Row gutter={24}>
 
-        </Row>
-
-        
-
-       
-      </div>
+          </Row>
+        </div>
       </PageHeaderLayout>
     );
   }
