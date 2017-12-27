@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
 import { Link, Route, Redirect, Switch } from 'dva/router';
 import numeral from 'numeral';
 import {
@@ -13,6 +13,9 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './ObjectAccess.editdetail.less';
+
+
+
 
 const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
@@ -34,6 +37,9 @@ export default class ObjectAccessEditDetail extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id, } = this.props.objectAccess;
+    const { } = this.props.objectAccess;
+    
+    const owner = { type: '_objectAccess', id};
     return (
 
       <PageHeaderLayout
@@ -41,11 +47,9 @@ export default class ObjectAccessEditDetail extends Component {
         content="对象访问总览"
         wrapperClassName={styles.advancedForm}
       >
-        <div>
-          <Row gutter={24}>
 
-          </Row>
-        </div>
+
+ 
       </PageHeaderLayout>
     );
   }

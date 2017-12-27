@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
 import { Link, Route, Redirect, Switch } from 'dva/router';
 import numeral from 'numeral';
 import {
@@ -13,6 +13,11 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './UserApp.editdetail.less';
+
+
+import ObjectAccessEditTable from '../objectaccess/ObjectAccess.edittable';
+
+
 
 const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
@@ -34,6 +39,9 @@ export default class UserAppEditDetail extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id, objectAccessCount} = this.props.userApp;
+    const { objectAccessList} = this.props.userApp;
+    
+    const owner = { type: '_userApp', id};
     return (
 
       <PageHeaderLayout
@@ -41,29 +49,20 @@ export default class UserAppEditDetail extends Component {
         content="用户应用程序总览"
         wrapperClassName={styles.advancedForm}
       >
-        <div>
-          <Row gutter={24}>
+
 
           
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="对象访问"
-                action={<Tooltip title="对象访问"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(objectAccessCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/userApp/${id}/list/objectAccessList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/userApp/${id}/list/objectAccessCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/userApp/${id}/list/objectAccessList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
+            
+            
+      <Card title="对象访问列表" className={styles.card} bordered={false}>
+        <Form layout="vertical" hideRequiredMark>
+        <ObjectAccessEditTable data={objectAccessList} owner={owner} />
+       </Form>
+       </Card>
+            
+            
 
-          </Row>
-        </div>
+ 
       </PageHeaderLayout>
     );
   }

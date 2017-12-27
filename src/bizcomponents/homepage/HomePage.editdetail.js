@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
 import { Link, Route, Redirect, Switch } from 'dva/router';
 import numeral from 'numeral';
 import {
@@ -13,6 +13,19 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './HomePage.editdetail.less';
+
+
+import SlideEditTable from '../slide/Slide.edittable';
+
+import EncyclopediaItemEditTable from '../encyclopediaitem/EncyclopediaItem.edittable';
+
+import TaskFilterEditTable from '../taskfilter/TaskFilter.edittable';
+
+import TaskEditTable from '../task/Task.edittable';
+
+import ThreadEditTable from '../thread/Thread.edittable';
+
+
 
 const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
@@ -33,7 +46,10 @@ const topColResponsiveProps = {
 export default class HomePageEditDetail extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, slideCount,encyclopediaItemCount,taskFilterCount,taskCount,threadCount} = this.props.homePage;
+    const { id, slideCount, encyclopediaItemCount, taskFilterCount, taskCount, threadCount} = this.props.homePage;
+    const { slideList, encyclopediaItemList, taskFilterList, taskList, threadList} = this.props.homePage;
+    
+    const owner = { type: '_homePage', id};
     return (
 
       <PageHeaderLayout
@@ -41,101 +57,64 @@ export default class HomePageEditDetail extends Component {
         content="主页总览"
         wrapperClassName={styles.advancedForm}
       >
-        <div>
-          <Row gutter={24}>
+
 
           
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="幻灯片"
-                action={<Tooltip title="幻灯片"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(slideCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/homePage/${id}/list/slideList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/homePage/${id}/list/slideCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/homePage/${id}/list/slideList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
+            
+            
+      <Card title="幻灯片列表" className={styles.card} bordered={false}>
+        <Form layout="vertical" hideRequiredMark>
+        <SlideEditTable data={slideList} owner={owner} />
+       </Form>
+       </Card>
+            
+            
 
           
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="百科全书条目"
-                action={<Tooltip title="百科全书条目"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(encyclopediaItemCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/homePage/${id}/list/encyclopediaItemList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/homePage/${id}/list/encyclopediaItemCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/homePage/${id}/list/encyclopediaItemList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
+            
+            
+      <Card title="百科全书条目列表" className={styles.card} bordered={false}>
+        <Form layout="vertical" hideRequiredMark>
+        <EncyclopediaItemEditTable data={encyclopediaItemList} owner={owner} />
+       </Form>
+       </Card>
+            
+            
 
           
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="任务过滤器"
-                action={<Tooltip title="任务过滤器"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(taskFilterCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/homePage/${id}/list/taskFilterList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/homePage/${id}/list/taskFilterCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/homePage/${id}/list/taskFilterList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
+            
+            
+      <Card title="任务过滤器列表" className={styles.card} bordered={false}>
+        <Form layout="vertical" hideRequiredMark>
+        <TaskFilterEditTable data={taskFilterList} owner={owner} />
+       </Form>
+       </Card>
+            
+            
 
           
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="任务"
-                action={<Tooltip title="任务"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(taskCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/homePage/${id}/list/taskList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/homePage/${id}/list/taskCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/homePage/${id}/list/taskList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
+            
+            
+      <Card title="任务列表" className={styles.card} bordered={false}>
+        <Form layout="vertical" hideRequiredMark>
+        <TaskEditTable data={taskList} owner={owner} />
+       </Form>
+       </Card>
+            
+            
 
           
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="主贴"
-                action={<Tooltip title="主贴"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(threadCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/homePage/${id}/list/threadList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/homePage/${id}/list/threadCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/homePage/${id}/list/threadList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
+            
+            
+      <Card title="主贴列表" className={styles.card} bordered={false}>
+        <Form layout="vertical" hideRequiredMark>
+        <ThreadEditTable data={threadList} owner={owner} />
+       </Form>
+       </Card>
+            
+            
 
-          </Row>
-        </div>
+ 
       </PageHeaderLayout>
     );
   }

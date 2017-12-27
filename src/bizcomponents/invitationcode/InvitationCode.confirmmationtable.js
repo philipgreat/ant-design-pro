@@ -40,6 +40,7 @@ class InvitationCodeConfirmationTable extends PureComponent {
           columns={columns}
           size="small"
           scroll={{ x: 800 }}
+          bordered={false}
         />
       </div>
     );
