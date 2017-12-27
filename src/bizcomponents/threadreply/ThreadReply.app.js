@@ -16,8 +16,12 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {ThreadReplyLikeSearch,ThreadReplyLikeCreateForm,ThreadReplyLikeUpdateForm} from '../../custcomponents';
 
+import GlobalComponents from '../../custcomponents';
+/*
+
+const {ThreadReplyLikeSearch,ThreadReplyLikeCreateForm,ThreadReplyLikeUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -97,6 +101,7 @@ class ThreadReplyBizApp extends React.PureComponent {
 
 
   getThreadReplyLikeSearch = () => {
+    const {ThreadReplyLikeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._threadReply.threadReplyLikeList,
@@ -108,6 +113,7 @@ class ThreadReplyBizApp extends React.PureComponent {
     }))(ThreadReplyLikeSearch);
   }
   getThreadReplyLikeCreateForm = () => {
+   	const {ThreadReplyLikeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._threadReply.threadReplyLikeList,
@@ -120,6 +126,7 @@ class ThreadReplyBizApp extends React.PureComponent {
   }
   
   getThreadReplyLikeUpdateForm = () => {
+  	const {ThreadReplyLikeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._threadReply.selectedRows,
       currentUpdateIndex: state._threadReply.currentUpdateIndex,

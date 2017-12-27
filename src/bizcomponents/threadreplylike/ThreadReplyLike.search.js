@@ -4,10 +4,9 @@ import { connect } from 'dva';
 import Result from '../../components/Result';
 
 import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
-import {ThreadReplyLikeTable} from '../../custcomponents';
-import {ThreadReplyLikeConfirmationTable} from '../../custcomponents';
 
-import {ThreadReplyLikeSearchForm} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
+
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
@@ -173,6 +172,11 @@ export default class ThreadReplyLikeSearch extends PureComponent {
   render() {
     const { data, loading, count, currentPage, owner } = this.props;
     const { showDeleteResult, selectedRows, modalVisible } = this.state;
+    const {ThreadReplyLikeTable} = GlobalComponents;
+    const {ThreadReplyLikeConfirmationTable} = GlobalComponents;
+    const {ThreadReplyLikeSearchForm} = GlobalComponents;
+    
+    
     // const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>

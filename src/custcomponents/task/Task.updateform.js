@@ -545,6 +545,23 @@ class TaskUpdateForm extends Component {
           >
             略过
           </Button>
+          <Button
+            type="info"
+            onClick={skipToNext}
+            loading={submitting}
+            disabled={currentUpdateIndex + 1 >= selectedRows.length}
+          >
+            略过
+          </Button>
+          <Button
+            type="info"
+            onClick={skipToNext}
+            loading={submitting}
+            disabled={currentUpdateIndex + 1 >= selectedRows.length}
+          >
+            略过
+          </Button>
+          
           <Button type="info" onClick={goback} loading={submitting}>
             取消
           </Button>

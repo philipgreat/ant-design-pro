@@ -13,7 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './Slide.editdetail.less';
-
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -35,6 +35,7 @@ const topColResponsiveProps = {
 }))
 export default class SlideEditDetail extends Component {
   render() {
+  
     // eslint-disable-next-line max-len
     const { id, } = this.props.slide;
     const { } = this.props.slide;

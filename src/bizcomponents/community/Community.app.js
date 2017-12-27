@@ -16,23 +16,26 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-//import {InvitationCodeSearch,InvitationCodeCreateForm,InvitationCodeUpdateForm} from '../../custcomponents';
-import {InvitationCodeSearch,InvitationCodeCreateForm,InvitationCodeUpdateForm} from '../../bizcomponents/index';
 
-import {HomePageSearch,HomePageCreateForm,HomePageUpdateForm} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
+/*
 
-import {EncyclopediaItemSearch,EncyclopediaItemCreateForm,EncyclopediaItemUpdateForm} from '../../custcomponents';
+const {InvitationCodeSearch,InvitationCodeCreateForm,InvitationCodeUpdateForm} = GlobalComponents;
 
-import {TaskPageSearch,TaskPageCreateForm,TaskPageUpdateForm} from '../../custcomponents';
+const {HomePageSearch,HomePageCreateForm,HomePageUpdateForm} = GlobalComponents;
 
-import {CommunityUserSearch,CommunityUserCreateForm,CommunityUserUpdateForm} from '../../custcomponents';
+const {EncyclopediaItemSearch,EncyclopediaItemCreateForm,EncyclopediaItemUpdateForm} = GlobalComponents;
 
-import {TaskSearch,TaskCreateForm,TaskUpdateForm} from '../../custcomponents';
+const {TaskPageSearch,TaskPageCreateForm,TaskPageUpdateForm} = GlobalComponents;
 
-import {GroupPageSearch,GroupPageCreateForm,GroupPageUpdateForm} from '../../custcomponents';
+const {CommunityUserSearch,CommunityUserCreateForm,CommunityUserUpdateForm} = GlobalComponents;
 
-import {ThreadSearch,ThreadCreateForm,ThreadUpdateForm} from '../../custcomponents';
+const {TaskSearch,TaskCreateForm,TaskUpdateForm} = GlobalComponents;
 
+const {GroupPageSearch,GroupPageCreateForm,GroupPageUpdateForm} = GlobalComponents;
+
+const {ThreadSearch,ThreadCreateForm,ThreadUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -133,6 +136,7 @@ class CommunityBizApp extends React.PureComponent {
 
 
   getInvitationCodeSearch = () => {
+    const {InvitationCodeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.invitationCodeList,
@@ -144,6 +148,7 @@ class CommunityBizApp extends React.PureComponent {
     }))(InvitationCodeSearch);
   }
   getInvitationCodeCreateForm = () => {
+   	const {InvitationCodeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.invitationCodeList,
@@ -156,6 +161,7 @@ class CommunityBizApp extends React.PureComponent {
   }
   
   getInvitationCodeUpdateForm = () => {
+  	const {InvitationCodeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
@@ -164,6 +170,7 @@ class CommunityBizApp extends React.PureComponent {
   }
 
   getHomePageSearch = () => {
+    const {HomePageSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.homePageList,
@@ -175,6 +182,7 @@ class CommunityBizApp extends React.PureComponent {
     }))(HomePageSearch);
   }
   getHomePageCreateForm = () => {
+   	const {HomePageCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.homePageList,
@@ -187,6 +195,7 @@ class CommunityBizApp extends React.PureComponent {
   }
   
   getHomePageUpdateForm = () => {
+  	const {HomePageUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
@@ -195,6 +204,7 @@ class CommunityBizApp extends React.PureComponent {
   }
 
   getEncyclopediaItemSearch = () => {
+    const {EncyclopediaItemSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.encyclopediaItemList,
@@ -206,6 +216,7 @@ class CommunityBizApp extends React.PureComponent {
     }))(EncyclopediaItemSearch);
   }
   getEncyclopediaItemCreateForm = () => {
+   	const {EncyclopediaItemCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.encyclopediaItemList,
@@ -218,6 +229,7 @@ class CommunityBizApp extends React.PureComponent {
   }
   
   getEncyclopediaItemUpdateForm = () => {
+  	const {EncyclopediaItemUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
@@ -226,6 +238,7 @@ class CommunityBizApp extends React.PureComponent {
   }
 
   getTaskPageSearch = () => {
+    const {TaskPageSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.taskPageList,
@@ -237,6 +250,7 @@ class CommunityBizApp extends React.PureComponent {
     }))(TaskPageSearch);
   }
   getTaskPageCreateForm = () => {
+   	const {TaskPageCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.taskPageList,
@@ -249,6 +263,7 @@ class CommunityBizApp extends React.PureComponent {
   }
   
   getTaskPageUpdateForm = () => {
+  	const {TaskPageUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
@@ -257,6 +272,7 @@ class CommunityBizApp extends React.PureComponent {
   }
 
   getCommunityUserSearch = () => {
+    const {CommunityUserSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.communityUserList,
@@ -268,6 +284,7 @@ class CommunityBizApp extends React.PureComponent {
     }))(CommunityUserSearch);
   }
   getCommunityUserCreateForm = () => {
+   	const {CommunityUserCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.communityUserList,
@@ -280,6 +297,7 @@ class CommunityBizApp extends React.PureComponent {
   }
   
   getCommunityUserUpdateForm = () => {
+  	const {CommunityUserUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
@@ -288,6 +306,7 @@ class CommunityBizApp extends React.PureComponent {
   }
 
   getTaskSearch = () => {
+    const {TaskSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.taskList,
@@ -299,6 +318,7 @@ class CommunityBizApp extends React.PureComponent {
     }))(TaskSearch);
   }
   getTaskCreateForm = () => {
+   	const {TaskCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.taskList,
@@ -311,6 +331,7 @@ class CommunityBizApp extends React.PureComponent {
   }
   
   getTaskUpdateForm = () => {
+  	const {TaskUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
@@ -319,6 +340,7 @@ class CommunityBizApp extends React.PureComponent {
   }
 
   getGroupPageSearch = () => {
+    const {GroupPageSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.groupPageList,
@@ -330,6 +352,7 @@ class CommunityBizApp extends React.PureComponent {
     }))(GroupPageSearch);
   }
   getGroupPageCreateForm = () => {
+   	const {GroupPageCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.groupPageList,
@@ -342,6 +365,7 @@ class CommunityBizApp extends React.PureComponent {
   }
   
   getGroupPageUpdateForm = () => {
+  	const {GroupPageUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
@@ -350,6 +374,7 @@ class CommunityBizApp extends React.PureComponent {
   }
 
   getThreadSearch = () => {
+    const {ThreadSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.threadList,
@@ -361,6 +386,7 @@ class CommunityBizApp extends React.PureComponent {
     }))(ThreadSearch);
   }
   getThreadCreateForm = () => {
+   	const {ThreadCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._community.threadList,
@@ -373,6 +399,7 @@ class CommunityBizApp extends React.PureComponent {
   }
   
   getThreadUpdateForm = () => {
+  	const {ThreadUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
@@ -404,9 +431,9 @@ class CommunityBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props;
      const { collapsed } = this.props;
-     // Don't show popup menu when it is been collapsed
 
-     console.log("invitation code search", InvitationCodeSearch)
+     const {CommunityEditDetail,CommunityDashboard} = GlobalComponents;
+     // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
      };

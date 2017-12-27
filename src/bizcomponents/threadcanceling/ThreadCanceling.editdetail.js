@@ -13,9 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './ThreadCanceling.editdetail.less';
-
-
-import {ThreadEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -37,6 +35,8 @@ const topColResponsiveProps = {
 }))
 export default class ThreadCancelingEditDetail extends Component {
   render() {
+    const {ThreadEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, threadCount} = this.props.threadCanceling;
     const { threadList} = this.props.threadCanceling;

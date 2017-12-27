@@ -16,10 +16,14 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {TaskFilterSearch,TaskFilterCreateForm,TaskFilterUpdateForm} from '../../custcomponents';
 
-import {TaskSearch,TaskCreateForm,TaskUpdateForm} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
+/*
 
+const {TaskFilterSearch,TaskFilterCreateForm,TaskFilterUpdateForm} = GlobalComponents;
+
+const {TaskSearch,TaskCreateForm,TaskUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -102,6 +106,7 @@ class TaskPageBizApp extends React.PureComponent {
 
 
   getTaskFilterSearch = () => {
+    const {TaskFilterSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._taskPage.taskFilterList,
@@ -113,6 +118,7 @@ class TaskPageBizApp extends React.PureComponent {
     }))(TaskFilterSearch);
   }
   getTaskFilterCreateForm = () => {
+   	const {TaskFilterCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._taskPage.taskFilterList,
@@ -125,6 +131,7 @@ class TaskPageBizApp extends React.PureComponent {
   }
   
   getTaskFilterUpdateForm = () => {
+  	const {TaskFilterUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._taskPage.selectedRows,
       currentUpdateIndex: state._taskPage.currentUpdateIndex,
@@ -133,6 +140,7 @@ class TaskPageBizApp extends React.PureComponent {
   }
 
   getTaskSearch = () => {
+    const {TaskSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._taskPage.taskList,
@@ -144,6 +152,7 @@ class TaskPageBizApp extends React.PureComponent {
     }))(TaskSearch);
   }
   getTaskCreateForm = () => {
+   	const {TaskCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._taskPage.taskList,
@@ -156,6 +165,7 @@ class TaskPageBizApp extends React.PureComponent {
   }
   
   getTaskUpdateForm = () => {
+  	const {TaskUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._taskPage.selectedRows,
       currentUpdateIndex: state._taskPage.currentUpdateIndex,

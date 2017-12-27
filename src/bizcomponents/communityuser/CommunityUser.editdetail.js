@@ -13,43 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './CommunityUser.editdetail.less';
-
-
-import {PatientInfoEditTable} from '../../custcomponents';
-
-import {UserSkillEditTable} from '../../custcomponents';
-
-import {MessageFilterEditTable} from '../../custcomponents';
-
-import {UserMessageEditTable} from '../../custcomponents';
-
-import {TaskEditTable} from '../../custcomponents';
-
-import {TaskAssigmentEditTable} from '../../custcomponents';
-
-import {TaskLikeEditTable} from '../../custcomponents';
-
-import {TaskReplyEditTable} from '../../custcomponents';
-
-import {TaskReplyLikeEditTable} from '../../custcomponents';
-
-import {ThreadEditTable} from '../../custcomponents';
-
-import {ThreadReplyEditTable} from '../../custcomponents';
-
-import {ThreadRegistrationEditTable} from '../../custcomponents';
-
-import {ThreadLikeEditTable} from '../../custcomponents';
-
-import {ThreadReplyLikeEditTable} from '../../custcomponents';
-
-import {FanEditTable} from '../../custcomponents';
-
-import {FollowEditTable} from '../../custcomponents';
-
-import {BonusPointEditTable} from '../../custcomponents';
-
-import {ExperiencePointEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -71,6 +35,25 @@ const topColResponsiveProps = {
 }))
 export default class CommunityUserEditDetail extends Component {
   render() {
+    const {PatientInfoEditTable} = GlobalComponents;
+    const {UserSkillEditTable} = GlobalComponents;
+    const {MessageFilterEditTable} = GlobalComponents;
+    const {UserMessageEditTable} = GlobalComponents;
+    const {TaskEditTable} = GlobalComponents;
+    const {TaskAssigmentEditTable} = GlobalComponents;
+    const {TaskLikeEditTable} = GlobalComponents;
+    const {TaskReplyEditTable} = GlobalComponents;
+    const {TaskReplyLikeEditTable} = GlobalComponents;
+    const {ThreadEditTable} = GlobalComponents;
+    const {ThreadReplyEditTable} = GlobalComponents;
+    const {ThreadRegistrationEditTable} = GlobalComponents;
+    const {ThreadLikeEditTable} = GlobalComponents;
+    const {ThreadReplyLikeEditTable} = GlobalComponents;
+    const {FanEditTable} = GlobalComponents;
+    const {FollowEditTable} = GlobalComponents;
+    const {BonusPointEditTable} = GlobalComponents;
+    const {ExperiencePointEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, patientInfoCount, userSkillCount, messageFilterCount, userMessageCount, taskCount, taskAssigmentCount, taskLikeCount, taskReplyCount, taskReplyLikeCount, threadCount, threadReplyCount, threadRegistrationCount, threadLikeCount, threadReplyLikeCount, fanCount, followCount, bonusPointCount, experiencePointCount} = this.props.communityUser;
     const { patientInfoList, userSkillList, messageFilterList, userMessageList, taskList, taskAssigmentList, taskLikeList, taskReplyList, taskReplyLikeList, threadList, threadReplyList, threadRegistrationList, threadLikeList, threadReplyLikeList, fanList, followList, bonusPointList, experiencePointList} = this.props.communityUser;

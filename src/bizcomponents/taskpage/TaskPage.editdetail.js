@@ -13,11 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './TaskPage.editdetail.less';
-
-
-import {TaskFilterEditTable} from '../../custcomponents';
-
-import {TaskEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -39,6 +35,9 @@ const topColResponsiveProps = {
 }))
 export default class TaskPageEditDetail extends Component {
   render() {
+    const {TaskFilterEditTable} = GlobalComponents;
+    const {TaskEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, taskFilterCount, taskCount} = this.props.taskPage;
     const { taskFilterList, taskList} = this.props.taskPage;

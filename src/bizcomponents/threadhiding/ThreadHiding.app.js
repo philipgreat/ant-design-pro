@@ -16,8 +16,12 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {ThreadSearch,ThreadCreateForm,ThreadUpdateForm} from '../../custcomponents';
 
+import GlobalComponents from '../../custcomponents';
+/*
+
+const {ThreadSearch,ThreadCreateForm,ThreadUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -97,6 +101,7 @@ class ThreadHidingBizApp extends React.PureComponent {
 
 
   getThreadSearch = () => {
+    const {ThreadSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._threadHiding.threadList,
@@ -108,6 +113,7 @@ class ThreadHidingBizApp extends React.PureComponent {
     }))(ThreadSearch);
   }
   getThreadCreateForm = () => {
+   	const {ThreadCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._threadHiding.threadList,
@@ -120,6 +126,7 @@ class ThreadHidingBizApp extends React.PureComponent {
   }
   
   getThreadUpdateForm = () => {
+  	const {ThreadUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._threadHiding.selectedRows,
       currentUpdateIndex: state._threadHiding.currentUpdateIndex,

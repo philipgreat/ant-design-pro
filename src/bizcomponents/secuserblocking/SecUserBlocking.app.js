@@ -16,8 +16,12 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {SecUserSearch,SecUserCreateForm,SecUserUpdateForm} from '../../custcomponents';
 
+import GlobalComponents from '../../custcomponents';
+/*
+
+const {SecUserSearch,SecUserCreateForm,SecUserUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -97,6 +101,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
 
 
   getSecUserSearch = () => {
+    const {SecUserSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._secUserBlocking.secUserList,
@@ -108,6 +113,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
     }))(SecUserSearch);
   }
   getSecUserCreateForm = () => {
+   	const {SecUserCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._secUserBlocking.secUserList,
@@ -120,6 +126,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
   }
   
   getSecUserUpdateForm = () => {
+  	const {SecUserUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._secUserBlocking.selectedRows,
       currentUpdateIndex: state._secUserBlocking.currentUpdateIndex,

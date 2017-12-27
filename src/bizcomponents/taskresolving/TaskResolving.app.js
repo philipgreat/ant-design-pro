@@ -16,8 +16,12 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {TaskSearch,TaskCreateForm,TaskUpdateForm} from '../../custcomponents';
 
+import GlobalComponents from '../../custcomponents';
+/*
+
+const {TaskSearch,TaskCreateForm,TaskUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -97,6 +101,7 @@ class TaskResolvingBizApp extends React.PureComponent {
 
 
   getTaskSearch = () => {
+    const {TaskSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._taskResolving.taskList,
@@ -108,6 +113,7 @@ class TaskResolvingBizApp extends React.PureComponent {
     }))(TaskSearch);
   }
   getTaskCreateForm = () => {
+   	const {TaskCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._taskResolving.taskList,
@@ -120,6 +126,7 @@ class TaskResolvingBizApp extends React.PureComponent {
   }
   
   getTaskUpdateForm = () => {
+  	const {TaskUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._taskResolving.selectedRows,
       currentUpdateIndex: state._taskResolving.currentUpdateIndex,

@@ -2,10 +2,11 @@
 //import TaskUpdateFormDefault from './task/Task.updateform'
 import OOTBComponents from '../bizcomponents'
 import CustomComponents from './customindex'
- 
 
-const result = {...OOTBComponents,...CustomComponents};
 
-//console.log("the cust result", result);
-export default OOTBComponents;
+console.log("the ootb result", OOTBComponents);
+const GlobalComponents = {...OOTBComponents,...CustomComponents};
+
+console.log("the cust result", GlobalComponents);
+export default GlobalComponents;
 

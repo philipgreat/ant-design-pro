@@ -13,17 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './HomePage.editdetail.less';
-
-
-import {SlideEditTable} from '../../custcomponents';
-
-import {EncyclopediaItemEditTable} from '../../custcomponents';
-
-import {TaskFilterEditTable} from '../../custcomponents';
-
-import {TaskEditTable} from '../../custcomponents';
-
-import {ThreadEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -45,6 +35,12 @@ const topColResponsiveProps = {
 }))
 export default class HomePageEditDetail extends Component {
   render() {
+    const {SlideEditTable} = GlobalComponents;
+    const {EncyclopediaItemEditTable} = GlobalComponents;
+    const {TaskFilterEditTable} = GlobalComponents;
+    const {TaskEditTable} = GlobalComponents;
+    const {ThreadEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, slideCount, encyclopediaItemCount, taskFilterCount, taskCount, threadCount} = this.props.homePage;
     const { slideList, encyclopediaItemList, taskFilterList, taskList, threadList} = this.props.homePage;

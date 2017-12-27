@@ -13,9 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './TaskReward.editdetail.less';
-
-
-import {TaskEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -37,6 +35,8 @@ const topColResponsiveProps = {
 }))
 export default class TaskRewardEditDetail extends Component {
   render() {
+    const {TaskEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, taskCount} = this.props.taskReward;
     const { taskList} = this.props.taskReward;

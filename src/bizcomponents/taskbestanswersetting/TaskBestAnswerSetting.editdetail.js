@@ -13,9 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './TaskBestAnswerSetting.editdetail.less';
-
-
-import {TaskReplyEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -37,6 +35,8 @@ const topColResponsiveProps = {
 }))
 export default class TaskBestAnswerSettingEditDetail extends Component {
   render() {
+    const {TaskReplyEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, taskReplyCount} = this.props.taskBestAnswerSetting;
     const { taskReplyList} = this.props.taskBestAnswerSetting;

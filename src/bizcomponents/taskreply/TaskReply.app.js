@@ -16,8 +16,12 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {TaskReplyLikeSearch,TaskReplyLikeCreateForm,TaskReplyLikeUpdateForm} from '../../custcomponents';
 
+import GlobalComponents from '../../custcomponents';
+/*
+
+const {TaskReplyLikeSearch,TaskReplyLikeCreateForm,TaskReplyLikeUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -97,6 +101,7 @@ class TaskReplyBizApp extends React.PureComponent {
 
 
   getTaskReplyLikeSearch = () => {
+    const {TaskReplyLikeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._taskReply.taskReplyLikeList,
@@ -108,6 +113,7 @@ class TaskReplyBizApp extends React.PureComponent {
     }))(TaskReplyLikeSearch);
   }
   getTaskReplyLikeCreateForm = () => {
+   	const {TaskReplyLikeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._taskReply.taskReplyLikeList,
@@ -120,6 +126,7 @@ class TaskReplyBizApp extends React.PureComponent {
   }
   
   getTaskReplyLikeUpdateForm = () => {
+  	const {TaskReplyLikeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._taskReply.selectedRows,
       currentUpdateIndex: state._taskReply.currentUpdateIndex,

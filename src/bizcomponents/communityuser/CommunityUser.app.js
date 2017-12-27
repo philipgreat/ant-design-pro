@@ -16,42 +16,46 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {PatientInfoSearch,PatientInfoCreateForm,PatientInfoUpdateForm} from '../../custcomponents';
 
-import {UserSkillSearch,UserSkillCreateForm,UserSkillUpdateForm} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
+/*
 
-import {MessageFilterSearch,MessageFilterCreateForm,MessageFilterUpdateForm} from '../../custcomponents';
+const {PatientInfoSearch,PatientInfoCreateForm,PatientInfoUpdateForm} = GlobalComponents;
 
-import {UserMessageSearch,UserMessageCreateForm,UserMessageUpdateForm} from '../../custcomponents';
+const {UserSkillSearch,UserSkillCreateForm,UserSkillUpdateForm} = GlobalComponents;
 
-import {TaskSearch,TaskCreateForm,TaskUpdateForm} from '../../custcomponents';
+const {MessageFilterSearch,MessageFilterCreateForm,MessageFilterUpdateForm} = GlobalComponents;
 
-import {TaskAssigmentSearch,TaskAssigmentCreateForm,TaskAssigmentUpdateForm} from '../../custcomponents';
+const {UserMessageSearch,UserMessageCreateForm,UserMessageUpdateForm} = GlobalComponents;
 
-import {TaskLikeSearch,TaskLikeCreateForm,TaskLikeUpdateForm} from '../../custcomponents';
+const {TaskSearch,TaskCreateForm,TaskUpdateForm} = GlobalComponents;
 
-import {TaskReplySearch,TaskReplyCreateForm,TaskReplyUpdateForm} from '../../custcomponents';
+const {TaskAssigmentSearch,TaskAssigmentCreateForm,TaskAssigmentUpdateForm} = GlobalComponents;
 
-import {TaskReplyLikeSearch,TaskReplyLikeCreateForm,TaskReplyLikeUpdateForm} from '../../custcomponents';
+const {TaskLikeSearch,TaskLikeCreateForm,TaskLikeUpdateForm} = GlobalComponents;
 
-import {ThreadSearch,ThreadCreateForm,ThreadUpdateForm} from '../../custcomponents';
+const {TaskReplySearch,TaskReplyCreateForm,TaskReplyUpdateForm} = GlobalComponents;
 
-import {ThreadReplySearch,ThreadReplyCreateForm,ThreadReplyUpdateForm} from '../../custcomponents';
+const {TaskReplyLikeSearch,TaskReplyLikeCreateForm,TaskReplyLikeUpdateForm} = GlobalComponents;
 
-import {ThreadRegistrationSearch,ThreadRegistrationCreateForm,ThreadRegistrationUpdateForm} from '../../custcomponents';
+const {ThreadSearch,ThreadCreateForm,ThreadUpdateForm} = GlobalComponents;
 
-import {ThreadLikeSearch,ThreadLikeCreateForm,ThreadLikeUpdateForm} from '../../custcomponents';
+const {ThreadReplySearch,ThreadReplyCreateForm,ThreadReplyUpdateForm} = GlobalComponents;
 
-import {ThreadReplyLikeSearch,ThreadReplyLikeCreateForm,ThreadReplyLikeUpdateForm} from '../../custcomponents';
+const {ThreadRegistrationSearch,ThreadRegistrationCreateForm,ThreadRegistrationUpdateForm} = GlobalComponents;
 
-import {FanSearch,FanCreateForm,FanUpdateForm} from '../../custcomponents';
+const {ThreadLikeSearch,ThreadLikeCreateForm,ThreadLikeUpdateForm} = GlobalComponents;
 
-import {FollowSearch,FollowCreateForm,FollowUpdateForm} from '../../custcomponents';
+const {ThreadReplyLikeSearch,ThreadReplyLikeCreateForm,ThreadReplyLikeUpdateForm} = GlobalComponents;
 
-import {BonusPointSearch,BonusPointCreateForm,BonusPointUpdateForm} from '../../custcomponents';
+const {FanSearch,FanCreateForm,FanUpdateForm} = GlobalComponents;
 
-import {ExperiencePointSearch,ExperiencePointCreateForm,ExperiencePointUpdateForm} from '../../custcomponents';
+const {FollowSearch,FollowCreateForm,FollowUpdateForm} = GlobalComponents;
 
+const {BonusPointSearch,BonusPointCreateForm,BonusPointUpdateForm} = GlobalComponents;
+
+const {ExperiencePointSearch,ExperiencePointCreateForm,ExperiencePointUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -182,6 +186,7 @@ class CommunityUserBizApp extends React.PureComponent {
 
 
   getPatientInfoSearch = () => {
+    const {PatientInfoSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.patientInfoList,
@@ -193,6 +198,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(PatientInfoSearch);
   }
   getPatientInfoCreateForm = () => {
+   	const {PatientInfoCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.patientInfoList,
@@ -205,6 +211,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getPatientInfoUpdateForm = () => {
+  	const {PatientInfoUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -213,6 +220,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getUserSkillSearch = () => {
+    const {UserSkillSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.userSkillList,
@@ -224,6 +232,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(UserSkillSearch);
   }
   getUserSkillCreateForm = () => {
+   	const {UserSkillCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.userSkillList,
@@ -236,6 +245,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getUserSkillUpdateForm = () => {
+  	const {UserSkillUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -244,6 +254,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getMessageFilterSearch = () => {
+    const {MessageFilterSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.messageFilterList,
@@ -255,6 +266,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(MessageFilterSearch);
   }
   getMessageFilterCreateForm = () => {
+   	const {MessageFilterCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.messageFilterList,
@@ -267,6 +279,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getMessageFilterUpdateForm = () => {
+  	const {MessageFilterUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -275,6 +288,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getUserMessageSearch = () => {
+    const {UserMessageSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.userMessageList,
@@ -286,6 +300,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(UserMessageSearch);
   }
   getUserMessageCreateForm = () => {
+   	const {UserMessageCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.userMessageList,
@@ -298,6 +313,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getUserMessageUpdateForm = () => {
+  	const {UserMessageUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -306,6 +322,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getTaskSearch = () => {
+    const {TaskSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskList,
@@ -317,6 +334,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(TaskSearch);
   }
   getTaskCreateForm = () => {
+   	const {TaskCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskList,
@@ -329,6 +347,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getTaskUpdateForm = () => {
+  	const {TaskUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -337,6 +356,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getTaskAssigmentSearch = () => {
+    const {TaskAssigmentSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskAssigmentList,
@@ -348,6 +368,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(TaskAssigmentSearch);
   }
   getTaskAssigmentCreateForm = () => {
+   	const {TaskAssigmentCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskAssigmentList,
@@ -360,6 +381,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getTaskAssigmentUpdateForm = () => {
+  	const {TaskAssigmentUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -368,6 +390,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getTaskLikeSearch = () => {
+    const {TaskLikeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskLikeList,
@@ -379,6 +402,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(TaskLikeSearch);
   }
   getTaskLikeCreateForm = () => {
+   	const {TaskLikeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskLikeList,
@@ -391,6 +415,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getTaskLikeUpdateForm = () => {
+  	const {TaskLikeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -399,6 +424,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getTaskReplySearch = () => {
+    const {TaskReplySearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskReplyList,
@@ -410,6 +436,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(TaskReplySearch);
   }
   getTaskReplyCreateForm = () => {
+   	const {TaskReplyCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskReplyList,
@@ -422,6 +449,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getTaskReplyUpdateForm = () => {
+  	const {TaskReplyUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -430,6 +458,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getTaskReplyLikeSearch = () => {
+    const {TaskReplyLikeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskReplyLikeList,
@@ -441,6 +470,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(TaskReplyLikeSearch);
   }
   getTaskReplyLikeCreateForm = () => {
+   	const {TaskReplyLikeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskReplyLikeList,
@@ -453,6 +483,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getTaskReplyLikeUpdateForm = () => {
+  	const {TaskReplyLikeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -461,6 +492,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getThreadSearch = () => {
+    const {ThreadSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadList,
@@ -472,6 +504,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(ThreadSearch);
   }
   getThreadCreateForm = () => {
+   	const {ThreadCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadList,
@@ -484,6 +517,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getThreadUpdateForm = () => {
+  	const {ThreadUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -492,6 +526,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getThreadReplySearch = () => {
+    const {ThreadReplySearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadReplyList,
@@ -503,6 +538,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(ThreadReplySearch);
   }
   getThreadReplyCreateForm = () => {
+   	const {ThreadReplyCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadReplyList,
@@ -515,6 +551,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getThreadReplyUpdateForm = () => {
+  	const {ThreadReplyUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -523,6 +560,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getThreadRegistrationSearch = () => {
+    const {ThreadRegistrationSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadRegistrationList,
@@ -534,6 +572,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(ThreadRegistrationSearch);
   }
   getThreadRegistrationCreateForm = () => {
+   	const {ThreadRegistrationCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadRegistrationList,
@@ -546,6 +585,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getThreadRegistrationUpdateForm = () => {
+  	const {ThreadRegistrationUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -554,6 +594,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getThreadLikeSearch = () => {
+    const {ThreadLikeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadLikeList,
@@ -565,6 +606,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(ThreadLikeSearch);
   }
   getThreadLikeCreateForm = () => {
+   	const {ThreadLikeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadLikeList,
@@ -577,6 +619,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getThreadLikeUpdateForm = () => {
+  	const {ThreadLikeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -585,6 +628,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getThreadReplyLikeSearch = () => {
+    const {ThreadReplyLikeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadReplyLikeList,
@@ -596,6 +640,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(ThreadReplyLikeSearch);
   }
   getThreadReplyLikeCreateForm = () => {
+   	const {ThreadReplyLikeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadReplyLikeList,
@@ -608,6 +653,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getThreadReplyLikeUpdateForm = () => {
+  	const {ThreadReplyLikeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -616,6 +662,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getFanSearch = () => {
+    const {FanSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.fanList,
@@ -627,6 +674,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(FanSearch);
   }
   getFanCreateForm = () => {
+   	const {FanCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.fanList,
@@ -639,6 +687,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getFanUpdateForm = () => {
+  	const {FanUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -647,6 +696,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getFollowSearch = () => {
+    const {FollowSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.followList,
@@ -658,6 +708,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(FollowSearch);
   }
   getFollowCreateForm = () => {
+   	const {FollowCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.followList,
@@ -670,6 +721,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getFollowUpdateForm = () => {
+  	const {FollowUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -678,6 +730,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getBonusPointSearch = () => {
+    const {BonusPointSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.bonusPointList,
@@ -689,6 +742,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(BonusPointSearch);
   }
   getBonusPointCreateForm = () => {
+   	const {BonusPointCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.bonusPointList,
@@ -701,6 +755,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getBonusPointUpdateForm = () => {
+  	const {BonusPointUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
@@ -709,6 +764,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
 
   getExperiencePointSearch = () => {
+    const {ExperiencePointSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.experiencePointList,
@@ -720,6 +776,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }))(ExperiencePointSearch);
   }
   getExperiencePointCreateForm = () => {
+   	const {ExperiencePointCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.experiencePointList,
@@ -732,6 +789,7 @@ class CommunityUserBizApp extends React.PureComponent {
   }
   
   getExperiencePointUpdateForm = () => {
+  	const {ExperiencePointUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,

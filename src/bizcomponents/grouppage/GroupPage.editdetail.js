@@ -13,11 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './GroupPage.editdetail.less';
-
-
-import {GroupFilterEditTable} from '../../custcomponents';
-
-import {ThreadEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -39,6 +35,9 @@ const topColResponsiveProps = {
 }))
 export default class GroupPageEditDetail extends Component {
   render() {
+    const {GroupFilterEditTable} = GlobalComponents;
+    const {ThreadEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, groupFilterCount, threadCount} = this.props.groupPage;
     const { groupFilterList, threadList} = this.props.groupPage;

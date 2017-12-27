@@ -16,8 +16,12 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {ObjectAccessSearch,ObjectAccessCreateForm,ObjectAccessUpdateForm} from '../../custcomponents';
 
+import GlobalComponents from '../../custcomponents';
+/*
+
+const {ObjectAccessSearch,ObjectAccessCreateForm,ObjectAccessUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -97,6 +101,7 @@ class UserAppBizApp extends React.PureComponent {
 
 
   getObjectAccessSearch = () => {
+    const {ObjectAccessSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._userApp.objectAccessList,
@@ -108,6 +113,7 @@ class UserAppBizApp extends React.PureComponent {
     }))(ObjectAccessSearch);
   }
   getObjectAccessCreateForm = () => {
+   	const {ObjectAccessCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._userApp.objectAccessList,
@@ -120,6 +126,7 @@ class UserAppBizApp extends React.PureComponent {
   }
   
   getObjectAccessUpdateForm = () => {
+  	const {ObjectAccessUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._userApp.selectedRows,
       currentUpdateIndex: state._userApp.currentUpdateIndex,

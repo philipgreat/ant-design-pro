@@ -1025,8 +1025,7 @@ const OOTBComponents={
     LoginHistoryUpdateForm,
 
 };
+       
 
-
-console.log("code search: ", InvitationCodeSearch);
-
+console.log("OOTB", OOTBComponents)
 export default OOTBComponents;

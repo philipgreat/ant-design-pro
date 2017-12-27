@@ -13,11 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './SecUser.editdetail.less';
-
-
-import {UserAppEditTable} from '../../custcomponents';
-
-import {LoginHistoryEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -39,6 +35,9 @@ const topColResponsiveProps = {
 }))
 export default class SecUserEditDetail extends Component {
   render() {
+    const {UserAppEditTable} = GlobalComponents;
+    const {LoginHistoryEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, userAppCount, loginHistoryCount} = this.props.secUser;
     const { userAppList, loginHistoryList} = this.props.secUser;

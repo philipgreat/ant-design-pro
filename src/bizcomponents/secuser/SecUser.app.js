@@ -16,10 +16,14 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {UserAppSearch,UserAppCreateForm,UserAppUpdateForm} from '../../custcomponents';
 
-import {LoginHistorySearch,LoginHistoryCreateForm,LoginHistoryUpdateForm} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
+/*
 
+const {UserAppSearch,UserAppCreateForm,UserAppUpdateForm} = GlobalComponents;
+
+const {LoginHistorySearch,LoginHistoryCreateForm,LoginHistoryUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -102,6 +106,7 @@ class SecUserBizApp extends React.PureComponent {
 
 
   getUserAppSearch = () => {
+    const {UserAppSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._secUser.userAppList,
@@ -113,6 +118,7 @@ class SecUserBizApp extends React.PureComponent {
     }))(UserAppSearch);
   }
   getUserAppCreateForm = () => {
+   	const {UserAppCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._secUser.userAppList,
@@ -125,6 +131,7 @@ class SecUserBizApp extends React.PureComponent {
   }
   
   getUserAppUpdateForm = () => {
+  	const {UserAppUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._secUser.selectedRows,
       currentUpdateIndex: state._secUser.currentUpdateIndex,
@@ -133,6 +140,7 @@ class SecUserBizApp extends React.PureComponent {
   }
 
   getLoginHistorySearch = () => {
+    const {LoginHistorySearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._secUser.loginHistoryList,
@@ -144,6 +152,7 @@ class SecUserBizApp extends React.PureComponent {
     }))(LoginHistorySearch);
   }
   getLoginHistoryCreateForm = () => {
+   	const {LoginHistoryCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._secUser.loginHistoryList,
@@ -156,6 +165,7 @@ class SecUserBizApp extends React.PureComponent {
   }
   
   getLoginHistoryUpdateForm = () => {
+  	const {LoginHistoryUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._secUser.selectedRows,
       currentUpdateIndex: state._secUser.currentUpdateIndex,

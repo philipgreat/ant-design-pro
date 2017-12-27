@@ -13,13 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './Thread.editdetail.less';
-
-
-import {ThreadReplyEditTable} from '../../custcomponents';
-
-import {ThreadRegistrationEditTable} from '../../custcomponents';
-
-import {ThreadLikeEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -41,6 +35,10 @@ const topColResponsiveProps = {
 }))
 export default class ThreadEditDetail extends Component {
   render() {
+    const {ThreadReplyEditTable} = GlobalComponents;
+    const {ThreadRegistrationEditTable} = GlobalComponents;
+    const {ThreadLikeEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, threadReplyCount, threadRegistrationCount, threadLikeCount} = this.props.thread;
     const { threadReplyList, threadRegistrationList, threadLikeList} = this.props.thread;

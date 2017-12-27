@@ -16,12 +16,16 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {TaskAssigmentSearch,TaskAssigmentCreateForm,TaskAssigmentUpdateForm} from '../../custcomponents';
 
-import {TaskLikeSearch,TaskLikeCreateForm,TaskLikeUpdateForm} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
+/*
 
-import {TaskReplySearch,TaskReplyCreateForm,TaskReplyUpdateForm} from '../../custcomponents';
+const {TaskAssigmentSearch,TaskAssigmentCreateForm,TaskAssigmentUpdateForm} = GlobalComponents;
 
+const {TaskLikeSearch,TaskLikeCreateForm,TaskLikeUpdateForm} = GlobalComponents;
+
+const {TaskReplySearch,TaskReplyCreateForm,TaskReplyUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -107,6 +111,7 @@ class TaskBizApp extends React.PureComponent {
 
 
   getTaskAssigmentSearch = () => {
+    const {TaskAssigmentSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._task.taskAssigmentList,
@@ -118,6 +123,7 @@ class TaskBizApp extends React.PureComponent {
     }))(TaskAssigmentSearch);
   }
   getTaskAssigmentCreateForm = () => {
+   	const {TaskAssigmentCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._task.taskAssigmentList,
@@ -130,6 +136,7 @@ class TaskBizApp extends React.PureComponent {
   }
   
   getTaskAssigmentUpdateForm = () => {
+  	const {TaskAssigmentUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._task.selectedRows,
       currentUpdateIndex: state._task.currentUpdateIndex,
@@ -138,6 +145,7 @@ class TaskBizApp extends React.PureComponent {
   }
 
   getTaskLikeSearch = () => {
+    const {TaskLikeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._task.taskLikeList,
@@ -149,6 +157,7 @@ class TaskBizApp extends React.PureComponent {
     }))(TaskLikeSearch);
   }
   getTaskLikeCreateForm = () => {
+   	const {TaskLikeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._task.taskLikeList,
@@ -161,6 +170,7 @@ class TaskBizApp extends React.PureComponent {
   }
   
   getTaskLikeUpdateForm = () => {
+  	const {TaskLikeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._task.selectedRows,
       currentUpdateIndex: state._task.currentUpdateIndex,
@@ -169,6 +179,7 @@ class TaskBizApp extends React.PureComponent {
   }
 
   getTaskReplySearch = () => {
+    const {TaskReplySearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._task.taskReplyList,
@@ -180,6 +191,7 @@ class TaskBizApp extends React.PureComponent {
     }))(TaskReplySearch);
   }
   getTaskReplyCreateForm = () => {
+   	const {TaskReplyCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._task.taskReplyList,
@@ -192,6 +204,7 @@ class TaskBizApp extends React.PureComponent {
   }
   
   getTaskReplyUpdateForm = () => {
+  	const {TaskReplyUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._task.selectedRows,
       currentUpdateIndex: state._task.currentUpdateIndex,

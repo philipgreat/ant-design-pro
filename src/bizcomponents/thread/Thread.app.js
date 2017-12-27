@@ -16,12 +16,16 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {ThreadReplySearch,ThreadReplyCreateForm,ThreadReplyUpdateForm} from '../../custcomponents';
 
-import {ThreadRegistrationSearch,ThreadRegistrationCreateForm,ThreadRegistrationUpdateForm} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
+/*
 
-import {ThreadLikeSearch,ThreadLikeCreateForm,ThreadLikeUpdateForm} from '../../custcomponents';
+const {ThreadReplySearch,ThreadReplyCreateForm,ThreadReplyUpdateForm} = GlobalComponents;
 
+const {ThreadRegistrationSearch,ThreadRegistrationCreateForm,ThreadRegistrationUpdateForm} = GlobalComponents;
+
+const {ThreadLikeSearch,ThreadLikeCreateForm,ThreadLikeUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -107,6 +111,7 @@ class ThreadBizApp extends React.PureComponent {
 
 
   getThreadReplySearch = () => {
+    const {ThreadReplySearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._thread.threadReplyList,
@@ -118,6 +123,7 @@ class ThreadBizApp extends React.PureComponent {
     }))(ThreadReplySearch);
   }
   getThreadReplyCreateForm = () => {
+   	const {ThreadReplyCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._thread.threadReplyList,
@@ -130,6 +136,7 @@ class ThreadBizApp extends React.PureComponent {
   }
   
   getThreadReplyUpdateForm = () => {
+  	const {ThreadReplyUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._thread.selectedRows,
       currentUpdateIndex: state._thread.currentUpdateIndex,
@@ -138,6 +145,7 @@ class ThreadBizApp extends React.PureComponent {
   }
 
   getThreadRegistrationSearch = () => {
+    const {ThreadRegistrationSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._thread.threadRegistrationList,
@@ -149,6 +157,7 @@ class ThreadBizApp extends React.PureComponent {
     }))(ThreadRegistrationSearch);
   }
   getThreadRegistrationCreateForm = () => {
+   	const {ThreadRegistrationCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._thread.threadRegistrationList,
@@ -161,6 +170,7 @@ class ThreadBizApp extends React.PureComponent {
   }
   
   getThreadRegistrationUpdateForm = () => {
+  	const {ThreadRegistrationUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._thread.selectedRows,
       currentUpdateIndex: state._thread.currentUpdateIndex,
@@ -169,6 +179,7 @@ class ThreadBizApp extends React.PureComponent {
   }
 
   getThreadLikeSearch = () => {
+    const {ThreadLikeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._thread.threadLikeList,
@@ -180,6 +191,7 @@ class ThreadBizApp extends React.PureComponent {
     }))(ThreadLikeSearch);
   }
   getThreadLikeCreateForm = () => {
+   	const {ThreadLikeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._thread.threadLikeList,
@@ -192,6 +204,7 @@ class ThreadBizApp extends React.PureComponent {
   }
   
   getThreadLikeUpdateForm = () => {
+  	const {ThreadLikeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._thread.selectedRows,
       currentUpdateIndex: state._thread.currentUpdateIndex,

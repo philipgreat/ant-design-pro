@@ -13,9 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './TaskReply.editdetail.less';
-
-
-import {TaskReplyLikeEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -37,6 +35,8 @@ const topColResponsiveProps = {
 }))
 export default class TaskReplyEditDetail extends Component {
   render() {
+    const {TaskReplyLikeEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, taskReplyLikeCount} = this.props.taskReply;
     const { taskReplyLikeList} = this.props.taskReply;

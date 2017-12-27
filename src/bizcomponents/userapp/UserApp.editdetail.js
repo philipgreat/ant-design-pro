@@ -13,9 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './UserApp.editdetail.less';
-
-
-import {ObjectAccessEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -37,6 +35,8 @@ const topColResponsiveProps = {
 }))
 export default class UserAppEditDetail extends Component {
   render() {
+    const {ObjectAccessEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, objectAccessCount} = this.props.userApp;
     const { objectAccessList} = this.props.userApp;

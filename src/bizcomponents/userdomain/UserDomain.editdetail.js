@@ -13,9 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './UserDomain.editdetail.less';
-
-
-import {SecUserEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -37,6 +35,8 @@ const topColResponsiveProps = {
 }))
 export default class UserDomainEditDetail extends Component {
   render() {
+    const {SecUserEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, secUserCount} = this.props.userDomain;
     const { secUserList} = this.props.userDomain;

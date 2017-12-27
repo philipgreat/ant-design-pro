@@ -16,10 +16,14 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {GroupFilterSearch,GroupFilterCreateForm,GroupFilterUpdateForm} from '../../custcomponents';
 
-import {ThreadSearch,ThreadCreateForm,ThreadUpdateForm} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
+/*
 
+const {GroupFilterSearch,GroupFilterCreateForm,GroupFilterUpdateForm} = GlobalComponents;
+
+const {ThreadSearch,ThreadCreateForm,ThreadUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -102,6 +106,7 @@ class GroupPageBizApp extends React.PureComponent {
 
 
   getGroupFilterSearch = () => {
+    const {GroupFilterSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._groupPage.groupFilterList,
@@ -113,6 +118,7 @@ class GroupPageBizApp extends React.PureComponent {
     }))(GroupFilterSearch);
   }
   getGroupFilterCreateForm = () => {
+   	const {GroupFilterCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._groupPage.groupFilterList,
@@ -125,6 +131,7 @@ class GroupPageBizApp extends React.PureComponent {
   }
   
   getGroupFilterUpdateForm = () => {
+  	const {GroupFilterUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._groupPage.selectedRows,
       currentUpdateIndex: state._groupPage.currentUpdateIndex,
@@ -133,6 +140,7 @@ class GroupPageBizApp extends React.PureComponent {
   }
 
   getThreadSearch = () => {
+    const {ThreadSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._groupPage.threadList,
@@ -144,6 +152,7 @@ class GroupPageBizApp extends React.PureComponent {
     }))(ThreadSearch);
   }
   getThreadCreateForm = () => {
+   	const {ThreadCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._groupPage.threadList,
@@ -156,6 +165,7 @@ class GroupPageBizApp extends React.PureComponent {
   }
   
   getThreadUpdateForm = () => {
+  	const {ThreadUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._groupPage.selectedRows,
       currentUpdateIndex: state._groupPage.currentUpdateIndex,

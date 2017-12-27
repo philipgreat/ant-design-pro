@@ -13,23 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './Community.editdetail.less';
-
-
-import {InvitationCodeEditTable} from '../../custcomponents';
-
-import {HomePageEditTable} from '../../custcomponents';
-
-import {EncyclopediaItemEditTable} from '../../custcomponents';
-
-import {TaskPageEditTable} from '../../custcomponents';
-
-import {CommunityUserEditTable} from '../../custcomponents';
-
-import {TaskEditTable} from '../../custcomponents';
-
-import {GroupPageEditTable} from '../../custcomponents';
-
-import {ThreadEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -51,6 +35,15 @@ const topColResponsiveProps = {
 }))
 export default class CommunityEditDetail extends Component {
   render() {
+    const {InvitationCodeEditTable} = GlobalComponents;
+    const {HomePageEditTable} = GlobalComponents;
+    const {EncyclopediaItemEditTable} = GlobalComponents;
+    const {TaskPageEditTable} = GlobalComponents;
+    const {CommunityUserEditTable} = GlobalComponents;
+    const {TaskEditTable} = GlobalComponents;
+    const {GroupPageEditTable} = GlobalComponents;
+    const {ThreadEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, invitationCodeCount, homePageCount, encyclopediaItemCount, taskPageCount, communityUserCount, taskCount, groupPageCount, threadCount} = this.props.community;
     const { invitationCodeList, homePageList, encyclopediaItemList, taskPageList, communityUserList, taskList, groupPageList, threadList} = this.props.community;

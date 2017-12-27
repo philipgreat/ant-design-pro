@@ -16,6 +16,10 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
+
+import GlobalComponents from '../../custcomponents';
+/*
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 

@@ -13,9 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './ThreadReply.editdetail.less';
-
-
-import {ThreadReplyLikeEditTable} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -37,6 +35,8 @@ const topColResponsiveProps = {
 }))
 export default class ThreadReplyEditDetail extends Component {
   render() {
+    const {ThreadReplyLikeEditTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
     const { id, threadReplyLikeCount} = this.props.threadReply;
     const { threadReplyLikeList} = this.props.threadReply;

@@ -13,7 +13,7 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './InvitationCode.editdetail.less';
-
+import GlobalComponents from '../../custcomponents';
 
 
 
@@ -35,6 +35,7 @@ const topColResponsiveProps = {
 }))
 export default class InvitationCodeEditDetail extends Component {
   render() {
+  
     // eslint-disable-next-line max-len
     const { id, } = this.props.invitationCode;
     const { } = this.props.invitationCode;

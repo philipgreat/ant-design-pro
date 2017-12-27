@@ -16,16 +16,20 @@ import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
 import GlobalFooter from '../../components/GlobalFooter';
 
-import {SlideSearch,SlideCreateForm,SlideUpdateForm} from '../../custcomponents';
 
-import {EncyclopediaItemSearch,EncyclopediaItemCreateForm,EncyclopediaItemUpdateForm} from '../../custcomponents';
+import GlobalComponents from '../../custcomponents';
+/*
 
-import {TaskFilterSearch,TaskFilterCreateForm,TaskFilterUpdateForm} from '../../custcomponents';
+const {SlideSearch,SlideCreateForm,SlideUpdateForm} = GlobalComponents;
 
-import {TaskSearch,TaskCreateForm,TaskUpdateForm} from '../../custcomponents';
+const {EncyclopediaItemSearch,EncyclopediaItemCreateForm,EncyclopediaItemUpdateForm} = GlobalComponents;
 
-import {ThreadSearch,ThreadCreateForm,ThreadUpdateForm} from '../../custcomponents';
+const {TaskFilterSearch,TaskFilterCreateForm,TaskFilterUpdateForm} = GlobalComponents;
 
+const {TaskSearch,TaskCreateForm,TaskUpdateForm} = GlobalComponents;
+
+const {ThreadSearch,ThreadCreateForm,ThreadUpdateForm} = GlobalComponents;
+*/
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -117,6 +121,7 @@ class HomePageBizApp extends React.PureComponent {
 
 
   getSlideSearch = () => {
+    const {SlideSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._homePage.slideList,
@@ -128,6 +133,7 @@ class HomePageBizApp extends React.PureComponent {
     }))(SlideSearch);
   }
   getSlideCreateForm = () => {
+   	const {SlideCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._homePage.slideList,
@@ -140,6 +146,7 @@ class HomePageBizApp extends React.PureComponent {
   }
   
   getSlideUpdateForm = () => {
+  	const {SlideUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._homePage.selectedRows,
       currentUpdateIndex: state._homePage.currentUpdateIndex,
@@ -148,6 +155,7 @@ class HomePageBizApp extends React.PureComponent {
   }
 
   getEncyclopediaItemSearch = () => {
+    const {EncyclopediaItemSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._homePage.encyclopediaItemList,
@@ -159,6 +167,7 @@ class HomePageBizApp extends React.PureComponent {
     }))(EncyclopediaItemSearch);
   }
   getEncyclopediaItemCreateForm = () => {
+   	const {EncyclopediaItemCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._homePage.encyclopediaItemList,
@@ -171,6 +180,7 @@ class HomePageBizApp extends React.PureComponent {
   }
   
   getEncyclopediaItemUpdateForm = () => {
+  	const {EncyclopediaItemUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._homePage.selectedRows,
       currentUpdateIndex: state._homePage.currentUpdateIndex,
@@ -179,6 +189,7 @@ class HomePageBizApp extends React.PureComponent {
   }
 
   getTaskFilterSearch = () => {
+    const {TaskFilterSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._homePage.taskFilterList,
@@ -190,6 +201,7 @@ class HomePageBizApp extends React.PureComponent {
     }))(TaskFilterSearch);
   }
   getTaskFilterCreateForm = () => {
+   	const {TaskFilterCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._homePage.taskFilterList,
@@ -202,6 +214,7 @@ class HomePageBizApp extends React.PureComponent {
   }
   
   getTaskFilterUpdateForm = () => {
+  	const {TaskFilterUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._homePage.selectedRows,
       currentUpdateIndex: state._homePage.currentUpdateIndex,
@@ -210,6 +223,7 @@ class HomePageBizApp extends React.PureComponent {
   }
 
   getTaskSearch = () => {
+    const {TaskSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._homePage.taskList,
@@ -221,6 +235,7 @@ class HomePageBizApp extends React.PureComponent {
     }))(TaskSearch);
   }
   getTaskCreateForm = () => {
+   	const {TaskCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._homePage.taskList,
@@ -233,6 +248,7 @@ class HomePageBizApp extends React.PureComponent {
   }
   
   getTaskUpdateForm = () => {
+  	const {TaskUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._homePage.selectedRows,
       currentUpdateIndex: state._homePage.currentUpdateIndex,
@@ -241,6 +257,7 @@ class HomePageBizApp extends React.PureComponent {
   }
 
   getThreadSearch = () => {
+    const {ThreadSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._homePage.threadList,
@@ -252,6 +269,7 @@ class HomePageBizApp extends React.PureComponent {
     }))(ThreadSearch);
   }
   getThreadCreateForm = () => {
+   	const {ThreadCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._homePage.threadList,
@@ -264,6 +282,7 @@ class HomePageBizApp extends React.PureComponent {
   }
   
   getThreadUpdateForm = () => {
+  	const {ThreadUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._homePage.selectedRows,
       currentUpdateIndex: state._homePage.currentUpdateIndex,
