@@ -1,22 +1,38 @@
+import React, { PureComponent } from 'react'
+import { connect } from 'dva'
+import Result from '../../components/Result'
 
-import React, { PureComponent } from 'react';
-import { connect } from 'dva';
-import Result from '../../components/Result';
+import {
+  Row,
+  Col,
+  Card,
+  Form,
+  Input,
+  Select,
+  Icon,
+  Button,
+  Dropdown,
+  Menu,
+  InputNumber,
+  DatePicker,
+  Modal,
+  message,
+} from 'antd'
+import ThreadCompletionTable from './ThreadCompletion.table'
+import ThreadCompletionConfirmationTable from './ThreadCompletion.confirmmationtable'
 
-import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
-import ThreadCompletionTable from './ThreadCompletion.table';
-import ThreadCompletionConfirmationTable from './ThreadCompletion.confirmmationtable';
+import ThreadCompletionSearchForm from './ThreadCompletion.searchform'
 
-import ThreadCompletionSearchForm from './ThreadCompletion.searchform';
+import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 
-import PageHeaderLayout from '../../layouts/PageHeaderLayout';
+import styles from './ThreadCompletion.search.less'
 
-import styles from './ThreadCompletion.search.less';
-
-const FormItem = Form.Item;
-const { Option } = Select;
-const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',');
-
+const FormItem = Form.Item
+const { Option } = Select
+const getValue = obj =>
+  Object.keys(obj)
+    .map(key => obj[key])
+    .join(',')
 
 @Form.create()
 export default class ThreadCompletionSearch extends PureComponent {
@@ -27,21 +43,21 @@ export default class ThreadCompletionSearch extends PureComponent {
     selectedRows: [],
     formValues: {},
     showDeleteResult: false,
-  };
+  }
 
   //  componentDidMount() {
-  //    const { dispatch } = this.props;
+  //    const { dispatch } = this.props
   //  }
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
-    const { dispatch } = this.props;
-    const { formValues } = this.state;
+    const { dispatch } = this.props
+    const { formValues } = this.state
 
     const filters = Object.keys(filtersArg).reduce((obj, key) => {
-      const newObj = { ...obj };
-      newObj[key] = getValue(filtersArg[key]);
-      return newObj;
-    }, {});
+      const newObj = { ...obj }
+      newObj[key] = getValue(filtersArg[key])
+      return newObj
+    }, {})
 
     const params = {
       threadCompletionList: 1,
@@ -49,21 +65,21 @@ export default class ThreadCompletionSearch extends PureComponent {
       threadCompletionListRowsPerPage: pagination.pageSize,
       ...formValues,
       ...filters,
-    };
-    if (sorter.field) {
-      params.sorter = '_';
     }
-    const { owner } = this.props;
+    if (sorter.field) {
+      params.sorter = '_'
+    }
+    const { owner } = this.props
     dispatch({
       type: `${owner.type}/load`,
       payload: { id: owner.id, parameters: params },
-    });
+    })
   }
 
-  handleMenuClick = (e) => {
-    const { dispatch } = this.props;
-    const { selectedRows } = this.state;
-    if (!selectedRows) return;
+  handleMenuClick = e => {
+    const { dispatch } = this.props
+    const { selectedRows } = this.state
+    if (!selectedRows) return
     switch (e.key) {
       case 'remove':
         dispatch({
@@ -74,87 +90,94 @@ export default class ThreadCompletionSearch extends PureComponent {
           callback: () => {
             this.setState({
               selectedRows: [],
-            });
+            })
           },
-        });
-        break;
+        })
+        break
       default:
-        break;
+        break
     }
   }
 
-  handleSelectRows = (rows) => {
+  handleSelectRows = rows => {
     this.setState({
       selectedRows: rows,
-    });
+    })
   }
 
-  handleModalVisible = (flag) => {
+  handleModalVisible = flag => {
     this.setState({
       modalVisible: !!flag,
       showDeleteResult: false,
-    });
+    })
   }
 
   handleDelete = () => {
-    const { selectedRows } = this.state;
-    const { dispatch, owner } = this.props;
-    console.log('things to delete', selectedRows);
+    const { selectedRows } = this.state
+    const { dispatch, owner } = this.props
+    console.log('things to delete', selectedRows)
     this.setState({
       modalVisible: true,
       showDeleteResult: true,
-    });
-    
-    const threadCompletionIds = selectedRows.map((item) => { return item.id; });
-    console.log('threadCompletionIds', threadCompletionIds);
-    const parameters = { threadCompletionIds };
+    })
+
+    const threadCompletionIds = selectedRows.map(item => {
+      return item.id
+    })
+    console.log('threadCompletionIds', threadCompletionIds)
+    const parameters = { threadCompletionIds }
     dispatch({
       type: `${owner.type}/removeThreadCompletionList`,
       payload: { id: owner.id, type: 'threadCompletion', parameters },
-    });
+    })
   }
-  
+
   showModal = () => {
-    // const { selectedRows } = this.state;
-    // const { dispatch, owner } = this.props;
+    // const { selectedRows } = this.state
+    // const { dispatch, owner } = this.props
     this.setState({
       modalVisible: true,
       showDeleteResult: false,
-    });
+    })
   }
 
   confirmAfterDelete = () => {
-    // const { selectedRows } = this.state;
-    // const { dispatch, owner } = this.props;
+    // const { selectedRows } = this.state
+    // const { dispatch, owner } = this.props
     this.setState({
       modalVisible: false,
       showDeleteResult: true,
-    });
+    })
   }
 
   handleCreate = () => {
-    const { dispatch, owner } = this.props;
+    const { dispatch, owner } = this.props
     dispatch({
       type: `${owner.type}/gotoCreateForm`,
       payload: { id: owner.id, type: 'threadCompletion' },
-    });
+    })
   }
 
   handleUpdate = () => {
-    const { dispatch, owner } = this.props;
-    // const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
-    const { selectedRows } = this.state;
-    const currentUpdateIndex = 0;
+    const { dispatch, owner } = this.props
+    // const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state
+    const { selectedRows } = this.state
+    const currentUpdateIndex = 0
     dispatch({
       type: `${owner.type}/gotoUpdateForm`,
-      payload: { id: owner.id, type: 'threadCompletion', selectedRows, currentUpdateIndex },
-    });
+      payload: {
+        id: owner.id,
+        type: 'threadCompletion',
+        selectedRows,
+        currentUpdateIndex,
+      },
+    })
   }
-  
-  handleAddInput = (e) => {
+
+  handleAddInput = e => {
     this.setState({
       addInputValue: e.target.value,
-    });
+    })
   }
 
   handleAdd = () => {
@@ -163,38 +186,44 @@ export default class ThreadCompletionSearch extends PureComponent {
       payload: {
         description: this.state.addInputValue,
       },
-    });
-    message.success('添加成功');
+    })
+    message.success('添加成功')
     this.setState({
       modalVisible: false,
-    });
+    })
   }
 
   render() {
-    const { data, loading, count, currentPage, owner } = this.props;
-    const { showDeleteResult, selectedRows, modalVisible } = this.state;
-    // const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state;
+    const { data, loading, count, currentPage, owner } = this.props
+    const { showDeleteResult, selectedRows, modalVisible } = this.state
+    // const { showDeleteResult, selectedRows, modalVisible, addInputValue } = this.state
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
         <Menu.Item key="remove">删除</Menu.Item>
         <Menu.Item key="approval">批量审批</Menu.Item>
       </Menu>
-    );
+    )
 
     // TODO some issue here
     const modalContent = (data, owner) => {
       if (showDeleteResult) {
         return (
-        <Modal
-          title="成功删除"
-          visible={modalVisible}
-          onOk={() => this.confirmAfterDelete()}
-          onCancel={() => this.confirmAfterDelete()}
-          width={920}
-          style={{ top: 40 }}
-        >
-          <Result type="success" title="删除成功，干得漂亮" description="" style={{ marginTop: 48, marginBottom: 16 }} />
-        </Modal>);
+          <Modal
+            title="成功删除"
+            visible={modalVisible}
+            onOk={() => this.confirmAfterDelete()}
+            onCancel={() => this.confirmAfterDelete()}
+            width={920}
+            style={{ top: 40 }}
+          >
+            <Result
+              type="success"
+              title="删除成功，干得漂亮"
+              description=""
+              style={{ marginTop: 48, marginBottom: 16 }}
+            />
+          </Modal>
+        )
       }
 
       return (
@@ -206,10 +235,14 @@ export default class ThreadCompletionSearch extends PureComponent {
           width={920}
           style={{ top: 40 }}
         >
-          <ThreadCompletionConfirmationTable data={selectedRows} owner={owner} />
-        </Modal>);
-    };
-    
+          <ThreadCompletionConfirmationTable
+            data={selectedRows}
+            owner={owner}
+          />
+        </Modal>
+      )
+    }
+
     return (
       <PageHeaderLayout title="线程完成列表">
         <Card bordered={false}>
@@ -218,20 +251,36 @@ export default class ThreadCompletionSearch extends PureComponent {
               <ThreadCompletionSearchForm {...this.props} />
             </div>
             <div className={styles.tableListOperator}>
-              <Button icon="plus" type="primary" onClick={() => this.handleCreate()}>新建</Button>
-              {
-                selectedRows.length > 0 && (
-                  <span>
-                    <Button onClick={this.handleModalVisible} type="danger" icon="delete">批量删除</Button>
-                    <Button onClick={this.handleUpdate} type="primary" icon="update">批量更新</Button>
-                    <Dropdown overlay={menu}>
-                      <Button>
-                        更多操作 <Icon type="down" />
-                      </Button>
-                    </Dropdown>
-                  </span>
-                )
-              }
+              <Button
+                icon="plus"
+                type="primary"
+                onClick={() => this.handleCreate()}
+              >
+                新建
+              </Button>
+              {selectedRows.length > 0 && (
+                <span>
+                  <Button
+                    onClick={this.handleModalVisible}
+                    type="danger"
+                    icon="delete"
+                  >
+                    批量删除
+                  </Button>
+                  <Button
+                    onClick={this.handleUpdate}
+                    type="primary"
+                    icon="update"
+                  >
+                    批量更新
+                  </Button>
+                  <Dropdown overlay={menu}>
+                    <Button>
+                      更多操作 <Icon type="down" />
+                    </Button>
+                  </Dropdown>
+                </span>
+              )}
             </div>
             <ThreadCompletionTable
               selectedRows={selectedRows}
@@ -247,8 +296,6 @@ export default class ThreadCompletionSearch extends PureComponent {
         </Card>
         {modalContent(data, owner)}
       </PageHeaderLayout>
-    );
+    )
   }
 }
-
-

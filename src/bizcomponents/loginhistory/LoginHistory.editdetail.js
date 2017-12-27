@@ -1,24 +1,41 @@
-
-
-import React, { Component } from 'react';
-import { connect } from 'dva';
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
-import { Link, Route, Redirect, Switch } from 'dva/router';
-import numeral from 'numeral';
+import React, { Component } from 'react'
+import { connect } from 'dva'
 import {
-  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
-} from '../../components/Charts';
-import Trend from '../../components/Trend';
-import NumberInfo from '../../components/NumberInfo';
-import { getTimeDistance } from '../../utils/utils';
-import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-import styles from './LoginHistory.editdetail.less';
+  Form,
+  Button,
+  Row,
+  Col,
+  Icon,
+  Card,
+  Tabs,
+  Table,
+  Radio,
+  DatePicker,
+  Tooltip,
+  Menu,
+  Dropdown,
+} from 'antd'
+import { Link, Route, Redirect, Switch } from 'dva/router'
+import numeral from 'numeral'
+import {
+  ChartCard,
+  yuan,
+  MiniArea,
+  MiniBar,
+  MiniProgress,
+  Field,
+  Bar,
+  Pie,
+  TimelineChart,
+} from '../../components/Charts'
+import Trend from '../../components/Trend'
+import NumberInfo from '../../components/NumberInfo'
+import { getTimeDistance } from '../../utils/utils'
+import PageHeaderLayout from '../../layouts/PageHeaderLayout'
+import styles from './LoginHistory.editdetail.less'
 
-
-
-
-const { TabPane } = Tabs;
-const { RangePicker } = DatePicker;
+const { TabPane } = Tabs
+const { RangePicker } = DatePicker
 
 const topColResponsiveProps = {
   xs: 24,
@@ -27,8 +44,7 @@ const topColResponsiveProps = {
   lg: 12,
   xl: 6,
   style: { marginBottom: 24 },
-};
-
+}
 
 @connect(state => ({
   loginHistory: state._loginHistory,
@@ -36,24 +52,16 @@ const topColResponsiveProps = {
 export default class LoginHistoryEditDetail extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, } = this.props.loginHistory;
-    const { } = this.props.loginHistory;
-    
-    const owner = { type: '_loginHistory', id};
-    return (
+    const { id } = this.props.loginHistory
+    const {} = this.props.loginHistory
 
+    const owner = { type: '_loginHistory', id }
+    return (
       <PageHeaderLayout
         title="登录历史总览"
         content="登录历史总览"
         wrapperClassName={styles.advancedForm}
-      >
-
-
- 
-      </PageHeaderLayout>
-    );
+      />
+    )
   }
 }
-
-
-

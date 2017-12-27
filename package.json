@@ -4,7 +4,7 @@
   "description": "An out-of-box UI solution for enterprise applications",
   "private": true,
   "scripts": {
-    "precommit": "npm run lint-staged",
+    "precommit": "npm run format lint-staged",
     "start": "roadhog server",
     "start:no-proxy": "NO_PROXY=true roadhog server",
     "build": "roadhog build",
@@ -12,10 +12,10 @@
     "analyze": "roadhog build --analyze",
     "lint:style": "stylelint \"coresrc/**/*.less\" --syntax less",
     "lint": "eslint --ext .js coresrc mock tests && npm run lint:style",
-    "lint:fix": "eslint --fix --ext .js coresrc mock tests && npm run lint:style",
+    "lint:fix": "eslint --fix --ext .js coresrc && npm run lint:style",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js",
-    "prettier": "prettier --write --single-quote --no-semi --trailing-comma es5 --print-width 80 \"src/**/*.js\"",
+    "prettier": "prettier --write --single-quote --no-semi --trailing-comma es5 --print-width 80 \"src/bizcomponents/**/*.js\"",
     "format": "yarn prettier && yarn lint:fix",
     "test": "jest",
     "test:all": "node ./tests/run-tests.js"
