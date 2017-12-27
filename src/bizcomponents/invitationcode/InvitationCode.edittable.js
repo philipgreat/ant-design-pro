@@ -13,17 +13,6 @@ const columns = [
   { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD') },
   { title: '社区',dataIndex: 'community', render: (text, record) => (record.community ? record.community.id : '暂无') },
   { title: '用',dataIndex: 'used', render: (text, record) => (record.used ? '是' : '否') },
-  { title: '操作',
-  render: (text, record) => (<span>
-    <a>编辑</a>
-    <Divider type="vertical" />
-    <a>删除</a>
-    <Divider type="vertical" />
-    <a onClick={e => this.cancel(e, record.key)}>取消</a>
-  </span>)  
-
-},
-
 ];
 
 class InvitationCodeEditTable extends PureComponent {

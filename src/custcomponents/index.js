@@ -6,6 +6,6 @@ import CustomComponents from './customindex'
 
 const result = {...OOTBComponents,...CustomComponents};
 
-
-export default result;
+//console.log("the cust result", result);
+export default OOTBComponents;
 

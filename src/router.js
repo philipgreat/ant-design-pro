@@ -1,54 +1,54 @@
 
 
-import React from 'react'
-import { Router, Route, Switch } from 'dva/router'
-import { LocaleProvider } from 'antd'
-import zhCN from 'antd/lib/locale-provider/zh_CN'
-// import enUS from 'antd/lib/locale-provider/en_US'
-import Launcher from './launcher/Launcher'
+import React from 'react';
+import { Router, Route, Switch } from 'dva/router';
+import { LocaleProvider } from 'antd';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
+// import enUS from 'antd/lib/locale-provider/en_US';
+import Launcher from './launcher/Launcher';
 
-import CommunityBizApp from './bizcomponents/community/Community.app'
-import InvitationCodeBizApp from './bizcomponents/invitationcode/InvitationCode.app'
-import HomePageBizApp from './bizcomponents/homepage/HomePage.app'
-import SlideBizApp from './bizcomponents/slide/Slide.app'
-import EncyclopediaItemBizApp from './bizcomponents/encyclopediaitem/EncyclopediaItem.app'
-import TaskPageBizApp from './bizcomponents/taskpage/TaskPage.app'
-import TaskFilterBizApp from './bizcomponents/taskfilter/TaskFilter.app'
-import CommunityUserBizApp from './bizcomponents/communityuser/CommunityUser.app'
-import PatientInfoBizApp from './bizcomponents/patientinfo/PatientInfo.app'
-import UserSkillBizApp from './bizcomponents/userskill/UserSkill.app'
-import MessageFilterBizApp from './bizcomponents/messagefilter/MessageFilter.app'
-import UserMessageBizApp from './bizcomponents/usermessage/UserMessage.app'
-import TaskBizApp from './bizcomponents/task/Task.app'
-import TaskAssigmentBizApp from './bizcomponents/taskassigment/TaskAssigment.app'
-import TaskHidingBizApp from './bizcomponents/taskhiding/TaskHiding.app'
-import TaskResolvingBizApp from './bizcomponents/taskresolving/TaskResolving.app'
-import TaskRewardBizApp from './bizcomponents/taskreward/TaskReward.app'
-import TaskLikeBizApp from './bizcomponents/tasklike/TaskLike.app'
-import TaskReplyBizApp from './bizcomponents/taskreply/TaskReply.app'
-import TaskBestAnswerSettingBizApp from './bizcomponents/taskbestanswersetting/TaskBestAnswerSetting.app'
-import TaskReplyLikeBizApp from './bizcomponents/taskreplylike/TaskReplyLike.app'
-import GroupPageBizApp from './bizcomponents/grouppage/GroupPage.app'
-import GroupFilterBizApp from './bizcomponents/groupfilter/GroupFilter.app'
-import ThreadBizApp from './bizcomponents/thread/Thread.app'
-import ThreadHidingBizApp from './bizcomponents/threadhiding/ThreadHiding.app'
-import ThreadReplyBizApp from './bizcomponents/threadreply/ThreadReply.app'
-import ThreadApprovalBizApp from './bizcomponents/threadapproval/ThreadApproval.app'
-import ThreadCompletionBizApp from './bizcomponents/threadcompletion/ThreadCompletion.app'
-import ThreadCancelingBizApp from './bizcomponents/threadcanceling/ThreadCanceling.app'
-import ThreadRegistrationBizApp from './bizcomponents/threadregistration/ThreadRegistration.app'
-import ThreadLikeBizApp from './bizcomponents/threadlike/ThreadLike.app'
-import ThreadReplyLikeBizApp from './bizcomponents/threadreplylike/ThreadReplyLike.app'
-import FanBizApp from './bizcomponents/fan/Fan.app'
-import FollowBizApp from './bizcomponents/follow/Follow.app'
-import BonusPointBizApp from './bizcomponents/bonuspoint/BonusPoint.app'
-import ExperiencePointBizApp from './bizcomponents/experiencepoint/ExperiencePoint.app'
-import UserDomainBizApp from './bizcomponents/userdomain/UserDomain.app'
-import SecUserBizApp from './bizcomponents/secuser/SecUser.app'
-import SecUserBlockingBizApp from './bizcomponents/secuserblocking/SecUserBlocking.app'
-import UserAppBizApp from './bizcomponents/userapp/UserApp.app'
-import ObjectAccessBizApp from './bizcomponents/objectaccess/ObjectAccess.app'
-import LoginHistoryBizApp from './bizcomponents/loginhistory/LoginHistory.app'
+import {CommunityBizApp} from './custcomponents';
+import {InvitationCodeBizApp} from './custcomponents';
+import {HomePageBizApp} from './custcomponents';
+import {SlideBizApp} from './custcomponents';
+import {EncyclopediaItemBizApp} from './custcomponents';
+import {TaskPageBizApp} from './custcomponents';
+import {TaskFilterBizApp} from './custcomponents';
+import {CommunityUserBizApp} from './custcomponents';
+import {PatientInfoBizApp} from './custcomponents';
+import {UserSkillBizApp} from './custcomponents';
+import {MessageFilterBizApp} from './custcomponents';
+import {UserMessageBizApp} from './custcomponents';
+import {TaskBizApp} from './custcomponents';
+import {TaskAssigmentBizApp} from './custcomponents';
+import {TaskHidingBizApp} from './custcomponents';
+import {TaskResolvingBizApp} from './custcomponents';
+import {TaskRewardBizApp} from './custcomponents';
+import {TaskLikeBizApp} from './custcomponents';
+import {TaskReplyBizApp} from './custcomponents';
+import {TaskBestAnswerSettingBizApp} from './custcomponents';
+import {TaskReplyLikeBizApp} from './custcomponents';
+import {GroupPageBizApp} from './custcomponents';
+import {GroupFilterBizApp} from './custcomponents';
+import {ThreadBizApp} from './custcomponents';
+import {ThreadHidingBizApp} from './custcomponents';
+import {ThreadReplyBizApp} from './custcomponents';
+import {ThreadApprovalBizApp} from './custcomponents';
+import {ThreadCompletionBizApp} from './custcomponents';
+import {ThreadCancelingBizApp} from './custcomponents';
+import {ThreadRegistrationBizApp} from './custcomponents';
+import {ThreadLikeBizApp} from './custcomponents';
+import {ThreadReplyLikeBizApp} from './custcomponents';
+import {FanBizApp} from './custcomponents';
+import {FollowBizApp} from './custcomponents';
+import {BonusPointBizApp} from './custcomponents';
+import {ExperiencePointBizApp} from './custcomponents';
+import {UserDomainBizApp} from './custcomponents';
+import {SecUserBizApp} from './custcomponents';
+import {SecUserBlockingBizApp} from './custcomponents';
+import {UserAppBizApp} from './custcomponents';
+import {ObjectAccessBizApp} from './custcomponents';
+import {LoginHistoryBizApp} from './custcomponents';
 
 
 function RouterConfig({ history }) {
@@ -103,16 +103,8 @@ function RouterConfig({ history }) {
         </Switch>
       </Router>
     </LocaleProvider>
-  )
+  );
 }
 
-export default RouterConfig
-
-
-
-
-
-
-
-
+export default RouterConfig;
 
