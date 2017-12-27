@@ -38,7 +38,8 @@ import CommunityUserUpdateForm from '../communityuser/CommunityUser.updateform'
 
 import TaskSearch from '../task/Task.search'
 import TaskCreateForm from '../task/Task.createform'
-import TaskUpdateForm from '../task/Task.updateform'
+//import TaskUpdateForm from '../task/Task.updateform'
+import {TaskUpdateForm} from '../../custcomponents'
 
 import GroupPageSearch from '../grouppage/GroupPage.search'
 import GroupPageCreateForm from '../grouppage/GroupPage.createform'

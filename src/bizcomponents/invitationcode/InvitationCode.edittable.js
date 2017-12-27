@@ -1,18 +1,29 @@
 
 import React, { PureComponent } from 'react';
 import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input } from 'antd';
+import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
 import styles from './InvitationCode.table.less';
 import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeHolder={"序号"}/>)  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7',render: (text, record) => (<Input value={text} placeHolder={"名称"}/>)  },
-  { title: '代码', debugtype: 'int', dataIndex: 'code', width: '10',render: (text, record) => (<Input value={text} placeHolder={"代码"}/>)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeholder={"序号"}/>)  },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7',render: (text, record) => (<Input value={text} placeholder={"名称"}/>)  },
+  { title: '代码', debugtype: 'int', dataIndex: 'code', width: '10',render: (text, record) => (<Input value={text} placeholder={"代码"}/>)  },
   { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD') },
   { title: '社区',dataIndex: 'community', render: (text, record) => (record.community ? record.community.id : '暂无') },
   { title: '用',dataIndex: 'used', render: (text, record) => (record.used ? '是' : '否') },
+  { title: '操作',
+  render: (text, record) => (<span>
+    <a>编辑</a>
+    <Divider type="vertical" />
+    <a>删除</a>
+    <Divider type="vertical" />
+    <a onClick={e => this.cancel(e, record.key)}>取消</a>
+  </span>)  
+
+},
+
 ];
 
 class InvitationCodeEditTable extends PureComponent {

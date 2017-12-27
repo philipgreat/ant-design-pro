@@ -1,16 +1,16 @@
 
 import React, { PureComponent } from 'react';
 import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input } from 'antd';
+import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
 import styles from './LoginHistory.table.less';
 import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeHolder={"序号"}/>)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeholder={"序号"}/>)  },
   { title: '登录时间', dataIndex: 'loginTime', render: (text, record) => moment(record.loginTime).format('YYYY-MM-DD') },
-  { title: '从IP', debugtype: 'string', dataIndex: 'fromIp', width: '15',render: (text, record) => (<Input value={text} placeHolder={"从IP"}/>)  },
-  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8',render: (text, record) => (<Input value={text} placeHolder={"描述"}/>)  },
+  { title: '从IP', debugtype: 'string', dataIndex: 'fromIp', width: '15',render: (text, record) => (<Input value={text} placeholder={"从IP"}/>)  },
+  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8',render: (text, record) => (<Input value={text} placeholder={"描述"}/>)  },
   { title: 'SEC的用户',dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
 ];
 

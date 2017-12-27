@@ -1,17 +1,17 @@
 
 import React, { PureComponent } from 'react';
 import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input } from 'antd';
+import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
 import styles from './MessageFilter.table.less';
 import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeHolder={"序号"}/>)  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8',render: (text, record) => (<Input value={text} placeHolder={"名称"}/>)  },
-  { title: '消息计数', debugtype: 'int', dataIndex: 'messageCount', width: '9',render: (text, record) => (<Input value={text} placeHolder={"消息计数"}/>)  },
-  { title: '过滤器健值', debugtype: 'string', dataIndex: 'filterKey', width: '18',render: (text, record) => (<Input value={text} placeHolder={"过滤器健值"}/>)  },
-  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '40',render: (text, record) => (<Input value={text} placeHolder={"链接网址"}/>)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeholder={"序号"}/>)  },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8',render: (text, record) => (<Input value={text} placeholder={"名称"}/>)  },
+  { title: '消息计数', debugtype: 'int', dataIndex: 'messageCount', width: '9',render: (text, record) => (<Input value={text} placeholder={"消息计数"}/>)  },
+  { title: '过滤器健值', debugtype: 'string', dataIndex: 'filterKey', width: '18',render: (text, record) => (<Input value={text} placeholder={"过滤器健值"}/>)  },
+  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '40',render: (text, record) => (<Input value={text} placeholder={"链接网址"}/>)  },
   { title: '用户',dataIndex: 'user', render: (text, record) => (record.user ? record.user.id : '暂无') },
 ];
 

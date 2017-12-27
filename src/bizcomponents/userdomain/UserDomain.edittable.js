@@ -1,14 +1,14 @@
 
 import React, { PureComponent } from 'react';
 import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input } from 'antd';
+import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
 import styles from './UserDomain.table.less';
 import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeHolder={"序号"}/>)  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8',render: (text, record) => (<Input value={text} placeHolder={"名称"}/>)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeholder={"序号"}/>)  },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8',render: (text, record) => (<Input value={text} placeholder={"名称"}/>)  },
 ];
 
 class UserDomainEditTable extends PureComponent {
