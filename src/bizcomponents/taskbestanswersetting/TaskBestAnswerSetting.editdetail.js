@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
 import { Link, Route, Redirect, Switch } from 'dva/router';
 import numeral from 'numeral';
 import {
@@ -13,6 +13,11 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './TaskBestAnswerSetting.editdetail.less';
+
+
+import TaskReplyEditTable from '../taskreply/TaskReply.edittable';
+
+
 
 const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
@@ -34,6 +39,9 @@ export default class TaskBestAnswerSettingEditDetail extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id, taskReplyCount} = this.props.taskBestAnswerSetting;
+    const { taskReplyList} = this.props.taskBestAnswerSetting;
+    
+    const owner = { type: '_taskBestAnswerSetting', id};
     return (
 
       <PageHeaderLayout
@@ -41,29 +49,20 @@ export default class TaskBestAnswerSettingEditDetail extends Component {
         content="任务最佳答案设置总览"
         wrapperClassName={styles.advancedForm}
       >
-        <div>
-          <Row gutter={24}>
+
 
           
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="回复任务"
-                action={<Tooltip title="回复任务"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(taskReplyCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/taskBestAnswerSetting/${id}/list/taskReplyList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/taskBestAnswerSetting/${id}/list/taskReplyCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/taskBestAnswerSetting/${id}/list/taskReplyList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
+            
+            
+      <Card title="回复任务列表" className={styles.card} bordered={false}>
+        <Form layout="vertical" hideRequiredMark>
+        <TaskReplyEditTable data={taskReplyList} owner={owner} />
+       </Form>
+       </Card>
+            
+            
 
-          </Row>
-        </div>
+ 
       </PageHeaderLayout>
     );
   }

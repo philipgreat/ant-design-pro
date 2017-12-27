@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
 import { Link, Route, Redirect, Switch } from 'dva/router';
 import numeral from 'numeral';
 import {
@@ -13,6 +13,11 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './SecUserBlocking.editdetail.less';
+
+
+import SecUserEditTable from '../secuser/SecUser.edittable';
+
+
 
 const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
@@ -34,6 +39,9 @@ export default class SecUserBlockingEditDetail extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id, secUserCount} = this.props.secUserBlocking;
+    const { secUserList} = this.props.secUserBlocking;
+    
+    const owner = { type: '_secUserBlocking', id};
     return (
 
       <PageHeaderLayout
@@ -41,29 +49,20 @@ export default class SecUserBlockingEditDetail extends Component {
         content="SEC用户阻塞总览"
         wrapperClassName={styles.advancedForm}
       >
-        <div>
-          <Row gutter={24}>
+
 
           
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="SEC的用户"
-                action={<Tooltip title="SEC的用户"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(secUserCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/secUserBlocking/${id}/list/secUserList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/secUserBlocking/${id}/list/secUserCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/secUserBlocking/${id}/list/secUserList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
+            
+            
+      <Card title="SEC的用户列表" className={styles.card} bordered={false}>
+        <Form layout="vertical" hideRequiredMark>
+        <SecUserEditTable data={secUserList} owner={owner} />
+       </Form>
+       </Card>
+            
+            
 
-          </Row>
-        </div>
+ 
       </PageHeaderLayout>
     );
   }

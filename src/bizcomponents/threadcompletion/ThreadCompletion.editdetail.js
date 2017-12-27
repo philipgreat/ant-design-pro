@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
 import { Link, Route, Redirect, Switch } from 'dva/router';
 import numeral from 'numeral';
 import {
@@ -13,6 +13,11 @@ import NumberInfo from '../../components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './ThreadCompletion.editdetail.less';
+
+
+import ThreadEditTable from '../thread/Thread.edittable';
+
+
 
 const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
@@ -34,6 +39,9 @@ export default class ThreadCompletionEditDetail extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id, threadCount} = this.props.threadCompletion;
+    const { threadList} = this.props.threadCompletion;
+    
+    const owner = { type: '_threadCompletion', id};
     return (
 
       <PageHeaderLayout
@@ -41,29 +49,20 @@ export default class ThreadCompletionEditDetail extends Component {
         content="线程完成总览"
         wrapperClassName={styles.advancedForm}
       >
-        <div>
-          <Row gutter={24}>
+
 
           
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="主贴"
-                action={<Tooltip title="主贴"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(threadCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/threadCompletion/${id}/list/threadList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/threadCompletion/${id}/list/threadCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/threadCompletion/${id}/list/threadList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
+            
+            
+      <Card title="主贴列表" className={styles.card} bordered={false}>
+        <Form layout="vertical" hideRequiredMark>
+        <ThreadEditTable data={threadList} owner={owner} />
+       </Form>
+       </Card>
+            
+            
 
-          </Row>
-        </div>
+ 
       </PageHeaderLayout>
     );
   }

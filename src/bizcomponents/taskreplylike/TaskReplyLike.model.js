@@ -62,6 +62,12 @@ export default {
           dispatch({ type: 'view', payload: { id } });
           return;
         }
+        const editDetailMatch = pathToRegexp('/taskReplyLike/:id/editDetail').exec(pathname);
+        if (editDetailMatch) {
+          const id = editDetailMatch[1];
+          dispatch({ type: 'view', payload: { id } });
+          return;
+        }
         const match = pathToRegexp('/taskReplyLike/:id/list/:listName').exec(pathname);
         if (!match) {
           return;

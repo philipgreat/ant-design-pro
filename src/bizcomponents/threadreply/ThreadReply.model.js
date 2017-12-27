@@ -62,6 +62,12 @@ export default {
           dispatch({ type: 'view', payload: { id } });
           return;
         }
+        const editDetailMatch = pathToRegexp('/threadReply/:id/editDetail').exec(pathname);
+        if (editDetailMatch) {
+          const id = editDetailMatch[1];
+          dispatch({ type: 'view', payload: { id } });
+          return;
+        }
         const match = pathToRegexp('/threadReply/:id/list/:listName').exec(pathname);
         if (!match) {
           return;
