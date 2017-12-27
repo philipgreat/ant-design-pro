@@ -33,7 +33,7 @@ const fieldLabels = {
 
 const testValues = {
   name: '完成求助奖励',
-  points: '928',
+  points: '875',
   userId: 'CU000001',
 }
 

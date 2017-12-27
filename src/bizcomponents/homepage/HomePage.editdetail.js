@@ -61,7 +61,6 @@ const topColResponsiveProps = {
 }))
 export default class HomePageEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const {
       id,
       slideCount,

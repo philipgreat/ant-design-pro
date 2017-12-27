@@ -53,7 +53,6 @@ const topColResponsiveProps = {
 }))
 export default class TaskBestAnswerSettingEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id, taskReplyCount } = this.props.taskBestAnswerSetting
     const { taskReplyList } = this.props.taskBestAnswerSetting
 

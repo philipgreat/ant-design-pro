@@ -51,7 +51,6 @@ const topColResponsiveProps = {
 }))
 export default class ExperiencePointEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id } = this.props.experiencePoint
     const {} = this.props.experiencePoint
 

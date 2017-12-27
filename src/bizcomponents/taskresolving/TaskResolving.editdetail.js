@@ -53,7 +53,6 @@ const topColResponsiveProps = {
 }))
 export default class TaskResolvingEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id, taskCount } = this.props.taskResolving
     const { taskList } = this.props.taskResolving
 

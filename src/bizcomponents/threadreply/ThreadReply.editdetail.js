@@ -53,7 +53,6 @@ const topColResponsiveProps = {
 }))
 export default class ThreadReplyEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id, threadReplyLikeCount } = this.props.threadReply
     const { threadReplyLikeList } = this.props.threadReply
 

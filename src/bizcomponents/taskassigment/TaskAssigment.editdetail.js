@@ -51,7 +51,6 @@ const topColResponsiveProps = {
 }))
 export default class TaskAssigmentEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id } = this.props.taskAssigment
     const {} = this.props.taskAssigment
 

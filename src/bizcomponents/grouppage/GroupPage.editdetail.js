@@ -55,7 +55,6 @@ const topColResponsiveProps = {
 }))
 export default class GroupPageEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id, groupFilterCount, threadCount } = this.props.groupPage
     const { groupFilterList, threadList } = this.props.groupPage
 

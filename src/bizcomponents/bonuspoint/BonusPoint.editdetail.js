@@ -51,7 +51,6 @@ const topColResponsiveProps = {
 }))
 export default class BonusPointEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id } = this.props.bonusPoint
     const {} = this.props.bonusPoint
 

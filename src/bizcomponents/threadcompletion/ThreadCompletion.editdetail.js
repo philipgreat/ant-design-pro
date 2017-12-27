@@ -53,7 +53,6 @@ const topColResponsiveProps = {
 }))
 export default class ThreadCompletionEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id, threadCount } = this.props.threadCompletion
     const { threadList } = this.props.threadCompletion
 

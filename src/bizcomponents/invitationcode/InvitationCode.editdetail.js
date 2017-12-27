@@ -51,7 +51,6 @@ const topColResponsiveProps = {
 }))
 export default class InvitationCodeEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id } = this.props.invitationCode
     const {} = this.props.invitationCode
 

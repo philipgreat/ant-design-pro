@@ -40,11 +40,11 @@ const testValues = {
   name: '刘利',
   nickName: '喀拉',
   gender: '男',
-  birthday: '2038-02-20',
+  birthday: '2037-03-21',
   wearDeviceType: '新发现',
-  wearStartTime: '2029-11-29',
+  wearStartTime: '2033-09-02',
   recoverPlan: '幼儿龄段（0-3岁）',
-  recoverStartTime: '2029-12-10',
+  recoverStartTime: '2032-09-13',
   userId: 'CU000001',
 }
 

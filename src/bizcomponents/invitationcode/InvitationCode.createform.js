@@ -34,7 +34,7 @@ const fieldLabels = {
 
 const testValues = {
   name: '邀请码',
-  code: '898264',
+  code: '679139',
   used: '1',
   communityId: 'C000001',
 }

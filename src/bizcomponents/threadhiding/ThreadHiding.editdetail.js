@@ -53,7 +53,6 @@ const topColResponsiveProps = {
 }))
 export default class ThreadHidingEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id, threadCount } = this.props.threadHiding
     const { threadList } = this.props.threadHiding
 
