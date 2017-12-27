@@ -51,7 +51,6 @@ const topColResponsiveProps = {
 }))
 export default class TaskLikeEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id } = this.props.taskLike
     const {} = this.props.taskLike
 

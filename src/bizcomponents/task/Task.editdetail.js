@@ -57,7 +57,6 @@ const topColResponsiveProps = {
 }))
 export default class TaskEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const {
       id,
       taskAssigmentCount,

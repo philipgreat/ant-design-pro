@@ -160,11 +160,7 @@ class ThreadReplyBizApp extends React.PureComponent {
     // const { collapsed, fetchingNotices,loading } = this.props
     const { collapsed } = this.props
     // Don't show popup menu when it is been collapsed
-    const menuProps = collapsed
-      ? {}
-      : {
-          openKeys: this.state.openKeys,
-        }
+    const menuProps = collapsed ? {} : { openKeys: this.state.openKeys }
     const layout = (
       <Layout>
         <Sider

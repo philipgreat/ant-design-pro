@@ -53,7 +53,6 @@ const topColResponsiveProps = {
 }))
 export default class SecUserBlockingEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id, secUserCount } = this.props.secUserBlocking
     const { secUserList } = this.props.secUserBlocking
 

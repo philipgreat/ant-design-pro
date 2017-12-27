@@ -51,7 +51,6 @@ const topColResponsiveProps = {
 }))
 export default class ObjectAccessEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id } = this.props.objectAccess
     const {} = this.props.objectAccess
 

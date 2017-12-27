@@ -51,7 +51,6 @@ const topColResponsiveProps = {
 }))
 export default class TaskFilterEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id } = this.props.taskFilter
     const {} = this.props.taskFilter
 

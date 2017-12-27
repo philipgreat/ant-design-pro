@@ -53,7 +53,6 @@ const topColResponsiveProps = {
 }))
 export default class ThreadApprovalEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id, threadCount } = this.props.threadApproval
     const { threadList } = this.props.threadApproval
 

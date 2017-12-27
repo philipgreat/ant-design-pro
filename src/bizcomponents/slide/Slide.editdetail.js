@@ -51,7 +51,6 @@ const topColResponsiveProps = {
 }))
 export default class SlideEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id } = this.props.slide
     const {} = this.props.slide
 

@@ -57,7 +57,6 @@ const topColResponsiveProps = {
 }))
 export default class ThreadEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const {
       id,
       threadReplyCount,

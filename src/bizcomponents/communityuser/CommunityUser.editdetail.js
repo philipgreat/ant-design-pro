@@ -87,7 +87,6 @@ const topColResponsiveProps = {
 }))
 export default class CommunityUserEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const {
       id,
       patientInfoCount,

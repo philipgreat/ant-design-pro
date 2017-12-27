@@ -53,7 +53,6 @@ const topColResponsiveProps = {
 }))
 export default class ThreadCancelingEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id, threadCount } = this.props.threadCanceling
     const { threadList } = this.props.threadCanceling
 

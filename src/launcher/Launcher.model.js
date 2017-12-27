@@ -59,7 +59,7 @@ const presentApp = (clazz, data) => {
   // console.log(data)
 }
 
-// const lowercaseFirst = (stringExpr) => {
+// const lowercaseFirst = stringExpr => {
 //   if(typeof(stringExpr)!="string"){
 //       throw "parameter stringExpr is not a string"
 //   }
@@ -106,7 +106,7 @@ export default {
       })
     },
     setup({ history }) {
-      history.listen((location) => {
+      history.listen(location => {
         currentLocation = location.pathname
         const { pathname } = location
         // const match = pathToRegexp('/communityApp/:tail').exec(path)

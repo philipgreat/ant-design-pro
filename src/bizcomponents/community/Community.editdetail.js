@@ -67,7 +67,6 @@ const topColResponsiveProps = {
 }))
 export default class CommunityEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const {
       id,
       invitationCodeCount,

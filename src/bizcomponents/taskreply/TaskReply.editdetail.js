@@ -53,7 +53,6 @@ const topColResponsiveProps = {
 }))
 export default class TaskReplyEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id, taskReplyLikeCount } = this.props.taskReply
     const { taskReplyLikeList } = this.props.taskReply
 

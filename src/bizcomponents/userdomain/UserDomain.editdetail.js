@@ -53,7 +53,6 @@ const topColResponsiveProps = {
 }))
 export default class UserDomainEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id, secUserCount } = this.props.userDomain
     const { secUserList } = this.props.userDomain
 

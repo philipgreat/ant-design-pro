@@ -51,7 +51,6 @@ const topColResponsiveProps = {
 }))
 export default class UserSkillEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id } = this.props.userSkill
     const {} = this.props.userSkill
 

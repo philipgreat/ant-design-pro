@@ -53,7 +53,6 @@ const topColResponsiveProps = {
 }))
 export default class TaskHidingEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id, taskCount } = this.props.taskHiding
     const { taskList } = this.props.taskHiding
 

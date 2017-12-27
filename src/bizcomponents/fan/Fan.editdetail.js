@@ -51,7 +51,6 @@ const topColResponsiveProps = {
 }))
 export default class FanEditDetail extends Component {
   render() {
-    // eslint-disable-next-line max-len
     const { id } = this.props.fan
     const {} = this.props.fan
 

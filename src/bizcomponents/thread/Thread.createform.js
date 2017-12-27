@@ -61,8 +61,8 @@ const fieldLabels = {
 const testValues = {
   title: '听力损失儿童回归的优点',
   displayOrder: '0',
-  eventTime: '2035-03-09 04:54:04',
-  registrationStopTime: '2037-07-04 20:31:15',
+  eventTime: '2038-01-15 15:55:28',
+  registrationStopTime: '2039-02-20 05:11:57',
   eventLocation: '奥克斯广场阳光咖啡',
   city: '成都',
   communityGroup: '最新',
