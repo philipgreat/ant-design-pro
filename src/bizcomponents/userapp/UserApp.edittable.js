@@ -1,45 +1,33 @@
-import React, { PureComponent } from 'react'
-import moment from 'moment'
-import { Form, Button, Table, Alert, Badge } from 'antd'
-import styles from './UserApp.table.less'
-import ImagePreview from '../../components/ImagePreview'
+
+import React, { PureComponent } from 'react';
+import moment from 'moment';
+import {Form,Button, Table, Alert, Badge,Input } from 'antd';
+import styles from './UserApp.table.less';
+import ImagePreview from '../../components/ImagePreview';
+
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8' },
-  {
-    title: 'SEC的用户',
-    dataIndex: 'secUser',
-    render: (text, record) => (record.secUser ? record.secUser.id : '暂无'),
-  },
-  {
-    title: '应用程序图标',
-    debugtype: 'string',
-    dataIndex: 'appIcon',
-    width: '13',
-  },
-  {
-    title: '完全访问',
-    dataIndex: 'fullAccess',
-    render: (text, record) => (record.fullAccess ? '是' : '否'),
-  },
-  { title: '许可', debugtype: 'string', dataIndex: 'permission', width: '8' },
-  {
-    title: '对象类型',
-    debugtype: 'string',
-    dataIndex: 'objectType',
-    width: '17',
-  },
-  { title: '对象ID', debugtype: 'string', dataIndex: 'objectId', width: '12' },
-  { title: '位置', debugtype: 'string', dataIndex: 'location', width: '16' },
-]
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeHolder={"序号"}/>)  },
+  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8',render: (text, record) => (<Input value={text} placeHolder={"标题"}/>)  },
+  { title: 'SEC的用户',dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
+  { title: '应用程序图标', debugtype: 'string', dataIndex: 'appIcon', width: '13',render: (text, record) => (<Input value={text} placeHolder={"应用程序图标"}/>)  },
+  { title: '完全访问',dataIndex: 'fullAccess', render: (text, record) => (record.fullAccess ? '是' : '否') },
+  { title: '许可', debugtype: 'string', dataIndex: 'permission', width: '8',render: (text, record) => (<Input value={text} placeHolder={"许可"}/>)  },
+  { title: '对象类型', debugtype: 'string', dataIndex: 'objectType', width: '17',render: (text, record) => (<Input value={text} placeHolder={"对象类型"}/>)  },
+  { title: '对象ID', debugtype: 'string', dataIndex: 'objectId', width: '12',render: (text, record) => (<Input value={text} placeHolder={"对象ID"}/>)  },
+  { title: '位置', debugtype: 'string', dataIndex: 'location', width: '16',render: (text, record) => (<Input value={text} placeHolder={"位置"}/>)  },
+];
 
 class UserAppEditTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props
-    const { data } = this.props
+    // const { data,count,current, owner } = this.props;
+    const { data } = this.props;
+	
+	
+
     return (
       <div className={styles.standardTable}>
+        
         <Table
           rowKey={record => record.id}
           dataSource={data}
@@ -57,8 +45,9 @@ class UserAppEditTable extends PureComponent {
           新增
         </Button>
       </div>
-    )
+    );
   }
 }
 
-export default UserAppEditTable
+export default UserAppEditTable;
+
