@@ -75,19 +75,22 @@ class InvitationCodeEditTable extends PureComponent {
       const {data} = this.state
       const {invitationCodeId} = record.id
       const parameters = { ...record, invitationCodeId }
-
+      const newData = [...data];
+      const row =  newData.filter(item => item.id === record.id)[0];
+      row.editable = !row.editable 
+      
       dispatch({
         type: `${owner.type}/updateInvitationCode`,
         payload: {
           id: owner.id,
           type: 'invitationCode',
           parameters,
-          data,
+          selectedRows:newData,
           currentUpdateIndex: 0,
           continueNext: true,
         },
       })
-
+     
 
     }
 

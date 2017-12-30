@@ -141,7 +141,12 @@ export default {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, ...selectedRows, currentUpdateIndex }
+      console.log("selected tows", selectedRows);
+      console.log("payload", payload);
+      
+       
+
+      const newPlayload = { ...payload, ...data, invitationCodeList: selectedRows, selectedRows,currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
