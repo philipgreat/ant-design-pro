@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
+import React, { Component } from 'react'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
-import { connect } from 'dva';
-import PageHeaderLayout from '../../layouts/PageHeaderLayout';
+import { connect } from 'dva'
+import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import PictureEdit from '../../components/PictureEdit'
-import FooterToolbar from '../../components/FooterToolbar';
+import FooterToolbar from '../../components/FooterToolbar'
 
-import styles from './ObjectAccess.createform.less';
+import styles from './ObjectAccess.createform.less'
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
+const { Option } = Select
+const { RangePicker } = DatePicker
+const { TextArea } = Input
 const fieldLabels = {
   id: '序号',
   displayName: '显示名称',
@@ -25,7 +25,7 @@ const fieldLabels = {
   list8: '列表8',
   list9: '列表9',
   app: '应用程序',
-};
+}
 
 
 const testValues = {
@@ -41,13 +41,13 @@ const testValues = {
   list8: 'catalogList',
   list9: 'catalogList',
   appId: 'UA000001',
-};
+}
 
-const imageURLPrefix = '//localhost:2090';
+const imageURLPrefix = '//localhost:2090'
 
 
 const imageKeys = [
-];
+]
 
 
 class ObjectAccessCreateForm extends Component {
@@ -55,132 +55,132 @@ class ObjectAccessCreateForm extends Component {
     previewVisible: false,
     previewImage: '',
     convertedImagesValues: {},
-  };
+  }
 
   componentDidMount() {
-    // const { getFieldDecorator,setFieldsValue } = this.props.form;
-    const { setFieldsValue } = this.props.form;
-    setFieldsValue(testValues);
+    // const { getFieldDecorator,setFieldsValue } = this.props.form
+    const { setFieldsValue } = this.props.form
+    setFieldsValue(testValues)
   }
   shouldComponentUpdate() {
-    return true;
+    return true
   }
   handlePreview = (file) => {
-    console.log('preview file', file);
+    console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
-    });
+    })
   }
 
   handleChange = (event, source) => {
-    console.log('get file list from change in update change:', source);
+    console.log('get file list from change in update change:', source)
 
-    const { fileList } = event;
-    const { convertedImagesValues } = this.state;
+    const { fileList } = event
+    const { convertedImagesValues } = this.state
 
-    convertedImagesValues[source] = fileList;
-    this.setState({ convertedImagesValues });
-    console.log('/get file list from change in update change:', source);
+    convertedImagesValues[source] = fileList
+    this.setState({ convertedImagesValues })
+    console.log('/get file list from change in update change:', source)
   }
 
   mapBackToImageValues=(convertedImagesValues) => {
-    const targetImages = [];
+    const targetImages = []
     Object.keys(convertedImagesValues).map((key) => {
       if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
-      const value = convertedImagesValues[key][0];
+      const value = convertedImagesValues[key][0]
       if (value.response) {
-        targetImages[key] = imageURLPrefix + value.response;
-        return;
+        targetImages[key] = imageURLPrefix + value.response
+        return
       }
       if (value.url) {
-        targetImages[key] = value.url;
-        return;
+        targetImages[key] = value.url
+        return
       }
-    });
-    return targetImages;
+    })
+    return targetImages
   }
 
   mapFromImageValues=(selectedRow) => {
-    const targetImages = {};
+    const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
-        return [{ uid: key, url: value }];
+        return [{ uid: key, url: value }]
       }
-      return [];
-    };
+      return []
+    }
     imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key]);
-    });
-    console.log(targetImages);
-    return targetImages;
+      targetImages[key] = buildFileList(key,selectedRow[key])
+    })
+    console.log(targetImages)
+    return targetImages
   }
 
   render() {
-    const { form, dispatch, submitting } = this.props;
-    const { convertedImagesValues } = this.state;
+    const { form, dispatch, submitting } = this.props
+    const { convertedImagesValues } = this.state
 
-    const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
+    const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log('code go here', error);
-          return;
+          console.log('code go here', error)
+          return
         }
 
-        const { owner } = this.props;
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        const { owner } = this.props
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
 
-        const parameters = { ...values, ...imagesValues };
+        const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addObjectAccess`,
           payload: { id: owner.id, type: 'objectAccess', parameters },
-        });
-      });
-    };
+        })
+      })
+    }
     const submitCreateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log('code go here', error);
-          return;
+          console.log('code go here', error)
+          return
         }
         
-        const { owner } = this.props;
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        const { owner } = this.props
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
         
-        const parameters = { ...values, ...imagesValues };
+        const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addObjectAccess`,
           payload: { id: owner.id, type: 'objectAccess', parameters, continueNext: true },
-        });
-      });
-    };
+        })
+      })
+    }
     
     const goback = () => {
-      const { owner } = this.props;
+      const { owner } = this.props
       dispatch({
         type: `${owner.type}/goback`,
         payload: { id: owner.id, type: 'objectAccess' },
-      }); 
-    };
-    const errors = getFieldsError();
+      })
+    }
+    const errors = getFieldsError()
     const getErrorInfo = () => {
-      const errorCount = Object.keys(errors).filter(key => errors[key]).length;
+      const errorCount = Object.keys(errors).filter(key => errors[key]).length
       if (!errors || errorCount === 0) {
-        return null;
+        return null
       }
       // eslint-disable-next-line no-unused-vars
       const scrollToField = (fieldKey) => {
-        const labelNode = document.querySelector('label[for="${fieldKey}"]');
+        const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
-          labelNode.scrollIntoView(true);
+          labelNode.scrollIntoView(true)
         }
-      };
+      }
       const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
-          return null;
+          return null
         }
         return (
           <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
@@ -188,8 +188,8 @@ class ObjectAccessCreateForm extends Component {
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
           </li>
-        );
-      });
+        )
+      })
       return (
         <span className={styles.errorIcon}>
           <Popover
@@ -203,8 +203,8 @@ class ObjectAccessCreateForm extends Component {
           </Popover>
           {errorCount}
         </span>
-      );
-    };
+      )
+    }
     return (
       <PageHeaderLayout
         title="新建一个对象访问"
@@ -365,13 +365,13 @@ class ObjectAccessCreateForm extends Component {
           </Button>
         </FooterToolbar>
       </PageHeaderLayout>
-    );
+    )
   }
 }
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-}))(Form.create()(ObjectAccessCreateForm));
+}))(Form.create()(ObjectAccessCreateForm))
 
 
 

@@ -1,24 +1,23 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
-import styles from './Community.table.less';
-import ImagePreview from '../../components/ImagePreview';
+
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import {Form,Button, Table, Alert, Badge,Input } from 'antd'
+import styles from './Community.table.less'
+import ImagePreview from '../../components/ImagePreview'
+
 
 
 const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeholder={"序号"}/>)  },
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '10',render: (text, record) => (<Input value={text} placeholder={"名称"}/>)  },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '10',render: (text, record) => (<Input value={text} placeholder={"描述"}/>)  },
-];
+]
 
 class CommunityEditTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props;
-    const { data } = this.props;
-	
-	
-
+    // const { data,count,current, owner } = this.props
+    const { data } = this.props
     return (
       <div className={styles.standardTable}>
         
@@ -39,9 +38,9 @@ class CommunityEditTable extends PureComponent {
           新增
         </Button>
       </div>
-    );
+    )
   }
 }
 
-export default CommunityEditTable;
+export default CommunityEditTable
 

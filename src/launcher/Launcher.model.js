@@ -1,6 +1,6 @@
 
-import { routerRedux } from 'dva/router';
-import key from 'keymaster';
+import { routerRedux } from 'dva/router'
+import key from 'keymaster'
 
 import LauncherService from './Launcher.service'
 
@@ -50,41 +50,41 @@ const apps = {
   'com.terapico.bbt.objectaccess.ObjectAccess': 'objectAccess',
   'com.terapico.bbt.loginhistory.LoginHistory': 'loginHistory',
 
-};
+}
 
-// const rootElement = document.getElementById("root");
+// const rootElement = document.getElementById("root")
 
 // eslint-disable-next-line no-unused-vars
 const presentApp = (clazz, data) => {
-  // console.log(data);
-};
+  // console.log(data)
+}
 
 // const lowercaseFirst = (stringExpr) => {
 //   if(typeof(stringExpr)!="string"){
-//       throw "parameter stringExpr is not a string";
+//       throw "parameter stringExpr is not a string"
 //   }
-//   // let stringExpr="";
+//   // let stringExpr=""
 //   if(stringExpr.length<=0){
-//       return "";
+//       return ""
 //   }
 //   if(stringExpr.length==1){
-//       return stringExpr.substring(0,1);
+//       return stringExpr.substring(0,1)
 //   }
-//   return stringExpr.substring(0,1).toLowerCase()+stringExpr.substring(1);
+//   return stringExpr.substring(0,1).toLowerCase()+stringExpr.substring(1)
 // }
 
 const calcLocationPath = (clazz,id,subLocation) => {
 
-  const locationPath = apps[clazz];
+  const locationPath = apps[clazz]
   if (locationPath) {
-    return `${locationPath}/${id}/${subLocation}`;
+    return `${locationPath}/${id}/${subLocation}`
   }
-  return '/home';
-};
+  return '/home'
+}
 
-// console.log("element", );
+// console.log("element", )
 
-let currentLocation = '';
+let currentLocation = ''
 
 export default {
 
@@ -97,84 +97,84 @@ export default {
     keyboard({ dispatch }) {
       key('escape', () => {
         if (currentLocation === '/home') {
-          return;
+          return
         }
 
-        const newlocation = { pathname: '/home' };
+        const newlocation = { pathname: '/home' }
 
-        dispatch(routerRedux.push(newlocation));
-      });
+        dispatch(routerRedux.push(newlocation))
+      })
     },
     setup({ history }) {
       history.listen((location) => {
-        currentLocation = location.pathname;
-        const { pathname } = location;
-        // const match = pathToRegexp('/communityApp/:tail').exec(path);
+        currentLocation = location.pathname
+        const { pathname } = location
+        // const match = pathToRegexp('/communityApp/:tail').exec(path)
         if (!pathname === ('/') || !pathname.startsWith('/home')) {
-          return;
+          return
           // dispatch action with userId
         }
-        console.log('launcher ==============>', location);
+        console.log('launcher ==============>', location)
         // updateState
-        // console.log(1, loggedIn);
-        // dispatch({type:"showlogin"});
-      });
+        // console.log(1, loggedIn)
+        // dispatch({type:"showlogin"})
+      })
     },
   },
   effects: {
     *login({ payload }, { call, put }) {
-      const data = yield call(LauncherService.login, payload.username, payload.password);
-      console.log('data.........................', data);
+      const data = yield call(LauncherService.login, payload.username, payload.password)
+      console.log('data.........................', data)
       if (!data) {
-        return;
+        return
       }
       if (data.class.indexOf('LoginForm') > 0) {
-        yield put({ type: 'showlogin', payload: { data } });
-        return;
+        yield put({ type: 'showlogin', payload: { data } })
+        return
       }
       if (data.class.indexOf('SecUser') > 0) {
-        yield put({ type: 'showhome', payload: { data } });
-        return;
+        yield put({ type: 'showhome', payload: { data } })
+        return
       }
-      const locationPath = calcLocationPath(data.class, data.id, 'dashboard');
-      const location = { pathname: `/${locationPath}`, state: data };
-      yield put(routerRedux.push(location));
+      const locationPath = calcLocationPath(data.class, data.id, 'dashboard')
+      const location = { pathname: `/${locationPath}`, state: data }
+      yield put(routerRedux.push(location))
     },
     *gotoApp({ payload }, { call, put }) {
-      // console.log("gotoApp has been called", payload);
-      const data = yield call(LauncherService.gotoApp, payload.appId);
-      const locationPath = calcLocationPath(data.class, data.id, 'dashboard');
-      const location = { pathname: `/${locationPath}`, state: data };
-      console.log('location', location);
-      yield put(routerRedux.push(location));
-      // yield put({type:"showApp",payload:{data}});
+      // console.log("gotoApp has been called", payload)
+      const data = yield call(LauncherService.gotoApp, payload.appId)
+      const locationPath = calcLocationPath(data.class, data.id, 'dashboard')
+      const location = { pathname: `/${locationPath}`, state: data }
+      console.log('location', location)
+      yield put(routerRedux.push(location))
+      // yield put({type:"showApp",payload:{data}})
     },
   },
   reducers: {
     updateState(state, action) {
-      return { ...state, ...action.payload };
+      return { ...state, ...action.payload }
     },
     showlogin(state) {
-      return { ...state, loggedIn: false };
+      return { ...state, loggedIn: false }
     },
     showhome(state, action) {
-      const { data } = action.payload;
-      return { ...state, loggedIn: true, data };
+      const { data } = action.payload
+      return { ...state, loggedIn: true, data }
     },
     logout(state) {
-      return { ...state, loggedIn: false };
+      return { ...state, loggedIn: false }
     },
     showApp(state, action) {
-      const { data } = action.payload;
-      const clazz = data.class;
+      const { data } = action.payload
+      const clazz = data.class
 
-      presentApp(clazz, data);
-      return { ...state, loggedIn: true, clazz, data };
+      presentApp(clazz, data)
+      return { ...state, loggedIn: true, clazz, data }
     },
   },
 
 
-};
+}
 
 
 

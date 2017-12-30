@@ -1,9 +1,9 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import { Table, Alert, Badge } from 'antd';
-import styles from './ObjectAccess.table.less';
-import ImagePreview from '../../components/ImagePreview';
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import { Table, Alert, Badge } from 'antd'
+import styles from './ObjectAccess.table.less'
+import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
@@ -21,41 +21,41 @@ const columns = [
   { title: '列表9', debugtype: 'string', dataIndex: 'list9', width: '24' },
   { title: '应用程序', dataIndex: 'app', render: (text, record) => (record.app ? record.app.id : '暂无') },
 
-];
+]
 
 class ObjectAccessTable extends PureComponent {
   state = {
     selectedRowKeys: [],
-  };
+  }
 
   componentWillReceiveProps(nextProps) {
     // clean state
     if (nextProps.selectedRows.length === 0) {
       this.setState({
         selectedRowKeys: [],
-      });
+      })
     }
   }
 
   handleRowSelectChange = (selectedRowKeys, selectedRows) => {
     if (this.props.onSelectRow) {
-      this.props.onSelectRow(selectedRows);
+      this.props.onSelectRow(selectedRows)
     }
-    this.setState({ selectedRowKeys });
+    this.setState({ selectedRowKeys })
   }
 
   handleTableChange = (pagination, filters, sorter) => {
-    this.props.onChange(pagination, filters, sorter);
+    this.props.onChange(pagination, filters, sorter)
   }
 
   cleanSelectedKeys = () => {
-    this.handleRowSelectChange([], []);
+    this.handleRowSelectChange([], [])
   }
 
   render() {
-    const { selectedRowKeys } = this.state;
-    // const { data, count, current, owner } = this.props;
-    const { data, count, current } = this.props;
+    const { selectedRowKeys } = this.state
+    // const { data, count, current, owner } = this.props
+    const { data, count, current } = this.props
 
     const paginationProps = {
       showSizeChanger: true,
@@ -64,7 +64,7 @@ class ObjectAccessTable extends PureComponent {
       total: count,
       current,
       
-    };
+    }
 
     const rowSelection = {
       selectedRowKeys,
@@ -72,7 +72,7 @@ class ObjectAccessTable extends PureComponent {
       getCheckboxProps: record => ({
         disabled: record.disabled,
       }),
-    };
+    }
 
     return (
       <div className={styles.standardTable}>
@@ -100,9 +100,9 @@ class ObjectAccessTable extends PureComponent {
           scroll={{ x: 3405 }}
         />
       </div>
-    );
+    )
   }
 }
 
-export default ObjectAccessTable;
+export default ObjectAccessTable
 

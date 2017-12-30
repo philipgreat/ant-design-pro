@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
-import moment from 'moment';
-import { connect } from 'dva';
-import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-import PictureEdit from '../../components/PictureEdit';
-import OSSPictureEdit from '../../components/OSSPictureEdit';
+import React, { Component } from 'react'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import moment from 'moment'
+import { connect } from 'dva'
+import PageHeaderLayout from '../../layouts/PageHeaderLayout'
+import PictureEdit from '../../components/PictureEdit'
+import OSSPictureEdit from '../../components/OSSPictureEdit'
 
-import FooterToolbar from '../../components/FooterToolbar';
+import FooterToolbar from '../../components/FooterToolbar'
 
-import styles from './Task.updateform.less';
+import styles from './Task.updateform.less'
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
+const { Option } = Select
+const { RangePicker } = DatePicker
+const { TextArea } = Input
 const fieldLabels = {
   id: '序号',
   title: '标题',
@@ -41,20 +41,20 @@ const fieldLabels = {
   repliedByCurrentUser: '当前用户已回复',
   currentStatus: '当前状态',
 
-};
+}
 
-const imageURLPrefix = '//localhost:2090';
+const imageURLPrefix = '//localhost:2090'
 
 const imageKeys = [
-  "coverImagePath1",
-  "coverImagePath2",
-  "coverImagePath3",
-  "imagePath1",
-  "imagePath2",
-  "imagePath3",
-  "imagePath4",
-  "imagePath5"
-];
+  'coverImagePath1',
+  'coverImagePath2',
+  'coverImagePath3',
+  'imagePath1',
+  'imagePath2',
+  'imagePath3',
+  'imagePath4',
+  'imagePath5',
+]
 
 
 class TaskUpdateForm extends Component {
@@ -62,137 +62,137 @@ class TaskUpdateForm extends Component {
     previewVisible: false,
     previewImage: '',
     convertedImagesValues: {},
-  };
+  }
 
   componentWillMount() {
-    const selectedRow = this.getSelectedRow();
+    const selectedRow = this.getSelectedRow()
     if (!selectedRow) {
-      return;
+      return
     }
     this.setState({
       convertedImagesValues: this.mapFromImageValues(selectedRow)
-    });
+    })
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
-    // const { getFieldDecorator, setFieldsValue } = this.props.form;
-    const { setFieldsValue } = this.props.form;
+    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
+    // const { getFieldDecorator, setFieldsValue } = this.props.form
+    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow();
+    const selectedRow = this.getSelectedRow()
     if (!selectedRow) {
-      return;
+      return
     }
-    setFieldsValue(selectedRow);
+    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
-    return true;
+    return true
   }
 
   getSelectedRow() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
-    const { selectedRows, currentUpdateIndex } = this.props;
+    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
+    const { selectedRows, currentUpdateIndex } = this.props
     if (!selectedRows) {
-      return;
+      return
     }
     if (currentUpdateIndex >= selectedRows.length) {
-      return;
+      return
     }
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
         createTime: moment(item.createTime).format('YYYY-MM-DD'),
 
-      };
-    });
-    const selectedRow = convertiedValues[currentUpdateIndex];
-    return selectedRow;
+      }
+    })
+    const selectedRow = convertiedValues[currentUpdateIndex]
+    return selectedRow
   }
 
   handleChange = (event, source) => {
-    console.log('get file list from change in update change: ', source);
-    const { fileList } = event;
-    const { convertedImagesValues } = this.state;
-    convertedImagesValues[source] = fileList;
-    this.setState({ convertedImagesValues });
-    console.log('/get file list from change in update change: ', source);
+    console.log('get file list from change in update change: ', source)
+    const { fileList } = event
+    const { convertedImagesValues } = this.state
+    convertedImagesValues[source] = fileList
+    this.setState({ convertedImagesValues })
+    console.log('/get file list from change in update change: ', source)
   }
 
   mapBackToImageValues = (convertedImagesValues) => {
-    const targetImages = [];
+    const targetImages = []
     Object.keys(convertedImagesValues).map((key) => {
       if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
-        return;
+        return
       }
-      const value = convertedImagesValues[key][0];
+      const value = convertedImagesValues[key][0]
       if (value.response) {
         if (value.response.indexOf('//') === 0) {
-          targetImages[key] = value.response;
-          return;
+          targetImages[key] = value.response
+          return
         }
         if (value.response.indexOf('http://') === 0) {
-          targetImages[key] = value.response;
-          return;
+          targetImages[key] = value.response
+          return
         }
         if (value.response.indexOf('https://') === 0) {
-          targetImages[key] = value.response;
-          return;
+          targetImages[key] = value.response
+          return
         }
-        targetImages[key] = imageURLPrefix + value.response;
-        return;
+        targetImages[key] = imageURLPrefix + value.response
+        return
       }
       if (value.url) {
-        targetImages[key] = value.url;
-        return;
+        targetImages[key] = value.url
+        return
       }
-    });
-    return targetImages;
+    })
+    return targetImages
   }
   
   mapFromImageValues = (selectedRow) => {
-    const targetImages = {};
+    const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
-        return [{ uid: key, url: value }];
+        return [{ uid: key, url: value }]
       }
-      return [];
-    };
+      return []
+    }
     imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key]);
-    });
-    console.log(targetImages);
-    return targetImages;
+      targetImages[key] = buildFileList(key,selectedRow[key])
+    })
+    console.log(targetImages)
+    return targetImages
   }
 
   handlePreview = (file) => {
-    console.log('preview file', file);
+    console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
-    });
+    })
   }
 
   render() {
-    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
-    const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const { convertedImagesValues } = this.state;
-    const { setFieldsValue } = this.props.form;
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
+    const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
+    const { convertedImagesValues } = this.state
+    const { setFieldsValue } = this.props.form
     
     
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log('code go here', error);
-          return;
+          console.log('code go here', error)
+          return
         }
 
-        const { owner } = this.props;
-        const taskId = values.id;
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
-        const parameters = { ...values, taskId, ...imagesValues };
+        const { owner } = this.props
+        const taskId = values.id
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const parameters = { ...values, taskId, ...imagesValues }
 
-        // const newIndex= currentUpdateIndex + 1;
+        // const newIndex= currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateTask`,
           payload: {
@@ -203,33 +203,33 @@ class TaskUpdateForm extends Component {
             currentUpdateIndex: 0,
             continueNext: false,
           },
-        });
-      });
-    };
+        })
+      })
+    }
     
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log('code go here', error);
-          return;
+          console.log('code go here', error)
+          return
         }
 
-        const { owner } = this.props;
-        const taskId = values.id;
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
-        const parameters = { ...values, taskId, ...imagesValues };
+        const { owner } = this.props
+        const taskId = values.id
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const parameters = { ...values, taskId, ...imagesValues }
 
         // TODO
-        const { currentUpdateIndex } = this.props;
+        const { currentUpdateIndex } = this.props
         
         if (currentUpdateIndex >= selectedRows.length - 1) {
-          return;
+          return
         }
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
-        });
-        setFieldsValue(selectedRows[currentUpdateIndex + 1]);
-        const newIndex = currentUpdateIndex + 1;
+        })
+        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateTask`,
           payload: {
@@ -240,15 +240,15 @@ class TaskUpdateForm extends Component {
             currentUpdateIndex: newIndex,
             continueNext: true,
           },
-        });
-      });
-    };
+        })
+      })
+    }
     
     const skipToNext = () => {
-      const { currentUpdateIndex } = this.props;
-      const { owner } = this.props;
+      const { currentUpdateIndex } = this.props
+      const { owner } = this.props
         
-      const newIndex = currentUpdateIndex + 1;
+      const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextTaskUpdateRow`,
         payload: {
@@ -259,34 +259,34 @@ class TaskUpdateForm extends Component {
           continueNext: true,
           update: false,
         },
-      });
-    };
+      })
+    }
     
     const goback = () => {
-      const { owner } = this.props;
+      const { owner } = this.props
       dispatch({
         type: `${owner.type}/goback`,
         payload: {
           id: owner.id,
           type: 'task',
         },
-      }); 
-    };
-    const errors = getFieldsError();
+      })
+    }
+    const errors = getFieldsError()
     const getErrorInfo = () => {
-      const errorCount = Object.keys(errors).filter(key => errors[key]).length;
+      const errorCount = Object.keys(errors).filter(key => errors[key]).length
       if (!errors || errorCount === 0) {
-        return null;
+        return null
       }
       const scrollToField = (fieldKey) => {
-        const labelNode = document.querySelector(`label[for='${fieldKey}']`);
+        const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
-          labelNode.scrollIntoView(true);
+          labelNode.scrollIntoView(true)
         }
-      };
+      }
       const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
-          return null;
+          return null
         }
         return (
           <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
@@ -294,8 +294,8 @@ class TaskUpdateForm extends Component {
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
           </li>
-        );
-      });
+        )
+      })
       return (
         <span className={styles.errorIcon}>
           <Popover
@@ -309,11 +309,11 @@ class TaskUpdateForm extends Component {
           </Popover>
           {errorCount}
         </span>
-      );
-    };
+      )
+    }
     
     if (!selectedRows) {
-      return (<div>缺少被更新的对象</div>);
+      return (<div>缺少被更新的对象</div>)
     }
 
     // TODO
@@ -343,7 +343,7 @@ class TaskUpdateForm extends Component {
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: '请输入标题' }],
                   })(
-                    <Input placeholder="请输入请输入标题string"  />
+                    <Input placeholder="请输入请输入标题string" />
                   )}
                 </Form.Item>
               </Col>
@@ -353,7 +353,7 @@ class TaskUpdateForm extends Component {
                   {getFieldDecorator('selectedTask', {
                     rules: [{ required: true, message: '请输入选定的任务' }],
                   })(
-                    <Input placeholder="请输入请输入选定的任务string"  />
+                    <Input placeholder="请输入请输入选定的任务string" />
                   )}
                 </Form.Item>
               </Col>
@@ -363,7 +363,7 @@ class TaskUpdateForm extends Component {
                   {getFieldDecorator('videoUrl', {
                     rules: [{ required: true, message: '请输入视频网址' }],
                   })(
-                    <Input placeholder="请输入请输入视频网址string_url"  />
+                    <Input placeholder="请输入请输入视频网址string_url" />
                   )}
                 </Form.Item>
               </Col>
@@ -373,7 +373,7 @@ class TaskUpdateForm extends Component {
                   {getFieldDecorator('creatorBonus', {
                     rules: [{ required: true, message: '请输入发布人的奖金' }],
                   })(
-                    <Input placeholder="请输入请输入发布人的奖金int"  />
+                    <Input placeholder="请输入请输入发布人的奖金int" />
                   )}
                 </Form.Item>
               </Col>
@@ -383,7 +383,7 @@ class TaskUpdateForm extends Component {
                   {getFieldDecorator('additionalBonus', {
                     rules: [{ required: true, message: '请输入额外的奖金' }],
                   })(
-                    <Input placeholder="请输入请输入额外的奖金int"  />
+                    <Input placeholder="请输入请输入额外的奖金int" />
                   )}
                 </Form.Item>
               </Col>
@@ -393,7 +393,7 @@ class TaskUpdateForm extends Component {
                   {getFieldDecorator('likeByCurrentUser', {
                     rules: [{ required: true, message: '请输入当前用户已点赞' }],
                   })(
-                    <Input placeholder="请输入请输入当前用户已点赞bool"  />
+                    <Input placeholder="请输入请输入当前用户已点赞bool" />
                   )}
                 </Form.Item>
               </Col>
@@ -403,7 +403,7 @@ class TaskUpdateForm extends Component {
                   {getFieldDecorator('repliedByCurrentUser', {
                     rules: [{ required: true, message: '请输入当前用户已回复' }],
                   })(
-                    <Input placeholder="请输入请输入当前用户已回复bool"  />
+                    <Input placeholder="请输入请输入当前用户已回复bool" />
                   )}
                 </Form.Item>
               </Col>
@@ -434,59 +434,75 @@ class TaskUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"封面图像路径1"} 
+                <OSSPictureEdit
+                  buttonTitle="封面图像路径1"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, "coverImagePath1")}
-                  fileList={convertedImagesValues.coverImagePath1} />
+                  handleChange={event => this.handleChange(event, 'coverImagePath1')}
+                  fileList={convertedImagesValues.coverImagePath1}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"封面图像路径2"} 
+                <OSSPictureEdit
+                  buttonTitle="封面图像路径2"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, "coverImagePath2")}
-                  fileList={convertedImagesValues.coverImagePath2} />
+                  handleChange={event => this.handleChange(event, 'coverImagePath2')}
+                  fileList={convertedImagesValues.coverImagePath2}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"封面图像路径3"} 
+                <OSSPictureEdit
+                  buttonTitle="封面图像路径3"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, "coverImagePath3")}
-                  fileList={convertedImagesValues.coverImagePath3} />
+                  handleChange={event => this.handleChange(event, 'coverImagePath3')}
+                  fileList={convertedImagesValues.coverImagePath3}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"图1"} 
+                <OSSPictureEdit
+                  buttonTitle="图1"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, "imagePath1")}
-                  fileList={convertedImagesValues.imagePath1} />
+                  handleChange={event => this.handleChange(event, 'imagePath1')}
+                  fileList={convertedImagesValues.imagePath1}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"图2"} 
+                <OSSPictureEdit
+                  buttonTitle="图2"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, "imagePath2")}
-                  fileList={convertedImagesValues.imagePath2} />
+                  handleChange={event => this.handleChange(event, 'imagePath2')}
+                  fileList={convertedImagesValues.imagePath2}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"图3"} 
+                <OSSPictureEdit
+                  buttonTitle="图3"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, "imagePath3")}
-                  fileList={convertedImagesValues.imagePath3} />
+                  handleChange={event => this.handleChange(event, 'imagePath3')}
+                  fileList={convertedImagesValues.imagePath3}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"图4"} 
+                <OSSPictureEdit
+                  buttonTitle="图4"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, "imagePath4")}
-                  fileList={convertedImagesValues.imagePath4} />
+                  handleChange={event => this.handleChange(event, 'imagePath4')}
+                  fileList={convertedImagesValues.imagePath4}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit buttonTitle={"图5"} 
+                <OSSPictureEdit
+                  buttonTitle="图5"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, "imagePath5")}
-                  fileList={convertedImagesValues.imagePath5} />
+                  handleChange={event => this.handleChange(event, 'imagePath5')}
+                  fileList={convertedImagesValues.imagePath5}
+                />
               </Col>
 
             </Row>
@@ -509,13 +525,13 @@ class TaskUpdateForm extends Component {
           </Button>
         </FooterToolbar>
       </PageHeaderLayout>
-    );
+    )
   }
 }
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-}))(Form.create()(TaskUpdateForm));
+}))(Form.create()(TaskUpdateForm))
 
 
 

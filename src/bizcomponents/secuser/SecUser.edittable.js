@@ -1,9 +1,11 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
-import styles from './SecUser.table.less';
-import ImagePreview from '../../components/ImagePreview';
+
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import {Form,Button, Table, Alert, Badge,Input } from 'antd'
+import styles from './SecUser.table.less'
+import ImagePreview from '../../components/ImagePreview'
+
 
 
 const columns = [
@@ -15,18 +17,15 @@ const columns = [
   { title: '验证码', debugtype: 'int', dataIndex: 'verificationCode', width: '11',render: (text, record) => (<Input value={text} placeholder={"验证码"}/>)  },
   { title: '验证码过期', dataIndex: 'verificationCodeExpire', render: (text, record) => moment(record.verificationCodeExpire).format('YYYY-MM-DD') },
   { title: '最后登录时间', dataIndex: 'lastLoginTime', render: (text, record) => moment(record.lastLoginTime).format('YYYY-MM-DD') },
-  { title: '域',dataIndex: 'domain', render: (text, record) => (record.domain ? record.domain.id : '暂无') },
-  { title: '屏蔽',dataIndex: 'blocking', render: (text, record) => (record.blocking ? record.blocking.id : '暂无') },
+  { title: '域', dataIndex: 'domain', render: (text, record) => (record.domain ? record.domain.id : '暂无') },
+  { title: '屏蔽', dataIndex: 'blocking', render: (text, record) => (record.blocking ? record.blocking.id : '暂无') },
   { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '11',render: (text, record) => (<Input value={text} placeholder={"当前状态"}/>)  },
-];
+]
 
 class SecUserEditTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props;
-    const { data } = this.props;
-	
-	
-
+    // const { data,count,current, owner } = this.props
+    const { data } = this.props
     return (
       <div className={styles.standardTable}>
         
@@ -47,9 +46,9 @@ class SecUserEditTable extends PureComponent {
           新增
         </Button>
       </div>
-    );
+    )
   }
 }
 
-export default SecUserEditTable;
+export default SecUserEditTable
 

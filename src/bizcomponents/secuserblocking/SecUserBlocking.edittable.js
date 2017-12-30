@@ -1,9 +1,11 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
-import styles from './SecUserBlocking.table.less';
-import ImagePreview from '../../components/ImagePreview';
+
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import {Form,Button, Table, Alert, Badge,Input } from 'antd'
+import styles from './SecUserBlocking.table.less'
+import ImagePreview from '../../components/ImagePreview'
+
 
 
 const columns = [
@@ -11,15 +13,12 @@ const columns = [
   { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17',render: (text, record) => (<Input value={text} placeholder={"谁"}/>)  },
   { title: '屏蔽时间', dataIndex: 'blockTime', render: (text, record) => moment(record.blockTime).format('YYYY-MM-DD') },
   { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '28',render: (text, record) => (<Input value={text} placeholder={"评论"}/>)  },
-];
+]
 
 class SecUserBlockingEditTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props;
-    const { data } = this.props;
-	
-	
-
+    // const { data,count,current, owner } = this.props
+    const { data } = this.props
     return (
       <div className={styles.standardTable}>
         
@@ -40,9 +39,9 @@ class SecUserBlockingEditTable extends PureComponent {
           新增
         </Button>
       </div>
-    );
+    )
   }
 }
 
-export default SecUserBlockingEditTable;
+export default SecUserBlockingEditTable
 

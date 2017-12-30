@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
-import moment from 'moment';
-import { connect } from 'dva';
-import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-import PictureEdit from '../../components/PictureEdit';
-import OSSPictureEdit from '../../components/OSSPictureEdit';
+import React, { Component } from 'react'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import moment from 'moment'
+import { connect } from 'dva'
+import PageHeaderLayout from '../../layouts/PageHeaderLayout'
+import PictureEdit from '../../components/PictureEdit'
+import OSSPictureEdit from '../../components/OSSPictureEdit'
 
-import FooterToolbar from '../../components/FooterToolbar';
+import FooterToolbar from '../../components/FooterToolbar'
 
-import styles from './PatientInfo.updateform.less';
+import styles from './PatientInfo.updateform.less'
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
+const { Option } = Select
+const { RangePicker } = DatePicker
+const { TextArea } = Input
 const fieldLabels = {
   id: '序号',
   name: '名称',
@@ -25,12 +25,12 @@ const fieldLabels = {
   recoverStartTime: '复苏开始时间',
   user: '用户',
 
-};
+}
 
-const imageURLPrefix = '//localhost:2090';
+const imageURLPrefix = '//localhost:2090'
 
 const imageKeys = [
-];
+]
 
 
 class PatientInfoUpdateForm extends Component {
@@ -38,42 +38,42 @@ class PatientInfoUpdateForm extends Component {
     previewVisible: false,
     previewImage: '',
     convertedImagesValues: {},
-  };
+  }
 
   componentWillMount() {
-    const selectedRow = this.getSelectedRow();
+    const selectedRow = this.getSelectedRow()
     if (!selectedRow) {
-      return;
+      return
     }
     this.setState({
       convertedImagesValues: this.mapFromImageValues(selectedRow)
-    });
+    })
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
-    // const { getFieldDecorator, setFieldsValue } = this.props.form;
-    const { setFieldsValue } = this.props.form;
+    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
+    // const { getFieldDecorator, setFieldsValue } = this.props.form
+    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow();
+    const selectedRow = this.getSelectedRow()
     if (!selectedRow) {
-      return;
+      return
     }
-    setFieldsValue(selectedRow);
+    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
-    return true;
+    return true
   }
 
   getSelectedRow() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
-    const { selectedRows, currentUpdateIndex } = this.props;
+    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
+    const { selectedRows, currentUpdateIndex } = this.props
     if (!selectedRows) {
-      return;
+      return
     }
     if (currentUpdateIndex >= selectedRows.length) {
-      return;
+      return
     }
     const convertiedValues = selectedRows.map((item) => {
       return {
@@ -82,95 +82,95 @@ class PatientInfoUpdateForm extends Component {
         wearStartTime: moment(item.wearStartTime).format('YYYY-MM-DD'),
         recoverStartTime: moment(item.recoverStartTime).format('YYYY-MM-DD'),
 
-      };
-    });
-    const selectedRow = convertiedValues[currentUpdateIndex];
-    return selectedRow;
+      }
+    })
+    const selectedRow = convertiedValues[currentUpdateIndex]
+    return selectedRow
   }
 
   handleChange = (event, source) => {
-    console.log('get file list from change in update change: ', source);
-    const { fileList } = event;
-    const { convertedImagesValues } = this.state;
-    convertedImagesValues[source] = fileList;
-    this.setState({ convertedImagesValues });
-    console.log('/get file list from change in update change: ', source);
+    console.log('get file list from change in update change: ', source)
+    const { fileList } = event
+    const { convertedImagesValues } = this.state
+    convertedImagesValues[source] = fileList
+    this.setState({ convertedImagesValues })
+    console.log('/get file list from change in update change: ', source)
   }
 
   mapBackToImageValues = (convertedImagesValues) => {
-    const targetImages = [];
+    const targetImages = []
     Object.keys(convertedImagesValues).map((key) => {
       if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
-        return;
+        return
       }
-      const value = convertedImagesValues[key][0];
+      const value = convertedImagesValues[key][0]
       if (value.response) {
         if (value.response.indexOf('//') === 0) {
-          targetImages[key] = value.response;
-          return;
+          targetImages[key] = value.response
+          return
         }
         if (value.response.indexOf('http://') === 0) {
-          targetImages[key] = value.response;
-          return;
+          targetImages[key] = value.response
+          return
         }
         if (value.response.indexOf('https://') === 0) {
-          targetImages[key] = value.response;
-          return;
+          targetImages[key] = value.response
+          return
         }
-        targetImages[key] = imageURLPrefix + value.response;
-        return;
+        targetImages[key] = imageURLPrefix + value.response
+        return
       }
       if (value.url) {
-        targetImages[key] = value.url;
-        return;
+        targetImages[key] = value.url
+        return
       }
-    });
-    return targetImages;
+    })
+    return targetImages
   }
   
   mapFromImageValues = (selectedRow) => {
-    const targetImages = {};
+    const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
-        return [{ uid: key, url: value }];
+        return [{ uid: key, url: value }]
       }
-      return [];
-    };
+      return []
+    }
     imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key]);
-    });
-    console.log(targetImages);
-    return targetImages;
+      targetImages[key] = buildFileList(key,selectedRow[key])
+    })
+    console.log(targetImages)
+    return targetImages
   }
 
   handlePreview = (file) => {
-    console.log('preview file', file);
+    console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
-    });
+    })
   }
 
   render() {
-    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
-    const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const { convertedImagesValues } = this.state;
-    const { setFieldsValue } = this.props.form;
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
+    const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
+    const { convertedImagesValues } = this.state
+    const { setFieldsValue } = this.props.form
     
     
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log('code go here', error);
-          return;
+          console.log('code go here', error)
+          return
         }
 
-        const { owner } = this.props;
-        const patientInfoId = values.id;
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
-        const parameters = { ...values, patientInfoId, ...imagesValues };
+        const { owner } = this.props
+        const patientInfoId = values.id
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const parameters = { ...values, patientInfoId, ...imagesValues }
 
-        // const newIndex= currentUpdateIndex + 1;
+        // const newIndex= currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updatePatientInfo`,
           payload: {
@@ -181,33 +181,33 @@ class PatientInfoUpdateForm extends Component {
             currentUpdateIndex: 0,
             continueNext: false,
           },
-        });
-      });
-    };
+        })
+      })
+    }
     
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log('code go here', error);
-          return;
+          console.log('code go here', error)
+          return
         }
 
-        const { owner } = this.props;
-        const patientInfoId = values.id;
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
-        const parameters = { ...values, patientInfoId, ...imagesValues };
+        const { owner } = this.props
+        const patientInfoId = values.id
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const parameters = { ...values, patientInfoId, ...imagesValues }
 
         // TODO
-        const { currentUpdateIndex } = this.props;
+        const { currentUpdateIndex } = this.props
         
         if (currentUpdateIndex >= selectedRows.length - 1) {
-          return;
+          return
         }
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
-        });
-        setFieldsValue(selectedRows[currentUpdateIndex + 1]);
-        const newIndex = currentUpdateIndex + 1;
+        })
+        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updatePatientInfo`,
           payload: {
@@ -218,15 +218,15 @@ class PatientInfoUpdateForm extends Component {
             currentUpdateIndex: newIndex,
             continueNext: true,
           },
-        });
-      });
-    };
+        })
+      })
+    }
     
     const skipToNext = () => {
-      const { currentUpdateIndex } = this.props;
-      const { owner } = this.props;
+      const { currentUpdateIndex } = this.props
+      const { owner } = this.props
         
-      const newIndex = currentUpdateIndex + 1;
+      const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextPatientInfoUpdateRow`,
         payload: {
@@ -237,34 +237,34 @@ class PatientInfoUpdateForm extends Component {
           continueNext: true,
           update: false,
         },
-      });
-    };
+      })
+    }
     
     const goback = () => {
-      const { owner } = this.props;
+      const { owner } = this.props
       dispatch({
         type: `${owner.type}/goback`,
         payload: {
           id: owner.id,
           type: 'patientInfo',
         },
-      }); 
-    };
-    const errors = getFieldsError();
+      })
+    }
+    const errors = getFieldsError()
     const getErrorInfo = () => {
-      const errorCount = Object.keys(errors).filter(key => errors[key]).length;
+      const errorCount = Object.keys(errors).filter(key => errors[key]).length
       if (!errors || errorCount === 0) {
-        return null;
+        return null
       }
       const scrollToField = (fieldKey) => {
-        const labelNode = document.querySelector(`label[for='${fieldKey}']`);
+        const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
-          labelNode.scrollIntoView(true);
+          labelNode.scrollIntoView(true)
         }
-      };
+      }
       const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
-          return null;
+          return null
         }
         return (
           <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
@@ -272,8 +272,8 @@ class PatientInfoUpdateForm extends Component {
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
           </li>
-        );
-      });
+        )
+      })
       return (
         <span className={styles.errorIcon}>
           <Popover
@@ -287,11 +287,11 @@ class PatientInfoUpdateForm extends Component {
           </Popover>
           {errorCount}
         </span>
-      );
-    };
+      )
+    }
     
     if (!selectedRows) {
-      return (<div>缺少被更新的对象</div>);
+      return (<div>缺少被更新的对象</div>)
     }
 
     // TODO
@@ -321,7 +321,7 @@ class PatientInfoUpdateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: '请输入名称' }],
                   })(
-                    <Input placeholder="请输入请输入名称string"  />
+                    <Input placeholder="请输入请输入名称string" />
                   )}
                 </Form.Item>
               </Col>
@@ -331,7 +331,7 @@ class PatientInfoUpdateForm extends Component {
                   {getFieldDecorator('nickName', {
                     rules: [{ required: true, message: '请输入昵称' }],
                   })(
-                    <Input placeholder="请输入请输入昵称string"  />
+                    <Input placeholder="请输入请输入昵称string" />
                   )}
                 </Form.Item>
               </Col>
@@ -341,7 +341,7 @@ class PatientInfoUpdateForm extends Component {
                   {getFieldDecorator('gender', {
                     rules: [{ required: true, message: '请输入性别' }],
                   })(
-                    <Input placeholder="请输入请输入性别string_gender"  />
+                    <Input placeholder="请输入请输入性别string_gender" />
                   )}
                 </Form.Item>
               </Col>
@@ -351,7 +351,7 @@ class PatientInfoUpdateForm extends Component {
                   {getFieldDecorator('birthday', {
                     rules: [{ required: true, message: '请输入生日' }],
                   })(
-                    <Input placeholder="请输入请输入生日date"  />
+                    <Input placeholder="请输入请输入生日date" />
                   )}
                 </Form.Item>
               </Col>
@@ -361,7 +361,7 @@ class PatientInfoUpdateForm extends Component {
                   {getFieldDecorator('wearDeviceType', {
                     rules: [{ required: true, message: '请输入佩戴设备类型' }],
                   })(
-                    <Input placeholder="请输入请输入佩戴设备类型string"  />
+                    <Input placeholder="请输入请输入佩戴设备类型string" />
                   )}
                 </Form.Item>
               </Col>
@@ -371,7 +371,7 @@ class PatientInfoUpdateForm extends Component {
                   {getFieldDecorator('wearStartTime', {
                     rules: [{ required: true, message: '请输入磨损的开始时间' }],
                   })(
-                    <Input placeholder="请输入请输入磨损的开始时间date"  />
+                    <Input placeholder="请输入请输入磨损的开始时间date" />
                   )}
                 </Form.Item>
               </Col>
@@ -381,7 +381,7 @@ class PatientInfoUpdateForm extends Component {
                   {getFieldDecorator('recoverPlan', {
                     rules: [{ required: true, message: '请输入康复计划' }],
                   })(
-                    <Input placeholder="请输入请输入康复计划string"  />
+                    <Input placeholder="请输入请输入康复计划string" />
                   )}
                 </Form.Item>
               </Col>
@@ -391,7 +391,7 @@ class PatientInfoUpdateForm extends Component {
                   {getFieldDecorator('recoverStartTime', {
                     rules: [{ required: true, message: '请输入复苏开始时间' }],
                   })(
-                    <Input placeholder="请输入请输入复苏开始时间date"  />
+                    <Input placeholder="请输入请输入复苏开始时间date" />
                   )}
                 </Form.Item>
               </Col>
@@ -417,13 +417,13 @@ class PatientInfoUpdateForm extends Component {
           </Button>
         </FooterToolbar>
       </PageHeaderLayout>
-    );
+    )
   }
 }
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-}))(Form.create()(PatientInfoUpdateForm));
+}))(Form.create()(PatientInfoUpdateForm))
 
 
 

@@ -1,9 +1,11 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
-import styles from './BonusPoint.table.less';
-import ImagePreview from '../../components/ImagePreview';
+
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import {Form,Button, Table, Alert, Badge,Input } from 'antd'
+import styles from './BonusPoint.table.less'
+import ImagePreview from '../../components/ImagePreview'
+
 
 
 const columns = [
@@ -11,16 +13,13 @@ const columns = [
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '10',render: (text, record) => (<Input value={text} placeholder={"名称"}/>)  },
   { title: '获得时间', dataIndex: 'obtainTime', render: (text, record) => moment(record.obtainTime).format('YYYY-MM-DD') },
   { title: '点', debugtype: 'int', dataIndex: 'points', width: '8',render: (text, record) => (<Input value={text} placeholder={"点"}/>)  },
-  { title: '用户',dataIndex: 'user', render: (text, record) => (record.user ? record.user.id : '暂无') },
-];
+  { title: '用户', dataIndex: 'user', render: (text, record) => (record.user ? record.user.id : '暂无') },
+]
 
 class BonusPointEditTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props;
-    const { data } = this.props;
-	
-	
-
+    // const { data,count,current, owner } = this.props
+    const { data } = this.props
     return (
       <div className={styles.standardTable}>
         
@@ -41,9 +40,9 @@ class BonusPointEditTable extends PureComponent {
           新增
         </Button>
       </div>
-    );
+    )
   }
 }
 
-export default BonusPointEditTable;
+export default BonusPointEditTable
 

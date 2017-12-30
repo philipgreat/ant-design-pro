@@ -1,9 +1,9 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import { Table, Alert, Badge } from 'antd';
-import styles from './TaskBestAnswerSetting.table.less';
-import ImagePreview from '../../components/ImagePreview';
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import { Table, Alert, Badge } from 'antd'
+import styles from './TaskBestAnswerSetting.table.less'
+import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
@@ -12,41 +12,41 @@ const columns = [
   { title: '设置时间', dataIndex: 'setTime', render: (text, record) => moment(record.setTime).format('YYYY-MM-DD') },
   { title: '评论', debugtype: 'string', dataIndex: 'comment', width: '8' },
 
-];
+]
 
 class TaskBestAnswerSettingTable extends PureComponent {
   state = {
     selectedRowKeys: [],
-  };
+  }
 
   componentWillReceiveProps(nextProps) {
     // clean state
     if (nextProps.selectedRows.length === 0) {
       this.setState({
         selectedRowKeys: [],
-      });
+      })
     }
   }
 
   handleRowSelectChange = (selectedRowKeys, selectedRows) => {
     if (this.props.onSelectRow) {
-      this.props.onSelectRow(selectedRows);
+      this.props.onSelectRow(selectedRows)
     }
-    this.setState({ selectedRowKeys });
+    this.setState({ selectedRowKeys })
   }
 
   handleTableChange = (pagination, filters, sorter) => {
-    this.props.onChange(pagination, filters, sorter);
+    this.props.onChange(pagination, filters, sorter)
   }
 
   cleanSelectedKeys = () => {
-    this.handleRowSelectChange([], []);
+    this.handleRowSelectChange([], [])
   }
 
   render() {
-    const { selectedRowKeys } = this.state;
-    // const { data, count, current, owner } = this.props;
-    const { data, count, current } = this.props;
+    const { selectedRowKeys } = this.state
+    // const { data, count, current, owner } = this.props
+    const { data, count, current } = this.props
 
     const paginationProps = {
       showSizeChanger: true,
@@ -55,7 +55,7 @@ class TaskBestAnswerSettingTable extends PureComponent {
       total: count,
       current,
       
-    };
+    }
 
     const rowSelection = {
       selectedRowKeys,
@@ -63,7 +63,7 @@ class TaskBestAnswerSettingTable extends PureComponent {
       getCheckboxProps: record => ({
         disabled: record.disabled,
       }),
-    };
+    }
 
     return (
       <div className={styles.standardTable}>
@@ -91,9 +91,9 @@ class TaskBestAnswerSettingTable extends PureComponent {
           scroll={{ x: 800 }}
         />
       </div>
-    );
+    )
   }
 }
 
-export default TaskBestAnswerSettingTable;
+export default TaskBestAnswerSettingTable
 

@@ -1,9 +1,9 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import { Table, Alert, Badge } from 'antd';
-import styles from './TaskBestAnswerSetting.table.less';
-import ImagePreview from '../../components/ImagePreview';
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import { Table, Alert, Badge } from 'antd'
+import styles from './TaskBestAnswerSetting.table.less'
+import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
@@ -11,12 +11,12 @@ const columns = [
   { title: '谁', debugtype: 'string_current_user_name', dataIndex: 'who', width: '21' },
   { title: '设置时间', dataIndex: 'setTime', render: (text, record) => moment(record.setTime).format('YYYY-MM-DD') },
   { title: '评论', debugtype: 'string', dataIndex: 'comment', width: '8' },
-];
+]
 
 class TaskBestAnswerSettingConfirmationTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props;
-    const { data } = this.props;
+    // const { data,count,current, owner } = this.props
+    const { data } = this.props
 
 
     return (
@@ -40,9 +40,9 @@ class TaskBestAnswerSettingConfirmationTable extends PureComponent {
           scroll={{ x: 800 }}
         />
       </div>
-    );
+    )
   }
 }
 
-export default TaskBestAnswerSettingConfirmationTable;
+export default TaskBestAnswerSettingConfirmationTable
 

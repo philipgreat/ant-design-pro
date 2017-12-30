@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
+import React, { Component } from 'react'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
-import { connect } from 'dva';
-import PageHeaderLayout from '../../layouts/PageHeaderLayout';
+import { connect } from 'dva'
+import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import PictureEdit from '../../components/PictureEdit'
-import FooterToolbar from '../../components/FooterToolbar';
+import FooterToolbar from '../../components/FooterToolbar'
 
-import styles from './Thread.createform.less';
+import styles from './Thread.createform.less'
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
+const { Option } = Select
+const { RangePicker } = DatePicker
+const { TextArea } = Input
 const fieldLabels = {
   id: '序号',
   title: '标题',
@@ -44,14 +44,14 @@ const fieldLabels = {
   repliedByCurrentUser: '当前用户已回复',
   registeredByCurrentUser: '由当前用户注册',
   currentStatus: '当前状态',
-};
+}
 
 
 const testValues = {
   title: '听力损失儿童回归的优点',
   displayOrder: '0',
-  eventTime: '2035-12-27 21:16:34',
-  registrationStopTime: '2036-03-30 19:31:40',
+  eventTime: '2038-02-09 22:34:29',
+  registrationStopTime: '2036-08-07 19:24:18',
   eventLocation: '奥克斯广场阳光咖啡',
   city: '成都',
   communityGroup: '最新',
@@ -65,21 +65,21 @@ const testValues = {
   homePageId: 'HP000001',
   groupPageId: 'GP000001',
   content: '多数听力损失儿童除了听力问题，其他的发展和一般孩子   并无明显差异，所以当他们经过特殊学校训练后，具备听和说的沟通能力时，   我们应该鼓励他们回归普通学校就读。回归能带给听力损失儿童哪些有益的方便   ',
-};
+}
 
-const imageURLPrefix = '//localhost:2090';
+const imageURLPrefix = '//localhost:2090'
 
 
 const imageKeys = [
-  "coverImagePath1",
-  "coverImagePath2",
-  "coverImagePath3",
-  "imagePath1",
-  "imagePath2",
-  "imagePath3",
-  "imagePath4",
-  "imagePath5"
-];
+  'coverImagePath1',
+  'coverImagePath2',
+  'coverImagePath3',
+  'imagePath1',
+  'imagePath2',
+  'imagePath3',
+  'imagePath4',
+  'imagePath5',
+]
 
 
 class ThreadCreateForm extends Component {
@@ -87,132 +87,132 @@ class ThreadCreateForm extends Component {
     previewVisible: false,
     previewImage: '',
     convertedImagesValues: {},
-  };
+  }
 
   componentDidMount() {
-    // const { getFieldDecorator,setFieldsValue } = this.props.form;
-    const { setFieldsValue } = this.props.form;
-    setFieldsValue(testValues);
+    // const { getFieldDecorator,setFieldsValue } = this.props.form
+    const { setFieldsValue } = this.props.form
+    setFieldsValue(testValues)
   }
   shouldComponentUpdate() {
-    return true;
+    return true
   }
   handlePreview = (file) => {
-    console.log('preview file', file);
+    console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
-    });
+    })
   }
 
   handleChange = (event, source) => {
-    console.log('get file list from change in update change:', source);
+    console.log('get file list from change in update change:', source)
 
-    const { fileList } = event;
-    const { convertedImagesValues } = this.state;
+    const { fileList } = event
+    const { convertedImagesValues } = this.state
 
-    convertedImagesValues[source] = fileList;
-    this.setState({ convertedImagesValues });
-    console.log('/get file list from change in update change:', source);
+    convertedImagesValues[source] = fileList
+    this.setState({ convertedImagesValues })
+    console.log('/get file list from change in update change:', source)
   }
 
   mapBackToImageValues=(convertedImagesValues) => {
-    const targetImages = [];
+    const targetImages = []
     Object.keys(convertedImagesValues).map((key) => {
       if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
-      const value = convertedImagesValues[key][0];
+      const value = convertedImagesValues[key][0]
       if (value.response) {
-        targetImages[key] = imageURLPrefix + value.response;
-        return;
+        targetImages[key] = imageURLPrefix + value.response
+        return
       }
       if (value.url) {
-        targetImages[key] = value.url;
-        return;
+        targetImages[key] = value.url
+        return
       }
-    });
-    return targetImages;
+    })
+    return targetImages
   }
 
   mapFromImageValues=(selectedRow) => {
-    const targetImages = {};
+    const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
-        return [{ uid: key, url: value }];
+        return [{ uid: key, url: value }]
       }
-      return [];
-    };
+      return []
+    }
     imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key]);
-    });
-    console.log(targetImages);
-    return targetImages;
+      targetImages[key] = buildFileList(key,selectedRow[key])
+    })
+    console.log(targetImages)
+    return targetImages
   }
 
   render() {
-    const { form, dispatch, submitting } = this.props;
-    const { convertedImagesValues } = this.state;
+    const { form, dispatch, submitting } = this.props
+    const { convertedImagesValues } = this.state
 
-    const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
+    const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log('code go here', error);
-          return;
+          console.log('code go here', error)
+          return
         }
 
-        const { owner } = this.props;
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        const { owner } = this.props
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
 
-        const parameters = { ...values, ...imagesValues };
+        const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addThread`,
           payload: { id: owner.id, type: 'thread', parameters },
-        });
-      });
-    };
+        })
+      })
+    }
     const submitCreateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log('code go here', error);
-          return;
+          console.log('code go here', error)
+          return
         }
         
-        const { owner } = this.props;
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        const { owner } = this.props
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
         
-        const parameters = { ...values, ...imagesValues };
+        const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addThread`,
           payload: { id: owner.id, type: 'thread', parameters, continueNext: true },
-        });
-      });
-    };
+        })
+      })
+    }
     
     const goback = () => {
-      const { owner } = this.props;
+      const { owner } = this.props
       dispatch({
         type: `${owner.type}/goback`,
         payload: { id: owner.id, type: 'thread' },
-      }); 
-    };
-    const errors = getFieldsError();
+      })
+    }
+    const errors = getFieldsError()
     const getErrorInfo = () => {
-      const errorCount = Object.keys(errors).filter(key => errors[key]).length;
+      const errorCount = Object.keys(errors).filter(key => errors[key]).length
       if (!errors || errorCount === 0) {
-        return null;
+        return null
       }
       // eslint-disable-next-line no-unused-vars
       const scrollToField = (fieldKey) => {
-        const labelNode = document.querySelector('label[for="${fieldKey}"]');
+        const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
-          labelNode.scrollIntoView(true);
+          labelNode.scrollIntoView(true)
         }
-      };
+      }
       const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
-          return null;
+          return null
         }
         return (
           <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
@@ -220,8 +220,8 @@ class ThreadCreateForm extends Component {
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
           </li>
-        );
-      });
+        )
+      })
       return (
         <span className={styles.errorIcon}>
           <Popover
@@ -235,8 +235,8 @@ class ThreadCreateForm extends Component {
           </Popover>
           {errorCount}
         </span>
-      );
-    };
+      )
+    }
     return (
       <PageHeaderLayout
         title="新建一个主贴"
@@ -398,64 +398,72 @@ class ThreadCreateForm extends Component {
                 <PictureEdit
                   buttonTitle="封面图像路径1"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, 'coverImagePath1')}
-                  fileList={convertedImagesValues.coverImagePath1} />
+                  handleChange={event => this.handleChange(event, 'coverImagePath1')}
+                  fileList={convertedImagesValues.coverImagePath1}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
                   buttonTitle="封面图像路径2"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, 'coverImagePath2')}
-                  fileList={convertedImagesValues.coverImagePath2} />
+                  handleChange={event => this.handleChange(event, 'coverImagePath2')}
+                  fileList={convertedImagesValues.coverImagePath2}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
                   buttonTitle="封面图像路径3"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, 'coverImagePath3')}
-                  fileList={convertedImagesValues.coverImagePath3} />
+                  handleChange={event => this.handleChange(event, 'coverImagePath3')}
+                  fileList={convertedImagesValues.coverImagePath3}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
                   buttonTitle="图1"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, 'imagePath1')}
-                  fileList={convertedImagesValues.imagePath1} />
+                  handleChange={event => this.handleChange(event, 'imagePath1')}
+                  fileList={convertedImagesValues.imagePath1}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
                   buttonTitle="图2"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, 'imagePath2')}
-                  fileList={convertedImagesValues.imagePath2} />
+                  handleChange={event => this.handleChange(event, 'imagePath2')}
+                  fileList={convertedImagesValues.imagePath2}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
                   buttonTitle="图3"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, 'imagePath3')}
-                  fileList={convertedImagesValues.imagePath3} />
+                  handleChange={event => this.handleChange(event, 'imagePath3')}
+                  fileList={convertedImagesValues.imagePath3}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
                   buttonTitle="图4"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, 'imagePath4')}
-                  fileList={convertedImagesValues.imagePath4} />
+                  handleChange={event => this.handleChange(event, 'imagePath4')}
+                  fileList={convertedImagesValues.imagePath4}
+                />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
                   buttonTitle="图5"
                   handlePreview={this.handlePreview}
-                  handleChange={(event) => this.handleChange(event, 'imagePath5')}
-                  fileList={convertedImagesValues.imagePath5} />
+                  handleChange={event => this.handleChange(event, 'imagePath5')}
+                  fileList={convertedImagesValues.imagePath5}
+                />
               </Col>
 
             </Row>
@@ -525,13 +533,13 @@ class ThreadCreateForm extends Component {
           </Button>
         </FooterToolbar>
       </PageHeaderLayout>
-    );
+    )
   }
 }
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-}))(Form.create()(ThreadCreateForm));
+}))(Form.create()(ThreadCreateForm))
 
 
 

@@ -1,9 +1,11 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
-import styles from './TaskReward.table.less';
-import ImagePreview from '../../components/ImagePreview';
+
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import {Form,Button, Table, Alert, Badge,Input } from 'antd'
+import styles from './TaskReward.table.less'
+import ImagePreview from '../../components/ImagePreview'
+
 
 
 const columns = [
@@ -12,15 +14,12 @@ const columns = [
   { title: '改写点', debugtype: 'int', dataIndex: 'rewordPoint', width: '7',render: (text, record) => (<Input value={text} placeholder={"改写点"}/>)  },
   { title: '行动时间', dataIndex: 'actionTime', render: (text, record) => moment(record.actionTime).format('YYYY-MM-DD') },
   { title: '评论', debugtype: 'string', dataIndex: 'comment', width: '8',render: (text, record) => (<Input value={text} placeholder={"评论"}/>)  },
-];
+]
 
 class TaskRewardEditTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props;
-    const { data } = this.props;
-	
-	
-
+    // const { data,count,current, owner } = this.props
+    const { data } = this.props
     return (
       <div className={styles.standardTable}>
         
@@ -41,9 +40,9 @@ class TaskRewardEditTable extends PureComponent {
           新增
         </Button>
       </div>
-    );
+    )
   }
 }
 
-export default TaskRewardEditTable;
+export default TaskRewardEditTable
 

@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
-import moment from 'moment';
-import { connect } from 'dva';
-import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-import PictureEdit from '../../components/PictureEdit';
-import OSSPictureEdit from '../../components/OSSPictureEdit';
+import React, { Component } from 'react'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import moment from 'moment'
+import { connect } from 'dva'
+import PageHeaderLayout from '../../layouts/PageHeaderLayout'
+import PictureEdit from '../../components/PictureEdit'
+import OSSPictureEdit from '../../components/OSSPictureEdit'
 
-import FooterToolbar from '../../components/FooterToolbar';
+import FooterToolbar from '../../components/FooterToolbar'
 
-import styles from './LoginHistory.updateform.less';
+import styles from './LoginHistory.updateform.less'
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
+const { Option } = Select
+const { RangePicker } = DatePicker
+const { TextArea } = Input
 const fieldLabels = {
   id: '序号',
   loginTime: '登录时间',
@@ -20,12 +20,12 @@ const fieldLabels = {
   description: '描述',
   secUser: 'SEC的用户',
 
-};
+}
 
-const imageURLPrefix = '//localhost:2090';
+const imageURLPrefix = '//localhost:2090'
 
 const imageKeys = [
-];
+]
 
 
 class LoginHistoryUpdateForm extends Component {
@@ -33,137 +33,137 @@ class LoginHistoryUpdateForm extends Component {
     previewVisible: false,
     previewImage: '',
     convertedImagesValues: {},
-  };
+  }
 
   componentWillMount() {
-    const selectedRow = this.getSelectedRow();
+    const selectedRow = this.getSelectedRow()
     if (!selectedRow) {
-      return;
+      return
     }
     this.setState({
       convertedImagesValues: this.mapFromImageValues(selectedRow)
-    });
+    })
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
-    // const { getFieldDecorator, setFieldsValue } = this.props.form;
-    const { setFieldsValue } = this.props.form;
+    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
+    // const { getFieldDecorator, setFieldsValue } = this.props.form
+    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow();
+    const selectedRow = this.getSelectedRow()
     if (!selectedRow) {
-      return;
+      return
     }
-    setFieldsValue(selectedRow);
+    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
-    return true;
+    return true
   }
 
   getSelectedRow() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
-    const { selectedRows, currentUpdateIndex } = this.props;
+    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
+    const { selectedRows, currentUpdateIndex } = this.props
     if (!selectedRows) {
-      return;
+      return
     }
     if (currentUpdateIndex >= selectedRows.length) {
-      return;
+      return
     }
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
         loginTime: moment(item.loginTime).format('YYYY-MM-DD'),
 
-      };
-    });
-    const selectedRow = convertiedValues[currentUpdateIndex];
-    return selectedRow;
+      }
+    })
+    const selectedRow = convertiedValues[currentUpdateIndex]
+    return selectedRow
   }
 
   handleChange = (event, source) => {
-    console.log('get file list from change in update change: ', source);
-    const { fileList } = event;
-    const { convertedImagesValues } = this.state;
-    convertedImagesValues[source] = fileList;
-    this.setState({ convertedImagesValues });
-    console.log('/get file list from change in update change: ', source);
+    console.log('get file list from change in update change: ', source)
+    const { fileList } = event
+    const { convertedImagesValues } = this.state
+    convertedImagesValues[source] = fileList
+    this.setState({ convertedImagesValues })
+    console.log('/get file list from change in update change: ', source)
   }
 
   mapBackToImageValues = (convertedImagesValues) => {
-    const targetImages = [];
+    const targetImages = []
     Object.keys(convertedImagesValues).map((key) => {
       if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
-        return;
+        return
       }
-      const value = convertedImagesValues[key][0];
+      const value = convertedImagesValues[key][0]
       if (value.response) {
         if (value.response.indexOf('//') === 0) {
-          targetImages[key] = value.response;
-          return;
+          targetImages[key] = value.response
+          return
         }
         if (value.response.indexOf('http://') === 0) {
-          targetImages[key] = value.response;
-          return;
+          targetImages[key] = value.response
+          return
         }
         if (value.response.indexOf('https://') === 0) {
-          targetImages[key] = value.response;
-          return;
+          targetImages[key] = value.response
+          return
         }
-        targetImages[key] = imageURLPrefix + value.response;
-        return;
+        targetImages[key] = imageURLPrefix + value.response
+        return
       }
       if (value.url) {
-        targetImages[key] = value.url;
-        return;
+        targetImages[key] = value.url
+        return
       }
-    });
-    return targetImages;
+    })
+    return targetImages
   }
   
   mapFromImageValues = (selectedRow) => {
-    const targetImages = {};
+    const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
-        return [{ uid: key, url: value }];
+        return [{ uid: key, url: value }]
       }
-      return [];
-    };
+      return []
+    }
     imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key]);
-    });
-    console.log(targetImages);
-    return targetImages;
+      targetImages[key] = buildFileList(key,selectedRow[key])
+    })
+    console.log(targetImages)
+    return targetImages
   }
 
   handlePreview = (file) => {
-    console.log('preview file', file);
+    console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
-    });
+    })
   }
 
   render() {
-    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
-    const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
-    const { convertedImagesValues } = this.state;
-    const { setFieldsValue } = this.props.form;
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
+    const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
+    const { convertedImagesValues } = this.state
+    const { setFieldsValue } = this.props.form
     
     
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log('code go here', error);
-          return;
+          console.log('code go here', error)
+          return
         }
 
-        const { owner } = this.props;
-        const loginHistoryId = values.id;
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
-        const parameters = { ...values, loginHistoryId, ...imagesValues };
+        const { owner } = this.props
+        const loginHistoryId = values.id
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const parameters = { ...values, loginHistoryId, ...imagesValues }
 
-        // const newIndex= currentUpdateIndex + 1;
+        // const newIndex= currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateLoginHistory`,
           payload: {
@@ -174,33 +174,33 @@ class LoginHistoryUpdateForm extends Component {
             currentUpdateIndex: 0,
             continueNext: false,
           },
-        });
-      });
-    };
+        })
+      })
+    }
     
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log('code go here', error);
-          return;
+          console.log('code go here', error)
+          return
         }
 
-        const { owner } = this.props;
-        const loginHistoryId = values.id;
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
-        const parameters = { ...values, loginHistoryId, ...imagesValues };
+        const { owner } = this.props
+        const loginHistoryId = values.id
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const parameters = { ...values, loginHistoryId, ...imagesValues }
 
         // TODO
-        const { currentUpdateIndex } = this.props;
+        const { currentUpdateIndex } = this.props
         
         if (currentUpdateIndex >= selectedRows.length - 1) {
-          return;
+          return
         }
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
-        });
-        setFieldsValue(selectedRows[currentUpdateIndex + 1]);
-        const newIndex = currentUpdateIndex + 1;
+        })
+        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateLoginHistory`,
           payload: {
@@ -211,15 +211,15 @@ class LoginHistoryUpdateForm extends Component {
             currentUpdateIndex: newIndex,
             continueNext: true,
           },
-        });
-      });
-    };
+        })
+      })
+    }
     
     const skipToNext = () => {
-      const { currentUpdateIndex } = this.props;
-      const { owner } = this.props;
+      const { currentUpdateIndex } = this.props
+      const { owner } = this.props
         
-      const newIndex = currentUpdateIndex + 1;
+      const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextLoginHistoryUpdateRow`,
         payload: {
@@ -230,34 +230,34 @@ class LoginHistoryUpdateForm extends Component {
           continueNext: true,
           update: false,
         },
-      });
-    };
+      })
+    }
     
     const goback = () => {
-      const { owner } = this.props;
+      const { owner } = this.props
       dispatch({
         type: `${owner.type}/goback`,
         payload: {
           id: owner.id,
           type: 'loginHistory',
         },
-      }); 
-    };
-    const errors = getFieldsError();
+      })
+    }
+    const errors = getFieldsError()
     const getErrorInfo = () => {
-      const errorCount = Object.keys(errors).filter(key => errors[key]).length;
+      const errorCount = Object.keys(errors).filter(key => errors[key]).length
       if (!errors || errorCount === 0) {
-        return null;
+        return null
       }
       const scrollToField = (fieldKey) => {
-        const labelNode = document.querySelector(`label[for='${fieldKey}']`);
+        const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
-          labelNode.scrollIntoView(true);
+          labelNode.scrollIntoView(true)
         }
-      };
+      }
       const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
-          return null;
+          return null
         }
         return (
           <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
@@ -265,8 +265,8 @@ class LoginHistoryUpdateForm extends Component {
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
           </li>
-        );
-      });
+        )
+      })
       return (
         <span className={styles.errorIcon}>
           <Popover
@@ -280,11 +280,11 @@ class LoginHistoryUpdateForm extends Component {
           </Popover>
           {errorCount}
         </span>
-      );
-    };
+      )
+    }
     
     if (!selectedRows) {
-      return (<div>缺少被更新的对象</div>);
+      return (<div>缺少被更新的对象</div>)
     }
 
     // TODO
@@ -314,7 +314,7 @@ class LoginHistoryUpdateForm extends Component {
                   {getFieldDecorator('fromIp', {
                     rules: [{ required: true, message: '请输入从IP' }],
                   })(
-                    <Input placeholder="请输入请输入从IPstring"  />
+                    <Input placeholder="请输入请输入从IPstring" />
                   )}
                 </Form.Item>
               </Col>
@@ -324,7 +324,7 @@ class LoginHistoryUpdateForm extends Component {
                   {getFieldDecorator('description', {
                     rules: [{ required: true, message: '请输入描述' }],
                   })(
-                    <Input placeholder="请输入请输入描述string"  />
+                    <Input placeholder="请输入请输入描述string" />
                   )}
                 </Form.Item>
               </Col>
@@ -350,13 +350,13 @@ class LoginHistoryUpdateForm extends Component {
           </Button>
         </FooterToolbar>
       </PageHeaderLayout>
-    );
+    )
   }
 }
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-}))(Form.create()(LoginHistoryUpdateForm));
+}))(Form.create()(LoginHistoryUpdateForm))
 
 
 

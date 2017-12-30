@@ -1,9 +1,9 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import { Table, Alert, Badge } from 'antd';
-import styles from './PatientInfo.table.less';
-import ImagePreview from '../../components/ImagePreview';
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import { Table, Alert, Badge } from 'antd'
+import styles from './PatientInfo.table.less'
+import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
@@ -16,13 +16,13 @@ const columns = [
   { title: '磨损的开始时间', dataIndex: 'wearStartTime', render: (text, record) => moment(record.wearStartTime).format('YYYY-MM-DD') },
   { title: '康复计划', debugtype: 'string', dataIndex: 'recoverPlan', width: '15' },
   { title: '复苏开始时间', dataIndex: 'recoverStartTime', render: (text, record) => moment(record.recoverStartTime).format('YYYY-MM-DD') },
-  { title: '用户',dataIndex: 'user', render: (text, record) => (record.user ? record.user.id : '暂无') },
-];
+  { title: '用户', dataIndex: 'user', render: (text, record) => (record.user ? record.user.id : '暂无') },
+]
 
 class PatientInfoConfirmationTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props;
-    const { data } = this.props;
+    // const { data,count,current, owner } = this.props
+    const { data } = this.props
 
 
     return (
@@ -46,9 +46,9 @@ class PatientInfoConfirmationTable extends PureComponent {
           scroll={{ x: 800 }}
         />
       </div>
-    );
+    )
   }
 }
 
-export default PatientInfoConfirmationTable;
+export default PatientInfoConfirmationTable
 

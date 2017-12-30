@@ -1,9 +1,9 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import { Table, Alert, Badge } from 'antd';
-import styles from './EncyclopediaItem.table.less';
-import ImagePreview from '../../components/ImagePreview';
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import { Table, Alert, Badge } from 'antd'
+import styles from './EncyclopediaItem.table.less'
+import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
@@ -14,41 +14,41 @@ const columns = [
   { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? record.community.id : '暂无') },
   { title: '主页', dataIndex: 'homePage', render: (text, record) => (record.homePage ? record.homePage.id : '暂无') },
 
-];
+]
 
 class EncyclopediaItemTable extends PureComponent {
   state = {
     selectedRowKeys: [],
-  };
+  }
 
   componentWillReceiveProps(nextProps) {
     // clean state
     if (nextProps.selectedRows.length === 0) {
       this.setState({
         selectedRowKeys: [],
-      });
+      })
     }
   }
 
   handleRowSelectChange = (selectedRowKeys, selectedRows) => {
     if (this.props.onSelectRow) {
-      this.props.onSelectRow(selectedRows);
+      this.props.onSelectRow(selectedRows)
     }
-    this.setState({ selectedRowKeys });
+    this.setState({ selectedRowKeys })
   }
 
   handleTableChange = (pagination, filters, sorter) => {
-    this.props.onChange(pagination, filters, sorter);
+    this.props.onChange(pagination, filters, sorter)
   }
 
   cleanSelectedKeys = () => {
-    this.handleRowSelectChange([], []);
+    this.handleRowSelectChange([], [])
   }
 
   render() {
-    const { selectedRowKeys } = this.state;
-    // const { data, count, current, owner } = this.props;
-    const { data, count, current } = this.props;
+    const { selectedRowKeys } = this.state
+    // const { data, count, current, owner } = this.props
+    const { data, count, current } = this.props
 
     const paginationProps = {
       showSizeChanger: true,
@@ -57,7 +57,7 @@ class EncyclopediaItemTable extends PureComponent {
       total: count,
       current,
       
-    };
+    }
 
     const rowSelection = {
       selectedRowKeys,
@@ -65,7 +65,7 @@ class EncyclopediaItemTable extends PureComponent {
       getCheckboxProps: record => ({
         disabled: record.disabled,
       }),
-    };
+    }
 
     return (
       <div className={styles.standardTable}>
@@ -93,9 +93,9 @@ class EncyclopediaItemTable extends PureComponent {
           scroll={{ x: 2115 }}
         />
       </div>
-    );
+    )
   }
 }
 
-export default EncyclopediaItemTable;
+export default EncyclopediaItemTable
 

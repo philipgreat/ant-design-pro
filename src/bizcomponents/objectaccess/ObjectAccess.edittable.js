@@ -1,9 +1,11 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
-import styles from './ObjectAccess.table.less';
-import ImagePreview from '../../components/ImagePreview';
+
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import {Form,Button, Table, Alert, Badge,Input } from 'antd'
+import styles from './ObjectAccess.table.less'
+import ImagePreview from '../../components/ImagePreview'
+
 
 
 const columns = [
@@ -19,16 +21,13 @@ const columns = [
   { title: '列表7', debugtype: 'string', dataIndex: 'list7', width: '24',render: (text, record) => (<Input value={text} placeholder={"列表7"}/>)  },
   { title: '列表8', debugtype: 'string', dataIndex: 'list8', width: '24',render: (text, record) => (<Input value={text} placeholder={"列表8"}/>)  },
   { title: '列表9', debugtype: 'string', dataIndex: 'list9', width: '24',render: (text, record) => (<Input value={text} placeholder={"列表9"}/>)  },
-  { title: '应用程序',dataIndex: 'app', render: (text, record) => (record.app ? record.app.id : '暂无') },
-];
+  { title: '应用程序', dataIndex: 'app', render: (text, record) => (record.app ? record.app.id : '暂无') },
+]
 
 class ObjectAccessEditTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props;
-    const { data } = this.props;
-	
-	
-
+    // const { data,count,current, owner } = this.props
+    const { data } = this.props
     return (
       <div className={styles.standardTable}>
         
@@ -49,9 +48,9 @@ class ObjectAccessEditTable extends PureComponent {
           新增
         </Button>
       </div>
-    );
+    )
   }
 }
 
-export default ObjectAccessEditTable;
+export default ObjectAccessEditTable
 

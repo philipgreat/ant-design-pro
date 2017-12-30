@@ -1,9 +1,11 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
-import styles from './LoginHistory.table.less';
-import ImagePreview from '../../components/ImagePreview';
+
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import {Form,Button, Table, Alert, Badge,Input } from 'antd'
+import styles from './LoginHistory.table.less'
+import ImagePreview from '../../components/ImagePreview'
+
 
 
 const columns = [
@@ -11,16 +13,13 @@ const columns = [
   { title: '登录时间', dataIndex: 'loginTime', render: (text, record) => moment(record.loginTime).format('YYYY-MM-DD') },
   { title: '从IP', debugtype: 'string', dataIndex: 'fromIp', width: '15',render: (text, record) => (<Input value={text} placeholder={"从IP"}/>)  },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8',render: (text, record) => (<Input value={text} placeholder={"描述"}/>)  },
-  { title: 'SEC的用户',dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
-];
+  { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
+]
 
 class LoginHistoryEditTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props;
-    const { data } = this.props;
-	
-	
-
+    // const { data,count,current, owner } = this.props
+    const { data } = this.props
     return (
       <div className={styles.standardTable}>
         
@@ -41,9 +40,9 @@ class LoginHistoryEditTable extends PureComponent {
           新增
         </Button>
       </div>
-    );
+    )
   }
 }
 
-export default LoginHistoryEditTable;
+export default LoginHistoryEditTable
 

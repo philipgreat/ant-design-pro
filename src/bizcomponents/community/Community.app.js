@@ -1,16 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Layout, Menu, Icon, Avatar, Dropdown, Tag, message, Spin } from 'antd';
-import DocumentTitle from 'react-document-title';
-import { connect } from 'dva';
-import { Link, Route, Redirect, Switch } from 'dva/router';
-import moment from 'moment';
-import groupBy from 'lodash/groupBy';
-import { ContainerQuery } from 'react-container-query';
-import classNames from 'classnames';
-import styles from './Community.app.less';
-import CommunityDashboard from './Community.dashboard';
-import CommunityEditDetail from './Community.editdetail';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Layout, Menu, Icon, Avatar, Dropdown, Tag, message, Spin } from 'antd'
+import DocumentTitle from 'react-document-title'
+import { connect } from 'dva'
+import { Link, Route, Redirect, Switch } from 'dva/router'
+import moment from 'moment'
+import groupBy from 'lodash/groupBy'
+import { ContainerQuery } from 'react-container-query'
+import classNames from 'classnames'
+import styles from './Community.app.less'
+import CommunityDashboard from './Community.dashboard'
+import CommunityEditDetail from './Community.editdetail'
+
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -18,26 +19,12 @@ import GlobalFooter from '../../components/GlobalFooter';
 
 
 import GlobalComponents from '../../custcomponents';
-/*
 
-const {InvitationCodeSearch,InvitationCodeCreateForm,InvitationCodeUpdateForm} = GlobalComponents;
+import {switchLanguage,i18n} from '../_locale'
 
-const {HomePageSearch,HomePageCreateForm,HomePageUpdateForm} = GlobalComponents;
 
-const {EncyclopediaItemSearch,EncyclopediaItemCreateForm,EncyclopediaItemUpdateForm} = GlobalComponents;
-
-const {TaskPageSearch,TaskPageCreateForm,TaskPageUpdateForm} = GlobalComponents;
-
-const {CommunityUserSearch,CommunityUserCreateForm,CommunityUserUpdateForm} = GlobalComponents;
-
-const {TaskSearch,TaskCreateForm,TaskUpdateForm} = GlobalComponents;
-
-const {GroupPageSearch,GroupPageCreateForm,GroupPageUpdateForm} = GlobalComponents;
-
-const {ThreadSearch,ThreadCreateForm,ThreadUpdateForm} = GlobalComponents;
-*/
-const { Header, Sider, Content } = Layout;
-const { SubMenu } = Menu;
+const { Header, Sider, Content } = Layout
+const { SubMenu } = Menu
 
 const query = {
   'screen-xs': {
@@ -58,44 +45,44 @@ const query = {
   'screen-xl': {
     minWidth: 1200,
   },
-};
+}
 
 class CommunityBizApp extends React.PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
     // 把一级 Layout 的 children 作为菜单项
-    // this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), []);
+    // this.menus = getNavData().reduce((arr, current) => arr.concat(current.children), [])
     this.state = {
       openKeys: this.getDefaultCollapsedSubMenus(props),
-    };
+    }
   }
 
   componentDidMount() {}
   componentWillUnmount() {
-    clearTimeout(this.resizeTimeout);
+    clearTimeout(this.resizeTimeout)
   }
   onCollapse = (collapsed) => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
-    });
+    })
   }
 
   getDefaultCollapsedSubMenus = (props) => {
-    const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)];
-    currentMenuSelectedKeys.splice(-1, 1);
+    const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
+    currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
-      return ['/community/'];
+      return ['/community/']
     }
-    return currentMenuSelectedKeys;
+    return currentMenuSelectedKeys
   }
   getCurrentMenuSelectedKeys = (props) => {
-    const { location: { pathname } } = props || this.props;
-    const keys = pathname.split('/').slice(1);
+    const { location: { pathname } } = props || this.props
+    const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
-      return [this.menus[0].key];
+      return [this.menus[0].key]
     }
-    return keys;
+    return keys
   }
   getNavMenuItems = (objectId) => {
     return (
@@ -131,7 +118,7 @@ class CommunityBizApp extends React.PureComponent {
           <Link to={`/community/${objectId}/list/threadList`}>主贴</Link>
         </Menu.Item>
       </SubMenu>
-    );
+    )
   }
 
 
@@ -145,7 +132,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.invitationCodeSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(InvitationCodeSearch);
+    }))(InvitationCodeSearch)
   }
   getInvitationCodeCreateForm = () => {
    	const {InvitationCodeCreateForm} = GlobalComponents;
@@ -157,7 +144,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.invitationCodeSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(InvitationCodeCreateForm);
+    }))(InvitationCodeCreateForm)
   }
   
   getInvitationCodeUpdateForm = () => {
@@ -166,7 +153,7 @@ class CommunityBizApp extends React.PureComponent {
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(InvitationCodeUpdateForm);
+    }))(InvitationCodeUpdateForm)
   }
 
   getHomePageSearch = () => {
@@ -179,7 +166,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.homePageSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(HomePageSearch);
+    }))(HomePageSearch)
   }
   getHomePageCreateForm = () => {
    	const {HomePageCreateForm} = GlobalComponents;
@@ -191,7 +178,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.homePageSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(HomePageCreateForm);
+    }))(HomePageCreateForm)
   }
   
   getHomePageUpdateForm = () => {
@@ -200,7 +187,7 @@ class CommunityBizApp extends React.PureComponent {
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(HomePageUpdateForm);
+    }))(HomePageUpdateForm)
   }
 
   getEncyclopediaItemSearch = () => {
@@ -213,7 +200,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.encyclopediaItemSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(EncyclopediaItemSearch);
+    }))(EncyclopediaItemSearch)
   }
   getEncyclopediaItemCreateForm = () => {
    	const {EncyclopediaItemCreateForm} = GlobalComponents;
@@ -225,7 +212,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.encyclopediaItemSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(EncyclopediaItemCreateForm);
+    }))(EncyclopediaItemCreateForm)
   }
   
   getEncyclopediaItemUpdateForm = () => {
@@ -234,7 +221,7 @@ class CommunityBizApp extends React.PureComponent {
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(EncyclopediaItemUpdateForm);
+    }))(EncyclopediaItemUpdateForm)
   }
 
   getTaskPageSearch = () => {
@@ -247,7 +234,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.taskPageSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(TaskPageSearch);
+    }))(TaskPageSearch)
   }
   getTaskPageCreateForm = () => {
    	const {TaskPageCreateForm} = GlobalComponents;
@@ -259,7 +246,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.taskPageSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(TaskPageCreateForm);
+    }))(TaskPageCreateForm)
   }
   
   getTaskPageUpdateForm = () => {
@@ -268,7 +255,7 @@ class CommunityBizApp extends React.PureComponent {
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(TaskPageUpdateForm);
+    }))(TaskPageUpdateForm)
   }
 
   getCommunityUserSearch = () => {
@@ -281,7 +268,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.communityUserSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(CommunityUserSearch);
+    }))(CommunityUserSearch)
   }
   getCommunityUserCreateForm = () => {
    	const {CommunityUserCreateForm} = GlobalComponents;
@@ -293,7 +280,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.communityUserSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(CommunityUserCreateForm);
+    }))(CommunityUserCreateForm)
   }
   
   getCommunityUserUpdateForm = () => {
@@ -302,7 +289,7 @@ class CommunityBizApp extends React.PureComponent {
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(CommunityUserUpdateForm);
+    }))(CommunityUserUpdateForm)
   }
 
   getTaskSearch = () => {
@@ -315,7 +302,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.taskSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(TaskSearch);
+    }))(TaskSearch)
   }
   getTaskCreateForm = () => {
    	const {TaskCreateForm} = GlobalComponents;
@@ -327,7 +314,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.taskSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(TaskCreateForm);
+    }))(TaskCreateForm)
   }
   
   getTaskUpdateForm = () => {
@@ -336,7 +323,7 @@ class CommunityBizApp extends React.PureComponent {
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(TaskUpdateForm);
+    }))(TaskUpdateForm)
   }
 
   getGroupPageSearch = () => {
@@ -349,7 +336,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.groupPageSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(GroupPageSearch);
+    }))(GroupPageSearch)
   }
   getGroupPageCreateForm = () => {
    	const {GroupPageCreateForm} = GlobalComponents;
@@ -361,7 +348,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.groupPageSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(GroupPageCreateForm);
+    }))(GroupPageCreateForm)
   }
   
   getGroupPageUpdateForm = () => {
@@ -370,7 +357,7 @@ class CommunityBizApp extends React.PureComponent {
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(GroupPageUpdateForm);
+    }))(GroupPageUpdateForm)
   }
 
   getThreadSearch = () => {
@@ -383,7 +370,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.threadSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(ThreadSearch);
+    }))(ThreadSearch)
   }
   getThreadCreateForm = () => {
    	const {ThreadCreateForm} = GlobalComponents;
@@ -395,7 +382,7 @@ class CommunityBizApp extends React.PureComponent {
       searchFormParameters: state._community.threadSearchFormParameters,
       loading: state._community.loading,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(ThreadCreateForm);
+    }))(ThreadCreateForm)
   }
   
   getThreadUpdateForm = () => {
@@ -404,39 +391,37 @@ class CommunityBizApp extends React.PureComponent {
       selectedRows: state._community.selectedRows,
       currentUpdateIndex: state._community.currentUpdateIndex,
       owner: { type: '_community', id: state._community.id }, // this is for model namespace and
-    }))(ThreadUpdateForm);
+    }))(ThreadUpdateForm)
   }
 
   getPageTitle = () => {
-    // const { location } = this.props;
-    // const { pathname } = location;
-    const title = '帮帮兔社区运营中心';
-    return title;
+    // const { location } = this.props
+    // const { pathname } = location
+    const title = '帮帮兔社区运营中心'
+    return title
   }
  
   handleOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
+    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
-    });
+    })
   }
    toggle = () => {
-     const { collapsed } = this.props;
+     const { collapsed } = this.props
      this.props.dispatch({
        type: 'global/changeLayoutCollapsed',
        payload: !collapsed,
-     });
+     })
    }
 
    render() {
-     // const { collapsed, fetchingNotices,loading } = this.props;
-     const { collapsed } = this.props;
-
-     const {CommunityEditDetail,CommunityDashboard} = GlobalComponents;
+     // const { collapsed, fetchingNotices,loading } = this.props
+     const { collapsed } = this.props
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
-     };
+     }
      const layout = (
        <Layout>
          <Sider
@@ -450,7 +435,7 @@ class CommunityBizApp extends React.PureComponent {
          >
            <div className={styles.logo}>
              <img src="/scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>社区</h1></Link>
+             <Link to="/home"> <h1>社区{i18n("message")}</h1></Link>
            </div>
 
            <Menu
@@ -462,15 +447,14 @@ class CommunityBizApp extends React.PureComponent {
              style={{ margin: '16px 0', width: '100%' }}
            >
            
-       <Menu.Item >   
-        <Link to={`/community/${this.props.community.id}/dashboard`}><Icon type='dashboard' /><span>仪表板</span></Link>
-        
-      </Menu.Item>
-         <Menu.Item >   
-        <Link to={`/community/${this.props.community.id}/editDetail`}><Icon type='edit' /><span>详情编辑</span></Link>
-        
-      </Menu.Item>
-      
+
+             <Menu.Item >
+               <Link to={`/community/${this.props.community.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
+             </Menu.Item>
+             <Menu.Item >
+               <Link to={`/community/${this.props.community.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
+             </Menu.Item>
+
              {this.getNavMenuItems(this.props.community.id)}
            </Menu>
          </Sider>
@@ -516,14 +500,14 @@ class CommunityBizApp extends React.PureComponent {
            </Content>
          </Layout>
        </Layout>
-     );
+     )
      return (
        <DocumentTitle title={this.getPageTitle()}>
          <ContainerQuery query={query}>
            {params => <div className={classNames(params)}>{layout}</div>}
          </ContainerQuery>
        </DocumentTitle>
-     );
+     )
    }
 }
 
@@ -533,7 +517,7 @@ export default connect(state => ({
   notices: state.global.notices,
   community: state._community,
   ...state,
-}))(CommunityBizApp);
+}))(CommunityBizApp)
 
 
 

@@ -1,9 +1,9 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import { Table, Alert, Badge } from 'antd';
-import styles from './TaskReward.table.less';
-import ImagePreview from '../../components/ImagePreview';
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import { Table, Alert, Badge } from 'antd'
+import styles from './TaskReward.table.less'
+import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
@@ -12,12 +12,12 @@ const columns = [
   { title: '改写点', debugtype: 'int', dataIndex: 'rewordPoint', width: '7' },
   { title: '行动时间', dataIndex: 'actionTime', render: (text, record) => moment(record.actionTime).format('YYYY-MM-DD') },
   { title: '评论', debugtype: 'string', dataIndex: 'comment', width: '8' },
-];
+]
 
 class TaskRewardConfirmationTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props;
-    const { data } = this.props;
+    // const { data,count,current, owner } = this.props
+    const { data } = this.props
 
 
     return (
@@ -41,9 +41,9 @@ class TaskRewardConfirmationTable extends PureComponent {
           scroll={{ x: 800 }}
         />
       </div>
-    );
+    )
   }
 }
 
-export default TaskRewardConfirmationTable;
+export default TaskRewardConfirmationTable
 

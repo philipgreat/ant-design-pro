@@ -1,9 +1,9 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import { Table, Alert, Badge } from 'antd';
-import styles from './ThreadReply.table.less';
-import ImagePreview from '../../components/ImagePreview';
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import { Table, Alert, Badge } from 'antd'
+import styles from './ThreadReply.table.less'
+import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
@@ -12,43 +12,43 @@ const columns = [
   { title: '内容', debugtype: 'string', dataIndex: 'content', width: '22' },
   { title: '应答者', dataIndex: 'replier', render: (text, record) => (record.replier ? record.replier.id : '暂无') },
   { title: '主贴', dataIndex: 'thread', render: (text, record) => (record.thread ? record.thread.id : '暂无') },
-  { title: '当前用户已点赞', dataIndex: 'likeByCurrentUser', render: (text, record)=>(record.likeByCurrentUser ? '是' : '否') },
+  { title: '当前用户已点赞', dataIndex: 'likeByCurrentUser', render: (text, record) => (record.likeByCurrentUser ? '是' : '否') },
 
-];
+]
 
 class ThreadReplyTable extends PureComponent {
   state = {
     selectedRowKeys: [],
-  };
+  }
 
   componentWillReceiveProps(nextProps) {
     // clean state
     if (nextProps.selectedRows.length === 0) {
       this.setState({
         selectedRowKeys: [],
-      });
+      })
     }
   }
 
   handleRowSelectChange = (selectedRowKeys, selectedRows) => {
     if (this.props.onSelectRow) {
-      this.props.onSelectRow(selectedRows);
+      this.props.onSelectRow(selectedRows)
     }
-    this.setState({ selectedRowKeys });
+    this.setState({ selectedRowKeys })
   }
 
   handleTableChange = (pagination, filters, sorter) => {
-    this.props.onChange(pagination, filters, sorter);
+    this.props.onChange(pagination, filters, sorter)
   }
 
   cleanSelectedKeys = () => {
-    this.handleRowSelectChange([], []);
+    this.handleRowSelectChange([], [])
   }
 
   render() {
-    const { selectedRowKeys } = this.state;
-    // const { data, count, current, owner } = this.props;
-    const { data, count, current } = this.props;
+    const { selectedRowKeys } = this.state
+    // const { data, count, current, owner } = this.props
+    const { data, count, current } = this.props
 
     const paginationProps = {
       showSizeChanger: true,
@@ -57,7 +57,7 @@ class ThreadReplyTable extends PureComponent {
       total: count,
       current,
       
-    };
+    }
 
     const rowSelection = {
       selectedRowKeys,
@@ -65,7 +65,7 @@ class ThreadReplyTable extends PureComponent {
       getCheckboxProps: record => ({
         disabled: record.disabled,
       }),
-    };
+    }
 
     return (
       <div className={styles.standardTable}>
@@ -93,9 +93,9 @@ class ThreadReplyTable extends PureComponent {
           scroll={{ x: 800 }}
         />
       </div>
-    );
+    )
   }
 }
 
-export default ThreadReplyTable;
+export default ThreadReplyTable
 

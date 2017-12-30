@@ -1,24 +1,25 @@
 
 
-import React, { Component } from 'react';
-import { connect } from 'dva';
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
-import { Link, Route, Redirect, Switch } from 'dva/router';
-import numeral from 'numeral';
+import React, { Component } from 'react'
+import { connect } from 'dva'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import { Link, Route, Redirect, Switch } from 'dva/router'
+import numeral from 'numeral'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
-} from '../../components/Charts';
-import Trend from '../../components/Trend';
-import NumberInfo from '../../components/NumberInfo';
-import { getTimeDistance } from '../../utils/utils';
-import PageHeaderLayout from '../../layouts/PageHeaderLayout';
-import styles from './UserDomain.editdetail.less';
-import GlobalComponents from '../../custcomponents';
+
+} from '../../components/Charts'
+import Trend from '../../components/Trend'
+import NumberInfo from '../../components/NumberInfo'
+import { getTimeDistance } from '../../utils/utils'
+import PageHeaderLayout from '../../layouts/PageHeaderLayout'
+import styles from './UserDomain.editdetail.less'
+import GlobalComponents from '../../custcomponents'
 
 
 
-const { TabPane } = Tabs;
-const { RangePicker } = DatePicker;
+const { TabPane } = Tabs
+const { RangePicker } = DatePicker
 
 const topColResponsiveProps = {
   xs: 24,
@@ -27,7 +28,7 @@ const topColResponsiveProps = {
   lg: 12,
   xl: 6,
   style: { marginBottom: 24 },
-};
+}
 
 
 @connect(state => ({
@@ -38,10 +39,10 @@ export default class UserDomainEditDetail extends Component {
     const {SecUserEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, secUserCount} = this.props.userDomain;
-    const { secUserList} = this.props.userDomain;
+    const { id, secUserCount } = this.props.userDomain
+    const { secUserList } = this.props.userDomain
     
-    const owner = { type: '_userDomain', id};
+    const owner = { type: '_userDomain', id }
     return (
 
       <PageHeaderLayout
@@ -54,17 +55,15 @@ export default class UserDomainEditDetail extends Component {
           
             
             
-      <Card title="SEC的用户列表" className={styles.card} bordered={false}>
-        <Form layout="vertical" hideRequiredMark>
-        <SecUserEditTable data={secUserList} owner={owner} />
-       </Form>
-       </Card>
-            
-            
+        <Card title="SEC的用户列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <SecUserEditTable data={secUserList} owner={owner} />
+          </Form>
+        </Card>
 
  
       </PageHeaderLayout>
-    );
+    )
   }
 }
 

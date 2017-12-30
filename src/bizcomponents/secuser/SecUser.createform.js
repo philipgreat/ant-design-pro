@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
+import React, { Component } from 'react'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
-import { connect } from 'dva';
-import PageHeaderLayout from '../../layouts/PageHeaderLayout';
+import { connect } from 'dva'
+import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import PictureEdit from '../../components/PictureEdit'
-import FooterToolbar from '../../components/FooterToolbar';
+import FooterToolbar from '../../components/FooterToolbar'
 
-import styles from './SecUser.createform.less';
+import styles from './SecUser.createform.less'
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
+const { Option } = Select
+const { RangePicker } = DatePicker
+const { TextArea } = Input
 const fieldLabels = {
   id: '序号',
   login: '登录',
@@ -23,7 +23,7 @@ const fieldLabels = {
   domain: '域',
   blocking: '屏蔽',
   currentStatus: '当前状态',
-};
+}
 
 
 const testValues = {
@@ -32,16 +32,16 @@ const testValues = {
   email: 'suddy_chang@163.com',
   pwd: 'C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95',
   verificationCode: '9981727',
-  verificationCodeExpire: '2036-10-04 01:39:36',
-  lastLoginTime: '2037-07-24 19:19:37',
+  verificationCodeExpire: '2038-10-09 09:53:22',
+  lastLoginTime: '2037-08-01 23:32:02',
   domainId: 'UD000001',
-};
+}
 
-const imageURLPrefix = '//localhost:2090';
+const imageURLPrefix = '//localhost:2090'
 
 
 const imageKeys = [
-];
+]
 
 
 class SecUserCreateForm extends Component {
@@ -49,132 +49,132 @@ class SecUserCreateForm extends Component {
     previewVisible: false,
     previewImage: '',
     convertedImagesValues: {},
-  };
+  }
 
   componentDidMount() {
-    // const { getFieldDecorator,setFieldsValue } = this.props.form;
-    const { setFieldsValue } = this.props.form;
-    setFieldsValue(testValues);
+    // const { getFieldDecorator,setFieldsValue } = this.props.form
+    const { setFieldsValue } = this.props.form
+    setFieldsValue(testValues)
   }
   shouldComponentUpdate() {
-    return true;
+    return true
   }
   handlePreview = (file) => {
-    console.log('preview file', file);
+    console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
-    });
+    })
   }
 
   handleChange = (event, source) => {
-    console.log('get file list from change in update change:', source);
+    console.log('get file list from change in update change:', source)
 
-    const { fileList } = event;
-    const { convertedImagesValues } = this.state;
+    const { fileList } = event
+    const { convertedImagesValues } = this.state
 
-    convertedImagesValues[source] = fileList;
-    this.setState({ convertedImagesValues });
-    console.log('/get file list from change in update change:', source);
+    convertedImagesValues[source] = fileList
+    this.setState({ convertedImagesValues })
+    console.log('/get file list from change in update change:', source)
   }
 
   mapBackToImageValues=(convertedImagesValues) => {
-    const targetImages = [];
+    const targetImages = []
     Object.keys(convertedImagesValues).map((key) => {
       if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
-      const value = convertedImagesValues[key][0];
+      const value = convertedImagesValues[key][0]
       if (value.response) {
-        targetImages[key] = imageURLPrefix + value.response;
-        return;
+        targetImages[key] = imageURLPrefix + value.response
+        return
       }
       if (value.url) {
-        targetImages[key] = value.url;
-        return;
+        targetImages[key] = value.url
+        return
       }
-    });
-    return targetImages;
+    })
+    return targetImages
   }
 
   mapFromImageValues=(selectedRow) => {
-    const targetImages = {};
+    const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
-        return [{ uid: key, url: value }];
+        return [{ uid: key, url: value }]
       }
-      return [];
-    };
+      return []
+    }
     imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key]);
-    });
-    console.log(targetImages);
-    return targetImages;
+      targetImages[key] = buildFileList(key,selectedRow[key])
+    })
+    console.log(targetImages)
+    return targetImages
   }
 
   render() {
-    const { form, dispatch, submitting } = this.props;
-    const { convertedImagesValues } = this.state;
+    const { form, dispatch, submitting } = this.props
+    const { convertedImagesValues } = this.state
 
-    const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form;
+    const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const submitCreateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log('code go here', error);
-          return;
+          console.log('code go here', error)
+          return
         }
 
-        const { owner } = this.props;
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        const { owner } = this.props
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
 
-        const parameters = { ...values, ...imagesValues };
+        const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addSecUser`,
           payload: { id: owner.id, type: 'secUser', parameters },
-        });
-      });
-    };
+        })
+      })
+    }
     const submitCreateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
-          console.log('code go here', error);
-          return;
+          console.log('code go here', error)
+          return
         }
         
-        const { owner } = this.props;
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues);
+        const { owner } = this.props
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
         
-        const parameters = { ...values, ...imagesValues };
+        const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addSecUser`,
           payload: { id: owner.id, type: 'secUser', parameters, continueNext: true },
-        });
-      });
-    };
+        })
+      })
+    }
     
     const goback = () => {
-      const { owner } = this.props;
+      const { owner } = this.props
       dispatch({
         type: `${owner.type}/goback`,
         payload: { id: owner.id, type: 'secUser' },
-      }); 
-    };
-    const errors = getFieldsError();
+      })
+    }
+    const errors = getFieldsError()
     const getErrorInfo = () => {
-      const errorCount = Object.keys(errors).filter(key => errors[key]).length;
+      const errorCount = Object.keys(errors).filter(key => errors[key]).length
       if (!errors || errorCount === 0) {
-        return null;
+        return null
       }
       // eslint-disable-next-line no-unused-vars
       const scrollToField = (fieldKey) => {
-        const labelNode = document.querySelector('label[for="${fieldKey}"]');
+        const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
-          labelNode.scrollIntoView(true);
+          labelNode.scrollIntoView(true)
         }
-      };
+      }
       const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
-          return null;
+          return null
         }
         return (
           <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
@@ -182,8 +182,8 @@ class SecUserCreateForm extends Component {
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
           </li>
-        );
-      });
+        )
+      })
       return (
         <span className={styles.errorIcon}>
           <Popover
@@ -197,8 +197,8 @@ class SecUserCreateForm extends Component {
           </Popover>
           {errorCount}
         </span>
-      );
-    };
+      )
+    }
     return (
       <PageHeaderLayout
         title="新建一个SEC的用户"
@@ -319,13 +319,13 @@ class SecUserCreateForm extends Component {
           </Button>
         </FooterToolbar>
       </PageHeaderLayout>
-    );
+    )
   }
 }
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-}))(Form.create()(SecUserCreateForm));
+}))(Form.create()(SecUserCreateForm))
 
 
 

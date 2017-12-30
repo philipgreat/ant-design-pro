@@ -1,9 +1,11 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
-import styles from './TaskFilter.table.less';
-import ImagePreview from '../../components/ImagePreview';
+
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import {Form,Button, Table, Alert, Badge,Input } from 'antd'
+import styles from './TaskFilter.table.less'
+import ImagePreview from '../../components/ImagePreview'
+
 
 
 const columns = [
@@ -11,17 +13,14 @@ const columns = [
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8',render: (text, record) => (<Input value={text} placeholder={"名称"}/>)  },
   { title: '过滤器健值', debugtype: 'string', dataIndex: 'filterKey', width: '25',render: (text, record) => (<Input value={text} placeholder={"过滤器健值"}/>)  },
   { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '40',render: (text, record) => (<Input value={text} placeholder={"链接网址"}/>)  },
-  { title: '任务页面',dataIndex: 'taskPage', render: (text, record) => (record.taskPage ? record.taskPage.id : '暂无') },
-  { title: '主页',dataIndex: 'homePage', render: (text, record) => (record.homePage ? record.homePage.id : '暂无') },
-];
+  { title: '任务页面', dataIndex: 'taskPage', render: (text, record) => (record.taskPage ? record.taskPage.id : '暂无') },
+  { title: '主页', dataIndex: 'homePage', render: (text, record) => (record.homePage ? record.homePage.id : '暂无') },
+]
 
 class TaskFilterEditTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props;
-    const { data } = this.props;
-	
-	
-
+    // const { data,count,current, owner } = this.props
+    const { data } = this.props
     return (
       <div className={styles.standardTable}>
         
@@ -42,9 +41,9 @@ class TaskFilterEditTable extends PureComponent {
           新增
         </Button>
       </div>
-    );
+    )
   }
 }
 
-export default TaskFilterEditTable;
+export default TaskFilterEditTable
 

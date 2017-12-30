@@ -1,9 +1,11 @@
 
-import React, { PureComponent } from 'react';
-import moment from 'moment';
-import {Form,Button, Table, Alert, Badge,Input,Divider } from 'antd';
-import styles from './InvitationCode.table.less';
-import ImagePreview from '../../components/ImagePreview';
+
+import React, { PureComponent } from 'react'
+import moment from 'moment'
+import {Form,Button, Table, Alert, Badge,Input } from 'antd'
+import styles from './InvitationCode.table.less'
+import ImagePreview from '../../components/ImagePreview'
+
 
 
 const columns = [
@@ -11,17 +13,14 @@ const columns = [
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7',render: (text, record) => (<Input value={text} placeholder={"名称"}/>)  },
   { title: '代码', debugtype: 'int', dataIndex: 'code', width: '10',render: (text, record) => (<Input value={text} placeholder={"代码"}/>)  },
   { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD') },
-  { title: '社区',dataIndex: 'community', render: (text, record) => (record.community ? record.community.id : '暂无') },
-  { title: '用',dataIndex: 'used', render: (text, record) => (record.used ? '是' : '否') },
-];
+  { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? record.community.id : '暂无') },
+  { title: '用', dataIndex: 'used', render: (text, record) => (record.used ? '是' : '否') },
+]
 
 class InvitationCodeEditTable extends PureComponent {
   render() {
-    // const { data,count,current, owner } = this.props;
-    const { data } = this.props;
-	
-	
-
+    // const { data,count,current, owner } = this.props
+    const { data } = this.props
     return (
       <div className={styles.standardTable}>
         
@@ -42,9 +41,9 @@ class InvitationCodeEditTable extends PureComponent {
           新增
         </Button>
       </div>
-    );
+    )
   }
 }
 
-export default InvitationCodeEditTable;
+export default InvitationCodeEditTable
 
