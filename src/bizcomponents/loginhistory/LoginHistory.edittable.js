@@ -9,10 +9,10 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeholder={"序号"}/>)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20'  },
   { title: '登录时间', dataIndex: 'loginTime', render: (text, record) => moment(record.loginTime).format('YYYY-MM-DD') },
-  { title: '从IP', debugtype: 'string', dataIndex: 'fromIp', width: '15',render: (text, record) => (<Input value={text} placeholder={"从IP"}/>)  },
-  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8',render: (text, record) => (<Input value={text} placeholder={"描述"}/>)  },
+  { title: '从IP', debugtype: 'string', dataIndex: 'fromIp', width: '15'  },
+  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8'  },
   { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
 ]
 

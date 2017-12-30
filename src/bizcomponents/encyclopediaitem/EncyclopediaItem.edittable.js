@@ -9,10 +9,10 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeholder={"序号"}/>)  },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '15',render: (text, record) => (<Input value={text} placeholder={"标题"}/>)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20'  },
+  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '15'  },
   { title: '发布时间', dataIndex: 'publishTime', render: (text, record) => moment(record.publishTime).format('YYYY-MM-DD') },
-  { title: '内容', debugtype: 'string', dataIndex: 'content', width: '107',render: (text, record) => (<Input value={text} placeholder={"内容"}/>)  },
+  { title: '内容', debugtype: 'string', dataIndex: 'content', width: '107'  },
   { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? record.community.id : '暂无') },
   { title: '主页', dataIndex: 'homePage', render: (text, record) => (record.homePage ? record.homePage.id : '暂无') },
 ]

@@ -71,65 +71,7 @@ export default class CommunityEditDetail extends Component {
           
             
             
-        <Card title="主页列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <HomePageEditTable data={homePageList} owner={owner} />
-          </Form>
-        </Card>
 
-          
-            
-            
-        <Card title="百科全书条目列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <EncyclopediaItemEditTable data={encyclopediaItemList} owner={owner} />
-          </Form>
-        </Card>
-
-          
-            
-            
-        <Card title="任务页面列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <TaskPageEditTable data={taskPageList} owner={owner} />
-          </Form>
-        </Card>
-
-          
-            
-            
-        <Card title="社区用户列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <CommunityUserEditTable data={communityUserList} owner={owner} />
-          </Form>
-        </Card>
-
-          
-            
-            
-        <Card title="任务列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <TaskEditTable data={taskList} owner={owner} />
-          </Form>
-        </Card>
-
-          
-            
-            
-        <Card title="群组页面列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <GroupPageEditTable data={groupPageList} owner={owner} />
-          </Form>
-        </Card>
-
-          
-            
-            
-        <Card title="主贴列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ThreadEditTable data={threadList} owner={owner} />
-          </Form>
-        </Card>
 
  
       </PageHeaderLayout>

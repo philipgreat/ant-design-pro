@@ -9,10 +9,10 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeholder={"序号"}/>)  },
-  { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17',render: (text, record) => (<Input value={text} placeholder={"谁"}/>)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20'  },
+  { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17'  },
   { title: '屏蔽时间', dataIndex: 'blockTime', render: (text, record) => moment(record.blockTime).format('YYYY-MM-DD') },
-  { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '28',render: (text, record) => (<Input value={text} placeholder={"评论"}/>)  },
+  { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '28'  },
 ]
 
 class SecUserBlockingEditTable extends PureComponent {

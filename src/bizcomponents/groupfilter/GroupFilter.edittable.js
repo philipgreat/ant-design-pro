@@ -9,9 +9,9 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',render: (text, record) => (<Input value={text} placeholder={"序号"}/>)  },
-  { title: '滤波环节', debugtype: 'string', dataIndex: 'filterLink', width: '32',render: (text, record) => (<Input value={text} placeholder={"滤波环节"}/>)  },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8',render: (text, record) => (<Input value={text} placeholder={"标题"}/>)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20'  },
+  { title: '滤波环节', debugtype: 'string', dataIndex: 'filterLink', width: '32'  },
+  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8'  },
   { title: '群组页面', dataIndex: 'groupPage', render: (text, record) => (record.groupPage ? record.groupPage.id : '暂无') },
 ]
 
