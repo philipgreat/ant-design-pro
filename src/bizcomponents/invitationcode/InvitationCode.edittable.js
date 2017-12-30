@@ -70,13 +70,34 @@ class InvitationCodeEditTable extends PureComponent {
       this.setState({ data: newData });
     }
 
+    const saveRecord = (e,record) =>{
+      const {dispatch, owner} = this.props
+      const {data} = this.state
+      const {invitationCodeId} = record.id
+      const parameters = { ...record, invitationCodeId }
+
+      dispatch({
+        type: `${owner.type}/updateInvitationCode`,
+        payload: {
+          id: owner.id,
+          type: 'invitationCode',
+          parameters,
+          data,
+          currentUpdateIndex: 0,
+          continueNext: true,
+        },
+      })
+
+
+    }
+
 
     const renderStringEdit = (name, text, record)=>{
       if(!record.editable){
         return text;
       }  
     
-      return (<Input value={text} onChange={(e)=>changeText(e, name, record)} placeholder={"NO"}/>) 
+      return (<Input size={"small"} style={{width:180}} value={text} onChange={(e)=>changeText(e, name, record)} placeholder={"NO"}/>) 
     
     }
 
@@ -85,7 +106,7 @@ class InvitationCodeEditTable extends PureComponent {
         return (<div><a onClick={(e)=>toggleEdit(e,record)}>编辑</a> <a >删除</a></div>);
       } 
     
-      return (<div><a onClick={(e)=>toggleEdit(e,record)}>保存</a> <a >取消</a></div>) 
+      return (<div><a onClick={(e)=>saveRecord(e,record)}>保存</a> <a onClick={(e)=>toggleEdit(e,record)}>取消</a></div>) 
     
     }
     const columns = [
@@ -94,7 +115,7 @@ class InvitationCodeEditTable extends PureComponent {
         render: (text, record) => renderStringEdit('name',text, record) 
       },
       { title: '代码', debugtype: 'int', dataIndex: 'code', width: '10',
-      render: (text, record) => renderStringEdit('name',text, record)
+      render: (text, record) => renderStringEdit('code',text, record)
     
     },
       { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD') },
@@ -135,4 +156,31 @@ class InvitationCodeEditTable extends PureComponent {
 }
 //Form.create()(CommunityCreateForm)
 export default Form.create()(InvitationCodeEditTable)
+
+/*    const submitUpdateForm = () => {
+      validateFieldsAndScroll((error, values) => {
+        if (error) {
+          console.log('code go here', error)
+          return
+        }
+
+        const { owner } = this.props
+        const invitationCodeId = values.id
+        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const parameters = { ...values, invitationCodeId, ...imagesValues }
+
+        // const newIndex= currentUpdateIndex + 1
+        dispatch({
+          type: `${owner.type}/updateInvitationCode`,
+          payload: {
+            id: owner.id,
+            type: 'invitationCode',
+            parameters,
+            selectedRows,
+            currentUpdateIndex: 0,
+            continueNext: false,
+          },
+        })
+      })
+    }*/
 

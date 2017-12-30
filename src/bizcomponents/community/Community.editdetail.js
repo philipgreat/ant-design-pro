@@ -64,7 +64,7 @@ export default class CommunityEditDetail extends Component {
             
         <Card title="邀请码列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
-            <InvitationCodeEditTable data={invitationCodeList} owner={owner} />
+            <InvitationCodeEditTable data={invitationCodeList} owner={owner} {...this.props}/>
           </Form>
         </Card>
 
