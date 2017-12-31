@@ -19,7 +19,7 @@ const toggleEdit = (e,data,id) =>{
 }
 
 
-
+let counter = 1;
 
 class InvitationCodeEditTable extends PureComponent {
 
@@ -28,6 +28,8 @@ class InvitationCodeEditTable extends PureComponent {
     console.log(props)
     this.state = {
       data: props.data,
+      
+
     };
   }
 
@@ -45,12 +47,11 @@ class InvitationCodeEditTable extends PureComponent {
   render() {
     // const { data,count,current, owner } = this.props
     const { data } = this.state
-    
+    const {appendInProcess} =  this.state;
+
     const changeText =(e, fieldName, record)=>{
       const newData = [...this.state.data];
-      console.log("text is changed e", e)
-      console.log("text is changed f", fieldName)
-      console.log("text is changed key", record.id)
+      
       const row = getRowById(newData,record.id);
       console.log("text is changed row", row)
       if(row){
@@ -70,7 +71,7 @@ class InvitationCodeEditTable extends PureComponent {
       this.setState({ data: newData });
     }
 
-    const saveRecord = (e,record) =>{
+    const updateRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
       const {invitationCodeId} = record.id
@@ -97,7 +98,7 @@ class InvitationCodeEditTable extends PureComponent {
 
     const renderStringEdit = (name, text, record)=>{
  
-      if(record.appendable){
+      if(appendInProcess&&record.id.indexOf("+")===0){
         return (<Input size={"small"} style={{width:'80%'}} value={text} onChange={(e)=>changeText(e, name, record)} placeholder={"NO"}/>) 
       }
       if(record.editable){
@@ -108,12 +109,14 @@ class InvitationCodeEditTable extends PureComponent {
 
     const renderActions = (text,record)=>{
     
-      if(record.appendable){
-        return (<div><a onClick={(e)=>addRecord(e,record)}>增加</a> <a onClick={(e)=>toggleEdit(e,record)}>删除</a></div>) 
+      if(appendInProcess){
+        return (<div><a onClick={(e)=>addRecord(e,record)}>增加</a>
+         <a onClick={(e)=>toggleEdit(e,record)}>删除</a></div>) 
     
       }
       if(record.editable){
-        return (<div><a onClick={(e)=>saveRecord(e,record)}>保存</a> <a onClick={(e)=>toggleEdit(e,record)}>取消</a></div>) 
+        return (<div><a onClick={(e)=>updateRecord(e,record)}>保存</a> 
+        <a onClick={(e)=>toggleEdit(e,record)}>取消</a></div>) 
       }
       return (<div><a onClick={(e)=>toggleEdit(e,record)}>编辑</a> <a >删除</a></div>);
 
@@ -134,28 +137,28 @@ class InvitationCodeEditTable extends PureComponent {
       render: (text, record) => renderActions(text, record)},
       
     ]
-
+    
     const newRecord =()=>{
       console.log("called?????????????????/");
       const newData = [...this.state.data];
-      const newCode  = {id:"新名字", 
+      const newCode  = {id:`+${counter}`, 
         name:"新名字",
         code:"88999000",
         createTime: '2009-09-09',
         community:"C0000001",
         used: false,
-        appendable: true
+
       };
       newData.push(newCode);
-
+      counter++;
       //row.editable = !row.editable 
-      this.setState({ data: newData });
+      this.setState({ data: newData, appendInProcess: true });
 
 
     }
     
 
-
+   
     
     return (
       <div className={styles.standardTable}>
@@ -168,14 +171,16 @@ class InvitationCodeEditTable extends PureComponent {
           pagination={false}
           scroll={{ x: 800 }}
         />
-        <Button
+
+       {
+        !appendInProcess&&(<Button
           style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
           type="dashed"
           onClick={newRecord}
           icon="plus"
         >
           新增
-        </Button>
+        </Button>)}
       </div>
     )
   }
