@@ -89,8 +89,8 @@ class ThreadReplyEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const ThreadReplyIds = [record.id];
-      const parameters = { ThreadReplyIds }
+      const threadReplyIds = [record.id];
+      const parameters = { threadReplyIds }
       dispatch({
         type: `${owner.type}/removeThreadReplyList`,
         payload: { id: owner.id, type: 'threadReply', parameters },
@@ -188,9 +188,9 @@ class ThreadReplyEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '回复时间', dataIndex: 'replyTime', render: (text, record) => moment(record.replyTime).format('YYYY-MM-DD') },
-  { title: '内容', debugtype: 'string', dataIndex: 'content', width: '22', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '内容', debugtype: 'string', dataIndex: 'content', width: '22', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '应答者', dataIndex: 'replier', render: (text, record) => (record.replier ? record.replier.id : '暂无') },
   { title: '主贴', dataIndex: 'thread', render: (text, record) => (record.thread ? record.thread.id : '暂无') },
   { title: '当前用户已点赞', dataIndex: 'likeByCurrentUser', render: (text, record) => (record.likeByCurrentUser ? '是' : '否') },
@@ -201,8 +201,6 @@ class ThreadReplyEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -211,8 +209,8 @@ class ThreadReplyEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

@@ -89,8 +89,8 @@ class GroupFilterEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const GroupFilterIds = [record.id];
-      const parameters = { GroupFilterIds }
+      const groupFilterIds = [record.id];
+      const parameters = { groupFilterIds }
       dispatch({
         type: `${owner.type}/removeGroupFilterList`,
         payload: { id: owner.id, type: 'groupFilter', parameters },
@@ -188,9 +188,9 @@ class GroupFilterEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '滤波环节', debugtype: 'string', dataIndex: 'filterLink', width: '32', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '滤波环节', debugtype: 'string', dataIndex: 'filterLink', width: '32', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '群组页面', dataIndex: 'groupPage', render: (text, record) => (record.groupPage ? record.groupPage.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -199,8 +199,6 @@ class GroupFilterEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -209,8 +207,8 @@ class GroupFilterEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

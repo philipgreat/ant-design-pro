@@ -188,9 +188,9 @@ class InvitationCodeEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '代码', debugtype: 'int', dataIndex: 'code', width: '10', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '代码', debugtype: 'int', dataIndex: 'code', width: '10', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD') },
   { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? record.community.id : '暂无') },
   { title: '用', dataIndex: 'used', render: (text, record) => (record.used ? '是' : '否') },
@@ -201,8 +201,6 @@ class InvitationCodeEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -213,7 +211,6 @@ class InvitationCodeEditTable extends PureComponent {
       };
       const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

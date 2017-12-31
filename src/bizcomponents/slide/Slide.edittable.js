@@ -89,8 +89,8 @@ class SlideEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const SlideIds = [record.id];
-      const parameters = { SlideIds }
+      const slideIds = [record.id];
+      const parameters = { slideIds }
       dispatch({
         type: `${owner.type}/removeSlideList`,
         payload: { id: owner.id, type: 'slide', parameters },
@@ -188,10 +188,10 @@ class SlideEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '图像网址', dataIndex: 'imageUrl', render: (text, record) => <ImagePreview imageLocation={record.图像网址} /> },
-  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '40', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '40', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '主页', dataIndex: 'homePage', render: (text, record) => (record.homePage ? record.homePage.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -200,8 +200,6 @@ class SlideEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -210,8 +208,8 @@ class SlideEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

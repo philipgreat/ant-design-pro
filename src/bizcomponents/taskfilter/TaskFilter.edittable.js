@@ -89,8 +89,8 @@ class TaskFilterEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const TaskFilterIds = [record.id];
-      const parameters = { TaskFilterIds }
+      const taskFilterIds = [record.id];
+      const parameters = { taskFilterIds }
       dispatch({
         type: `${owner.type}/removeTaskFilterList`,
         payload: { id: owner.id, type: 'taskFilter', parameters },
@@ -188,10 +188,10 @@ class TaskFilterEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '过滤器健值', debugtype: 'string', dataIndex: 'filterKey', width: '25', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '40', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '过滤器健值', debugtype: 'string', dataIndex: 'filterKey', width: '25', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '40', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '任务页面', dataIndex: 'taskPage', render: (text, record) => (record.taskPage ? record.taskPage.id : '暂无') },
   { title: '主页', dataIndex: 'homePage', render: (text, record) => (record.homePage ? record.homePage.id : '暂无') },
 { title: '操作',
@@ -201,8 +201,6 @@ class TaskFilterEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -211,8 +209,8 @@ class TaskFilterEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

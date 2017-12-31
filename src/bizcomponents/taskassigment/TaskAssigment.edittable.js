@@ -89,8 +89,8 @@ class TaskAssigmentEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const TaskAssigmentIds = [record.id];
-      const parameters = { TaskAssigmentIds }
+      const taskAssigmentIds = [record.id];
+      const parameters = { taskAssigmentIds }
       dispatch({
         type: `${owner.type}/removeTaskAssigmentList`,
         payload: { id: owner.id, type: 'taskAssigment', parameters },
@@ -188,11 +188,11 @@ class TaskAssigmentEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '任务', dataIndex: 'task', render: (text, record) => (record.task ? record.task.id : '暂无') },
   { title: '受让人', dataIndex: 'assignee', render: (text, record) => (record.assignee ? record.assignee.id : '暂无') },
   { title: '分配时间', dataIndex: 'assignTime', render: (text, record) => moment(record.assignTime).format('YYYY-MM-DD') },
-  { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '17', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '17', render: (text, record) => renderStringEdit('name',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
 
@@ -200,8 +200,6 @@ class TaskAssigmentEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -210,8 +208,8 @@ class TaskAssigmentEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

@@ -89,8 +89,8 @@ class ThreadRegistrationEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const ThreadRegistrationIds = [record.id];
-      const parameters = { ThreadRegistrationIds }
+      const threadRegistrationIds = [record.id];
+      const parameters = { threadRegistrationIds }
       dispatch({
         type: `${owner.type}/removeThreadRegistrationList`,
         payload: { id: owner.id, type: 'threadRegistration', parameters },
@@ -188,11 +188,11 @@ class ThreadRegistrationEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '主贴', dataIndex: 'thread', render: (text, record) => (record.thread ? record.thread.id : '暂无') },
   { title: '参与者', dataIndex: 'participant', render: (text, record) => (record.participant ? record.participant.id : '暂无') },
   { title: '登记时间', dataIndex: 'registerTime', render: (text, record) => moment(record.registerTime).format('YYYY-MM-DD') },
-  { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '14', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '14', render: (text, record) => renderStringEdit('name',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
 
@@ -200,8 +200,6 @@ class ThreadRegistrationEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -210,8 +208,8 @@ class ThreadRegistrationEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

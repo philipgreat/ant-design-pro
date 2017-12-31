@@ -89,8 +89,8 @@ class PatientInfoEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const PatientInfoIds = [record.id];
-      const parameters = { PatientInfoIds }
+      const patientInfoIds = [record.id];
+      const parameters = { patientInfoIds }
       dispatch({
         type: `${owner.type}/removePatientInfoList`,
         payload: { id: owner.id, type: 'patientInfo', parameters },
@@ -188,14 +188,14 @@ class PatientInfoEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '6', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '昵称', debugtype: 'string', dataIndex: 'nickName', width: '6', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '性别', debugtype: 'string_gender', dataIndex: 'gender', width: '5', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '6', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '昵称', debugtype: 'string', dataIndex: 'nickName', width: '6', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '性别', debugtype: 'string_gender', dataIndex: 'gender', width: '5', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '生日', dataIndex: 'birthday', render: (text, record) => moment(record.birthday).format('YYYY-MM-DD') },
-  { title: '佩戴设备类型', debugtype: 'string', dataIndex: 'wearDeviceType', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '佩戴设备类型', debugtype: 'string', dataIndex: 'wearDeviceType', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '磨损的开始时间', dataIndex: 'wearStartTime', render: (text, record) => moment(record.wearStartTime).format('YYYY-MM-DD') },
-  { title: '康复计划', debugtype: 'string', dataIndex: 'recoverPlan', width: '15', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '康复计划', debugtype: 'string', dataIndex: 'recoverPlan', width: '15', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '复苏开始时间', dataIndex: 'recoverStartTime', render: (text, record) => moment(record.recoverStartTime).format('YYYY-MM-DD') },
   { title: '用户', dataIndex: 'user', render: (text, record) => (record.user ? record.user.id : '暂无') },
 { title: '操作',
@@ -205,8 +205,6 @@ class PatientInfoEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -215,8 +213,8 @@ class PatientInfoEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

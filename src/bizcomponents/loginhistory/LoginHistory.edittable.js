@@ -89,8 +89,8 @@ class LoginHistoryEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const LoginHistoryIds = [record.id];
-      const parameters = { LoginHistoryIds }
+      const loginHistoryIds = [record.id];
+      const parameters = { loginHistoryIds }
       dispatch({
         type: `${owner.type}/removeLoginHistoryList`,
         payload: { id: owner.id, type: 'loginHistory', parameters },
@@ -188,10 +188,10 @@ class LoginHistoryEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '登录时间', dataIndex: 'loginTime', render: (text, record) => moment(record.loginTime).format('YYYY-MM-DD') },
-  { title: '从IP', debugtype: 'string', dataIndex: 'fromIp', width: '15', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '从IP', debugtype: 'string', dataIndex: 'fromIp', width: '15', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -200,8 +200,6 @@ class LoginHistoryEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -210,8 +208,8 @@ class LoginHistoryEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

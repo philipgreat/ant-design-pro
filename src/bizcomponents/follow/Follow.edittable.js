@@ -89,8 +89,8 @@ class FollowEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const FollowIds = [record.id];
-      const parameters = { FollowIds }
+      const followIds = [record.id];
+      const parameters = { followIds }
       dispatch({
         type: `${owner.type}/removeFollowList`,
         payload: { id: owner.id, type: 'follow', parameters },
@@ -188,9 +188,9 @@ class FollowEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '用户', dataIndex: 'user', render: (text, record) => (record.user ? record.user.id : '暂无') },
-  { title: '关注的社区用户', debugtype: 'string', dataIndex: 'followId', width: '12', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '关注的社区用户', debugtype: 'string', dataIndex: 'followId', width: '12', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '添加时间', dataIndex: 'addingTime', render: (text, record) => moment(record.addingTime).format('YYYY-MM-DD') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -199,8 +199,6 @@ class FollowEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -209,8 +207,8 @@ class FollowEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

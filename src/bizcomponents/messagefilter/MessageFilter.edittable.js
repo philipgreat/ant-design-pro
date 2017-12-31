@@ -89,8 +89,8 @@ class MessageFilterEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const MessageFilterIds = [record.id];
-      const parameters = { MessageFilterIds }
+      const messageFilterIds = [record.id];
+      const parameters = { messageFilterIds }
       dispatch({
         type: `${owner.type}/removeMessageFilterList`,
         payload: { id: owner.id, type: 'messageFilter', parameters },
@@ -188,11 +188,11 @@ class MessageFilterEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '消息计数', debugtype: 'int', dataIndex: 'messageCount', width: '9', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '过滤器健值', debugtype: 'string', dataIndex: 'filterKey', width: '18', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '40', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '消息计数', debugtype: 'int', dataIndex: 'messageCount', width: '9', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '过滤器健值', debugtype: 'string', dataIndex: 'filterKey', width: '18', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '40', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '用户', dataIndex: 'user', render: (text, record) => (record.user ? record.user.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -201,8 +201,6 @@ class MessageFilterEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -211,8 +209,8 @@ class MessageFilterEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

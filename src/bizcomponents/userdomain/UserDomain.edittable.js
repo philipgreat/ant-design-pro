@@ -89,8 +89,8 @@ class UserDomainEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const UserDomainIds = [record.id];
-      const parameters = { UserDomainIds }
+      const userDomainIds = [record.id];
+      const parameters = { userDomainIds }
       dispatch({
         type: `${owner.type}/removeUserDomainList`,
         payload: { id: owner.id, type: 'userDomain', parameters },
@@ -188,8 +188,8 @@ class UserDomainEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
 
@@ -197,8 +197,6 @@ class UserDomainEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -207,8 +205,8 @@ class UserDomainEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

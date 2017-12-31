@@ -89,8 +89,8 @@ class EncyclopediaItemEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const EncyclopediaItemIds = [record.id];
-      const parameters = { EncyclopediaItemIds }
+      const encyclopediaItemIds = [record.id];
+      const parameters = { encyclopediaItemIds }
       dispatch({
         type: `${owner.type}/removeEncyclopediaItemList`,
         payload: { id: owner.id, type: 'encyclopediaItem', parameters },
@@ -188,10 +188,10 @@ class EncyclopediaItemEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '15', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '15', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '发布时间', dataIndex: 'publishTime', render: (text, record) => moment(record.publishTime).format('YYYY-MM-DD') },
-  { title: '内容', debugtype: 'string', dataIndex: 'content', width: '107', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '内容', debugtype: 'string', dataIndex: 'content', width: '107', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? record.community.id : '暂无') },
   { title: '主页', dataIndex: 'homePage', render: (text, record) => (record.homePage ? record.homePage.id : '暂无') },
 { title: '操作',
@@ -201,8 +201,6 @@ class EncyclopediaItemEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -211,8 +209,8 @@ class EncyclopediaItemEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

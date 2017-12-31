@@ -89,8 +89,8 @@ class ExperiencePointEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const ExperiencePointIds = [record.id];
-      const parameters = { ExperiencePointIds }
+      const experiencePointIds = [record.id];
+      const parameters = { experiencePointIds }
       dispatch({
         type: `${owner.type}/removeExperiencePointList`,
         payload: { id: owner.id, type: 'experiencePoint', parameters },
@@ -188,10 +188,10 @@ class ExperiencePointEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '获得时间', dataIndex: 'obtainTime', render: (text, record) => moment(record.obtainTime).format('YYYY-MM-DD') },
-  { title: '点', debugtype: 'int', dataIndex: 'points', width: '7', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '点', debugtype: 'int', dataIndex: 'points', width: '7', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '用户', dataIndex: 'user', render: (text, record) => (record.user ? record.user.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -200,8 +200,6 @@ class ExperiencePointEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -210,8 +208,8 @@ class ExperiencePointEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

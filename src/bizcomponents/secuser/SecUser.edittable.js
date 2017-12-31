@@ -89,8 +89,8 @@ class SecUserEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const SecUserIds = [record.id];
-      const parameters = { SecUserIds }
+      const secUserIds = [record.id];
+      const parameters = { secUserIds }
       dispatch({
         type: `${owner.type}/removeSecUserList`,
         payload: { id: owner.id, type: 'secUser', parameters },
@@ -188,17 +188,17 @@ class SecUserEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '登录', debugtype: 'string', dataIndex: 'login', width: '9', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '手机', debugtype: 'string_china_mobile_phone', dataIndex: 'mobile', width: '15', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '电子邮件', debugtype: 'string_email', dataIndex: 'email', width: '23', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: 'PWD', debugtype: 'string_password', dataIndex: 'pwd', width: '11', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '验证码', debugtype: 'int', dataIndex: 'verificationCode', width: '11', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '登录', debugtype: 'string', dataIndex: 'login', width: '9', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '手机', debugtype: 'string_china_mobile_phone', dataIndex: 'mobile', width: '15', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '电子邮件', debugtype: 'string_email', dataIndex: 'email', width: '23', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: 'PWD', debugtype: 'string_password', dataIndex: 'pwd', width: '11', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '验证码', debugtype: 'int', dataIndex: 'verificationCode', width: '11', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '验证码过期', dataIndex: 'verificationCodeExpire', render: (text, record) => moment(record.verificationCodeExpire).format('YYYY-MM-DD') },
   { title: '最后登录时间', dataIndex: 'lastLoginTime', render: (text, record) => moment(record.lastLoginTime).format('YYYY-MM-DD') },
   { title: '域', dataIndex: 'domain', render: (text, record) => (record.domain ? record.domain.id : '暂无') },
   { title: '屏蔽', dataIndex: 'blocking', render: (text, record) => (record.blocking ? record.blocking.id : '暂无') },
-  { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '11', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '11', render: (text, record) => renderStringEdit('name',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
 
@@ -206,8 +206,6 @@ class SecUserEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -216,8 +214,8 @@ class SecUserEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

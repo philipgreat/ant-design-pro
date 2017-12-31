@@ -89,8 +89,8 @@ class UserSkillEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const UserSkillIds = [record.id];
-      const parameters = { UserSkillIds }
+      const userSkillIds = [record.id];
+      const parameters = { userSkillIds }
       dispatch({
         type: `${owner.type}/removeUserSkillList`,
         payload: { id: owner.id, type: 'userSkill', parameters },
@@ -188,8 +188,8 @@ class UserSkillEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '技能名称', debugtype: 'string', dataIndex: 'skillName', width: '17', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '技能名称', debugtype: 'string', dataIndex: 'skillName', width: '17', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '用户', dataIndex: 'user', render: (text, record) => (record.user ? record.user.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -198,8 +198,6 @@ class UserSkillEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -208,8 +206,8 @@ class UserSkillEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

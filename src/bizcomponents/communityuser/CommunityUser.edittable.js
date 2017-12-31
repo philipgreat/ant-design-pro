@@ -89,8 +89,8 @@ class CommunityUserEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const CommunityUserIds = [record.id];
-      const parameters = { CommunityUserIds }
+      const communityUserIds = [record.id];
+      const parameters = { communityUserIds }
       dispatch({
         type: `${owner.type}/removeCommunityUserList`,
         payload: { id: owner.id, type: 'communityUser', parameters },
@@ -188,22 +188,22 @@ class CommunityUserEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '手机', debugtype: 'string_china_mobile_phone', dataIndex: 'mobile', width: '15', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '昵称', debugtype: 'string', dataIndex: 'nickName', width: '6', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '性别', debugtype: 'string_gender', dataIndex: 'gender', width: '5', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '用户类型', debugtype: 'string', dataIndex: 'userType', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '手机', debugtype: 'string_china_mobile_phone', dataIndex: 'mobile', width: '15', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '昵称', debugtype: 'string', dataIndex: 'nickName', width: '6', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '性别', debugtype: 'string_gender', dataIndex: 'gender', width: '5', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '用户类型', debugtype: 'string', dataIndex: 'userType', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '头像', dataIndex: 'avatar', render: (text, record) => <ImagePreview imageLocation={record.头像} /> },
   { title: '生日', dataIndex: 'birthday', render: (text, record) => moment(record.birthday).format('YYYY-MM-DD') },
-  { title: '成长值', debugtype: 'int', dataIndex: 'experiencePoint', width: '9', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '积分', debugtype: 'int', dataIndex: 'bonusPoint', width: '11', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '城市', debugtype: 'string', dataIndex: 'city', width: '7', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '状态', debugtype: 'string', dataIndex: 'status', width: '12', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '成长值', debugtype: 'int', dataIndex: 'experiencePoint', width: '9', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '积分', debugtype: 'int', dataIndex: 'bonusPoint', width: '11', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '城市', debugtype: 'string', dataIndex: 'city', width: '7', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '状态', debugtype: 'string', dataIndex: 'status', width: '12', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '隐藏的信息', dataIndex: 'hideInfo', render: (text, record) => (record.hideInfo ? '是' : '否') },
   { title: '管理员', dataIndex: 'administrator', render: (text, record) => (record.administrator ? '是' : '否') },
   { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? record.community.id : '暂无') },
-  { title: '点经验限制', debugtype: 'int', dataIndex: 'experiencePointLimit', width: '7', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '经验点仍', debugtype: 'int', dataIndex: 'experiencePointRemain', width: '7', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '点经验限制', debugtype: 'int', dataIndex: 'experiencePointLimit', width: '7', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '经验点仍', debugtype: 'int', dataIndex: 'experiencePointRemain', width: '7', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '经验点过去的日子', dataIndex: 'experiencePointLastDate', render: (text, record) => moment(record.experiencePointLastDate).format('YYYY-MM-DD') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -212,8 +212,6 @@ class CommunityUserEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -222,8 +220,8 @@ class CommunityUserEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

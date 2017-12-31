@@ -89,8 +89,8 @@ class TaskReplyEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const TaskReplyIds = [record.id];
-      const parameters = { TaskReplyIds }
+      const taskReplyIds = [record.id];
+      const parameters = { taskReplyIds }
       dispatch({
         type: `${owner.type}/removeTaskReplyList`,
         payload: { id: owner.id, type: 'taskReply', parameters },
@@ -188,14 +188,14 @@ class TaskReplyEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '回复时间', dataIndex: 'replyTime', render: (text, record) => moment(record.replyTime).format('YYYY-MM-DD') },
-  { title: '内容', debugtype: 'string', dataIndex: 'content', width: '22', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '内容', debugtype: 'string', dataIndex: 'content', width: '22', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '应答者', dataIndex: 'replier', render: (text, record) => (record.replier ? record.replier.id : '暂无') },
   { title: '任务', dataIndex: 'task', render: (text, record) => (record.task ? record.task.id : '暂无') },
   { title: '最佳答案设置', dataIndex: 'bestAnswerSetting', render: (text, record) => (record.bestAnswerSetting ? record.bestAnswerSetting.id : '暂无') },
   { title: '当前用户已点赞', dataIndex: 'likeByCurrentUser', render: (text, record) => (record.likeByCurrentUser ? '是' : '否') },
-  { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '19', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '19', render: (text, record) => renderStringEdit('name',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
 
@@ -203,8 +203,6 @@ class TaskReplyEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -213,8 +211,8 @@ class TaskReplyEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

@@ -89,8 +89,8 @@ class CommunityEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const CommunityIds = [record.id];
-      const parameters = { CommunityIds }
+      const communityIds = [record.id];
+      const parameters = { communityIds }
       dispatch({
         type: `${owner.type}/removeCommunityList`,
         payload: { id: owner.id, type: 'community', parameters },
@@ -188,9 +188,9 @@ class CommunityEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '10', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '10', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '10', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '10', render: (text, record) => renderStringEdit('name',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
 
@@ -198,8 +198,6 @@ class CommunityEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -208,8 +206,8 @@ class CommunityEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

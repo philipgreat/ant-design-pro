@@ -89,8 +89,8 @@ class TaskRewardEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const TaskRewardIds = [record.id];
-      const parameters = { TaskRewardIds }
+      const taskRewardIds = [record.id];
+      const parameters = { taskRewardIds }
       dispatch({
         type: `${owner.type}/removeTaskRewardList`,
         payload: { id: owner.id, type: 'taskReward', parameters },
@@ -188,11 +188,11 @@ class TaskRewardEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '谁', debugtype: 'string_current_user_name', dataIndex: 'who', width: '21', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '改写点', debugtype: 'int', dataIndex: 'rewordPoint', width: '7', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '谁', debugtype: 'string_current_user_name', dataIndex: 'who', width: '21', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '改写点', debugtype: 'int', dataIndex: 'rewordPoint', width: '7', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '行动时间', dataIndex: 'actionTime', render: (text, record) => moment(record.actionTime).format('YYYY-MM-DD') },
-  { title: '评论', debugtype: 'string', dataIndex: 'comment', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '评论', debugtype: 'string', dataIndex: 'comment', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
 
@@ -200,8 +200,6 @@ class TaskRewardEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -210,8 +208,8 @@ class TaskRewardEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 

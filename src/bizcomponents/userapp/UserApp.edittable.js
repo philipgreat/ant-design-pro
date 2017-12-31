@@ -89,8 +89,8 @@ class UserAppEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const UserAppIds = [record.id];
-      const parameters = { UserAppIds }
+      const userAppIds = [record.id];
+      const parameters = { userAppIds }
       dispatch({
         type: `${owner.type}/removeUserAppList`,
         payload: { id: owner.id, type: 'userApp', parameters },
@@ -188,15 +188,15 @@ class UserAppEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
-  { title: '应用程序图标', debugtype: 'string', dataIndex: 'appIcon', width: '13', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '应用程序图标', debugtype: 'string', dataIndex: 'appIcon', width: '13', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '完全访问', dataIndex: 'fullAccess', render: (text, record) => (record.fullAccess ? '是' : '否') },
-  { title: '许可', debugtype: 'string', dataIndex: 'permission', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '对象类型', debugtype: 'string', dataIndex: 'objectType', width: '17', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '对象ID', debugtype: 'string', dataIndex: 'objectId', width: '12', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '位置', debugtype: 'string', dataIndex: 'location', width: '16', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '许可', debugtype: 'string', dataIndex: 'permission', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '对象类型', debugtype: 'string', dataIndex: 'objectType', width: '17', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '对象ID', debugtype: 'string', dataIndex: 'objectId', width: '12', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '位置', debugtype: 'string', dataIndex: 'location', width: '16', render: (text, record) => renderStringEdit('name',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
 
@@ -204,8 +204,6 @@ class UserAppEditTable extends PureComponent {
  
     
     const newRecord =()=>{
-     
-      const newData = [...this.state.data];
       const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
@@ -214,8 +212,8 @@ class UserAppEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
 
