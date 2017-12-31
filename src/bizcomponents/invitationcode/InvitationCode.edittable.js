@@ -70,12 +70,15 @@ class InvitationCodeEditTable extends PureComponent {
       row.editable = !row.editable 
       this.setState({ data: newData });
     }
-
+    const remapReference = (record) => {
+      const communityId = record.community.id;
+      return {communityId};
+    }
     const addRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
       const communityId = record.community.id;
-      const parameters = { ...record, communityId}
+      const parameters = { ...record, ...remapReference(record)}
       const newData = [...data];
       
 
@@ -118,10 +121,14 @@ class InvitationCodeEditTable extends PureComponent {
 
     }
 
+    const isAppendingRow =(record)=>{
+
+      return appendInProcess&&record.id.indexOf("+")===0;
+    }
 
     const renderStringEdit = (name, text, record)=>{
  
-      if(appendInProcess&&record.id.indexOf("+")===0){
+      if(isAppendingRow(record)){
         return (<Input size={"small"} style={{width:'80%'}} value={text} onChange={(e)=>changeText(e, name, record)} placeholder={"NO"}/>) 
       }
       if(record.editable){
@@ -132,7 +139,7 @@ class InvitationCodeEditTable extends PureComponent {
 
     const renderActions = (text,record)=>{
     
-      if(appendInProcess&&record.id.indexOf("+")===0){
+      if(isAppendingRow(record)){
         return (<div><a onClick={(e)=>addRecord(e,record)}>增加</a>
          <a onClick={(e)=>toggleEdit(e,record)}>删除</a></div>) 
     
@@ -166,7 +173,7 @@ class InvitationCodeEditTable extends PureComponent {
       const newData = [...this.state.data];
       const newCode  = {id:`+${counter}`, 
         name:"新名字",
-        code:"88999000",
+        code:"87877",
         createTime: '2009-09-09',
         community:{id:"C000001"},
         used: false,
