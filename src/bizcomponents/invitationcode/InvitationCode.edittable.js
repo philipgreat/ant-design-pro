@@ -78,7 +78,7 @@ class InvitationCodeEditTable extends PureComponent {
       const newData = [...data];
       const row =  newData.filter(item => item.id === record.id)[0];
       row.editable = !row.editable 
-      
+
       dispatch({
         type: `${owner.type}/updateInvitationCode`,
         payload: {
@@ -96,21 +96,27 @@ class InvitationCodeEditTable extends PureComponent {
 
 
     const renderStringEdit = (name, text, record)=>{
-      if(!record.editable){
-        return text;
-      }  
-    
-      return (<Input size={"small"} style={{width:180}} value={text} onChange={(e)=>changeText(e, name, record)} placeholder={"NO"}/>) 
-    
+ 
+      if(record.appendable){
+        return (<Input size={"small"} style={{width:'80%'}} value={text} onChange={(e)=>changeText(e, name, record)} placeholder={"NO"}/>) 
+      }
+      if(record.editable){
+        return (<Input size={"small"} style={{width:'80%'}} value={text} onChange={(e)=>changeText(e, name, record)} placeholder={"NO"}/>) 
+      }
+      return text;
     }
 
     const renderActions = (text,record)=>{
-      if(!record.editable){
-        return (<div><a onClick={(e)=>toggleEdit(e,record)}>编辑</a> <a >删除</a></div>);
-      } 
     
-      return (<div><a onClick={(e)=>saveRecord(e,record)}>保存</a> <a onClick={(e)=>toggleEdit(e,record)}>取消</a></div>) 
+      if(record.appendable){
+        return (<div><a onClick={(e)=>addRecord(e,record)}>增加</a> <a onClick={(e)=>toggleEdit(e,record)}>删除</a></div>) 
     
+      }
+      if(record.editable){
+        return (<div><a onClick={(e)=>saveRecord(e,record)}>保存</a> <a onClick={(e)=>toggleEdit(e,record)}>取消</a></div>) 
+      }
+      return (<div><a onClick={(e)=>toggleEdit(e,record)}>编辑</a> <a >删除</a></div>);
+
     }
     const columns = [
       { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20'  },
@@ -129,7 +135,24 @@ class InvitationCodeEditTable extends PureComponent {
       
     ]
 
+    const newRecord =()=>{
+      console.log("called?????????????????/");
+      const newData = [...this.state.data];
+      const newCode  = {id:"新名字", 
+        name:"新名字",
+        code:"88999000",
+        createTime: '2009-09-09',
+        community:"C0000001",
+        used: false,
+        appendable: true
+      };
+      newData.push(newCode);
 
+      //row.editable = !row.editable 
+      this.setState({ data: newData });
+
+
+    }
     
 
 
@@ -148,7 +171,7 @@ class InvitationCodeEditTable extends PureComponent {
         <Button
           style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
           type="dashed"
-          onClick={this.newMember}
+          onClick={newRecord}
           icon="plus"
         >
           新增
