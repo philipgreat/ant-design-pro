@@ -58,10 +58,7 @@ class InvitationCodeEditTable extends PureComponent {
         row[fieldName] = e.target.value
         this.setState({ data: newData });
       }
-      
 
-
-    
     }
 
     const toggleEdit = (e,record) =>{
@@ -69,6 +66,19 @@ class InvitationCodeEditTable extends PureComponent {
       const row =  newData.filter(item => item.id === record.id)[0];
       row.editable = !row.editable 
       this.setState({ data: newData });
+    }
+    const removeFromArray = (array, element) => {
+      const index = array.indexOf(element);
+      console.log("remove from array")
+      if (index !== -1) {
+        console.log("-------------remove from array")
+          array.splice(index, 1);
+      }
+  }
+    const cancelAppend = (e,record) =>{
+      const newData = [...this.state.data];
+      removeFromArray(newData,record);
+      this.setState({ data: newData, appendInProcess:false });
     }
     const remapReference = (record) => {
       const communityId = record.community.id;
@@ -175,7 +185,7 @@ class InvitationCodeEditTable extends PureComponent {
       if(isAppendingRow(record)){
         return (<div><a onClick={(e)=>addRecord(e,record)}>增加</a>
          <Divider type="vertical" />
-         <a onClick={(e)=>toggleEdit(e,record)}>删除</a></div>) 
+         <a onClick={(e)=>cancelAppend(e,record)}>取消</a></div>) 
     
       }
       if(record.editable){
