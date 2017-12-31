@@ -71,6 +71,29 @@ class InvitationCodeEditTable extends PureComponent {
       this.setState({ data: newData });
     }
 
+    const addRecord = (e,record) =>{
+      const {dispatch, owner} = this.props
+      const {data} = this.state
+      const communityId = record.community.id;
+      const parameters = { ...record, communityId}
+      const newData = [...data];
+      
+
+      dispatch({
+        type: `${owner.type}/addInvitationCode`,
+        payload: {
+          id: owner.id,
+          type: 'invitationCode',
+          parameters,
+          selectedRows:newData,
+          currentUpdateIndex: 0,
+          continueNext: true,
+        },
+      })
+      this.setState({ appendInProcess: false });
+
+    }
+
     const updateRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
@@ -109,7 +132,7 @@ class InvitationCodeEditTable extends PureComponent {
 
     const renderActions = (text,record)=>{
     
-      if(appendInProcess){
+      if(appendInProcess&&record.id.indexOf("+")===0){
         return (<div><a onClick={(e)=>addRecord(e,record)}>增加</a>
          <a onClick={(e)=>toggleEdit(e,record)}>删除</a></div>) 
     
@@ -145,7 +168,7 @@ class InvitationCodeEditTable extends PureComponent {
         name:"新名字",
         code:"88999000",
         createTime: '2009-09-09',
-        community:"C0000001",
+        community:{id:"C000001"},
         used: false,
 
       };
