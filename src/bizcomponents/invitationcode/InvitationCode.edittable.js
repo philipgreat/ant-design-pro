@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import {Form,Button, Table, Alert, Badge,Input } from 'antd'
+import {Form,Button, Table, Alert, Badge,Input,Divider,Popconfirm } from 'antd'
 import styles from './InvitationCode.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
@@ -174,15 +174,23 @@ class InvitationCodeEditTable extends PureComponent {
     
       if(isAppendingRow(record)){
         return (<div><a onClick={(e)=>addRecord(e,record)}>增加</a>
+         <Divider type="vertical" />
          <a onClick={(e)=>toggleEdit(e,record)}>删除</a></div>) 
     
       }
       if(record.editable){
         return (<div><a onClick={(e)=>updateRecord(e,record)}>保存</a> 
+         <Divider type="vertical" />
         <a onClick={(e)=>toggleEdit(e,record)}>取消</a></div>) 
       }
       return (<div><a onClick={(e)=>toggleEdit(e,record)}>编辑</a> 
-      <a onClick={(e)=>deleteRecord(e,record)}>删除</a></div>);
+        <Divider type="vertical" />
+        
+        <Popconfirm title="是否要删除此行？" onConfirm={(e)=>deleteRecord(e,record)}>
+          <a>删除</a>
+        </Popconfirm>  </div>
+    
+    );
 
     }
     const columns = [
