@@ -74,6 +74,39 @@ class InvitationCodeEditTable extends PureComponent {
       const communityId = record.community.id;
       return {communityId};
     }
+    const deleteRecord = (e,record) =>{
+      const {dispatch, owner} = this.props
+      const {data} = this.state
+      const invitationCodeIds = [record.id];
+      const parameters = { invitationCodeIds }
+      dispatch({
+        type: `${owner.type}/removeInvitationCodeList`,
+        payload: { id: owner.id, type: 'invitationCode', parameters },
+      })
+    }
+/*
+
+
+  handleDelete = () => {
+    const { selectedRows } = this.state
+    const { dispatch, owner } = this.props
+    console.log('things to delete', selectedRows)
+    this.setState({
+      modalVisible: true,
+      showDeleteResult: true,
+    })
+    
+    const invitationCodeIds = selectedRows.map((item) => { return item.id })
+    console.log('invitationCodeIds', invitationCodeIds)
+    const parameters = { invitationCodeIds }
+    dispatch({
+      type: `${owner.type}/removeInvitationCodeList`,
+      payload: { id: owner.id, type: 'invitationCode', parameters },
+    })
+  }
+
+*/
+
     const addRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
@@ -148,7 +181,8 @@ class InvitationCodeEditTable extends PureComponent {
         return (<div><a onClick={(e)=>updateRecord(e,record)}>保存</a> 
         <a onClick={(e)=>toggleEdit(e,record)}>取消</a></div>) 
       }
-      return (<div><a onClick={(e)=>toggleEdit(e,record)}>编辑</a> <a >删除</a></div>);
+      return (<div><a onClick={(e)=>toggleEdit(e,record)}>编辑</a> 
+      <a onClick={(e)=>deleteRecord(e,record)}>删除</a></div>);
 
     }
     const columns = [
