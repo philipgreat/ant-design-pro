@@ -3,8 +3,10 @@
 import React, { PureComponent } from 'react'
 import moment from 'moment'
 import {Form,Button, Table, Alert, Badge,Input,Divider,Popconfirm } from 'antd'
-import styles from './InvitationCode.table.less'
+import styles from './InvitationCode.edittable.less'
 import ImagePreview from '../../components/ImagePreview'
+
+
 
 
 
@@ -19,7 +21,7 @@ const toggleEdit = (e,data,id) =>{
 }
 
 
-let counter = 1;
+
 
 class InvitationCodeEditTable extends PureComponent {
 
@@ -94,28 +96,7 @@ class InvitationCodeEditTable extends PureComponent {
         payload: { id: owner.id, type: 'invitationCode', parameters },
       })
     }
-/*
 
-
-  handleDelete = () => {
-    const { selectedRows } = this.state
-    const { dispatch, owner } = this.props
-    console.log('things to delete', selectedRows)
-    this.setState({
-      modalVisible: true,
-      showDeleteResult: true,
-    })
-    
-    const invitationCodeIds = selectedRows.map((item) => { return item.id })
-    console.log('invitationCodeIds', invitationCodeIds)
-    const parameters = { invitationCodeIds }
-    dispatch({
-      type: `${owner.type}/removeInvitationCodeList`,
-      payload: { id: owner.id, type: 'invitationCode', parameters },
-    })
-  }
-
-*/
 
     const addRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -203,27 +184,26 @@ class InvitationCodeEditTable extends PureComponent {
     );
 
     }
-    const columns = [
-      { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20'  },
-      { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7',
-        render: (text, record) => renderStringEdit('name',text, record) 
-      },
-      { title: '代码', debugtype: 'int', dataIndex: 'code', width: '10',
-      render: (text, record) => renderStringEdit('code',text, record)
     
-    },
-      { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD') },
-      { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? record.community.id : '暂无') },
-      { title: '已经使用', dataIndex: 'used', render: (text, record) => (record.used ? '是' : '否') },
-      { title: '操作',
-      render: (text, record) => renderActions(text, record)},
-      
-    ]
+    
+    
+    const columns = [
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '代码', debugtype: 'int', dataIndex: 'code', width: '10', render:(text, record) => renderStringEdit('name',text, record)  },
+  { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD') },
+  { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? record.community.id : '暂无') },
+  { title: '用', dataIndex: 'used', render: (text, record) => (record.used ? '是' : '否') },
+{ title: '操作',
+   render: (text, record) => renderActions(text, record)}]
+
+
+ 
     
     const newRecord =()=>{
-      console.log("called?????????????????/");
-      const newData = [...this.state.data];
-      const newCode  = {id:`+${counter}`, 
+     
+      
+      const newCode  = {id:`+1`, 
         name:"新名字",
         code:"87877",
         createTime: '2009-09-09',
@@ -231,8 +211,8 @@ class InvitationCodeEditTable extends PureComponent {
         used: false,
 
       };
+      const newData = data ? [...data]:[];
       newData.push(newCode);
-      counter++;
       //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
@@ -267,33 +247,8 @@ class InvitationCodeEditTable extends PureComponent {
     )
   }
 }
-//Form.create()(CommunityCreateForm)
+
 export default Form.create()(InvitationCodeEditTable)
 
-/*    const submitUpdateForm = () => {
-      validateFieldsAndScroll((error, values) => {
-        if (error) {
-          console.log('code go here', error)
-          return
-        }
 
-        const { owner } = this.props
-        const invitationCodeId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = { ...values, invitationCodeId, ...imagesValues }
-
-        // const newIndex= currentUpdateIndex + 1
-        dispatch({
-          type: `${owner.type}/updateInvitationCode`,
-          payload: {
-            id: owner.id,
-            type: 'invitationCode',
-            parameters,
-            selectedRows,
-            currentUpdateIndex: 0,
-            continueNext: false,
-          },
-        })
-      })
-    }*/
 

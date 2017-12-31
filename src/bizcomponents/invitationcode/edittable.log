@@ -1,14 +1,8 @@
-
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
 import {Form,Button, Table, Alert, Badge,Input,Divider,Popconfirm } from 'antd'
-import styles from './ExperiencePoint.edittable.less'
+import styles from './<%=od.getBeanName()%>.edittable.less'
 import ImagePreview from '../../components/ImagePreview'
-
-
-
-
 
 
 const getRowById = (data,id) => {
@@ -21,9 +15,9 @@ const toggleEdit = (e,data,id) =>{
 }
 
 
+let counter = 1;
 
-
-class ExperiencePointEditTable extends PureComponent {
+class <%=od.getBeanName()%>EditTable extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -89,11 +83,11 @@ class ExperiencePointEditTable extends PureComponent {
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const ExperiencePointIds = [record.id];
-      const parameters = { ExperiencePointIds }
+      const <%=od.getClassName()%>Ids = [record.id];
+      const parameters = { <%=od.getClassName()%>Ids }
       dispatch({
-        type: `${owner.type}/removeExperiencePointList`,
-        payload: { id: owner.id, type: 'experiencePoint', parameters },
+        type: `${owner.type}/remove<%=od.getBeanName()%>List`,
+        payload: { id: owner.id, type: '<%=od.getClassName()%>', parameters },
       })
     }
 
@@ -107,10 +101,10 @@ class ExperiencePointEditTable extends PureComponent {
       
 
       dispatch({
-        type: `${owner.type}/addExperiencePoint`,
+        type: `${owner.type}/add<%=od.getBeanName()%>`,
         payload: {
           id: owner.id,
-          type: 'experiencePoint',
+          type: '<%=od.getClassName()%>',
           parameters,
           selectedRows:newData,
           currentUpdateIndex: 0,
@@ -124,17 +118,17 @@ class ExperiencePointEditTable extends PureComponent {
     const updateRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const {experiencePointId} = record.id
-      const parameters = { ...record, experiencePointId }
+      const {<%=od.getClassName()%>Id} = record.id
+      const parameters = { ...record, <%=od.getClassName()%>Id }
       const newData = [...data];
       const row =  newData.filter(item => item.id === record.id)[0];
       row.editable = !row.editable 
 
       dispatch({
-        type: `${owner.type}/updateExperiencePoint`,
+        type: `${owner.type}/update<%=od.getBeanName()%>`,
         payload: {
           id: owner.id,
-          type: 'experiencePoint',
+          type: '<%=od.getClassName()%>',
           parameters,
           selectedRows:newData,
           currentUpdateIndex: 0,
@@ -184,25 +178,27 @@ class ExperiencePointEditTable extends PureComponent {
     );
 
     }
-    
-    
-    
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '获得时间', dataIndex: 'obtainTime', render: (text, record) => moment(record.obtainTime).format('YYYY-MM-DD') },
-  { title: '点', debugtype: 'int', dataIndex: 'points', width: '7', render:(text, record) => renderStringEdit('name',text, record)  },
-  { title: '用户', dataIndex: 'user', render: (text, record) => (record.user ? record.user.id : '暂无') },
-{ title: '操作',
-   render: (text, record) => renderActions(text, record)}]
-
-
- 
+      { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20'  },
+      { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7',
+        render: (text, record) => renderStringEdit('name',text, record) 
+      },
+      { title: '代码', debugtype: 'int', dataIndex: 'code', width: '10',
+      render: (text, record) => renderStringEdit('code',text, record)
+    
+    },
+      { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD') },
+      { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? record.community.id : '暂无') },
+      { title: '已经使用', dataIndex: 'used', render: (text, record) => (record.used ? '是' : '否') },
+      { title: '操作',
+      render: (text, record) => renderActions(text, record)},
+      
+    ]
     
     const newRecord =()=>{
-     
+      console.log("called?????????????????/");
       const newData = [...this.state.data];
-      const newCode  = {id:`+1`, 
+      const newCode  = {id:`+${counter}`, 
         name:"新名字",
         code:"87877",
         createTime: '2009-09-09',
@@ -211,6 +207,7 @@ class ExperiencePointEditTable extends PureComponent {
 
       };
       newData.push(newCode);
+      counter++;
       //row.editable = !row.editable 
       this.setState({ data: newData, appendInProcess: true });
 
@@ -246,7 +243,7 @@ class ExperiencePointEditTable extends PureComponent {
   }
 }
 
-export default Form.create()(ExperiencePointEditTable)
+export default Form.create()(<%=od.getBeanName()%>EditTable)
 
 
 
