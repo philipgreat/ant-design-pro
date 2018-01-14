@@ -53,21 +53,15 @@ export default class SecUserEditDetail extends Component {
       >
 
 
-          
-            
-            
-        <Card title="用户应用程序列表" className={styles.card} bordered={false}>
+		<Card title="用户应用程序列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
-            <UserAppEditTable data={userAppList} owner={owner} />
+            <UserAppEditTable data={userAppList} owner={owner} {...this.props} />
           </Form>
         </Card>
 
-          
-            
-            
-        <Card title="登录历史列表" className={styles.card} bordered={false}>
+		<Card title="登录历史列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
-            <LoginHistoryEditTable data={loginHistoryList} owner={owner} />
+            <LoginHistoryEditTable data={loginHistoryList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

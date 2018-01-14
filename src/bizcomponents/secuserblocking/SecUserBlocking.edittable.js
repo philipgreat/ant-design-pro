@@ -83,8 +83,9 @@ class SecUserBlockingEditTable extends PureComponent {
       this.setState({ data: newData, appendInProcess:false });
     }
     const remapReference = (record) => {
-      const communityId = record.community.id;
-      return {communityId};
+
+      //const communityId = record.community.id;
+      return {};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -189,26 +190,23 @@ class SecUserBlockingEditTable extends PureComponent {
     
     const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '屏蔽时间', dataIndex: 'blockTime', render: (text, record) => moment(record.blockTime).format('YYYY-MM-DD') },
-  { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '28', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17', render: (text, record) => renderStringEdit('who',text, record)  },
+  { title: '块时间', dataIndex: 'blockTime', render: (text, record) => moment(record.blockTime).format('YYYY-MM-DD') },
+  { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '28', render: (text, record) => renderStringEdit('comments',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
-
-
- 
-    
+   
     const newRecord =()=>{
-      const newCode  = {id:`+1`, 
-        name:"新名字",
-        code:"87877",
-        createTime: '2009-09-09',
-        community:{id:"C000001"},
-        used: false,
+      const newSecUserBlockingToAppend  = {
+      	'id':`+1`, 
+				'who':'',
+				'blockTime':'',
+				'comments':'',
+
 
       };
       const newData = data ? [...data]:[];
-      newData.push(newCode);
+      newData.push(newSecUserBlockingToAppend);
       this.setState({ data: newData, appendInProcess: true });
 
 

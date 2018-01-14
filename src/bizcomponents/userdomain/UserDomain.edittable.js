@@ -83,8 +83,9 @@ class UserDomainEditTable extends PureComponent {
       this.setState({ data: newData, appendInProcess:false });
     }
     const remapReference = (record) => {
-      const communityId = record.community.id;
-      return {communityId};
+
+      //const communityId = record.community.id;
+      return {};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -192,21 +193,16 @@ class UserDomainEditTable extends PureComponent {
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
-
-
- 
-    
+   
     const newRecord =()=>{
-      const newCode  = {id:`+1`, 
-        name:"新名字",
-        code:"87877",
-        createTime: '2009-09-09',
-        community:{id:"C000001"},
-        used: false,
+      const newUserDomainToAppend  = {
+      	'id':`+1`, 
+				'name':'',
+
 
       };
       const newData = data ? [...data]:[];
-      newData.push(newCode);
+      newData.push(newUserDomainToAppend);
       this.setState({ data: newData, appendInProcess: true });
 
 

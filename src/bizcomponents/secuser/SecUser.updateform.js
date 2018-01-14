@@ -16,14 +16,14 @@ const { TextArea } = Input
 const fieldLabels = {
   id: '序号',
   login: '登录',
-  mobile: '手机',
+  mobile: '手机号码',
   email: '电子邮件',
-  pwd: 'PWD',
+  pwd: '密码',
   verificationCode: '验证码',
   verificationCodeExpire: '验证码过期',
   lastLoginTime: '最后登录时间',
   domain: '域',
-  blocking: '屏蔽',
+  blocking: '舞台调度',
   currentStatus: '当前状态',
 
 }
@@ -329,9 +329,9 @@ class SecUserUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.mobile}>
                   {getFieldDecorator('mobile', {
-                    rules: [{ required: true, message: '请输入手机' }],
+                    rules: [{ required: true, message: '请输入手机号码' }],
                   })(
-                    <Input placeholder="请输入请输入手机string_china_mobile_phone" />
+                    <Input placeholder="请输入请输入手机号码string_china_mobile_phone" />
                   )}
                 </Form.Item>
               </Col>
@@ -349,9 +349,9 @@ class SecUserUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.pwd}>
                   {getFieldDecorator('pwd', {
-                    rules: [{ required: true, message: '请输入PWD' }],
+                    rules: [{ required: true, message: '请输入密码' }],
                   })(
-                    <Input placeholder="请输入请输入PWDstring_password" />
+                    <Input placeholder="请输入请输入密码string_password" />
                   )}
                 </Form.Item>
               </Col>

@@ -20,7 +20,7 @@ const fieldLabels = {
   appIcon: '应用程序图标',
   fullAccess: '完全访问',
   permission: '许可',
-  objectType: '对象类型',
+  objectType: '访问对象类型',
   objectId: '对象ID',
   location: '位置',
 
@@ -355,9 +355,9 @@ class UserAppUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.objectType}>
                   {getFieldDecorator('objectType', {
-                    rules: [{ required: true, message: '请输入对象类型' }],
+                    rules: [{ required: true, message: '请输入访问对象类型' }],
                   })(
-                    <Input placeholder="请输入请输入对象类型string" />
+                    <Input placeholder="请输入请输入访问对象类型string" />
                   )}
                 </Form.Item>
               </Col>

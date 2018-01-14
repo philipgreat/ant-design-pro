@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
+import moment from 'moment'
 import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
@@ -13,7 +14,8 @@ import NumberInfo from '../../components/NumberInfo'
 import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './UserDomain.dashboard.less'
-
+import DescriptionList from '../../components/DescriptionList';
+const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
 
@@ -25,7 +27,18 @@ const topColResponsiveProps = {
   xl: 6,
   style: { marginBottom: 24 },
 }
+const summaryOf = (userDomain) =>{
 
+	return (
+	<DescriptionList className={styles.headerList} size="small" col="4">
+<Description term="序号">{userDomain.id}</Description> 
+<Description term="名称">{userDomain.name}</Description> 
+	
+        
+      </DescriptionList>
+	)
+
+}
 
 @connect(state => ({
   userDomain: state._userDomain,
@@ -34,11 +47,14 @@ export default class UserDomainDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id, secUserCount } = this.props.userDomain
+    
+    
+    
     return (
 
       <PageHeaderLayout
         title="用户域总览"
-        content="用户域总览"
+        content={summaryOf(this.props.userDomain)}
         wrapperClassName={styles.advancedForm}
       >
         <div>

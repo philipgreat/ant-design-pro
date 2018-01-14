@@ -52,12 +52,9 @@ export default class UserAppEditDetail extends Component {
       >
 
 
-          
-            
-            
-        <Card title="对象访问列表" className={styles.card} bordered={false}>
+		<Card title="对象访问列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
-            <ObjectAccessEditTable data={objectAccessList} owner={owner} />
+            <ObjectAccessEditTable data={objectAccessList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

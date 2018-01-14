@@ -83,8 +83,10 @@ class LoginHistoryEditTable extends PureComponent {
       this.setState({ data: newData, appendInProcess:false });
     }
     const remapReference = (record) => {
-      const communityId = record.community.id;
-      return {communityId};
+			const secUserId = record.secUser.id
+
+      //const communityId = record.community.id;
+      return {secUserId,};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -190,26 +192,24 @@ class LoginHistoryEditTable extends PureComponent {
     const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '登录时间', dataIndex: 'loginTime', render: (text, record) => moment(record.loginTime).format('YYYY-MM-DD') },
-  { title: '从IP', debugtype: 'string', dataIndex: 'fromIp', width: '15', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '来自IP', debugtype: 'string', dataIndex: 'fromIp', width: '15', render: (text, record) => renderStringEdit('fromIp',text, record)  },
+  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8', render: (text, record) => renderStringEdit('description',text, record)  },
   { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
-
-
- 
-    
+   
     const newRecord =()=>{
-      const newCode  = {id:`+1`, 
-        name:"新名字",
-        code:"87877",
-        createTime: '2009-09-09',
-        community:{id:"C000001"},
-        used: false,
+      const newLoginHistoryToAppend  = {
+      	'id':`+1`, 
+				'loginTime':'',
+				'fromIp':'',
+				'description':'',
+				'secUser':'',
+
 
       };
       const newData = data ? [...data]:[];
-      newData.push(newCode);
+      newData.push(newLoginHistoryToAppend);
       this.setState({ data: newData, appendInProcess: true });
 
 

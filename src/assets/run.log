@@ -1,22 +1,7 @@
-	protected void enhanceThreadReplyWithLike(BbtUserContext userContext, Thread Thread,
-			Map<String, Object> tokens) {
-		
-		SmartList<ThreadReply> ThreadReplyList = Thread.getThreadReplyList();
-		
-		
-		MultipleAccessKey filterKey = new MultipleAccessKey();
-		filterKey.put(ThreadReplyLike.Thread_REPLY_PROPERTY,ThreadReplyList.mapWithId().keySet().toArray());
-		filterKey.put(ThreadReplyLike.REPLIER_PROPERTY,userContext.communityUserId());
-		
-		
-		Map<String,Object> emptyOptions = new HashMap<String,Object>();
-		Map<String, Integer>result = this.getThreadDAO().getThreadReplyDAO().getThreadReplyLikeDAO().countThreadReplyLikeWithGroupKey(ThreadReplyLike.Thread_REPLY_PROPERTY, filterKey, emptyOptions);
-		
-		for(ThreadReply ThreadReply: ThreadReplyList){
-			if(result.get(ThreadReply.getId())>0){
-				ThreadReply.setLikeByCurrentUser(true);
-			}
-			
-		}
-		
-	}
+create table community3_data (
+	id                  	varchar(64)          not null            comment '序号',
+	name                	varchar(24)                              comment '名称',
+	description         	varchar(24)                              comment '描述',
+	
+	primary key community3_pk (id)
+)

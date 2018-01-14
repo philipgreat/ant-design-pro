@@ -16,7 +16,7 @@ const { TextArea } = Input
 const fieldLabels = {
   id: '序号',
   loginTime: '登录时间',
-  fromIp: '从IP',
+  fromIp: '来自IP',
   description: '描述',
   secUser: 'SEC的用户',
 
@@ -312,9 +312,9 @@ class LoginHistoryUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.fromIp}>
                   {getFieldDecorator('fromIp', {
-                    rules: [{ required: true, message: '请输入从IP' }],
+                    rules: [{ required: true, message: '请输入来自IP' }],
                   })(
-                    <Input placeholder="请输入请输入从IPstring" />
+                    <Input placeholder="请输入请输入来自IPstring" />
                   )}
                 </Form.Item>
               </Col>

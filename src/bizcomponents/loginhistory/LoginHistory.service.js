@@ -5,7 +5,7 @@ const getURLPrefix = () => {
   if (url.hostname === 'localhost') {
     return `http://${url.hostname}:8080/naf/`
   }
-  return `${url.origin}/bbt/`
+  return `${url.origin}/cis/`
 }
 
 const PREFIX = getURLPrefix()
@@ -24,7 +24,7 @@ const joinParameters = (parameters) => {
       arr.push(`${key}=${encodeURIComponent(obj[key])}`)
     }
   }
-  const result = arr.join('')
+  const result = arr.join(';')
   return result
 }
 
@@ -59,6 +59,12 @@ const load = (targetObjectId, parameters) => {
 const LoginHistoryService = { view,
   load }
 export default LoginHistoryService
+
+
+
+
+
+
 
 
 

@@ -135,9 +135,9 @@ export default class SecUserSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="手机">
+            <FormItem label="手机号码">
               {getFieldDecorator('mobile')(
-                <Input placeholder="请输入手机" />
+                <Input placeholder="请输入手机号码" />
               )}
             </FormItem>
           </Col>
@@ -151,9 +151,9 @@ export default class SecUserSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="PWD">
+            <FormItem label="密码">
               {getFieldDecorator('pwd')(
-                <Input placeholder="请输入PWD" />
+                <Input placeholder="请输入密码" />
               )}
             </FormItem>
           </Col>

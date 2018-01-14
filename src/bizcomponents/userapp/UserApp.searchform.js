@@ -152,9 +152,9 @@ export default class UserAppSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="对象类型">
+            <FormItem label="访问对象类型">
               {getFieldDecorator('objectType')(
-                <Input placeholder="请输入对象类型" />
+                <Input placeholder="请输入访问对象类型" />
               )}
             </FormItem>
           </Col>

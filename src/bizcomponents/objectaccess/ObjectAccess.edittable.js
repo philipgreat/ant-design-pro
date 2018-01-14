@@ -83,8 +83,10 @@ class ObjectAccessEditTable extends PureComponent {
       this.setState({ data: newData, appendInProcess:false });
     }
     const remapReference = (record) => {
-      const communityId = record.community.id;
-      return {communityId};
+			const appId = record.app.id
+
+      //const communityId = record.community.id;
+      return {appId,};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -189,35 +191,41 @@ class ObjectAccessEditTable extends PureComponent {
     
     const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '显示名称', debugtype: 'string', dataIndex: 'displayName', width: '11', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '对象类型', debugtype: 'string', dataIndex: 'objectType', width: '32', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '列表1', debugtype: 'string', dataIndex: 'list1', width: '24', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '列表2', debugtype: 'string', dataIndex: 'list2', width: '24', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '列表3', debugtype: 'string', dataIndex: 'list3', width: '24', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '列表4', debugtype: 'string', dataIndex: 'list4', width: '24', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '列表5', debugtype: 'string', dataIndex: 'list5', width: '24', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '列表6', debugtype: 'string', dataIndex: 'list6', width: '24', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '列表7', debugtype: 'string', dataIndex: 'list7', width: '24', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '列表8', debugtype: 'string', dataIndex: 'list8', width: '24', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '列表9', debugtype: 'string', dataIndex: 'list9', width: '24', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '显示名称', debugtype: 'string', dataIndex: 'displayName', width: '11', render: (text, record) => renderStringEdit('displayName',text, record)  },
+  { title: '访问对象类型', debugtype: 'string', dataIndex: 'objectType', width: '32', render: (text, record) => renderStringEdit('objectType',text, record)  },
+  { title: '列表1', debugtype: 'string', dataIndex: 'list1', width: '24', render: (text, record) => renderStringEdit('list1',text, record)  },
+  { title: '列表2', debugtype: 'string', dataIndex: 'list2', width: '24', render: (text, record) => renderStringEdit('list2',text, record)  },
+  { title: '列表3', debugtype: 'string', dataIndex: 'list3', width: '24', render: (text, record) => renderStringEdit('list3',text, record)  },
+  { title: '列表4', debugtype: 'string', dataIndex: 'list4', width: '24', render: (text, record) => renderStringEdit('list4',text, record)  },
+  { title: '列表5', debugtype: 'string', dataIndex: 'list5', width: '24', render: (text, record) => renderStringEdit('list5',text, record)  },
+  { title: '列表6', debugtype: 'string', dataIndex: 'list6', width: '24', render: (text, record) => renderStringEdit('list6',text, record)  },
+  { title: '列表7', debugtype: 'string', dataIndex: 'list7', width: '24', render: (text, record) => renderStringEdit('list7',text, record)  },
+  { title: '列表8', debugtype: 'string', dataIndex: 'list8', width: '24', render: (text, record) => renderStringEdit('list8',text, record)  },
+  { title: '列表9', debugtype: 'string', dataIndex: 'list9', width: '24', render: (text, record) => renderStringEdit('list9',text, record)  },
   { title: '应用程序', dataIndex: 'app', render: (text, record) => (record.app ? record.app.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
-
-
- 
-    
+   
     const newRecord =()=>{
-      const newCode  = {id:`+1`, 
-        name:"新名字",
-        code:"87877",
-        createTime: '2009-09-09',
-        community:{id:"C000001"},
-        used: false,
+      const newObjectAccessToAppend  = {
+      	'id':`+1`, 
+				'displayName':'',
+				'objectType':'',
+				'list1':'',
+				'list2':'',
+				'list3':'',
+				'list4':'',
+				'list5':'',
+				'list6':'',
+				'list7':'',
+				'list8':'',
+				'list9':'',
+				'app':'',
+
 
       };
       const newData = data ? [...data]:[];
-      newData.push(newCode);
+      newData.push(newObjectAccessToAppend);
       this.setState({ data: newData, appendInProcess: true });
 
 
