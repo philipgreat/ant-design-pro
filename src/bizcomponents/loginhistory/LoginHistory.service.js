@@ -5,6 +5,9 @@ const getURLPrefix = () => {
   if (url.hostname === 'localhost') {
     return `http://${url.hostname}:8080/naf/`
   }
+  if(url.hostname === "30.30.126.37"){
+    return `http://${url.hostname}:8080/naf/`
+  }
   return `${url.origin}/cis/`
 }
 
@@ -59,13 +62,5 @@ const load = (targetObjectId, parameters) => {
 const LoginHistoryService = { view,
   load }
 export default LoginHistoryService
-
-
-
-
-
-
-
-
 
 

@@ -32,7 +32,7 @@ const fieldLabels = {
 const testValues = {
   serviceStatus: '待收单',
   serviceComments: '购买系统赠送的基本保险',
-  startTime: '2016-02-28 07:37:22',
+  startTime: '2015-09-25 12:55:47',
   insuranceNumber: 'ADK123123087KMN',
   orderedInsuranceId: 'AI000001',
   responsibleWorkerId: 'VSCE000001',

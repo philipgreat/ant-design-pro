@@ -1,8 +1,6 @@
 import { get,post } from '../axios/tools';
 
 
-//http://localhost:8080/naf/secUserManager/login/SU000001/123456/
-
 
 
 const getURLPrefix=()=>{
@@ -12,7 +10,10 @@ const getURLPrefix=()=>{
     if(url.hostname=="localhost"){
             return "http://"+url.hostname+":8080/naf/";
     }
-    return url.origin+"/bbt/";
+    if(url.hostname=="30.30.126.37"){
+        return "http://"+url.hostname+":8080/naf/";
+    }
+    return url.origin+"/dssc/";
     
 }
     

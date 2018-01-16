@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './ObjectAccess.app.less'
 import ObjectAccessDashboard from './ObjectAccess.dashboard'
 import ObjectAccessEditDetail from './ObjectAccess.editdetail'
+import ObjectAccessViewDetail from './ObjectAccess.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class ObjectAccessBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class ObjectAccessBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/objectAccess/${this.props.objectAccess.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/objectAccess/${this.props.objectAccess.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.objectAccess.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class ObjectAccessBizApp extends React.PureComponent {
              <Switch>
                <Route path="/objectAccess/:id/dashboard" component={ObjectAccessDashboard} />
                <Route path="/objectAccess/:id/editDetail" component={ObjectAccessEditDetail} />
+               <Route path="/objectAccess/:id/viewDetail" component={ObjectAccessViewDetail} />
+               
               
              </Switch>
            </Content>

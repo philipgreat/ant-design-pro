@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './EmployeeDrivingLicense.app.less'
 import EmployeeDrivingLicenseDashboard from './EmployeeDrivingLicense.dashboard'
 import EmployeeDrivingLicenseEditDetail from './EmployeeDrivingLicense.editdetail'
+import EmployeeDrivingLicenseViewDetail from './EmployeeDrivingLicense.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class EmployeeDrivingLicenseBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class EmployeeDrivingLicenseBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/employeeDrivingLicense/${this.props.employeeDrivingLicense.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/employeeDrivingLicense/${this.props.employeeDrivingLicense.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.employeeDrivingLicense.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class EmployeeDrivingLicenseBizApp extends React.PureComponent {
              <Switch>
                <Route path="/employeeDrivingLicense/:id/dashboard" component={EmployeeDrivingLicenseDashboard} />
                <Route path="/employeeDrivingLicense/:id/editDetail" component={EmployeeDrivingLicenseEditDetail} />
+               <Route path="/employeeDrivingLicense/:id/viewDetail" component={EmployeeDrivingLicenseViewDetail} />
+               
               
              </Switch>
            </Content>

@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './VehicleServiceCompany.app.less'
 import VehicleServiceCompanyDashboard from './VehicleServiceCompany.dashboard'
 import VehicleServiceCompanyEditDetail from './VehicleServiceCompany.editdetail'
+import VehicleServiceCompanyViewDetail from './VehicleServiceCompany.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -125,7 +126,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyBusinessScopeList' }, // this is for model namespace and
     }))(VehicleServiceCompanyBusinessScopeSearch)
   }
   getVehicleServiceCompanyBusinessScopeCreateForm = () => {
@@ -137,7 +138,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyBusinessScopeList'}, // this is for model namespace and
     }))(VehicleServiceCompanyBusinessScopeCreateForm)
   }
   
@@ -146,7 +147,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyBusinessScopeList' }, // this is for model namespace and
     }))(VehicleServiceCompanyBusinessScopeUpdateForm)
   }
 
@@ -159,7 +160,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.vehicleServiceCompanyDispatcherCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.vehicleServiceCompanyDispatcherSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyDispatcherList' }, // this is for model namespace and
     }))(VehicleServiceCompanyDispatcherSearch)
   }
   getVehicleServiceCompanyDispatcherCreateForm = () => {
@@ -171,7 +172,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.vehicleServiceCompanyDispatcherCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.vehicleServiceCompanyDispatcherSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyDispatcherList'}, // this is for model namespace and
     }))(VehicleServiceCompanyDispatcherCreateForm)
   }
   
@@ -180,7 +181,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyDispatcherList' }, // this is for model namespace and
     }))(VehicleServiceCompanyDispatcherUpdateForm)
   }
 
@@ -193,7 +194,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.vehicleServiceCompanyEmployeeCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.vehicleServiceCompanyEmployeeSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyEmployeeList' }, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeSearch)
   }
   getVehicleServiceCompanyEmployeeCreateForm = () => {
@@ -205,7 +206,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.vehicleServiceCompanyEmployeeCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.vehicleServiceCompanyEmployeeSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyEmployeeList'}, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeCreateForm)
   }
   
@@ -214,7 +215,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyEmployeeList' }, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeUpdateForm)
   }
 
@@ -227,7 +228,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.serviceVehicleMovementC2mCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.serviceVehicleMovementC2mSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceVehicleMovementC2mList' }, // this is for model namespace and
     }))(ServiceVehicleMovementC2mSearch)
   }
   getServiceVehicleMovementC2mCreateForm = () => {
@@ -239,7 +240,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.serviceVehicleMovementC2mCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.serviceVehicleMovementC2mSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceVehicleMovementC2mList'}, // this is for model namespace and
     }))(ServiceVehicleMovementC2mCreateForm)
   }
   
@@ -248,7 +249,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceVehicleMovementC2mList' }, // this is for model namespace and
     }))(ServiceVehicleMovementC2mUpdateForm)
   }
 
@@ -261,7 +262,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.serviceVehicleMovementM2cCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.serviceVehicleMovementM2cSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceVehicleMovementM2cList' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2cSearch)
   }
   getServiceVehicleMovementM2cCreateForm = () => {
@@ -273,7 +274,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.serviceVehicleMovementM2cCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.serviceVehicleMovementM2cSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceVehicleMovementM2cList'}, // this is for model namespace and
     }))(ServiceVehicleMovementM2cCreateForm)
   }
   
@@ -282,7 +283,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceVehicleMovementM2cList' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2cUpdateForm)
   }
 
@@ -295,7 +296,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.serviceFileMovementC2mCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.serviceFileMovementC2mSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceFileMovementC2mList' }, // this is for model namespace and
     }))(ServiceFileMovementC2mSearch)
   }
   getServiceFileMovementC2mCreateForm = () => {
@@ -307,7 +308,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.serviceFileMovementC2mCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.serviceFileMovementC2mSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceFileMovementC2mList'}, // this is for model namespace and
     }))(ServiceFileMovementC2mCreateForm)
   }
   
@@ -316,7 +317,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceFileMovementC2mList' }, // this is for model namespace and
     }))(ServiceFileMovementC2mUpdateForm)
   }
 
@@ -329,7 +330,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.serviceFileMovementM2cCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.serviceFileMovementM2cSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceFileMovementM2cList' }, // this is for model namespace and
     }))(ServiceFileMovementM2cSearch)
   }
   getServiceFileMovementM2cCreateForm = () => {
@@ -341,7 +342,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompany.serviceFileMovementM2cCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompany.serviceFileMovementM2cSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceFileMovementM2cList'}, // this is for model namespace and
     }))(ServiceFileMovementM2cCreateForm)
   }
   
@@ -350,7 +351,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceFileMovementM2cList' }, // this is for model namespace and
     }))(ServiceFileMovementM2cUpdateForm)
   }
 
@@ -389,7 +390,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -414,8 +415,15 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/vehicleServiceCompany/${this.props.vehicleServiceCompany.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehicleServiceCompany/${this.props.vehicleServiceCompany.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.vehicleServiceCompany.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -423,6 +431,8 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
              <Switch>
                <Route path="/vehicleServiceCompany/:id/dashboard" component={VehicleServiceCompanyDashboard} />
                <Route path="/vehicleServiceCompany/:id/editDetail" component={VehicleServiceCompanyEditDetail} />
+               <Route path="/vehicleServiceCompany/:id/viewDetail" component={VehicleServiceCompanyViewDetail} />
+               
 
                <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyBusinessScopeList" component={this.getVehicleServiceCompanyBusinessScopeSearch()} />
                <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyBusinessScopeCreateForm" component={this.getVehicleServiceCompanyBusinessScopeCreateForm()} />

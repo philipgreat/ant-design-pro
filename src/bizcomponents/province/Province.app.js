@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './Province.app.less'
 import ProvinceDashboard from './Province.dashboard'
 import ProvinceEditDetail from './Province.editdetail'
+import ProvinceViewDetail from './Province.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -107,7 +108,7 @@ class ProvinceBizApp extends React.PureComponent {
       currentPage: state._province.cityCurrentPageNumber,
       searchFormParameters: state._province.citySearchFormParameters,
       loading: state._province.loading,
-      owner: { type: '_province', id: state._province.id }, // this is for model namespace and
+      owner: { type: '_province', id: state._province.id, listName: 'cityList' }, // this is for model namespace and
     }))(CitySearch)
   }
   getCityCreateForm = () => {
@@ -119,7 +120,7 @@ class ProvinceBizApp extends React.PureComponent {
       currentPage: state._province.cityCurrentPageNumber,
       searchFormParameters: state._province.citySearchFormParameters,
       loading: state._province.loading,
-      owner: { type: '_province', id: state._province.id }, // this is for model namespace and
+      owner: { type: '_province', id: state._province.id, listName: 'cityList'}, // this is for model namespace and
     }))(CityCreateForm)
   }
   
@@ -128,7 +129,7 @@ class ProvinceBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._province.selectedRows,
       currentUpdateIndex: state._province.currentUpdateIndex,
-      owner: { type: '_province', id: state._province.id }, // this is for model namespace and
+      owner: { type: '_province', id: state._province.id, listName: 'cityList' }, // this is for model namespace and
     }))(CityUpdateForm)
   }
 
@@ -167,7 +168,7 @@ class ProvinceBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -192,8 +193,15 @@ class ProvinceBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/province/${this.props.province.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/province/${this.props.province.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.province.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -201,6 +209,8 @@ class ProvinceBizApp extends React.PureComponent {
              <Switch>
                <Route path="/province/:id/dashboard" component={ProvinceDashboard} />
                <Route path="/province/:id/editDetail" component={ProvinceEditDetail} />
+               <Route path="/province/:id/viewDetail" component={ProvinceViewDetail} />
+               
 
                <Route path="/province/:id/list/cityList" component={this.getCitySearch()} />
                <Route path="/province/:id/list/cityCreateForm" component={this.getCityCreateForm()} />

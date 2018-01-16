@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './ServiceFileInspection.app.less'
 import ServiceFileInspectionDashboard from './ServiceFileInspection.dashboard'
 import ServiceFileInspectionEditDetail from './ServiceFileInspection.editdetail'
+import ServiceFileInspectionViewDetail from './ServiceFileInspection.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class ServiceFileInspectionBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class ServiceFileInspectionBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/serviceFileInspection/${this.props.serviceFileInspection.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/serviceFileInspection/${this.props.serviceFileInspection.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.serviceFileInspection.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class ServiceFileInspectionBizApp extends React.PureComponent {
              <Switch>
                <Route path="/serviceFileInspection/:id/dashboard" component={ServiceFileInspectionDashboard} />
                <Route path="/serviceFileInspection/:id/editDetail" component={ServiceFileInspectionEditDetail} />
+               <Route path="/serviceFileInspection/:id/viewDetail" component={ServiceFileInspectionViewDetail} />
+               
               
              </Switch>
            </Content>

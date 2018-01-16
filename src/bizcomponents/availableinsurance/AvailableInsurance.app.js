@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './AvailableInsurance.app.less'
 import AvailableInsuranceDashboard from './AvailableInsurance.dashboard'
 import AvailableInsuranceEditDetail from './AvailableInsurance.editdetail'
+import AvailableInsuranceViewDetail from './AvailableInsurance.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -110,7 +111,7 @@ class AvailableInsuranceBizApp extends React.PureComponent {
       currentPage: state._availableInsurance.vehicleInspectionInsuranceOrderCurrentPageNumber,
       searchFormParameters: state._availableInsurance.vehicleInspectionInsuranceOrderSearchFormParameters,
       loading: state._availableInsurance.loading,
-      owner: { type: '_availableInsurance', id: state._availableInsurance.id }, // this is for model namespace and
+      owner: { type: '_availableInsurance', id: state._availableInsurance.id, listName: 'vehicleInspectionInsuranceOrderList' }, // this is for model namespace and
     }))(VehicleInspectionInsuranceOrderSearch)
   }
   getVehicleInspectionInsuranceOrderCreateForm = () => {
@@ -122,7 +123,7 @@ class AvailableInsuranceBizApp extends React.PureComponent {
       currentPage: state._availableInsurance.vehicleInspectionInsuranceOrderCurrentPageNumber,
       searchFormParameters: state._availableInsurance.vehicleInspectionInsuranceOrderSearchFormParameters,
       loading: state._availableInsurance.loading,
-      owner: { type: '_availableInsurance', id: state._availableInsurance.id }, // this is for model namespace and
+      owner: { type: '_availableInsurance', id: state._availableInsurance.id, listName: 'vehicleInspectionInsuranceOrderList'}, // this is for model namespace and
     }))(VehicleInspectionInsuranceOrderCreateForm)
   }
   
@@ -131,7 +132,7 @@ class AvailableInsuranceBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._availableInsurance.selectedRows,
       currentUpdateIndex: state._availableInsurance.currentUpdateIndex,
-      owner: { type: '_availableInsurance', id: state._availableInsurance.id }, // this is for model namespace and
+      owner: { type: '_availableInsurance', id: state._availableInsurance.id, listName: 'vehicleInspectionInsuranceOrderList' }, // this is for model namespace and
     }))(VehicleInspectionInsuranceOrderUpdateForm)
   }
 
@@ -144,7 +145,7 @@ class AvailableInsuranceBizApp extends React.PureComponent {
       currentPage: state._availableInsurance.serviceInsuranceForInspectionCurrentPageNumber,
       searchFormParameters: state._availableInsurance.serviceInsuranceForInspectionSearchFormParameters,
       loading: state._availableInsurance.loading,
-      owner: { type: '_availableInsurance', id: state._availableInsurance.id }, // this is for model namespace and
+      owner: { type: '_availableInsurance', id: state._availableInsurance.id, listName: 'serviceInsuranceForInspectionList' }, // this is for model namespace and
     }))(ServiceInsuranceForInspectionSearch)
   }
   getServiceInsuranceForInspectionCreateForm = () => {
@@ -156,7 +157,7 @@ class AvailableInsuranceBizApp extends React.PureComponent {
       currentPage: state._availableInsurance.serviceInsuranceForInspectionCurrentPageNumber,
       searchFormParameters: state._availableInsurance.serviceInsuranceForInspectionSearchFormParameters,
       loading: state._availableInsurance.loading,
-      owner: { type: '_availableInsurance', id: state._availableInsurance.id }, // this is for model namespace and
+      owner: { type: '_availableInsurance', id: state._availableInsurance.id, listName: 'serviceInsuranceForInspectionList'}, // this is for model namespace and
     }))(ServiceInsuranceForInspectionCreateForm)
   }
   
@@ -165,7 +166,7 @@ class AvailableInsuranceBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._availableInsurance.selectedRows,
       currentUpdateIndex: state._availableInsurance.currentUpdateIndex,
-      owner: { type: '_availableInsurance', id: state._availableInsurance.id }, // this is for model namespace and
+      owner: { type: '_availableInsurance', id: state._availableInsurance.id, listName: 'serviceInsuranceForInspectionList' }, // this is for model namespace and
     }))(ServiceInsuranceForInspectionUpdateForm)
   }
 
@@ -204,7 +205,7 @@ class AvailableInsuranceBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -229,8 +230,15 @@ class AvailableInsuranceBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/availableInsurance/${this.props.availableInsurance.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/availableInsurance/${this.props.availableInsurance.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.availableInsurance.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -238,6 +246,8 @@ class AvailableInsuranceBizApp extends React.PureComponent {
              <Switch>
                <Route path="/availableInsurance/:id/dashboard" component={AvailableInsuranceDashboard} />
                <Route path="/availableInsurance/:id/editDetail" component={AvailableInsuranceEditDetail} />
+               <Route path="/availableInsurance/:id/viewDetail" component={AvailableInsuranceViewDetail} />
+               
 
                <Route path="/availableInsurance/:id/list/vehicleInspectionInsuranceOrderList" component={this.getVehicleInspectionInsuranceOrderSearch()} />
                <Route path="/availableInsurance/:id/list/vehicleInspectionInsuranceOrderCreateForm" component={this.getVehicleInspectionInsuranceOrderCreateForm()} />

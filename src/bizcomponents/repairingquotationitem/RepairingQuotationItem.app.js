@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './RepairingQuotationItem.app.less'
 import RepairingQuotationItemDashboard from './RepairingQuotationItem.dashboard'
 import RepairingQuotationItemEditDetail from './RepairingQuotationItem.editdetail'
+import RepairingQuotationItemViewDetail from './RepairingQuotationItem.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class RepairingQuotationItemBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class RepairingQuotationItemBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/repairingQuotationItem/${this.props.repairingQuotationItem.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/repairingQuotationItem/${this.props.repairingQuotationItem.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.repairingQuotationItem.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class RepairingQuotationItemBizApp extends React.PureComponent {
              <Switch>
                <Route path="/repairingQuotationItem/:id/dashboard" component={RepairingQuotationItemDashboard} />
                <Route path="/repairingQuotationItem/:id/editDetail" component={RepairingQuotationItemEditDetail} />
+               <Route path="/repairingQuotationItem/:id/viewDetail" component={RepairingQuotationItemViewDetail} />
+               
               
              </Switch>
            </Content>

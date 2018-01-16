@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './City.app.less'
 import CityDashboard from './City.dashboard'
 import CityEditDetail from './City.editdetail'
+import CityViewDetail from './City.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -116,7 +117,7 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.productPriceCurrentPageNumber,
       searchFormParameters: state._city.productPriceSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, listName: 'productPriceList' }, // this is for model namespace and
     }))(ProductPriceSearch)
   }
   getProductPriceCreateForm = () => {
@@ -128,7 +129,7 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.productPriceCurrentPageNumber,
       searchFormParameters: state._city.productPriceSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, listName: 'productPriceList'}, // this is for model namespace and
     }))(ProductPriceCreateForm)
   }
   
@@ -137,7 +138,7 @@ class CityBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._city.selectedRows,
       currentUpdateIndex: state._city.currentUpdateIndex,
-      owner: { type: '_city', id: state._city.id }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, listName: 'productPriceList' }, // this is for model namespace and
     }))(ProductPriceUpdateForm)
   }
 
@@ -150,7 +151,7 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.vehicleServiceCompanyCurrentPageNumber,
       searchFormParameters: state._city.vehicleServiceCompanySearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, listName: 'vehicleServiceCompanyList' }, // this is for model namespace and
     }))(VehicleServiceCompanySearch)
   }
   getVehicleServiceCompanyCreateForm = () => {
@@ -162,7 +163,7 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.vehicleServiceCompanyCurrentPageNumber,
       searchFormParameters: state._city.vehicleServiceCompanySearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, listName: 'vehicleServiceCompanyList'}, // this is for model namespace and
     }))(VehicleServiceCompanyCreateForm)
   }
   
@@ -171,7 +172,7 @@ class CityBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._city.selectedRows,
       currentUpdateIndex: state._city.currentUpdateIndex,
-      owner: { type: '_city', id: state._city.id }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, listName: 'vehicleServiceCompanyList' }, // this is for model namespace and
     }))(VehicleServiceCompanyUpdateForm)
   }
 
@@ -184,7 +185,7 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.inspectionStationCurrentPageNumber,
       searchFormParameters: state._city.inspectionStationSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, listName: 'inspectionStationList' }, // this is for model namespace and
     }))(InspectionStationSearch)
   }
   getInspectionStationCreateForm = () => {
@@ -196,7 +197,7 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.inspectionStationCurrentPageNumber,
       searchFormParameters: state._city.inspectionStationSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, listName: 'inspectionStationList'}, // this is for model namespace and
     }))(InspectionStationCreateForm)
   }
   
@@ -205,7 +206,7 @@ class CityBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._city.selectedRows,
       currentUpdateIndex: state._city.currentUpdateIndex,
-      owner: { type: '_city', id: state._city.id }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, listName: 'inspectionStationList' }, // this is for model namespace and
     }))(InspectionStationUpdateForm)
   }
 
@@ -218,7 +219,7 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.vehicleInspectionOrderCurrentPageNumber,
       searchFormParameters: state._city.vehicleInspectionOrderSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, listName: 'vehicleInspectionOrderList' }, // this is for model namespace and
     }))(VehicleInspectionOrderSearch)
   }
   getVehicleInspectionOrderCreateForm = () => {
@@ -230,7 +231,7 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.vehicleInspectionOrderCurrentPageNumber,
       searchFormParameters: state._city.vehicleInspectionOrderSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, listName: 'vehicleInspectionOrderList'}, // this is for model namespace and
     }))(VehicleInspectionOrderCreateForm)
   }
   
@@ -239,7 +240,7 @@ class CityBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._city.selectedRows,
       currentUpdateIndex: state._city.currentUpdateIndex,
-      owner: { type: '_city', id: state._city.id }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, listName: 'vehicleInspectionOrderList' }, // this is for model namespace and
     }))(VehicleInspectionOrderUpdateForm)
   }
 
@@ -278,7 +279,7 @@ class CityBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -303,8 +304,15 @@ class CityBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/city/${this.props.city.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/city/${this.props.city.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.city.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -312,6 +320,8 @@ class CityBizApp extends React.PureComponent {
              <Switch>
                <Route path="/city/:id/dashboard" component={CityDashboard} />
                <Route path="/city/:id/editDetail" component={CityEditDetail} />
+               <Route path="/city/:id/viewDetail" component={CityViewDetail} />
+               
 
                <Route path="/city/:id/list/productPriceList" component={this.getProductPriceSearch()} />
                <Route path="/city/:id/list/productPriceCreateForm" component={this.getProductPriceCreateForm()} />

@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './VehicleInspectionOrder.app.less'
 import VehicleInspectionOrderDashboard from './VehicleInspectionOrder.dashboard'
 import VehicleInspectionOrderEditDetail from './VehicleInspectionOrder.editdetail'
+import VehicleInspectionOrderViewDetail from './VehicleInspectionOrder.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -149,7 +150,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionInsuranceOrderCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionInsuranceOrderSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionInsuranceOrderList' }, // this is for model namespace and
     }))(VehicleInspectionInsuranceOrderSearch)
   }
   getVehicleInspectionInsuranceOrderCreateForm = () => {
@@ -161,7 +162,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionInsuranceOrderCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionInsuranceOrderSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionInsuranceOrderList'}, // this is for model namespace and
     }))(VehicleInspectionInsuranceOrderCreateForm)
   }
   
@@ -170,7 +171,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionInsuranceOrderList' }, // this is for model namespace and
     }))(VehicleInspectionInsuranceOrderUpdateForm)
   }
 
@@ -183,7 +184,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderServiceLogCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderServiceLogSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderServiceLogList' }, // this is for model namespace and
     }))(VehicleInspectionOrderServiceLogSearch)
   }
   getVehicleInspectionOrderServiceLogCreateForm = () => {
@@ -195,7 +196,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderServiceLogCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderServiceLogSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderServiceLogList'}, // this is for model namespace and
     }))(VehicleInspectionOrderServiceLogCreateForm)
   }
   
@@ -204,7 +205,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderServiceLogList' }, // this is for model namespace and
     }))(VehicleInspectionOrderServiceLogUpdateForm)
   }
 
@@ -217,7 +218,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderCouponCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderCouponSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderCouponList' }, // this is for model namespace and
     }))(VehicleInspectionOrderCouponSearch)
   }
   getVehicleInspectionOrderCouponCreateForm = () => {
@@ -229,7 +230,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderCouponCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderCouponSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderCouponList'}, // this is for model namespace and
     }))(VehicleInspectionOrderCouponCreateForm)
   }
   
@@ -238,7 +239,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderCouponList' }, // this is for model namespace and
     }))(VehicleInspectionOrderCouponUpdateForm)
   }
 
@@ -251,7 +252,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderPaymentCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderPaymentSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderPaymentList' }, // this is for model namespace and
     }))(VehicleInspectionOrderPaymentSearch)
   }
   getVehicleInspectionOrderPaymentCreateForm = () => {
@@ -263,7 +264,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderPaymentCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderPaymentSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderPaymentList'}, // this is for model namespace and
     }))(VehicleInspectionOrderPaymentCreateForm)
   }
   
@@ -272,7 +273,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderPaymentList' }, // this is for model namespace and
     }))(VehicleInspectionOrderPaymentUpdateForm)
   }
 
@@ -285,7 +286,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.handOverChecklistItemCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.handOverChecklistItemSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'handOverChecklistItemList' }, // this is for model namespace and
     }))(HandOverChecklistItemSearch)
   }
   getHandOverChecklistItemCreateForm = () => {
@@ -297,7 +298,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.handOverChecklistItemCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.handOverChecklistItemSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'handOverChecklistItemList'}, // this is for model namespace and
     }))(HandOverChecklistItemCreateForm)
   }
   
@@ -306,7 +307,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'handOverChecklistItemList' }, // this is for model namespace and
     }))(HandOverChecklistItemUpdateForm)
   }
 
@@ -319,7 +320,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleMovementC2mCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleMovementC2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementC2mList' }, // this is for model namespace and
     }))(ServiceVehicleMovementC2mSearch)
   }
   getServiceVehicleMovementC2mCreateForm = () => {
@@ -331,7 +332,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleMovementC2mCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleMovementC2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementC2mList'}, // this is for model namespace and
     }))(ServiceVehicleMovementC2mCreateForm)
   }
   
@@ -340,7 +341,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementC2mList' }, // this is for model namespace and
     }))(ServiceVehicleMovementC2mUpdateForm)
   }
 
@@ -353,7 +354,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleMovementM2mCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleMovementM2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementM2mList' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2mSearch)
   }
   getServiceVehicleMovementM2mCreateForm = () => {
@@ -365,7 +366,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleMovementM2mCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleMovementM2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementM2mList'}, // this is for model namespace and
     }))(ServiceVehicleMovementM2mCreateForm)
   }
   
@@ -374,7 +375,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementM2mList' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2mUpdateForm)
   }
 
@@ -387,7 +388,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleMovementM2cCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleMovementM2cSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementM2cList' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2cSearch)
   }
   getServiceVehicleMovementM2cCreateForm = () => {
@@ -399,7 +400,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleMovementM2cCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleMovementM2cSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementM2cList'}, // this is for model namespace and
     }))(ServiceVehicleMovementM2cCreateForm)
   }
   
@@ -408,7 +409,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementM2cList' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2cUpdateForm)
   }
 
@@ -421,7 +422,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceFileMovementC2mCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceFileMovementC2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementC2mList' }, // this is for model namespace and
     }))(ServiceFileMovementC2mSearch)
   }
   getServiceFileMovementC2mCreateForm = () => {
@@ -433,7 +434,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceFileMovementC2mCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceFileMovementC2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementC2mList'}, // this is for model namespace and
     }))(ServiceFileMovementC2mCreateForm)
   }
   
@@ -442,7 +443,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementC2mList' }, // this is for model namespace and
     }))(ServiceFileMovementC2mUpdateForm)
   }
 
@@ -455,7 +456,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceFileMovementM2mCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceFileMovementM2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementM2mList' }, // this is for model namespace and
     }))(ServiceFileMovementM2mSearch)
   }
   getServiceFileMovementM2mCreateForm = () => {
@@ -467,7 +468,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceFileMovementM2mCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceFileMovementM2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementM2mList'}, // this is for model namespace and
     }))(ServiceFileMovementM2mCreateForm)
   }
   
@@ -476,7 +477,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementM2mList' }, // this is for model namespace and
     }))(ServiceFileMovementM2mUpdateForm)
   }
 
@@ -489,7 +490,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceFileMovementM2cCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceFileMovementM2cSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementM2cList' }, // this is for model namespace and
     }))(ServiceFileMovementM2cSearch)
   }
   getServiceFileMovementM2cCreateForm = () => {
@@ -501,7 +502,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceFileMovementM2cCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceFileMovementM2cSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementM2cList'}, // this is for model namespace and
     }))(ServiceFileMovementM2cCreateForm)
   }
   
@@ -510,7 +511,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementM2cList' }, // this is for model namespace and
     }))(ServiceFileMovementM2cUpdateForm)
   }
 
@@ -523,7 +524,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceInsuranceForInspectionCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceInsuranceForInspectionSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceInsuranceForInspectionList' }, // this is for model namespace and
     }))(ServiceInsuranceForInspectionSearch)
   }
   getServiceInsuranceForInspectionCreateForm = () => {
@@ -535,7 +536,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceInsuranceForInspectionCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceInsuranceForInspectionSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceInsuranceForInspectionList'}, // this is for model namespace and
     }))(ServiceInsuranceForInspectionCreateForm)
   }
   
@@ -544,7 +545,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceInsuranceForInspectionList' }, // this is for model namespace and
     }))(ServiceInsuranceForInspectionUpdateForm)
   }
 
@@ -557,7 +558,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleInspectionCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleInspectionSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleInspectionList' }, // this is for model namespace and
     }))(ServiceVehicleInspectionSearch)
   }
   getServiceVehicleInspectionCreateForm = () => {
@@ -569,7 +570,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleInspectionCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleInspectionSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleInspectionList'}, // this is for model namespace and
     }))(ServiceVehicleInspectionCreateForm)
   }
   
@@ -578,7 +579,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleInspectionList' }, // this is for model namespace and
     }))(ServiceVehicleInspectionUpdateForm)
   }
 
@@ -591,7 +592,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceFileInspectionCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceFileInspectionSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileInspectionList' }, // this is for model namespace and
     }))(ServiceFileInspectionSearch)
   }
   getServiceFileInspectionCreateForm = () => {
@@ -603,7 +604,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceFileInspectionCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceFileInspectionSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileInspectionList'}, // this is for model namespace and
     }))(ServiceFileInspectionCreateForm)
   }
   
@@ -612,7 +613,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileInspectionList' }, // this is for model namespace and
     }))(ServiceFileInspectionUpdateForm)
   }
 
@@ -625,7 +626,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleRepairingCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleRepairingSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleRepairingList' }, // this is for model namespace and
     }))(ServiceVehicleRepairingSearch)
   }
   getServiceVehicleRepairingCreateForm = () => {
@@ -637,7 +638,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleRepairingCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleRepairingSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleRepairingList'}, // this is for model namespace and
     }))(ServiceVehicleRepairingCreateForm)
   }
   
@@ -646,7 +647,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleInspectionOrder.selectedRows,
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleRepairingList' }, // this is for model namespace and
     }))(ServiceVehicleRepairingUpdateForm)
   }
 
@@ -685,7 +686,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -710,8 +711,15 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/vehicleInspectionOrder/${this.props.vehicleInspectionOrder.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehicleInspectionOrder/${this.props.vehicleInspectionOrder.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.vehicleInspectionOrder.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -719,6 +727,8 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
              <Switch>
                <Route path="/vehicleInspectionOrder/:id/dashboard" component={VehicleInspectionOrderDashboard} />
                <Route path="/vehicleInspectionOrder/:id/editDetail" component={VehicleInspectionOrderEditDetail} />
+               <Route path="/vehicleInspectionOrder/:id/viewDetail" component={VehicleInspectionOrderViewDetail} />
+               
 
                <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionInsuranceOrderList" component={this.getVehicleInspectionInsuranceOrderSearch()} />
                <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionInsuranceOrderCreateForm" component={this.getVehicleInspectionInsuranceOrderCreateForm()} />

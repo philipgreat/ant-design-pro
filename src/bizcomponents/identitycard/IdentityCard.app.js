@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './IdentityCard.app.less'
 import IdentityCardDashboard from './IdentityCard.dashboard'
 import IdentityCardEditDetail from './IdentityCard.editdetail'
+import IdentityCardViewDetail from './IdentityCard.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class IdentityCardBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class IdentityCardBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/identityCard/${this.props.identityCard.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/identityCard/${this.props.identityCard.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.identityCard.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class IdentityCardBizApp extends React.PureComponent {
              <Switch>
                <Route path="/identityCard/:id/dashboard" component={IdentityCardDashboard} />
                <Route path="/identityCard/:id/editDetail" component={IdentityCardEditDetail} />
+               <Route path="/identityCard/:id/viewDetail" component={IdentityCardViewDetail} />
+               
               
              </Switch>
            </Content>

@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './AvailableProduct.app.less'
 import AvailableProductDashboard from './AvailableProduct.dashboard'
 import AvailableProductEditDetail from './AvailableProduct.editdetail'
+import AvailableProductViewDetail from './AvailableProduct.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -116,7 +117,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.availableServiceCurrentPageNumber,
       searchFormParameters: state._availableProduct.availableServiceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableServiceList' }, // this is for model namespace and
     }))(AvailableServiceSearch)
   }
   getAvailableServiceCreateForm = () => {
@@ -128,7 +129,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.availableServiceCurrentPageNumber,
       searchFormParameters: state._availableProduct.availableServiceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableServiceList'}, // this is for model namespace and
     }))(AvailableServiceCreateForm)
   }
   
@@ -137,7 +138,7 @@ class AvailableProductBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._availableProduct.selectedRows,
       currentUpdateIndex: state._availableProduct.currentUpdateIndex,
-      owner: { type: '_availableProduct', id: state._availableProduct.id }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableServiceList' }, // this is for model namespace and
     }))(AvailableServiceUpdateForm)
   }
 
@@ -150,7 +151,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.productPriceCurrentPageNumber,
       searchFormParameters: state._availableProduct.productPriceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'productPriceList' }, // this is for model namespace and
     }))(ProductPriceSearch)
   }
   getProductPriceCreateForm = () => {
@@ -162,7 +163,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.productPriceCurrentPageNumber,
       searchFormParameters: state._availableProduct.productPriceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'productPriceList'}, // this is for model namespace and
     }))(ProductPriceCreateForm)
   }
   
@@ -171,7 +172,7 @@ class AvailableProductBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._availableProduct.selectedRows,
       currentUpdateIndex: state._availableProduct.currentUpdateIndex,
-      owner: { type: '_availableProduct', id: state._availableProduct.id }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'productPriceList' }, // this is for model namespace and
     }))(ProductPriceUpdateForm)
   }
 
@@ -184,7 +185,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.availableInsuranceCurrentPageNumber,
       searchFormParameters: state._availableProduct.availableInsuranceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableInsuranceList' }, // this is for model namespace and
     }))(AvailableInsuranceSearch)
   }
   getAvailableInsuranceCreateForm = () => {
@@ -196,7 +197,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.availableInsuranceCurrentPageNumber,
       searchFormParameters: state._availableProduct.availableInsuranceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableInsuranceList'}, // this is for model namespace and
     }))(AvailableInsuranceCreateForm)
   }
   
@@ -205,7 +206,7 @@ class AvailableProductBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._availableProduct.selectedRows,
       currentUpdateIndex: state._availableProduct.currentUpdateIndex,
-      owner: { type: '_availableProduct', id: state._availableProduct.id }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableInsuranceList' }, // this is for model namespace and
     }))(AvailableInsuranceUpdateForm)
   }
 
@@ -218,7 +219,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.availableHandOverItemCurrentPageNumber,
       searchFormParameters: state._availableProduct.availableHandOverItemSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableHandOverItemList' }, // this is for model namespace and
     }))(AvailableHandOverItemSearch)
   }
   getAvailableHandOverItemCreateForm = () => {
@@ -230,7 +231,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.availableHandOverItemCurrentPageNumber,
       searchFormParameters: state._availableProduct.availableHandOverItemSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableHandOverItemList'}, // this is for model namespace and
     }))(AvailableHandOverItemCreateForm)
   }
   
@@ -239,7 +240,7 @@ class AvailableProductBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._availableProduct.selectedRows,
       currentUpdateIndex: state._availableProduct.currentUpdateIndex,
-      owner: { type: '_availableProduct', id: state._availableProduct.id }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableHandOverItemList' }, // this is for model namespace and
     }))(AvailableHandOverItemUpdateForm)
   }
 
@@ -278,7 +279,7 @@ class AvailableProductBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -303,8 +304,15 @@ class AvailableProductBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/availableProduct/${this.props.availableProduct.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/availableProduct/${this.props.availableProduct.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.availableProduct.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -312,6 +320,8 @@ class AvailableProductBizApp extends React.PureComponent {
              <Switch>
                <Route path="/availableProduct/:id/dashboard" component={AvailableProductDashboard} />
                <Route path="/availableProduct/:id/editDetail" component={AvailableProductEditDetail} />
+               <Route path="/availableProduct/:id/viewDetail" component={AvailableProductViewDetail} />
+               
 
                <Route path="/availableProduct/:id/list/availableServiceList" component={this.getAvailableServiceSearch()} />
                <Route path="/availableProduct/:id/list/availableServiceCreateForm" component={this.getAvailableServiceCreateForm()} />

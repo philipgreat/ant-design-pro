@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './VehicleInspectionOrderCoupon.app.less'
 import VehicleInspectionOrderCouponDashboard from './VehicleInspectionOrderCoupon.dashboard'
 import VehicleInspectionOrderCouponEditDetail from './VehicleInspectionOrderCoupon.editdetail'
+import VehicleInspectionOrderCouponViewDetail from './VehicleInspectionOrderCoupon.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class VehicleInspectionOrderCouponBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class VehicleInspectionOrderCouponBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/vehicleInspectionOrderCoupon/${this.props.vehicleInspectionOrderCoupon.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehicleInspectionOrderCoupon/${this.props.vehicleInspectionOrderCoupon.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.vehicleInspectionOrderCoupon.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class VehicleInspectionOrderCouponBizApp extends React.PureComponent {
              <Switch>
                <Route path="/vehicleInspectionOrderCoupon/:id/dashboard" component={VehicleInspectionOrderCouponDashboard} />
                <Route path="/vehicleInspectionOrderCoupon/:id/editDetail" component={VehicleInspectionOrderCouponEditDetail} />
+               <Route path="/vehicleInspectionOrderCoupon/:id/viewDetail" component={VehicleInspectionOrderCouponViewDetail} />
+               
               
              </Switch>
            </Content>

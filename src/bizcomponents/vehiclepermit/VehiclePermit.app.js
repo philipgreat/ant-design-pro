@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './VehiclePermit.app.less'
 import VehiclePermitDashboard from './VehiclePermit.dashboard'
 import VehiclePermitEditDetail from './VehiclePermit.editdetail'
+import VehiclePermitViewDetail from './VehiclePermit.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class VehiclePermitBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class VehiclePermitBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/vehiclePermit/${this.props.vehiclePermit.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehiclePermit/${this.props.vehiclePermit.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.vehiclePermit.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class VehiclePermitBizApp extends React.PureComponent {
              <Switch>
                <Route path="/vehiclePermit/:id/dashboard" component={VehiclePermitDashboard} />
                <Route path="/vehiclePermit/:id/editDetail" component={VehiclePermitEditDetail} />
+               <Route path="/vehiclePermit/:id/viewDetail" component={VehiclePermitViewDetail} />
+               
               
              </Switch>
            </Content>

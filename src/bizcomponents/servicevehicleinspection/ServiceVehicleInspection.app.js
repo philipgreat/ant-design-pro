@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './ServiceVehicleInspection.app.less'
 import ServiceVehicleInspectionDashboard from './ServiceVehicleInspection.dashboard'
 import ServiceVehicleInspectionEditDetail from './ServiceVehicleInspection.editdetail'
+import ServiceVehicleInspectionViewDetail from './ServiceVehicleInspection.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class ServiceVehicleInspectionBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class ServiceVehicleInspectionBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/serviceVehicleInspection/${this.props.serviceVehicleInspection.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/serviceVehicleInspection/${this.props.serviceVehicleInspection.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.serviceVehicleInspection.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class ServiceVehicleInspectionBizApp extends React.PureComponent {
              <Switch>
                <Route path="/serviceVehicleInspection/:id/dashboard" component={ServiceVehicleInspectionDashboard} />
                <Route path="/serviceVehicleInspection/:id/editDetail" component={ServiceVehicleInspectionEditDetail} />
+               <Route path="/serviceVehicleInspection/:id/viewDetail" component={ServiceVehicleInspectionViewDetail} />
+               
               
              </Switch>
            </Content>

@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './ServiceInsuranceForInspection.app.less'
 import ServiceInsuranceForInspectionDashboard from './ServiceInsuranceForInspection.dashboard'
 import ServiceInsuranceForInspectionEditDetail from './ServiceInsuranceForInspection.editdetail'
+import ServiceInsuranceForInspectionViewDetail from './ServiceInsuranceForInspection.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class ServiceInsuranceForInspectionBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class ServiceInsuranceForInspectionBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/serviceInsuranceForInspection/${this.props.serviceInsuranceForInspection.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/serviceInsuranceForInspection/${this.props.serviceInsuranceForInspection.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.serviceInsuranceForInspection.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class ServiceInsuranceForInspectionBizApp extends React.PureComponent {
              <Switch>
                <Route path="/serviceInsuranceForInspection/:id/dashboard" component={ServiceInsuranceForInspectionDashboard} />
                <Route path="/serviceInsuranceForInspection/:id/editDetail" component={ServiceInsuranceForInspectionEditDetail} />
+               <Route path="/serviceInsuranceForInspection/:id/viewDetail" component={ServiceInsuranceForInspectionViewDetail} />
+               
               
              </Switch>
            </Content>

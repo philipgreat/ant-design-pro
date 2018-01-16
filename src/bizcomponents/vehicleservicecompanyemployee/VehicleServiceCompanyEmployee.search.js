@@ -42,18 +42,22 @@ export default class VehicleServiceCompanyEmployeeSearch extends PureComponent {
       newObj[key] = getValue(filtersArg[key])
       return newObj
     }, {})
-
+	const { owner } = this.props
+	const {listName} = owner;
+	let listParameters = {};
+    listParameters[listName]=1;
+    listParameters[`${listName}CurrentPage`]=pagination.current;
+    listParameters[`${listName}RowsPerPage`]=pagination.pageSize;
+    
     const params = {
-      vehicleServiceCompanyEmployeeList: 1,
-      vehicleServiceCompanyEmployeeListCurrentPage: pagination.current,
-      vehicleServiceCompanyEmployeeListRowsPerPage: pagination.pageSize,
+      ...listParameters,
       ...formValues,
       ...filters,
     }
     if (sorter.field) {
       params.sorter = '_'
     }
-    const { owner } = this.props
+    
     dispatch({
       type: `${owner.type}/load`,
       payload: { id: owner.id, parameters: params },

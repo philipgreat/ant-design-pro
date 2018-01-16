@@ -12,7 +12,7 @@ const columns = [
   { title: '身份证号码', debugtype: 'string', dataIndex: 'cardNumber', width: '22' },
   { title: '身份证正面照片', dataIndex: 'frontImage', render: (text, record) => <ImagePreview imageLocation={record.身份证正面照片} /> },
   { title: '身份证背面照片', dataIndex: 'backImage', render: (text, record) => <ImagePreview imageLocation={record.身份证背面照片} /> },
-  { title: '失效日期', debugtype: 'date', dataIndex: 'expirationDate', width: '14' },
+  { title: '失效日期', dataIndex: 'expirationDate', render: (text, record) => moment(record.expirationDate).format('YYYY-MM-DD') },
 ]
 
 class IdentityCardConfirmationTable extends PureComponent {

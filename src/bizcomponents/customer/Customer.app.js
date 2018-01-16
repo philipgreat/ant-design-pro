@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './Customer.app.less'
 import CustomerDashboard from './Customer.dashboard'
 import CustomerEditDetail from './Customer.editdetail'
+import CustomerViewDetail from './Customer.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -110,7 +111,7 @@ class CustomerBizApp extends React.PureComponent {
       currentPage: state._customer.vehicleInfoCurrentPageNumber,
       searchFormParameters: state._customer.vehicleInfoSearchFormParameters,
       loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id }, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInfoList' }, // this is for model namespace and
     }))(VehicleInfoSearch)
   }
   getVehicleInfoCreateForm = () => {
@@ -122,7 +123,7 @@ class CustomerBizApp extends React.PureComponent {
       currentPage: state._customer.vehicleInfoCurrentPageNumber,
       searchFormParameters: state._customer.vehicleInfoSearchFormParameters,
       loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id }, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInfoList'}, // this is for model namespace and
     }))(VehicleInfoCreateForm)
   }
   
@@ -131,7 +132,7 @@ class CustomerBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._customer.selectedRows,
       currentUpdateIndex: state._customer.currentUpdateIndex,
-      owner: { type: '_customer', id: state._customer.id }, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInfoList' }, // this is for model namespace and
     }))(VehicleInfoUpdateForm)
   }
 
@@ -144,7 +145,7 @@ class CustomerBizApp extends React.PureComponent {
       currentPage: state._customer.vehicleInspectionOrderCurrentPageNumber,
       searchFormParameters: state._customer.vehicleInspectionOrderSearchFormParameters,
       loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id }, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderList' }, // this is for model namespace and
     }))(VehicleInspectionOrderSearch)
   }
   getVehicleInspectionOrderCreateForm = () => {
@@ -156,7 +157,7 @@ class CustomerBizApp extends React.PureComponent {
       currentPage: state._customer.vehicleInspectionOrderCurrentPageNumber,
       searchFormParameters: state._customer.vehicleInspectionOrderSearchFormParameters,
       loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id }, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderList'}, // this is for model namespace and
     }))(VehicleInspectionOrderCreateForm)
   }
   
@@ -165,7 +166,7 @@ class CustomerBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._customer.selectedRows,
       currentUpdateIndex: state._customer.currentUpdateIndex,
-      owner: { type: '_customer', id: state._customer.id }, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderList' }, // this is for model namespace and
     }))(VehicleInspectionOrderUpdateForm)
   }
 
@@ -204,7 +205,7 @@ class CustomerBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -229,8 +230,15 @@ class CustomerBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/customer/${this.props.customer.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/customer/${this.props.customer.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.customer.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -238,6 +246,8 @@ class CustomerBizApp extends React.PureComponent {
              <Switch>
                <Route path="/customer/:id/dashboard" component={CustomerDashboard} />
                <Route path="/customer/:id/editDetail" component={CustomerEditDetail} />
+               <Route path="/customer/:id/viewDetail" component={CustomerViewDetail} />
+               
 
                <Route path="/customer/:id/list/vehicleInfoList" component={this.getVehicleInfoSearch()} />
                <Route path="/customer/:id/list/vehicleInfoCreateForm" component={this.getVehicleInfoCreateForm()} />

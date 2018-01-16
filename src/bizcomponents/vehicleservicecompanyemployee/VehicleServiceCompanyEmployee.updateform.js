@@ -396,7 +396,7 @@ class VehicleServiceCompanyEmployeeUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="证件照片"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'profileImage')}
@@ -405,7 +405,7 @@ class VehicleServiceCompanyEmployeeUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="无犯罪记录证明"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'innocentEvidenceImage')}

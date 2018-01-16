@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './RepairingQuotation.app.less'
 import RepairingQuotationDashboard from './RepairingQuotation.dashboard'
 import RepairingQuotationEditDetail from './RepairingQuotation.editdetail'
+import RepairingQuotationViewDetail from './RepairingQuotation.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -110,7 +111,7 @@ class RepairingQuotationBizApp extends React.PureComponent {
       currentPage: state._repairingQuotation.repairingQuotationItemCurrentPageNumber,
       searchFormParameters: state._repairingQuotation.repairingQuotationItemSearchFormParameters,
       loading: state._repairingQuotation.loading,
-      owner: { type: '_repairingQuotation', id: state._repairingQuotation.id }, // this is for model namespace and
+      owner: { type: '_repairingQuotation', id: state._repairingQuotation.id, listName: 'repairingQuotationItemList' }, // this is for model namespace and
     }))(RepairingQuotationItemSearch)
   }
   getRepairingQuotationItemCreateForm = () => {
@@ -122,7 +123,7 @@ class RepairingQuotationBizApp extends React.PureComponent {
       currentPage: state._repairingQuotation.repairingQuotationItemCurrentPageNumber,
       searchFormParameters: state._repairingQuotation.repairingQuotationItemSearchFormParameters,
       loading: state._repairingQuotation.loading,
-      owner: { type: '_repairingQuotation', id: state._repairingQuotation.id }, // this is for model namespace and
+      owner: { type: '_repairingQuotation', id: state._repairingQuotation.id, listName: 'repairingQuotationItemList'}, // this is for model namespace and
     }))(RepairingQuotationItemCreateForm)
   }
   
@@ -131,7 +132,7 @@ class RepairingQuotationBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._repairingQuotation.selectedRows,
       currentUpdateIndex: state._repairingQuotation.currentUpdateIndex,
-      owner: { type: '_repairingQuotation', id: state._repairingQuotation.id }, // this is for model namespace and
+      owner: { type: '_repairingQuotation', id: state._repairingQuotation.id, listName: 'repairingQuotationItemList' }, // this is for model namespace and
     }))(RepairingQuotationItemUpdateForm)
   }
 
@@ -144,7 +145,7 @@ class RepairingQuotationBizApp extends React.PureComponent {
       currentPage: state._repairingQuotation.vehicleRepairingPaymentCurrentPageNumber,
       searchFormParameters: state._repairingQuotation.vehicleRepairingPaymentSearchFormParameters,
       loading: state._repairingQuotation.loading,
-      owner: { type: '_repairingQuotation', id: state._repairingQuotation.id }, // this is for model namespace and
+      owner: { type: '_repairingQuotation', id: state._repairingQuotation.id, listName: 'vehicleRepairingPaymentList' }, // this is for model namespace and
     }))(VehicleRepairingPaymentSearch)
   }
   getVehicleRepairingPaymentCreateForm = () => {
@@ -156,7 +157,7 @@ class RepairingQuotationBizApp extends React.PureComponent {
       currentPage: state._repairingQuotation.vehicleRepairingPaymentCurrentPageNumber,
       searchFormParameters: state._repairingQuotation.vehicleRepairingPaymentSearchFormParameters,
       loading: state._repairingQuotation.loading,
-      owner: { type: '_repairingQuotation', id: state._repairingQuotation.id }, // this is for model namespace and
+      owner: { type: '_repairingQuotation', id: state._repairingQuotation.id, listName: 'vehicleRepairingPaymentList'}, // this is for model namespace and
     }))(VehicleRepairingPaymentCreateForm)
   }
   
@@ -165,7 +166,7 @@ class RepairingQuotationBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._repairingQuotation.selectedRows,
       currentUpdateIndex: state._repairingQuotation.currentUpdateIndex,
-      owner: { type: '_repairingQuotation', id: state._repairingQuotation.id }, // this is for model namespace and
+      owner: { type: '_repairingQuotation', id: state._repairingQuotation.id, listName: 'vehicleRepairingPaymentList' }, // this is for model namespace and
     }))(VehicleRepairingPaymentUpdateForm)
   }
 
@@ -204,7 +205,7 @@ class RepairingQuotationBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -229,8 +230,15 @@ class RepairingQuotationBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/repairingQuotation/${this.props.repairingQuotation.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/repairingQuotation/${this.props.repairingQuotation.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.repairingQuotation.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -238,6 +246,8 @@ class RepairingQuotationBizApp extends React.PureComponent {
              <Switch>
                <Route path="/repairingQuotation/:id/dashboard" component={RepairingQuotationDashboard} />
                <Route path="/repairingQuotation/:id/editDetail" component={RepairingQuotationEditDetail} />
+               <Route path="/repairingQuotation/:id/viewDetail" component={RepairingQuotationViewDetail} />
+               
 
                <Route path="/repairingQuotation/:id/list/repairingQuotationItemList" component={this.getRepairingQuotationItemSearch()} />
                <Route path="/repairingQuotation/:id/list/repairingQuotationItemCreateForm" component={this.getRepairingQuotationItemCreateForm()} />

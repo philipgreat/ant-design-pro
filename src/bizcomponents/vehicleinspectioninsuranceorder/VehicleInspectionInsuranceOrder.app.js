@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './VehicleInspectionInsuranceOrder.app.less'
 import VehicleInspectionInsuranceOrderDashboard from './VehicleInspectionInsuranceOrder.dashboard'
 import VehicleInspectionInsuranceOrderEditDetail from './VehicleInspectionInsuranceOrder.editdetail'
+import VehicleInspectionInsuranceOrderViewDetail from './VehicleInspectionInsuranceOrder.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class VehicleInspectionInsuranceOrderBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class VehicleInspectionInsuranceOrderBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/vehicleInspectionInsuranceOrder/${this.props.vehicleInspectionInsuranceOrder.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehicleInspectionInsuranceOrder/${this.props.vehicleInspectionInsuranceOrder.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.vehicleInspectionInsuranceOrder.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class VehicleInspectionInsuranceOrderBizApp extends React.PureComponent {
              <Switch>
                <Route path="/vehicleInspectionInsuranceOrder/:id/dashboard" component={VehicleInspectionInsuranceOrderDashboard} />
                <Route path="/vehicleInspectionInsuranceOrder/:id/editDetail" component={VehicleInspectionInsuranceOrderEditDetail} />
+               <Route path="/vehicleInspectionInsuranceOrder/:id/viewDetail" component={VehicleInspectionInsuranceOrderViewDetail} />
+               
               
              </Switch>
            </Content>

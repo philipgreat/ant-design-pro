@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './VehicleRepairingAllowance.app.less'
 import VehicleRepairingAllowanceDashboard from './VehicleRepairingAllowance.dashboard'
 import VehicleRepairingAllowanceEditDetail from './VehicleRepairingAllowance.editdetail'
+import VehicleRepairingAllowanceViewDetail from './VehicleRepairingAllowance.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -107,7 +108,7 @@ class VehicleRepairingAllowanceBizApp extends React.PureComponent {
       currentPage: state._vehicleRepairingAllowance.repairingQuotationItemCurrentPageNumber,
       searchFormParameters: state._vehicleRepairingAllowance.repairingQuotationItemSearchFormParameters,
       loading: state._vehicleRepairingAllowance.loading,
-      owner: { type: '_vehicleRepairingAllowance', id: state._vehicleRepairingAllowance.id }, // this is for model namespace and
+      owner: { type: '_vehicleRepairingAllowance', id: state._vehicleRepairingAllowance.id, listName: 'repairingQuotationItemList' }, // this is for model namespace and
     }))(RepairingQuotationItemSearch)
   }
   getRepairingQuotationItemCreateForm = () => {
@@ -119,7 +120,7 @@ class VehicleRepairingAllowanceBizApp extends React.PureComponent {
       currentPage: state._vehicleRepairingAllowance.repairingQuotationItemCurrentPageNumber,
       searchFormParameters: state._vehicleRepairingAllowance.repairingQuotationItemSearchFormParameters,
       loading: state._vehicleRepairingAllowance.loading,
-      owner: { type: '_vehicleRepairingAllowance', id: state._vehicleRepairingAllowance.id }, // this is for model namespace and
+      owner: { type: '_vehicleRepairingAllowance', id: state._vehicleRepairingAllowance.id, listName: 'repairingQuotationItemList'}, // this is for model namespace and
     }))(RepairingQuotationItemCreateForm)
   }
   
@@ -128,7 +129,7 @@ class VehicleRepairingAllowanceBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._vehicleRepairingAllowance.selectedRows,
       currentUpdateIndex: state._vehicleRepairingAllowance.currentUpdateIndex,
-      owner: { type: '_vehicleRepairingAllowance', id: state._vehicleRepairingAllowance.id }, // this is for model namespace and
+      owner: { type: '_vehicleRepairingAllowance', id: state._vehicleRepairingAllowance.id, listName: 'repairingQuotationItemList' }, // this is for model namespace and
     }))(RepairingQuotationItemUpdateForm)
   }
 
@@ -167,7 +168,7 @@ class VehicleRepairingAllowanceBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -192,8 +193,15 @@ class VehicleRepairingAllowanceBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/vehicleRepairingAllowance/${this.props.vehicleRepairingAllowance.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehicleRepairingAllowance/${this.props.vehicleRepairingAllowance.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.vehicleRepairingAllowance.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -201,6 +209,8 @@ class VehicleRepairingAllowanceBizApp extends React.PureComponent {
              <Switch>
                <Route path="/vehicleRepairingAllowance/:id/dashboard" component={VehicleRepairingAllowanceDashboard} />
                <Route path="/vehicleRepairingAllowance/:id/editDetail" component={VehicleRepairingAllowanceEditDetail} />
+               <Route path="/vehicleRepairingAllowance/:id/viewDetail" component={VehicleRepairingAllowanceViewDetail} />
+               
 
                <Route path="/vehicleRepairingAllowance/:id/list/repairingQuotationItemList" component={this.getRepairingQuotationItemSearch()} />
                <Route path="/vehicleRepairingAllowance/:id/list/repairingQuotationItemCreateForm" component={this.getRepairingQuotationItemCreateForm()} />

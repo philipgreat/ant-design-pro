@@ -27,7 +27,7 @@ const fieldLabels = {
 const testValues = {
   holderName: '赵名进',
   licenseNumber: 'A123123102312312',
-  expirationDate: '2998-10-09',
+  expirationDate: '2995-10-11',
 }
 
 const imageURLPrefix = '//localhost:2090'

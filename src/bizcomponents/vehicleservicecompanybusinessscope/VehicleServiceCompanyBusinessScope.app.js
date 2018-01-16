@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './VehicleServiceCompanyBusinessScope.app.less'
 import VehicleServiceCompanyBusinessScopeDashboard from './VehicleServiceCompanyBusinessScope.dashboard'
 import VehicleServiceCompanyBusinessScopeEditDetail from './VehicleServiceCompanyBusinessScope.editdetail'
+import VehicleServiceCompanyBusinessScopeViewDetail from './VehicleServiceCompanyBusinessScope.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class VehicleServiceCompanyBusinessScopeBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class VehicleServiceCompanyBusinessScopeBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/vehicleServiceCompanyBusinessScope/${this.props.vehicleServiceCompanyBusinessScope.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehicleServiceCompanyBusinessScope/${this.props.vehicleServiceCompanyBusinessScope.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.vehicleServiceCompanyBusinessScope.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class VehicleServiceCompanyBusinessScopeBizApp extends React.PureComponent {
              <Switch>
                <Route path="/vehicleServiceCompanyBusinessScope/:id/dashboard" component={VehicleServiceCompanyBusinessScopeDashboard} />
                <Route path="/vehicleServiceCompanyBusinessScope/:id/editDetail" component={VehicleServiceCompanyBusinessScopeEditDetail} />
+               <Route path="/vehicleServiceCompanyBusinessScope/:id/viewDetail" component={VehicleServiceCompanyBusinessScopeViewDetail} />
+               
               
              </Switch>
            </Content>

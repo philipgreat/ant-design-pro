@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './ServiceVehicleMovementC2m.app.less'
 import ServiceVehicleMovementC2mDashboard from './ServiceVehicleMovementC2m.dashboard'
 import ServiceVehicleMovementC2mEditDetail from './ServiceVehicleMovementC2m.editdetail'
+import ServiceVehicleMovementC2mViewDetail from './ServiceVehicleMovementC2m.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -107,7 +108,7 @@ class ServiceVehicleMovementC2mBizApp extends React.PureComponent {
       currentPage: state._serviceVehicleMovementC2m.serviceVehicleMovementC2mChecklistResultCurrentPageNumber,
       searchFormParameters: state._serviceVehicleMovementC2m.serviceVehicleMovementC2mChecklistResultSearchFormParameters,
       loading: state._serviceVehicleMovementC2m.loading,
-      owner: { type: '_serviceVehicleMovementC2m', id: state._serviceVehicleMovementC2m.id }, // this is for model namespace and
+      owner: { type: '_serviceVehicleMovementC2m', id: state._serviceVehicleMovementC2m.id, listName: 'serviceVehicleMovementC2mChecklistResultList' }, // this is for model namespace and
     }))(ServiceVehicleMovementC2mChecklistResultSearch)
   }
   getServiceVehicleMovementC2mChecklistResultCreateForm = () => {
@@ -119,7 +120,7 @@ class ServiceVehicleMovementC2mBizApp extends React.PureComponent {
       currentPage: state._serviceVehicleMovementC2m.serviceVehicleMovementC2mChecklistResultCurrentPageNumber,
       searchFormParameters: state._serviceVehicleMovementC2m.serviceVehicleMovementC2mChecklistResultSearchFormParameters,
       loading: state._serviceVehicleMovementC2m.loading,
-      owner: { type: '_serviceVehicleMovementC2m', id: state._serviceVehicleMovementC2m.id }, // this is for model namespace and
+      owner: { type: '_serviceVehicleMovementC2m', id: state._serviceVehicleMovementC2m.id, listName: 'serviceVehicleMovementC2mChecklistResultList'}, // this is for model namespace and
     }))(ServiceVehicleMovementC2mChecklistResultCreateForm)
   }
   
@@ -128,7 +129,7 @@ class ServiceVehicleMovementC2mBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._serviceVehicleMovementC2m.selectedRows,
       currentUpdateIndex: state._serviceVehicleMovementC2m.currentUpdateIndex,
-      owner: { type: '_serviceVehicleMovementC2m', id: state._serviceVehicleMovementC2m.id }, // this is for model namespace and
+      owner: { type: '_serviceVehicleMovementC2m', id: state._serviceVehicleMovementC2m.id, listName: 'serviceVehicleMovementC2mChecklistResultList' }, // this is for model namespace and
     }))(ServiceVehicleMovementC2mChecklistResultUpdateForm)
   }
 
@@ -167,7 +168,7 @@ class ServiceVehicleMovementC2mBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -192,8 +193,15 @@ class ServiceVehicleMovementC2mBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/serviceVehicleMovementC2m/${this.props.serviceVehicleMovementC2m.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/serviceVehicleMovementC2m/${this.props.serviceVehicleMovementC2m.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.serviceVehicleMovementC2m.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -201,6 +209,8 @@ class ServiceVehicleMovementC2mBizApp extends React.PureComponent {
              <Switch>
                <Route path="/serviceVehicleMovementC2m/:id/dashboard" component={ServiceVehicleMovementC2mDashboard} />
                <Route path="/serviceVehicleMovementC2m/:id/editDetail" component={ServiceVehicleMovementC2mEditDetail} />
+               <Route path="/serviceVehicleMovementC2m/:id/viewDetail" component={ServiceVehicleMovementC2mViewDetail} />
+               
 
                <Route path="/serviceVehicleMovementC2m/:id/list/serviceVehicleMovementC2mChecklistResultList" component={this.getServiceVehicleMovementC2mChecklistResultSearch()} />
                <Route path="/serviceVehicleMovementC2m/:id/list/serviceVehicleMovementC2mChecklistResultCreateForm" component={this.getServiceVehicleMovementC2mChecklistResultCreateForm()} />

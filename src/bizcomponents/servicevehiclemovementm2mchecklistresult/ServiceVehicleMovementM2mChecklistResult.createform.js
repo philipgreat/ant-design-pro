@@ -28,7 +28,7 @@ const fieldLabels = {
 const testValues = {
   checkResult: '通过',
   checkResultComments: '刹车正常,厚度大于20mm,刹车油无泄漏,刹车灯正常',
-  createTime: '2997-02-02',
+  createTime: '2996-02-05',
   serviceId: 'SVMM000001',
 }
 

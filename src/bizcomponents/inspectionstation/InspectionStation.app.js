@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './InspectionStation.app.less'
 import InspectionStationDashboard from './InspectionStation.dashboard'
 import InspectionStationEditDetail from './InspectionStation.editdetail'
+import InspectionStationViewDetail from './InspectionStation.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -110,7 +111,7 @@ class InspectionStationBizApp extends React.PureComponent {
       currentPage: state._inspectionStation.serviceVehicleInspectionCurrentPageNumber,
       searchFormParameters: state._inspectionStation.serviceVehicleInspectionSearchFormParameters,
       loading: state._inspectionStation.loading,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id }, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'serviceVehicleInspectionList' }, // this is for model namespace and
     }))(ServiceVehicleInspectionSearch)
   }
   getServiceVehicleInspectionCreateForm = () => {
@@ -122,7 +123,7 @@ class InspectionStationBizApp extends React.PureComponent {
       currentPage: state._inspectionStation.serviceVehicleInspectionCurrentPageNumber,
       searchFormParameters: state._inspectionStation.serviceVehicleInspectionSearchFormParameters,
       loading: state._inspectionStation.loading,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id }, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'serviceVehicleInspectionList'}, // this is for model namespace and
     }))(ServiceVehicleInspectionCreateForm)
   }
   
@@ -131,7 +132,7 @@ class InspectionStationBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._inspectionStation.selectedRows,
       currentUpdateIndex: state._inspectionStation.currentUpdateIndex,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id }, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'serviceVehicleInspectionList' }, // this is for model namespace and
     }))(ServiceVehicleInspectionUpdateForm)
   }
 
@@ -144,7 +145,7 @@ class InspectionStationBizApp extends React.PureComponent {
       currentPage: state._inspectionStation.serviceFileInspectionCurrentPageNumber,
       searchFormParameters: state._inspectionStation.serviceFileInspectionSearchFormParameters,
       loading: state._inspectionStation.loading,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id }, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'serviceFileInspectionList' }, // this is for model namespace and
     }))(ServiceFileInspectionSearch)
   }
   getServiceFileInspectionCreateForm = () => {
@@ -156,7 +157,7 @@ class InspectionStationBizApp extends React.PureComponent {
       currentPage: state._inspectionStation.serviceFileInspectionCurrentPageNumber,
       searchFormParameters: state._inspectionStation.serviceFileInspectionSearchFormParameters,
       loading: state._inspectionStation.loading,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id }, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'serviceFileInspectionList'}, // this is for model namespace and
     }))(ServiceFileInspectionCreateForm)
   }
   
@@ -165,7 +166,7 @@ class InspectionStationBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._inspectionStation.selectedRows,
       currentUpdateIndex: state._inspectionStation.currentUpdateIndex,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id }, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'serviceFileInspectionList' }, // this is for model namespace and
     }))(ServiceFileInspectionUpdateForm)
   }
 
@@ -204,7 +205,7 @@ class InspectionStationBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -229,8 +230,15 @@ class InspectionStationBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/inspectionStation/${this.props.inspectionStation.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/inspectionStation/${this.props.inspectionStation.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.inspectionStation.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -238,6 +246,8 @@ class InspectionStationBizApp extends React.PureComponent {
              <Switch>
                <Route path="/inspectionStation/:id/dashboard" component={InspectionStationDashboard} />
                <Route path="/inspectionStation/:id/editDetail" component={InspectionStationEditDetail} />
+               <Route path="/inspectionStation/:id/viewDetail" component={InspectionStationViewDetail} />
+               
 
                <Route path="/inspectionStation/:id/list/serviceVehicleInspectionList" component={this.getServiceVehicleInspectionSearch()} />
                <Route path="/inspectionStation/:id/list/serviceVehicleInspectionCreateForm" component={this.getServiceVehicleInspectionCreateForm()} />

@@ -66,6 +66,13 @@ export default {
           dispatch({ type: 'view', payload: { id } })
           return
         }
+        const viewDetailMatch = pathToRegexp('/serviceVehicleMovementC2mChecklistResult/:id/viewDetail').exec(pathname)
+        if (viewDetailMatch) {
+          const id = viewDetailMatch[1]
+          dispatch({ type: 'view', payload: { id } })
+          return
+        }
+        
         const match = pathToRegexp('/serviceVehicleMovementC2mChecklistResult/:id/list/:listName').exec(pathname)
         if (!match) {
           return

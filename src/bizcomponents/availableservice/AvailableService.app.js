@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './AvailableService.app.less'
 import AvailableServiceDashboard from './AvailableService.dashboard'
 import AvailableServiceEditDetail from './AvailableService.editdetail'
+import AvailableServiceViewDetail from './AvailableService.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -116,7 +117,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       currentPage: state._availableService.vehicleRepairingAllowanceCurrentPageNumber,
       searchFormParameters: state._availableService.vehicleRepairingAllowanceSearchFormParameters,
       loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleRepairingAllowanceList' }, // this is for model namespace and
     }))(VehicleRepairingAllowanceSearch)
   }
   getVehicleRepairingAllowanceCreateForm = () => {
@@ -128,7 +129,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       currentPage: state._availableService.vehicleRepairingAllowanceCurrentPageNumber,
       searchFormParameters: state._availableService.vehicleRepairingAllowanceSearchFormParameters,
       loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleRepairingAllowanceList'}, // this is for model namespace and
     }))(VehicleRepairingAllowanceCreateForm)
   }
   
@@ -137,7 +138,7 @@ class AvailableServiceBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._availableService.selectedRows,
       currentUpdateIndex: state._availableService.currentUpdateIndex,
-      owner: { type: '_availableService', id: state._availableService.id }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleRepairingAllowanceList' }, // this is for model namespace and
     }))(VehicleRepairingAllowanceUpdateForm)
   }
 
@@ -150,7 +151,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       currentPage: state._availableService.vehicleServiceCompanyBusinessScopeCurrentPageNumber,
       searchFormParameters: state._availableService.vehicleServiceCompanyBusinessScopeSearchFormParameters,
       loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleServiceCompanyBusinessScopeList' }, // this is for model namespace and
     }))(VehicleServiceCompanyBusinessScopeSearch)
   }
   getVehicleServiceCompanyBusinessScopeCreateForm = () => {
@@ -162,7 +163,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       currentPage: state._availableService.vehicleServiceCompanyBusinessScopeCurrentPageNumber,
       searchFormParameters: state._availableService.vehicleServiceCompanyBusinessScopeSearchFormParameters,
       loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleServiceCompanyBusinessScopeList'}, // this is for model namespace and
     }))(VehicleServiceCompanyBusinessScopeCreateForm)
   }
   
@@ -171,7 +172,7 @@ class AvailableServiceBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._availableService.selectedRows,
       currentUpdateIndex: state._availableService.currentUpdateIndex,
-      owner: { type: '_availableService', id: state._availableService.id }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleServiceCompanyBusinessScopeList' }, // this is for model namespace and
     }))(VehicleServiceCompanyBusinessScopeUpdateForm)
   }
 
@@ -184,7 +185,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       currentPage: state._availableService.companyEmployeeMessageCurrentPageNumber,
       searchFormParameters: state._availableService.companyEmployeeMessageSearchFormParameters,
       loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'companyEmployeeMessageList' }, // this is for model namespace and
     }))(CompanyEmployeeMessageSearch)
   }
   getCompanyEmployeeMessageCreateForm = () => {
@@ -196,7 +197,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       currentPage: state._availableService.companyEmployeeMessageCurrentPageNumber,
       searchFormParameters: state._availableService.companyEmployeeMessageSearchFormParameters,
       loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'companyEmployeeMessageList'}, // this is for model namespace and
     }))(CompanyEmployeeMessageCreateForm)
   }
   
@@ -205,7 +206,7 @@ class AvailableServiceBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._availableService.selectedRows,
       currentUpdateIndex: state._availableService.currentUpdateIndex,
-      owner: { type: '_availableService', id: state._availableService.id }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'companyEmployeeMessageList' }, // this is for model namespace and
     }))(CompanyEmployeeMessageUpdateForm)
   }
 
@@ -218,7 +219,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       currentPage: state._availableService.vehicleInspectionOrderServiceLogCurrentPageNumber,
       searchFormParameters: state._availableService.vehicleInspectionOrderServiceLogSearchFormParameters,
       loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleInspectionOrderServiceLogList' }, // this is for model namespace and
     }))(VehicleInspectionOrderServiceLogSearch)
   }
   getVehicleInspectionOrderServiceLogCreateForm = () => {
@@ -230,7 +231,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       currentPage: state._availableService.vehicleInspectionOrderServiceLogCurrentPageNumber,
       searchFormParameters: state._availableService.vehicleInspectionOrderServiceLogSearchFormParameters,
       loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleInspectionOrderServiceLogList'}, // this is for model namespace and
     }))(VehicleInspectionOrderServiceLogCreateForm)
   }
   
@@ -239,7 +240,7 @@ class AvailableServiceBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._availableService.selectedRows,
       currentUpdateIndex: state._availableService.currentUpdateIndex,
-      owner: { type: '_availableService', id: state._availableService.id }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleInspectionOrderServiceLogList' }, // this is for model namespace and
     }))(VehicleInspectionOrderServiceLogUpdateForm)
   }
 
@@ -278,7 +279,7 @@ class AvailableServiceBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -303,8 +304,15 @@ class AvailableServiceBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/availableService/${this.props.availableService.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/availableService/${this.props.availableService.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.availableService.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -312,6 +320,8 @@ class AvailableServiceBizApp extends React.PureComponent {
              <Switch>
                <Route path="/availableService/:id/dashboard" component={AvailableServiceDashboard} />
                <Route path="/availableService/:id/editDetail" component={AvailableServiceEditDetail} />
+               <Route path="/availableService/:id/viewDetail" component={AvailableServiceViewDetail} />
+               
 
                <Route path="/availableService/:id/list/vehicleRepairingAllowanceList" component={this.getVehicleRepairingAllowanceSearch()} />
                <Route path="/availableService/:id/list/vehicleRepairingAllowanceCreateForm" component={this.getVehicleRepairingAllowanceCreateForm()} />

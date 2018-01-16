@@ -12,7 +12,7 @@ const columns = [
   { title: '姓名', debugtype: 'string', dataIndex: 'holderName', width: '7' },
   { title: '准驾车型', debugtype: 'string', dataIndex: 'licenseType', width: '6' },
   { title: '驾驶证号码', debugtype: 'string', dataIndex: 'licenseNumber', width: '22' },
-  { title: '失效日期', debugtype: 'date', dataIndex: 'expirationDate', width: '14' },
+  { title: '失效日期', dataIndex: 'expirationDate', render: (text, record) => moment(record.expirationDate).format('YYYY-MM-DD') },
   { title: '图1', dataIndex: 'image1', render: (text, record) => <ImagePreview imageLocation={record.图1} /> },
   { title: '图2', dataIndex: 'image2', render: (text, record) => <ImagePreview imageLocation={record.图2} /> },
   { title: '图3', dataIndex: 'image3', render: (text, record) => <ImagePreview imageLocation={record.图3} /> },

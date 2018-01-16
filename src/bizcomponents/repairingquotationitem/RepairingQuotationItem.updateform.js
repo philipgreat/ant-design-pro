@@ -359,7 +359,7 @@ class RepairingQuotationItemUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="修理物品图片1"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'repairingItemImage1')}
@@ -368,7 +368,7 @@ class RepairingQuotationItemUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="修理物品图片2"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'repairingItemImage2')}
@@ -377,7 +377,7 @@ class RepairingQuotationItemUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="修理物品图片3"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'repairingItemImage3')}
@@ -386,7 +386,7 @@ class RepairingQuotationItemUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="修理物品图片4"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'repairingItemImage4')}
@@ -395,7 +395,7 @@ class RepairingQuotationItemUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="修理物品图片5"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'repairingItemImage5')}

@@ -25,11 +25,11 @@ const fieldLabels = {
 
 const testValues = {
   title: '预约节省10元',
-  startDate: '1995-10-24',
-  expirationDate: '2995-01-05',
-  amount: '8.28',
+  startDate: '1998-03-15',
+  expirationDate: '2995-05-19',
+  amount: '8.93',
   code: 'xyz123456789',
-  usedDate: '2996-05-07',
+  usedDate: '2999-05-11',
   mainOrderId: 'VIO000001',
 }
 

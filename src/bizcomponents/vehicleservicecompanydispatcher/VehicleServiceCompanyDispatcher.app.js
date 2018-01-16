@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './VehicleServiceCompanyDispatcher.app.less'
 import VehicleServiceCompanyDispatcherDashboard from './VehicleServiceCompanyDispatcher.dashboard'
 import VehicleServiceCompanyDispatcherEditDetail from './VehicleServiceCompanyDispatcher.editdetail'
+import VehicleServiceCompanyDispatcherViewDetail from './VehicleServiceCompanyDispatcher.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class VehicleServiceCompanyDispatcherBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class VehicleServiceCompanyDispatcherBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/vehicleServiceCompanyDispatcher/${this.props.vehicleServiceCompanyDispatcher.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehicleServiceCompanyDispatcher/${this.props.vehicleServiceCompanyDispatcher.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.vehicleServiceCompanyDispatcher.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class VehicleServiceCompanyDispatcherBizApp extends React.PureComponent {
              <Switch>
                <Route path="/vehicleServiceCompanyDispatcher/:id/dashboard" component={VehicleServiceCompanyDispatcherDashboard} />
                <Route path="/vehicleServiceCompanyDispatcher/:id/editDetail" component={VehicleServiceCompanyDispatcherEditDetail} />
+               <Route path="/vehicleServiceCompanyDispatcher/:id/viewDetail" component={VehicleServiceCompanyDispatcherViewDetail} />
+               
               
              </Switch>
            </Content>

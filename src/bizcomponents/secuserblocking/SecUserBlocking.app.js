@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './SecUserBlocking.app.less'
 import SecUserBlockingDashboard from './SecUserBlocking.dashboard'
 import SecUserBlockingEditDetail from './SecUserBlocking.editdetail'
+import SecUserBlockingViewDetail from './SecUserBlocking.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -107,7 +108,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
       currentPage: state._secUserBlocking.secUserCurrentPageNumber,
       searchFormParameters: state._secUserBlocking.secUserSearchFormParameters,
       loading: state._secUserBlocking.loading,
-      owner: { type: '_secUserBlocking', id: state._secUserBlocking.id }, // this is for model namespace and
+      owner: { type: '_secUserBlocking', id: state._secUserBlocking.id, listName: 'secUserList' }, // this is for model namespace and
     }))(SecUserSearch)
   }
   getSecUserCreateForm = () => {
@@ -119,7 +120,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
       currentPage: state._secUserBlocking.secUserCurrentPageNumber,
       searchFormParameters: state._secUserBlocking.secUserSearchFormParameters,
       loading: state._secUserBlocking.loading,
-      owner: { type: '_secUserBlocking', id: state._secUserBlocking.id }, // this is for model namespace and
+      owner: { type: '_secUserBlocking', id: state._secUserBlocking.id, listName: 'secUserList'}, // this is for model namespace and
     }))(SecUserCreateForm)
   }
   
@@ -128,7 +129,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._secUserBlocking.selectedRows,
       currentUpdateIndex: state._secUserBlocking.currentUpdateIndex,
-      owner: { type: '_secUserBlocking', id: state._secUserBlocking.id }, // this is for model namespace and
+      owner: { type: '_secUserBlocking', id: state._secUserBlocking.id, listName: 'secUserList' }, // this is for model namespace and
     }))(SecUserUpdateForm)
   }
 
@@ -167,7 +168,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -192,8 +193,15 @@ class SecUserBlockingBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/secUserBlocking/${this.props.secUserBlocking.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/secUserBlocking/${this.props.secUserBlocking.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.secUserBlocking.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -201,6 +209,8 @@ class SecUserBlockingBizApp extends React.PureComponent {
              <Switch>
                <Route path="/secUserBlocking/:id/dashboard" component={SecUserBlockingDashboard} />
                <Route path="/secUserBlocking/:id/editDetail" component={SecUserBlockingEditDetail} />
+               <Route path="/secUserBlocking/:id/viewDetail" component={SecUserBlockingViewDetail} />
+               
 
                <Route path="/secUserBlocking/:id/list/secUserList" component={this.getSecUserSearch()} />
                <Route path="/secUserBlocking/:id/list/secUserCreateForm" component={this.getSecUserCreateForm()} />

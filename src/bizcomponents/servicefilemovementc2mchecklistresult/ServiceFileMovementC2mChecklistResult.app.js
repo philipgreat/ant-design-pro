@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './ServiceFileMovementC2mChecklistResult.app.less'
 import ServiceFileMovementC2mChecklistResultDashboard from './ServiceFileMovementC2mChecklistResult.dashboard'
 import ServiceFileMovementC2mChecklistResultEditDetail from './ServiceFileMovementC2mChecklistResult.editdetail'
+import ServiceFileMovementC2mChecklistResultViewDetail from './ServiceFileMovementC2mChecklistResult.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class ServiceFileMovementC2mChecklistResultBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class ServiceFileMovementC2mChecklistResultBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/serviceFileMovementC2mChecklistResult/${this.props.serviceFileMovementC2mChecklistResult.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/serviceFileMovementC2mChecklistResult/${this.props.serviceFileMovementC2mChecklistResult.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.serviceFileMovementC2mChecklistResult.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class ServiceFileMovementC2mChecklistResultBizApp extends React.PureComponent {
              <Switch>
                <Route path="/serviceFileMovementC2mChecklistResult/:id/dashboard" component={ServiceFileMovementC2mChecklistResultDashboard} />
                <Route path="/serviceFileMovementC2mChecklistResult/:id/editDetail" component={ServiceFileMovementC2mChecklistResultEditDetail} />
+               <Route path="/serviceFileMovementC2mChecklistResult/:id/viewDetail" component={ServiceFileMovementC2mChecklistResultViewDetail} />
+               
               
              </Switch>
            </Content>

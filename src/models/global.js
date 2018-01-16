@@ -37,6 +37,7 @@ export default {
 
   reducers: {
     changeLayoutCollapsed(state, { payload }) {
+      console.log("I am really called", payload)
       return {
         ...state,
         collapsed: payload,

@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './LoginHistory.app.less'
 import LoginHistoryDashboard from './LoginHistory.dashboard'
 import LoginHistoryEditDetail from './LoginHistory.editdetail'
+import LoginHistoryViewDetail from './LoginHistory.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class LoginHistoryBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class LoginHistoryBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/loginHistory/${this.props.loginHistory.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/loginHistory/${this.props.loginHistory.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.loginHistory.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class LoginHistoryBizApp extends React.PureComponent {
              <Switch>
                <Route path="/loginHistory/:id/dashboard" component={LoginHistoryDashboard} />
                <Route path="/loginHistory/:id/editDetail" component={LoginHistoryEditDetail} />
+               <Route path="/loginHistory/:id/viewDetail" component={LoginHistoryViewDetail} />
+               
               
              </Switch>
            </Content>

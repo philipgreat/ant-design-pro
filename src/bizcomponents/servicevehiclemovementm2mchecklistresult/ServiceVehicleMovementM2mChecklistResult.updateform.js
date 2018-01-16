@@ -83,6 +83,7 @@ class ServiceVehicleMovementM2mChecklistResultUpdateForm extends Component {
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
+        createTime: moment(item.createTime).format('YYYY-MM-DD'),
 
       }
     })
@@ -358,7 +359,7 @@ class ServiceVehicleMovementM2mChecklistResultUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图1"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image1')}
@@ -367,7 +368,7 @@ class ServiceVehicleMovementM2mChecklistResultUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图2"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image2')}
@@ -376,7 +377,7 @@ class ServiceVehicleMovementM2mChecklistResultUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图3"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image3')}
@@ -385,7 +386,7 @@ class ServiceVehicleMovementM2mChecklistResultUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图4"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image4')}
@@ -394,7 +395,7 @@ class ServiceVehicleMovementM2mChecklistResultUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图5"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image5')}

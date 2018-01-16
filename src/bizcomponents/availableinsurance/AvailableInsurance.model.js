@@ -66,6 +66,13 @@ export default {
           dispatch({ type: 'view', payload: { id } })
           return
         }
+        const viewDetailMatch = pathToRegexp('/availableInsurance/:id/viewDetail').exec(pathname)
+        if (viewDetailMatch) {
+          const id = viewDetailMatch[1]
+          dispatch({ type: 'view', payload: { id } })
+          return
+        }
+        
         const match = pathToRegexp('/availableInsurance/:id/list/:listName').exec(pathname)
         if (!match) {
           return

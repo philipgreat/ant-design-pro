@@ -35,6 +35,15 @@ const topColResponsiveProps = {
   vehicleServiceCompanyEmployee: state._vehicleServiceCompanyEmployee,
 }))
 export default class VehicleServiceCompanyEmployeeEditDetail extends Component {
+
+  state = {
+    tabKey: 'employeeDrivingLicenseList',
+    stepDirection: 'horizontal',
+  }
+  onOperationTabChange = (key) => {
+    this.setState({ tabKey: key });
+  }
+
   render() {
     const {EmployeeDrivingLicenseEditTable} = GlobalComponents;
     const {CompanyEmployeeMessageEditTable} = GlobalComponents;
@@ -51,10 +60,63 @@ export default class VehicleServiceCompanyEmployeeEditDetail extends Component {
     const {ServiceVehicleRepairingEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, employeeDrivingLicenseCount, companyEmployeeMessageCount, vehicleInspectionOrderServiceLogCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount } = this.props.vehicleServiceCompanyEmployee
-    const { employeeDrivingLicenseList, companyEmployeeMessageList, vehicleInspectionOrderServiceLogList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mList, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList } = this.props.vehicleServiceCompanyEmployee
+    const { id, employeeDrivingLicenseCount, companyEmployeeMessageAsSenderCount, companyEmployeeMessageAsReceiverCount, vehicleInspectionOrderServiceLogCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mAsResponsibleWorkerCount, serviceVehicleMovementM2mAsDriverCount, serviceVehicleMovementM2mAsReceiverCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mAsResponsibleWorkerCount, serviceFileMovementM2mAsSenderCount, serviceFileMovementM2mAsReceiverCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount } = this.props.vehicleServiceCompanyEmployee
+    const { employeeDrivingLicenseList, companyEmployeeMessageListAsSender, companyEmployeeMessageListAsReceiver, vehicleInspectionOrderServiceLogList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mListAsResponsibleWorker, serviceVehicleMovementM2mListAsDriver, serviceVehicleMovementM2mListAsReceiver, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mListAsResponsibleWorker, serviceFileMovementM2mListAsSender, serviceFileMovementM2mListAsReceiver, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList } = this.props.vehicleServiceCompanyEmployee
     
     const owner = { type: '_vehicleServiceCompanyEmployee', id }
+
+    const tabList = [{
+      key: 'employeeDrivingLicenseList',
+      tab: '员工驾驶证列表',
+    }, {
+      key: 'companyEmployeeMessageListAsSender',
+      tab: '消息管理列表',
+    }, {
+      key: 'companyEmployeeMessageListAsSender1',
+      tab: '消息管理列表',
+    }, {
+      key: 'companyEmployeeMessageListAsS2ender',
+      tab: '消息管理列表',
+    }, {
+      key: 'companyEmployeeMessageListA4Sender',
+      tab: '消息管理列表',
+    }, {
+      key: 'companyEmployeeMessageList5AsSender',
+      tab: '消息管理列表',
+    }, {
+      key: 'companyEmployeeMessage6ListAsSender',
+      tab: '消息管理列表',
+    }, {
+      key: 'companyEmployeeMessa7geListAsSender',
+      tab: '消息管理列表',
+    }, {
+      key: 'companyEmployeeMes3sageListAsSender',
+      tab: '消息管理列表',
+    }, {
+      key: 'companyEmployeeMess4ageListAsSender',
+      tab: '消息管理列表',
+    }, {
+      key: 'companyEmployeeMess3ageListAsSender',
+      tab: '消息管理列表',
+    }, {
+      key: 'companyEmployee3MessageListAsSender',
+      tab: '消息管理列表',
+    }, {
+      key: 'companyEmploy3eeMessageListAsSender',
+      tab: '消息管理列表',
+    }, {
+      key: 'companyEmp3loyeeMessageListAsSender',
+      tab: '消息管理列表',
+    }];
+
+    const contentList = {
+      employeeDrivingLicenseList: <Form layout="vertical" hideRequiredMark>
+      <EmployeeDrivingLicenseEditTable data={employeeDrivingLicenseList} owner={owner} {...this.props} />
+    </Form>,
+      companyEmployeeMessageListAsSender:  <Form layout="vertical" hideRequiredMark>
+      <CompanyEmployeeMessageEditTable data={companyEmployeeMessageListAsSender} owner={owner} {...this.props} />
+    </Form>
+    };
     return (
 
       <PageHeaderLayout
@@ -64,84 +126,20 @@ export default class VehicleServiceCompanyEmployeeEditDetail extends Component {
       >
 
 
-		<Card title="员工驾驶证列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <EmployeeDrivingLicenseEditTable data={employeeDrivingLicenseList} owner={owner} {...this.props} />
-          </Form>
+
+<Card 
+  className={styles.card} 
+  bordered={false}
+  tabList={tabList}
+  onTabChange={this.onOperationTabChange}
+
+  >
+            {contentList[this.state.tabKey]}
         </Card>
 
-		<Card title="消息管理列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <CompanyEmployeeMessageEditTable data={companyEmployeeMessageList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
 
-		<Card title="车辆检测服务订单日志列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <VehicleInspectionOrderServiceLogEditTable data={vehicleInspectionOrderServiceLogList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
 
-		<Card title="收车服务列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ServiceVehicleMovementC2mEditTable data={serviceVehicleMovementC2mList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="送审服务列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ServiceVehicleMovementM2mEditTable data={serviceVehicleMovementM2mList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="还车服务列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ServiceVehicleMovementM2cEditTable data={serviceVehicleMovementM2cList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="收件服务列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ServiceFileMovementC2mEditTable data={serviceFileMovementC2mList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="移件服务列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ServiceFileMovementM2mEditTable data={serviceFileMovementM2mList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="还件服务列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ServiceFileMovementM2cEditTable data={serviceFileMovementM2cList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="保险增值服务列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ServiceInsuranceForInspectionEditTable data={serviceInsuranceForInspectionList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="车辆上线检测结果列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ServiceVehicleInspectionEditTable data={serviceVehicleInspectionList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="6年免检服务结果列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ServiceFileInspectionEditTable data={serviceFileInspectionList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="修车服务列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ServiceVehicleRepairingEditTable data={serviceVehicleRepairingList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
+		
  
       </PageHeaderLayout>
     )

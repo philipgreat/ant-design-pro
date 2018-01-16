@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './SecUser.app.less'
 import SecUserDashboard from './SecUser.dashboard'
 import SecUserEditDetail from './SecUser.editdetail'
+import SecUserViewDetail from './SecUser.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -110,7 +111,7 @@ class SecUserBizApp extends React.PureComponent {
       currentPage: state._secUser.userAppCurrentPageNumber,
       searchFormParameters: state._secUser.userAppSearchFormParameters,
       loading: state._secUser.loading,
-      owner: { type: '_secUser', id: state._secUser.id }, // this is for model namespace and
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'userAppList' }, // this is for model namespace and
     }))(UserAppSearch)
   }
   getUserAppCreateForm = () => {
@@ -122,7 +123,7 @@ class SecUserBizApp extends React.PureComponent {
       currentPage: state._secUser.userAppCurrentPageNumber,
       searchFormParameters: state._secUser.userAppSearchFormParameters,
       loading: state._secUser.loading,
-      owner: { type: '_secUser', id: state._secUser.id }, // this is for model namespace and
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'userAppList'}, // this is for model namespace and
     }))(UserAppCreateForm)
   }
   
@@ -131,7 +132,7 @@ class SecUserBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._secUser.selectedRows,
       currentUpdateIndex: state._secUser.currentUpdateIndex,
-      owner: { type: '_secUser', id: state._secUser.id }, // this is for model namespace and
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'userAppList' }, // this is for model namespace and
     }))(UserAppUpdateForm)
   }
 
@@ -144,7 +145,7 @@ class SecUserBizApp extends React.PureComponent {
       currentPage: state._secUser.loginHistoryCurrentPageNumber,
       searchFormParameters: state._secUser.loginHistorySearchFormParameters,
       loading: state._secUser.loading,
-      owner: { type: '_secUser', id: state._secUser.id }, // this is for model namespace and
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'loginHistoryList' }, // this is for model namespace and
     }))(LoginHistorySearch)
   }
   getLoginHistoryCreateForm = () => {
@@ -156,7 +157,7 @@ class SecUserBizApp extends React.PureComponent {
       currentPage: state._secUser.loginHistoryCurrentPageNumber,
       searchFormParameters: state._secUser.loginHistorySearchFormParameters,
       loading: state._secUser.loading,
-      owner: { type: '_secUser', id: state._secUser.id }, // this is for model namespace and
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'loginHistoryList'}, // this is for model namespace and
     }))(LoginHistoryCreateForm)
   }
   
@@ -165,7 +166,7 @@ class SecUserBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._secUser.selectedRows,
       currentUpdateIndex: state._secUser.currentUpdateIndex,
-      owner: { type: '_secUser', id: state._secUser.id }, // this is for model namespace and
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'loginHistoryList' }, // this is for model namespace and
     }))(LoginHistoryUpdateForm)
   }
 
@@ -204,7 +205,7 @@ class SecUserBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -229,8 +230,15 @@ class SecUserBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/secUser/${this.props.secUser.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/secUser/${this.props.secUser.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.secUser.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -238,6 +246,8 @@ class SecUserBizApp extends React.PureComponent {
              <Switch>
                <Route path="/secUser/:id/dashboard" component={SecUserDashboard} />
                <Route path="/secUser/:id/editDetail" component={SecUserEditDetail} />
+               <Route path="/secUser/:id/viewDetail" component={SecUserViewDetail} />
+               
 
                <Route path="/secUser/:id/list/userAppList" component={this.getUserAppSearch()} />
                <Route path="/secUser/:id/list/userAppCreateForm" component={this.getUserAppCreateForm()} />

@@ -374,7 +374,7 @@ class ServiceVehicleInspectionUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="检测报告1"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'reportImage1')}
@@ -383,7 +383,7 @@ class ServiceVehicleInspectionUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="检测报告2"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'reportImage2')}
@@ -392,7 +392,7 @@ class ServiceVehicleInspectionUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="检测报告3"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'reportImage3')}
@@ -401,7 +401,7 @@ class ServiceVehicleInspectionUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="检测报告4"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'reportImage4')}
@@ -410,7 +410,7 @@ class ServiceVehicleInspectionUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="检测报告5"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'reportImage5')}

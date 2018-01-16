@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './ProductPrice.app.less'
 import ProductPriceDashboard from './ProductPrice.dashboard'
 import ProductPriceEditDetail from './ProductPrice.editdetail'
+import ProductPriceViewDetail from './ProductPrice.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class ProductPriceBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class ProductPriceBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/productPrice/${this.props.productPrice.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/productPrice/${this.props.productPrice.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.productPrice.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class ProductPriceBizApp extends React.PureComponent {
              <Switch>
                <Route path="/productPrice/:id/dashboard" component={ProductPriceDashboard} />
                <Route path="/productPrice/:id/editDetail" component={ProductPriceEditDetail} />
+               <Route path="/productPrice/:id/viewDetail" component={ProductPriceViewDetail} />
+               
               
              </Switch>
            </Content>

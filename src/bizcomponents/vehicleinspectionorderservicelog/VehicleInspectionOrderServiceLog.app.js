@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './VehicleInspectionOrderServiceLog.app.less'
 import VehicleInspectionOrderServiceLogDashboard from './VehicleInspectionOrderServiceLog.dashboard'
 import VehicleInspectionOrderServiceLogEditDetail from './VehicleInspectionOrderServiceLog.editdetail'
+import VehicleInspectionOrderServiceLogViewDetail from './VehicleInspectionOrderServiceLog.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class VehicleInspectionOrderServiceLogBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class VehicleInspectionOrderServiceLogBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/vehicleInspectionOrderServiceLog/${this.props.vehicleInspectionOrderServiceLog.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehicleInspectionOrderServiceLog/${this.props.vehicleInspectionOrderServiceLog.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.vehicleInspectionOrderServiceLog.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class VehicleInspectionOrderServiceLogBizApp extends React.PureComponent {
              <Switch>
                <Route path="/vehicleInspectionOrderServiceLog/:id/dashboard" component={VehicleInspectionOrderServiceLogDashboard} />
                <Route path="/vehicleInspectionOrderServiceLog/:id/editDetail" component={VehicleInspectionOrderServiceLogEditDetail} />
+               <Route path="/vehicleInspectionOrderServiceLog/:id/viewDetail" component={VehicleInspectionOrderServiceLogViewDetail} />
+               
               
              </Switch>
            </Content>

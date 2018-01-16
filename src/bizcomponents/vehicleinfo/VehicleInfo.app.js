@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './VehicleInfo.app.less'
 import VehicleInfoDashboard from './VehicleInfo.dashboard'
 import VehicleInfoEditDetail from './VehicleInfo.editdetail'
+import VehicleInfoViewDetail from './VehicleInfo.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class VehicleInfoBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class VehicleInfoBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/vehicleInfo/${this.props.vehicleInfo.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehicleInfo/${this.props.vehicleInfo.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.vehicleInfo.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class VehicleInfoBizApp extends React.PureComponent {
              <Switch>
                <Route path="/vehicleInfo/:id/dashboard" component={VehicleInfoDashboard} />
                <Route path="/vehicleInfo/:id/editDetail" component={VehicleInfoEditDetail} />
+               <Route path="/vehicleInfo/:id/viewDetail" component={VehicleInfoViewDetail} />
+               
               
              </Switch>
            </Content>

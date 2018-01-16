@@ -11,7 +11,7 @@ const columns = [
   { title: '服务', dataIndex: 'service', render: (text, record) => (record.service ? record.service.id : '暂无') },
   { title: '检查结果', debugtype: 'string', dataIndex: 'checkResult', width: '6' },
   { title: '检验结果的评论', debugtype: 'string', dataIndex: 'checkResultComments', width: '30' },
-  { title: '创建时间', debugtype: 'date', dataIndex: 'createTime', width: '14' },
+  { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD') },
   { title: '图1', dataIndex: 'image1', render: (text, record) => <ImagePreview imageLocation={record.图1} /> },
   { title: '图2', dataIndex: 'image2', render: (text, record) => <ImagePreview imageLocation={record.图2} /> },
   { title: '图3', dataIndex: 'image3', render: (text, record) => <ImagePreview imageLocation={record.图3} /> },

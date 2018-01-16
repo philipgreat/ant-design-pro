@@ -84,6 +84,7 @@ class EmployeeDrivingLicenseUpdateForm extends Component {
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
+        expirationDate: moment(item.expirationDate).format('YYYY-MM-DD'),
 
       }
     })
@@ -369,7 +370,7 @@ class EmployeeDrivingLicenseUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图1"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image1')}
@@ -378,7 +379,7 @@ class EmployeeDrivingLicenseUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图2"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image2')}
@@ -387,7 +388,7 @@ class EmployeeDrivingLicenseUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图3"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image3')}
@@ -396,7 +397,7 @@ class EmployeeDrivingLicenseUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图4"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image4')}
@@ -405,7 +406,7 @@ class EmployeeDrivingLicenseUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图5"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image5')}

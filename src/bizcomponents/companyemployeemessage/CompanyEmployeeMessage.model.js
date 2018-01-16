@@ -66,6 +66,13 @@ export default {
           dispatch({ type: 'view', payload: { id } })
           return
         }
+        const viewDetailMatch = pathToRegexp('/companyEmployeeMessage/:id/viewDetail').exec(pathname)
+        if (viewDetailMatch) {
+          const id = viewDetailMatch[1]
+          dispatch({ type: 'view', payload: { id } })
+          return
+        }
+        
         const match = pathToRegexp('/companyEmployeeMessage/:id/list/:listName').exec(pathname)
         if (!match) {
           return

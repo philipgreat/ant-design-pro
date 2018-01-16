@@ -383,7 +383,7 @@ class InspectionStationUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="计量资格认证"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'metrologyAccreditationImage')}

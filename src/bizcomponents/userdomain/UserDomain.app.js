@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './UserDomain.app.less'
 import UserDomainDashboard from './UserDomain.dashboard'
 import UserDomainEditDetail from './UserDomain.editdetail'
+import UserDomainViewDetail from './UserDomain.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -107,7 +108,7 @@ class UserDomainBizApp extends React.PureComponent {
       currentPage: state._userDomain.secUserCurrentPageNumber,
       searchFormParameters: state._userDomain.secUserSearchFormParameters,
       loading: state._userDomain.loading,
-      owner: { type: '_userDomain', id: state._userDomain.id }, // this is for model namespace and
+      owner: { type: '_userDomain', id: state._userDomain.id, listName: 'secUserList' }, // this is for model namespace and
     }))(SecUserSearch)
   }
   getSecUserCreateForm = () => {
@@ -119,7 +120,7 @@ class UserDomainBizApp extends React.PureComponent {
       currentPage: state._userDomain.secUserCurrentPageNumber,
       searchFormParameters: state._userDomain.secUserSearchFormParameters,
       loading: state._userDomain.loading,
-      owner: { type: '_userDomain', id: state._userDomain.id }, // this is for model namespace and
+      owner: { type: '_userDomain', id: state._userDomain.id, listName: 'secUserList'}, // this is for model namespace and
     }))(SecUserCreateForm)
   }
   
@@ -128,7 +129,7 @@ class UserDomainBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._userDomain.selectedRows,
       currentUpdateIndex: state._userDomain.currentUpdateIndex,
-      owner: { type: '_userDomain', id: state._userDomain.id }, // this is for model namespace and
+      owner: { type: '_userDomain', id: state._userDomain.id, listName: 'secUserList' }, // this is for model namespace and
     }))(SecUserUpdateForm)
   }
 
@@ -167,7 +168,7 @@ class UserDomainBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -192,8 +193,15 @@ class UserDomainBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/userDomain/${this.props.userDomain.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/userDomain/${this.props.userDomain.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.userDomain.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -201,6 +209,8 @@ class UserDomainBizApp extends React.PureComponent {
              <Switch>
                <Route path="/userDomain/:id/dashboard" component={UserDomainDashboard} />
                <Route path="/userDomain/:id/editDetail" component={UserDomainEditDetail} />
+               <Route path="/userDomain/:id/viewDetail" component={UserDomainViewDetail} />
+               
 
                <Route path="/userDomain/:id/list/secUserList" component={this.getSecUserSearch()} />
                <Route path="/userDomain/:id/list/secUserCreateForm" component={this.getSecUserCreateForm()} />

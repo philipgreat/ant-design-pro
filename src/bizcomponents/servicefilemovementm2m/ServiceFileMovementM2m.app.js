@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './ServiceFileMovementM2m.app.less'
 import ServiceFileMovementM2mDashboard from './ServiceFileMovementM2m.dashboard'
 import ServiceFileMovementM2mEditDetail from './ServiceFileMovementM2m.editdetail'
+import ServiceFileMovementM2mViewDetail from './ServiceFileMovementM2m.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -107,7 +108,7 @@ class ServiceFileMovementM2mBizApp extends React.PureComponent {
       currentPage: state._serviceFileMovementM2m.serviceFileMovementM2mChecklistResultCurrentPageNumber,
       searchFormParameters: state._serviceFileMovementM2m.serviceFileMovementM2mChecklistResultSearchFormParameters,
       loading: state._serviceFileMovementM2m.loading,
-      owner: { type: '_serviceFileMovementM2m', id: state._serviceFileMovementM2m.id }, // this is for model namespace and
+      owner: { type: '_serviceFileMovementM2m', id: state._serviceFileMovementM2m.id, listName: 'serviceFileMovementM2mChecklistResultList' }, // this is for model namespace and
     }))(ServiceFileMovementM2mChecklistResultSearch)
   }
   getServiceFileMovementM2mChecklistResultCreateForm = () => {
@@ -119,7 +120,7 @@ class ServiceFileMovementM2mBizApp extends React.PureComponent {
       currentPage: state._serviceFileMovementM2m.serviceFileMovementM2mChecklistResultCurrentPageNumber,
       searchFormParameters: state._serviceFileMovementM2m.serviceFileMovementM2mChecklistResultSearchFormParameters,
       loading: state._serviceFileMovementM2m.loading,
-      owner: { type: '_serviceFileMovementM2m', id: state._serviceFileMovementM2m.id }, // this is for model namespace and
+      owner: { type: '_serviceFileMovementM2m', id: state._serviceFileMovementM2m.id, listName: 'serviceFileMovementM2mChecklistResultList'}, // this is for model namespace and
     }))(ServiceFileMovementM2mChecklistResultCreateForm)
   }
   
@@ -128,7 +129,7 @@ class ServiceFileMovementM2mBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._serviceFileMovementM2m.selectedRows,
       currentUpdateIndex: state._serviceFileMovementM2m.currentUpdateIndex,
-      owner: { type: '_serviceFileMovementM2m', id: state._serviceFileMovementM2m.id }, // this is for model namespace and
+      owner: { type: '_serviceFileMovementM2m', id: state._serviceFileMovementM2m.id, listName: 'serviceFileMovementM2mChecklistResultList' }, // this is for model namespace and
     }))(ServiceFileMovementM2mChecklistResultUpdateForm)
   }
 
@@ -167,7 +168,7 @@ class ServiceFileMovementM2mBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -192,8 +193,15 @@ class ServiceFileMovementM2mBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/serviceFileMovementM2m/${this.props.serviceFileMovementM2m.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/serviceFileMovementM2m/${this.props.serviceFileMovementM2m.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.serviceFileMovementM2m.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -201,6 +209,8 @@ class ServiceFileMovementM2mBizApp extends React.PureComponent {
              <Switch>
                <Route path="/serviceFileMovementM2m/:id/dashboard" component={ServiceFileMovementM2mDashboard} />
                <Route path="/serviceFileMovementM2m/:id/editDetail" component={ServiceFileMovementM2mEditDetail} />
+               <Route path="/serviceFileMovementM2m/:id/viewDetail" component={ServiceFileMovementM2mViewDetail} />
+               
 
                <Route path="/serviceFileMovementM2m/:id/list/serviceFileMovementM2mChecklistResultList" component={this.getServiceFileMovementM2mChecklistResultSearch()} />
                <Route path="/serviceFileMovementM2m/:id/list/serviceFileMovementM2mChecklistResultCreateForm" component={this.getServiceFileMovementM2mChecklistResultCreateForm()} />

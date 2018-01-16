@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './UserApp.app.less'
 import UserAppDashboard from './UserApp.dashboard'
 import UserAppEditDetail from './UserApp.editdetail'
+import UserAppViewDetail from './UserApp.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -107,7 +108,7 @@ class UserAppBizApp extends React.PureComponent {
       currentPage: state._userApp.objectAccessCurrentPageNumber,
       searchFormParameters: state._userApp.objectAccessSearchFormParameters,
       loading: state._userApp.loading,
-      owner: { type: '_userApp', id: state._userApp.id }, // this is for model namespace and
+      owner: { type: '_userApp', id: state._userApp.id, listName: 'objectAccessList' }, // this is for model namespace and
     }))(ObjectAccessSearch)
   }
   getObjectAccessCreateForm = () => {
@@ -119,7 +120,7 @@ class UserAppBizApp extends React.PureComponent {
       currentPage: state._userApp.objectAccessCurrentPageNumber,
       searchFormParameters: state._userApp.objectAccessSearchFormParameters,
       loading: state._userApp.loading,
-      owner: { type: '_userApp', id: state._userApp.id }, // this is for model namespace and
+      owner: { type: '_userApp', id: state._userApp.id, listName: 'objectAccessList'}, // this is for model namespace and
     }))(ObjectAccessCreateForm)
   }
   
@@ -128,7 +129,7 @@ class UserAppBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._userApp.selectedRows,
       currentUpdateIndex: state._userApp.currentUpdateIndex,
-      owner: { type: '_userApp', id: state._userApp.id }, // this is for model namespace and
+      owner: { type: '_userApp', id: state._userApp.id, listName: 'objectAccessList' }, // this is for model namespace and
     }))(ObjectAccessUpdateForm)
   }
 
@@ -167,7 +168,7 @@ class UserAppBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -192,8 +193,15 @@ class UserAppBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/userApp/${this.props.userApp.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/userApp/${this.props.userApp.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.userApp.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -201,6 +209,8 @@ class UserAppBizApp extends React.PureComponent {
              <Switch>
                <Route path="/userApp/:id/dashboard" component={UserAppDashboard} />
                <Route path="/userApp/:id/editDetail" component={UserAppEditDetail} />
+               <Route path="/userApp/:id/viewDetail" component={UserAppViewDetail} />
+               
 
                <Route path="/userApp/:id/list/objectAccessList" component={this.getObjectAccessSearch()} />
                <Route path="/userApp/:id/list/objectAccessCreateForm" component={this.getObjectAccessCreateForm()} />

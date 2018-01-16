@@ -76,6 +76,9 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
+        startDate: moment(item.startDate).format('YYYY-MM-DD'),
+        expirationDate: moment(item.expirationDate).format('YYYY-MM-DD'),
+        usedDate: moment(item.usedDate).format('YYYY-MM-DD'),
 
       }
     })

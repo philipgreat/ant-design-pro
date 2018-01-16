@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './HandOverChecklistItem.app.less'
 import HandOverChecklistItemDashboard from './HandOverChecklistItem.dashboard'
 import HandOverChecklistItemEditDetail from './HandOverChecklistItem.editdetail'
+import HandOverChecklistItemViewDetail from './HandOverChecklistItem.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class HandOverChecklistItemBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class HandOverChecklistItemBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/handOverChecklistItem/${this.props.handOverChecklistItem.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/handOverChecklistItem/${this.props.handOverChecklistItem.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.handOverChecklistItem.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class HandOverChecklistItemBizApp extends React.PureComponent {
              <Switch>
                <Route path="/handOverChecklistItem/:id/dashboard" component={HandOverChecklistItemDashboard} />
                <Route path="/handOverChecklistItem/:id/editDetail" component={HandOverChecklistItemEditDetail} />
+               <Route path="/handOverChecklistItem/:id/viewDetail" component={HandOverChecklistItemViewDetail} />
+               
               
              </Switch>
            </Content>

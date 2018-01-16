@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './ServiceVehicleRepairing.app.less'
 import ServiceVehicleRepairingDashboard from './ServiceVehicleRepairing.dashboard'
 import ServiceVehicleRepairingEditDetail from './ServiceVehicleRepairing.editdetail'
+import ServiceVehicleRepairingViewDetail from './ServiceVehicleRepairing.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -107,7 +108,7 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
       currentPage: state._serviceVehicleRepairing.repairingQuotationCurrentPageNumber,
       searchFormParameters: state._serviceVehicleRepairing.repairingQuotationSearchFormParameters,
       loading: state._serviceVehicleRepairing.loading,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id }, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'repairingQuotationList' }, // this is for model namespace and
     }))(RepairingQuotationSearch)
   }
   getRepairingQuotationCreateForm = () => {
@@ -119,7 +120,7 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
       currentPage: state._serviceVehicleRepairing.repairingQuotationCurrentPageNumber,
       searchFormParameters: state._serviceVehicleRepairing.repairingQuotationSearchFormParameters,
       loading: state._serviceVehicleRepairing.loading,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id }, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'repairingQuotationList'}, // this is for model namespace and
     }))(RepairingQuotationCreateForm)
   }
   
@@ -128,7 +129,7 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._serviceVehicleRepairing.selectedRows,
       currentUpdateIndex: state._serviceVehicleRepairing.currentUpdateIndex,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id }, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'repairingQuotationList' }, // this is for model namespace and
     }))(RepairingQuotationUpdateForm)
   }
 
@@ -167,7 +168,7 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -192,8 +193,15 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/serviceVehicleRepairing/${this.props.serviceVehicleRepairing.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/serviceVehicleRepairing/${this.props.serviceVehicleRepairing.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.serviceVehicleRepairing.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -201,6 +209,8 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
              <Switch>
                <Route path="/serviceVehicleRepairing/:id/dashboard" component={ServiceVehicleRepairingDashboard} />
                <Route path="/serviceVehicleRepairing/:id/editDetail" component={ServiceVehicleRepairingEditDetail} />
+               <Route path="/serviceVehicleRepairing/:id/viewDetail" component={ServiceVehicleRepairingViewDetail} />
+               
 
                <Route path="/serviceVehicleRepairing/:id/list/repairingQuotationList" component={this.getRepairingQuotationSearch()} />
                <Route path="/serviceVehicleRepairing/:id/list/repairingQuotationCreateForm" component={this.getRepairingQuotationCreateForm()} />

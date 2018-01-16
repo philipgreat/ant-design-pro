@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './AvailableHandOverItem.app.less'
 import AvailableHandOverItemDashboard from './AvailableHandOverItem.dashboard'
 import AvailableHandOverItemEditDetail from './AvailableHandOverItem.editdetail'
+import AvailableHandOverItemViewDetail from './AvailableHandOverItem.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -107,7 +108,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
       currentPage: state._availableHandOverItem.handOverChecklistItemCurrentPageNumber,
       searchFormParameters: state._availableHandOverItem.handOverChecklistItemSearchFormParameters,
       loading: state._availableHandOverItem.loading,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id }, // this is for model namespace and
+      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistItemList' }, // this is for model namespace and
     }))(HandOverChecklistItemSearch)
   }
   getHandOverChecklistItemCreateForm = () => {
@@ -119,7 +120,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
       currentPage: state._availableHandOverItem.handOverChecklistItemCurrentPageNumber,
       searchFormParameters: state._availableHandOverItem.handOverChecklistItemSearchFormParameters,
       loading: state._availableHandOverItem.loading,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id }, // this is for model namespace and
+      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistItemList'}, // this is for model namespace and
     }))(HandOverChecklistItemCreateForm)
   }
   
@@ -128,7 +129,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._availableHandOverItem.selectedRows,
       currentUpdateIndex: state._availableHandOverItem.currentUpdateIndex,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id }, // this is for model namespace and
+      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistItemList' }, // this is for model namespace and
     }))(HandOverChecklistItemUpdateForm)
   }
 
@@ -167,7 +168,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -192,8 +193,15 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/availableHandOverItem/${this.props.availableHandOverItem.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/availableHandOverItem/${this.props.availableHandOverItem.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.availableHandOverItem.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -201,6 +209,8 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
              <Switch>
                <Route path="/availableHandOverItem/:id/dashboard" component={AvailableHandOverItemDashboard} />
                <Route path="/availableHandOverItem/:id/editDetail" component={AvailableHandOverItemEditDetail} />
+               <Route path="/availableHandOverItem/:id/viewDetail" component={AvailableHandOverItemViewDetail} />
+               
 
                <Route path="/availableHandOverItem/:id/list/handOverChecklistItemList" component={this.getHandOverChecklistItemSearch()} />
                <Route path="/availableHandOverItem/:id/list/handOverChecklistItemCreateForm" component={this.getHandOverChecklistItemCreateForm()} />

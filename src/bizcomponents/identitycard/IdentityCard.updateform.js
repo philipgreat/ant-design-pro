@@ -76,6 +76,7 @@ class IdentityCardUpdateForm extends Component {
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
+        expirationDate: moment(item.expirationDate).format('YYYY-MM-DD'),
 
       }
     })
@@ -351,7 +352,7 @@ class IdentityCardUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="身份证正面照片"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'frontImage')}
@@ -360,7 +361,7 @@ class IdentityCardUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="身份证背面照片"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'backImage')}

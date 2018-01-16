@@ -95,7 +95,10 @@ class VehicleInfoUpdateForm extends Component {
       return {
         ...item,
         registrationDate: moment(item.registrationDate).format('YYYY-MM-DD'),
+        inspectionValidationDate: moment(item.inspectionValidationDate).format('YYYY-MM-DD'),
+        insuranceValidationDate: moment(item.insuranceValidationDate).format('YYYY-MM-DD'),
         vehiclePermitIssueDate: moment(item.vehiclePermitIssueDate).format('YYYY-MM-DD'),
+        vehiclePermitExpirationDate: moment(item.vehiclePermitExpirationDate).format('YYYY-MM-DD'),
 
       }
     })
@@ -471,7 +474,7 @@ class VehicleInfoUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图1"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage1')}
@@ -480,7 +483,7 @@ class VehicleInfoUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图2"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage2')}
@@ -489,7 +492,7 @@ class VehicleInfoUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图3"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage3')}
@@ -498,7 +501,7 @@ class VehicleInfoUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图4"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage4')}
@@ -507,7 +510,7 @@ class VehicleInfoUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="图5"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage5')}

@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './ServiceVehicleMovementM2cChecklistResult.app.less'
 import ServiceVehicleMovementM2cChecklistResultDashboard from './ServiceVehicleMovementM2cChecklistResult.dashboard'
 import ServiceVehicleMovementM2cChecklistResultEditDetail from './ServiceVehicleMovementM2cChecklistResult.editdetail'
+import ServiceVehicleMovementM2cChecklistResultViewDetail from './ServiceVehicleMovementM2cChecklistResult.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class ServiceVehicleMovementM2cChecklistResultBizApp extends React.PureComponent
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class ServiceVehicleMovementM2cChecklistResultBizApp extends React.PureComponent
              <Menu.Item >
                <Link to={`/serviceVehicleMovementM2cChecklistResult/${this.props.serviceVehicleMovementM2cChecklistResult.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/serviceVehicleMovementM2cChecklistResult/${this.props.serviceVehicleMovementM2cChecklistResult.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.serviceVehicleMovementM2cChecklistResult.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class ServiceVehicleMovementM2cChecklistResultBizApp extends React.PureComponent
              <Switch>
                <Route path="/serviceVehicleMovementM2cChecklistResult/:id/dashboard" component={ServiceVehicleMovementM2cChecklistResultDashboard} />
                <Route path="/serviceVehicleMovementM2cChecklistResult/:id/editDetail" component={ServiceVehicleMovementM2cChecklistResultEditDetail} />
+               <Route path="/serviceVehicleMovementM2cChecklistResult/:id/viewDetail" component={ServiceVehicleMovementM2cChecklistResultViewDetail} />
+               
               
              </Switch>
            </Content>

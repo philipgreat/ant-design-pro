@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './CarInspectionPlatform.app.less'
 import CarInspectionPlatformDashboard from './CarInspectionPlatform.dashboard'
 import CarInspectionPlatformEditDetail from './CarInspectionPlatform.editdetail'
+import CarInspectionPlatformViewDetail from './CarInspectionPlatform.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -122,7 +123,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentPage: state._carInspectionPlatform.provinceCurrentPageNumber,
       searchFormParameters: state._carInspectionPlatform.provinceSearchFormParameters,
       loading: state._carInspectionPlatform.loading,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'provinceList' }, // this is for model namespace and
     }))(ProvinceSearch)
   }
   getProvinceCreateForm = () => {
@@ -134,7 +135,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentPage: state._carInspectionPlatform.provinceCurrentPageNumber,
       searchFormParameters: state._carInspectionPlatform.provinceSearchFormParameters,
       loading: state._carInspectionPlatform.loading,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'provinceList'}, // this is for model namespace and
     }))(ProvinceCreateForm)
   }
   
@@ -143,7 +144,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._carInspectionPlatform.selectedRows,
       currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'provinceList' }, // this is for model namespace and
     }))(ProvinceUpdateForm)
   }
 
@@ -156,7 +157,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentPage: state._carInspectionPlatform.availableProductCurrentPageNumber,
       searchFormParameters: state._carInspectionPlatform.availableProductSearchFormParameters,
       loading: state._carInspectionPlatform.loading,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'availableProductList' }, // this is for model namespace and
     }))(AvailableProductSearch)
   }
   getAvailableProductCreateForm = () => {
@@ -168,7 +169,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentPage: state._carInspectionPlatform.availableProductCurrentPageNumber,
       searchFormParameters: state._carInspectionPlatform.availableProductSearchFormParameters,
       loading: state._carInspectionPlatform.loading,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'availableProductList'}, // this is for model namespace and
     }))(AvailableProductCreateForm)
   }
   
@@ -177,7 +178,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._carInspectionPlatform.selectedRows,
       currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'availableProductList' }, // this is for model namespace and
     }))(AvailableProductUpdateForm)
   }
 
@@ -190,7 +191,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentPage: state._carInspectionPlatform.customerCurrentPageNumber,
       searchFormParameters: state._carInspectionPlatform.customerSearchFormParameters,
       loading: state._carInspectionPlatform.loading,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'customerList' }, // this is for model namespace and
     }))(CustomerSearch)
   }
   getCustomerCreateForm = () => {
@@ -202,7 +203,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentPage: state._carInspectionPlatform.customerCurrentPageNumber,
       searchFormParameters: state._carInspectionPlatform.customerSearchFormParameters,
       loading: state._carInspectionPlatform.loading,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'customerList'}, // this is for model namespace and
     }))(CustomerCreateForm)
   }
   
@@ -211,7 +212,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._carInspectionPlatform.selectedRows,
       currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'customerList' }, // this is for model namespace and
     }))(CustomerUpdateForm)
   }
 
@@ -224,7 +225,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentPage: state._carInspectionPlatform.vehicleServiceCompanyCurrentPageNumber,
       searchFormParameters: state._carInspectionPlatform.vehicleServiceCompanySearchFormParameters,
       loading: state._carInspectionPlatform.loading,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'vehicleServiceCompanyList' }, // this is for model namespace and
     }))(VehicleServiceCompanySearch)
   }
   getVehicleServiceCompanyCreateForm = () => {
@@ -236,7 +237,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentPage: state._carInspectionPlatform.vehicleServiceCompanyCurrentPageNumber,
       searchFormParameters: state._carInspectionPlatform.vehicleServiceCompanySearchFormParameters,
       loading: state._carInspectionPlatform.loading,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'vehicleServiceCompanyList'}, // this is for model namespace and
     }))(VehicleServiceCompanyCreateForm)
   }
   
@@ -245,7 +246,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._carInspectionPlatform.selectedRows,
       currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'vehicleServiceCompanyList' }, // this is for model namespace and
     }))(VehicleServiceCompanyUpdateForm)
   }
 
@@ -258,7 +259,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentPage: state._carInspectionPlatform.vehicleInfoCurrentPageNumber,
       searchFormParameters: state._carInspectionPlatform.vehicleInfoSearchFormParameters,
       loading: state._carInspectionPlatform.loading,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'vehicleInfoList' }, // this is for model namespace and
     }))(VehicleInfoSearch)
   }
   getVehicleInfoCreateForm = () => {
@@ -270,7 +271,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentPage: state._carInspectionPlatform.vehicleInfoCurrentPageNumber,
       searchFormParameters: state._carInspectionPlatform.vehicleInfoSearchFormParameters,
       loading: state._carInspectionPlatform.loading,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'vehicleInfoList'}, // this is for model namespace and
     }))(VehicleInfoCreateForm)
   }
   
@@ -279,7 +280,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._carInspectionPlatform.selectedRows,
       currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'vehicleInfoList' }, // this is for model namespace and
     }))(VehicleInfoUpdateForm)
   }
 
@@ -292,7 +293,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentPage: state._carInspectionPlatform.vehicleInspectionOrderCurrentPageNumber,
       searchFormParameters: state._carInspectionPlatform.vehicleInspectionOrderSearchFormParameters,
       loading: state._carInspectionPlatform.loading,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'vehicleInspectionOrderList' }, // this is for model namespace and
     }))(VehicleInspectionOrderSearch)
   }
   getVehicleInspectionOrderCreateForm = () => {
@@ -304,7 +305,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentPage: state._carInspectionPlatform.vehicleInspectionOrderCurrentPageNumber,
       searchFormParameters: state._carInspectionPlatform.vehicleInspectionOrderSearchFormParameters,
       loading: state._carInspectionPlatform.loading,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'vehicleInspectionOrderList'}, // this is for model namespace and
     }))(VehicleInspectionOrderCreateForm)
   }
   
@@ -313,7 +314,7 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
     return connect(state => ({
       selectedRows: state._carInspectionPlatform.selectedRows,
       currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
-      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id }, // this is for model namespace and
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'vehicleInspectionOrderList' }, // this is for model namespace and
     }))(VehicleInspectionOrderUpdateForm)
   }
 
@@ -352,13 +353,13 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
            <div className={styles.logo}>
              <img src="/scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>驾乐乐车辆</h1></Link>
+             <Link to="/home"> <h1>驾乐乐车辆代审服务平台</h1></Link>
            </div>
 
            <Menu
@@ -377,8 +378,15 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/carInspectionPlatform/${this.props.carInspectionPlatform.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/carInspectionPlatform/${this.props.carInspectionPlatform.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.carInspectionPlatform.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -386,6 +394,8 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
              <Switch>
                <Route path="/carInspectionPlatform/:id/dashboard" component={CarInspectionPlatformDashboard} />
                <Route path="/carInspectionPlatform/:id/editDetail" component={CarInspectionPlatformEditDetail} />
+               <Route path="/carInspectionPlatform/:id/viewDetail" component={CarInspectionPlatformViewDetail} />
+               
 
                <Route path="/carInspectionPlatform/:id/list/provinceList" component={this.getProvinceSearch()} />
                <Route path="/carInspectionPlatform/:id/list/provinceCreateForm" component={this.getProvinceCreateForm()} />

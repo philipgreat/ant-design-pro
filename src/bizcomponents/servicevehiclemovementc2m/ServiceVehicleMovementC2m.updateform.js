@@ -407,7 +407,7 @@ class ServiceVehicleMovementC2mUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="拒收凭证1"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'rejectEvidence1')}
@@ -416,7 +416,7 @@ class ServiceVehicleMovementC2mUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="拒收凭证2"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'rejectEvidence2')}
@@ -425,7 +425,7 @@ class ServiceVehicleMovementC2mUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="拒收凭证3"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'rejectEvidence3')}
@@ -434,7 +434,7 @@ class ServiceVehicleMovementC2mUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="拒收凭证4"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'rejectEvidence4')}
@@ -443,7 +443,7 @@ class ServiceVehicleMovementC2mUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="拒收凭证5"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'rejectEvidence5')}

@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import styles from './VehicleInspectionOrderPayment.app.less'
 import VehicleInspectionOrderPaymentDashboard from './VehicleInspectionOrderPayment.dashboard'
 import VehicleInspectionOrderPaymentEditDetail from './VehicleInspectionOrderPayment.editdetail'
+import VehicleInspectionOrderPaymentViewDetail from './VehicleInspectionOrderPayment.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -130,7 +131,7 @@ class VehicleInspectionOrderPaymentBizApp extends React.PureComponent {
            collapsible
            collapsed={collapsed}
            breakpoint="md"
-           onCollapse={this.onCollapse}
+           onCollapse={()=>this.onCollapse(collapsed)}
            width={256}
            className={styles.sider}
          >
@@ -155,8 +156,15 @@ class VehicleInspectionOrderPaymentBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/vehicleInspectionOrderPayment/${this.props.vehicleInspectionOrderPayment.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehicleInspectionOrderPayment/${this.props.vehicleInspectionOrderPayment.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
              {this.getNavMenuItems(this.props.vehicleInspectionOrderPayment.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
            </Menu>
          </Sider>
          <Layout>
@@ -164,6 +172,8 @@ class VehicleInspectionOrderPaymentBizApp extends React.PureComponent {
              <Switch>
                <Route path="/vehicleInspectionOrderPayment/:id/dashboard" component={VehicleInspectionOrderPaymentDashboard} />
                <Route path="/vehicleInspectionOrderPayment/:id/editDetail" component={VehicleInspectionOrderPaymentEditDetail} />
+               <Route path="/vehicleInspectionOrderPayment/:id/viewDetail" component={VehicleInspectionOrderPaymentViewDetail} />
+               
               
              </Switch>
            </Content>

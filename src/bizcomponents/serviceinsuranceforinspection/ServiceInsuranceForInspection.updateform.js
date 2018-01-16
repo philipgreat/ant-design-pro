@@ -374,7 +374,7 @@ class ServiceInsuranceForInspectionUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="保险图1"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'insuranceImage1')}
@@ -383,7 +383,7 @@ class ServiceInsuranceForInspectionUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="保险图2"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'insuranceImage2')}
@@ -392,7 +392,7 @@ class ServiceInsuranceForInspectionUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="保险图片3"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'insuranceImage3')}
@@ -401,7 +401,7 @@ class ServiceInsuranceForInspectionUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="保险形象4"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'insuranceImage4')}
@@ -410,7 +410,7 @@ class ServiceInsuranceForInspectionUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <OSSPictureEdit
+                <PictureEdit
                   buttonTitle="保险图片5"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'insuranceImage5')}
