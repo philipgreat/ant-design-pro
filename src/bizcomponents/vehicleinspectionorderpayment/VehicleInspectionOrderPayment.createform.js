@@ -22,7 +22,7 @@ const fieldLabels = {
 
 const testValues = {
   paymentMethod: '微信',
-  paymentAmount: '359.48',
+  paymentAmount: '403.20',
   paymentStatus: '未支付',
   mainOrderId: 'VIO000001',
 }

@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './AvailableService.app.less'
-import AvailableServiceDashboard from './AvailableService.dashboard'
-import AvailableServiceEditDetail from './AvailableService.editdetail'
-import AvailableServiceViewDetail from './AvailableService.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -268,6 +265,14 @@ class AvailableServiceBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {AvailableServiceDashboard} = GlobalComponents
+     const {AvailableServiceEditDetail} = GlobalComponents
+     const {AvailableServiceViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -284,7 +289,7 @@ class AvailableServiceBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>服务范围</h1></Link>
            </div>
 

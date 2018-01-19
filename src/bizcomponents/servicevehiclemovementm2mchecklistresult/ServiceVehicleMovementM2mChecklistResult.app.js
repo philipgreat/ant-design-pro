@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceVehicleMovementM2mChecklistResult.app.less'
-import ServiceVehicleMovementM2mChecklistResultDashboard from './ServiceVehicleMovementM2mChecklistResult.dashboard'
-import ServiceVehicleMovementM2mChecklistResultEditDetail from './ServiceVehicleMovementM2mChecklistResult.editdetail'
-import ServiceVehicleMovementM2mChecklistResultViewDetail from './ServiceVehicleMovementM2mChecklistResult.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -87,7 +84,7 @@ class ServiceVehicleMovementM2mChecklistResultBizApp extends React.PureComponent
       <SubMenu title={
         <span>
           <Icon type="profile" />
-          <span>送审服务检查结果</span>
+          <span>移车服务检查结果</span>
         </span>}
       >
 
@@ -120,6 +117,14 @@ class ServiceVehicleMovementM2mChecklistResultBizApp extends React.PureComponent
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {ServiceVehicleMovementM2mChecklistResultDashboard} = GlobalComponents
+     const {ServiceVehicleMovementM2mChecklistResultEditDetail} = GlobalComponents
+     const {ServiceVehicleMovementM2mChecklistResultViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -136,8 +141,8 @@ class ServiceVehicleMovementM2mChecklistResultBizApp extends React.PureComponent
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>送审服务检查结果</h1></Link>
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+             <Link to="/home"> <h1>移车服务检查结果</h1></Link>
            </div>
 
            <Menu

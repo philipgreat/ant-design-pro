@@ -19,6 +19,10 @@ const columns = [
   { title: '是否可以移车', dataIndex: 'availableMoveCar', render: (text, record) => (record.availableMoveCar ? '是' : '否') },
   { title: '是否可以检车', dataIndex: 'availableInspectionCar', render: (text, record) => (record.availableInspectionCar ? '是' : '否') },
   { title: '是否可以修车', dataIndex: 'availableRepairCar', render: (text, record) => (record.availableRepairCar ? '是' : '否') },
+  { title: '资格', dataIndex: 'qualification', render: (text, record) => (record.qualification ? (<Link to={`/companyEmployeeQualification/${record.qualification.id}/dashboard`}>{record.qualification.id}</Link>) : '暂无') },
+  { title: '服务', dataIndex: 'serving', render: (text, record) => (record.serving ? (<Link to={`/companyEmployeeServing/${record.serving.id}/dashboard`}>{record.serving.id}</Link>) : '暂无') },
+  { title: '终止', dataIndex: 'termination', render: (text, record) => (record.termination ? (<Link to={`/companyEmployeeTermination/${record.termination.id}/dashboard`}>{record.termination.id}</Link>) : '暂无') },
+  { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '14' },
 
 ]
 
@@ -96,7 +100,7 @@ class VehicleServiceCompanyEmployeeTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 1080 }}
+          scroll={{ x: 1635 }}
         />
       </div>
     )

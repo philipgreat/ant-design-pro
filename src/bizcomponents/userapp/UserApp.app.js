@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './UserApp.app.less'
-import UserAppDashboard from './UserApp.dashboard'
-import UserAppEditDetail from './UserApp.editdetail'
-import UserAppViewDetail from './UserApp.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -157,6 +154,14 @@ class UserAppBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {UserAppDashboard} = GlobalComponents
+     const {UserAppEditDetail} = GlobalComponents
+     const {UserAppViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -173,7 +178,7 @@ class UserAppBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>用户应用程序</h1></Link>
            </div>
 

@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './VehicleServiceCompanyEmployee.app.less'
-import VehicleServiceCompanyEmployeeDashboard from './VehicleServiceCompanyEmployee.dashboard'
-import VehicleServiceCompanyEmployeeEditDetail from './VehicleServiceCompanyEmployee.editdetail'
-import VehicleServiceCompanyEmployeeViewDetail from './VehicleServiceCompanyEmployee.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -107,13 +104,13 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
           <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceVehicleMovementC2mList`}>收车服务</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceVehicleMovementM2mListAsResponsibleWorker`}>送审服务</Link>
+          <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceVehicleMovementM2mListAsResponsibleWorker`}>移车服务</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceVehicleMovementM2mListAsDriver`}>送审服务</Link>
+          <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceVehicleMovementM2mListAsDriver`}>移车服务</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceVehicleMovementM2mListAsReceiver`}>送审服务</Link>
+          <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceVehicleMovementM2mListAsReceiver`}>移车服务</Link>
         </Menu.Item>
         <Menu.Item>
           <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceVehicleMovementM2cList`}>还车服务</Link>
@@ -140,7 +137,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
           <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceVehicleInspectionList`}>车辆上线检测结果</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceFileInspectionList`}>6年免检服务结果</Link>
+          <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceFileInspectionList`}>6年免检服务</Link>
         </Menu.Item>
         <Menu.Item>
           <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceVehicleRepairingList`}>修车服务</Link>
@@ -786,6 +783,14 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {VehicleServiceCompanyEmployeeDashboard} = GlobalComponents
+     const {VehicleServiceCompanyEmployeeEditDetail} = GlobalComponents
+     const {VehicleServiceCompanyEmployeeViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -802,7 +807,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>服务提供商员工管理</h1></Link>
            </div>
 

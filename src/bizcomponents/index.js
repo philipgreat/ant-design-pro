@@ -226,6 +226,48 @@ import VehicleServiceCompanyEmployeeViewTable from './vehicleservicecompanyemplo
 import VehicleServiceCompanyEmployeeViewDetail from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.viewdetail';
 import VehicleServiceCompanyEmployeeService from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.service';
 import VehicleServiceCompanyEmployeeUpdateForm from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.updateform';
+import CompanyEmployeeQualificationBizApp from './companyemployeequalification/CompanyEmployeeQualification.app';
+import CompanyEmployeeQualificationModel from './companyemployeequalification/CompanyEmployeeQualification.model';
+import CompanyEmployeeQualificationDashboard from './companyemployeequalification/CompanyEmployeeQualification.dashboard';
+import CompanyEmployeeQualificationConfirmationTable from './companyemployeequalification/CompanyEmployeeQualification.confirmmationtable';
+import CompanyEmployeeQualificationSearch from './companyemployeequalification/CompanyEmployeeQualification.search';
+import CompanyEmployeeQualificationSearchForm from './companyemployeequalification/CompanyEmployeeQualification.searchform';
+import CompanyEmployeeQualificationCreateForm from './companyemployeequalification/CompanyEmployeeQualification.createform';
+import CompanyEmployeeQualificationTable from './companyemployeequalification/CompanyEmployeeQualification.table';
+import CompanyEmployeeQualificationEditTable from './companyemployeequalification/CompanyEmployeeQualification.edittable';
+import CompanyEmployeeQualificationEditDetail from './companyemployeequalification/CompanyEmployeeQualification.editdetail';
+import CompanyEmployeeQualificationViewTable from './companyemployeequalification/CompanyEmployeeQualification.viewtable';
+import CompanyEmployeeQualificationViewDetail from './companyemployeequalification/CompanyEmployeeQualification.viewdetail';
+import CompanyEmployeeQualificationService from './companyemployeequalification/CompanyEmployeeQualification.service';
+import CompanyEmployeeQualificationUpdateForm from './companyemployeequalification/CompanyEmployeeQualification.updateform';
+import CompanyEmployeeServingBizApp from './companyemployeeserving/CompanyEmployeeServing.app';
+import CompanyEmployeeServingModel from './companyemployeeserving/CompanyEmployeeServing.model';
+import CompanyEmployeeServingDashboard from './companyemployeeserving/CompanyEmployeeServing.dashboard';
+import CompanyEmployeeServingConfirmationTable from './companyemployeeserving/CompanyEmployeeServing.confirmmationtable';
+import CompanyEmployeeServingSearch from './companyemployeeserving/CompanyEmployeeServing.search';
+import CompanyEmployeeServingSearchForm from './companyemployeeserving/CompanyEmployeeServing.searchform';
+import CompanyEmployeeServingCreateForm from './companyemployeeserving/CompanyEmployeeServing.createform';
+import CompanyEmployeeServingTable from './companyemployeeserving/CompanyEmployeeServing.table';
+import CompanyEmployeeServingEditTable from './companyemployeeserving/CompanyEmployeeServing.edittable';
+import CompanyEmployeeServingEditDetail from './companyemployeeserving/CompanyEmployeeServing.editdetail';
+import CompanyEmployeeServingViewTable from './companyemployeeserving/CompanyEmployeeServing.viewtable';
+import CompanyEmployeeServingViewDetail from './companyemployeeserving/CompanyEmployeeServing.viewdetail';
+import CompanyEmployeeServingService from './companyemployeeserving/CompanyEmployeeServing.service';
+import CompanyEmployeeServingUpdateForm from './companyemployeeserving/CompanyEmployeeServing.updateform';
+import CompanyEmployeeTerminationBizApp from './companyemployeetermination/CompanyEmployeeTermination.app';
+import CompanyEmployeeTerminationModel from './companyemployeetermination/CompanyEmployeeTermination.model';
+import CompanyEmployeeTerminationDashboard from './companyemployeetermination/CompanyEmployeeTermination.dashboard';
+import CompanyEmployeeTerminationConfirmationTable from './companyemployeetermination/CompanyEmployeeTermination.confirmmationtable';
+import CompanyEmployeeTerminationSearch from './companyemployeetermination/CompanyEmployeeTermination.search';
+import CompanyEmployeeTerminationSearchForm from './companyemployeetermination/CompanyEmployeeTermination.searchform';
+import CompanyEmployeeTerminationCreateForm from './companyemployeetermination/CompanyEmployeeTermination.createform';
+import CompanyEmployeeTerminationTable from './companyemployeetermination/CompanyEmployeeTermination.table';
+import CompanyEmployeeTerminationEditTable from './companyemployeetermination/CompanyEmployeeTermination.edittable';
+import CompanyEmployeeTerminationEditDetail from './companyemployeetermination/CompanyEmployeeTermination.editdetail';
+import CompanyEmployeeTerminationViewTable from './companyemployeetermination/CompanyEmployeeTermination.viewtable';
+import CompanyEmployeeTerminationViewDetail from './companyemployeetermination/CompanyEmployeeTermination.viewdetail';
+import CompanyEmployeeTerminationService from './companyemployeetermination/CompanyEmployeeTermination.service';
+import CompanyEmployeeTerminationUpdateForm from './companyemployeetermination/CompanyEmployeeTermination.updateform';
 import EmployeeDrivingLicenseBizApp from './employeedrivinglicense/EmployeeDrivingLicense.app';
 import EmployeeDrivingLicenseModel from './employeedrivinglicense/EmployeeDrivingLicense.model';
 import EmployeeDrivingLicenseDashboard from './employeedrivinglicense/EmployeeDrivingLicense.dashboard';
@@ -716,6 +758,48 @@ import LoginHistoryViewTable from './loginhistory/LoginHistory.viewtable';
 import LoginHistoryViewDetail from './loginhistory/LoginHistory.viewdetail';
 import LoginHistoryService from './loginhistory/LoginHistory.service';
 import LoginHistoryUpdateForm from './loginhistory/LoginHistory.updateform';
+import GenericFormBizApp from './genericform/GenericForm.app';
+import GenericFormModel from './genericform/GenericForm.model';
+import GenericFormDashboard from './genericform/GenericForm.dashboard';
+import GenericFormConfirmationTable from './genericform/GenericForm.confirmmationtable';
+import GenericFormSearch from './genericform/GenericForm.search';
+import GenericFormSearchForm from './genericform/GenericForm.searchform';
+import GenericFormCreateForm from './genericform/GenericForm.createform';
+import GenericFormTable from './genericform/GenericForm.table';
+import GenericFormEditTable from './genericform/GenericForm.edittable';
+import GenericFormEditDetail from './genericform/GenericForm.editdetail';
+import GenericFormViewTable from './genericform/GenericForm.viewtable';
+import GenericFormViewDetail from './genericform/GenericForm.viewdetail';
+import GenericFormService from './genericform/GenericForm.service';
+import GenericFormUpdateForm from './genericform/GenericForm.updateform';
+import FormFieldBizApp from './formfield/FormField.app';
+import FormFieldModel from './formfield/FormField.model';
+import FormFieldDashboard from './formfield/FormField.dashboard';
+import FormFieldConfirmationTable from './formfield/FormField.confirmmationtable';
+import FormFieldSearch from './formfield/FormField.search';
+import FormFieldSearchForm from './formfield/FormField.searchform';
+import FormFieldCreateForm from './formfield/FormField.createform';
+import FormFieldTable from './formfield/FormField.table';
+import FormFieldEditTable from './formfield/FormField.edittable';
+import FormFieldEditDetail from './formfield/FormField.editdetail';
+import FormFieldViewTable from './formfield/FormField.viewtable';
+import FormFieldViewDetail from './formfield/FormField.viewdetail';
+import FormFieldService from './formfield/FormField.service';
+import FormFieldUpdateForm from './formfield/FormField.updateform';
+import FormActionBizApp from './formaction/FormAction.app';
+import FormActionModel from './formaction/FormAction.model';
+import FormActionDashboard from './formaction/FormAction.dashboard';
+import FormActionConfirmationTable from './formaction/FormAction.confirmmationtable';
+import FormActionSearch from './formaction/FormAction.search';
+import FormActionSearchForm from './formaction/FormAction.searchform';
+import FormActionCreateForm from './formaction/FormAction.createform';
+import FormActionTable from './formaction/FormAction.table';
+import FormActionEditTable from './formaction/FormAction.edittable';
+import FormActionEditDetail from './formaction/FormAction.editdetail';
+import FormActionViewTable from './formaction/FormAction.viewtable';
+import FormActionViewDetail from './formaction/FormAction.viewdetail';
+import FormActionService from './formaction/FormAction.service';
+import FormActionUpdateForm from './formaction/FormAction.updateform';
 
 
 const OOTBComponents={
@@ -943,6 +1027,48 @@ const OOTBComponents={
     VehicleServiceCompanyEmployeeViewDetail,
     VehicleServiceCompanyEmployeeService,
     VehicleServiceCompanyEmployeeUpdateForm,
+    CompanyEmployeeQualificationBizApp,
+    CompanyEmployeeQualificationModel,
+    CompanyEmployeeQualificationDashboard,
+    CompanyEmployeeQualificationConfirmationTable,
+    CompanyEmployeeQualificationSearch,
+    CompanyEmployeeQualificationSearchForm,
+    CompanyEmployeeQualificationCreateForm,
+    CompanyEmployeeQualificationTable,
+    CompanyEmployeeQualificationEditTable,
+    CompanyEmployeeQualificationEditDetail,
+    CompanyEmployeeQualificationViewTable,
+    CompanyEmployeeQualificationViewDetail,
+    CompanyEmployeeQualificationService,
+    CompanyEmployeeQualificationUpdateForm,
+    CompanyEmployeeServingBizApp,
+    CompanyEmployeeServingModel,
+    CompanyEmployeeServingDashboard,
+    CompanyEmployeeServingConfirmationTable,
+    CompanyEmployeeServingSearch,
+    CompanyEmployeeServingSearchForm,
+    CompanyEmployeeServingCreateForm,
+    CompanyEmployeeServingTable,
+    CompanyEmployeeServingEditTable,
+    CompanyEmployeeServingEditDetail,
+    CompanyEmployeeServingViewTable,
+    CompanyEmployeeServingViewDetail,
+    CompanyEmployeeServingService,
+    CompanyEmployeeServingUpdateForm,
+    CompanyEmployeeTerminationBizApp,
+    CompanyEmployeeTerminationModel,
+    CompanyEmployeeTerminationDashboard,
+    CompanyEmployeeTerminationConfirmationTable,
+    CompanyEmployeeTerminationSearch,
+    CompanyEmployeeTerminationSearchForm,
+    CompanyEmployeeTerminationCreateForm,
+    CompanyEmployeeTerminationTable,
+    CompanyEmployeeTerminationEditTable,
+    CompanyEmployeeTerminationEditDetail,
+    CompanyEmployeeTerminationViewTable,
+    CompanyEmployeeTerminationViewDetail,
+    CompanyEmployeeTerminationService,
+    CompanyEmployeeTerminationUpdateForm,
     EmployeeDrivingLicenseBizApp,
     EmployeeDrivingLicenseModel,
     EmployeeDrivingLicenseDashboard,
@@ -1433,12 +1559,55 @@ const OOTBComponents={
     LoginHistoryViewDetail,
     LoginHistoryService,
     LoginHistoryUpdateForm,
+    GenericFormBizApp,
+    GenericFormModel,
+    GenericFormDashboard,
+    GenericFormConfirmationTable,
+    GenericFormSearch,
+    GenericFormSearchForm,
+    GenericFormCreateForm,
+    GenericFormTable,
+    GenericFormEditTable,
+    GenericFormEditDetail,
+    GenericFormViewTable,
+    GenericFormViewDetail,
+    GenericFormService,
+    GenericFormUpdateForm,
+    FormFieldBizApp,
+    FormFieldModel,
+    FormFieldDashboard,
+    FormFieldConfirmationTable,
+    FormFieldSearch,
+    FormFieldSearchForm,
+    FormFieldCreateForm,
+    FormFieldTable,
+    FormFieldEditTable,
+    FormFieldEditDetail,
+    FormFieldViewTable,
+    FormFieldViewDetail,
+    FormFieldService,
+    FormFieldUpdateForm,
+    FormActionBizApp,
+    FormActionModel,
+    FormActionDashboard,
+    FormActionConfirmationTable,
+    FormActionSearch,
+    FormActionSearchForm,
+    FormActionCreateForm,
+    FormActionTable,
+    FormActionEditTable,
+    FormActionEditDetail,
+    FormActionViewTable,
+    FormActionViewDetail,
+    FormActionService,
+    FormActionUpdateForm,
 
 };
        
 
 
 export default OOTBComponents;
+
 
 
 

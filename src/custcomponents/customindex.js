@@ -1,5 +1,5 @@
-import TaskUpdateForm from './task/Task.updateform'
+import CarInspectionPlatformDashboard from './carinspectionplatform/CarInspectionPlatform.dashboard'
 
-const result = {TaskUpdateForm};
+const result = {CarInspectionPlatformDashboard};
 
 export default result;

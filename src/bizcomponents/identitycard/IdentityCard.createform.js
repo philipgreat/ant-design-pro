@@ -24,7 +24,7 @@ const fieldLabels = {
 const testValues = {
   holderName: '张建力',
   cardNumber: '510124199012010000',
-  expirationDate: '2998-07-21',
+  expirationDate: '2998-12-06',
 }
 
 const imageURLPrefix = '//localhost:2090'

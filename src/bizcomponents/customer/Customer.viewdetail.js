@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
+import moment from 'moment'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 
@@ -17,7 +18,7 @@ import styles from './Customer.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
-
+const { Step } = Steps
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -37,6 +38,7 @@ const summaryOf = (customer) =>{
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="序号">{customer.id}</Description> 
 <Description term="客户昵称">{customer.nickName}</Description> 
+<Description term="标志形象">{customer.logoImage}</Description> 
 <Description term="WeixinOpenid">{customer.weixinOpenid}</Description> 
 <Description term="WeixinAppid">{customer.weixinAppid}</Description> 
 	
@@ -65,11 +67,12 @@ export default class CustomerViewDetail extends Component {
     const {VehicleInspectionOrderViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, vehicleInfoCount, vehicleInspectionOrderCount } = this.props.customer
-    const { vehicleInfoList, vehicleInspectionOrderList } = this.props.customer
+    
+    const customer = this.props.customer
+    const { id, vehicleInfoCount, vehicleInspectionOrderCount } = customer
+    const { vehicleInfoList, vehicleInspectionOrderList } = customer
     
     const owner = { type: '_customer', id }
- 
     
     const tabList = [
 
@@ -90,6 +93,10 @@ export default class CustomerViewDetail extends Component {
     
     };
     
+
+
+    
+    
     
     return (
 
@@ -98,6 +105,9 @@ export default class CustomerViewDetail extends Component {
         content={summaryOf(this.props.customer)}
         wrapperClassName={styles.advancedForm}
       >
+
+      
+      
 	<Card 
   		className={styles.card} 
   		bordered={false}

@@ -14,8 +14,10 @@ const { TextArea } = Input
 const fieldLabels = {
   id: '序号',
   nickName: '客户昵称',
+  logoImage: '标志形象',
   weixinOpenid: 'WeixinOpenid',
   weixinAppid: 'WeixinAppid',
+  secUser: 'SecUser',
   platform: '平台',
 }
 
@@ -24,13 +26,16 @@ const testValues = {
   nickName: '张俊宝',
   weixinOpenid: 'wx123456789abcdefghijklmn',
   weixinAppid: 'wxapp12098410239840',
+  secUserId: 'SU000001',
   platformId: 'CIP000001',
+  logoImage: 'wx.qlogo.cnmmopenDYAIOgq83eqV99Oaly8icqjNWJWeCZTFR5HCwZcCJeibibCRMvWicIYBusmKFF6e8DAe7o07ql8mT8WhWdNUOJ3BiaQ.jpg',
 }
 
 const imageURLPrefix = '//localhost:2090'
 
 
 const imageKeys = [
+  'logoImage',
 ]
 
 
@@ -234,13 +239,56 @@ class CustomerCreateForm extends Component {
         </Card>
 
 
+        <Card title="标志形象" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+              <Col lg={24} md={24} sm={24}>
+                <Form.Item>
+                  {getFieldDecorator('logoImage', {
+                    rules: [{ required: true, message: '请输入标志形象' }],
+                  })(
+                    <TextArea rows={4} placeholder="请输入请输入标志形象" />
+                  )}
+                </Form.Item>
+              </Col>
+      </Row>
+          </Form>  
+        </Card>
 
+
+
+        <Card title="附件" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+
+              <Col lg={6} md={12} sm={24}>
+                <PictureEdit
+                  buttonTitle="标志形象"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'logoImage')}
+                  fileList={convertedImagesValues.logoImage}
+                />
+              </Col>
+
+            </Row>
+          </Form>
+        </Card>
 
 
 
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.secUser}>
+                  {getFieldDecorator('secUserId', {
+                    rules: [{ required: true, message: '请输入SecUser' }],
+                  })(
+                    <Input placeholder="请输入请输入SecUser" />
+                  )}
+                </Form.Item>
+              </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.platform}>

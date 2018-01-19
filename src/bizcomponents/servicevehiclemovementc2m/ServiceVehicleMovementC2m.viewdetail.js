@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
+import moment from 'moment'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 
@@ -17,7 +18,7 @@ import styles from './ServiceVehicleMovementC2m.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
-
+const { Step } = Steps
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -74,11 +75,12 @@ export default class ServiceVehicleMovementC2mViewDetail extends Component {
     const {ServiceVehicleMovementC2mChecklistResultViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, serviceVehicleMovementC2mChecklistResultCount } = this.props.serviceVehicleMovementC2m
-    const { serviceVehicleMovementC2mChecklistResultList } = this.props.serviceVehicleMovementC2m
+    
+    const serviceVehicleMovementC2m = this.props.serviceVehicleMovementC2m
+    const { id, serviceVehicleMovementC2mChecklistResultCount } = serviceVehicleMovementC2m
+    const { serviceVehicleMovementC2mChecklistResultList } = serviceVehicleMovementC2m
     
     const owner = { type: '_serviceVehicleMovementC2m', id }
- 
     
     const tabList = [
 
@@ -95,6 +97,10 @@ export default class ServiceVehicleMovementC2mViewDetail extends Component {
     
     };
     
+
+
+    
+    
     
     return (
 
@@ -103,6 +109,9 @@ export default class ServiceVehicleMovementC2mViewDetail extends Component {
         content={summaryOf(this.props.serviceVehicleMovementC2m)}
         wrapperClassName={styles.advancedForm}
       >
+
+      
+      
 	<Card 
   		className={styles.card} 
   		bordered={false}

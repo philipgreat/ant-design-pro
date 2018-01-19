@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
+import moment from 'moment'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 
@@ -17,7 +18,7 @@ import styles from './ServiceFileMovementM2c.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
-
+const { Step } = Steps
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -74,11 +75,12 @@ export default class ServiceFileMovementM2cViewDetail extends Component {
     const {ServiceFileMovementM2cChecklistResultViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, serviceFileMovementM2cChecklistResultCount } = this.props.serviceFileMovementM2c
-    const { serviceFileMovementM2cChecklistResultList } = this.props.serviceFileMovementM2c
+    
+    const serviceFileMovementM2c = this.props.serviceFileMovementM2c
+    const { id, serviceFileMovementM2cChecklistResultCount } = serviceFileMovementM2c
+    const { serviceFileMovementM2cChecklistResultList } = serviceFileMovementM2c
     
     const owner = { type: '_serviceFileMovementM2c', id }
- 
     
     const tabList = [
 
@@ -95,6 +97,10 @@ export default class ServiceFileMovementM2cViewDetail extends Component {
     
     };
     
+
+
+    
+    
     
     return (
 
@@ -103,6 +109,9 @@ export default class ServiceFileMovementM2cViewDetail extends Component {
         content={summaryOf(this.props.serviceFileMovementM2c)}
         wrapperClassName={styles.advancedForm}
       >
+
+      
+      
 	<Card 
   		className={styles.card} 
   		bordered={false}

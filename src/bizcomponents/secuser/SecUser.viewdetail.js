@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
+import moment from 'moment'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 
@@ -17,7 +18,7 @@ import styles from './SecUser.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
-
+const { Step } = Steps
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -58,7 +59,7 @@ export default class SecUserViewDetail extends Component {
 
 
   state = {
-    tabKey: `userAppList`,
+    tabKey: `customerList`,
     stepDirection: 'horizontal',
   }
  
@@ -66,18 +67,21 @@ export default class SecUserViewDetail extends Component {
     this.setState({ tabKey: key });
   }  
   render() {
+    const {CustomerViewTable} = GlobalComponents;
     const {UserAppViewTable} = GlobalComponents;
     const {LoginHistoryViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, userAppCount, loginHistoryCount } = this.props.secUser
-    const { userAppList, loginHistoryList } = this.props.secUser
+    
+    const secUser = this.props.secUser
+    const { id, customerCount, userAppCount, loginHistoryCount } = secUser
+    const { customerList, userAppList, loginHistoryList } = secUser
     
     const owner = { type: '_secUser', id }
- 
     
     const tabList = [
 
+      {key: 'customerList',tab: `客户(${customerCount})`}, 
       {key: 'userAppList',tab: `用户应用程序(${userAppCount})`}, 
       {key: 'loginHistoryList',tab: `登录历史(${loginHistoryCount})`}, 
    
@@ -86,7 +90,10 @@ export default class SecUserViewDetail extends Component {
    
    
     const contentList = {
-       userAppList:  
+       customerList:  
+        <CustomerViewTable data={customerList} owner={owner} {...this.props} />,
+ 
+      userAppList:  
         <UserAppViewTable data={userAppList} owner={owner} {...this.props} />,
  
       loginHistoryList:  
@@ -94,6 +101,37 @@ export default class SecUserViewDetail extends Component {
  
     
     };
+    
+
+
+    const actionDescForBlocking = (secUser) =>{
+      if(!secUser){
+        return (<div>出错</div>)
+      }
+      const {blocking} = secUser;
+      if(!blocking){
+        return (<div>催一下</div>)
+      }
+      
+      return (
+
+    
+      <DescriptionList className={styles.headerList} size="small" col="1">
+			<Description term="序号">{blocking.id}</Description> 
+			<Description term="谁">{blocking.who}</Description> 
+			<Description term="块时间">{blocking.blockTime}</Description> 
+			<Description term="评论">{blocking.comments}</Description> 
+			<Description term="版本">{blocking.version}</Description> 
+
+       
+		</DescriptionList>
+      )
+    }
+
+    
+	const steps=(<Steps direction={'horizontal'} current={1}>
+			<Step title="舞台调度" description={actionDescForBlocking(secUser)} />
+		</Steps>)
     
     
     return (
@@ -103,6 +141,11 @@ export default class SecUserViewDetail extends Component {
         content={summaryOf(this.props.secUser)}
         wrapperClassName={styles.advancedForm}
       >
+	<Card title="流程进度" style={{ marginBottom: 24 }} bordered={false}>{steps}
+		</Card>
+
+      
+      
 	<Card 
   		className={styles.card} 
   		bordered={false}

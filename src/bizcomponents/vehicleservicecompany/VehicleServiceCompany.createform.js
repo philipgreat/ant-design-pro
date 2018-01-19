@@ -20,6 +20,8 @@ const fieldLabels = {
   availableStoreService: '到店服务',
   availableHomeService: '上门服务',
   openingTime: '营业时间',
+  longitude: '经度',
+  latitude: '纬度',
   platform: '平台',
 }
 
@@ -31,6 +33,8 @@ const testValues = {
   availableStoreService: '1',
   availableHomeService: '1',
   openingTime: '早上8点到下午6点提供服务,周末24小时营业',
+  longitude: '25.31',
+  latitude: '139.77',
   addressCityId: 'C000001',
   platformId: 'CIP000001',
 }
@@ -263,6 +267,26 @@ class VehicleServiceCompanyCreateForm extends Component {
                     rules: [{ required: true, message: '请输入营业时间' }],
                   })(
                     <Input placeholder="请输入请输入营业时间string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.longitude}>
+                  {getFieldDecorator('longitude', {
+                    rules: [{ required: true, message: '请输入经度' }],
+                  })(
+                    <Input placeholder="请输入请输入经度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude}>
+                  {getFieldDecorator('latitude', {
+                    rules: [{ required: true, message: '请输入纬度' }],
+                  })(
+                    <Input placeholder="请输入请输入纬度double" />
                   )}
                 </Form.Item>
               </Col>

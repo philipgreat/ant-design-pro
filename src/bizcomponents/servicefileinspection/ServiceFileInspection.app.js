@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceFileInspection.app.less'
-import ServiceFileInspectionDashboard from './ServiceFileInspection.dashboard'
-import ServiceFileInspectionEditDetail from './ServiceFileInspection.editdetail'
-import ServiceFileInspectionViewDetail from './ServiceFileInspection.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -87,7 +84,7 @@ class ServiceFileInspectionBizApp extends React.PureComponent {
       <SubMenu title={
         <span>
           <Icon type="profile" />
-          <span>6年免检服务结果</span>
+          <span>6年免检服务</span>
         </span>}
       >
 
@@ -120,6 +117,14 @@ class ServiceFileInspectionBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {ServiceFileInspectionDashboard} = GlobalComponents
+     const {ServiceFileInspectionEditDetail} = GlobalComponents
+     const {ServiceFileInspectionViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -136,8 +141,8 @@ class ServiceFileInspectionBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>6年免检服务结果</h1></Link>
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+             <Link to="/home"> <h1>6年免检服务</h1></Link>
            </div>
 
            <Menu

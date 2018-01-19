@@ -59,6 +59,42 @@ const load = (targetObjectId, parameters) => {
 
 
 
+const addCustomer = (targetObjectId, parameters) => {
+  const url = `${PREFIX}secUserManager/addCustomer/secUserId/nickName/logoImage/weixinOpenid/weixinAppid/platformId/tokensExpr/`
+  const requestParameters = { ...parameters, tokensExpr: 'none' }
+
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const updateCustomer = (targetObjectId, parameters) => {
+  const url = `${PREFIX}secUserManager/updateCustomerProperties/secUserId/id/nickName/logoImage/weixinOpenid/weixinAppid/tokensExpr/`
+  const secUserId = targetObjectId
+  const requestParameters = { ...parameters, secUserId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const removeCustomerList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}secUserManager/removeCustomerList/secUserId/customerIds/tokensExpr/`
+  const requestParameters = { ...parameters, secUserId: targetObjectId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+
 const addUserApp = (targetObjectId, parameters) => {
   const url = `${PREFIX}secUserManager/addUserApp/secUserId/title/appIcon/fullAccess/permission/objectType/objectId/location/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
@@ -133,10 +169,13 @@ const removeLoginHistoryList = (targetObjectId, parameters) => {
 
 const SecUserService = { view,
   load,
+  addCustomer,
   addUserApp,
   addLoginHistory,
+  updateCustomer,
   updateUserApp,
   updateLoginHistory,
+  removeCustomerList,
   removeUserAppList,
   removeLoginHistoryList }
 export default SecUserService

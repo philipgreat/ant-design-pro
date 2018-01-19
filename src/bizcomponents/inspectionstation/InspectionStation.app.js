@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './InspectionStation.app.less'
-import InspectionStationDashboard from './InspectionStation.dashboard'
-import InspectionStationEditDetail from './InspectionStation.editdetail'
-import InspectionStationViewDetail from './InspectionStation.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -95,7 +92,7 @@ class InspectionStationBizApp extends React.PureComponent {
           <Link to={`/inspectionStation/${objectId}/list/serviceVehicleInspectionList`}>车辆上线检测结果</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/inspectionStation/${objectId}/list/serviceFileInspectionList`}>6年免检服务结果</Link>
+          <Link to={`/inspectionStation/${objectId}/list/serviceFileInspectionList`}>6年免检服务</Link>
         </Menu.Item>
       </SubMenu>
     )
@@ -194,6 +191,14 @@ class InspectionStationBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {InspectionStationDashboard} = GlobalComponents
+     const {InspectionStationEditDetail} = GlobalComponents
+     const {InspectionStationViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -210,7 +215,7 @@ class InspectionStationBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>检测站</h1></Link>
            </div>
 

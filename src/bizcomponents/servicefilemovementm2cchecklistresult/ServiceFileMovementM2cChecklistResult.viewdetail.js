@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
+import moment from 'moment'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 
@@ -17,7 +18,7 @@ import styles from './ServiceFileMovementM2cChecklistResult.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
-
+const { Step } = Steps
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -63,11 +64,12 @@ export default class ServiceFileMovementM2cChecklistResultViewDetail extends Com
   render() {
   
     // eslint-disable-next-line max-len
-    const { id,  } = this.props.serviceFileMovementM2cChecklistResult
-    const {  } = this.props.serviceFileMovementM2cChecklistResult
+    
+    const serviceFileMovementM2cChecklistResult = this.props.serviceFileMovementM2cChecklistResult
+    const { id,  } = serviceFileMovementM2cChecklistResult
+    const {  } = serviceFileMovementM2cChecklistResult
     
     const owner = { type: '_serviceFileMovementM2cChecklistResult', id }
- 
     
     const tabList = [
 
@@ -80,6 +82,10 @@ export default class ServiceFileMovementM2cChecklistResultViewDetail extends Com
      
     };
     
+
+
+    
+    
     
     return (
 
@@ -88,6 +94,9 @@ export default class ServiceFileMovementM2cChecklistResultViewDetail extends Com
         content={summaryOf(this.props.serviceFileMovementM2cChecklistResult)}
         wrapperClassName={styles.advancedForm}
       >
+
+      
+      
 	<Card 
   		className={styles.card} 
   		bordered={false}

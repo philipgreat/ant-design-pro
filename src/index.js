@@ -26,6 +26,9 @@ import VehicleServiceCompanyModel from './bizcomponents/vehicleservicecompany/Ve
 import VehicleServiceCompanyBusinessScopeModel from './bizcomponents/vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.model'
 import VehicleServiceCompanyDispatcherModel from './bizcomponents/vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.model'
 import VehicleServiceCompanyEmployeeModel from './bizcomponents/vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.model'
+import CompanyEmployeeQualificationModel from './bizcomponents/companyemployeequalification/CompanyEmployeeQualification.model'
+import CompanyEmployeeServingModel from './bizcomponents/companyemployeeserving/CompanyEmployeeServing.model'
+import CompanyEmployeeTerminationModel from './bizcomponents/companyemployeetermination/CompanyEmployeeTermination.model'
 import EmployeeDrivingLicenseModel from './bizcomponents/employeedrivinglicense/EmployeeDrivingLicense.model'
 import CompanyEmployeeMessageModel from './bizcomponents/companyemployeemessage/CompanyEmployeeMessage.model'
 import InspectionStationModel from './bizcomponents/inspectionstation/InspectionStation.model'
@@ -61,6 +64,9 @@ import SecUserBlockingModel from './bizcomponents/secuserblocking/SecUserBlockin
 import UserAppModel from './bizcomponents/userapp/UserApp.model'
 import ObjectAccessModel from './bizcomponents/objectaccess/ObjectAccess.model'
 import LoginHistoryModel from './bizcomponents/loginhistory/LoginHistory.model'
+import GenericFormModel from './bizcomponents/genericform/GenericForm.model'
+import FormFieldModel from './bizcomponents/formfield/FormField.model'
+import FormActionModel from './bizcomponents/formaction/FormAction.model'
 
 
 // 1. Initialize
@@ -91,6 +97,9 @@ app.model(VehicleServiceCompanyModel)
 app.model(VehicleServiceCompanyBusinessScopeModel)
 app.model(VehicleServiceCompanyDispatcherModel)
 app.model(VehicleServiceCompanyEmployeeModel)
+app.model(CompanyEmployeeQualificationModel)
+app.model(CompanyEmployeeServingModel)
+app.model(CompanyEmployeeTerminationModel)
 app.model(EmployeeDrivingLicenseModel)
 app.model(CompanyEmployeeMessageModel)
 app.model(InspectionStationModel)
@@ -126,6 +135,9 @@ app.model(SecUserBlockingModel)
 app.model(UserAppModel)
 app.model(ObjectAccessModel)
 app.model(LoginHistoryModel)
+app.model(GenericFormModel)
+app.model(FormFieldModel)
+app.model(FormActionModel)
 
 
 // 3. Model move to router

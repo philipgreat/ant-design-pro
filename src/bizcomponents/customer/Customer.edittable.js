@@ -83,10 +83,11 @@ class CustomerEditTable extends PureComponent {
       this.setState({ data: newData, appendInProcess:false });
     }
     const remapReference = (record) => {
+			const secUserId = record.secUser.id
 			const platformId = record.platform.id
 
       //const communityId = record.community.id;
-      return {platformId,};
+      return {secUserId,platformId,};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -192,8 +193,10 @@ class CustomerEditTable extends PureComponent {
     const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '客户昵称', debugtype: 'string', dataIndex: 'nickName', width: '24', render: (text, record) => renderStringEdit('nickName',text, record)  },
+  { title: '标志形象', dataIndex: 'logoImage', render: (text, record) => <ImagePreview imageLocation={record.标志形象} /> },
   { title: 'WeixinOpenid', debugtype: 'string', dataIndex: 'weixinOpenid', width: '29', render: (text, record) => renderStringEdit('weixinOpenid',text, record)  },
   { title: 'WeixinAppid', debugtype: 'string', dataIndex: 'weixinAppid', width: '23', render: (text, record) => renderStringEdit('weixinAppid',text, record)  },
+  { title: 'SecUser', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
   { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -202,8 +205,10 @@ class CustomerEditTable extends PureComponent {
       const newCustomerToAppend  = {
       	'id':`+1`, 
 				'nickName':'',
+				'logoImage':'',
 				'weixinOpenid':'',
 				'weixinAppid':'',
+				'secUser':'',
 				'platform':'',
 
 

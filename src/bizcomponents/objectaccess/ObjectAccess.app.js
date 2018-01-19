@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ObjectAccess.app.less'
-import ObjectAccessDashboard from './ObjectAccess.dashboard'
-import ObjectAccessEditDetail from './ObjectAccess.editdetail'
-import ObjectAccessViewDetail from './ObjectAccess.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -120,6 +117,14 @@ class ObjectAccessBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {ObjectAccessDashboard} = GlobalComponents
+     const {ObjectAccessEditDetail} = GlobalComponents
+     const {ObjectAccessViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -136,7 +141,7 @@ class ObjectAccessBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>对象访问</h1></Link>
            </div>
 

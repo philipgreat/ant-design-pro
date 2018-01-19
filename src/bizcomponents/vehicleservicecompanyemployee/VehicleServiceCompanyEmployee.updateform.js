@@ -25,6 +25,10 @@ const fieldLabels = {
   availableMoveCar: '是否可以移车',
   availableInspectionCar: '是否可以检车',
   availableRepairCar: '是否可以修车',
+  qualification: '资格',
+  serving: '服务',
+  termination: '终止',
+  currentStatus: '当前状态',
 
 }
 

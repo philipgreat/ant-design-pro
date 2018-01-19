@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './EmployeeDrivingLicense.app.less'
-import EmployeeDrivingLicenseDashboard from './EmployeeDrivingLicense.dashboard'
-import EmployeeDrivingLicenseEditDetail from './EmployeeDrivingLicense.editdetail'
-import EmployeeDrivingLicenseViewDetail from './EmployeeDrivingLicense.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -120,6 +117,14 @@ class EmployeeDrivingLicenseBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {EmployeeDrivingLicenseDashboard} = GlobalComponents
+     const {EmployeeDrivingLicenseEditDetail} = GlobalComponents
+     const {EmployeeDrivingLicenseViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -136,7 +141,7 @@ class EmployeeDrivingLicenseBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>员工驾驶证</h1></Link>
            </div>
 

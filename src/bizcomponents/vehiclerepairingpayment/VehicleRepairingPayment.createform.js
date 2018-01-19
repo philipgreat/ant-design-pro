@@ -21,7 +21,7 @@ const fieldLabels = {
 
 
 const testValues = {
-  repairingOrderTotalAmount: '866.97',
+  repairingOrderTotalAmount: '807.06',
   paymentStatus: '未支付',
   paymentMethod: '微信',
   repairingQuotationId: 'RQ000001',

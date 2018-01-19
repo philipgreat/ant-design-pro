@@ -38,6 +38,8 @@ const summaryOf = (vehicleServiceCompany) =>{
 <Description term="到店服务">{vehicleServiceCompany.availableStoreService?'是':'否'}</Description> 
 <Description term="上门服务">{vehicleServiceCompany.availableHomeService?'是':'否'}</Description> 
 <Description term="营业时间">{vehicleServiceCompany.openingTime}</Description> 
+<Description term="经度">{vehicleServiceCompany.longitude}</Description> 
+<Description term="纬度">{vehicleServiceCompany.latitude}</Description> 
 	
         
       </DescriptionList>

@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './CompanyEmployeeMessage.app.less'
-import CompanyEmployeeMessageDashboard from './CompanyEmployeeMessage.dashboard'
-import CompanyEmployeeMessageEditDetail from './CompanyEmployeeMessage.editdetail'
-import CompanyEmployeeMessageViewDetail from './CompanyEmployeeMessage.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -120,6 +117,14 @@ class CompanyEmployeeMessageBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {CompanyEmployeeMessageDashboard} = GlobalComponents
+     const {CompanyEmployeeMessageEditDetail} = GlobalComponents
+     const {CompanyEmployeeMessageViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -136,7 +141,7 @@ class CompanyEmployeeMessageBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>消息管理</h1></Link>
            </div>
 

@@ -96,7 +96,7 @@ const removeProductPriceList = (targetObjectId, parameters) => {
 
 
 const addVehicleServiceCompany = (targetObjectId, parameters) => {
-  const url = `${PREFIX}cityManager/addVehicleServiceCompany/addressCityId/companyName/operatingStatus/addressDetail/availableStoreService/availableHomeService/openingTime/platformId/tokensExpr/`
+  const url = `${PREFIX}cityManager/addVehicleServiceCompany/addressCityId/companyName/operatingStatus/addressDetail/availableStoreService/availableHomeService/openingTime/longitude/latitude/platformId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -108,7 +108,7 @@ const addVehicleServiceCompany = (targetObjectId, parameters) => {
 }
 
 const updateVehicleServiceCompany = (targetObjectId, parameters) => {
-  const url = `${PREFIX}cityManager/updateVehicleServiceCompanyProperties/cityId/id/companyName/operatingStatus/addressDetail/availableStoreService/availableHomeService/openingTime/tokensExpr/`
+  const url = `${PREFIX}cityManager/updateVehicleServiceCompanyProperties/cityId/id/companyName/operatingStatus/addressDetail/availableStoreService/availableHomeService/openingTime/longitude/latitude/tokensExpr/`
   const cityId = targetObjectId
   const requestParameters = { ...parameters, cityId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }

@@ -156,12 +156,3 @@ export default class LoginHistorySearchForm extends PureComponent {
   }
 }
 
-
-
-
-
-
-
-
-
-

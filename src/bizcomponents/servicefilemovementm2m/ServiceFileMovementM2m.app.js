@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceFileMovementM2m.app.less'
-import ServiceFileMovementM2mDashboard from './ServiceFileMovementM2m.dashboard'
-import ServiceFileMovementM2mEditDetail from './ServiceFileMovementM2m.editdetail'
-import ServiceFileMovementM2mViewDetail from './ServiceFileMovementM2m.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -157,6 +154,14 @@ class ServiceFileMovementM2mBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {ServiceFileMovementM2mDashboard} = GlobalComponents
+     const {ServiceFileMovementM2mEditDetail} = GlobalComponents
+     const {ServiceFileMovementM2mViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -173,7 +178,7 @@ class ServiceFileMovementM2mBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>移件服务</h1></Link>
            </div>
 

@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
+import moment from 'moment'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 
@@ -17,7 +18,7 @@ import styles from './LoginHistory.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
-
+const { Step } = Steps
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -58,11 +59,12 @@ export default class LoginHistoryViewDetail extends Component {
   render() {
   
     // eslint-disable-next-line max-len
-    const { id,  } = this.props.loginHistory
-    const {  } = this.props.loginHistory
+    
+    const loginHistory = this.props.loginHistory
+    const { id,  } = loginHistory
+    const {  } = loginHistory
     
     const owner = { type: '_loginHistory', id }
- 
     
     const tabList = [
 
@@ -75,6 +77,10 @@ export default class LoginHistoryViewDetail extends Component {
      
     };
     
+
+
+    
+    
     
     return (
 
@@ -83,6 +89,9 @@ export default class LoginHistoryViewDetail extends Component {
         content={summaryOf(this.props.loginHistory)}
         wrapperClassName={styles.advancedForm}
       >
+
+      
+      
 	<Card 
   		className={styles.card} 
   		bordered={false}

@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './AvailableHandOverItem.app.less'
-import AvailableHandOverItemDashboard from './AvailableHandOverItem.dashboard'
-import AvailableHandOverItemEditDetail from './AvailableHandOverItem.editdetail'
-import AvailableHandOverItemViewDetail from './AvailableHandOverItem.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -157,6 +154,14 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {AvailableHandOverItemDashboard} = GlobalComponents
+     const {AvailableHandOverItemEditDetail} = GlobalComponents
+     const {AvailableHandOverItemViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -173,7 +178,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>交接检查清单</h1></Link>
            </div>
 

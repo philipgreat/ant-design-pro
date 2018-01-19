@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
+import moment from 'moment'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 
@@ -17,7 +18,7 @@ import styles from './ServiceInsuranceForInspection.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
-
+const { Step } = Steps
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -65,11 +66,12 @@ export default class ServiceInsuranceForInspectionViewDetail extends Component {
   render() {
   
     // eslint-disable-next-line max-len
-    const { id,  } = this.props.serviceInsuranceForInspection
-    const {  } = this.props.serviceInsuranceForInspection
+    
+    const serviceInsuranceForInspection = this.props.serviceInsuranceForInspection
+    const { id,  } = serviceInsuranceForInspection
+    const {  } = serviceInsuranceForInspection
     
     const owner = { type: '_serviceInsuranceForInspection', id }
- 
     
     const tabList = [
 
@@ -82,6 +84,10 @@ export default class ServiceInsuranceForInspectionViewDetail extends Component {
      
     };
     
+
+
+    
+    
     
     return (
 
@@ -90,6 +96,9 @@ export default class ServiceInsuranceForInspectionViewDetail extends Component {
         content={summaryOf(this.props.serviceInsuranceForInspection)}
         wrapperClassName={styles.advancedForm}
       >
+
+      
+      
 	<Card 
   		className={styles.card} 
   		bordered={false}

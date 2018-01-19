@@ -35,7 +35,7 @@ const fieldLabels = {
 const testValues = {
   serviceStatus: '待收单',
   rejectComments: '拒收原因:汽车坐垫损坏丢失,但是清单中列为 正常 ,因此拒绝接收.',
-  startTime: '2014-10-01 08:48:04',
+  startTime: '2015-11-13 13:15:34',
   lastLocation: '目前先用字符串地址占个位置',
   movementPurpose: '到店取车',
   contactName: '张秋文',

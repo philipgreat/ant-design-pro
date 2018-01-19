@@ -766,6 +766,12 @@ babel-plugin-dva-hmr@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/babel-plugin-dva-hmr/-/babel-plugin-dva-hmr-0.3.2.tgz#10fe0fc4b9ebb3be5ae3295c5cdf8f0a60facbdb"
 
+babel-plugin-external-helpers@^6.22.0:
+  version "6.22.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-external-helpers/-/babel-plugin-external-helpers-6.22.0.tgz#2285f48b02bd5dede85175caf8c62e86adccefa1"
+  dependencies:
+    babel-runtime "^6.22.0"
+
 babel-plugin-import@^1.2.1:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/babel-plugin-import/-/babel-plugin-import-1.6.3.tgz#f4deeac51ff9f997c9cf38e8d7d7b9142504eaf5"
@@ -5730,6 +5736,12 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+mapv@^2.0.20:
+  version "2.0.20"
+  resolved "https://registry.yarnpkg.com/mapv/-/mapv-2.0.20.tgz#af6d5295f8925d07ce196e3d1e04b720722104c0"
+  dependencies:
+    babel-plugin-external-helpers "^6.22.0"
+
 markdown-escapes@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/markdown-escapes/-/markdown-escapes-1.0.1.tgz#1994df2d3af4811de59a6714934c2b2292734518"
@@ -7706,6 +7718,12 @@ rc@^1.1.2, rc@^1.1.7:
 react-async-component@^1.0.0-beta.3:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-async-component/-/react-async-component-1.0.2.tgz#b041722bf7734a95c51dc9fc2f28ec9e918e9659"
+
+react-bmap@^1.0.69:
+  version "1.0.69"
+  resolved "https://registry.yarnpkg.com/react-bmap/-/react-bmap-1.0.69.tgz#62638f72465b846fb72ca60c214e132bffdc346b"
+  dependencies:
+    mapv "^2.0.20"
 
 react-container-query@^0.9.1:
   version "0.9.1"

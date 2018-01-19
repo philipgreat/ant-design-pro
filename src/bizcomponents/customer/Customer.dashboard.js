@@ -33,6 +33,7 @@ const summaryOf = (customer) =>{
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="序号">{customer.id}</Description> 
 <Description term="客户昵称">{customer.nickName}</Description> 
+<Description term="标志形象">{customer.logoImage}</Description> 
 <Description term="WeixinOpenid">{customer.weixinOpenid}</Description> 
 <Description term="WeixinAppid">{customer.weixinAppid}</Description> 
 	

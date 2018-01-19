@@ -41,6 +41,7 @@ const summaryOf = (vehicleServiceCompanyEmployee) =>{
 <Description term="是否可以移车">{vehicleServiceCompanyEmployee.availableMoveCar?'是':'否'}</Description> 
 <Description term="是否可以检车">{vehicleServiceCompanyEmployee.availableInspectionCar?'是':'否'}</Description> 
 <Description term="是否可以修车">{vehicleServiceCompanyEmployee.availableRepairCar?'是':'否'}</Description> 
+<Description term="当前状态">{vehicleServiceCompanyEmployee.currentStatus}</Description> 
 	
         
       </DescriptionList>

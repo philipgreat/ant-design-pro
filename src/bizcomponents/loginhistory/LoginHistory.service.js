@@ -63,4 +63,3 @@ const LoginHistoryService = { view,
   load }
 export default LoginHistoryService
 
-

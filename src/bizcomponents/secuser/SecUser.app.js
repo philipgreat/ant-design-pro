@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './SecUser.app.less'
-import SecUserDashboard from './SecUser.dashboard'
-import SecUserEditDetail from './SecUser.editdetail'
-import SecUserViewDetail from './SecUser.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -92,6 +89,9 @@ class SecUserBizApp extends React.PureComponent {
       >
 
         <Menu.Item>
+          <Link to={`/secUser/${objectId}/list/customerList`}>客户</Link>
+        </Menu.Item>
+        <Menu.Item>
           <Link to={`/secUser/${objectId}/list/userAppList`}>用户应用程序</Link>
         </Menu.Item>
         <Menu.Item>
@@ -101,6 +101,40 @@ class SecUserBizApp extends React.PureComponent {
     )
   }
 
+
+  getCustomerSearch = () => {
+    const {CustomerSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._secUser.customerList,
+      count: state._secUser.customerCount,
+      currentPage: state._secUser.customerCurrentPageNumber,
+      searchFormParameters: state._secUser.customerSearchFormParameters,
+      loading: state._secUser.loading,
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList' }, // this is for model namespace and
+    }))(CustomerSearch)
+  }
+  getCustomerCreateForm = () => {
+   	const {CustomerCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._secUser.customerList,
+      count: state._secUser.customerCount,
+      currentPage: state._secUser.customerCurrentPageNumber,
+      searchFormParameters: state._secUser.customerSearchFormParameters,
+      loading: state._secUser.loading,
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList'}, // this is for model namespace and
+    }))(CustomerCreateForm)
+  }
+  
+  getCustomerUpdateForm = () => {
+  	const {CustomerUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._secUser.selectedRows,
+      currentUpdateIndex: state._secUser.currentUpdateIndex,
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList' }, // this is for model namespace and
+    }))(CustomerUpdateForm)
+  }
 
   getUserAppSearch = () => {
     const {UserAppSearch} = GlobalComponents;
@@ -194,6 +228,14 @@ class SecUserBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {SecUserDashboard} = GlobalComponents
+     const {SecUserEditDetail} = GlobalComponents
+     const {SecUserViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -210,7 +252,7 @@ class SecUserBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>SEC的用户</h1></Link>
            </div>
 
@@ -248,6 +290,10 @@ class SecUserBizApp extends React.PureComponent {
                <Route path="/secUser/:id/editDetail" component={SecUserEditDetail} />
                <Route path="/secUser/:id/viewDetail" component={SecUserViewDetail} />
                
+
+               <Route path="/secUser/:id/list/customerList" component={this.getCustomerSearch()} />
+               <Route path="/secUser/:id/list/customerCreateForm" component={this.getCustomerCreateForm()} />
+               <Route path="/secUser/:id/list/customerUpdateForm" component={this.getCustomerUpdateForm()} />
 
                <Route path="/secUser/:id/list/userAppList" component={this.getUserAppSearch()} />
                <Route path="/secUser/:id/list/userAppCreateForm" component={this.getUserAppCreateForm()} />

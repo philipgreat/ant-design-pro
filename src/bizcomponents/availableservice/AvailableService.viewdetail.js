@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
+import moment from 'moment'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 
@@ -17,7 +18,7 @@ import styles from './AvailableService.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
-
+const { Step } = Steps
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -67,11 +68,12 @@ export default class AvailableServiceViewDetail extends Component {
     const {VehicleInspectionOrderServiceLogViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount, companyEmployeeMessageCount, vehicleInspectionOrderServiceLogCount } = this.props.availableService
-    const { vehicleRepairingAllowanceList, vehicleServiceCompanyBusinessScopeList, companyEmployeeMessageList, vehicleInspectionOrderServiceLogList } = this.props.availableService
+    
+    const availableService = this.props.availableService
+    const { id, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount, companyEmployeeMessageCount, vehicleInspectionOrderServiceLogCount } = availableService
+    const { vehicleRepairingAllowanceList, vehicleServiceCompanyBusinessScopeList, companyEmployeeMessageList, vehicleInspectionOrderServiceLogList } = availableService
     
     const owner = { type: '_availableService', id }
- 
     
     const tabList = [
 
@@ -100,6 +102,10 @@ export default class AvailableServiceViewDetail extends Component {
     
     };
     
+
+
+    
+    
     
     return (
 
@@ -108,6 +114,9 @@ export default class AvailableServiceViewDetail extends Component {
         content={summaryOf(this.props.availableService)}
         wrapperClassName={styles.advancedForm}
       >
+
+      
+      
 	<Card 
   		className={styles.card} 
   		bordered={false}

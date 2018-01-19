@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './Province.app.less'
-import ProvinceDashboard from './Province.dashboard'
-import ProvinceEditDetail from './Province.editdetail'
-import ProvinceViewDetail from './Province.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -157,6 +154,14 @@ class ProvinceBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {ProvinceDashboard} = GlobalComponents
+     const {ProvinceEditDetail} = GlobalComponents
+     const {ProvinceViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -173,7 +178,7 @@ class ProvinceBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>省</h1></Link>
            </div>
 

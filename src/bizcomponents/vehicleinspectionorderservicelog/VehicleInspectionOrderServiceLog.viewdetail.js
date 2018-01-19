@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
+import moment from 'moment'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 
@@ -17,7 +18,7 @@ import styles from './VehicleInspectionOrderServiceLog.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
-
+const { Step } = Steps
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -59,11 +60,12 @@ export default class VehicleInspectionOrderServiceLogViewDetail extends Componen
   render() {
   
     // eslint-disable-next-line max-len
-    const { id,  } = this.props.vehicleInspectionOrderServiceLog
-    const {  } = this.props.vehicleInspectionOrderServiceLog
+    
+    const vehicleInspectionOrderServiceLog = this.props.vehicleInspectionOrderServiceLog
+    const { id,  } = vehicleInspectionOrderServiceLog
+    const {  } = vehicleInspectionOrderServiceLog
     
     const owner = { type: '_vehicleInspectionOrderServiceLog', id }
- 
     
     const tabList = [
 
@@ -76,6 +78,10 @@ export default class VehicleInspectionOrderServiceLogViewDetail extends Componen
      
     };
     
+
+
+    
+    
     
     return (
 
@@ -84,6 +90,9 @@ export default class VehicleInspectionOrderServiceLogViewDetail extends Componen
         content={summaryOf(this.props.vehicleInspectionOrderServiceLog)}
         wrapperClassName={styles.advancedForm}
       >
+
+      
+      
 	<Card 
   		className={styles.card} 
   		bordered={false}

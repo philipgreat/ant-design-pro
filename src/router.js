@@ -23,6 +23,9 @@ import {VehicleServiceCompanyBizApp} from './custcomponents';
 import {VehicleServiceCompanyBusinessScopeBizApp} from './custcomponents';
 import {VehicleServiceCompanyDispatcherBizApp} from './custcomponents';
 import {VehicleServiceCompanyEmployeeBizApp} from './custcomponents';
+import {CompanyEmployeeQualificationBizApp} from './custcomponents';
+import {CompanyEmployeeServingBizApp} from './custcomponents';
+import {CompanyEmployeeTerminationBizApp} from './custcomponents';
 import {EmployeeDrivingLicenseBizApp} from './custcomponents';
 import {CompanyEmployeeMessageBizApp} from './custcomponents';
 import {InspectionStationBizApp} from './custcomponents';
@@ -58,6 +61,9 @@ import {SecUserBlockingBizApp} from './custcomponents';
 import {UserAppBizApp} from './custcomponents';
 import {ObjectAccessBizApp} from './custcomponents';
 import {LoginHistoryBizApp} from './custcomponents';
+import {GenericFormBizApp} from './custcomponents';
+import {FormFieldBizApp} from './custcomponents';
+import {FormActionBizApp} from './custcomponents';
 
 
 function RouterConfig({ history }) {
@@ -82,6 +88,9 @@ function RouterConfig({ history }) {
           <Route path="/vehicleServiceCompanyBusinessScope/" component={VehicleServiceCompanyBusinessScopeBizApp} />
           <Route path="/vehicleServiceCompanyDispatcher/" component={VehicleServiceCompanyDispatcherBizApp} />
           <Route path="/vehicleServiceCompanyEmployee/" component={VehicleServiceCompanyEmployeeBizApp} />
+          <Route path="/companyEmployeeQualification/" component={CompanyEmployeeQualificationBizApp} />
+          <Route path="/companyEmployeeServing/" component={CompanyEmployeeServingBizApp} />
+          <Route path="/companyEmployeeTermination/" component={CompanyEmployeeTerminationBizApp} />
           <Route path="/employeeDrivingLicense/" component={EmployeeDrivingLicenseBizApp} />
           <Route path="/companyEmployeeMessage/" component={CompanyEmployeeMessageBizApp} />
           <Route path="/inspectionStation/" component={InspectionStationBizApp} />
@@ -117,6 +126,9 @@ function RouterConfig({ history }) {
           <Route path="/userApp/" component={UserAppBizApp} />
           <Route path="/objectAccess/" component={ObjectAccessBizApp} />
           <Route path="/loginHistory/" component={LoginHistoryBizApp} />
+          <Route path="/genericForm/" component={GenericFormBizApp} />
+          <Route path="/formField/" component={FormFieldBizApp} />
+          <Route path="/formAction/" component={FormActionBizApp} />
 
         </Switch>
       </Router>

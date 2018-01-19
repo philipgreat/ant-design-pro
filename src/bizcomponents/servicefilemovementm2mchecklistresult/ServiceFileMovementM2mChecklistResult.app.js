@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceFileMovementM2mChecklistResult.app.less'
-import ServiceFileMovementM2mChecklistResultDashboard from './ServiceFileMovementM2mChecklistResult.dashboard'
-import ServiceFileMovementM2mChecklistResultEditDetail from './ServiceFileMovementM2mChecklistResult.editdetail'
-import ServiceFileMovementM2mChecklistResultViewDetail from './ServiceFileMovementM2mChecklistResult.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -120,6 +117,14 @@ class ServiceFileMovementM2mChecklistResultBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {ServiceFileMovementM2mChecklistResultDashboard} = GlobalComponents
+     const {ServiceFileMovementM2mChecklistResultEditDetail} = GlobalComponents
+     const {ServiceFileMovementM2mChecklistResultViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -136,7 +141,7 @@ class ServiceFileMovementM2mChecklistResultBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>移件服务检查结果</h1></Link>
            </div>
 

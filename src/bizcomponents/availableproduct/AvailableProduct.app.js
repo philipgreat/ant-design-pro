@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './AvailableProduct.app.less'
-import AvailableProductDashboard from './AvailableProduct.dashboard'
-import AvailableProductEditDetail from './AvailableProduct.editdetail'
-import AvailableProductViewDetail from './AvailableProduct.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -268,6 +265,14 @@ class AvailableProductBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {AvailableProductDashboard} = GlobalComponents
+     const {AvailableProductEditDetail} = GlobalComponents
+     const {AvailableProductViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -284,7 +289,7 @@ class AvailableProductBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>产品类型</h1></Link>
            </div>
 

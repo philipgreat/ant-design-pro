@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceVehicleMovementC2m.app.less'
-import ServiceVehicleMovementC2mDashboard from './ServiceVehicleMovementC2m.dashboard'
-import ServiceVehicleMovementC2mEditDetail from './ServiceVehicleMovementC2m.editdetail'
-import ServiceVehicleMovementC2mViewDetail from './ServiceVehicleMovementC2m.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -157,6 +154,14 @@ class ServiceVehicleMovementC2mBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {ServiceVehicleMovementC2mDashboard} = GlobalComponents
+     const {ServiceVehicleMovementC2mEditDetail} = GlobalComponents
+     const {ServiceVehicleMovementC2mViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -173,7 +178,7 @@ class ServiceVehicleMovementC2mBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>收车服务</h1></Link>
            </div>
 

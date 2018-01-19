@@ -16,6 +16,8 @@ const columns = [
   { title: '到店服务', dataIndex: 'availableStoreService', render: (text, record) => (record.availableStoreService ? '是' : '否') },
   { title: '上门服务', dataIndex: 'availableHomeService', render: (text, record) => (record.availableHomeService ? '是' : '否') },
   { title: '营业时间', debugtype: 'string', dataIndex: 'openingTime', width: '26' },
+  { title: '经度', debugtype: 'double', dataIndex: 'longitude', width: '13' },
+  { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '14' },
   { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.id}</Link>) : '暂无') },
 
 ]
@@ -94,7 +96,7 @@ class VehicleServiceCompanyTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 1095 }}
+          scroll={{ x: 1380 }}
         />
       </div>
     )

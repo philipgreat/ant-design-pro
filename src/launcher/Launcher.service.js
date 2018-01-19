@@ -13,7 +13,7 @@ const getURLPrefix=()=>{
     if(url.hostname=="30.30.126.37"){
         return "http://"+url.hostname+":8080/naf/";
     }
-    return url.origin+"/dssc/";
+    return url.origin+"/cis/";
     
 }
     

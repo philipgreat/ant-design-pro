@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown, Steps} from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
-import classNames from 'classnames';
+import moment from 'moment'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 
@@ -18,7 +18,7 @@ import styles from './VehicleServiceCompanyEmployee.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
-const { Step } = Steps;
+const { Step } = Steps
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -46,6 +46,7 @@ const summaryOf = (vehicleServiceCompanyEmployee) =>{
 <Description term="是否可以移车">{vehicleServiceCompanyEmployee.availableMoveCar?'是':'否'}</Description> 
 <Description term="是否可以检车">{vehicleServiceCompanyEmployee.availableInspectionCar?'是':'否'}</Description> 
 <Description term="是否可以修车">{vehicleServiceCompanyEmployee.availableRepairCar?'是':'否'}</Description> 
+<Description term="当前状态">{vehicleServiceCompanyEmployee.currentStatus}</Description> 
 	
         
       </DescriptionList>
@@ -83,11 +84,12 @@ export default class VehicleServiceCompanyEmployeeViewDetail extends Component {
     const {ServiceVehicleRepairingViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, employeeDrivingLicenseCount, companyEmployeeMessageAsSenderCount, companyEmployeeMessageAsReceiverCount, vehicleInspectionOrderServiceLogCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mAsResponsibleWorkerCount, serviceVehicleMovementM2mAsDriverCount, serviceVehicleMovementM2mAsReceiverCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mAsResponsibleWorkerCount, serviceFileMovementM2mAsSenderCount, serviceFileMovementM2mAsReceiverCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount } = this.props.vehicleServiceCompanyEmployee
-    const { employeeDrivingLicenseList, companyEmployeeMessageListAsSender, companyEmployeeMessageListAsReceiver, vehicleInspectionOrderServiceLogList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mListAsResponsibleWorker, serviceVehicleMovementM2mListAsDriver, serviceVehicleMovementM2mListAsReceiver, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mListAsResponsibleWorker, serviceFileMovementM2mListAsSender, serviceFileMovementM2mListAsReceiver, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList } = this.props.vehicleServiceCompanyEmployee
+    
+    const vehicleServiceCompanyEmployee = this.props.vehicleServiceCompanyEmployee
+    const { id, employeeDrivingLicenseCount, companyEmployeeMessageAsSenderCount, companyEmployeeMessageAsReceiverCount, vehicleInspectionOrderServiceLogCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mAsResponsibleWorkerCount, serviceVehicleMovementM2mAsDriverCount, serviceVehicleMovementM2mAsReceiverCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mAsResponsibleWorkerCount, serviceFileMovementM2mAsSenderCount, serviceFileMovementM2mAsReceiverCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount } = vehicleServiceCompanyEmployee
+    const { employeeDrivingLicenseList, companyEmployeeMessageListAsSender, companyEmployeeMessageListAsReceiver, vehicleInspectionOrderServiceLogList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mListAsResponsibleWorker, serviceVehicleMovementM2mListAsDriver, serviceVehicleMovementM2mListAsReceiver, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mListAsResponsibleWorker, serviceFileMovementM2mListAsSender, serviceFileMovementM2mListAsReceiver, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList } = vehicleServiceCompanyEmployee
     
     const owner = { type: '_vehicleServiceCompanyEmployee', id }
- 
     
     const tabList = [
 
@@ -172,26 +174,88 @@ export default class VehicleServiceCompanyEmployeeViewDetail extends Component {
     
     };
     
-    const desc1 = (
-      <div className={classNames(styles.textSecondary, styles.stepDescription)}>
-        <div>
-          曲丽丽
-          <Icon type="dingding-o" style={{ marginLeft: 8 }} />
-        </div>
-        <div>2016-12-12 12:32</div>
-      </div>
-    );
-    
-    const desc2 = (
-      <div className={styles.stepDescription}>
-        <div>
-          周毛毛
-          <Icon type="dingding-o" style={{ color: '#00A0E9', marginLeft: 8 }} />
-        </div>
-        <div><a href="">催一下</a></div>
-      </div>
-    );
 
+
+    const actionDescForQualification = (vehicleServiceCompanyEmployee) =>{
+      if(!vehicleServiceCompanyEmployee){
+        return (<div>出错</div>)
+      }
+      const {qualification} = vehicleServiceCompanyEmployee;
+      if(!qualification){
+        return (<div>催一下</div>)
+      }
+      
+      return (
+
+    
+      <DescriptionList className={styles.headerList} size="small" col="1">
+			<Description term="序号">{qualification.id}</Description> 
+			<Description term="事件时间">{qualification.eventTime}</Description> 
+			<Description term="谁">{qualification.who}</Description> 
+			<Description term="评论">{qualification.comment}</Description> 
+			<Description term="版本">{qualification.version}</Description> 
+
+       
+		</DescriptionList>
+      )
+    }
+
+    const actionDescForServing = (vehicleServiceCompanyEmployee) =>{
+      if(!vehicleServiceCompanyEmployee){
+        return (<div>出错</div>)
+      }
+      const {serving} = vehicleServiceCompanyEmployee;
+      if(!serving){
+        return (<div>催一下</div>)
+      }
+      
+      return (
+
+    
+      <DescriptionList className={styles.headerList} size="small" col="1">
+			<Description term="序号">{serving.id}</Description> 
+			<Description term="事件时间">{serving.eventTime}</Description> 
+			<Description term="谁">{serving.who}</Description> 
+			<Description term="评论">{serving.comment}</Description> 
+			<Description term="版本">{serving.version}</Description> 
+
+       
+		</DescriptionList>
+      )
+    }
+
+    const actionDescForTermination = (vehicleServiceCompanyEmployee) =>{
+      if(!vehicleServiceCompanyEmployee){
+        return (<div>出错</div>)
+      }
+      const {termination} = vehicleServiceCompanyEmployee;
+      if(!termination){
+        return (<div>催一下</div>)
+      }
+      
+      return (
+
+    
+      <DescriptionList className={styles.headerList} size="small" col="1">
+			<Description term="序号">{termination.id}</Description> 
+			<Description term="谁">{termination.who}</Description> 
+			<Description term="事件时间">{termination.eventTime}</Description> 
+			<Description term="评论">{termination.comment}</Description> 
+			<Description term="版本">{termination.version}</Description> 
+
+       
+		</DescriptionList>
+      )
+    }
+
+    
+	const steps=(<Steps direction={'horizontal'} current={1}>
+			<Step title="资格" description={actionDescForQualification(vehicleServiceCompanyEmployee)} />
+			<Step title="服务" description={actionDescForServing(vehicleServiceCompanyEmployee)} />
+			<Step title="终止" description={actionDescForTermination(vehicleServiceCompanyEmployee)} />
+		</Steps>)
+    
+    
     return (
 
       <PageHeaderLayout
@@ -199,14 +263,11 @@ export default class VehicleServiceCompanyEmployeeViewDetail extends Component {
         content={summaryOf(this.props.vehicleServiceCompanyEmployee)}
         wrapperClassName={styles.advancedForm}
       >
-      <Card title="流程进度" style={{ marginBottom: 24 }} bordered={false}>
-          <Steps direction={'horizontal'} progressDot={'>'} current={1}>
-          <Step title="资格认证" description={desc1} />
-          <Step title="正常服务" description={desc2} />
-            <Step title="暂停服务" />
-            <Step title="服务终止" />
-          </Steps>
-        </Card>
+	<Card title="流程进度" style={{ marginBottom: 24 }} bordered={false}>{steps}
+		</Card>
+
+      
+      
 	<Card 
   		className={styles.card} 
   		bordered={false}

@@ -29,7 +29,7 @@ const fieldLabels = {
 const testValues = {
   repairingItemName: '火花塞的保养',
   repairingItemDescription: '火花塞属易消耗件，每20000KM 更换一次,汽油滤芯一般在行驶到 20000-25000KM 时进行更换',
-  repairingItemPrice: '217.61',
+  repairingItemPrice: '198.71',
   repairingItemTypeId: 'VRA000001',
   repairingQuotationId: 'RQ000001',
 }

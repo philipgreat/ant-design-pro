@@ -32,7 +32,7 @@ const fieldLabels = {
 const testValues = {
   serviceStatus: '待收单',
   inspectionResult: '1',
-  startTime: '2016-01-09 07:58:46',
+  startTime: '2014-05-12 06:16:48',
   lastLocation: '目前先用字符串地址占个位置',
   responsibleWorkerId: 'VSCE000001',
   inspectionStationId: 'IS000001',

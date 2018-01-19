@@ -10,8 +10,10 @@ import ImagePreview from '../../components/ImagePreview'
 const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/customer/${text}/dashboard`}>{text}</Link>) },
   { title: '客户昵称', debugtype: 'string', dataIndex: 'nickName', width: '24' },
+  { title: '标志形象', dataIndex: 'logoImage', render: (text, record) => <ImagePreview imageTitle="标志形象" imageLocation={record.logoImage} /> },
   { title: 'WeixinOpenid', debugtype: 'string', dataIndex: 'weixinOpenid', width: '29' },
   { title: 'WeixinAppid', debugtype: 'string', dataIndex: 'weixinAppid', width: '23' },
+  { title: 'SecUser', dataIndex: 'secUser', render: (text, record) => (record.secUser ? (<Link to={`/secUser/${record.secUser.id}/dashboard`}>{record.secUser.id}</Link>) : '暂无') },
   { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.id}</Link>) : '暂无') },
 
 ]
@@ -90,7 +92,7 @@ class CustomerTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 800 }}
+          scroll={{ x: 2760 }}
         />
       </div>
     )

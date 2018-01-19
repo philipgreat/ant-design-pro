@@ -201,6 +201,10 @@ class VehicleServiceCompanyEmployeeEditTable extends PureComponent {
   { title: '是否可以移车', dataIndex: 'availableMoveCar', render: (text, record) => (record.availableMoveCar ? '是' : '否') },
   { title: '是否可以检车', dataIndex: 'availableInspectionCar', render: (text, record) => (record.availableInspectionCar ? '是' : '否') },
   { title: '是否可以修车', dataIndex: 'availableRepairCar', render: (text, record) => (record.availableRepairCar ? '是' : '否') },
+  { title: '资格', dataIndex: 'qualification', render: (text, record) => (record.qualification ? record.qualification.id : '暂无') },
+  { title: '服务', dataIndex: 'serving', render: (text, record) => (record.serving ? record.serving.id : '暂无') },
+  { title: '终止', dataIndex: 'termination', render: (text, record) => (record.termination ? record.termination.id : '暂无') },
+  { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '14', render: (text, record) => renderStringEdit('currentStatus',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    
@@ -217,6 +221,10 @@ class VehicleServiceCompanyEmployeeEditTable extends PureComponent {
 				'availableMoveCar':'',
 				'availableInspectionCar':'',
 				'availableRepairCar':'',
+				'qualification':'',
+				'serving':'',
+				'termination':'',
+				'currentStatus':'',
 
 
       };

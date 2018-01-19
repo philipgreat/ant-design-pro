@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceVehicleMovementM2m.app.less'
-import ServiceVehicleMovementM2mDashboard from './ServiceVehicleMovementM2m.dashboard'
-import ServiceVehicleMovementM2mEditDetail from './ServiceVehicleMovementM2m.editdetail'
-import ServiceVehicleMovementM2mViewDetail from './ServiceVehicleMovementM2m.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -87,12 +84,12 @@ class ServiceVehicleMovementM2mBizApp extends React.PureComponent {
       <SubMenu title={
         <span>
           <Icon type="profile" />
-          <span>送审服务</span>
+          <span>移车服务</span>
         </span>}
       >
 
         <Menu.Item>
-          <Link to={`/serviceVehicleMovementM2m/${objectId}/list/serviceVehicleMovementM2mChecklistResultList`}>送审服务检查结果</Link>
+          <Link to={`/serviceVehicleMovementM2m/${objectId}/list/serviceVehicleMovementM2mChecklistResultList`}>移车服务检查结果</Link>
         </Menu.Item>
       </SubMenu>
     )
@@ -157,6 +154,14 @@ class ServiceVehicleMovementM2mBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {ServiceVehicleMovementM2mDashboard} = GlobalComponents
+     const {ServiceVehicleMovementM2mEditDetail} = GlobalComponents
+     const {ServiceVehicleMovementM2mViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -173,8 +178,8 @@ class ServiceVehicleMovementM2mBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>送审服务</h1></Link>
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+             <Link to="/home"> <h1>移车服务</h1></Link>
            </div>
 
            <Menu

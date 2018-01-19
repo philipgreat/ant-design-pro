@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './VehicleInspectionOrder.app.less'
-import VehicleInspectionOrderDashboard from './VehicleInspectionOrder.dashboard'
-import VehicleInspectionOrderEditDetail from './VehicleInspectionOrder.editdetail'
-import VehicleInspectionOrderViewDetail from './VehicleInspectionOrder.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -110,7 +107,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
           <Link to={`/vehicleInspectionOrder/${objectId}/list/serviceVehicleMovementC2mList`}>收车服务</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/vehicleInspectionOrder/${objectId}/list/serviceVehicleMovementM2mList`}>送审服务</Link>
+          <Link to={`/vehicleInspectionOrder/${objectId}/list/serviceVehicleMovementM2mList`}>移车服务</Link>
         </Menu.Item>
         <Menu.Item>
           <Link to={`/vehicleInspectionOrder/${objectId}/list/serviceVehicleMovementM2cList`}>还车服务</Link>
@@ -131,7 +128,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
           <Link to={`/vehicleInspectionOrder/${objectId}/list/serviceVehicleInspectionList`}>车辆上线检测结果</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/vehicleInspectionOrder/${objectId}/list/serviceFileInspectionList`}>6年免检服务结果</Link>
+          <Link to={`/vehicleInspectionOrder/${objectId}/list/serviceFileInspectionList`}>6年免检服务</Link>
         </Menu.Item>
         <Menu.Item>
           <Link to={`/vehicleInspectionOrder/${objectId}/list/serviceVehicleRepairingList`}>修车服务</Link>
@@ -675,6 +672,14 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {VehicleInspectionOrderDashboard} = GlobalComponents
+     const {VehicleInspectionOrderEditDetail} = GlobalComponents
+     const {VehicleInspectionOrderViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -691,7 +696,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>上线检测订单</h1></Link>
            </div>
 

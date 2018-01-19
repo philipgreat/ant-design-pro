@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './City.app.less'
-import CityDashboard from './City.dashboard'
-import CityEditDetail from './City.editdetail'
-import CityViewDetail from './City.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -268,6 +265,14 @@ class CityBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {CityDashboard} = GlobalComponents
+     const {CityEditDetail} = GlobalComponents
+     const {CityViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -284,7 +289,7 @@ class CityBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>城市</h1></Link>
            </div>
 

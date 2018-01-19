@@ -4,9 +4,9 @@ import OOTBComponents from '../bizcomponents'
 import CustomComponents from './customindex'
 
 
-console.log("the ootb result", OOTBComponents);
+//console.log("the ootb result", OOTBComponents);
 const GlobalComponents = {...OOTBComponents,...CustomComponents};
 
-console.log("the cust result", GlobalComponents);
+//console.log("the cust result", GlobalComponents);
 export default GlobalComponents;
 

@@ -53,7 +53,7 @@ const summaryOf = (secUser) =>{
 export default class SecUserDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, userAppCount, loginHistoryCount } = this.props.secUser
+    const { id, customerCount, userAppCount, loginHistoryCount } = this.props.secUser
     
     
     
@@ -66,6 +66,24 @@ export default class SecUserDashboard extends Component {
       >
         <div>
           <Row gutter={24}>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="客户"
+                action={<Tooltip title="客户"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(customerCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/secUser/${id}/list/customerList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/secUser/${id}/list/customerCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/secUser/${id}/list/customerList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
 
           
             <Col {...topColResponsiveProps}>

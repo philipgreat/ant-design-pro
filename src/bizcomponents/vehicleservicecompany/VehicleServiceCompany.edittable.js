@@ -199,6 +199,8 @@ class VehicleServiceCompanyEditTable extends PureComponent {
   { title: '到店服务', dataIndex: 'availableStoreService', render: (text, record) => (record.availableStoreService ? '是' : '否') },
   { title: '上门服务', dataIndex: 'availableHomeService', render: (text, record) => (record.availableHomeService ? '是' : '否') },
   { title: '营业时间', debugtype: 'string', dataIndex: 'openingTime', width: '26', render: (text, record) => renderStringEdit('openingTime',text, record)  },
+  { title: '经度', debugtype: 'double', dataIndex: 'longitude', width: '13', render: (text, record) => renderStringEdit('longitude',text, record)  },
+  { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '14', render: (text, record) => renderStringEdit('latitude',text, record)  },
   { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -213,6 +215,8 @@ class VehicleServiceCompanyEditTable extends PureComponent {
 				'availableStoreService':'',
 				'availableHomeService':'',
 				'openingTime':'',
+				'longitude':'',
+				'latitude':'',
 				'platform':'',
 
 

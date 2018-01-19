@@ -68,6 +68,7 @@ export default class VehicleServiceCompanyEmployeeSearchForm extends PureCompone
         ...this.buildStringSearchParameters(fieldsValue, 'gender'),
         ...this.buildStringSearchParameters(fieldsValue, 'availableState'),
         ...this.buildStringSearchParameters(fieldsValue, 'identityCardNumber'),
+        ...this.buildStringSearchParameters(fieldsValue, 'currentStatus'),
 
       }
       const { owner } = this.props
@@ -153,6 +154,14 @@ export default class VehicleServiceCompanyEmployeeSearchForm extends PureCompone
             <FormItem label="身份证号码">
               {getFieldDecorator('identityCardNumber')(
                 <Input placeholder="请输入身份证号码" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="当前状态">
+              {getFieldDecorator('currentStatus')(
+                <Input placeholder="请输入当前状态" />
               )}
             </FormItem>
           </Col>

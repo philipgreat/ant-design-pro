@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './VehicleInspectionInsuranceOrder.app.less'
-import VehicleInspectionInsuranceOrderDashboard from './VehicleInspectionInsuranceOrder.dashboard'
-import VehicleInspectionInsuranceOrderEditDetail from './VehicleInspectionInsuranceOrder.editdetail'
-import VehicleInspectionInsuranceOrderViewDetail from './VehicleInspectionInsuranceOrder.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -120,6 +117,14 @@ class VehicleInspectionInsuranceOrderBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {VehicleInspectionInsuranceOrderDashboard} = GlobalComponents
+     const {VehicleInspectionInsuranceOrderEditDetail} = GlobalComponents
+     const {VehicleInspectionInsuranceOrderViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -136,7 +141,7 @@ class VehicleInspectionInsuranceOrderBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>车辆检测保险服务订单</h1></Link>
            </div>
 

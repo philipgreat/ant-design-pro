@@ -9,9 +9,6 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './VehiclePermit.app.less'
-import VehiclePermitDashboard from './VehiclePermit.dashboard'
-import VehiclePermitEditDetail from './VehiclePermit.editdetail'
-import VehiclePermitViewDetail from './VehiclePermit.viewdetail'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -120,6 +117,14 @@ class VehiclePermitBizApp extends React.PureComponent {
    render() {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
+    
+     const {VehiclePermitDashboard} = GlobalComponents
+     const {VehiclePermitEditDetail} = GlobalComponents
+     const {VehiclePermitViewDetail} = GlobalComponents
+     
+     
+     
+     
      // Don't show popup menu when it is been collapsed
      const menuProps = collapsed ? {} : {
        openKeys: this.state.openKeys,
@@ -136,7 +141,7 @@ class VehiclePermitBizApp extends React.PureComponent {
            className={styles.sider}
          >
            <div className={styles.logo}>
-             <img src="/scm.svg" alt="logo" onClick={this.toggle} />
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
              <Link to="/home"> <h1>行驶证</h1></Link>
            </div>
 

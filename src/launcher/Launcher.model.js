@@ -23,6 +23,9 @@ const apps = {
   'com.terapico.cis.vehicleservicecompanybusinessscope.VehicleServiceCompanyBusinessScope': 'vehicleServiceCompanyBusinessScope',
   'com.terapico.cis.vehicleservicecompanydispatcher.VehicleServiceCompanyDispatcher': 'vehicleServiceCompanyDispatcher',
   'com.terapico.cis.vehicleservicecompanyemployee.VehicleServiceCompanyEmployee': 'vehicleServiceCompanyEmployee',
+  'com.terapico.cis.companyemployeequalification.CompanyEmployeeQualification': 'companyEmployeeQualification',
+  'com.terapico.cis.companyemployeeserving.CompanyEmployeeServing': 'companyEmployeeServing',
+  'com.terapico.cis.companyemployeetermination.CompanyEmployeeTermination': 'companyEmployeeTermination',
   'com.terapico.cis.employeedrivinglicense.EmployeeDrivingLicense': 'employeeDrivingLicense',
   'com.terapico.cis.companyemployeemessage.CompanyEmployeeMessage': 'companyEmployeeMessage',
   'com.terapico.cis.inspectionstation.InspectionStation': 'inspectionStation',
@@ -58,6 +61,9 @@ const apps = {
   'com.terapico.cis.userapp.UserApp': 'userApp',
   'com.terapico.cis.objectaccess.ObjectAccess': 'objectAccess',
   'com.terapico.cis.loginhistory.LoginHistory': 'loginHistory',
+  'com.terapico.cis.genericform.GenericForm': 'genericForm',
+  'com.terapico.cis.formfield.FormField': 'formField',
+  'com.terapico.cis.formaction.FormAction': 'formAction',
 
 }
 
@@ -184,8 +190,6 @@ export default {
 
 
 }
-
-
 
 
 

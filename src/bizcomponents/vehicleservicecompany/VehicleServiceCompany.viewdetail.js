@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
+import moment from 'moment'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 
@@ -17,7 +18,7 @@ import styles from './VehicleServiceCompany.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
-
+const { Step } = Steps
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -42,6 +43,8 @@ const summaryOf = (vehicleServiceCompany) =>{
 <Description term="到店服务">{vehicleServiceCompany.availableStoreService?'是':'否'}</Description> 
 <Description term="上门服务">{vehicleServiceCompany.availableHomeService?'是':'否'}</Description> 
 <Description term="营业时间">{vehicleServiceCompany.openingTime}</Description> 
+<Description term="经度">{vehicleServiceCompany.longitude}</Description> 
+<Description term="纬度">{vehicleServiceCompany.latitude}</Description> 
 	
         
       </DescriptionList>
@@ -73,11 +76,12 @@ export default class VehicleServiceCompanyViewDetail extends Component {
     const {ServiceFileMovementM2cViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, vehicleServiceCompanyBusinessScopeCount, vehicleServiceCompanyDispatcherCount, vehicleServiceCompanyEmployeeCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2cCount } = this.props.vehicleServiceCompany
-    const { vehicleServiceCompanyBusinessScopeList, vehicleServiceCompanyDispatcherList, vehicleServiceCompanyEmployeeList, serviceVehicleMovementC2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2cList } = this.props.vehicleServiceCompany
+    
+    const vehicleServiceCompany = this.props.vehicleServiceCompany
+    const { id, vehicleServiceCompanyBusinessScopeCount, vehicleServiceCompanyDispatcherCount, vehicleServiceCompanyEmployeeCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2cCount } = vehicleServiceCompany
+    const { vehicleServiceCompanyBusinessScopeList, vehicleServiceCompanyDispatcherList, vehicleServiceCompanyEmployeeList, serviceVehicleMovementC2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2cList } = vehicleServiceCompany
     
     const owner = { type: '_vehicleServiceCompany', id }
- 
     
     const tabList = [
 
@@ -118,6 +122,10 @@ export default class VehicleServiceCompanyViewDetail extends Component {
     
     };
     
+
+
+    
+    
     
     return (
 
@@ -126,6 +134,9 @@ export default class VehicleServiceCompanyViewDetail extends Component {
         content={summaryOf(this.props.vehicleServiceCompany)}
         wrapperClassName={styles.advancedForm}
       >
+
+      
+      
 	<Card 
   		className={styles.card} 
   		bordered={false}

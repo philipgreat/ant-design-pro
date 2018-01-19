@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
+import moment from 'moment'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 
@@ -17,7 +18,7 @@ import styles from './SecUserBlocking.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
-
+const { Step } = Steps
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -64,11 +65,12 @@ export default class SecUserBlockingViewDetail extends Component {
     const {SecUserViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, secUserCount } = this.props.secUserBlocking
-    const { secUserList } = this.props.secUserBlocking
+    
+    const secUserBlocking = this.props.secUserBlocking
+    const { id, secUserCount } = secUserBlocking
+    const { secUserList } = secUserBlocking
     
     const owner = { type: '_secUserBlocking', id }
- 
     
     const tabList = [
 
@@ -85,6 +87,10 @@ export default class SecUserBlockingViewDetail extends Component {
     
     };
     
+
+
+    
+    
     
     return (
 
@@ -93,6 +99,9 @@ export default class SecUserBlockingViewDetail extends Component {
         content={summaryOf(this.props.secUserBlocking)}
         wrapperClassName={styles.advancedForm}
       >
+
+      
+      
 	<Card 
   		className={styles.card} 
   		bordered={false}

@@ -35,7 +35,7 @@ const fieldLabels = {
 const testValues = {
   serviceStatus: '待收单',
   rejectComments: '拒收原因:未提供有效期限内的行驶证.',
-  startTime: '2014-11-23 16:15:58',
+  startTime: '2017-08-11 21:01:56',
   lastLocation: '目前先用字符串地址占个位置',
   movementPurpose: '收车',
   contactName: '张秋文',
