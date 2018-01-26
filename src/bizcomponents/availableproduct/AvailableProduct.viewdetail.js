@@ -1,14 +1,35 @@
-
-
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Icon,
+  Card,
+  Tabs,
+  Table,
+  Radio,
+  DatePicker,
+  Tooltip,
+  Menu,
+  Dropdown,
+  Steps,
+  Badge,
+} from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import moment from 'moment'
 import {
-  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
-
+  ChartCard,
+  yuan,
+  MiniArea,
+  MiniBar,
+  MiniProgress,
+  Field,
+  Bar,
+  Pie,
+  TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
@@ -16,8 +37,8 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './AvailableProduct.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
-import DescriptionList from '../../components/DescriptionList';
-const { Description } = DescriptionList;
+import DescriptionList from '../../components/DescriptionList'
+const { Description } = DescriptionList
 const { Step } = Steps
 
 const { TabPane } = Tabs
@@ -32,104 +53,121 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 }
 
-const summaryOf = (availableProduct) =>{
-
-	return (
-	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{availableProduct.id}</Description> 
-<Description term="产品名称">{availableProduct.productName}</Description> 
-<Description term="服务代码">{availableProduct.serviceKey}</Description> 
-<Description term="服务描述">{availableProduct.serviceDescription}</Description> 
-	
-        
-      </DescriptionList>
-	)
-
+const summaryOf = availableProduct => {
+  return (
+    <DescriptionList className={styles.headerList} size="small" col="4">
+      <Description term="序号">{availableProduct.id}</Description>
+      <Description term="产品名称">{availableProduct.productName}</Description>
+      <Description term="服务代码">{availableProduct.serviceKey}</Description>
+      <Description term="服务描述">
+        {availableProduct.serviceDescription}
+      </Description>
+    </DescriptionList>
+  )
 }
 
 @connect(state => ({
   availableProduct: state._availableProduct,
 }))
 export default class AvailableProductViewDetail extends Component {
-
-
   state = {
     tabKey: `availableServiceList`,
     stepDirection: 'horizontal',
   }
- 
-  onTabChange = (key) => {
-    this.setState({ tabKey: key });
-  }  
+
+  onTabChange = key => {
+    this.setState({ tabKey: key })
+  }
   render() {
-    const {AvailableServiceViewTable} = GlobalComponents;
-    const {ProductPriceViewTable} = GlobalComponents;
-    const {AvailableInsuranceViewTable} = GlobalComponents;
-    const {AvailableHandOverItemViewTable} = GlobalComponents;
-  
+    const { AvailableServiceViewTable } = GlobalComponents
+    const { ProductPriceViewTable } = GlobalComponents
+    const { AvailableInsuranceViewTable } = GlobalComponents
+    const { AvailableHandOverItemViewTable } = GlobalComponents
+
     // eslint-disable-next-line max-len
-    
+
     const availableProduct = this.props.availableProduct
-    const { id, availableServiceCount, productPriceCount, availableInsuranceCount, availableHandOverItemCount } = availableProduct
-    const { availableServiceList, productPriceList, availableInsuranceList, availableHandOverItemList } = availableProduct
-    
+    const {
+      id,
+      availableServiceCount,
+      productPriceCount,
+      availableInsuranceCount,
+      availableHandOverItemCount,
+    } = availableProduct
+    const {
+      availableServiceList,
+      productPriceList,
+      availableInsuranceList,
+      availableHandOverItemList,
+    } = availableProduct
+
     const owner = { type: '_availableProduct', id }
-    
+
     const tabList = [
+      {
+        key: 'availableServiceList',
+        tab: `服务范围(${availableServiceCount})`,
+      },
+      { key: 'productPriceList', tab: `产品价格(${productPriceCount})` },
+      {
+        key: 'availableInsuranceList',
+        tab: `保险增值服务(${availableInsuranceCount})`,
+      },
+      {
+        key: 'availableHandOverItemList',
+        tab: `交接检查清单(${availableHandOverItemCount})`,
+      },
+    ]
 
-      {key: 'availableServiceList',tab: `服务范围(${availableServiceCount})`}, 
-      {key: 'productPriceList',tab: `产品价格(${productPriceCount})`}, 
-      {key: 'availableInsuranceList',tab: `保险增值服务(${availableInsuranceCount})`}, 
-      {key: 'availableHandOverItemList',tab: `交接检查清单(${availableHandOverItemCount})`}, 
-   
-
-   ];
-   
-   
     const contentList = {
-       availableServiceList:  
-        <AvailableServiceViewTable data={availableServiceList} owner={owner} {...this.props} />,
- 
-      productPriceList:  
-        <ProductPriceViewTable data={productPriceList} owner={owner} {...this.props} />,
- 
-      availableInsuranceList:  
-        <AvailableInsuranceViewTable data={availableInsuranceList} owner={owner} {...this.props} />,
- 
-      availableHandOverItemList:  
-        <AvailableHandOverItemViewTable data={availableHandOverItemList} owner={owner} {...this.props} />,
- 
-    
-    };
-    
+      availableServiceList: (
+        <AvailableServiceViewTable
+          data={availableServiceList}
+          owner={owner}
+          {...this.props}
+        />
+      ),
 
+      productPriceList: (
+        <ProductPriceViewTable
+          data={productPriceList}
+          owner={owner}
+          {...this.props}
+        />
+      ),
 
-    
-    
-    
+      availableInsuranceList: (
+        <AvailableInsuranceViewTable
+          data={availableInsuranceList}
+          owner={owner}
+          {...this.props}
+        />
+      ),
+
+      availableHandOverItemList: (
+        <AvailableHandOverItemViewTable
+          data={availableHandOverItemList}
+          owner={owner}
+          {...this.props}
+        />
+      ),
+    }
+
     return (
-
       <PageHeaderLayout
         title="产品类型总览"
         content={summaryOf(this.props.availableProduct)}
         wrapperClassName={styles.advancedForm}
       >
-
-      
-      
-	<Card 
-  		className={styles.card} 
-  		bordered={false}
-  		tabList={tabList}
-  		onTabChange={this.onTabChange}>
-            {contentList[this.state.tabKey]}
+        <Card
+          className={styles.card}
+          bordered={false}
+          tabList={tabList}
+          onTabChange={this.onTabChange}
+        >
+          {contentList[this.state.tabKey]}
         </Card>
-
- 
       </PageHeaderLayout>
     )
   }
 }
-
-
-

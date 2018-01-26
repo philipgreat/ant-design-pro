@@ -10,13 +10,11 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './City.app.less'
 
+import HeaderSearch from '../../components/HeaderSearch'
+import NoticeIcon from '../../components/NoticeIcon'
+import GlobalFooter from '../../components/GlobalFooter'
 
-import HeaderSearch from '../../components/HeaderSearch';
-import NoticeIcon from '../../components/NoticeIcon';
-import GlobalFooter from '../../components/GlobalFooter';
-
-
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -56,14 +54,14 @@ class CityBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = (collapsed) => {
+  onCollapse = collapsed => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = (props) => {
+  getDefaultCollapsedSubMenus = props => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -71,7 +69,7 @@ class CityBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = (props) => {
+  getCurrentMenuSelectedKeys = props => {
     const { location: { pathname } } = props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
@@ -79,34 +77,40 @@ class CityBizApp extends React.PureComponent {
     }
     return keys
   }
-  getNavMenuItems = (objectId) => {
+  getNavMenuItems = objectId => {
     return (
-      <SubMenu title={
-        <span>
-          <Icon type="profile" />
-          <span>城市</span>
-        </span>}
+      <SubMenu
+        title={
+          <span>
+            <Icon type="profile" />
+            <span>城市</span>
+          </span>
+        }
       >
-
         <Menu.Item>
           <Link to={`/city/${objectId}/list/productPriceList`}>产品价格</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/city/${objectId}/list/vehicleServiceCompanyList`}>商户管理</Link>
+          <Link to={`/city/${objectId}/list/vehicleServiceCompanyList`}>
+            商户管理
+          </Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/city/${objectId}/list/inspectionStationList`}>检测站</Link>
+          <Link to={`/city/${objectId}/list/inspectionStationList`}>
+            检测站
+          </Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/city/${objectId}/list/vehicleInspectionOrderList`}>上线检测订单</Link>
+          <Link to={`/city/${objectId}/list/vehicleInspectionOrderList`}>
+            上线检测订单
+          </Link>
         </Menu.Item>
       </SubMenu>
     )
   }
 
-
   getProductPriceSearch = () => {
-    const {ProductPriceSearch} = GlobalComponents;
+    const { ProductPriceSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._city.productPriceList,
@@ -114,11 +118,15 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.productPriceCurrentPageNumber,
       searchFormParameters: state._city.productPriceSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, listName: 'productPriceList' }, // this is for model namespace and
+      owner: {
+        type: '_city',
+        id: state._city.id,
+        listName: 'productPriceList',
+      }, // this is for model namespace and
     }))(ProductPriceSearch)
   }
   getProductPriceCreateForm = () => {
-   	const {ProductPriceCreateForm} = GlobalComponents;
+    const { ProductPriceCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._city.productPriceList,
@@ -126,55 +134,77 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.productPriceCurrentPageNumber,
       searchFormParameters: state._city.productPriceSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, listName: 'productPriceList'}, // this is for model namespace and
+      owner: {
+        type: '_city',
+        id: state._city.id,
+        listName: 'productPriceList',
+      }, // this is for model namespace and
     }))(ProductPriceCreateForm)
   }
-  
+
   getProductPriceUpdateForm = () => {
-  	const {ProductPriceUpdateForm} = GlobalComponents;
+    const { ProductPriceUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._city.selectedRows,
       currentUpdateIndex: state._city.currentUpdateIndex,
-      owner: { type: '_city', id: state._city.id, listName: 'productPriceList' }, // this is for model namespace and
+      owner: {
+        type: '_city',
+        id: state._city.id,
+        listName: 'productPriceList',
+      }, // this is for model namespace and
     }))(ProductPriceUpdateForm)
   }
 
   getVehicleServiceCompanySearch = () => {
-    const {VehicleServiceCompanySearch} = GlobalComponents;
+    const { VehicleServiceCompanySearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._city.vehicleServiceCompanyList,
       count: state._city.vehicleServiceCompanyCount,
       currentPage: state._city.vehicleServiceCompanyCurrentPageNumber,
-      searchFormParameters: state._city.vehicleServiceCompanySearchFormParameters,
+      searchFormParameters:
+        state._city.vehicleServiceCompanySearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, listName: 'vehicleServiceCompanyList' }, // this is for model namespace and
+      owner: {
+        type: '_city',
+        id: state._city.id,
+        listName: 'vehicleServiceCompanyList',
+      }, // this is for model namespace and
     }))(VehicleServiceCompanySearch)
   }
   getVehicleServiceCompanyCreateForm = () => {
-   	const {VehicleServiceCompanyCreateForm} = GlobalComponents;
+    const { VehicleServiceCompanyCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._city.vehicleServiceCompanyList,
       count: state._city.vehicleServiceCompanyCount,
       currentPage: state._city.vehicleServiceCompanyCurrentPageNumber,
-      searchFormParameters: state._city.vehicleServiceCompanySearchFormParameters,
+      searchFormParameters:
+        state._city.vehicleServiceCompanySearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, listName: 'vehicleServiceCompanyList'}, // this is for model namespace and
+      owner: {
+        type: '_city',
+        id: state._city.id,
+        listName: 'vehicleServiceCompanyList',
+      }, // this is for model namespace and
     }))(VehicleServiceCompanyCreateForm)
   }
-  
+
   getVehicleServiceCompanyUpdateForm = () => {
-  	const {VehicleServiceCompanyUpdateForm} = GlobalComponents;
+    const { VehicleServiceCompanyUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._city.selectedRows,
       currentUpdateIndex: state._city.currentUpdateIndex,
-      owner: { type: '_city', id: state._city.id, listName: 'vehicleServiceCompanyList' }, // this is for model namespace and
+      owner: {
+        type: '_city',
+        id: state._city.id,
+        listName: 'vehicleServiceCompanyList',
+      }, // this is for model namespace and
     }))(VehicleServiceCompanyUpdateForm)
   }
 
   getInspectionStationSearch = () => {
-    const {InspectionStationSearch} = GlobalComponents;
+    const { InspectionStationSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._city.inspectionStationList,
@@ -182,11 +212,15 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.inspectionStationCurrentPageNumber,
       searchFormParameters: state._city.inspectionStationSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, listName: 'inspectionStationList' }, // this is for model namespace and
+      owner: {
+        type: '_city',
+        id: state._city.id,
+        listName: 'inspectionStationList',
+      }, // this is for model namespace and
     }))(InspectionStationSearch)
   }
   getInspectionStationCreateForm = () => {
-   	const {InspectionStationCreateForm} = GlobalComponents;
+    const { InspectionStationCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._city.inspectionStationList,
@@ -194,50 +228,72 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.inspectionStationCurrentPageNumber,
       searchFormParameters: state._city.inspectionStationSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, listName: 'inspectionStationList'}, // this is for model namespace and
+      owner: {
+        type: '_city',
+        id: state._city.id,
+        listName: 'inspectionStationList',
+      }, // this is for model namespace and
     }))(InspectionStationCreateForm)
   }
-  
+
   getInspectionStationUpdateForm = () => {
-  	const {InspectionStationUpdateForm} = GlobalComponents;
+    const { InspectionStationUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._city.selectedRows,
       currentUpdateIndex: state._city.currentUpdateIndex,
-      owner: { type: '_city', id: state._city.id, listName: 'inspectionStationList' }, // this is for model namespace and
+      owner: {
+        type: '_city',
+        id: state._city.id,
+        listName: 'inspectionStationList',
+      }, // this is for model namespace and
     }))(InspectionStationUpdateForm)
   }
 
   getVehicleInspectionOrderSearch = () => {
-    const {VehicleInspectionOrderSearch} = GlobalComponents;
+    const { VehicleInspectionOrderSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._city.vehicleInspectionOrderList,
       count: state._city.vehicleInspectionOrderCount,
       currentPage: state._city.vehicleInspectionOrderCurrentPageNumber,
-      searchFormParameters: state._city.vehicleInspectionOrderSearchFormParameters,
+      searchFormParameters:
+        state._city.vehicleInspectionOrderSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, listName: 'vehicleInspectionOrderList' }, // this is for model namespace and
+      owner: {
+        type: '_city',
+        id: state._city.id,
+        listName: 'vehicleInspectionOrderList',
+      }, // this is for model namespace and
     }))(VehicleInspectionOrderSearch)
   }
   getVehicleInspectionOrderCreateForm = () => {
-   	const {VehicleInspectionOrderCreateForm} = GlobalComponents;
+    const { VehicleInspectionOrderCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._city.vehicleInspectionOrderList,
       count: state._city.vehicleInspectionOrderCount,
       currentPage: state._city.vehicleInspectionOrderCurrentPageNumber,
-      searchFormParameters: state._city.vehicleInspectionOrderSearchFormParameters,
+      searchFormParameters:
+        state._city.vehicleInspectionOrderSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, listName: 'vehicleInspectionOrderList'}, // this is for model namespace and
+      owner: {
+        type: '_city',
+        id: state._city.id,
+        listName: 'vehicleInspectionOrderList',
+      }, // this is for model namespace and
     }))(VehicleInspectionOrderCreateForm)
   }
-  
+
   getVehicleInspectionOrderUpdateForm = () => {
-  	const {VehicleInspectionOrderUpdateForm} = GlobalComponents;
+    const { VehicleInspectionOrderUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._city.selectedRows,
       currentUpdateIndex: state._city.currentUpdateIndex,
-      owner: { type: '_city', id: state._city.id, listName: 'vehicleInspectionOrderList' }, // this is for model namespace and
+      owner: {
+        type: '_city',
+        id: state._city.id,
+        listName: 'vehicleInspectionOrderList',
+      }, // this is for model namespace and
     }))(VehicleInspectionOrderUpdateForm)
   }
 
@@ -247,116 +303,163 @@ class CityBizApp extends React.PureComponent {
     const title = '代审车服务平台'
     return title
   }
- 
-  handleOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
+
+  handleOpenChange = openKeys => {
+    const latestOpenKey = openKeys.find(
+      key => this.state.openKeys.indexOf(key) === -1
+    )
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-   toggle = () => {
-     const { collapsed } = this.props
-     this.props.dispatch({
-       type: 'global/changeLayoutCollapsed',
-       payload: !collapsed,
-     })
-   }
+  toggle = () => {
+    const { collapsed } = this.props
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: !collapsed,
+    })
+  }
 
-   render() {
-     // const { collapsed, fetchingNotices,loading } = this.props
-     const { collapsed } = this.props
-    
-     const {CityDashboard} = GlobalComponents
-     const {CityEditDetail} = GlobalComponents
-     const {CityViewDetail} = GlobalComponents
-     
-     
-     
-     
-     // Don't show popup menu when it is been collapsed
-     const menuProps = collapsed ? {} : {
-       openKeys: this.state.openKeys,
-     }
-     const layout = (
-       <Layout>
-         <Sider
-           trigger={null}
-           collapsible
-           collapsed={collapsed}
-           breakpoint="md"
-           onCollapse={()=>this.onCollapse(collapsed)}
-           width={256}
-           className={styles.sider}
-         >
-           <div className={styles.logo}>
-             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>城市</h1></Link>
-           </div>
+  render() {
+    // const { collapsed, fetchingNotices,loading } = this.props
+    const { collapsed } = this.props
 
-           <Menu
-             theme="dark"
-             mode="inline"
-             {...menuProps}
-             onOpenChange={this.handleOpenChange}
-             selectedKeys={this.getCurrentMenuSelectedKeys()}
-             style={{ margin: '16px 0', width: '100%' }}
-           >
-           
+    const { CityDashboard } = GlobalComponents
+    const { CityEditDetail } = GlobalComponents
+    const { CityViewDetail } = GlobalComponents
 
-             <Menu.Item >
-               <Link to={`/city/${this.props.city.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
-             </Menu.Item>
-             <Menu.Item >
-               <Link to={`/city/${this.props.city.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
-             </Menu.Item>
-             <Menu.Item >
-               <Link to={`/city/${this.props.city.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
-             </Menu.Item>
-             
+    // Don't show popup menu when it is been collapsed
+    const menuProps = collapsed
+      ? {}
+      : {
+          openKeys: this.state.openKeys,
+        }
+    const layout = (
+      <Layout>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          breakpoint="md"
+          onCollapse={() => this.onCollapse(collapsed)}
+          width={256}
+          className={styles.sider}
+        >
+          <div className={styles.logo}>
+            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+            <Link to="/home">
+              {' '}
+              <h1>城市</h1>
+            </Link>
+          </div>
 
-             {this.getNavMenuItems(this.props.city.id)}
-             <Menu.Item >
-               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
-             </Menu.Item>
-           </Menu>
-         </Sider>
-         <Layout>
-           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-             <Switch>
-               <Route path="/city/:id/dashboard" component={CityDashboard} />
-               <Route path="/city/:id/editDetail" component={CityEditDetail} />
-               <Route path="/city/:id/viewDetail" component={CityViewDetail} />
-               
+          <Menu
+            theme="dark"
+            mode="inline"
+            {...menuProps}
+            onOpenChange={this.handleOpenChange}
+            selectedKeys={this.getCurrentMenuSelectedKeys()}
+            style={{ margin: '16px 0', width: '100%' }}
+          >
+            <Menu.Item>
+              <Link to={`/city/${this.props.city.id}/dashboard`}>
+                <Icon type="dashboard" />
+                <span>仪表板</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link to={`/city/${this.props.city.id}/editDetail`}>
+                <Icon type="edit" />
+                <span>详情编辑</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link to={`/city/${this.props.city.id}/viewDetail`}>
+                <Icon type="eye-o" />
+                <span>详情查看</span>
+              </Link>
+            </Menu.Item>
 
-               <Route path="/city/:id/list/productPriceList" component={this.getProductPriceSearch()} />
-               <Route path="/city/:id/list/productPriceCreateForm" component={this.getProductPriceCreateForm()} />
-               <Route path="/city/:id/list/productPriceUpdateForm" component={this.getProductPriceUpdateForm()} />
+            {this.getNavMenuItems(this.props.city.id)}
+            <Menu.Item>
+              <Link to={'/home'}>
+                <Icon type="home" />
+                <span>回到主页</span>
+              </Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+            <Switch>
+              <Route path="/city/:id/dashboard" component={CityDashboard} />
+              <Route path="/city/:id/editDetail" component={CityEditDetail} />
+              <Route path="/city/:id/viewDetail" component={CityViewDetail} />
 
-               <Route path="/city/:id/list/vehicleServiceCompanyList" component={this.getVehicleServiceCompanySearch()} />
-               <Route path="/city/:id/list/vehicleServiceCompanyCreateForm" component={this.getVehicleServiceCompanyCreateForm()} />
-               <Route path="/city/:id/list/vehicleServiceCompanyUpdateForm" component={this.getVehicleServiceCompanyUpdateForm()} />
+              <Route
+                path="/city/:id/list/productPriceList"
+                component={this.getProductPriceSearch()}
+              />
+              <Route
+                path="/city/:id/list/productPriceCreateForm"
+                component={this.getProductPriceCreateForm()}
+              />
+              <Route
+                path="/city/:id/list/productPriceUpdateForm"
+                component={this.getProductPriceUpdateForm()}
+              />
 
-               <Route path="/city/:id/list/inspectionStationList" component={this.getInspectionStationSearch()} />
-               <Route path="/city/:id/list/inspectionStationCreateForm" component={this.getInspectionStationCreateForm()} />
-               <Route path="/city/:id/list/inspectionStationUpdateForm" component={this.getInspectionStationUpdateForm()} />
+              <Route
+                path="/city/:id/list/vehicleServiceCompanyList"
+                component={this.getVehicleServiceCompanySearch()}
+              />
+              <Route
+                path="/city/:id/list/vehicleServiceCompanyCreateForm"
+                component={this.getVehicleServiceCompanyCreateForm()}
+              />
+              <Route
+                path="/city/:id/list/vehicleServiceCompanyUpdateForm"
+                component={this.getVehicleServiceCompanyUpdateForm()}
+              />
 
-               <Route path="/city/:id/list/vehicleInspectionOrderList" component={this.getVehicleInspectionOrderSearch()} />
-               <Route path="/city/:id/list/vehicleInspectionOrderCreateForm" component={this.getVehicleInspectionOrderCreateForm()} />
-               <Route path="/city/:id/list/vehicleInspectionOrderUpdateForm" component={this.getVehicleInspectionOrderUpdateForm()} />
-              
-             </Switch>
-           </Content>
-         </Layout>
-       </Layout>
-     )
-     return (
-       <DocumentTitle title={this.getPageTitle()}>
-         <ContainerQuery query={query}>
-           {params => <div className={classNames(params)}>{layout}</div>}
-         </ContainerQuery>
-       </DocumentTitle>
-     )
-   }
+              <Route
+                path="/city/:id/list/inspectionStationList"
+                component={this.getInspectionStationSearch()}
+              />
+              <Route
+                path="/city/:id/list/inspectionStationCreateForm"
+                component={this.getInspectionStationCreateForm()}
+              />
+              <Route
+                path="/city/:id/list/inspectionStationUpdateForm"
+                component={this.getInspectionStationUpdateForm()}
+              />
+
+              <Route
+                path="/city/:id/list/vehicleInspectionOrderList"
+                component={this.getVehicleInspectionOrderSearch()}
+              />
+              <Route
+                path="/city/:id/list/vehicleInspectionOrderCreateForm"
+                component={this.getVehicleInspectionOrderCreateForm()}
+              />
+              <Route
+                path="/city/:id/list/vehicleInspectionOrderUpdateForm"
+                component={this.getVehicleInspectionOrderUpdateForm()}
+              />
+            </Switch>
+          </Content>
+        </Layout>
+      </Layout>
+    )
+    return (
+      <DocumentTitle title={this.getPageTitle()}>
+        <ContainerQuery query={query}>
+          {params => <div className={classNames(params)}>{layout}</div>}
+        </ContainerQuery>
+      </DocumentTitle>
+    )
+  }
 }
 
 export default connect(state => ({
@@ -366,6 +469,3 @@ export default connect(state => ({
   city: state._city,
   ...state,
 }))(CityBizApp)
-
-
-

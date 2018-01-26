@@ -5,7 +5,7 @@ const getURLPrefix = () => {
   if (url.hostname === 'localhost') {
     return `http://${url.hostname}:8080/naf/`
   }
-  if(url.hostname === "30.30.126.37"){
+  if (url.hostname === '30.30.126.37') {
     return `http://${url.hostname}:8080/naf/`
   }
   return `${url.origin}/cis/`
@@ -13,13 +13,13 @@ const getURLPrefix = () => {
 
 const PREFIX = getURLPrefix()
 
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}availableHandOverItemManager/view/${targetObjectId}/`,
   })
 }
 
-const joinParameters = (parameters) => {
+const joinParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -31,7 +31,7 @@ const joinParameters = (parameters) => {
   return result
 }
 
-const joinPostParameters = (parameters) => {
+const joinPostParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -57,8 +57,6 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
 const addHandOverChecklistItem = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableHandOverItemManager/addHandOverChecklistItem/questionId/mainOrderId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
@@ -74,7 +72,11 @@ const addHandOverChecklistItem = (targetObjectId, parameters) => {
 const updateHandOverChecklistItem = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableHandOverItemManager/updateHandOverChecklistItemProperties/availableHandOverItemId/id/tokensExpr/`
   const availableHandOverItemId = targetObjectId
-  const requestParameters = { ...parameters, availableHandOverItemId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    availableHandOverItemId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -85,7 +87,11 @@ const updateHandOverChecklistItem = (targetObjectId, parameters) => {
 
 const removeHandOverChecklistItemList = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableHandOverItemManager/removeHandOverChecklistItemList/availableHandOverItemId/handOverChecklistItemIds/tokensExpr/`
-  const requestParameters = { ...parameters, availableHandOverItemId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    availableHandOverItemId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -94,11 +100,11 @@ const removeHandOverChecklistItemList = (targetObjectId, parameters) => {
   })
 }
 
-
-const AvailableHandOverItemService = { view,
+const AvailableHandOverItemService = {
+  view,
   load,
   addHandOverChecklistItem,
   updateHandOverChecklistItem,
-  removeHandOverChecklistItemList }
+  removeHandOverChecklistItemList,
+}
 export default AvailableHandOverItemService
-

@@ -1,13 +1,25 @@
-
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import Result from '../../components/Result'
 
-
-import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
+import {
+  Row,
+  Col,
+  Card,
+  Form,
+  Input,
+  Select,
+  Icon,
+  Button,
+  Dropdown,
+  Menu,
+  InputNumber,
+  DatePicker,
+  Modal,
+  message,
+} from 'antd'
 
 import GlobalComponents from '../../custcomponents'
-
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 
@@ -15,8 +27,10 @@ import styles from './ServiceFileMovementC2mChecklistResult.search.less'
 
 const FormItem = Form.Item
 const { Option } = Select
-const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',')
-
+const getValue = obj =>
+  Object.keys(obj)
+    .map(key => obj[key])
+    .join(',')
 
 @Form.create()
 export default class ServiceFileMovementC2mChecklistResultSearch extends PureComponent {
@@ -42,13 +56,13 @@ export default class ServiceFileMovementC2mChecklistResultSearch extends PureCom
       newObj[key] = getValue(filtersArg[key])
       return newObj
     }, {})
-	const { owner } = this.props
-	const {listName} = owner;
-	let listParameters = {};
-    listParameters[listName]=1;
-    listParameters[`${listName}CurrentPage`]=pagination.current;
-    listParameters[`${listName}RowsPerPage`]=pagination.pageSize;
-    
+    const { owner } = this.props
+    const { listName } = owner
+    let listParameters = {}
+    listParameters[listName] = 1
+    listParameters[`${listName}CurrentPage`] = pagination.current
+    listParameters[`${listName}RowsPerPage`] = pagination.pageSize
+
     const params = {
       ...listParameters,
       ...formValues,
@@ -57,14 +71,14 @@ export default class ServiceFileMovementC2mChecklistResultSearch extends PureCom
     if (sorter.field) {
       params.sorter = '_'
     }
-    
+
     dispatch({
       type: `${owner.type}/load`,
       payload: { id: owner.id, parameters: params },
     })
   }
 
-  handleMenuClick = (e) => {
+  handleMenuClick = e => {
     const { dispatch } = this.props
     const { selectedRows } = this.state
     if (!selectedRows) return
@@ -87,13 +101,13 @@ export default class ServiceFileMovementC2mChecklistResultSearch extends PureCom
     }
   }
 
-  handleSelectRows = (rows) => {
+  handleSelectRows = rows => {
     this.setState({
       selectedRows: rows,
     })
   }
 
-  handleModalVisible = (flag) => {
+  handleModalVisible = flag => {
     this.setState({
       modalVisible: !!flag,
       showDeleteResult: false,
@@ -108,16 +122,25 @@ export default class ServiceFileMovementC2mChecklistResultSearch extends PureCom
       modalVisible: true,
       showDeleteResult: true,
     })
-    
-    const serviceFileMovementC2mChecklistResultIds = selectedRows.map((item) => { return item.id })
-    console.log('serviceFileMovementC2mChecklistResultIds', serviceFileMovementC2mChecklistResultIds)
+
+    const serviceFileMovementC2mChecklistResultIds = selectedRows.map(item => {
+      return item.id
+    })
+    console.log(
+      'serviceFileMovementC2mChecklistResultIds',
+      serviceFileMovementC2mChecklistResultIds
+    )
     const parameters = { serviceFileMovementC2mChecklistResultIds }
     dispatch({
       type: `${owner.type}/removeServiceFileMovementC2mChecklistResultList`,
-      payload: { id: owner.id, type: 'serviceFileMovementC2mChecklistResult', parameters },
+      payload: {
+        id: owner.id,
+        type: 'serviceFileMovementC2mChecklistResult',
+        parameters,
+      },
     })
   }
-  
+
   showModal = () => {
     // const { selectedRows } = this.state
     // const { dispatch, owner } = this.props
@@ -151,11 +174,16 @@ export default class ServiceFileMovementC2mChecklistResultSearch extends PureCom
     const currentUpdateIndex = 0
     dispatch({
       type: `${owner.type}/gotoUpdateForm`,
-      payload: { id: owner.id, type: 'serviceFileMovementC2mChecklistResult', selectedRows, currentUpdateIndex },
+      payload: {
+        id: owner.id,
+        type: 'serviceFileMovementC2mChecklistResult',
+        selectedRows,
+        currentUpdateIndex,
+      },
     })
   }
-  
-  handleAddInput = (e) => {
+
+  handleAddInput = e => {
     this.setState({
       addInputValue: e.target.value,
     })
@@ -175,13 +203,14 @@ export default class ServiceFileMovementC2mChecklistResultSearch extends PureCom
   }
 
   render() {
-    const { data, loading, count, currentPage, owner } = this.props;
-    const { showDeleteResult, selectedRows, modalVisible } = this.state;
-    const {ServiceFileMovementC2mChecklistResultTable} = GlobalComponents;
-    const {ServiceFileMovementC2mChecklistResultConfirmationTable} = GlobalComponents;
-    const {ServiceFileMovementC2mChecklistResultSearchForm} = GlobalComponents;
-    
- 
+    const { data, loading, count, currentPage, owner } = this.props
+    const { showDeleteResult, selectedRows, modalVisible } = this.state
+    const { ServiceFileMovementC2mChecklistResultTable } = GlobalComponents
+    const {
+      ServiceFileMovementC2mChecklistResultConfirmationTable,
+    } = GlobalComponents
+    const { ServiceFileMovementC2mChecklistResultSearchForm } = GlobalComponents
+
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
         <Menu.Item key="remove">删除</Menu.Item>
@@ -193,16 +222,22 @@ export default class ServiceFileMovementC2mChecklistResultSearch extends PureCom
     const modalContent = (data, owner) => {
       if (showDeleteResult) {
         return (
-        <Modal
-          title="成功删除"
-          visible={modalVisible}
-          onOk={() => this.confirmAfterDelete()}
-          onCancel={() => this.confirmAfterDelete()}
-          width={920}
-          style={{ top: 40 }}
-        >
-          <Result type="success" title="删除成功，干得漂亮" description="" style={{ marginTop: 48, marginBottom: 16 }} />
-        </Modal>)
+          <Modal
+            title="成功删除"
+            visible={modalVisible}
+            onOk={() => this.confirmAfterDelete()}
+            onCancel={() => this.confirmAfterDelete()}
+            width={920}
+            style={{ top: 40 }}
+          >
+            <Result
+              type="success"
+              title="删除成功，干得漂亮"
+              description=""
+              style={{ marginTop: 48, marginBottom: 16 }}
+            />
+          </Modal>
+        )
       }
 
       return (
@@ -214,32 +249,54 @@ export default class ServiceFileMovementC2mChecklistResultSearch extends PureCom
           width={920}
           style={{ top: 40 }}
         >
-          <ServiceFileMovementC2mChecklistResultConfirmationTable data={selectedRows} owner={owner} />
-        </Modal>)
+          <ServiceFileMovementC2mChecklistResultConfirmationTable
+            data={selectedRows}
+            owner={owner}
+          />
+        </Modal>
+      )
     }
-    
+
     return (
       <PageHeaderLayout title="收件服务检查结果列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>
-              <ServiceFileMovementC2mChecklistResultSearchForm {...this.props} />
+              <ServiceFileMovementC2mChecklistResultSearchForm
+                {...this.props}
+              />
             </div>
             <div className={styles.tableListOperator}>
-              <Button icon="plus" type="primary" onClick={() => this.handleCreate()}>新建</Button>
-              {
-                selectedRows.length > 0 && (
-                  <span>
-                    <Button onClick={this.handleModalVisible} type="danger" icon="delete">批量删除</Button>
-                    <Button onClick={this.handleUpdate} type="primary" icon="update">批量更新</Button>
-                    <Dropdown overlay={menu}>
-                      <Button>
-                        更多操作 <Icon type="down" />
-                      </Button>
-                    </Dropdown>
-                  </span>
-                )
-              }
+              <Button
+                icon="plus"
+                type="primary"
+                onClick={() => this.handleCreate()}
+              >
+                新建
+              </Button>
+              {selectedRows.length > 0 && (
+                <span>
+                  <Button
+                    onClick={this.handleModalVisible}
+                    type="danger"
+                    icon="delete"
+                  >
+                    批量删除
+                  </Button>
+                  <Button
+                    onClick={this.handleUpdate}
+                    type="primary"
+                    icon="update"
+                  >
+                    批量更新
+                  </Button>
+                  <Dropdown overlay={menu}>
+                    <Button>
+                      更多操作 <Icon type="down" />
+                    </Button>
+                  </Dropdown>
+                </span>
+              )}
             </div>
             <ServiceFileMovementC2mChecklistResultTable
               selectedRows={selectedRows}
@@ -258,5 +315,3 @@ export default class ServiceFileMovementC2mChecklistResultSearch extends PureCom
     )
   }
 }
-
-

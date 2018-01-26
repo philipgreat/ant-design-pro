@@ -5,7 +5,7 @@ const getURLPrefix = () => {
   if (url.hostname === 'localhost') {
     return `http://${url.hostname}:8080/naf/`
   }
-  if(url.hostname === "30.30.126.37"){
+  if (url.hostname === '30.30.126.37') {
     return `http://${url.hostname}:8080/naf/`
   }
   return `${url.origin}/cis/`
@@ -13,13 +13,13 @@ const getURLPrefix = () => {
 
 const PREFIX = getURLPrefix()
 
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}secUserManager/view/${targetObjectId}/`,
   })
 }
 
-const joinParameters = (parameters) => {
+const joinParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -31,7 +31,7 @@ const joinParameters = (parameters) => {
   return result
 }
 
-const joinPostParameters = (parameters) => {
+const joinPostParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -56,8 +56,6 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}secUserManager/loadSecUser/${targetObjectId}/${parametersExpr}/`,
   })
 }
-
-
 
 const addCustomer = (targetObjectId, parameters) => {
   const url = `${PREFIX}secUserManager/addCustomer/secUserId/nickName/logoImage/weixinOpenid/weixinAppid/platformId/tokensExpr/`
@@ -85,7 +83,11 @@ const updateCustomer = (targetObjectId, parameters) => {
 
 const removeCustomerList = (targetObjectId, parameters) => {
   const url = `${PREFIX}secUserManager/removeCustomerList/secUserId/customerIds/tokensExpr/`
-  const requestParameters = { ...parameters, secUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    secUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -93,7 +95,6 @@ const removeCustomerList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addUserApp = (targetObjectId, parameters) => {
   const url = `${PREFIX}secUserManager/addUserApp/secUserId/title/appIcon/fullAccess/permission/objectType/objectId/location/tokensExpr/`
@@ -121,7 +122,11 @@ const updateUserApp = (targetObjectId, parameters) => {
 
 const removeUserAppList = (targetObjectId, parameters) => {
   const url = `${PREFIX}secUserManager/removeUserAppList/secUserId/userAppIds/tokensExpr/`
-  const requestParameters = { ...parameters, secUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    secUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -129,7 +134,6 @@ const removeUserAppList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addLoginHistory = (targetObjectId, parameters) => {
   const url = `${PREFIX}secUserManager/addLoginHistory/secUserId/fromIp/description/tokensExpr/`
@@ -157,7 +161,11 @@ const updateLoginHistory = (targetObjectId, parameters) => {
 
 const removeLoginHistoryList = (targetObjectId, parameters) => {
   const url = `${PREFIX}secUserManager/removeLoginHistoryList/secUserId/loginHistoryIds/tokensExpr/`
-  const requestParameters = { ...parameters, secUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    secUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -166,8 +174,8 @@ const removeLoginHistoryList = (targetObjectId, parameters) => {
   })
 }
 
-
-const SecUserService = { view,
+const SecUserService = {
+  view,
   load,
   addCustomer,
   addUserApp,
@@ -177,6 +185,6 @@ const SecUserService = { view,
   updateLoginHistory,
   removeCustomerList,
   removeUserAppList,
-  removeLoginHistoryList }
+  removeLoginHistoryList,
+}
 export default SecUserService
-

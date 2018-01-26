@@ -10,13 +10,11 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceFileInspection.app.less'
 
+import HeaderSearch from '../../components/HeaderSearch'
+import NoticeIcon from '../../components/NoticeIcon'
+import GlobalFooter from '../../components/GlobalFooter'
 
-import HeaderSearch from '../../components/HeaderSearch';
-import NoticeIcon from '../../components/NoticeIcon';
-import GlobalFooter from '../../components/GlobalFooter';
-
-
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -56,14 +54,14 @@ class ServiceFileInspectionBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = (collapsed) => {
+  onCollapse = collapsed => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = (props) => {
+  getDefaultCollapsedSubMenus = props => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -71,7 +69,7 @@ class ServiceFileInspectionBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = (props) => {
+  getCurrentMenuSelectedKeys = props => {
     const { location: { pathname } } = props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
@@ -79,19 +77,18 @@ class ServiceFileInspectionBizApp extends React.PureComponent {
     }
     return keys
   }
-  getNavMenuItems = (objectId) => {
+  getNavMenuItems = objectId => {
     return (
-      <SubMenu title={
-        <span>
-          <Icon type="profile" />
-          <span>6年免检服务</span>
-        </span>}
-      >
-
-      </SubMenu>
+      <SubMenu
+        title={
+          <span>
+            <Icon type="profile" />
+            <span>6年免检服务</span>
+          </span>
+        }
+      />
     )
   }
-
 
   getPageTitle = () => {
     // const { location } = this.props
@@ -99,100 +96,132 @@ class ServiceFileInspectionBizApp extends React.PureComponent {
     const title = '代审车服务平台'
     return title
   }
- 
-  handleOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
+
+  handleOpenChange = openKeys => {
+    const latestOpenKey = openKeys.find(
+      key => this.state.openKeys.indexOf(key) === -1
+    )
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-   toggle = () => {
-     const { collapsed } = this.props
-     this.props.dispatch({
-       type: 'global/changeLayoutCollapsed',
-       payload: !collapsed,
-     })
-   }
+  toggle = () => {
+    const { collapsed } = this.props
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: !collapsed,
+    })
+  }
 
-   render() {
-     // const { collapsed, fetchingNotices,loading } = this.props
-     const { collapsed } = this.props
-    
-     const {ServiceFileInspectionDashboard} = GlobalComponents
-     const {ServiceFileInspectionEditDetail} = GlobalComponents
-     const {ServiceFileInspectionViewDetail} = GlobalComponents
-     
-     
-     
-     
-     // Don't show popup menu when it is been collapsed
-     const menuProps = collapsed ? {} : {
-       openKeys: this.state.openKeys,
-     }
-     const layout = (
-       <Layout>
-         <Sider
-           trigger={null}
-           collapsible
-           collapsed={collapsed}
-           breakpoint="md"
-           onCollapse={()=>this.onCollapse(collapsed)}
-           width={256}
-           className={styles.sider}
-         >
-           <div className={styles.logo}>
-             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>6年免检服务</h1></Link>
-           </div>
+  render() {
+    // const { collapsed, fetchingNotices,loading } = this.props
+    const { collapsed } = this.props
 
-           <Menu
-             theme="dark"
-             mode="inline"
-             {...menuProps}
-             onOpenChange={this.handleOpenChange}
-             selectedKeys={this.getCurrentMenuSelectedKeys()}
-             style={{ margin: '16px 0', width: '100%' }}
-           >
-           
+    const { ServiceFileInspectionDashboard } = GlobalComponents
+    const { ServiceFileInspectionEditDetail } = GlobalComponents
+    const { ServiceFileInspectionViewDetail } = GlobalComponents
 
-             <Menu.Item >
-               <Link to={`/serviceFileInspection/${this.props.serviceFileInspection.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
-             </Menu.Item>
-             <Menu.Item >
-               <Link to={`/serviceFileInspection/${this.props.serviceFileInspection.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
-             </Menu.Item>
-             <Menu.Item >
-               <Link to={`/serviceFileInspection/${this.props.serviceFileInspection.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
-             </Menu.Item>
-             
+    // Don't show popup menu when it is been collapsed
+    const menuProps = collapsed
+      ? {}
+      : {
+          openKeys: this.state.openKeys,
+        }
+    const layout = (
+      <Layout>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          breakpoint="md"
+          onCollapse={() => this.onCollapse(collapsed)}
+          width={256}
+          className={styles.sider}
+        >
+          <div className={styles.logo}>
+            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+            <Link to="/home">
+              {' '}
+              <h1>6年免检服务</h1>
+            </Link>
+          </div>
 
-             {this.getNavMenuItems(this.props.serviceFileInspection.id)}
-             <Menu.Item >
-               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
-             </Menu.Item>
-           </Menu>
-         </Sider>
-         <Layout>
-           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-             <Switch>
-               <Route path="/serviceFileInspection/:id/dashboard" component={ServiceFileInspectionDashboard} />
-               <Route path="/serviceFileInspection/:id/editDetail" component={ServiceFileInspectionEditDetail} />
-               <Route path="/serviceFileInspection/:id/viewDetail" component={ServiceFileInspectionViewDetail} />
-               
-              
-             </Switch>
-           </Content>
-         </Layout>
-       </Layout>
-     )
-     return (
-       <DocumentTitle title={this.getPageTitle()}>
-         <ContainerQuery query={query}>
-           {params => <div className={classNames(params)}>{layout}</div>}
-         </ContainerQuery>
-       </DocumentTitle>
-     )
-   }
+          <Menu
+            theme="dark"
+            mode="inline"
+            {...menuProps}
+            onOpenChange={this.handleOpenChange}
+            selectedKeys={this.getCurrentMenuSelectedKeys()}
+            style={{ margin: '16px 0', width: '100%' }}
+          >
+            <Menu.Item>
+              <Link
+                to={`/serviceFileInspection/${
+                  this.props.serviceFileInspection.id
+                }/dashboard`}
+              >
+                <Icon type="dashboard" />
+                <span>仪表板</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link
+                to={`/serviceFileInspection/${
+                  this.props.serviceFileInspection.id
+                }/editDetail`}
+              >
+                <Icon type="edit" />
+                <span>详情编辑</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link
+                to={`/serviceFileInspection/${
+                  this.props.serviceFileInspection.id
+                }/viewDetail`}
+              >
+                <Icon type="eye-o" />
+                <span>详情查看</span>
+              </Link>
+            </Menu.Item>
+
+            {this.getNavMenuItems(this.props.serviceFileInspection.id)}
+            <Menu.Item>
+              <Link to={'/home'}>
+                <Icon type="home" />
+                <span>回到主页</span>
+              </Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+            <Switch>
+              <Route
+                path="/serviceFileInspection/:id/dashboard"
+                component={ServiceFileInspectionDashboard}
+              />
+              <Route
+                path="/serviceFileInspection/:id/editDetail"
+                component={ServiceFileInspectionEditDetail}
+              />
+              <Route
+                path="/serviceFileInspection/:id/viewDetail"
+                component={ServiceFileInspectionViewDetail}
+              />
+            </Switch>
+          </Content>
+        </Layout>
+      </Layout>
+    )
+    return (
+      <DocumentTitle title={this.getPageTitle()}>
+        <ContainerQuery query={query}>
+          {params => <div className={classNames(params)}>{layout}</div>}
+        </ContainerQuery>
+      </DocumentTitle>
+    )
+  }
 }
 
 export default connect(state => ({
@@ -202,6 +231,3 @@ export default connect(state => ({
   serviceFileInspection: state._serviceFileInspection,
   ...state,
 }))(ServiceFileInspectionBizApp)
-
-
-

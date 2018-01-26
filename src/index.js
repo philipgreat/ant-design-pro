@@ -65,6 +65,8 @@ import UserAppModel from './bizcomponents/userapp/UserApp.model'
 import ObjectAccessModel from './bizcomponents/objectaccess/ObjectAccess.model'
 import LoginHistoryModel from './bizcomponents/loginhistory/LoginHistory.model'
 import GenericFormModel from './bizcomponents/genericform/GenericForm.model'
+import FormMessageModel from './bizcomponents/formmessage/FormMessage.model'
+import FormFieldMessageModel from './bizcomponents/formfieldmessage/FormFieldMessage.model'
 import FormFieldModel from './bizcomponents/formfield/FormField.model'
 import FormActionModel from './bizcomponents/formaction/FormAction.model'
 
@@ -136,6 +138,8 @@ app.model(UserAppModel)
 app.model(ObjectAccessModel)
 app.model(LoginHistoryModel)
 app.model(GenericFormModel)
+app.model(FormMessageModel)
+app.model(FormFieldMessageModel)
 app.model(FormFieldModel)
 app.model(FormActionModel)
 

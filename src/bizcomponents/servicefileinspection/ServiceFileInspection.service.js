@@ -5,7 +5,7 @@ const getURLPrefix = () => {
   if (url.hostname === 'localhost') {
     return `http://${url.hostname}:8080/naf/`
   }
-  if(url.hostname === "30.30.126.37"){
+  if (url.hostname === '30.30.126.37') {
     return `http://${url.hostname}:8080/naf/`
   }
   return `${url.origin}/cis/`
@@ -13,13 +13,13 @@ const getURLPrefix = () => {
 
 const PREFIX = getURLPrefix()
 
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}serviceFileInspectionManager/view/${targetObjectId}/`,
   })
 }
 
-const joinParameters = (parameters) => {
+const joinParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -31,7 +31,7 @@ const joinParameters = (parameters) => {
   return result
 }
 
-const joinPostParameters = (parameters) => {
+const joinPostParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -57,9 +57,8 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
-const ServiceFileInspectionService = { view,
-  load }
+const ServiceFileInspectionService = {
+  view,
+  load,
+}
 export default ServiceFileInspectionService
-

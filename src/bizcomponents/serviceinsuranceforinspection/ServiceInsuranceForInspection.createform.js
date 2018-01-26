@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import {
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -28,11 +40,10 @@ const fieldLabels = {
   mainOrder: '主订单',
 }
 
-
 const testValues = {
   serviceStatus: '待收单',
   serviceComments: '购买系统赠送的基本保险',
-  startTime: '2014-01-23 10:16:33',
+  startTime: '2013-07-11 18:25:09',
   insuranceNumber: 'ADK123123087KMN',
   orderedInsuranceId: 'AI000001',
   responsibleWorkerId: 'VSCE000001',
@@ -41,7 +52,6 @@ const testValues = {
 
 const imageURLPrefix = '//localhost:2090'
 
-
 const imageKeys = [
   'insuranceImage1',
   'insuranceImage2',
@@ -49,7 +59,6 @@ const imageKeys = [
   'insuranceImage4',
   'insuranceImage5',
 ]
-
 
 class ServiceInsuranceForInspectionCreateForm extends Component {
   state = {
@@ -66,7 +75,7 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -85,10 +94,14 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
+  mapBackToImageValues = convertedImagesValues => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
+    Object.keys(convertedImagesValues).map(key => {
+      if (
+        !convertedImagesValues ||
+        !convertedImagesValues[key] ||
+        !convertedImagesValues[key][0]
+      ) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -104,7 +117,7 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues=(selectedRow) => {
+  mapFromImageValues = selectedRow => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -112,8 +125,8 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
+    imageKeys.map(key => {
+      targetImages[key] = buildFileList(key, selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -137,7 +150,11 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addServiceInsuranceForInspection`,
-          payload: { id: owner.id, type: 'serviceInsuranceForInspection', parameters },
+          payload: {
+            id: owner.id,
+            type: 'serviceInsuranceForInspection',
+            parameters,
+          },
         })
       })
     }
@@ -147,18 +164,23 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addServiceInsuranceForInspection`,
-          payload: { id: owner.id, type: 'serviceInsuranceForInspection', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'serviceInsuranceForInspection',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -173,18 +195,22 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -215,14 +241,11 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceStatus}>
                   {getFieldDecorator('serviceStatus', {
                     rules: [{ required: true, message: '请输入服务状态' }],
-                  })(
-                    <Input placeholder="请输入请输入服务状态string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务状态string" />)}
                 </Form.Item>
               </Col>
 
@@ -230,9 +253,7 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
                 <Form.Item label={fieldLabels.serviceComments}>
                   {getFieldDecorator('serviceComments', {
                     rules: [{ required: true, message: '请输入服务的评论' }],
-                  })(
-                    <Input placeholder="请输入请输入服务的评论string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务的评论string" />)}
                 </Form.Item>
               </Col>
 
@@ -240,9 +261,7 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
                 <Form.Item label={fieldLabels.startTime}>
                   {getFieldDecorator('startTime', {
                     rules: [{ required: true, message: '请输入开始时间' }],
-                  })(
-                    <Input placeholder="请输入请输入开始时间date_time" />
-                  )}
+                  })(<Input placeholder="请输入请输入开始时间date_time" />)}
                 </Form.Item>
               </Col>
 
@@ -250,28 +269,23 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
                 <Form.Item label={fieldLabels.insuranceNumber}>
                   {getFieldDecorator('insuranceNumber', {
                     rules: [{ required: true, message: '请输入保单号码' }],
-                  })(
-                    <Input placeholder="请输入请输入保单号码string" />
-                  )}
+                  })(<Input placeholder="请输入请输入保单号码string" />)}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
-
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
                   buttonTitle="保险图1"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'insuranceImage1')}
+                  handleChange={event =>
+                    this.handleChange(event, 'insuranceImage1')
+                  }
                   fileList={convertedImagesValues.insuranceImage1}
                 />
               </Col>
@@ -280,7 +294,9 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
                 <PictureEdit
                   buttonTitle="保险图2"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'insuranceImage2')}
+                  handleChange={event =>
+                    this.handleChange(event, 'insuranceImage2')
+                  }
                   fileList={convertedImagesValues.insuranceImage2}
                 />
               </Col>
@@ -289,7 +305,9 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
                 <PictureEdit
                   buttonTitle="保险图片3"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'insuranceImage3')}
+                  handleChange={event =>
+                    this.handleChange(event, 'insuranceImage3')
+                  }
                   fileList={convertedImagesValues.insuranceImage3}
                 />
               </Col>
@@ -298,7 +316,9 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
                 <PictureEdit
                   buttonTitle="保险形象4"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'insuranceImage4')}
+                  handleChange={event =>
+                    this.handleChange(event, 'insuranceImage4')
+                  }
                   fileList={convertedImagesValues.insuranceImage4}
                 />
               </Col>
@@ -307,28 +327,24 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
                 <PictureEdit
                   buttonTitle="保险图片5"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'insuranceImage5')}
+                  handleChange={event =>
+                    this.handleChange(event, 'insuranceImage5')
+                  }
                   fileList={convertedImagesValues.insuranceImage5}
                 />
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.orderedInsurance}>
                   {getFieldDecorator('orderedInsuranceId', {
                     rules: [{ required: true, message: '请输入要求保险' }],
-                  })(
-                    <Input placeholder="请输入请输入要求保险" />
-                  )}
+                  })(<Input placeholder="请输入请输入要求保险" />)}
                 </Form.Item>
               </Col>
 
@@ -336,9 +352,7 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
                 <Form.Item label={fieldLabels.responsibleWorker}>
                   {getFieldDecorator('responsibleWorkerId', {
                     rules: [{ required: true, message: '请输入服务人员' }],
-                  })(
-                    <Input placeholder="请输入请输入服务人员" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务人员" />)}
                 </Form.Item>
               </Col>
 
@@ -346,22 +360,28 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
                 <Form.Item label={fieldLabels.mainOrder}>
                   {getFieldDecorator('mainOrderId', {
                     rules: [{ required: true, message: '请输入主订单' }],
-                  })(
-                    <Input placeholder="请输入请输入主订单" />
-                  )}
+                  })(<Input placeholder="请输入请输入主订单" />)}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -376,7 +396,3 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ServiceInsuranceForInspectionCreateForm))
-
-
-
-

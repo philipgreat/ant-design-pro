@@ -1,13 +1,32 @@
-
-
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Icon,
+  Card,
+  Tabs,
+  Table,
+  Radio,
+  DatePicker,
+  Tooltip,
+  Menu,
+  Dropdown,
+} from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
-  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
-
+  ChartCard,
+  yuan,
+  MiniArea,
+  MiniBar,
+  MiniProgress,
+  Field,
+  Bar,
+  Pie,
+  TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
@@ -15,8 +34,6 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './ServiceFileMovementC2m.editdetail.less'
 import GlobalComponents from '../../custcomponents'
-
-
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -30,39 +47,43 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 }
 
-
 @connect(state => ({
   serviceFileMovementC2m: state._serviceFileMovementC2m,
 }))
 export default class ServiceFileMovementC2mEditDetail extends Component {
   render() {
-    const {ServiceFileMovementC2mChecklistResultEditTable} = GlobalComponents;
-  
+    const { ServiceFileMovementC2mChecklistResultEditTable } = GlobalComponents
+
     // eslint-disable-next-line max-len
-    const { id, serviceFileMovementC2mChecklistResultCount } = this.props.serviceFileMovementC2m
-    const { serviceFileMovementC2mChecklistResultList } = this.props.serviceFileMovementC2m
-    
+    const {
+      id,
+      serviceFileMovementC2mChecklistResultCount,
+    } = this.props.serviceFileMovementC2m
+    const {
+      serviceFileMovementC2mChecklistResultList,
+    } = this.props.serviceFileMovementC2m
+
     const owner = { type: '_serviceFileMovementC2m', id }
     return (
-
       <PageHeaderLayout
         title="收件服务总览"
         content="收件服务总览"
         wrapperClassName={styles.advancedForm}
       >
-
-
-		<Card title="收件服务检查结果列表" className={styles.card} bordered={false}>
+        <Card
+          title="收件服务检查结果列表"
+          className={styles.card}
+          bordered={false}
+        >
           <Form layout="vertical" hideRequiredMark>
-            <ServiceFileMovementC2mChecklistResultEditTable data={serviceFileMovementC2mChecklistResultList} owner={owner} {...this.props} />
+            <ServiceFileMovementC2mChecklistResultEditTable
+              data={serviceFileMovementC2mChecklistResultList}
+              owner={owner}
+              {...this.props}
+            />
           </Form>
         </Card>
-
- 
       </PageHeaderLayout>
     )
   }
 }
-
-
-

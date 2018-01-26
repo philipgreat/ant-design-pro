@@ -1,21 +1,39 @@
-
-
 import React, { Component } from 'react'
 import { connect } from 'dva'
 import moment from 'moment'
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import {
+  Row,
+  Col,
+  Icon,
+  Card,
+  Tabs,
+  Table,
+  Radio,
+  DatePicker,
+  Tooltip,
+  Menu,
+  Dropdown,
+} from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
-  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
+  ChartCard,
+  yuan,
+  MiniArea,
+  MiniBar,
+  MiniProgress,
+  Field,
+  Bar,
+  Pie,
+  TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
 import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './VehicleServiceCompanyBusinessScope.dashboard.less'
-import DescriptionList from '../../components/DescriptionList';
-const { Description } = DescriptionList;
+import DescriptionList from '../../components/DescriptionList'
+const { Description } = DescriptionList
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
 
@@ -27,16 +45,14 @@ const topColResponsiveProps = {
   xl: 6,
   style: { marginBottom: 24 },
 }
-const summaryOf = (vehicleServiceCompanyBusinessScope) =>{
-
-	return (
-	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{vehicleServiceCompanyBusinessScope.id}</Description> 
-	
-        
-      </DescriptionList>
-	)
-
+const summaryOf = vehicleServiceCompanyBusinessScope => {
+  return (
+    <DescriptionList className={styles.headerList} size="small" col="4">
+      <Description term="序号">
+        {vehicleServiceCompanyBusinessScope.id}
+      </Description>
+    </DescriptionList>
+  )
 }
 
 @connect(state => ({
@@ -45,26 +61,18 @@ const summaryOf = (vehicleServiceCompanyBusinessScope) =>{
 export default class VehicleServiceCompanyBusinessScopeDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id,  } = this.props.vehicleServiceCompanyBusinessScope
-    
-    
-    
-    return (
+    const { id } = this.props.vehicleServiceCompanyBusinessScope
 
+    return (
       <PageHeaderLayout
         title="服务提供商服务范围管理总览"
         content={summaryOf(this.props.vehicleServiceCompanyBusinessScope)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
-          <Row gutter={24}>
-
-          </Row>
+          <Row gutter={24} />
         </div>
       </PageHeaderLayout>
     )
   }
 }
-
-
-

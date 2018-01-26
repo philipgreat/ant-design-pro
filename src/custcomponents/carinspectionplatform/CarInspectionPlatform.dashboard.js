@@ -46,6 +46,34 @@ const summaryOf = (carInspectionPlatform) =>{
 
 }
 
+
+const markList = (carInspectionPlatform) =>{
+
+  //console.log("carInspectionPlatform",carInspectionPlatform)
+  const {vehicleServiceCompanyList}=carInspectionPlatform
+  if(!vehicleServiceCompanyList){
+    return [];
+  }
+
+  var pointList=vehicleServiceCompanyList.map((item,indexValue)=>{
+    
+    const lng=item.longitude;
+    const lat=item.latitude;
+    
+    const point = {lng,lat};
+
+    return point;
+
+
+
+  })
+
+  //console.log("pointList",pointList)
+  return pointList;
+
+
+}
+
 const mapLabels = (carInspectionPlatform) =>{
 
   console.log("carInspectionPlatform",carInspectionPlatform)
@@ -57,8 +85,8 @@ const mapLabels = (carInspectionPlatform) =>{
   var pointList=vehicleServiceCompanyList.map((item,indexValue)=>{
     const name = item.companyName;
     const index =indexValue+1;
-    const lng=item.latitude;
-    const lat=item.longitude;
+    const lng=item.longitude;
+    const lat=item.latitude;
     
     const point = {lng,lat};
     const isShowNumber = false;
@@ -76,39 +104,67 @@ const mapLabels = (carInspectionPlatform) =>{
 }
 
 
+const getMap=(carInspectionPlatform)=>{
+
+
+  const {vehicleServiceCompanyList}=carInspectionPlatform
+  if(!vehicleServiceCompanyList){
+    return [];
+  }
+
+  return (
+    <Map center = {{ lng: 104.0668, lat: 30.5728 }} zoom='8' >
+  
+      <Marker position={{lng: 109.430831, lat: 38.211366}} 
+        offset={new BMap.Size(-75, -60)}>
+                <div onClick={function(){alert(1)}} style={{width: '150px', height: '20px', lineHeight: '20px', background: 'red', textAlign: 'center'}}>自定义覆盖物</div>
+            </Marker>
+    {
+      vehicleServiceCompanyList.map((item,indexValue)=>{
+    
+        const lng=item.longitude;
+        const lat=item.latitude;
+        const name=item.companyName;
+        const point = {lng,lat};
+        const icon = "red" + (indexValue + 1);
+        return ( <Marker  position={{lng, lat}} offset={new BMap.Size(-75, -60)} icon={icon}>
+         
+        </Marker>);
+    
+        //<div onClick={function(){alert(1)}} title={name}>{indexValue}</div>
+    
+      })
+
+    }
+  
+      <NavigationControl /> 
+  
+  </Map>)
+
+
+}
+
+
 @connect(state => ({
   carInspectionPlatform: state._carInspectionPlatform,
 }))
 export default class CarInspectionPlatformDashboard extends Component {
+
+
   render() {
     // eslint-disable-next-line max-len
     const { id, provinceCount, availableProductCount, customerCount, vehicleServiceCompanyCount, vehicleInfoCount, vehicleInspectionOrderCount } = this.props.carInspectionPlatform
-    
+    //30.5728° N, 104.0668° E
     
     return (
 
       <PageHeaderLayout
-        title="驾乐乐车辆代审服务平台总览定制"
+        title="驾乐乐车辆代审服务平台总览定制1111"
         content={summaryOf(this.props.carInspectionPlatform)}
         wrapperClassName={styles.advancedForm}
       >
 
-<Card title="商户地图" className={styles.card} bordered={false}>
-          
-
-  <Map center = {{ lng: 105.403119, lat: 38.028658 }} zoom = '5' >
-    
-    <PointLabel data={mapLabels(this.props.carInspectionPlatform)}
-            changePosition={(point, index) => {
-                console.log(point, index);
-            }}
-            />
-    <NavigationControl /> 
-    
-</Map>
-
-
-        </Card>
+    <Card title="商户地图" className={styles.card} bordered={false}>{getMap(this.props.carInspectionPlatform)} </Card>
 
 
         <div>

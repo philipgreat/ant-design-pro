@@ -5,7 +5,7 @@ const getURLPrefix = () => {
   if (url.hostname === 'localhost') {
     return `http://${url.hostname}:8080/naf/`
   }
-  if(url.hostname === "30.30.126.37"){
+  if (url.hostname === '30.30.126.37') {
     return `http://${url.hostname}:8080/naf/`
   }
   return `${url.origin}/cis/`
@@ -13,13 +13,13 @@ const getURLPrefix = () => {
 
 const PREFIX = getURLPrefix()
 
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}vehicleRepairingAllowanceManager/view/${targetObjectId}/`,
   })
 }
 
-const joinParameters = (parameters) => {
+const joinParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -31,7 +31,7 @@ const joinParameters = (parameters) => {
   return result
 }
 
-const joinPostParameters = (parameters) => {
+const joinPostParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -57,8 +57,6 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
 const addRepairingQuotationItem = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleRepairingAllowanceManager/addRepairingQuotationItem/repairingItemTypeId/repairingItemName/repairingItemDescription/repairingItemPrice/repairingQuotationId/repairingItemImage1/repairingItemImage2/repairingItemImage3/repairingItemImage4/repairingItemImage5/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
@@ -74,7 +72,11 @@ const addRepairingQuotationItem = (targetObjectId, parameters) => {
 const updateRepairingQuotationItem = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleRepairingAllowanceManager/updateRepairingQuotationItemProperties/vehicleRepairingAllowanceId/id/repairingItemName/repairingItemDescription/repairingItemPrice/repairingItemImage1/repairingItemImage2/repairingItemImage3/repairingItemImage4/repairingItemImage5/tokensExpr/`
   const vehicleRepairingAllowanceId = targetObjectId
-  const requestParameters = { ...parameters, vehicleRepairingAllowanceId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    vehicleRepairingAllowanceId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -85,7 +87,11 @@ const updateRepairingQuotationItem = (targetObjectId, parameters) => {
 
 const removeRepairingQuotationItemList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleRepairingAllowanceManager/removeRepairingQuotationItemList/vehicleRepairingAllowanceId/repairingQuotationItemIds/tokensExpr/`
-  const requestParameters = { ...parameters, vehicleRepairingAllowanceId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    vehicleRepairingAllowanceId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -94,11 +100,11 @@ const removeRepairingQuotationItemList = (targetObjectId, parameters) => {
   })
 }
 
-
-const VehicleRepairingAllowanceService = { view,
+const VehicleRepairingAllowanceService = {
+  view,
   load,
   addRepairingQuotationItem,
   updateRepairingQuotationItem,
-  removeRepairingQuotationItemList }
+  removeRepairingQuotationItemList,
+}
 export default VehicleRepairingAllowanceService
-

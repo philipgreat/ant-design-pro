@@ -5,7 +5,7 @@ const getURLPrefix = () => {
   if (url.hostname === 'localhost') {
     return `http://${url.hostname}:8080/naf/`
   }
-  if(url.hostname === "30.30.126.37"){
+  if (url.hostname === '30.30.126.37') {
     return `http://${url.hostname}:8080/naf/`
   }
   return `${url.origin}/cis/`
@@ -13,13 +13,13 @@ const getURLPrefix = () => {
 
 const PREFIX = getURLPrefix()
 
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}inspectionStationManager/view/${targetObjectId}/`,
   })
 }
 
-const joinParameters = (parameters) => {
+const joinParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -31,7 +31,7 @@ const joinParameters = (parameters) => {
   return result
 }
 
-const joinPostParameters = (parameters) => {
+const joinPostParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -57,8 +57,6 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
 const addServiceVehicleInspection = (targetObjectId, parameters) => {
   const url = `${PREFIX}inspectionStationManager/addServiceVehicleInspection/inspectionStationId/serviceStatus/responsibleWorkerId/inspectionResult/startTime/lastLocation/reportImage1/reportImage2/reportImage3/reportImage4/reportImage5/mainOrderId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
@@ -74,7 +72,11 @@ const addServiceVehicleInspection = (targetObjectId, parameters) => {
 const updateServiceVehicleInspection = (targetObjectId, parameters) => {
   const url = `${PREFIX}inspectionStationManager/updateServiceVehicleInspectionProperties/inspectionStationId/id/serviceStatus/inspectionResult/startTime/lastLocation/reportImage1/reportImage2/reportImage3/reportImage4/reportImage5/tokensExpr/`
   const inspectionStationId = targetObjectId
-  const requestParameters = { ...parameters, inspectionStationId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    inspectionStationId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -85,7 +87,11 @@ const updateServiceVehicleInspection = (targetObjectId, parameters) => {
 
 const removeServiceVehicleInspectionList = (targetObjectId, parameters) => {
   const url = `${PREFIX}inspectionStationManager/removeServiceVehicleInspectionList/inspectionStationId/serviceVehicleInspectionIds/tokensExpr/`
-  const requestParameters = { ...parameters, inspectionStationId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    inspectionStationId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -93,7 +99,6 @@ const removeServiceVehicleInspectionList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addServiceFileInspection = (targetObjectId, parameters) => {
   const url = `${PREFIX}inspectionStationManager/addServiceFileInspection/inspectionStationId/serviceStatus/responsibleWorkerId/inspectionResult/startTime/lastLocation/reportImage1/reportImage2/reportImage3/reportImage4/reportImage5/mainOrderId/tokensExpr/`
@@ -110,7 +115,11 @@ const addServiceFileInspection = (targetObjectId, parameters) => {
 const updateServiceFileInspection = (targetObjectId, parameters) => {
   const url = `${PREFIX}inspectionStationManager/updateServiceFileInspectionProperties/inspectionStationId/id/serviceStatus/inspectionResult/startTime/lastLocation/reportImage1/reportImage2/reportImage3/reportImage4/reportImage5/tokensExpr/`
   const inspectionStationId = targetObjectId
-  const requestParameters = { ...parameters, inspectionStationId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    inspectionStationId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -121,7 +130,11 @@ const updateServiceFileInspection = (targetObjectId, parameters) => {
 
 const removeServiceFileInspectionList = (targetObjectId, parameters) => {
   const url = `${PREFIX}inspectionStationManager/removeServiceFileInspectionList/inspectionStationId/serviceFileInspectionIds/tokensExpr/`
-  const requestParameters = { ...parameters, inspectionStationId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    inspectionStationId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -130,14 +143,14 @@ const removeServiceFileInspectionList = (targetObjectId, parameters) => {
   })
 }
 
-
-const InspectionStationService = { view,
+const InspectionStationService = {
+  view,
   load,
   addServiceVehicleInspection,
   addServiceFileInspection,
   updateServiceVehicleInspection,
   updateServiceFileInspection,
   removeServiceVehicleInspectionList,
-  removeServiceFileInspectionList }
+  removeServiceFileInspectionList,
+}
 export default InspectionStationService
-

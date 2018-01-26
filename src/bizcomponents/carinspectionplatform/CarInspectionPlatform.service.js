@@ -5,7 +5,7 @@ const getURLPrefix = () => {
   if (url.hostname === 'localhost') {
     return `http://${url.hostname}:8080/naf/`
   }
-  if(url.hostname === "30.30.126.37"){
+  if (url.hostname === '30.30.126.37') {
     return `http://${url.hostname}:8080/naf/`
   }
   return `${url.origin}/cis/`
@@ -13,13 +13,13 @@ const getURLPrefix = () => {
 
 const PREFIX = getURLPrefix()
 
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}carInspectionPlatformManager/view/${targetObjectId}/`,
   })
 }
 
-const joinParameters = (parameters) => {
+const joinParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -31,7 +31,7 @@ const joinParameters = (parameters) => {
   return result
 }
 
-const joinPostParameters = (parameters) => {
+const joinPostParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -57,8 +57,6 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
 const addProvince = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/addProvince/platformId/name/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
@@ -74,7 +72,11 @@ const addProvince = (targetObjectId, parameters) => {
 const updateProvince = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/updateProvinceProperties/carInspectionPlatformId/id/name/tokensExpr/`
   const carInspectionPlatformId = targetObjectId
-  const requestParameters = { ...parameters, carInspectionPlatformId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    carInspectionPlatformId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -85,7 +87,11 @@ const updateProvince = (targetObjectId, parameters) => {
 
 const removeProvinceList = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/removeProvinceList/carInspectionPlatformId/provinceIds/tokensExpr/`
-  const requestParameters = { ...parameters, carInspectionPlatformId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    carInspectionPlatformId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -93,7 +99,6 @@ const removeProvinceList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addAvailableProduct = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/addAvailableProduct/platformId/productName/serviceKey/serviceDescription/tokensExpr/`
@@ -110,7 +115,11 @@ const addAvailableProduct = (targetObjectId, parameters) => {
 const updateAvailableProduct = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/updateAvailableProductProperties/carInspectionPlatformId/id/productName/serviceKey/serviceDescription/tokensExpr/`
   const carInspectionPlatformId = targetObjectId
-  const requestParameters = { ...parameters, carInspectionPlatformId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    carInspectionPlatformId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -121,7 +130,11 @@ const updateAvailableProduct = (targetObjectId, parameters) => {
 
 const removeAvailableProductList = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/removeAvailableProductList/carInspectionPlatformId/availableProductIds/tokensExpr/`
-  const requestParameters = { ...parameters, carInspectionPlatformId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    carInspectionPlatformId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -129,7 +142,6 @@ const removeAvailableProductList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addCustomer = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/addCustomer/platformId/nickName/logoImage/weixinOpenid/weixinAppid/secUserId/tokensExpr/`
@@ -146,7 +158,11 @@ const addCustomer = (targetObjectId, parameters) => {
 const updateCustomer = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/updateCustomerProperties/carInspectionPlatformId/id/nickName/logoImage/weixinOpenid/weixinAppid/tokensExpr/`
   const carInspectionPlatformId = targetObjectId
-  const requestParameters = { ...parameters, carInspectionPlatformId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    carInspectionPlatformId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -157,7 +173,11 @@ const updateCustomer = (targetObjectId, parameters) => {
 
 const removeCustomerList = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/removeCustomerList/carInspectionPlatformId/customerIds/tokensExpr/`
-  const requestParameters = { ...parameters, carInspectionPlatformId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    carInspectionPlatformId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -165,7 +185,6 @@ const removeCustomerList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addVehicleServiceCompany = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/addVehicleServiceCompany/platformId/companyName/operatingStatus/addressCityId/addressDetail/availableStoreService/availableHomeService/openingTime/longitude/latitude/tokensExpr/`
@@ -182,7 +201,11 @@ const addVehicleServiceCompany = (targetObjectId, parameters) => {
 const updateVehicleServiceCompany = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/updateVehicleServiceCompanyProperties/carInspectionPlatformId/id/companyName/operatingStatus/addressDetail/availableStoreService/availableHomeService/openingTime/longitude/latitude/tokensExpr/`
   const carInspectionPlatformId = targetObjectId
-  const requestParameters = { ...parameters, carInspectionPlatformId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    carInspectionPlatformId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -193,7 +216,11 @@ const updateVehicleServiceCompany = (targetObjectId, parameters) => {
 
 const removeVehicleServiceCompanyList = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/removeVehicleServiceCompanyList/carInspectionPlatformId/vehicleServiceCompanyIds/tokensExpr/`
-  const requestParameters = { ...parameters, carInspectionPlatformId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    carInspectionPlatformId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -201,7 +228,6 @@ const removeVehicleServiceCompanyList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addVehicleInfo = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/addVehicleInfo/platformId/licensePlateNumber/vehicleType/useCharacter/seatsQuantity/registrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitNumber/vehiclePermitExpirationDate/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/customerId/tokensExpr/`
@@ -218,7 +244,11 @@ const addVehicleInfo = (targetObjectId, parameters) => {
 const updateVehicleInfo = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/updateVehicleInfoProperties/carInspectionPlatformId/id/licensePlateNumber/vehicleType/useCharacter/seatsQuantity/registrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitNumber/vehiclePermitExpirationDate/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/tokensExpr/`
   const carInspectionPlatformId = targetObjectId
-  const requestParameters = { ...parameters, carInspectionPlatformId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    carInspectionPlatformId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -229,7 +259,11 @@ const updateVehicleInfo = (targetObjectId, parameters) => {
 
 const removeVehicleInfoList = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/removeVehicleInfoList/carInspectionPlatformId/vehicleInfoIds/tokensExpr/`
-  const requestParameters = { ...parameters, carInspectionPlatformId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    carInspectionPlatformId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -238,9 +272,8 @@ const removeVehicleInfoList = (targetObjectId, parameters) => {
   })
 }
 
-
 const addVehicleInspectionOrder = (targetObjectId, parameters) => {
-  const url = `${PREFIX}carInspectionPlatformManager/addVehicleInspectionOrder/platformId/orderStatus/customerId/createTime/contactName/contactMobileNumber/contactAddressCityId/contactAddressDetail/vehicleLicensePlateNumber/vehicleType/vehicleUseCharacter/vehicleSeatsQuantity/vehicleRegistrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitNumber/vehiclePermitExpirationDate/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/tokensExpr/`
+  const url = `${PREFIX}carInspectionPlatformManager/addVehicleInspectionOrder/platformId/orderStatus/customerId/createTime/planInspectionDate/trafficAccidentAnnouncement/homePickUp/contactName/contactMobileNumber/contactAddressCityId/contactAddressDetail/vehicleLicensePlateNumber/vehicleType/vehicleUseCharacter/vehicleSeatsQuantity/vehicleRegistrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitNumber/vehiclePermitExpirationDate/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -252,9 +285,13 @@ const addVehicleInspectionOrder = (targetObjectId, parameters) => {
 }
 
 const updateVehicleInspectionOrder = (targetObjectId, parameters) => {
-  const url = `${PREFIX}carInspectionPlatformManager/updateVehicleInspectionOrderProperties/carInspectionPlatformId/id/orderStatus/createTime/contactName/contactMobileNumber/contactAddressDetail/vehicleLicensePlateNumber/vehicleType/vehicleUseCharacter/vehicleSeatsQuantity/vehicleRegistrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitNumber/vehiclePermitExpirationDate/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/tokensExpr/`
+  const url = `${PREFIX}carInspectionPlatformManager/updateVehicleInspectionOrderProperties/carInspectionPlatformId/id/orderStatus/createTime/planInspectionDate/trafficAccidentAnnouncement/homePickUp/contactName/contactMobileNumber/contactAddressDetail/vehicleLicensePlateNumber/vehicleType/vehicleUseCharacter/vehicleSeatsQuantity/vehicleRegistrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitNumber/vehiclePermitExpirationDate/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/tokensExpr/`
   const carInspectionPlatformId = targetObjectId
-  const requestParameters = { ...parameters, carInspectionPlatformId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    carInspectionPlatformId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -265,7 +302,11 @@ const updateVehicleInspectionOrder = (targetObjectId, parameters) => {
 
 const removeVehicleInspectionOrderList = (targetObjectId, parameters) => {
   const url = `${PREFIX}carInspectionPlatformManager/removeVehicleInspectionOrderList/carInspectionPlatformId/vehicleInspectionOrderIds/tokensExpr/`
-  const requestParameters = { ...parameters, carInspectionPlatformId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    carInspectionPlatformId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -274,8 +315,8 @@ const removeVehicleInspectionOrderList = (targetObjectId, parameters) => {
   })
 }
 
-
-const CarInspectionPlatformService = { view,
+const CarInspectionPlatformService = {
+  view,
   load,
   addProvince,
   addAvailableProduct,
@@ -294,6 +335,6 @@ const CarInspectionPlatformService = { view,
   removeCustomerList,
   removeVehicleServiceCompanyList,
   removeVehicleInfoList,
-  removeVehicleInspectionOrderList }
+  removeVehicleInspectionOrderList,
+}
 export default CarInspectionPlatformService
-

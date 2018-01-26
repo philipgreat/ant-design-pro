@@ -62,6 +62,8 @@ const apps = {
   'com.terapico.cis.objectaccess.ObjectAccess': 'objectAccess',
   'com.terapico.cis.loginhistory.LoginHistory': 'loginHistory',
   'com.terapico.cis.genericform.GenericForm': 'genericForm',
+  'com.terapico.cis.formmessage.FormMessage': 'formMessage',
+  'com.terapico.cis.formfieldmessage.FormFieldMessage': 'formFieldMessage',
   'com.terapico.cis.formfield.FormField': 'formField',
   'com.terapico.cis.formaction.FormAction': 'formAction',
 

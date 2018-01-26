@@ -1,19 +1,42 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './VehicleInspectionOrderPayment.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '支付方式', debugtype: 'string', dataIndex: 'paymentMethod', width: '7' },
-  { title: '应付款', dataIndex: 'paymentAmount', className:'money', render: (text, record) => (`￥${text.toFixed(2)}`) },
-  { title: '付款状态', debugtype: 'string', dataIndex: 'paymentStatus', width: '8' },
-  { title: '主订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.id}</Link>) : '暂无') },
-
+  {
+    title: '支付方式',
+    debugtype: 'string',
+    dataIndex: 'paymentMethod',
+    width: '7',
+  },
+  {
+    title: '应付款',
+    dataIndex: 'paymentAmount',
+    className: 'money',
+    render: (text, record) => `￥${text.toFixed(2)}`,
+  },
+  {
+    title: '付款状态',
+    debugtype: 'string',
+    dataIndex: 'paymentStatus',
+    width: '8',
+  },
+  {
+    title: '主订单',
+    dataIndex: 'mainOrder',
+    render: (text, record) =>
+      record.mainOrder ? (
+        <Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>
+          {record.mainOrder.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
 ]
 
 class VehicleInspectionOrderPaymentTable extends PureComponent {
@@ -56,7 +79,6 @@ class VehicleInspectionOrderPaymentTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -71,13 +93,15 @@ class VehicleInspectionOrderPaymentTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -98,4 +122,3 @@ class VehicleInspectionOrderPaymentTable extends PureComponent {
 }
 
 export default VehicleInspectionOrderPaymentTable
-

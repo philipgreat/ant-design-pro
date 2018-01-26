@@ -1,11 +1,9 @@
-
-
 import pathToRegexp from 'path-to-regexp'
 import { routerRedux } from 'dva/router'
 import { notification } from 'antd'
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
-const hasError = (data) => {
+const hasError = data => {
   if (!data.class) {
     return false
   }
@@ -18,7 +16,7 @@ const hasError = (data) => {
   return false
 }
 
-const handleServerError = (data) => {
+const handleServerError = data => {
   if (data.message) {
     notification.error({
       message: data.message,
@@ -36,15 +34,13 @@ const handleServerError = (data) => {
 }
 
 export default {
-
   namespace: '_serviceFileMovementC2m',
 
   state: {},
 
   subscriptions: {
-    
-    setup({ dispatch, history }) { 
-      history.listen((location) => {
+    setup({ dispatch, history }) {
+      history.listen(location => {
         const { pathname } = location
         if (!pathname.startsWith('/serviceFileMovementC2m')) {
           return
@@ -54,26 +50,34 @@ export default {
           dispatch({ type: 'updateState', payload: newstate })
           return
         }
-        const dashboardmatch = pathToRegexp('/serviceFileMovementC2m/:id/dashboard').exec(pathname)
+        const dashboardmatch = pathToRegexp(
+          '/serviceFileMovementC2m/:id/dashboard'
+        ).exec(pathname)
         if (dashboardmatch) {
           const id = dashboardmatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const editDetailMatch = pathToRegexp('/serviceFileMovementC2m/:id/editDetail').exec(pathname)
+        const editDetailMatch = pathToRegexp(
+          '/serviceFileMovementC2m/:id/editDetail'
+        ).exec(pathname)
         if (editDetailMatch) {
           const id = editDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const viewDetailMatch = pathToRegexp('/serviceFileMovementC2m/:id/viewDetail').exec(pathname)
+        const viewDetailMatch = pathToRegexp(
+          '/serviceFileMovementC2m/:id/viewDetail'
+        ).exec(pathname)
         if (viewDetailMatch) {
           const id = viewDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        
-        const match = pathToRegexp('/serviceFileMovementC2m/:id/list/:listName').exec(pathname)
+
+        const match = pathToRegexp(
+          '/serviceFileMovementC2m/:id/list/:listName'
+        ).exec(pathname)
         if (!match) {
           return
           //  dispatch action with userId
@@ -84,44 +88,59 @@ export default {
     },
   },
   effects: {
-    *view({ payload }, { call, put }) { 
-      const {ServiceFileMovementC2mService} = GlobalComponents;
+    *view({ payload }, { call, put }) {
+      const { ServiceFileMovementC2mService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
       const data = yield call(ServiceFileMovementC2mService.view, payload.id)
       console.log('this is the data id:', data.id)
       yield put({ type: 'updateState', payload: data })
     },
-    *load({ payload }, { call, put }) { 
-      const {ServiceFileMovementC2mService} = GlobalComponents;
+    *load({ payload }, { call, put }) {
+      const { ServiceFileMovementC2mService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
-      const data = yield call(ServiceFileMovementC2mService.load, payload.id, payload.parameters)
-      
+      const data = yield call(
+        ServiceFileMovementC2mService.load,
+        payload.id,
+        payload.parameters
+      )
+
       const newPlayload = { ...payload, ...data }
-      
+
       console.log('this is the data id: ', data.id)
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *gotoCreateForm({ payload }, { put }) {
       const { id, type } = payload
-      yield put(routerRedux.push(`/serviceFileMovementC2m/${id}/list/${type}CreateForm`))
+      yield put(
+        routerRedux.push(`/serviceFileMovementC2m/${id}/list/${type}CreateForm`)
+      )
     },
     *gotoUpdateForm({ payload }, { put }) {
       const { id, type, selectedRows, currentUpdateIndex } = payload
       const state = { id, type, selectedRows, currentUpdateIndex }
-      const location = { pathname: `/serviceFileMovementC2m/${id}/list/${type}UpdateForm`, state }
+      const location = {
+        pathname: `/serviceFileMovementC2m/${id}/list/${type}UpdateForm`,
+        state,
+      }
       yield put(routerRedux.push(location))
     },
     *goback({ payload }, { put }) {
       const { id, type } = payload
-      yield put(routerRedux.push(`/serviceFileMovementC2m/${id}/list/${type}List`))
+      yield put(
+        routerRedux.push(`/serviceFileMovementC2m/${id}/list/${type}List`)
+      )
     },
 
     *addServiceFileMovementC2mChecklistResult({ payload }, { call, put }) {
-      const {ServiceFileMovementC2mService} = GlobalComponents;
+      const { ServiceFileMovementC2mService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(ServiceFileMovementC2mService.addServiceFileMovementC2mChecklistResult, id, parameters)
+      const data = yield call(
+        ServiceFileMovementC2mService.addServiceFileMovementC2mChecklistResult,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -136,41 +155,80 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/serviceFileMovementC2m/${id}/list/${type}List`, state: data }
+      const location = {
+        pathname: `/serviceFileMovementC2m/${id}/list/${type}List`,
+        state: data,
+      }
       yield put(routerRedux.push(location))
     },
     *updateServiceFileMovementC2mChecklistResult({ payload }, { call, put }) {
-      const {ServiceFileMovementC2mService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { ServiceFileMovementC2mService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(ServiceFileMovementC2mService.updateServiceFileMovementC2mChecklistResult, id, parameters)
+      const data = yield call(
+        ServiceFileMovementC2mService.updateServiceFileMovementC2mChecklistResult,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/serviceFileMovementC2m/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/serviceFileMovementC2m/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
-    *gotoNextServiceFileMovementC2mChecklistResultUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+    *gotoNextServiceFileMovementC2mChecklistResultUpdateRow(
+      { payload },
+      { call, put }
+    ) {
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
-    *removeServiceFileMovementC2mChecklistResultList({ payload }, { call, put }) {
-      const {ServiceFileMovementC2mService} = GlobalComponents; 
+    *removeServiceFileMovementC2mChecklistResultList(
+      { payload },
+      { call, put }
+    ) {
+      const { ServiceFileMovementC2mService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(ServiceFileMovementC2mService.removeServiceFileMovementC2mChecklistResultList, id, parameters)
+      const data = yield call(
+        ServiceFileMovementC2mService.removeServiceFileMovementC2mChecklistResultList,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -178,7 +236,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/serviceFileMovementC2m/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -187,9 +245,8 @@ export default {
       // const location = { pathname: `serviceFileMovementC2m/${id}/list/${type}List`, state: data}
       // yield put(routerRedux.push(location))
     },
-
   },
-  
+
   reducers: {
     updateState(state, action) {
       const payload = { ...action.payload, loading: false }
@@ -202,4 +259,3 @@ export default {
     },
   },
 }
-

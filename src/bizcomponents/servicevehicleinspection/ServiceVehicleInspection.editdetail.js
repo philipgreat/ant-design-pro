@@ -1,13 +1,32 @@
-
-
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Icon,
+  Card,
+  Tabs,
+  Table,
+  Radio,
+  DatePicker,
+  Tooltip,
+  Menu,
+  Dropdown,
+} from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
-  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
-
+  ChartCard,
+  yuan,
+  MiniArea,
+  MiniBar,
+  MiniProgress,
+  Field,
+  Bar,
+  Pie,
+  TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
@@ -15,8 +34,6 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './ServiceVehicleInspection.editdetail.less'
 import GlobalComponents from '../../custcomponents'
-
-
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -30,32 +47,22 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 }
 
-
 @connect(state => ({
   serviceVehicleInspection: state._serviceVehicleInspection,
 }))
 export default class ServiceVehicleInspectionEditDetail extends Component {
   render() {
-  
     // eslint-disable-next-line max-len
-    const { id,  } = this.props.serviceVehicleInspection
-    const {  } = this.props.serviceVehicleInspection
-    
+    const { id } = this.props.serviceVehicleInspection
+    const {} = this.props.serviceVehicleInspection
+
     const owner = { type: '_serviceVehicleInspection', id }
     return (
-
       <PageHeaderLayout
         title="车辆上线检测结果总览"
         content="车辆上线检测结果总览"
         wrapperClassName={styles.advancedForm}
-      >
-
-
- 
-      </PageHeaderLayout>
+      />
     )
   }
 }
-
-
-

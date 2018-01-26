@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import {
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -14,13 +26,12 @@ const { TextArea } = Input
 const fieldLabels = {
   id: '序号',
   nickName: '客户昵称',
-  logoImage: '标志形象',
+  logoImage: '头像',
   weixinOpenid: 'WeixinOpenid',
   weixinAppid: 'WeixinAppid',
   secUser: 'SecUser',
   platform: '平台',
 }
-
 
 const testValues = {
   nickName: '张俊宝',
@@ -28,16 +39,13 @@ const testValues = {
   weixinAppid: 'wxapp12098410239840',
   secUserId: 'SU000001',
   platformId: 'CIP000001',
-  logoImage: 'wx.qlogo.cnmmopenDYAIOgq83eqV99Oaly8icqjNWJWeCZTFR5HCwZcCJeibibCRMvWicIYBusmKFF6e8DAe7o07ql8mT8WhWdNUOJ3BiaQ.jpg',
+  logoImage:
+    'wx.qlogo.cnmmopenDYAIOgq83eqV99Oaly8icqjNWJWeCZTFR5HCwZcCJeibibCRMvWicIYBusmKFF6e8DAe7o07ql8mT8WhWdNUOJ3BiaQ.jpg',
 }
 
 const imageURLPrefix = '//localhost:2090'
 
-
-const imageKeys = [
-  'logoImage',
-]
-
+const imageKeys = ['logoImage']
 
 class CustomerCreateForm extends Component {
   state = {
@@ -54,7 +62,7 @@ class CustomerCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -73,10 +81,14 @@ class CustomerCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
+  mapBackToImageValues = convertedImagesValues => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
+    Object.keys(convertedImagesValues).map(key => {
+      if (
+        !convertedImagesValues ||
+        !convertedImagesValues[key] ||
+        !convertedImagesValues[key][0]
+      ) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -92,7 +104,7 @@ class CustomerCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues=(selectedRow) => {
+  mapFromImageValues = selectedRow => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -100,8 +112,8 @@ class CustomerCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
+    imageKeys.map(key => {
+      targetImages[key] = buildFileList(key, selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -135,18 +147,23 @@ class CustomerCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addCustomer`,
-          payload: { id: owner.id, type: 'customer', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'customer',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -161,18 +178,22 @@ class CustomerCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -203,14 +224,11 @@ class CustomerCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.nickName}>
                   {getFieldDecorator('nickName', {
                     rules: [{ required: true, message: '请输入客户昵称' }],
-                  })(
-                    <Input placeholder="请输入请输入客户昵称string" />
-                  )}
+                  })(<Input placeholder="请输入请输入客户昵称string" />)}
                 </Form.Item>
               </Col>
 
@@ -218,9 +236,7 @@ class CustomerCreateForm extends Component {
                 <Form.Item label={fieldLabels.weixinOpenid}>
                   {getFieldDecorator('weixinOpenid', {
                     rules: [{ required: true, message: '请输入WeixinOpenid' }],
-                  })(
-                    <Input placeholder="请输入请输入WeixinOpenidstring" />
-                  )}
+                  })(<Input placeholder="请输入请输入WeixinOpenidstring" />)}
                 </Form.Item>
               </Col>
 
@@ -228,65 +244,50 @@ class CustomerCreateForm extends Component {
                 <Form.Item label={fieldLabels.weixinAppid}>
                   {getFieldDecorator('weixinAppid', {
                     rules: [{ required: true, message: '请输入WeixinAppid' }],
-                  })(
-                    <Input placeholder="请输入请输入WeixinAppidstring" />
-                  )}
+                  })(<Input placeholder="请输入请输入WeixinAppidstring" />)}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-        <Card title="标志形象" className={styles.card} bordered={false}>
+        <Card title="头像" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
               <Col lg={24} md={24} sm={24}>
                 <Form.Item>
                   {getFieldDecorator('logoImage', {
-                    rules: [{ required: true, message: '请输入标志形象' }],
-                  })(
-                    <TextArea rows={4} placeholder="请输入请输入标志形象" />
-                  )}
+                    rules: [{ required: true, message: '请输入头像' }],
+                  })(<TextArea rows={4} placeholder="请输入请输入头像" />)}
                 </Form.Item>
               </Col>
-      </Row>
-          </Form>  
+            </Row>
+          </Form>
         </Card>
-
-
 
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="标志形象"
+                  buttonTitle="头像"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'logoImage')}
                   fileList={convertedImagesValues.logoImage}
                 />
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.secUser}>
                   {getFieldDecorator('secUserId', {
                     rules: [{ required: true, message: '请输入SecUser' }],
-                  })(
-                    <Input placeholder="请输入请输入SecUser" />
-                  )}
+                  })(<Input placeholder="请输入请输入SecUser" />)}
                 </Form.Item>
               </Col>
 
@@ -294,22 +295,28 @@ class CustomerCreateForm extends Component {
                 <Form.Item label={fieldLabels.platform}>
                   {getFieldDecorator('platformId', {
                     rules: [{ required: true, message: '请输入平台' }],
-                  })(
-                    <Input placeholder="请输入请输入平台" />
-                  )}
+                  })(<Input placeholder="请输入请输入平台" />)}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -324,7 +331,3 @@ class CustomerCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(CustomerCreateForm))
-
-
-
-

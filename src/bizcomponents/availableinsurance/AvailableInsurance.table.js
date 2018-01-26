@@ -1,20 +1,51 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './AvailableInsurance.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/availableInsurance/${text}/dashboard`}>{text}</Link>) },
-  { title: '保险产品名称', debugtype: 'string', dataIndex: 'insuranceName', width: '10' },
-  { title: '保险承保方', debugtype: 'string', dataIndex: 'insuranceVendor', width: '11' },
-  { title: '保险价格', dataIndex: 'insurancePrice', className:'money', render: (text, record) => (`￥${text.toFixed(2)}`) },
+  {
+    title: '序号',
+    debugtype: 'string',
+    dataIndex: 'id',
+    width: '20',
+    render: (text, record) => (
+      <Link to={`/availableInsurance/${text}/dashboard`}>{text}</Link>
+    ),
+  },
+  {
+    title: '保险产品名称',
+    debugtype: 'string',
+    dataIndex: 'insuranceName',
+    width: '10',
+  },
+  {
+    title: '保险承保方',
+    debugtype: 'string',
+    dataIndex: 'insuranceVendor',
+    width: '11',
+  },
+  {
+    title: '保险价格',
+    dataIndex: 'insurancePrice',
+    className: 'money',
+    render: (text, record) => `￥${text.toFixed(2)}`,
+  },
   { title: '概览', debugtype: 'string', dataIndex: 'summary', width: '20' },
-  { title: '产品', dataIndex: 'product', render: (text, record) => (record.product ? (<Link to={`/availableProduct/${record.product.id}/dashboard`}>{record.product.id}</Link>) : '暂无') },
-
+  {
+    title: '产品',
+    dataIndex: 'product',
+    render: (text, record) =>
+      record.product ? (
+        <Link to={`/availableProduct/${record.product.id}/dashboard`}>
+          {record.product.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
 ]
 
 class AvailableInsuranceTable extends PureComponent {
@@ -57,7 +88,6 @@ class AvailableInsuranceTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -72,13 +102,15 @@ class AvailableInsuranceTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -99,4 +131,3 @@ class AvailableInsuranceTable extends PureComponent {
 }
 
 export default AvailableInsuranceTable
-

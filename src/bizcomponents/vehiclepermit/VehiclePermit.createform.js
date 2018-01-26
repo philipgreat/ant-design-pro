@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import {
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -23,24 +35,15 @@ const fieldLabels = {
   image5: '图5',
 }
 
-
 const testValues = {
   holderName: '赵名进',
   licenseNumber: 'A123123102312312',
-  expirationDate: '2996-06-04',
+  expirationDate: '2995-05-25',
 }
 
 const imageURLPrefix = '//localhost:2090'
 
-
-const imageKeys = [
-  'image1',
-  'image2',
-  'image3',
-  'image4',
-  'image5',
-]
-
+const imageKeys = ['image1', 'image2', 'image3', 'image4', 'image5']
 
 class VehiclePermitCreateForm extends Component {
   state = {
@@ -57,7 +60,7 @@ class VehiclePermitCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -76,10 +79,14 @@ class VehiclePermitCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
+  mapBackToImageValues = convertedImagesValues => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
+    Object.keys(convertedImagesValues).map(key => {
+      if (
+        !convertedImagesValues ||
+        !convertedImagesValues[key] ||
+        !convertedImagesValues[key][0]
+      ) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -95,7 +102,7 @@ class VehiclePermitCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues=(selectedRow) => {
+  mapFromImageValues = selectedRow => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -103,8 +110,8 @@ class VehiclePermitCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
+    imageKeys.map(key => {
+      targetImages[key] = buildFileList(key, selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -138,18 +145,23 @@ class VehiclePermitCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehiclePermit`,
-          payload: { id: owner.id, type: 'vehiclePermit', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'vehiclePermit',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -164,18 +176,22 @@ class VehiclePermitCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -206,14 +222,11 @@ class VehiclePermitCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.holderName}>
                   {getFieldDecorator('holderName', {
                     rules: [{ required: true, message: '请输入姓名' }],
-                  })(
-                    <Input placeholder="请输入请输入姓名string" />
-                  )}
+                  })(<Input placeholder="请输入请输入姓名string" />)}
                 </Form.Item>
               </Col>
 
@@ -221,9 +234,7 @@ class VehiclePermitCreateForm extends Component {
                 <Form.Item label={fieldLabels.licenseNumber}>
                   {getFieldDecorator('licenseNumber', {
                     rules: [{ required: true, message: '请输入驾驶证号码' }],
-                  })(
-                    <Input placeholder="请输入请输入驾驶证号码string" />
-                  )}
+                  })(<Input placeholder="请输入请输入驾驶证号码string" />)}
                 </Form.Item>
               </Col>
 
@@ -231,23 +242,16 @@ class VehiclePermitCreateForm extends Component {
                 <Form.Item label={fieldLabels.expirationDate}>
                   {getFieldDecorator('expirationDate', {
                     rules: [{ required: true, message: '请输入失效日期' }],
-                  })(
-                    <Input placeholder="请输入请输入失效日期date" />
-                  )}
+                  })(<Input placeholder="请输入请输入失效日期date" />)}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
-
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
                   buttonTitle="图1"
@@ -292,19 +296,25 @@ class VehiclePermitCreateForm extends Component {
                   fileList={convertedImagesValues.image5}
                 />
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -319,7 +329,3 @@ class VehiclePermitCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(VehiclePermitCreateForm))
-
-
-
-

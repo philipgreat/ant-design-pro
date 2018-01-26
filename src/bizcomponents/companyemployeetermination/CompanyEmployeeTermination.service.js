@@ -5,7 +5,7 @@ const getURLPrefix = () => {
   if (url.hostname === 'localhost') {
     return `http://${url.hostname}:8080/naf/`
   }
-  if(url.hostname === "30.30.126.37"){
+  if (url.hostname === '30.30.126.37') {
     return `http://${url.hostname}:8080/naf/`
   }
   return `${url.origin}/cis/`
@@ -13,13 +13,13 @@ const getURLPrefix = () => {
 
 const PREFIX = getURLPrefix()
 
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}companyEmployeeTerminationManager/view/${targetObjectId}/`,
   })
 }
 
-const joinParameters = (parameters) => {
+const joinParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -31,7 +31,7 @@ const joinParameters = (parameters) => {
   return result
 }
 
-const joinPostParameters = (parameters) => {
+const joinPostParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -57,8 +57,6 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
 const addVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
   const url = `${PREFIX}companyEmployeeTerminationManager/addVehicleServiceCompanyEmployee/terminationId/employeeName/profileImage/gender/availableState/innocentEvidenceImage/identityCardNumber/companyId/availableMoveCar/availableInspectionCar/availableRepairCar/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
@@ -74,7 +72,11 @@ const addVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
 const updateVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
   const url = `${PREFIX}companyEmployeeTerminationManager/updateVehicleServiceCompanyEmployeeProperties/companyEmployeeTerminationId/id/employeeName/profileImage/gender/availableState/innocentEvidenceImage/identityCardNumber/availableMoveCar/availableInspectionCar/availableRepairCar/tokensExpr/`
   const companyEmployeeTerminationId = targetObjectId
-  const requestParameters = { ...parameters, companyEmployeeTerminationId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    companyEmployeeTerminationId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -83,9 +85,16 @@ const updateVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
   })
 }
 
-const removeVehicleServiceCompanyEmployeeList = (targetObjectId, parameters) => {
+const removeVehicleServiceCompanyEmployeeList = (
+  targetObjectId,
+  parameters
+) => {
   const url = `${PREFIX}companyEmployeeTerminationManager/removeVehicleServiceCompanyEmployeeList/companyEmployeeTerminationId/vehicleServiceCompanyEmployeeIds/tokensExpr/`
-  const requestParameters = { ...parameters, companyEmployeeTerminationId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    companyEmployeeTerminationId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -94,11 +103,11 @@ const removeVehicleServiceCompanyEmployeeList = (targetObjectId, parameters) => 
   })
 }
 
-
-const CompanyEmployeeTerminationService = { view,
+const CompanyEmployeeTerminationService = {
+  view,
   load,
   addVehicleServiceCompanyEmployee,
   updateVehicleServiceCompanyEmployee,
-  removeVehicleServiceCompanyEmployeeList }
+  removeVehicleServiceCompanyEmployeeList,
+}
 export default CompanyEmployeeTerminationService
-

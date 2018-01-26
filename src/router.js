@@ -62,6 +62,8 @@ import {UserAppBizApp} from './custcomponents';
 import {ObjectAccessBizApp} from './custcomponents';
 import {LoginHistoryBizApp} from './custcomponents';
 import {GenericFormBizApp} from './custcomponents';
+import {FormMessageBizApp} from './custcomponents';
+import {FormFieldMessageBizApp} from './custcomponents';
 import {FormFieldBizApp} from './custcomponents';
 import {FormActionBizApp} from './custcomponents';
 
@@ -127,6 +129,8 @@ function RouterConfig({ history }) {
           <Route path="/objectAccess/" component={ObjectAccessBizApp} />
           <Route path="/loginHistory/" component={LoginHistoryBizApp} />
           <Route path="/genericForm/" component={GenericFormBizApp} />
+          <Route path="/formMessage/" component={FormMessageBizApp} />
+          <Route path="/formFieldMessage/" component={FormFieldMessageBizApp} />
           <Route path="/formField/" component={FormFieldBizApp} />
           <Route path="/formAction/" component={FormActionBizApp} />
 

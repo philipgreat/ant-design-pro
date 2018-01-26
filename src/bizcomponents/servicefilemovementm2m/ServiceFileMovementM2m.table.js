@@ -1,30 +1,161 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './ServiceFileMovementM2m.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/serviceFileMovementM2m/${text}/dashboard`}>{text}</Link>) },
-  { title: '服务状态', debugtype: 'string', dataIndex: 'serviceStatus', width: '7' },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.id}</Link>) : '暂无') },
-  { title: '拒收原因', debugtype: 'string', dataIndex: 'rejectComments', width: '22' },
-  { title: '拒收凭证1', dataIndex: 'rejectEvidence1', render: (text, record) => <ImagePreview imageTitle="拒收凭证1" imageLocation={record.rejectEvidence1} /> },
-  { title: '拒收凭证2', dataIndex: 'rejectEvidence2', render: (text, record) => <ImagePreview imageTitle="拒收凭证2" imageLocation={record.rejectEvidence2} /> },
-  { title: '拒收凭证3', dataIndex: 'rejectEvidence3', render: (text, record) => <ImagePreview imageTitle="拒收凭证3" imageLocation={record.rejectEvidence3} /> },
-  { title: '拒收凭证4', dataIndex: 'rejectEvidence4', render: (text, record) => <ImagePreview imageTitle="拒收凭证4" imageLocation={record.rejectEvidence4} /> },
-  { title: '拒收凭证5', dataIndex: 'rejectEvidence5', render: (text, record) => <ImagePreview imageTitle="拒收凭证5" imageLocation={record.rejectEvidence5} /> },
-  { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD') },
-  { title: '最后的位置', debugtype: 'string', dataIndex: 'lastLocation', width: '17' },
-  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD') },
-  { title: '主订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.id}</Link>) : '暂无') },
-  { title: '移动目的', debugtype: 'string', dataIndex: 'movementPurpose', width: '6' },
-  { title: '发送方', dataIndex: 'sender', render: (text, record) => (record.sender ? (<Link to={`/vehicleServiceCompanyEmployee/${record.sender.id}/dashboard`}>{record.sender.id}</Link>) : '暂无') },
-  { title: '接收方', dataIndex: 'receiver', render: (text, record) => (record.receiver ? (<Link to={`/vehicleServiceCompanyEmployee/${record.receiver.id}/dashboard`}>{record.receiver.id}</Link>) : '暂无') },
-
+  {
+    title: '序号',
+    debugtype: 'string',
+    dataIndex: 'id',
+    width: '20',
+    render: (text, record) => (
+      <Link to={`/serviceFileMovementM2m/${text}/dashboard`}>{text}</Link>
+    ),
+  },
+  {
+    title: '服务状态',
+    debugtype: 'string',
+    dataIndex: 'serviceStatus',
+    width: '7',
+  },
+  {
+    title: '服务人员',
+    dataIndex: 'responsibleWorker',
+    render: (text, record) =>
+      record.responsibleWorker ? (
+        <Link
+          to={`/vehicleServiceCompanyEmployee/${
+            record.responsibleWorker.id
+          }/dashboard`}
+        >
+          {record.responsibleWorker.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '拒收原因',
+    debugtype: 'string',
+    dataIndex: 'rejectComments',
+    width: '22',
+  },
+  {
+    title: '拒收凭证1',
+    dataIndex: 'rejectEvidence1',
+    render: (text, record) => (
+      <ImagePreview
+        imageTitle="拒收凭证1"
+        imageLocation={record.rejectEvidence1}
+      />
+    ),
+  },
+  {
+    title: '拒收凭证2',
+    dataIndex: 'rejectEvidence2',
+    render: (text, record) => (
+      <ImagePreview
+        imageTitle="拒收凭证2"
+        imageLocation={record.rejectEvidence2}
+      />
+    ),
+  },
+  {
+    title: '拒收凭证3',
+    dataIndex: 'rejectEvidence3',
+    render: (text, record) => (
+      <ImagePreview
+        imageTitle="拒收凭证3"
+        imageLocation={record.rejectEvidence3}
+      />
+    ),
+  },
+  {
+    title: '拒收凭证4',
+    dataIndex: 'rejectEvidence4',
+    render: (text, record) => (
+      <ImagePreview
+        imageTitle="拒收凭证4"
+        imageLocation={record.rejectEvidence4}
+      />
+    ),
+  },
+  {
+    title: '拒收凭证5',
+    dataIndex: 'rejectEvidence5',
+    render: (text, record) => (
+      <ImagePreview
+        imageTitle="拒收凭证5"
+        imageLocation={record.rejectEvidence5}
+      />
+    ),
+  },
+  {
+    title: '开始时间',
+    dataIndex: 'startTime',
+    render: (text, record) => moment(record.startTime).format('YYYY-MM-DD'),
+  },
+  {
+    title: '最后的位置',
+    debugtype: 'string',
+    dataIndex: 'lastLocation',
+    width: '17',
+  },
+  {
+    title: '最后更新时间',
+    dataIndex: 'lastUpdateTime',
+    render: (text, record) =>
+      moment(record.lastUpdateTime).format('YYYY-MM-DD'),
+  },
+  {
+    title: '主订单',
+    dataIndex: 'mainOrder',
+    render: (text, record) =>
+      record.mainOrder ? (
+        <Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>
+          {record.mainOrder.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '移动目的',
+    debugtype: 'string',
+    dataIndex: 'movementPurpose',
+    width: '6',
+  },
+  {
+    title: '发送方',
+    dataIndex: 'sender',
+    render: (text, record) =>
+      record.sender ? (
+        <Link
+          to={`/vehicleServiceCompanyEmployee/${record.sender.id}/dashboard`}
+        >
+          {record.sender.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '接收方',
+    dataIndex: 'receiver',
+    render: (text, record) =>
+      record.receiver ? (
+        <Link
+          to={`/vehicleServiceCompanyEmployee/${record.receiver.id}/dashboard`}
+        >
+          {record.receiver.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
 ]
 
 class ServiceFileMovementM2mTable extends PureComponent {
@@ -67,7 +198,6 @@ class ServiceFileMovementM2mTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -82,13 +212,15 @@ class ServiceFileMovementM2mTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -109,4 +241,3 @@ class ServiceFileMovementM2mTable extends PureComponent {
 }
 
 export default ServiceFileMovementM2mTable
-

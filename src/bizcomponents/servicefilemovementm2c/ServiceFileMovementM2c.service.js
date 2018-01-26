@@ -5,7 +5,7 @@ const getURLPrefix = () => {
   if (url.hostname === 'localhost') {
     return `http://${url.hostname}:8080/naf/`
   }
-  if(url.hostname === "30.30.126.37"){
+  if (url.hostname === '30.30.126.37') {
     return `http://${url.hostname}:8080/naf/`
   }
   return `${url.origin}/cis/`
@@ -13,13 +13,13 @@ const getURLPrefix = () => {
 
 const PREFIX = getURLPrefix()
 
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}serviceFileMovementM2cManager/view/${targetObjectId}/`,
   })
 }
 
-const joinParameters = (parameters) => {
+const joinParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -31,7 +31,7 @@ const joinParameters = (parameters) => {
   return result
 }
 
-const joinPostParameters = (parameters) => {
+const joinPostParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -57,9 +57,10 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
-const addServiceFileMovementM2cChecklistResult = (targetObjectId, parameters) => {
+const addServiceFileMovementM2cChecklistResult = (
+  targetObjectId,
+  parameters
+) => {
   const url = `${PREFIX}serviceFileMovementM2cManager/addServiceFileMovementM2cChecklistResult/serviceId/checkResult/checkResultComments/createTime/image1/image2/image3/image4/image5/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
@@ -71,10 +72,17 @@ const addServiceFileMovementM2cChecklistResult = (targetObjectId, parameters) =>
   })
 }
 
-const updateServiceFileMovementM2cChecklistResult = (targetObjectId, parameters) => {
+const updateServiceFileMovementM2cChecklistResult = (
+  targetObjectId,
+  parameters
+) => {
   const url = `${PREFIX}serviceFileMovementM2cManager/updateServiceFileMovementM2cChecklistResultProperties/serviceFileMovementM2cId/id/checkResult/checkResultComments/createTime/image1/image2/image3/image4/image5/tokensExpr/`
   const serviceFileMovementM2cId = targetObjectId
-  const requestParameters = { ...parameters, serviceFileMovementM2cId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    serviceFileMovementM2cId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -83,9 +91,16 @@ const updateServiceFileMovementM2cChecklistResult = (targetObjectId, parameters)
   })
 }
 
-const removeServiceFileMovementM2cChecklistResultList = (targetObjectId, parameters) => {
+const removeServiceFileMovementM2cChecklistResultList = (
+  targetObjectId,
+  parameters
+) => {
   const url = `${PREFIX}serviceFileMovementM2cManager/removeServiceFileMovementM2cChecklistResultList/serviceFileMovementM2cId/serviceFileMovementM2cChecklistResultIds/tokensExpr/`
-  const requestParameters = { ...parameters, serviceFileMovementM2cId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    serviceFileMovementM2cId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -94,11 +109,11 @@ const removeServiceFileMovementM2cChecklistResultList = (targetObjectId, paramet
   })
 }
 
-
-const ServiceFileMovementM2cService = { view,
+const ServiceFileMovementM2cService = {
+  view,
   load,
   addServiceFileMovementM2cChecklistResult,
   updateServiceFileMovementM2cChecklistResult,
-  removeServiceFileMovementM2cChecklistResultList }
+  removeServiceFileMovementM2cChecklistResultList,
+}
 export default ServiceFileMovementM2cService
-

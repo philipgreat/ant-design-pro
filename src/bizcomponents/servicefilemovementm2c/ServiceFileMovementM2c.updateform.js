@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import {
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+} from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -31,7 +43,6 @@ const fieldLabels = {
   contactName: '联系人姓名',
   contactMobileNumber: '联系手机号码',
   merchant: '商户',
-
 }
 
 const imageURLPrefix = '//localhost:2090'
@@ -43,7 +54,6 @@ const imageKeys = [
   'rejectEvidence4',
   'rejectEvidence5',
 ]
-
 
 class ServiceFileMovementM2cUpdateForm extends Component {
   state = {
@@ -58,7 +68,7 @@ class ServiceFileMovementM2cUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow)
+      convertedImagesValues: this.mapFromImageValues(selectedRow),
     })
   }
 
@@ -87,12 +97,11 @@ class ServiceFileMovementM2cUpdateForm extends Component {
     if (currentUpdateIndex >= selectedRows.length) {
       return
     }
-    const convertiedValues = selectedRows.map((item) => {
+    const convertiedValues = selectedRows.map(item => {
       return {
         ...item,
         startTime: moment(item.startTime).format('YYYY-MM-DD'),
         lastUpdateTime: moment(item.lastUpdateTime).format('YYYY-MM-DD'),
-
       }
     })
     const selectedRow = convertiedValues[currentUpdateIndex]
@@ -108,10 +117,14 @@ class ServiceFileMovementM2cUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = (convertedImagesValues) => {
+  mapBackToImageValues = convertedImagesValues => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
+    Object.keys(convertedImagesValues).map(key => {
+      if (
+        !convertedImagesValues ||
+        !convertedImagesValues[key] ||
+        !convertedImagesValues[key][0]
+      ) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -138,8 +151,8 @@ class ServiceFileMovementM2cUpdateForm extends Component {
     })
     return targetImages
   }
-  
-  mapFromImageValues = (selectedRow) => {
+
+  mapFromImageValues = selectedRow => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -147,14 +160,14 @@ class ServiceFileMovementM2cUpdateForm extends Component {
       }
       return []
     }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
+    imageKeys.map(key => {
+      targetImages[key] = buildFileList(key, selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
   }
 
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -163,12 +176,17 @@ class ServiceFileMovementM2cUpdateForm extends Component {
   }
 
   render() {
-    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
+    const {
+      form,
+      dispatch,
+      submitting,
+      selectedRows,
+      currentUpdateIndex,
+    } = this.props
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const { convertedImagesValues } = this.state
     const { setFieldsValue } = this.props.form
-    
-    
+
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -179,7 +197,11 @@ class ServiceFileMovementM2cUpdateForm extends Component {
         const { owner } = this.props
         const serviceFileMovementM2cId = values.id
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = { ...values, serviceFileMovementM2cId, ...imagesValues }
+        const parameters = {
+          ...values,
+          serviceFileMovementM2cId,
+          ...imagesValues,
+        }
 
         // const newIndex= currentUpdateIndex + 1
         dispatch({
@@ -195,7 +217,7 @@ class ServiceFileMovementM2cUpdateForm extends Component {
         })
       })
     }
-    
+
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -206,11 +228,15 @@ class ServiceFileMovementM2cUpdateForm extends Component {
         const { owner } = this.props
         const serviceFileMovementM2cId = values.id
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = { ...values, serviceFileMovementM2cId, ...imagesValues }
+        const parameters = {
+          ...values,
+          serviceFileMovementM2cId,
+          ...imagesValues,
+        }
 
         // TODO
         const { currentUpdateIndex } = this.props
-        
+
         if (currentUpdateIndex >= selectedRows.length - 1) {
           return
         }
@@ -232,11 +258,11 @@ class ServiceFileMovementM2cUpdateForm extends Component {
         })
       })
     }
-    
+
     const skipToNext = () => {
       const { currentUpdateIndex } = this.props
       const { owner } = this.props
-        
+
       const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextServiceFileMovementM2cUpdateRow`,
@@ -250,7 +276,7 @@ class ServiceFileMovementM2cUpdateForm extends Component {
         },
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -267,18 +293,22 @@ class ServiceFileMovementM2cUpdateForm extends Component {
       if (!errors || errorCount === 0) {
         return null
       }
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -300,30 +330,28 @@ class ServiceFileMovementM2cUpdateForm extends Component {
         </span>
       )
     }
-    
+
     if (!selectedRows) {
-      return (<div>缺少被更新的对象</div>)
+      return <div>缺少被更新的对象</div>
     }
 
     // TODO
     return (
       <PageHeaderLayout
-        title={"更新还件服务"+(currentUpdateIndex+1)+"/"+selectedRows.length}
+        title={
+          '更新还件服务' + (currentUpdateIndex + 1) + '/' + selectedRows.length
+        }
         content="更新还件服务"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-            
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
                     rules: [{ required: true, message: '请输入序号' }],
-                  })(
-                    <Input placeholder="请输入请输入序号string" disabled />
-                  )}
+                  })(<Input placeholder="请输入请输入序号string" disabled />)}
                 </Form.Item>
               </Col>
 
@@ -331,9 +359,7 @@ class ServiceFileMovementM2cUpdateForm extends Component {
                 <Form.Item label={fieldLabels.serviceStatus}>
                   {getFieldDecorator('serviceStatus', {
                     rules: [{ required: true, message: '请输入服务状态' }],
-                  })(
-                    <Input placeholder="请输入请输入服务状态string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务状态string" />)}
                 </Form.Item>
               </Col>
 
@@ -341,9 +367,7 @@ class ServiceFileMovementM2cUpdateForm extends Component {
                 <Form.Item label={fieldLabels.rejectComments}>
                   {getFieldDecorator('rejectComments', {
                     rules: [{ required: true, message: '请输入拒收原因' }],
-                  })(
-                    <Input placeholder="请输入请输入拒收原因string" />
-                  )}
+                  })(<Input placeholder="请输入请输入拒收原因string" />)}
                 </Form.Item>
               </Col>
 
@@ -351,9 +375,7 @@ class ServiceFileMovementM2cUpdateForm extends Component {
                 <Form.Item label={fieldLabels.startTime}>
                   {getFieldDecorator('startTime', {
                     rules: [{ required: true, message: '请输入开始时间' }],
-                  })(
-                    <Input placeholder="请输入请输入开始时间date_time" />
-                  )}
+                  })(<Input placeholder="请输入请输入开始时间date_time" />)}
                 </Form.Item>
               </Col>
 
@@ -361,9 +383,7 @@ class ServiceFileMovementM2cUpdateForm extends Component {
                 <Form.Item label={fieldLabels.lastLocation}>
                   {getFieldDecorator('lastLocation', {
                     rules: [{ required: true, message: '请输入最后的位置' }],
-                  })(
-                    <Input placeholder="请输入请输入最后的位置string" />
-                  )}
+                  })(<Input placeholder="请输入请输入最后的位置string" />)}
                 </Form.Item>
               </Col>
 
@@ -371,9 +391,7 @@ class ServiceFileMovementM2cUpdateForm extends Component {
                 <Form.Item label={fieldLabels.movementPurpose}>
                   {getFieldDecorator('movementPurpose', {
                     rules: [{ required: true, message: '请输入移动目的' }],
-                  })(
-                    <Input placeholder="请输入请输入移动目的string" />
-                  )}
+                  })(<Input placeholder="请输入请输入移动目的string" />)}
                 </Form.Item>
               </Col>
 
@@ -381,9 +399,7 @@ class ServiceFileMovementM2cUpdateForm extends Component {
                 <Form.Item label={fieldLabels.contactName}>
                   {getFieldDecorator('contactName', {
                     rules: [{ required: true, message: '请输入联系人姓名' }],
-                  })(
-                    <Input placeholder="请输入请输入联系人姓名string" />
-                  )}
+                  })(<Input placeholder="请输入请输入联系人姓名string" />)}
                 </Form.Item>
               </Col>
 
@@ -396,21 +412,20 @@ class ServiceFileMovementM2cUpdateForm extends Component {
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
-
 
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
                   buttonTitle="拒收凭证1"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'rejectEvidence1')}
+                  handleChange={event =>
+                    this.handleChange(event, 'rejectEvidence1')
+                  }
                   fileList={convertedImagesValues.rejectEvidence1}
                 />
               </Col>
@@ -419,7 +434,9 @@ class ServiceFileMovementM2cUpdateForm extends Component {
                 <PictureEdit
                   buttonTitle="拒收凭证2"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'rejectEvidence2')}
+                  handleChange={event =>
+                    this.handleChange(event, 'rejectEvidence2')
+                  }
                   fileList={convertedImagesValues.rejectEvidence2}
                 />
               </Col>
@@ -428,7 +445,9 @@ class ServiceFileMovementM2cUpdateForm extends Component {
                 <PictureEdit
                   buttonTitle="拒收凭证3"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'rejectEvidence3')}
+                  handleChange={event =>
+                    this.handleChange(event, 'rejectEvidence3')
+                  }
                   fileList={convertedImagesValues.rejectEvidence3}
                 />
               </Col>
@@ -437,7 +456,9 @@ class ServiceFileMovementM2cUpdateForm extends Component {
                 <PictureEdit
                   buttonTitle="拒收凭证4"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'rejectEvidence4')}
+                  handleChange={event =>
+                    this.handleChange(event, 'rejectEvidence4')
+                  }
                   fileList={convertedImagesValues.rejectEvidence4}
                 />
               </Col>
@@ -446,24 +467,40 @@ class ServiceFileMovementM2cUpdateForm extends Component {
                 <PictureEdit
                   buttonTitle="拒收凭证5"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'rejectEvidence5')}
+                  handleChange={event =>
+                    this.handleChange(event, 'rejectEvidence5')
+                  }
                   fileList={convertedImagesValues.rejectEvidence5}
                 />
               </Col>
-
             </Row>
           </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitUpdateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             更新
           </Button>
-          <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
+          <Button
+            type="primary"
+            onClick={submitUpdateFormAndContinue}
+            loading={submitting}
+            disabled={currentUpdateIndex + 1 >= selectedRows.length}
+          >
             更新并装载下一个
           </Button>
-          <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
+          <Button
+            type="info"
+            onClick={skipToNext}
+            loading={submitting}
+            disabled={currentUpdateIndex + 1 >= selectedRows.length}
+          >
             略过
           </Button>
           <Button type="info" onClick={goback} loading={submitting}>
@@ -478,6 +515,3 @@ class ServiceFileMovementM2cUpdateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ServiceFileMovementM2cUpdateForm))
-
-
-

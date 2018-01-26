@@ -5,7 +5,7 @@ const getURLPrefix = () => {
   if (url.hostname === 'localhost') {
     return `http://${url.hostname}:8080/naf/`
   }
-  if(url.hostname === "30.30.126.37"){
+  if (url.hostname === '30.30.126.37') {
     return `http://${url.hostname}:8080/naf/`
   }
   return `${url.origin}/cis/`
@@ -13,13 +13,13 @@ const getURLPrefix = () => {
 
 const PREFIX = getURLPrefix()
 
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}provinceManager/view/${targetObjectId}/`,
   })
 }
 
-const joinParameters = (parameters) => {
+const joinParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -31,7 +31,7 @@ const joinParameters = (parameters) => {
   return result
 }
 
-const joinPostParameters = (parameters) => {
+const joinPostParameters = parameters => {
   const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
   const arr = []
   for (const key in obj) {
@@ -56,8 +56,6 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}provinceManager/loadProvince/${targetObjectId}/${parametersExpr}/`,
   })
 }
-
-
 
 const addCity = (targetObjectId, parameters) => {
   const url = `${PREFIX}provinceManager/addCity/provinceId/name/tokensExpr/`
@@ -85,7 +83,11 @@ const updateCity = (targetObjectId, parameters) => {
 
 const removeCityList = (targetObjectId, parameters) => {
   const url = `${PREFIX}provinceManager/removeCityList/provinceId/cityIds/tokensExpr/`
-  const requestParameters = { ...parameters, provinceId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    provinceId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -94,11 +96,11 @@ const removeCityList = (targetObjectId, parameters) => {
   })
 }
 
-
-const ProvinceService = { view,
+const ProvinceService = {
+  view,
   load,
   addCity,
   updateCity,
-  removeCityList }
+  removeCityList,
+}
 export default ProvinceService
-
