@@ -1,54 +1,13 @@
-import { get, post } from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const getURLPrefix = () => {
-  const url = new URL(window.location)
-  if (url.hostname === 'localhost') {
-    return `http://${url.hostname}:8080/naf/`
-  }
-  if (url.hostname === '30.30.126.37') {
-    return `http://${url.hostname}:8080/naf/`
-  }
-  return `${url.origin}/cis/`
-}
 
-const PREFIX = getURLPrefix()
-
-const view = targetObjectId => {
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}vehicleServiceCompanyEmployeeManager/view/${targetObjectId}/`,
   })
 }
 
-const joinParameters = parameters => {
-  const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
-  const arr = []
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      arr.push(`${key}=${encodeURIComponent(obj[key])}`)
-    }
-  }
-  const result = arr.join(';')
-  return result
-}
 
-const joinPostParameters = parameters => {
-  const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
-  const arr = []
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      const value = obj[key]
-      if (!Array.isArray(value)) {
-        arr.push(key + '=' + encodeURIComponent(value))
-      }
-      for (const subKey in value) {
-        const subvalue = value[subKey]
-        arr.push(key + '=' + encodeURIComponent(subvalue))
-      }
-    }
-  }
-  const result = arr.join('&')
-  return result
-}
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -56,6 +15,44 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}vehicleServiceCompanyEmployeeManager/loadVehicleServiceCompanyEmployee/${targetObjectId}/${parametersExpr}/`,
   })
 }
+
+
+
+const addServiceOrderFilter = (targetObjectId, parameters) => {
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceOrderFilter/employeeId/name/orderCount/selected/linkUrl/tokensExpr/`
+  const requestParameters = { ...parameters, tokensExpr: 'none' }
+
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const updateServiceOrderFilter = (targetObjectId, parameters) => {
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceOrderFilterProperties/vehicleServiceCompanyEmployeeId/id/name/orderCount/selected/linkUrl/tokensExpr/`
+  const vehicleServiceCompanyEmployeeId = targetObjectId
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const removeServiceOrderFilterList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeServiceOrderFilterList/vehicleServiceCompanyEmployeeId/serviceOrderFilterIds/tokensExpr/`
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
 
 const addEmployeeDrivingLicense = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addEmployeeDrivingLicense/employeeId/holderName/licenseType/licenseNumber/expirationDate/image1/image2/image3/image4/image5/tokensExpr/`
@@ -72,11 +69,7 @@ const addEmployeeDrivingLicense = (targetObjectId, parameters) => {
 const updateEmployeeDrivingLicense = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateEmployeeDrivingLicenseProperties/vehicleServiceCompanyEmployeeId/id/holderName/licenseType/licenseNumber/expirationDate/image1/image2/image3/image4/image5/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -87,11 +80,7 @@ const updateEmployeeDrivingLicense = (targetObjectId, parameters) => {
 
 const removeEmployeeDrivingLicenseList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeEmployeeDrivingLicenseList/vehicleServiceCompanyEmployeeId/employeeDrivingLicenseIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -99,6 +88,7 @@ const removeEmployeeDrivingLicenseList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addCompanyEmployeeMessage = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addCompanyEmployeeMessage/receiverId/senderId/title/messageContent/serviceTypeId/serviceTicket/sendTime/readTime/status/tokensExpr/`
@@ -115,11 +105,7 @@ const addCompanyEmployeeMessage = (targetObjectId, parameters) => {
 const updateCompanyEmployeeMessage = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateCompanyEmployeeMessageProperties/vehicleServiceCompanyEmployeeId/id/title/messageContent/serviceTicket/sendTime/readTime/status/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -130,11 +116,7 @@ const updateCompanyEmployeeMessage = (targetObjectId, parameters) => {
 
 const removeCompanyEmployeeMessageList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeCompanyEmployeeMessageList/vehicleServiceCompanyEmployeeId/companyEmployeeMessageIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -142,6 +124,7 @@ const removeCompanyEmployeeMessageList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addVehicleInspectionOrderServiceLog = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addVehicleInspectionOrderServiceLog/responsibleWorkerId/summary/location/serviceTypeId/serviceTicket/mainOrderId/tokensExpr/`
@@ -158,11 +141,7 @@ const addVehicleInspectionOrderServiceLog = (targetObjectId, parameters) => {
 const updateVehicleInspectionOrderServiceLog = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateVehicleInspectionOrderServiceLogProperties/vehicleServiceCompanyEmployeeId/id/summary/location/serviceTicket/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -171,16 +150,9 @@ const updateVehicleInspectionOrderServiceLog = (targetObjectId, parameters) => {
   })
 }
 
-const removeVehicleInspectionOrderServiceLogList = (
-  targetObjectId,
-  parameters
-) => {
+const removeVehicleInspectionOrderServiceLogList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeVehicleInspectionOrderServiceLogList/vehicleServiceCompanyEmployeeId/vehicleInspectionOrderServiceLogIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -188,9 +160,10 @@ const removeVehicleInspectionOrderServiceLogList = (
     headers,
   })
 }
+
 
 const addServiceVehicleMovementC2m = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceVehicleMovementC2m/responsibleWorkerId/serviceStatus/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/startTime/lastLocation/mainOrderId/movementPurpose/contactName/contactMobileNumber/merchantId/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceVehicleMovementC2m/responsibleWorkerId/serviceStatus/startTime/lastLocation/mainOrderId/movementPurpose/contactName/contactMobileNumber/merchantId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -202,13 +175,9 @@ const addServiceVehicleMovementC2m = (targetObjectId, parameters) => {
 }
 
 const updateServiceVehicleMovementC2m = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceVehicleMovementC2mProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/startTime/lastLocation/movementPurpose/contactName/contactMobileNumber/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceVehicleMovementC2mProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/startTime/lastLocation/movementPurpose/contactName/contactMobileNumber/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -219,11 +188,7 @@ const updateServiceVehicleMovementC2m = (targetObjectId, parameters) => {
 
 const removeServiceVehicleMovementC2mList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeServiceVehicleMovementC2mList/vehicleServiceCompanyEmployeeId/serviceVehicleMovementC2mIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -232,8 +197,9 @@ const removeServiceVehicleMovementC2mList = (targetObjectId, parameters) => {
   })
 }
 
+
 const addServiceVehicleMovementM2m = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceVehicleMovementM2m/receiverId/driverId/responsibleWorkerId/serviceStatus/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/startTime/lastLocation/mainOrderId/movementPurpose/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceVehicleMovementM2m/receiverId/driverId/responsibleWorkerId/serviceStatus/startTime/lastLocation/mainOrderId/movementPurpose/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -245,13 +211,9 @@ const addServiceVehicleMovementM2m = (targetObjectId, parameters) => {
 }
 
 const updateServiceVehicleMovementM2m = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceVehicleMovementM2mProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/startTime/lastLocation/movementPurpose/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceVehicleMovementM2mProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/startTime/lastLocation/movementPurpose/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -262,11 +224,7 @@ const updateServiceVehicleMovementM2m = (targetObjectId, parameters) => {
 
 const removeServiceVehicleMovementM2mList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeServiceVehicleMovementM2mList/vehicleServiceCompanyEmployeeId/serviceVehicleMovementM2mIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -275,8 +233,9 @@ const removeServiceVehicleMovementM2mList = (targetObjectId, parameters) => {
   })
 }
 
+
 const addServiceVehicleMovementM2c = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceVehicleMovementM2c/responsibleWorkerId/serviceStatus/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/startTime/lastLocation/mainOrderId/movementPurpose/contactName/contactMobileNumber/merchantId/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceVehicleMovementM2c/responsibleWorkerId/serviceStatus/startTime/lastLocation/mainOrderId/movementPurpose/contactName/contactMobileNumber/merchantId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -288,13 +247,9 @@ const addServiceVehicleMovementM2c = (targetObjectId, parameters) => {
 }
 
 const updateServiceVehicleMovementM2c = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceVehicleMovementM2cProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/startTime/lastLocation/movementPurpose/contactName/contactMobileNumber/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceVehicleMovementM2cProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/startTime/lastLocation/movementPurpose/contactName/contactMobileNumber/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -305,11 +260,7 @@ const updateServiceVehicleMovementM2c = (targetObjectId, parameters) => {
 
 const removeServiceVehicleMovementM2cList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeServiceVehicleMovementM2cList/vehicleServiceCompanyEmployeeId/serviceVehicleMovementM2cIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -318,8 +269,9 @@ const removeServiceVehicleMovementM2cList = (targetObjectId, parameters) => {
   })
 }
 
+
 const addServiceFileMovementC2m = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceFileMovementC2m/responsibleWorkerId/serviceStatus/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/startTime/lastLocation/mainOrderId/movementPurpose/contactName/contactMobileNumber/merchantId/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceFileMovementC2m/responsibleWorkerId/serviceStatus/startTime/lastLocation/mainOrderId/movementPurpose/contactName/contactMobileNumber/merchantId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -331,13 +283,9 @@ const addServiceFileMovementC2m = (targetObjectId, parameters) => {
 }
 
 const updateServiceFileMovementC2m = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceFileMovementC2mProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/startTime/lastLocation/movementPurpose/contactName/contactMobileNumber/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceFileMovementC2mProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/startTime/lastLocation/movementPurpose/contactName/contactMobileNumber/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -348,11 +296,7 @@ const updateServiceFileMovementC2m = (targetObjectId, parameters) => {
 
 const removeServiceFileMovementC2mList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeServiceFileMovementC2mList/vehicleServiceCompanyEmployeeId/serviceFileMovementC2mIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -361,8 +305,9 @@ const removeServiceFileMovementC2mList = (targetObjectId, parameters) => {
   })
 }
 
+
 const addServiceFileMovementM2m = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceFileMovementM2m/receiverId/senderId/responsibleWorkerId/serviceStatus/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/startTime/lastLocation/mainOrderId/movementPurpose/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceFileMovementM2m/receiverId/senderId/responsibleWorkerId/serviceStatus/startTime/lastLocation/mainOrderId/movementPurpose/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -374,13 +319,9 @@ const addServiceFileMovementM2m = (targetObjectId, parameters) => {
 }
 
 const updateServiceFileMovementM2m = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceFileMovementM2mProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/startTime/lastLocation/movementPurpose/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceFileMovementM2mProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/startTime/lastLocation/movementPurpose/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -391,11 +332,7 @@ const updateServiceFileMovementM2m = (targetObjectId, parameters) => {
 
 const removeServiceFileMovementM2mList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeServiceFileMovementM2mList/vehicleServiceCompanyEmployeeId/serviceFileMovementM2mIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -404,8 +341,9 @@ const removeServiceFileMovementM2mList = (targetObjectId, parameters) => {
   })
 }
 
+
 const addServiceFileMovementM2c = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceFileMovementM2c/responsibleWorkerId/serviceStatus/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/startTime/lastLocation/mainOrderId/movementPurpose/contactName/contactMobileNumber/merchantId/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceFileMovementM2c/responsibleWorkerId/serviceStatus/startTime/lastLocation/mainOrderId/movementPurpose/contactName/contactMobileNumber/merchantId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -417,13 +355,9 @@ const addServiceFileMovementM2c = (targetObjectId, parameters) => {
 }
 
 const updateServiceFileMovementM2c = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceFileMovementM2cProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/startTime/lastLocation/movementPurpose/contactName/contactMobileNumber/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceFileMovementM2cProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/startTime/lastLocation/movementPurpose/contactName/contactMobileNumber/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -434,11 +368,7 @@ const updateServiceFileMovementM2c = (targetObjectId, parameters) => {
 
 const removeServiceFileMovementM2cList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeServiceFileMovementM2cList/vehicleServiceCompanyEmployeeId/serviceFileMovementM2cIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -446,6 +376,7 @@ const removeServiceFileMovementM2cList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addServiceInsuranceForInspection = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceInsuranceForInspection/responsibleWorkerId/serviceStatus/orderedInsuranceId/serviceComments/startTime/insuranceNumber/insuranceImage1/insuranceImage2/insuranceImage3/insuranceImage4/insuranceImage5/mainOrderId/tokensExpr/`
@@ -462,11 +393,7 @@ const addServiceInsuranceForInspection = (targetObjectId, parameters) => {
 const updateServiceInsuranceForInspection = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceInsuranceForInspectionProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/serviceComments/startTime/insuranceNumber/insuranceImage1/insuranceImage2/insuranceImage3/insuranceImage4/insuranceImage5/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -475,16 +402,9 @@ const updateServiceInsuranceForInspection = (targetObjectId, parameters) => {
   })
 }
 
-const removeServiceInsuranceForInspectionList = (
-  targetObjectId,
-  parameters
-) => {
+const removeServiceInsuranceForInspectionList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeServiceInsuranceForInspectionList/vehicleServiceCompanyEmployeeId/serviceInsuranceForInspectionIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -492,9 +412,10 @@ const removeServiceInsuranceForInspectionList = (
     headers,
   })
 }
+
 
 const addServiceVehicleInspection = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceVehicleInspection/responsibleWorkerId/serviceStatus/inspectionStationId/inspectionResult/startTime/lastLocation/reportImage1/reportImage2/reportImage3/reportImage4/reportImage5/mainOrderId/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceVehicleInspection/responsibleWorkerId/serviceStatus/inspectionStationId/startTime/lastLocation/inspectionResult/inspectionNeedRepair/mainOrderId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -506,13 +427,9 @@ const addServiceVehicleInspection = (targetObjectId, parameters) => {
 }
 
 const updateServiceVehicleInspection = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceVehicleInspectionProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/inspectionResult/startTime/lastLocation/reportImage1/reportImage2/reportImage3/reportImage4/reportImage5/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceVehicleInspectionProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/startTime/lastLocation/inspectionResult/inspectionNeedRepair/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -523,11 +440,7 @@ const updateServiceVehicleInspection = (targetObjectId, parameters) => {
 
 const removeServiceVehicleInspectionList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeServiceVehicleInspectionList/vehicleServiceCompanyEmployeeId/serviceVehicleInspectionIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -536,8 +449,9 @@ const removeServiceVehicleInspectionList = (targetObjectId, parameters) => {
   })
 }
 
+
 const addServiceFileInspection = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceFileInspection/responsibleWorkerId/serviceStatus/inspectionStationId/inspectionResult/startTime/lastLocation/reportImage1/reportImage2/reportImage3/reportImage4/reportImage5/mainOrderId/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceFileInspection/responsibleWorkerId/serviceStatus/inspectionStationId/inspectionResult/startTime/lastLocation/mainOrderId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -549,13 +463,9 @@ const addServiceFileInspection = (targetObjectId, parameters) => {
 }
 
 const updateServiceFileInspection = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceFileInspectionProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/inspectionResult/startTime/lastLocation/reportImage1/reportImage2/reportImage3/reportImage4/reportImage5/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceFileInspectionProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/inspectionResult/startTime/lastLocation/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -566,11 +476,7 @@ const updateServiceFileInspection = (targetObjectId, parameters) => {
 
 const removeServiceFileInspectionList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeServiceFileInspectionList/vehicleServiceCompanyEmployeeId/serviceFileInspectionIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -579,8 +485,9 @@ const removeServiceFileInspectionList = (targetObjectId, parameters) => {
   })
 }
 
+
 const addServiceVehicleRepairing = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceVehicleRepairing/responsibleWorkerId/serviceStatus/rejectComments/startTime/lastLocation/mainOrderId/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/addServiceVehicleRepairing/responsibleWorkerId/serviceStatus/startTime/lastLocation/mainOrderId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -592,13 +499,9 @@ const addServiceVehicleRepairing = (targetObjectId, parameters) => {
 }
 
 const updateServiceVehicleRepairing = (targetObjectId, parameters) => {
-  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceVehicleRepairingProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/rejectComments/startTime/lastLocation/tokensExpr/`
+  const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/updateServiceVehicleRepairingProperties/vehicleServiceCompanyEmployeeId/id/serviceStatus/startTime/lastLocation/tokensExpr/`
   const vehicleServiceCompanyEmployeeId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -609,11 +512,7 @@ const updateServiceVehicleRepairing = (targetObjectId, parameters) => {
 
 const removeServiceVehicleRepairingList = (targetObjectId, parameters) => {
   const url = `${PREFIX}vehicleServiceCompanyEmployeeManager/removeServiceVehicleRepairingList/vehicleServiceCompanyEmployeeId/serviceVehicleRepairingIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    vehicleServiceCompanyEmployeeId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, vehicleServiceCompanyEmployeeId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -622,9 +521,10 @@ const removeServiceVehicleRepairingList = (targetObjectId, parameters) => {
   })
 }
 
-const VehicleServiceCompanyEmployeeService = {
-  view,
+
+const VehicleServiceCompanyEmployeeService = { view,
   load,
+  addServiceOrderFilter,
   addEmployeeDrivingLicense,
   addCompanyEmployeeMessage,
   addVehicleInspectionOrderServiceLog,
@@ -638,6 +538,7 @@ const VehicleServiceCompanyEmployeeService = {
   addServiceVehicleInspection,
   addServiceFileInspection,
   addServiceVehicleRepairing,
+  updateServiceOrderFilter,
   updateEmployeeDrivingLicense,
   updateCompanyEmployeeMessage,
   updateVehicleInspectionOrderServiceLog,
@@ -651,6 +552,7 @@ const VehicleServiceCompanyEmployeeService = {
   updateServiceVehicleInspection,
   updateServiceFileInspection,
   updateServiceVehicleRepairing,
+  removeServiceOrderFilterList,
   removeEmployeeDrivingLicenseList,
   removeCompanyEmployeeMessageList,
   removeVehicleInspectionOrderServiceLogList,
@@ -663,6 +565,6 @@ const VehicleServiceCompanyEmployeeService = {
   removeServiceInsuranceForInspectionList,
   removeServiceVehicleInspectionList,
   removeServiceFileInspectionList,
-  removeServiceVehicleRepairingList,
-}
+  removeServiceVehicleRepairingList }
 export default VehicleServiceCompanyEmployeeService
+

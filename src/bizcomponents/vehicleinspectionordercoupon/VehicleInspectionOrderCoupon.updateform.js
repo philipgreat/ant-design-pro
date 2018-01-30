@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -26,7 +14,7 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   title: '标题',
   startDate: '生效日期',
   expirationDate: '失效日期',
@@ -34,11 +22,14 @@ const fieldLabels = {
   code: '优惠码',
   usedDate: '使用日期',
   mainOrder: '主订单',
+
 }
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+const imageKeys = [
+]
+
 
 class VehicleInspectionOrderCouponUpdateForm extends Component {
   state = {
@@ -53,7 +44,7 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow),
+      convertedImagesValues: this.mapFromImageValues(selectedRow)
     })
   }
 
@@ -82,12 +73,13 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
     if (currentUpdateIndex >= selectedRows.length) {
       return
     }
-    const convertiedValues = selectedRows.map(item => {
+    const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
         startDate: moment(item.startDate).format('YYYY-MM-DD'),
         expirationDate: moment(item.expirationDate).format('YYYY-MM-DD'),
         usedDate: moment(item.usedDate).format('YYYY-MM-DD'),
+
       }
     })
     const selectedRow = convertiedValues[currentUpdateIndex]
@@ -103,14 +95,10 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues = (convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -137,8 +125,8 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
     })
     return targetImages
   }
-
-  mapFromImageValues = selectedRow => {
+  
+  mapFromImageValues = (selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -146,14 +134,14 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
   }
 
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -162,17 +150,12 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
   }
 
   render() {
-    const {
-      form,
-      dispatch,
-      submitting,
-      selectedRows,
-      currentUpdateIndex,
-    } = this.props
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const { convertedImagesValues } = this.state
     const { setFieldsValue } = this.props.form
-
+    
+    
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -183,11 +166,7 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
         const { owner } = this.props
         const vehicleInspectionOrderCouponId = values.id
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = {
-          ...values,
-          vehicleInspectionOrderCouponId,
-          ...imagesValues,
-        }
+        const parameters = { ...values, vehicleInspectionOrderCouponId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
         dispatch({
@@ -203,7 +182,7 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
         })
       })
     }
-
+    
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -214,15 +193,11 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
         const { owner } = this.props
         const vehicleInspectionOrderCouponId = values.id
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = {
-          ...values,
-          vehicleInspectionOrderCouponId,
-          ...imagesValues,
-        }
+        const parameters = { ...values, vehicleInspectionOrderCouponId, ...imagesValues }
 
         // TODO
         const { currentUpdateIndex } = this.props
-
+        
         if (currentUpdateIndex >= selectedRows.length - 1) {
           return
         }
@@ -244,11 +219,11 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
         })
       })
     }
-
+    
     const skipToNext = () => {
       const { currentUpdateIndex } = this.props
       const { owner } = this.props
-
+        
       const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextVehicleInspectionOrderCouponUpdateRow`,
@@ -262,7 +237,7 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
         },
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -279,22 +254,18 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
       if (!errors || errorCount === 0) {
         return null
       }
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -316,28 +287,30 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
         </span>
       )
     }
-
+    
     if (!selectedRows) {
-      return <div>缺少被更新的对象</div>
+      return (<div>缺少被更新的对象</div>)
     }
 
     // TODO
     return (
       <PageHeaderLayout
-        title={
-          '更新优惠券' + (currentUpdateIndex + 1) + '/' + selectedRows.length
-        }
+        title={"更新优惠券"+(currentUpdateIndex+1)+"/"+selectedRows.length}
         content="更新优惠券"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+            
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
-                    rules: [{ required: true, message: '请输入序号' }],
-                  })(<Input placeholder="请输入请输入序号string" disabled />)}
+                    rules: [{ required: true, message: '请输入ID' }],
+                  })(
+                    <Input placeholder="请输入请输入IDstring" disabled />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -345,7 +318,9 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
                 <Form.Item label={fieldLabels.title}>
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: '请输入标题' }],
-                  })(<Input placeholder="请输入请输入标题string" />)}
+                  })(
+                    <Input placeholder="请输入请输入标题string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -353,7 +328,9 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
                 <Form.Item label={fieldLabels.startDate}>
                   {getFieldDecorator('startDate', {
                     rules: [{ required: true, message: '请输入生效日期' }],
-                  })(<Input placeholder="请输入请输入生效日期date" />)}
+                  })(
+                    <Input placeholder="请输入请输入生效日期date" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -361,7 +338,9 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
                 <Form.Item label={fieldLabels.expirationDate}>
                   {getFieldDecorator('expirationDate', {
                     rules: [{ required: true, message: '请输入失效日期' }],
-                  })(<Input placeholder="请输入请输入失效日期date" />)}
+                  })(
+                    <Input placeholder="请输入请输入失效日期date" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -369,7 +348,9 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
                 <Form.Item label={fieldLabels.amount}>
                   {getFieldDecorator('amount', {
                     rules: [{ required: true, message: '请输入金额' }],
-                  })(<Input placeholder="请输入请输入金额money" />)}
+                  })(
+                    <Input placeholder="请输入请输入金额money" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -377,7 +358,9 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
                 <Form.Item label={fieldLabels.code}>
                   {getFieldDecorator('code', {
                     rules: [{ required: true, message: '请输入优惠码' }],
-                  })(<Input placeholder="请输入请输入优惠码string" />)}
+                  })(
+                    <Input placeholder="请输入请输入优惠码string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -385,37 +368,26 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
                 <Form.Item label={fieldLabels.usedDate}>
                   {getFieldDecorator('usedDate', {
                     rules: [{ required: true, message: '请输入使用日期' }],
-                  })(<Input placeholder="请输入请输入使用日期date" />)}
+                  })(
+                    <Input placeholder="请输入请输入使用日期date" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
+
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitUpdateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
             更新
           </Button>
-          <Button
-            type="primary"
-            onClick={submitUpdateFormAndContinue}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             更新并装载下一个
           </Button>
-          <Button
-            type="info"
-            onClick={skipToNext}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             略过
           </Button>
           <Button type="info" onClick={goback} loading={submitting}>
@@ -430,3 +402,6 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(VehicleInspectionOrderCouponUpdateForm))
+
+
+

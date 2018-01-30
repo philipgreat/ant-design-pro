@@ -1,44 +1,18 @@
+
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge } from 'antd'
+import { Table, Alert, Badge} from 'antd'
 import { Link } from 'dva/router'
 import styles from './AvailableHandOverItem.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
+
 const columns = [
-  {
-    title: '序号',
-    debugtype: 'string',
-    dataIndex: 'id',
-    width: '20',
-    render: (text, record) => (
-      <Link to={`/availableHandOverItem/${text}/dashboard`}>{text}</Link>
-    ),
-  },
-  {
-    title: '检查项目名称',
-    debugtype: 'string',
-    dataIndex: 'checkItemName',
-    width: '11',
-  },
-  {
-    title: '检查项目描述',
-    debugtype: 'string',
-    dataIndex: 'checkItemDescription',
-    width: '37',
-  },
-  {
-    title: '产品',
-    dataIndex: 'product',
-    render: (text, record) =>
-      record.product ? (
-        <Link to={`/availableProduct/${record.product.id}/dashboard`}>
-          {record.product.id}
-        </Link>
-      ) : (
-        '暂无'
-      ),
-  },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/availableHandOverItem/${text}/dashboard`}>{text}</Link>) },
+  { title: '检查项目名称', debugtype: 'string', dataIndex: 'checkItemName', width: '11' },
+  { title: '检查项目描述', debugtype: 'string', dataIndex: 'checkItemDescription', width: '37' },
+  { title: '产品', dataIndex: 'product', render: (text, record) => (record.product ? (<Link to={`/availableProduct/${record.product.id}/dashboard`}>{record.product.id}</Link>) : '暂无') },
+
 ]
 
 class AvailableHandOverItemTable extends PureComponent {
@@ -81,6 +55,7 @@ class AvailableHandOverItemTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
+      
     }
 
     const rowSelection = {
@@ -95,15 +70,13 @@ class AvailableHandOverItemTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={
+            message={(
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
-                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  清空
-                </a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
+                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
-            }
+            )}
             type="info"
             showIcon
           />
@@ -124,3 +97,4 @@ class AvailableHandOverItemTable extends PureComponent {
 }
 
 export default AvailableHandOverItemTable
+

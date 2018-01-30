@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -24,7 +12,7 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   summary: '概览',
   createTime: '创建时间',
   responsibleWorker: '服务人员',
@@ -33,6 +21,7 @@ const fieldLabels = {
   serviceTicket: '服务单号',
   mainOrder: '主订单',
 }
+
 
 const testValues = {
   summary: '建国汽车服务公司已收车',
@@ -45,7 +34,10 @@ const testValues = {
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+
+const imageKeys = [
+]
+
 
 class VehicleInspectionOrderServiceLogCreateForm extends Component {
   state = {
@@ -62,7 +54,7 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -81,14 +73,10 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues=(convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
       const value = convertedImagesValues[key][0]
@@ -104,7 +92,7 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues = selectedRow => {
+  mapFromImageValues=(selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -112,8 +100,8 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -137,11 +125,7 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleInspectionOrderServiceLog`,
-          payload: {
-            id: owner.id,
-            type: 'vehicleInspectionOrderServiceLog',
-            parameters,
-          },
+          payload: { id: owner.id, type: 'vehicleInspectionOrderServiceLog', parameters },
         })
       })
     }
@@ -151,23 +135,18 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleInspectionOrderServiceLog`,
-          payload: {
-            id: owner.id,
-            type: 'vehicleInspectionOrderServiceLog',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'vehicleInspectionOrderServiceLog', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -182,22 +161,18 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -228,11 +203,14 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.summary}>
                   {getFieldDecorator('summary', {
                     rules: [{ required: true, message: '请输入概览' }],
-                  })(<Input placeholder="请输入请输入概览string" />)}
+                  })(
+                    <Input placeholder="请输入请输入概览string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -240,7 +218,9 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
                 <Form.Item label={fieldLabels.location}>
                   {getFieldDecorator('location', {
                     rules: [{ required: true, message: '请输入位置' }],
-                  })(<Input placeholder="请输入请输入位置string" />)}
+                  })(
+                    <Input placeholder="请输入请输入位置string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -248,21 +228,32 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
                 <Form.Item label={fieldLabels.serviceTicket}>
                   {getFieldDecorator('serviceTicket', {
                     rules: [{ required: true, message: '请输入服务单号' }],
-                  })(<Input placeholder="请输入请输入服务单号string" />)}
+                  })(
+                    <Input placeholder="请输入请输入服务单号string" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
           </Form>
         </Card>
 
+
+
+
+
+
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.responsibleWorker}>
                   {getFieldDecorator('responsibleWorkerId', {
                     rules: [{ required: true, message: '请输入服务人员' }],
-                  })(<Input placeholder="请输入请输入服务人员" />)}
+                  })(
+                    <Input placeholder="请输入请输入服务人员" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -270,7 +261,9 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
                 <Form.Item label={fieldLabels.serviceType}>
                   {getFieldDecorator('serviceTypeId', {
                     rules: [{ required: true, message: '请输入服务类型' }],
-                  })(<Input placeholder="请输入请输入服务类型" />)}
+                  })(
+                    <Input placeholder="请输入请输入服务类型" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -278,28 +271,22 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
                 <Form.Item label={fieldLabels.mainOrder}>
                   {getFieldDecorator('mainOrderId', {
                     rules: [{ required: true, message: '请输入主订单' }],
-                  })(<Input placeholder="请输入请输入主订单" />)}
+                  })(
+                    <Input placeholder="请输入请输入主订单" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -314,3 +301,7 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(VehicleInspectionOrderServiceLogCreateForm))
+
+
+
+

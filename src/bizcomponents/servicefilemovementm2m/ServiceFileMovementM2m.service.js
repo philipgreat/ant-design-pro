@@ -1,54 +1,13 @@
-import { get, post } from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const getURLPrefix = () => {
-  const url = new URL(window.location)
-  if (url.hostname === 'localhost') {
-    return `http://${url.hostname}:8080/naf/`
-  }
-  if (url.hostname === '30.30.126.37') {
-    return `http://${url.hostname}:8080/naf/`
-  }
-  return `${url.origin}/cis/`
-}
 
-const PREFIX = getURLPrefix()
-
-const view = targetObjectId => {
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}serviceFileMovementM2mManager/view/${targetObjectId}/`,
   })
 }
 
-const joinParameters = parameters => {
-  const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
-  const arr = []
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      arr.push(`${key}=${encodeURIComponent(obj[key])}`)
-    }
-  }
-  const result = arr.join(';')
-  return result
-}
 
-const joinPostParameters = parameters => {
-  const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
-  const arr = []
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      const value = obj[key]
-      if (!Array.isArray(value)) {
-        arr.push(key + '=' + encodeURIComponent(value))
-      }
-      for (const subKey in value) {
-        const subvalue = value[subKey]
-        arr.push(key + '=' + encodeURIComponent(subvalue))
-      }
-    }
-  }
-  const result = arr.join('&')
-  return result
-}
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -57,11 +16,10 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-const addServiceFileMovementM2mChecklistResult = (
-  targetObjectId,
-  parameters
-) => {
-  const url = `${PREFIX}serviceFileMovementM2mManager/addServiceFileMovementM2mChecklistResult/serviceId/checkResult/checkResultComments/createTime/image1/image2/image3/image4/image5/tokensExpr/`
+
+
+const addReportHandover = (targetObjectId, parameters) => {
+  const url = `${PREFIX}serviceFileMovementM2mManager/addReportHandover/serviceTypeFileM2mId/handoverResult/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/serviceTypeVehicleC2mId/serviceTypeVehicleM2mId/serviceTypeVehicleM2cId/serviceTypeFileC2mId/serviceTypeFileM2cId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -72,17 +30,10 @@ const addServiceFileMovementM2mChecklistResult = (
   })
 }
 
-const updateServiceFileMovementM2mChecklistResult = (
-  targetObjectId,
-  parameters
-) => {
-  const url = `${PREFIX}serviceFileMovementM2mManager/updateServiceFileMovementM2mChecklistResultProperties/serviceFileMovementM2mId/id/checkResult/checkResultComments/createTime/image1/image2/image3/image4/image5/tokensExpr/`
+const updateReportHandover = (targetObjectId, parameters) => {
+  const url = `${PREFIX}serviceFileMovementM2mManager/updateReportHandoverProperties/serviceFileMovementM2mId/id/handoverResult/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/tokensExpr/`
   const serviceFileMovementM2mId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    serviceFileMovementM2mId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, serviceFileMovementM2mId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -91,16 +42,9 @@ const updateServiceFileMovementM2mChecklistResult = (
   })
 }
 
-const removeServiceFileMovementM2mChecklistResultList = (
-  targetObjectId,
-  parameters
-) => {
-  const url = `${PREFIX}serviceFileMovementM2mManager/removeServiceFileMovementM2mChecklistResultList/serviceFileMovementM2mId/serviceFileMovementM2mChecklistResultIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    serviceFileMovementM2mId: targetObjectId,
-    tokensExpr: 'none',
-  }
+const removeReportHandoverList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}serviceFileMovementM2mManager/removeReportHandoverList/serviceFileMovementM2mId/reportHandoverIds/tokensExpr/`
+  const requestParameters = { ...parameters, serviceFileMovementM2mId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -109,11 +53,11 @@ const removeServiceFileMovementM2mChecklistResultList = (
   })
 }
 
-const ServiceFileMovementM2mService = {
-  view,
+
+const ServiceFileMovementM2mService = { view,
   load,
-  addServiceFileMovementM2mChecklistResult,
-  updateServiceFileMovementM2mChecklistResult,
-  removeServiceFileMovementM2mChecklistResultList,
-}
+  addReportHandover,
+  updateReportHandover,
+  removeReportHandoverList }
 export default ServiceFileMovementM2mService
+

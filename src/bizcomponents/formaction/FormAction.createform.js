@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -31,6 +19,7 @@ const fieldLabels = {
   form: '形式',
 }
 
+
 const testValues = {
   label: '功能',
   localeKey: 'name',
@@ -40,7 +29,10 @@ const testValues = {
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+
+const imageKeys = [
+]
+
 
 class FormActionCreateForm extends Component {
   state = {
@@ -57,7 +49,7 @@ class FormActionCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -76,14 +68,10 @@ class FormActionCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues=(convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
       const value = convertedImagesValues[key][0]
@@ -99,7 +87,7 @@ class FormActionCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues = selectedRow => {
+  mapFromImageValues=(selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -107,8 +95,8 @@ class FormActionCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -142,23 +130,18 @@ class FormActionCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addFormAction`,
-          payload: {
-            id: owner.id,
-            type: 'formAction',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'formAction', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -173,22 +156,18 @@ class FormActionCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -219,21 +198,24 @@ class FormActionCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.label}>
                   {getFieldDecorator('label', {
                     rules: [{ required: true, message: '请输入标签' }],
-                  })(<Input placeholder="请输入请输入标签string" />)}
+                  })(
+                    <Input placeholder="请输入请输入标签string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.localeKey}>
                   {getFieldDecorator('localeKey', {
-                    rules: [
-                      { required: true, message: '请输入语言环境的关键' },
-                    ],
-                  })(<Input placeholder="请输入请输入语言环境的关键string" />)}
+                    rules: [{ required: true, message: '请输入语言环境的关键' }],
+                  })(
+                    <Input placeholder="请输入请输入语言环境的关键string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -241,42 +223,45 @@ class FormActionCreateForm extends Component {
                 <Form.Item label={fieldLabels.url}>
                   {getFieldDecorator('url', {
                     rules: [{ required: true, message: '请输入url' }],
-                  })(<Input placeholder="请输入请输入urlstring" />)}
+                  })(
+                    <Input placeholder="请输入请输入urlstring" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
           </Form>
         </Card>
+
+
+
+
+
 
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.form}>
                   {getFieldDecorator('formId', {
                     rules: [{ required: true, message: '请输入形式' }],
-                  })(<Input placeholder="请输入请输入形式" />)}
+                  })(
+                    <Input placeholder="请输入请输入形式" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -291,3 +276,7 @@ class FormActionCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(FormActionCreateForm))
+
+
+
+

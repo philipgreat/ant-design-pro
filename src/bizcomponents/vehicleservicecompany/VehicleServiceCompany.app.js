@@ -10,11 +10,13 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './VehicleServiceCompany.app.less'
 
-import HeaderSearch from '../../components/HeaderSearch'
-import NoticeIcon from '../../components/NoticeIcon'
-import GlobalFooter from '../../components/GlobalFooter'
 
-import GlobalComponents from '../../custcomponents'
+import HeaderSearch from '../../components/HeaderSearch';
+import NoticeIcon from '../../components/NoticeIcon';
+import GlobalFooter from '../../components/GlobalFooter';
+
+
+import GlobalComponents from '../../custcomponents';
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -54,14 +56,14 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = collapsed => {
+  onCollapse = (collapsed) => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = props => {
+  getDefaultCollapsedSubMenus = (props) => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -69,7 +71,7 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = props => {
+  getCurrentMenuSelectedKeys = (props) => {
     const { location: { pathname } } = props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
@@ -77,434 +79,387 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
     }
     return keys
   }
-  getNavMenuItems = objectId => {
+  getNavMenuItems = (objectId) => {
     return (
-      <SubMenu
-        title={
-          <span>
-            <Icon type="profile" />
-            <span>商户管理</span>
-          </span>
-        }
+      <SubMenu title={
+        <span>
+          <Icon type="profile" />
+          <span>商户管理</span>
+        </span>}
       >
+
         <Menu.Item>
-          <Link
-            to={`/vehicleServiceCompany/${objectId}/list/vehicleServiceCompanyBusinessScopeList`}
-          >
-            服务提供商服务范围管理
-          </Link>
+          <Link to={`/vehicleServiceCompany/${objectId}/list/vehicleInspectionPlateNumberPatternList`}>车辆检验牌照号码模式</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link
-            to={`/vehicleServiceCompany/${objectId}/list/vehicleServiceCompanyDispatcherList`}
-          >
-            派单管理
-          </Link>
+          <Link to={`/vehicleServiceCompany/${objectId}/list/fileInspectionPlateNumberPatternList`}>6年免检牌照号码模式</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link
-            to={`/vehicleServiceCompany/${objectId}/list/vehicleServiceCompanyEmployeeList`}
-          >
-            服务提供商员工管理
-          </Link>
+          <Link to={`/vehicleServiceCompany/${objectId}/list/vehicleServiceCompanyBusinessScopeList`}>服务提供商服务范围管理</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link
-            to={`/vehicleServiceCompany/${objectId}/list/serviceVehicleMovementC2mList`}
-          >
-            收车服务
-          </Link>
+          <Link to={`/vehicleServiceCompany/${objectId}/list/vehicleServiceCompanyDispatcherList`}>派单管理</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link
-            to={`/vehicleServiceCompany/${objectId}/list/serviceVehicleMovementM2cList`}
-          >
-            还车服务
-          </Link>
+          <Link to={`/vehicleServiceCompany/${objectId}/list/vehicleServiceCompanyEmployeeList`}>服务提供商员工管理</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link
-            to={`/vehicleServiceCompany/${objectId}/list/serviceFileMovementC2mList`}
-          >
-            收件服务
-          </Link>
+          <Link to={`/vehicleServiceCompany/${objectId}/list/vehicleInspectionOrderList`}>上线检测订单</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link
-            to={`/vehicleServiceCompany/${objectId}/list/serviceFileMovementM2cList`}
-          >
-            还件服务
-          </Link>
+          <Link to={`/vehicleServiceCompany/${objectId}/list/serviceVehicleMovementC2mList`}>收车服务</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/vehicleServiceCompany/${objectId}/list/serviceVehicleMovementM2cList`}>还车服务</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/vehicleServiceCompany/${objectId}/list/serviceFileMovementC2mList`}>收件服务</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/vehicleServiceCompany/${objectId}/list/serviceFileMovementM2cList`}>还件服务</Link>
         </Menu.Item>
       </SubMenu>
     )
   }
 
-  getVehicleServiceCompanyBusinessScopeSearch = () => {
-    const { VehicleServiceCompanyBusinessScopeSearch } = GlobalComponents
-    return connect(state => ({
-      rule: state.rule,
-      data: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeList,
-      count:
-        state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeCount,
-      currentPage:
-        state._vehicleServiceCompany
-          .vehicleServiceCompanyBusinessScopeCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany
-          .vehicleServiceCompanyBusinessScopeSearchFormParameters,
-      loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'vehicleServiceCompanyBusinessScopeList',
-      }, // this is for model namespace and
-    }))(VehicleServiceCompanyBusinessScopeSearch)
-  }
-  getVehicleServiceCompanyBusinessScopeCreateForm = () => {
-    const { VehicleServiceCompanyBusinessScopeCreateForm } = GlobalComponents
-    return connect(state => ({
-      rule: state.rule,
-      data: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeList,
-      count:
-        state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeCount,
-      currentPage:
-        state._vehicleServiceCompany
-          .vehicleServiceCompanyBusinessScopeCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany
-          .vehicleServiceCompanyBusinessScopeSearchFormParameters,
-      loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'vehicleServiceCompanyBusinessScopeList',
-      }, // this is for model namespace and
-    }))(VehicleServiceCompanyBusinessScopeCreateForm)
-  }
 
-  getVehicleServiceCompanyBusinessScopeUpdateForm = () => {
-    const { VehicleServiceCompanyBusinessScopeUpdateForm } = GlobalComponents
+  getVehicleInspectionPlateNumberPatternSearch = () => {
+    const {VehicleInspectionPlateNumberPatternSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompany.vehicleInspectionPlateNumberPatternList,
+      count: state._vehicleServiceCompany.vehicleInspectionPlateNumberPatternCount,
+      currentPage: state._vehicleServiceCompany.vehicleInspectionPlateNumberPatternCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.vehicleInspectionPlateNumberPatternSearchFormParameters,
+      loading: state._vehicleServiceCompany.loading,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleInspectionPlateNumberPatternList' }, // this is for model namespace and
+    }))(VehicleInspectionPlateNumberPatternSearch)
+  }
+  getVehicleInspectionPlateNumberPatternCreateForm = () => {
+   	const {VehicleInspectionPlateNumberPatternCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompany.vehicleInspectionPlateNumberPatternList,
+      count: state._vehicleServiceCompany.vehicleInspectionPlateNumberPatternCount,
+      currentPage: state._vehicleServiceCompany.vehicleInspectionPlateNumberPatternCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.vehicleInspectionPlateNumberPatternSearchFormParameters,
+      loading: state._vehicleServiceCompany.loading,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleInspectionPlateNumberPatternList'}, // this is for model namespace and
+    }))(VehicleInspectionPlateNumberPatternCreateForm)
+  }
+  
+  getVehicleInspectionPlateNumberPatternUpdateForm = () => {
+  	const {VehicleInspectionPlateNumberPatternUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'vehicleServiceCompanyBusinessScopeList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleInspectionPlateNumberPatternList' }, // this is for model namespace and
+    }))(VehicleInspectionPlateNumberPatternUpdateForm)
+  }
+
+  getFileInspectionPlateNumberPatternSearch = () => {
+    const {FileInspectionPlateNumberPatternSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompany.fileInspectionPlateNumberPatternList,
+      count: state._vehicleServiceCompany.fileInspectionPlateNumberPatternCount,
+      currentPage: state._vehicleServiceCompany.fileInspectionPlateNumberPatternCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.fileInspectionPlateNumberPatternSearchFormParameters,
+      loading: state._vehicleServiceCompany.loading,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'fileInspectionPlateNumberPatternList' }, // this is for model namespace and
+    }))(FileInspectionPlateNumberPatternSearch)
+  }
+  getFileInspectionPlateNumberPatternCreateForm = () => {
+   	const {FileInspectionPlateNumberPatternCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompany.fileInspectionPlateNumberPatternList,
+      count: state._vehicleServiceCompany.fileInspectionPlateNumberPatternCount,
+      currentPage: state._vehicleServiceCompany.fileInspectionPlateNumberPatternCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.fileInspectionPlateNumberPatternSearchFormParameters,
+      loading: state._vehicleServiceCompany.loading,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'fileInspectionPlateNumberPatternList'}, // this is for model namespace and
+    }))(FileInspectionPlateNumberPatternCreateForm)
+  }
+  
+  getFileInspectionPlateNumberPatternUpdateForm = () => {
+  	const {FileInspectionPlateNumberPatternUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._vehicleServiceCompany.selectedRows,
+      currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'fileInspectionPlateNumberPatternList' }, // this is for model namespace and
+    }))(FileInspectionPlateNumberPatternUpdateForm)
+  }
+
+  getVehicleServiceCompanyBusinessScopeSearch = () => {
+    const {VehicleServiceCompanyBusinessScopeSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeList,
+      count: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeCount,
+      currentPage: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeSearchFormParameters,
+      loading: state._vehicleServiceCompany.loading,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyBusinessScopeList' }, // this is for model namespace and
+    }))(VehicleServiceCompanyBusinessScopeSearch)
+  }
+  getVehicleServiceCompanyBusinessScopeCreateForm = () => {
+   	const {VehicleServiceCompanyBusinessScopeCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeList,
+      count: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeCount,
+      currentPage: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.vehicleServiceCompanyBusinessScopeSearchFormParameters,
+      loading: state._vehicleServiceCompany.loading,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyBusinessScopeList'}, // this is for model namespace and
+    }))(VehicleServiceCompanyBusinessScopeCreateForm)
+  }
+  
+  getVehicleServiceCompanyBusinessScopeUpdateForm = () => {
+  	const {VehicleServiceCompanyBusinessScopeUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._vehicleServiceCompany.selectedRows,
+      currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyBusinessScopeList' }, // this is for model namespace and
     }))(VehicleServiceCompanyBusinessScopeUpdateForm)
   }
 
   getVehicleServiceCompanyDispatcherSearch = () => {
-    const { VehicleServiceCompanyDispatcherSearch } = GlobalComponents
+    const {VehicleServiceCompanyDispatcherSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._vehicleServiceCompany.vehicleServiceCompanyDispatcherList,
       count: state._vehicleServiceCompany.vehicleServiceCompanyDispatcherCount,
-      currentPage:
-        state._vehicleServiceCompany
-          .vehicleServiceCompanyDispatcherCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany
-          .vehicleServiceCompanyDispatcherSearchFormParameters,
+      currentPage: state._vehicleServiceCompany.vehicleServiceCompanyDispatcherCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.vehicleServiceCompanyDispatcherSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'vehicleServiceCompanyDispatcherList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyDispatcherList' }, // this is for model namespace and
     }))(VehicleServiceCompanyDispatcherSearch)
   }
   getVehicleServiceCompanyDispatcherCreateForm = () => {
-    const { VehicleServiceCompanyDispatcherCreateForm } = GlobalComponents
+   	const {VehicleServiceCompanyDispatcherCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._vehicleServiceCompany.vehicleServiceCompanyDispatcherList,
       count: state._vehicleServiceCompany.vehicleServiceCompanyDispatcherCount,
-      currentPage:
-        state._vehicleServiceCompany
-          .vehicleServiceCompanyDispatcherCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany
-          .vehicleServiceCompanyDispatcherSearchFormParameters,
+      currentPage: state._vehicleServiceCompany.vehicleServiceCompanyDispatcherCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.vehicleServiceCompanyDispatcherSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'vehicleServiceCompanyDispatcherList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyDispatcherList'}, // this is for model namespace and
     }))(VehicleServiceCompanyDispatcherCreateForm)
   }
-
+  
   getVehicleServiceCompanyDispatcherUpdateForm = () => {
-    const { VehicleServiceCompanyDispatcherUpdateForm } = GlobalComponents
+  	const {VehicleServiceCompanyDispatcherUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'vehicleServiceCompanyDispatcherList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyDispatcherList' }, // this is for model namespace and
     }))(VehicleServiceCompanyDispatcherUpdateForm)
   }
 
   getVehicleServiceCompanyEmployeeSearch = () => {
-    const { VehicleServiceCompanyEmployeeSearch } = GlobalComponents
+    const {VehicleServiceCompanyEmployeeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._vehicleServiceCompany.vehicleServiceCompanyEmployeeList,
       count: state._vehicleServiceCompany.vehicleServiceCompanyEmployeeCount,
-      currentPage:
-        state._vehicleServiceCompany
-          .vehicleServiceCompanyEmployeeCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany
-          .vehicleServiceCompanyEmployeeSearchFormParameters,
+      currentPage: state._vehicleServiceCompany.vehicleServiceCompanyEmployeeCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.vehicleServiceCompanyEmployeeSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'vehicleServiceCompanyEmployeeList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyEmployeeList' }, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeSearch)
   }
   getVehicleServiceCompanyEmployeeCreateForm = () => {
-    const { VehicleServiceCompanyEmployeeCreateForm } = GlobalComponents
+   	const {VehicleServiceCompanyEmployeeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._vehicleServiceCompany.vehicleServiceCompanyEmployeeList,
       count: state._vehicleServiceCompany.vehicleServiceCompanyEmployeeCount,
-      currentPage:
-        state._vehicleServiceCompany
-          .vehicleServiceCompanyEmployeeCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany
-          .vehicleServiceCompanyEmployeeSearchFormParameters,
+      currentPage: state._vehicleServiceCompany.vehicleServiceCompanyEmployeeCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.vehicleServiceCompanyEmployeeSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'vehicleServiceCompanyEmployeeList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyEmployeeList'}, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeCreateForm)
   }
-
+  
   getVehicleServiceCompanyEmployeeUpdateForm = () => {
-    const { VehicleServiceCompanyEmployeeUpdateForm } = GlobalComponents
+  	const {VehicleServiceCompanyEmployeeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'vehicleServiceCompanyEmployeeList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyEmployeeList' }, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeUpdateForm)
   }
 
-  getServiceVehicleMovementC2mSearch = () => {
-    const { ServiceVehicleMovementC2mSearch } = GlobalComponents
+  getVehicleInspectionOrderSearch = () => {
+    const {VehicleInspectionOrderSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._vehicleServiceCompany.serviceVehicleMovementC2mList,
-      count: state._vehicleServiceCompany.serviceVehicleMovementC2mCount,
-      currentPage:
-        state._vehicleServiceCompany.serviceVehicleMovementC2mCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany
-          .serviceVehicleMovementC2mSearchFormParameters,
+      data: state._vehicleServiceCompany.vehicleInspectionOrderList,
+      count: state._vehicleServiceCompany.vehicleInspectionOrderCount,
+      currentPage: state._vehicleServiceCompany.vehicleInspectionOrderCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.vehicleInspectionOrderSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'serviceVehicleMovementC2mList',
-      }, // this is for model namespace and
-    }))(ServiceVehicleMovementC2mSearch)
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleInspectionOrderList' }, // this is for model namespace and
+    }))(VehicleInspectionOrderSearch)
   }
-  getServiceVehicleMovementC2mCreateForm = () => {
-    const { ServiceVehicleMovementC2mCreateForm } = GlobalComponents
+  getVehicleInspectionOrderCreateForm = () => {
+   	const {VehicleInspectionOrderCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._vehicleServiceCompany.serviceVehicleMovementC2mList,
-      count: state._vehicleServiceCompany.serviceVehicleMovementC2mCount,
-      currentPage:
-        state._vehicleServiceCompany.serviceVehicleMovementC2mCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany
-          .serviceVehicleMovementC2mSearchFormParameters,
+      data: state._vehicleServiceCompany.vehicleInspectionOrderList,
+      count: state._vehicleServiceCompany.vehicleInspectionOrderCount,
+      currentPage: state._vehicleServiceCompany.vehicleInspectionOrderCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.vehicleInspectionOrderSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'serviceVehicleMovementC2mList',
-      }, // this is for model namespace and
-    }))(ServiceVehicleMovementC2mCreateForm)
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleInspectionOrderList'}, // this is for model namespace and
+    }))(VehicleInspectionOrderCreateForm)
   }
-
-  getServiceVehicleMovementC2mUpdateForm = () => {
-    const { ServiceVehicleMovementC2mUpdateForm } = GlobalComponents
+  
+  getVehicleInspectionOrderUpdateForm = () => {
+  	const {VehicleInspectionOrderUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'serviceVehicleMovementC2mList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleInspectionOrderList' }, // this is for model namespace and
+    }))(VehicleInspectionOrderUpdateForm)
+  }
+
+  getServiceVehicleMovementC2mSearch = () => {
+    const {ServiceVehicleMovementC2mSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompany.serviceVehicleMovementC2mList,
+      count: state._vehicleServiceCompany.serviceVehicleMovementC2mCount,
+      currentPage: state._vehicleServiceCompany.serviceVehicleMovementC2mCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.serviceVehicleMovementC2mSearchFormParameters,
+      loading: state._vehicleServiceCompany.loading,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceVehicleMovementC2mList' }, // this is for model namespace and
+    }))(ServiceVehicleMovementC2mSearch)
+  }
+  getServiceVehicleMovementC2mCreateForm = () => {
+   	const {ServiceVehicleMovementC2mCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompany.serviceVehicleMovementC2mList,
+      count: state._vehicleServiceCompany.serviceVehicleMovementC2mCount,
+      currentPage: state._vehicleServiceCompany.serviceVehicleMovementC2mCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.serviceVehicleMovementC2mSearchFormParameters,
+      loading: state._vehicleServiceCompany.loading,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceVehicleMovementC2mList'}, // this is for model namespace and
+    }))(ServiceVehicleMovementC2mCreateForm)
+  }
+  
+  getServiceVehicleMovementC2mUpdateForm = () => {
+  	const {ServiceVehicleMovementC2mUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._vehicleServiceCompany.selectedRows,
+      currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceVehicleMovementC2mList' }, // this is for model namespace and
     }))(ServiceVehicleMovementC2mUpdateForm)
   }
 
   getServiceVehicleMovementM2cSearch = () => {
-    const { ServiceVehicleMovementM2cSearch } = GlobalComponents
+    const {ServiceVehicleMovementM2cSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._vehicleServiceCompany.serviceVehicleMovementM2cList,
       count: state._vehicleServiceCompany.serviceVehicleMovementM2cCount,
-      currentPage:
-        state._vehicleServiceCompany.serviceVehicleMovementM2cCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany
-          .serviceVehicleMovementM2cSearchFormParameters,
+      currentPage: state._vehicleServiceCompany.serviceVehicleMovementM2cCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.serviceVehicleMovementM2cSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'serviceVehicleMovementM2cList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceVehicleMovementM2cList' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2cSearch)
   }
   getServiceVehicleMovementM2cCreateForm = () => {
-    const { ServiceVehicleMovementM2cCreateForm } = GlobalComponents
+   	const {ServiceVehicleMovementM2cCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._vehicleServiceCompany.serviceVehicleMovementM2cList,
       count: state._vehicleServiceCompany.serviceVehicleMovementM2cCount,
-      currentPage:
-        state._vehicleServiceCompany.serviceVehicleMovementM2cCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany
-          .serviceVehicleMovementM2cSearchFormParameters,
+      currentPage: state._vehicleServiceCompany.serviceVehicleMovementM2cCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.serviceVehicleMovementM2cSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'serviceVehicleMovementM2cList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceVehicleMovementM2cList'}, // this is for model namespace and
     }))(ServiceVehicleMovementM2cCreateForm)
   }
-
+  
   getServiceVehicleMovementM2cUpdateForm = () => {
-    const { ServiceVehicleMovementM2cUpdateForm } = GlobalComponents
+  	const {ServiceVehicleMovementM2cUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'serviceVehicleMovementM2cList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceVehicleMovementM2cList' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2cUpdateForm)
   }
 
   getServiceFileMovementC2mSearch = () => {
-    const { ServiceFileMovementC2mSearch } = GlobalComponents
+    const {ServiceFileMovementC2mSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._vehicleServiceCompany.serviceFileMovementC2mList,
       count: state._vehicleServiceCompany.serviceFileMovementC2mCount,
-      currentPage:
-        state._vehicleServiceCompany.serviceFileMovementC2mCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany.serviceFileMovementC2mSearchFormParameters,
+      currentPage: state._vehicleServiceCompany.serviceFileMovementC2mCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.serviceFileMovementC2mSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'serviceFileMovementC2mList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceFileMovementC2mList' }, // this is for model namespace and
     }))(ServiceFileMovementC2mSearch)
   }
   getServiceFileMovementC2mCreateForm = () => {
-    const { ServiceFileMovementC2mCreateForm } = GlobalComponents
+   	const {ServiceFileMovementC2mCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._vehicleServiceCompany.serviceFileMovementC2mList,
       count: state._vehicleServiceCompany.serviceFileMovementC2mCount,
-      currentPage:
-        state._vehicleServiceCompany.serviceFileMovementC2mCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany.serviceFileMovementC2mSearchFormParameters,
+      currentPage: state._vehicleServiceCompany.serviceFileMovementC2mCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.serviceFileMovementC2mSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'serviceFileMovementC2mList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceFileMovementC2mList'}, // this is for model namespace and
     }))(ServiceFileMovementC2mCreateForm)
   }
-
+  
   getServiceFileMovementC2mUpdateForm = () => {
-    const { ServiceFileMovementC2mUpdateForm } = GlobalComponents
+  	const {ServiceFileMovementC2mUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'serviceFileMovementC2mList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceFileMovementC2mList' }, // this is for model namespace and
     }))(ServiceFileMovementC2mUpdateForm)
   }
 
   getServiceFileMovementM2cSearch = () => {
-    const { ServiceFileMovementM2cSearch } = GlobalComponents
+    const {ServiceFileMovementM2cSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._vehicleServiceCompany.serviceFileMovementM2cList,
       count: state._vehicleServiceCompany.serviceFileMovementM2cCount,
-      currentPage:
-        state._vehicleServiceCompany.serviceFileMovementM2cCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany.serviceFileMovementM2cSearchFormParameters,
+      currentPage: state._vehicleServiceCompany.serviceFileMovementM2cCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.serviceFileMovementM2cSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'serviceFileMovementM2cList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceFileMovementM2cList' }, // this is for model namespace and
     }))(ServiceFileMovementM2cSearch)
   }
   getServiceFileMovementM2cCreateForm = () => {
-    const { ServiceFileMovementM2cCreateForm } = GlobalComponents
+   	const {ServiceFileMovementM2cCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._vehicleServiceCompany.serviceFileMovementM2cList,
       count: state._vehicleServiceCompany.serviceFileMovementM2cCount,
-      currentPage:
-        state._vehicleServiceCompany.serviceFileMovementM2cCurrentPageNumber,
-      searchFormParameters:
-        state._vehicleServiceCompany.serviceFileMovementM2cSearchFormParameters,
+      currentPage: state._vehicleServiceCompany.serviceFileMovementM2cCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.serviceFileMovementM2cSearchFormParameters,
       loading: state._vehicleServiceCompany.loading,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'serviceFileMovementM2cList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceFileMovementM2cList'}, // this is for model namespace and
     }))(ServiceFileMovementM2cCreateForm)
   }
-
+  
   getServiceFileMovementM2cUpdateForm = () => {
-    const { ServiceFileMovementM2cUpdateForm } = GlobalComponents
+  	const {ServiceFileMovementM2cUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._vehicleServiceCompany.selectedRows,
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
-      owner: {
-        type: '_vehicleServiceCompany',
-        id: state._vehicleServiceCompany.id,
-        listName: 'serviceFileMovementM2cList',
-      }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'serviceFileMovementM2cList' }, // this is for model namespace and
     }))(ServiceFileMovementM2cUpdateForm)
   }
 
@@ -514,223 +469,140 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
     const title = '代审车服务平台'
     return title
   }
-
-  handleOpenChange = openKeys => {
-    const latestOpenKey = openKeys.find(
-      key => this.state.openKeys.indexOf(key) === -1
-    )
+ 
+  handleOpenChange = (openKeys) => {
+    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-  toggle = () => {
-    const { collapsed } = this.props
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: !collapsed,
-    })
-  }
+   toggle = () => {
+     const { collapsed } = this.props
+     this.props.dispatch({
+       type: 'global/changeLayoutCollapsed',
+       payload: !collapsed,
+     })
+   }
 
-  render() {
-    // const { collapsed, fetchingNotices,loading } = this.props
-    const { collapsed } = this.props
+   render() {
+     // const { collapsed, fetchingNotices,loading } = this.props
+     const { collapsed } = this.props
+    
+     const {VehicleServiceCompanyDashboard} = GlobalComponents
+     const {VehicleServiceCompanyEditDetail} = GlobalComponents
+     const {VehicleServiceCompanyViewDetail} = GlobalComponents
+     
+     
+     
+     
+     // Don't show popup menu when it is been collapsed
+     const menuProps = collapsed ? {} : {
+       openKeys: this.state.openKeys,
+     }
+     const layout = (
+       <Layout>
+         <Sider
+           trigger={null}
+           collapsible
+           collapsed={collapsed}
+           breakpoint="md"
+           onCollapse={()=>this.onCollapse(collapsed)}
+           width={256}
+           className={styles.sider}
+         >
+           <div className={styles.logo}>
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+             <Link to="/home"> <h1>商户管理</h1></Link>
+           </div>
 
-    const { VehicleServiceCompanyDashboard } = GlobalComponents
-    const { VehicleServiceCompanyEditDetail } = GlobalComponents
-    const { VehicleServiceCompanyViewDetail } = GlobalComponents
+           <Menu
+             theme="dark"
+             mode="inline"
+             {...menuProps}
+             onOpenChange={this.handleOpenChange}
+             selectedKeys={this.getCurrentMenuSelectedKeys()}
+             style={{ margin: '16px 0', width: '100%' }}
+           >
+           
 
-    // Don't show popup menu when it is been collapsed
-    const menuProps = collapsed
-      ? {}
-      : {
-          openKeys: this.state.openKeys,
-        }
-    const layout = (
-      <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          breakpoint="md"
-          onCollapse={() => this.onCollapse(collapsed)}
-          width={256}
-          className={styles.sider}
-        >
-          <div className={styles.logo}>
-            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-            <Link to="/home">
-              {' '}
-              <h1>商户管理</h1>
-            </Link>
-          </div>
+             <Menu.Item >
+               <Link to={`/vehicleServiceCompany/${this.props.vehicleServiceCompany.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
+             </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehicleServiceCompany/${this.props.vehicleServiceCompany.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
+             </Menu.Item>
+             <Menu.Item >
+               <Link to={`/vehicleServiceCompany/${this.props.vehicleServiceCompany.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
-          <Menu
-            theme="dark"
-            mode="inline"
-            {...menuProps}
-            onOpenChange={this.handleOpenChange}
-            selectedKeys={this.getCurrentMenuSelectedKeys()}
-            style={{ margin: '16px 0', width: '100%' }}
-          >
-            <Menu.Item>
-              <Link
-                to={`/vehicleServiceCompany/${
-                  this.props.vehicleServiceCompany.id
-                }/dashboard`}
-              >
-                <Icon type="dashboard" />
-                <span>仪表板</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link
-                to={`/vehicleServiceCompany/${
-                  this.props.vehicleServiceCompany.id
-                }/editDetail`}
-              >
-                <Icon type="edit" />
-                <span>详情编辑</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link
-                to={`/vehicleServiceCompany/${
-                  this.props.vehicleServiceCompany.id
-                }/viewDetail`}
-              >
-                <Icon type="eye-o" />
-                <span>详情查看</span>
-              </Link>
-            </Menu.Item>
+             {this.getNavMenuItems(this.props.vehicleServiceCompany.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
+           </Menu>
+         </Sider>
+         <Layout>
+           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+             <Switch>
+               <Route path="/vehicleServiceCompany/:id/dashboard" component={VehicleServiceCompanyDashboard} />
+               <Route path="/vehicleServiceCompany/:id/editDetail" component={VehicleServiceCompanyEditDetail} />
+               <Route path="/vehicleServiceCompany/:id/viewDetail" component={VehicleServiceCompanyViewDetail} />
+               
 
-            {this.getNavMenuItems(this.props.vehicleServiceCompany.id)}
-            <Menu.Item>
-              <Link to={'/home'}>
-                <Icon type="home" />
-                <span>回到主页</span>
-              </Link>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout>
-          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <Switch>
-              <Route
-                path="/vehicleServiceCompany/:id/dashboard"
-                component={VehicleServiceCompanyDashboard}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/editDetail"
-                component={VehicleServiceCompanyEditDetail}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/viewDetail"
-                component={VehicleServiceCompanyViewDetail}
-              />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleInspectionPlateNumberPatternList" component={this.getVehicleInspectionPlateNumberPatternSearch()} />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleInspectionPlateNumberPatternCreateForm" component={this.getVehicleInspectionPlateNumberPatternCreateForm()} />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleInspectionPlateNumberPatternUpdateForm" component={this.getVehicleInspectionPlateNumberPatternUpdateForm()} />
 
-              <Route
-                path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyBusinessScopeList"
-                component={this.getVehicleServiceCompanyBusinessScopeSearch()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyBusinessScopeCreateForm"
-                component={this.getVehicleServiceCompanyBusinessScopeCreateForm()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyBusinessScopeUpdateForm"
-                component={this.getVehicleServiceCompanyBusinessScopeUpdateForm()}
-              />
+               <Route path="/vehicleServiceCompany/:id/list/fileInspectionPlateNumberPatternList" component={this.getFileInspectionPlateNumberPatternSearch()} />
+               <Route path="/vehicleServiceCompany/:id/list/fileInspectionPlateNumberPatternCreateForm" component={this.getFileInspectionPlateNumberPatternCreateForm()} />
+               <Route path="/vehicleServiceCompany/:id/list/fileInspectionPlateNumberPatternUpdateForm" component={this.getFileInspectionPlateNumberPatternUpdateForm()} />
 
-              <Route
-                path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyDispatcherList"
-                component={this.getVehicleServiceCompanyDispatcherSearch()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyDispatcherCreateForm"
-                component={this.getVehicleServiceCompanyDispatcherCreateForm()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyDispatcherUpdateForm"
-                component={this.getVehicleServiceCompanyDispatcherUpdateForm()}
-              />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyBusinessScopeList" component={this.getVehicleServiceCompanyBusinessScopeSearch()} />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyBusinessScopeCreateForm" component={this.getVehicleServiceCompanyBusinessScopeCreateForm()} />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyBusinessScopeUpdateForm" component={this.getVehicleServiceCompanyBusinessScopeUpdateForm()} />
 
-              <Route
-                path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyEmployeeList"
-                component={this.getVehicleServiceCompanyEmployeeSearch()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyEmployeeCreateForm"
-                component={this.getVehicleServiceCompanyEmployeeCreateForm()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyEmployeeUpdateForm"
-                component={this.getVehicleServiceCompanyEmployeeUpdateForm()}
-              />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyDispatcherList" component={this.getVehicleServiceCompanyDispatcherSearch()} />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyDispatcherCreateForm" component={this.getVehicleServiceCompanyDispatcherCreateForm()} />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyDispatcherUpdateForm" component={this.getVehicleServiceCompanyDispatcherUpdateForm()} />
 
-              <Route
-                path="/vehicleServiceCompany/:id/list/serviceVehicleMovementC2mList"
-                component={this.getServiceVehicleMovementC2mSearch()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/serviceVehicleMovementC2mCreateForm"
-                component={this.getServiceVehicleMovementC2mCreateForm()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/serviceVehicleMovementC2mUpdateForm"
-                component={this.getServiceVehicleMovementC2mUpdateForm()}
-              />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyEmployeeList" component={this.getVehicleServiceCompanyEmployeeSearch()} />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyEmployeeCreateForm" component={this.getVehicleServiceCompanyEmployeeCreateForm()} />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyEmployeeUpdateForm" component={this.getVehicleServiceCompanyEmployeeUpdateForm()} />
 
-              <Route
-                path="/vehicleServiceCompany/:id/list/serviceVehicleMovementM2cList"
-                component={this.getServiceVehicleMovementM2cSearch()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/serviceVehicleMovementM2cCreateForm"
-                component={this.getServiceVehicleMovementM2cCreateForm()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/serviceVehicleMovementM2cUpdateForm"
-                component={this.getServiceVehicleMovementM2cUpdateForm()}
-              />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleInspectionOrderList" component={this.getVehicleInspectionOrderSearch()} />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleInspectionOrderCreateForm" component={this.getVehicleInspectionOrderCreateForm()} />
+               <Route path="/vehicleServiceCompany/:id/list/vehicleInspectionOrderUpdateForm" component={this.getVehicleInspectionOrderUpdateForm()} />
 
-              <Route
-                path="/vehicleServiceCompany/:id/list/serviceFileMovementC2mList"
-                component={this.getServiceFileMovementC2mSearch()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/serviceFileMovementC2mCreateForm"
-                component={this.getServiceFileMovementC2mCreateForm()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/serviceFileMovementC2mUpdateForm"
-                component={this.getServiceFileMovementC2mUpdateForm()}
-              />
+               <Route path="/vehicleServiceCompany/:id/list/serviceVehicleMovementC2mList" component={this.getServiceVehicleMovementC2mSearch()} />
+               <Route path="/vehicleServiceCompany/:id/list/serviceVehicleMovementC2mCreateForm" component={this.getServiceVehicleMovementC2mCreateForm()} />
+               <Route path="/vehicleServiceCompany/:id/list/serviceVehicleMovementC2mUpdateForm" component={this.getServiceVehicleMovementC2mUpdateForm()} />
 
-              <Route
-                path="/vehicleServiceCompany/:id/list/serviceFileMovementM2cList"
-                component={this.getServiceFileMovementM2cSearch()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/serviceFileMovementM2cCreateForm"
-                component={this.getServiceFileMovementM2cCreateForm()}
-              />
-              <Route
-                path="/vehicleServiceCompany/:id/list/serviceFileMovementM2cUpdateForm"
-                component={this.getServiceFileMovementM2cUpdateForm()}
-              />
-            </Switch>
-          </Content>
-        </Layout>
-      </Layout>
-    )
-    return (
-      <DocumentTitle title={this.getPageTitle()}>
-        <ContainerQuery query={query}>
-          {params => <div className={classNames(params)}>{layout}</div>}
-        </ContainerQuery>
-      </DocumentTitle>
-    )
-  }
+               <Route path="/vehicleServiceCompany/:id/list/serviceVehicleMovementM2cList" component={this.getServiceVehicleMovementM2cSearch()} />
+               <Route path="/vehicleServiceCompany/:id/list/serviceVehicleMovementM2cCreateForm" component={this.getServiceVehicleMovementM2cCreateForm()} />
+               <Route path="/vehicleServiceCompany/:id/list/serviceVehicleMovementM2cUpdateForm" component={this.getServiceVehicleMovementM2cUpdateForm()} />
+
+               <Route path="/vehicleServiceCompany/:id/list/serviceFileMovementC2mList" component={this.getServiceFileMovementC2mSearch()} />
+               <Route path="/vehicleServiceCompany/:id/list/serviceFileMovementC2mCreateForm" component={this.getServiceFileMovementC2mCreateForm()} />
+               <Route path="/vehicleServiceCompany/:id/list/serviceFileMovementC2mUpdateForm" component={this.getServiceFileMovementC2mUpdateForm()} />
+
+               <Route path="/vehicleServiceCompany/:id/list/serviceFileMovementM2cList" component={this.getServiceFileMovementM2cSearch()} />
+               <Route path="/vehicleServiceCompany/:id/list/serviceFileMovementM2cCreateForm" component={this.getServiceFileMovementM2cCreateForm()} />
+               <Route path="/vehicleServiceCompany/:id/list/serviceFileMovementM2cUpdateForm" component={this.getServiceFileMovementM2cUpdateForm()} />
+              
+             </Switch>
+           </Content>
+         </Layout>
+       </Layout>
+     )
+     return (
+       <DocumentTitle title={this.getPageTitle()}>
+         <ContainerQuery query={query}>
+           {params => <div className={classNames(params)}>{layout}</div>}
+         </ContainerQuery>
+       </DocumentTitle>
+     )
+   }
 }
 
 export default connect(state => ({
@@ -740,3 +612,6 @@ export default connect(state => ({
   vehicleServiceCompany: state._vehicleServiceCompany,
   ...state,
 }))(VehicleServiceCompanyBizApp)
+
+
+

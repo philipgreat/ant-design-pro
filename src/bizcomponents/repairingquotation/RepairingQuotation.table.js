@@ -1,38 +1,23 @@
+
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge } from 'antd'
+import { Table, Alert, Badge} from 'antd'
 import { Link } from 'dva/router'
 import styles from './RepairingQuotation.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
+
 const columns = [
-  {
-    title: '序号',
-    debugtype: 'string',
-    dataIndex: 'id',
-    width: '20',
-    render: (text, record) => (
-      <Link to={`/repairingQuotation/${text}/dashboard`}>{text}</Link>
-    ),
-  },
-  {
-    title: '维修报价描述',
-    debugtype: 'string',
-    dataIndex: 'repairingQuotationDescription',
-    width: '18',
-  },
-  {
-    title: '服务',
-    dataIndex: 'service',
-    render: (text, record) =>
-      record.service ? (
-        <Link to={`/serviceVehicleRepairing/${record.service.id}/dashboard`}>
-          {record.service.id}
-        </Link>
-      ) : (
-        '暂无'
-      ),
-  },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: '维修报价描述', debugtype: 'string', dataIndex: 'repairingQuotationDescription', width: '13' },
+  { title: '维修报价图片1', dataIndex: 'repairingQuotationImage1', render: (text, record) => <ImagePreview imageTitle="维修报价图片1" imageLocation={record.repairingQuotationImage1} /> },
+  { title: '维修报价图2', dataIndex: 'repairingQuotationImage2', render: (text, record) => <ImagePreview imageTitle="维修报价图2" imageLocation={record.repairingQuotationImage2} /> },
+  { title: '维修报价图片3', dataIndex: 'repairingQuotationImage3', render: (text, record) => <ImagePreview imageTitle="维修报价图片3" imageLocation={record.repairingQuotationImage3} /> },
+  { title: '维修报价图片4', dataIndex: 'repairingQuotationImage4', render: (text, record) => <ImagePreview imageTitle="维修报价图片4" imageLocation={record.repairingQuotationImage4} /> },
+  { title: '维修报价图片5', dataIndex: 'repairingQuotationImage5', render: (text, record) => <ImagePreview imageTitle="维修报价图片5" imageLocation={record.repairingQuotationImage5} /> },
+  { title: '维修报价总金额', dataIndex: 'repairingQuotationTotalAmount', className:'money', render: (text, record) => (`￥${text.toFixed(2)}`) },
+  { title: '服务', dataIndex: 'service', render: (text, record) => (record.service ? (<Link to={`/serviceVehicleRepairing/${record.service.id}/dashboard`}>{record.service.id}</Link>) : '暂无') },
+
 ]
 
 class RepairingQuotationTable extends PureComponent {
@@ -75,6 +60,7 @@ class RepairingQuotationTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
+      
     }
 
     const rowSelection = {
@@ -89,15 +75,13 @@ class RepairingQuotationTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={
+            message={(
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
-                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  清空
-                </a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
+                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
-            }
+            )}
             type="info"
             showIcon
           />
@@ -110,7 +94,7 @@ class RepairingQuotationTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 800 }}
+          scroll={{ x: 1140 }}
         />
       </div>
     )
@@ -118,3 +102,4 @@ class RepairingQuotationTable extends PureComponent {
 }
 
 export default RepairingQuotationTable
+

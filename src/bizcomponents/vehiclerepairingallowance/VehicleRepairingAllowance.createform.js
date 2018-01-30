@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -24,23 +12,27 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   allowanceTitle: '津贴标题',
   allowanceCode: '补贴代码',
   allowanceAmount: '补贴费用',
   service: '服务',
 }
 
+
 const testValues = {
   allowanceTitle: '维修费补贴',
   allowanceCode: 'REPAIRING_ALLOWANCE',
-  allowanceAmount: '14.28',
+  allowanceAmount: '14.26',
   serviceId: 'AS000001',
 }
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+
+const imageKeys = [
+]
+
 
 class VehicleRepairingAllowanceCreateForm extends Component {
   state = {
@@ -57,7 +49,7 @@ class VehicleRepairingAllowanceCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -76,14 +68,10 @@ class VehicleRepairingAllowanceCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues=(convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
       const value = convertedImagesValues[key][0]
@@ -99,7 +87,7 @@ class VehicleRepairingAllowanceCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues = selectedRow => {
+  mapFromImageValues=(selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -107,8 +95,8 @@ class VehicleRepairingAllowanceCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -132,11 +120,7 @@ class VehicleRepairingAllowanceCreateForm extends Component {
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleRepairingAllowance`,
-          payload: {
-            id: owner.id,
-            type: 'vehicleRepairingAllowance',
-            parameters,
-          },
+          payload: { id: owner.id, type: 'vehicleRepairingAllowance', parameters },
         })
       })
     }
@@ -146,23 +130,18 @@ class VehicleRepairingAllowanceCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleRepairingAllowance`,
-          payload: {
-            id: owner.id,
-            type: 'vehicleRepairingAllowance',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'vehicleRepairingAllowance', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -177,22 +156,18 @@ class VehicleRepairingAllowanceCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -223,11 +198,14 @@ class VehicleRepairingAllowanceCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.allowanceTitle}>
                   {getFieldDecorator('allowanceTitle', {
                     rules: [{ required: true, message: '请输入津贴标题' }],
-                  })(<Input placeholder="请输入请输入津贴标题string" />)}
+                  })(
+                    <Input placeholder="请输入请输入津贴标题string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -235,7 +213,9 @@ class VehicleRepairingAllowanceCreateForm extends Component {
                 <Form.Item label={fieldLabels.allowanceCode}>
                   {getFieldDecorator('allowanceCode', {
                     rules: [{ required: true, message: '请输入补贴代码' }],
-                  })(<Input placeholder="请输入请输入补贴代码string" />)}
+                  })(
+                    <Input placeholder="请输入请输入补贴代码string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -243,42 +223,45 @@ class VehicleRepairingAllowanceCreateForm extends Component {
                 <Form.Item label={fieldLabels.allowanceAmount}>
                   {getFieldDecorator('allowanceAmount', {
                     rules: [{ required: true, message: '请输入补贴费用' }],
-                  })(<Input placeholder="请输入请输入补贴费用money" />)}
+                  })(
+                    <Input placeholder="请输入请输入补贴费用money" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
           </Form>
         </Card>
+
+
+
+
+
 
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.service}>
                   {getFieldDecorator('serviceId', {
                     rules: [{ required: true, message: '请输入服务' }],
-                  })(<Input placeholder="请输入请输入服务" />)}
+                  })(
+                    <Input placeholder="请输入请输入服务" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -293,3 +276,7 @@ class VehicleRepairingAllowanceCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(VehicleRepairingAllowanceCreateForm))
+
+
+
+

@@ -7,65 +7,30 @@ import LauncherService from './Launcher.service'
 const apps = {
 
 
-  'com.terapico.cis.carinspectionplatform.CarInspectionPlatform': 'carInspectionPlatform',
-  'com.terapico.cis.identitycard.IdentityCard': 'identityCard',
-  'com.terapico.cis.vehiclepermit.VehiclePermit': 'vehiclePermit',
-  'com.terapico.cis.province.Province': 'province',
-  'com.terapico.cis.city.City': 'city',
-  'com.terapico.cis.availableproduct.AvailableProduct': 'availableProduct',
-  'com.terapico.cis.availableservice.AvailableService': 'availableService',
-  'com.terapico.cis.productprice.ProductPrice': 'productPrice',
-  'com.terapico.cis.availableinsurance.AvailableInsurance': 'availableInsurance',
-  'com.terapico.cis.vehiclerepairingallowance.VehicleRepairingAllowance': 'vehicleRepairingAllowance',
-  'com.terapico.cis.availablehandoveritem.AvailableHandOverItem': 'availableHandOverItem',
-  'com.terapico.cis.customer.Customer': 'customer',
-  'com.terapico.cis.vehicleservicecompany.VehicleServiceCompany': 'vehicleServiceCompany',
-  'com.terapico.cis.vehicleservicecompanybusinessscope.VehicleServiceCompanyBusinessScope': 'vehicleServiceCompanyBusinessScope',
-  'com.terapico.cis.vehicleservicecompanydispatcher.VehicleServiceCompanyDispatcher': 'vehicleServiceCompanyDispatcher',
-  'com.terapico.cis.vehicleservicecompanyemployee.VehicleServiceCompanyEmployee': 'vehicleServiceCompanyEmployee',
-  'com.terapico.cis.companyemployeequalification.CompanyEmployeeQualification': 'companyEmployeeQualification',
-  'com.terapico.cis.companyemployeeserving.CompanyEmployeeServing': 'companyEmployeeServing',
-  'com.terapico.cis.companyemployeetermination.CompanyEmployeeTermination': 'companyEmployeeTermination',
-  'com.terapico.cis.employeedrivinglicense.EmployeeDrivingLicense': 'employeeDrivingLicense',
-  'com.terapico.cis.companyemployeemessage.CompanyEmployeeMessage': 'companyEmployeeMessage',
-  'com.terapico.cis.inspectionstation.InspectionStation': 'inspectionStation',
-  'com.terapico.cis.vehicleinfo.VehicleInfo': 'vehicleInfo',
-  'com.terapico.cis.vehicleinspectionorder.VehicleInspectionOrder': 'vehicleInspectionOrder',
-  'com.terapico.cis.vehicleinspectioninsuranceorder.VehicleInspectionInsuranceOrder': 'vehicleInspectionInsuranceOrder',
-  'com.terapico.cis.vehicleinspectionorderservicelog.VehicleInspectionOrderServiceLog': 'vehicleInspectionOrderServiceLog',
-  'com.terapico.cis.vehicleinspectionordercoupon.VehicleInspectionOrderCoupon': 'vehicleInspectionOrderCoupon',
-  'com.terapico.cis.vehicleinspectionorderpayment.VehicleInspectionOrderPayment': 'vehicleInspectionOrderPayment',
-  'com.terapico.cis.handoverchecklistitem.HandOverChecklistItem': 'handOverChecklistItem',
-  'com.terapico.cis.servicevehiclemovementc2m.ServiceVehicleMovementC2m': 'serviceVehicleMovementC2m',
-  'com.terapico.cis.servicevehiclemovementc2mchecklistresult.ServiceVehicleMovementC2mChecklistResult': 'serviceVehicleMovementC2mChecklistResult',
-  'com.terapico.cis.servicevehiclemovementm2m.ServiceVehicleMovementM2m': 'serviceVehicleMovementM2m',
-  'com.terapico.cis.servicevehiclemovementm2mchecklistresult.ServiceVehicleMovementM2mChecklistResult': 'serviceVehicleMovementM2mChecklistResult',
-  'com.terapico.cis.servicevehiclemovementm2c.ServiceVehicleMovementM2c': 'serviceVehicleMovementM2c',
-  'com.terapico.cis.servicevehiclemovementm2cchecklistresult.ServiceVehicleMovementM2cChecklistResult': 'serviceVehicleMovementM2cChecklistResult',
-  'com.terapico.cis.servicefilemovementc2m.ServiceFileMovementC2m': 'serviceFileMovementC2m',
-  'com.terapico.cis.servicefilemovementc2mchecklistresult.ServiceFileMovementC2mChecklistResult': 'serviceFileMovementC2mChecklistResult',
-  'com.terapico.cis.servicefilemovementm2m.ServiceFileMovementM2m': 'serviceFileMovementM2m',
-  'com.terapico.cis.servicefilemovementm2mchecklistresult.ServiceFileMovementM2mChecklistResult': 'serviceFileMovementM2mChecklistResult',
-  'com.terapico.cis.servicefilemovementm2c.ServiceFileMovementM2c': 'serviceFileMovementM2c',
-  'com.terapico.cis.servicefilemovementm2cchecklistresult.ServiceFileMovementM2cChecklistResult': 'serviceFileMovementM2cChecklistResult',
-  'com.terapico.cis.serviceinsuranceforinspection.ServiceInsuranceForInspection': 'serviceInsuranceForInspection',
-  'com.terapico.cis.servicevehicleinspection.ServiceVehicleInspection': 'serviceVehicleInspection',
-  'com.terapico.cis.servicefileinspection.ServiceFileInspection': 'serviceFileInspection',
-  'com.terapico.cis.servicevehiclerepairing.ServiceVehicleRepairing': 'serviceVehicleRepairing',
-  'com.terapico.cis.repairingquotation.RepairingQuotation': 'repairingQuotation',
-  'com.terapico.cis.repairingquotationitem.RepairingQuotationItem': 'repairingQuotationItem',
-  'com.terapico.cis.vehiclerepairingpayment.VehicleRepairingPayment': 'vehicleRepairingPayment',
-  'com.terapico.cis.userdomain.UserDomain': 'userDomain',
-  'com.terapico.cis.secuser.SecUser': 'secUser',
-  'com.terapico.cis.secuserblocking.SecUserBlocking': 'secUserBlocking',
-  'com.terapico.cis.userapp.UserApp': 'userApp',
-  'com.terapico.cis.objectaccess.ObjectAccess': 'objectAccess',
-  'com.terapico.cis.loginhistory.LoginHistory': 'loginHistory',
-  'com.terapico.cis.genericform.GenericForm': 'genericForm',
-  'com.terapico.cis.formmessage.FormMessage': 'formMessage',
-  'com.terapico.cis.formfieldmessage.FormFieldMessage': 'formFieldMessage',
-  'com.terapico.cis.formfield.FormField': 'formField',
-  'com.terapico.cis.formaction.FormAction': 'formAction',
+  'com.doublechain.epscm.solutionsystem.SolutionSystem': 'solutionSystem',
+  'com.doublechain.epscm.designer.Designer': 'designer',
+  'com.doublechain.epscm.designermessage.DesignerMessage': 'designerMessage',
+  'com.doublechain.epscm.project.Project': 'project',
+  'com.doublechain.epscm.equipmentapplication.EquipmentApplication': 'equipmentApplication',
+  'com.doublechain.epscm.seniordesigner.SeniorDesigner': 'seniorDesigner',
+  'com.doublechain.epscm.equipmentsupplier.EquipmentSupplier': 'equipmentSupplier',
+  'com.doublechain.epscm.equipment.Equipment': 'equipment',
+  'com.doublechain.epscm.inputinterface.InputInterface': 'inputInterface',
+  'com.doublechain.epscm.outputinterface.OutputInterface': 'outputInterface',
+  'com.doublechain.epscm.equipmentparameter.EquipmentParameter': 'equipmentParameter',
+  'com.doublechain.epscm.equipmentsupplyleadtime.EquipmentSupplyLeadTime': 'equipmentSupplyLeadTime',
+  'com.doublechain.epscm.equipmentfile.EquipmentFile': 'equipmentFile',
+  'com.doublechain.epscm.userdomain.UserDomain': 'userDomain',
+  'com.doublechain.epscm.secuser.SecUser': 'secUser',
+  'com.doublechain.epscm.secuserblocking.SecUserBlocking': 'secUserBlocking',
+  'com.doublechain.epscm.userapp.UserApp': 'userApp',
+  'com.doublechain.epscm.objectaccess.ObjectAccess': 'objectAccess',
+  'com.doublechain.epscm.loginhistory.LoginHistory': 'loginHistory',
+  'com.doublechain.epscm.genericform.GenericForm': 'genericForm',
+  'com.doublechain.epscm.formmessage.FormMessage': 'formMessage',
+  'com.doublechain.epscm.formfieldmessage.FormFieldMessage': 'formFieldMessage',
+  'com.doublechain.epscm.formfield.FormField': 'formField',
+  'com.doublechain.epscm.formaction.FormAction': 'formAction',
 
 }
 
@@ -107,7 +72,7 @@ export default {
 
   namespace: 'launcher',
 
-  state: { loggedIn: false, name: 'Philip', systemName: '代审车服务平台' },
+  state: { loggedIn: false, name: 'Philip', systemName: '环保装备方案管理系统' },
 
 
   subscriptions: {
@@ -143,6 +108,9 @@ export default {
       const data = yield call(LauncherService.login, payload.username, payload.password)
       console.log('data.........................', data)
       if (!data) {
+        return
+      }
+      if (!data.class) {
         return
       }
       if (data.class.indexOf('LoginForm') > 0) {

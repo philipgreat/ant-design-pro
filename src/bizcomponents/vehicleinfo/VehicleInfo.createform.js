@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -24,7 +12,7 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   licensePlateNumber: '车牌号码',
   vehicleType: '车辆类型',
   useCharacter: '使用性质',
@@ -47,25 +35,27 @@ const fieldLabels = {
   platform: '平台',
 }
 
+
 const testValues = {
   licensePlateNumber: '川ACD234',
   vehicleType: '面包车',
   useCharacter: '营运',
   seatsQuantity: '5',
-  registrationDate: '2014-04-21',
-  inspectionValidationDate: '2997-02-15',
-  insuranceValidationDate: '2999-08-03',
+  registrationDate: '2015-06-05',
+  inspectionValidationDate: '2997-03-13',
+  insuranceValidationDate: '2997-02-27',
   engineNumber: '4172XYS',
   vehicleIdentificationNumber: 'WAUZZZ4E24N016553',
-  vehiclePermitIssueDate: '2013-02-20',
+  vehiclePermitIssueDate: '2013-06-26',
   vehiclePermitHolderName: '张秋文',
   vehiclePermitNumber: 'A123123102312312',
-  vehiclePermitExpirationDate: '2997-06-07',
+  vehiclePermitExpirationDate: '2999-04-20',
   customerId: 'C000001',
   platformId: 'CIP000001',
 }
 
 const imageURLPrefix = '//localhost:2090'
+
 
 const imageKeys = [
   'vehiclePermitImage1',
@@ -74,6 +64,7 @@ const imageKeys = [
   'vehiclePermitImage4',
   'vehiclePermitImage5',
 ]
+
 
 class VehicleInfoCreateForm extends Component {
   state = {
@@ -90,7 +81,7 @@ class VehicleInfoCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -109,14 +100,10 @@ class VehicleInfoCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues=(convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
       const value = convertedImagesValues[key][0]
@@ -132,7 +119,7 @@ class VehicleInfoCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues = selectedRow => {
+  mapFromImageValues=(selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -140,8 +127,8 @@ class VehicleInfoCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -175,23 +162,18 @@ class VehicleInfoCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleInfo`,
-          payload: {
-            id: owner.id,
-            type: 'vehicleInfo',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'vehicleInfo', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -206,22 +188,18 @@ class VehicleInfoCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -252,11 +230,14 @@ class VehicleInfoCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.licensePlateNumber}>
                   {getFieldDecorator('licensePlateNumber', {
                     rules: [{ required: true, message: '请输入车牌号码' }],
-                  })(<Input placeholder="请输入请输入车牌号码string" />)}
+                  })(
+                    <Input placeholder="请输入请输入车牌号码string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -264,7 +245,9 @@ class VehicleInfoCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehicleType}>
                   {getFieldDecorator('vehicleType', {
                     rules: [{ required: true, message: '请输入车辆类型' }],
-                  })(<Input placeholder="请输入请输入车辆类型string" />)}
+                  })(
+                    <Input placeholder="请输入请输入车辆类型string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -272,7 +255,9 @@ class VehicleInfoCreateForm extends Component {
                 <Form.Item label={fieldLabels.useCharacter}>
                   {getFieldDecorator('useCharacter', {
                     rules: [{ required: true, message: '请输入使用性质' }],
-                  })(<Input placeholder="请输入请输入使用性质string" />)}
+                  })(
+                    <Input placeholder="请输入请输入使用性质string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -280,7 +265,9 @@ class VehicleInfoCreateForm extends Component {
                 <Form.Item label={fieldLabels.seatsQuantity}>
                   {getFieldDecorator('seatsQuantity', {
                     rules: [{ required: true, message: '请输入核准座位数' }],
-                  })(<Input placeholder="请输入请输入核准座位数int" />)}
+                  })(
+                    <Input placeholder="请输入请输入核准座位数int" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -288,7 +275,9 @@ class VehicleInfoCreateForm extends Component {
                 <Form.Item label={fieldLabels.registrationDate}>
                   {getFieldDecorator('registrationDate', {
                     rules: [{ required: true, message: '请输入注册日期' }],
-                  })(<Input placeholder="请输入请输入注册日期date_past" />)}
+                  })(
+                    <Input placeholder="请输入请输入注册日期date_past" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -296,7 +285,9 @@ class VehicleInfoCreateForm extends Component {
                 <Form.Item label={fieldLabels.inspectionValidationDate}>
                   {getFieldDecorator('inspectionValidationDate', {
                     rules: [{ required: true, message: '请输入检测有效期' }],
-                  })(<Input placeholder="请输入请输入检测有效期date" />)}
+                  })(
+                    <Input placeholder="请输入请输入检测有效期date" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -304,7 +295,9 @@ class VehicleInfoCreateForm extends Component {
                 <Form.Item label={fieldLabels.insuranceValidationDate}>
                   {getFieldDecorator('insuranceValidationDate', {
                     rules: [{ required: true, message: '请输入保险有效期' }],
-                  })(<Input placeholder="请输入请输入保险有效期date" />)}
+                  })(
+                    <Input placeholder="请输入请输入保险有效期date" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -312,7 +305,9 @@ class VehicleInfoCreateForm extends Component {
                 <Form.Item label={fieldLabels.engineNumber}>
                   {getFieldDecorator('engineNumber', {
                     rules: [{ required: true, message: '请输入发动机号' }],
-                  })(<Input placeholder="请输入请输入发动机号string" />)}
+                  })(
+                    <Input placeholder="请输入请输入发动机号string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -320,7 +315,9 @@ class VehicleInfoCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehicleIdentificationNumber}>
                   {getFieldDecorator('vehicleIdentificationNumber', {
                     rules: [{ required: true, message: '请输入车架号' }],
-                  })(<Input placeholder="请输入请输入车架号string" />)}
+                  })(
+                    <Input placeholder="请输入请输入车架号string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -328,7 +325,9 @@ class VehicleInfoCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehiclePermitIssueDate}>
                   {getFieldDecorator('vehiclePermitIssueDate', {
                     rules: [{ required: true, message: '请输入发证日期' }],
-                  })(<Input placeholder="请输入请输入发证日期date_past" />)}
+                  })(
+                    <Input placeholder="请输入请输入发证日期date_past" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -336,17 +335,19 @@ class VehicleInfoCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehiclePermitHolderName}>
                   {getFieldDecorator('vehiclePermitHolderName', {
                     rules: [{ required: true, message: '请输入所有人' }],
-                  })(<Input placeholder="请输入请输入所有人string" />)}
+                  })(
+                    <Input placeholder="请输入请输入所有人string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.vehiclePermitNumber}>
                   {getFieldDecorator('vehiclePermitNumber', {
-                    rules: [
-                      { required: true, message: '请输入车辆行驶证号码' },
-                    ],
-                  })(<Input placeholder="请输入请输入车辆行驶证号码string" />)}
+                    rules: [{ required: true, message: '请输入车辆行驶证号码' }],
+                  })(
+                    <Input placeholder="请输入请输入车辆行驶证号码string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -354,23 +355,28 @@ class VehicleInfoCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehiclePermitExpirationDate}>
                   {getFieldDecorator('vehiclePermitExpirationDate', {
                     rules: [{ required: true, message: '请输入行驶证有效期' }],
-                  })(<Input placeholder="请输入请输入行驶证有效期date" />)}
+                  })(
+                    <Input placeholder="请输入请输入行驶证有效期date" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
           </Form>
         </Card>
 
+
+
+
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
                   buttonTitle="图1"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'vehiclePermitImage1')
-                  }
+                  handleChange={event => this.handleChange(event, 'vehiclePermitImage1')}
                   fileList={convertedImagesValues.vehiclePermitImage1}
                 />
               </Col>
@@ -379,9 +385,7 @@ class VehicleInfoCreateForm extends Component {
                 <PictureEdit
                   buttonTitle="图2"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'vehiclePermitImage2')
-                  }
+                  handleChange={event => this.handleChange(event, 'vehiclePermitImage2')}
                   fileList={convertedImagesValues.vehiclePermitImage2}
                 />
               </Col>
@@ -390,9 +394,7 @@ class VehicleInfoCreateForm extends Component {
                 <PictureEdit
                   buttonTitle="图3"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'vehiclePermitImage3')
-                  }
+                  handleChange={event => this.handleChange(event, 'vehiclePermitImage3')}
                   fileList={convertedImagesValues.vehiclePermitImage3}
                 />
               </Col>
@@ -401,9 +403,7 @@ class VehicleInfoCreateForm extends Component {
                 <PictureEdit
                   buttonTitle="图4"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'vehiclePermitImage4')
-                  }
+                  handleChange={event => this.handleChange(event, 'vehiclePermitImage4')}
                   fileList={convertedImagesValues.vehiclePermitImage4}
                 />
               </Col>
@@ -412,24 +412,28 @@ class VehicleInfoCreateForm extends Component {
                 <PictureEdit
                   buttonTitle="图5"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'vehiclePermitImage5')
-                  }
+                  handleChange={event => this.handleChange(event, 'vehiclePermitImage5')}
                   fileList={convertedImagesValues.vehiclePermitImage5}
                 />
               </Col>
+
             </Row>
           </Form>
         </Card>
 
+
+
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.customer}>
                   {getFieldDecorator('customerId', {
                     rules: [{ required: true, message: '请输入客户' }],
-                  })(<Input placeholder="请输入请输入客户" />)}
+                  })(
+                    <Input placeholder="请输入请输入客户" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -437,28 +441,22 @@ class VehicleInfoCreateForm extends Component {
                 <Form.Item label={fieldLabels.platform}>
                   {getFieldDecorator('platformId', {
                     rules: [{ required: true, message: '请输入平台' }],
-                  })(<Input placeholder="请输入请输入平台" />)}
+                  })(
+                    <Input placeholder="请输入请输入平台" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -473,3 +471,7 @@ class VehicleInfoCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(VehicleInfoCreateForm))
+
+
+
+

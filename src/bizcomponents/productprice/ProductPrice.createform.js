@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -24,7 +12,7 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   product: '产品',
   city: '城市',
   vehicleType: '车辆类型',
@@ -33,10 +21,11 @@ const fieldLabels = {
   description: '描述',
 }
 
+
 const testValues = {
   vehicleType: '小车',
-  inspectionPrice: '197.92',
-  agentServicePrice: '162.72',
+  inspectionPrice: '157.82',
+  agentServicePrice: '136.83',
   description: '含车辆检测费$200.00元和车辆检测待办服务费$168.00元',
   productId: 'AP000001',
   cityId: 'C000001',
@@ -44,7 +33,10 @@ const testValues = {
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+
+const imageKeys = [
+]
+
 
 class ProductPriceCreateForm extends Component {
   state = {
@@ -61,7 +53,7 @@ class ProductPriceCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -80,14 +72,10 @@ class ProductPriceCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues=(convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
       const value = convertedImagesValues[key][0]
@@ -103,7 +91,7 @@ class ProductPriceCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues = selectedRow => {
+  mapFromImageValues=(selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -111,8 +99,8 @@ class ProductPriceCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -146,23 +134,18 @@ class ProductPriceCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addProductPrice`,
-          payload: {
-            id: owner.id,
-            type: 'productPrice',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'productPrice', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -177,22 +160,18 @@ class ProductPriceCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -223,11 +202,14 @@ class ProductPriceCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.vehicleType}>
                   {getFieldDecorator('vehicleType', {
                     rules: [{ required: true, message: '请输入车辆类型' }],
-                  })(<Input placeholder="请输入请输入车辆类型string" />)}
+                  })(
+                    <Input placeholder="请输入请输入车辆类型string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -235,7 +217,9 @@ class ProductPriceCreateForm extends Component {
                 <Form.Item label={fieldLabels.inspectionPrice}>
                   {getFieldDecorator('inspectionPrice', {
                     rules: [{ required: true, message: '请输入检查价格' }],
-                  })(<Input placeholder="请输入请输入检查价格money" />)}
+                  })(
+                    <Input placeholder="请输入请输入检查价格money" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -243,7 +227,9 @@ class ProductPriceCreateForm extends Component {
                 <Form.Item label={fieldLabels.agentServicePrice}>
                   {getFieldDecorator('agentServicePrice', {
                     rules: [{ required: true, message: '请输入代理服务价格' }],
-                  })(<Input placeholder="请输入请输入代理服务价格money" />)}
+                  })(
+                    <Input placeholder="请输入请输入代理服务价格money" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -251,21 +237,32 @@ class ProductPriceCreateForm extends Component {
                 <Form.Item label={fieldLabels.description}>
                   {getFieldDecorator('description', {
                     rules: [{ required: true, message: '请输入描述' }],
-                  })(<Input placeholder="请输入请输入描述string" />)}
+                  })(
+                    <Input placeholder="请输入请输入描述string" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
           </Form>
         </Card>
 
+
+
+
+
+
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.product}>
                   {getFieldDecorator('productId', {
                     rules: [{ required: true, message: '请输入产品' }],
-                  })(<Input placeholder="请输入请输入产品" />)}
+                  })(
+                    <Input placeholder="请输入请输入产品" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -273,28 +270,22 @@ class ProductPriceCreateForm extends Component {
                 <Form.Item label={fieldLabels.city}>
                   {getFieldDecorator('cityId', {
                     rules: [{ required: true, message: '请输入城市' }],
-                  })(<Input placeholder="请输入请输入城市" />)}
+                  })(
+                    <Input placeholder="请输入请输入城市" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -309,3 +300,7 @@ class ProductPriceCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ProductPriceCreateForm))
+
+
+
+

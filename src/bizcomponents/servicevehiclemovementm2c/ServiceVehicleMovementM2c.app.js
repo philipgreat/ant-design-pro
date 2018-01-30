@@ -10,11 +10,13 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceVehicleMovementM2c.app.less'
 
-import HeaderSearch from '../../components/HeaderSearch'
-import NoticeIcon from '../../components/NoticeIcon'
-import GlobalFooter from '../../components/GlobalFooter'
 
-import GlobalComponents from '../../custcomponents'
+import HeaderSearch from '../../components/HeaderSearch';
+import NoticeIcon from '../../components/NoticeIcon';
+import GlobalFooter from '../../components/GlobalFooter';
+
+
+import GlobalComponents from '../../custcomponents';
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -54,14 +56,14 @@ class ServiceVehicleMovementM2cBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = collapsed => {
+  onCollapse = (collapsed) => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = props => {
+  getDefaultCollapsedSubMenus = (props) => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -69,7 +71,7 @@ class ServiceVehicleMovementM2cBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = props => {
+  getCurrentMenuSelectedKeys = (props) => {
     const { location: { pathname } } = props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
@@ -77,91 +79,55 @@ class ServiceVehicleMovementM2cBizApp extends React.PureComponent {
     }
     return keys
   }
-  getNavMenuItems = objectId => {
+  getNavMenuItems = (objectId) => {
     return (
-      <SubMenu
-        title={
-          <span>
-            <Icon type="profile" />
-            <span>还车服务</span>
-          </span>
-        }
+      <SubMenu title={
+        <span>
+          <Icon type="profile" />
+          <span>还车服务</span>
+        </span>}
       >
+
         <Menu.Item>
-          <Link
-            to={`/serviceVehicleMovementM2c/${objectId}/list/serviceVehicleMovementM2cChecklistResultList`}
-          >
-            还车服务检查结果
-          </Link>
+          <Link to={`/serviceVehicleMovementM2c/${objectId}/list/reportHandoverList`}>交接报告</Link>
         </Menu.Item>
       </SubMenu>
     )
   }
 
-  getServiceVehicleMovementM2cChecklistResultSearch = () => {
-    const { ServiceVehicleMovementM2cChecklistResultSearch } = GlobalComponents
-    return connect(state => ({
-      rule: state.rule,
-      data:
-        state._serviceVehicleMovementM2c
-          .serviceVehicleMovementM2cChecklistResultList,
-      count:
-        state._serviceVehicleMovementM2c
-          .serviceVehicleMovementM2cChecklistResultCount,
-      currentPage:
-        state._serviceVehicleMovementM2c
-          .serviceVehicleMovementM2cChecklistResultCurrentPageNumber,
-      searchFormParameters:
-        state._serviceVehicleMovementM2c
-          .serviceVehicleMovementM2cChecklistResultSearchFormParameters,
-      loading: state._serviceVehicleMovementM2c.loading,
-      owner: {
-        type: '_serviceVehicleMovementM2c',
-        id: state._serviceVehicleMovementM2c.id,
-        listName: 'serviceVehicleMovementM2cChecklistResultList',
-      }, // this is for model namespace and
-    }))(ServiceVehicleMovementM2cChecklistResultSearch)
-  }
-  getServiceVehicleMovementM2cChecklistResultCreateForm = () => {
-    const {
-      ServiceVehicleMovementM2cChecklistResultCreateForm,
-    } = GlobalComponents
-    return connect(state => ({
-      rule: state.rule,
-      data:
-        state._serviceVehicleMovementM2c
-          .serviceVehicleMovementM2cChecklistResultList,
-      count:
-        state._serviceVehicleMovementM2c
-          .serviceVehicleMovementM2cChecklistResultCount,
-      currentPage:
-        state._serviceVehicleMovementM2c
-          .serviceVehicleMovementM2cChecklistResultCurrentPageNumber,
-      searchFormParameters:
-        state._serviceVehicleMovementM2c
-          .serviceVehicleMovementM2cChecklistResultSearchFormParameters,
-      loading: state._serviceVehicleMovementM2c.loading,
-      owner: {
-        type: '_serviceVehicleMovementM2c',
-        id: state._serviceVehicleMovementM2c.id,
-        listName: 'serviceVehicleMovementM2cChecklistResultList',
-      }, // this is for model namespace and
-    }))(ServiceVehicleMovementM2cChecklistResultCreateForm)
-  }
 
-  getServiceVehicleMovementM2cChecklistResultUpdateForm = () => {
-    const {
-      ServiceVehicleMovementM2cChecklistResultUpdateForm,
-    } = GlobalComponents
+  getReportHandoverSearch = () => {
+    const {ReportHandoverSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._serviceVehicleMovementM2c.reportHandoverList,
+      count: state._serviceVehicleMovementM2c.reportHandoverCount,
+      currentPage: state._serviceVehicleMovementM2c.reportHandoverCurrentPageNumber,
+      searchFormParameters: state._serviceVehicleMovementM2c.reportHandoverSearchFormParameters,
+      loading: state._serviceVehicleMovementM2c.loading,
+      owner: { type: '_serviceVehicleMovementM2c', id: state._serviceVehicleMovementM2c.id, listName: 'reportHandoverList' }, // this is for model namespace and
+    }))(ReportHandoverSearch)
+  }
+  getReportHandoverCreateForm = () => {
+   	const {ReportHandoverCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._serviceVehicleMovementM2c.reportHandoverList,
+      count: state._serviceVehicleMovementM2c.reportHandoverCount,
+      currentPage: state._serviceVehicleMovementM2c.reportHandoverCurrentPageNumber,
+      searchFormParameters: state._serviceVehicleMovementM2c.reportHandoverSearchFormParameters,
+      loading: state._serviceVehicleMovementM2c.loading,
+      owner: { type: '_serviceVehicleMovementM2c', id: state._serviceVehicleMovementM2c.id, listName: 'reportHandoverList'}, // this is for model namespace and
+    }))(ReportHandoverCreateForm)
+  }
+  
+  getReportHandoverUpdateForm = () => {
+  	const {ReportHandoverUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._serviceVehicleMovementM2c.selectedRows,
       currentUpdateIndex: state._serviceVehicleMovementM2c.currentUpdateIndex,
-      owner: {
-        type: '_serviceVehicleMovementM2c',
-        id: state._serviceVehicleMovementM2c.id,
-        listName: 'serviceVehicleMovementM2cChecklistResultList',
-      }, // this is for model namespace and
-    }))(ServiceVehicleMovementM2cChecklistResultUpdateForm)
+      owner: { type: '_serviceVehicleMovementM2c', id: state._serviceVehicleMovementM2c.id, listName: 'reportHandoverList' }, // this is for model namespace and
+    }))(ReportHandoverUpdateForm)
   }
 
   getPageTitle = () => {
@@ -170,145 +136,104 @@ class ServiceVehicleMovementM2cBizApp extends React.PureComponent {
     const title = '代审车服务平台'
     return title
   }
-
-  handleOpenChange = openKeys => {
-    const latestOpenKey = openKeys.find(
-      key => this.state.openKeys.indexOf(key) === -1
-    )
+ 
+  handleOpenChange = (openKeys) => {
+    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-  toggle = () => {
-    const { collapsed } = this.props
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: !collapsed,
-    })
-  }
+   toggle = () => {
+     const { collapsed } = this.props
+     this.props.dispatch({
+       type: 'global/changeLayoutCollapsed',
+       payload: !collapsed,
+     })
+   }
 
-  render() {
-    // const { collapsed, fetchingNotices,loading } = this.props
-    const { collapsed } = this.props
+   render() {
+     // const { collapsed, fetchingNotices,loading } = this.props
+     const { collapsed } = this.props
+    
+     const {ServiceVehicleMovementM2cDashboard} = GlobalComponents
+     const {ServiceVehicleMovementM2cEditDetail} = GlobalComponents
+     const {ServiceVehicleMovementM2cViewDetail} = GlobalComponents
+     
+     
+     
+     
+     // Don't show popup menu when it is been collapsed
+     const menuProps = collapsed ? {} : {
+       openKeys: this.state.openKeys,
+     }
+     const layout = (
+       <Layout>
+         <Sider
+           trigger={null}
+           collapsible
+           collapsed={collapsed}
+           breakpoint="md"
+           onCollapse={()=>this.onCollapse(collapsed)}
+           width={256}
+           className={styles.sider}
+         >
+           <div className={styles.logo}>
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+             <Link to="/home"> <h1>还车服务</h1></Link>
+           </div>
 
-    const { ServiceVehicleMovementM2cDashboard } = GlobalComponents
-    const { ServiceVehicleMovementM2cEditDetail } = GlobalComponents
-    const { ServiceVehicleMovementM2cViewDetail } = GlobalComponents
+           <Menu
+             theme="dark"
+             mode="inline"
+             {...menuProps}
+             onOpenChange={this.handleOpenChange}
+             selectedKeys={this.getCurrentMenuSelectedKeys()}
+             style={{ margin: '16px 0', width: '100%' }}
+           >
+           
 
-    // Don't show popup menu when it is been collapsed
-    const menuProps = collapsed
-      ? {}
-      : {
-          openKeys: this.state.openKeys,
-        }
-    const layout = (
-      <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          breakpoint="md"
-          onCollapse={() => this.onCollapse(collapsed)}
-          width={256}
-          className={styles.sider}
-        >
-          <div className={styles.logo}>
-            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-            <Link to="/home">
-              {' '}
-              <h1>还车服务</h1>
-            </Link>
-          </div>
+             <Menu.Item >
+               <Link to={`/serviceVehicleMovementM2c/${this.props.serviceVehicleMovementM2c.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
+             </Menu.Item>
+             <Menu.Item >
+               <Link to={`/serviceVehicleMovementM2c/${this.props.serviceVehicleMovementM2c.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
+             </Menu.Item>
+             <Menu.Item >
+               <Link to={`/serviceVehicleMovementM2c/${this.props.serviceVehicleMovementM2c.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+             </Menu.Item>
+             
 
-          <Menu
-            theme="dark"
-            mode="inline"
-            {...menuProps}
-            onOpenChange={this.handleOpenChange}
-            selectedKeys={this.getCurrentMenuSelectedKeys()}
-            style={{ margin: '16px 0', width: '100%' }}
-          >
-            <Menu.Item>
-              <Link
-                to={`/serviceVehicleMovementM2c/${
-                  this.props.serviceVehicleMovementM2c.id
-                }/dashboard`}
-              >
-                <Icon type="dashboard" />
-                <span>仪表板</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link
-                to={`/serviceVehicleMovementM2c/${
-                  this.props.serviceVehicleMovementM2c.id
-                }/editDetail`}
-              >
-                <Icon type="edit" />
-                <span>详情编辑</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link
-                to={`/serviceVehicleMovementM2c/${
-                  this.props.serviceVehicleMovementM2c.id
-                }/viewDetail`}
-              >
-                <Icon type="eye-o" />
-                <span>详情查看</span>
-              </Link>
-            </Menu.Item>
+             {this.getNavMenuItems(this.props.serviceVehicleMovementM2c.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
+           </Menu>
+         </Sider>
+         <Layout>
+           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+             <Switch>
+               <Route path="/serviceVehicleMovementM2c/:id/dashboard" component={ServiceVehicleMovementM2cDashboard} />
+               <Route path="/serviceVehicleMovementM2c/:id/editDetail" component={ServiceVehicleMovementM2cEditDetail} />
+               <Route path="/serviceVehicleMovementM2c/:id/viewDetail" component={ServiceVehicleMovementM2cViewDetail} />
+               
 
-            {this.getNavMenuItems(this.props.serviceVehicleMovementM2c.id)}
-            <Menu.Item>
-              <Link to={'/home'}>
-                <Icon type="home" />
-                <span>回到主页</span>
-              </Link>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout>
-          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <Switch>
-              <Route
-                path="/serviceVehicleMovementM2c/:id/dashboard"
-                component={ServiceVehicleMovementM2cDashboard}
-              />
-              <Route
-                path="/serviceVehicleMovementM2c/:id/editDetail"
-                component={ServiceVehicleMovementM2cEditDetail}
-              />
-              <Route
-                path="/serviceVehicleMovementM2c/:id/viewDetail"
-                component={ServiceVehicleMovementM2cViewDetail}
-              />
-
-              <Route
-                path="/serviceVehicleMovementM2c/:id/list/serviceVehicleMovementM2cChecklistResultList"
-                component={this.getServiceVehicleMovementM2cChecklistResultSearch()}
-              />
-              <Route
-                path="/serviceVehicleMovementM2c/:id/list/serviceVehicleMovementM2cChecklistResultCreateForm"
-                component={this.getServiceVehicleMovementM2cChecklistResultCreateForm()}
-              />
-              <Route
-                path="/serviceVehicleMovementM2c/:id/list/serviceVehicleMovementM2cChecklistResultUpdateForm"
-                component={this.getServiceVehicleMovementM2cChecklistResultUpdateForm()}
-              />
-            </Switch>
-          </Content>
-        </Layout>
-      </Layout>
-    )
-    return (
-      <DocumentTitle title={this.getPageTitle()}>
-        <ContainerQuery query={query}>
-          {params => <div className={classNames(params)}>{layout}</div>}
-        </ContainerQuery>
-      </DocumentTitle>
-    )
-  }
+               <Route path="/serviceVehicleMovementM2c/:id/list/reportHandoverList" component={this.getReportHandoverSearch()} />
+               <Route path="/serviceVehicleMovementM2c/:id/list/reportHandoverCreateForm" component={this.getReportHandoverCreateForm()} />
+               <Route path="/serviceVehicleMovementM2c/:id/list/reportHandoverUpdateForm" component={this.getReportHandoverUpdateForm()} />
+              
+             </Switch>
+           </Content>
+         </Layout>
+       </Layout>
+     )
+     return (
+       <DocumentTitle title={this.getPageTitle()}>
+         <ContainerQuery query={query}>
+           {params => <div className={classNames(params)}>{layout}</div>}
+         </ContainerQuery>
+       </DocumentTitle>
+     )
+   }
 }
 
 export default connect(state => ({
@@ -318,3 +243,6 @@ export default connect(state => ({
   serviceVehicleMovementM2c: state._serviceVehicleMovementM2c,
   ...state,
 }))(ServiceVehicleMovementM2cBizApp)
+
+
+

@@ -1,60 +1,23 @@
+
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge } from 'antd'
+import { Table, Alert, Badge} from 'antd'
 import { Link } from 'dva/router'
 import styles from './VehiclePermit.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
+
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '姓名', debugtype: 'string', dataIndex: 'holderName', width: '7' },
-  {
-    title: '驾驶证号码',
-    debugtype: 'string',
-    dataIndex: 'licenseNumber',
-    width: '20',
-  },
-  {
-    title: '失效日期',
-    dataIndex: 'expirationDate',
-    render: (text, record) =>
-      moment(record.expirationDate).format('YYYY-MM-DD'),
-  },
-  {
-    title: '图1',
-    dataIndex: 'image1',
-    render: (text, record) => (
-      <ImagePreview imageTitle="图1" imageLocation={record.image1} />
-    ),
-  },
-  {
-    title: '图2',
-    dataIndex: 'image2',
-    render: (text, record) => (
-      <ImagePreview imageTitle="图2" imageLocation={record.image2} />
-    ),
-  },
-  {
-    title: '图3',
-    dataIndex: 'image3',
-    render: (text, record) => (
-      <ImagePreview imageTitle="图3" imageLocation={record.image3} />
-    ),
-  },
-  {
-    title: '图4',
-    dataIndex: 'image4',
-    render: (text, record) => (
-      <ImagePreview imageTitle="图4" imageLocation={record.image4} />
-    ),
-  },
-  {
-    title: '图5',
-    dataIndex: 'image5',
-    render: (text, record) => (
-      <ImagePreview imageTitle="图5" imageLocation={record.image5} />
-    ),
-  },
+  { title: '驾驶证号码', debugtype: 'string', dataIndex: 'licenseNumber', width: '20' },
+  { title: '失效日期', dataIndex: 'expirationDate', render: (text, record) => moment(record.expirationDate).format('YYYY-MM-DD') },
+  { title: '图1', dataIndex: 'image1', render: (text, record) => <ImagePreview imageTitle="图1" imageLocation={record.image1} /> },
+  { title: '图2', dataIndex: 'image2', render: (text, record) => <ImagePreview imageTitle="图2" imageLocation={record.image2} /> },
+  { title: '图3', dataIndex: 'image3', render: (text, record) => <ImagePreview imageTitle="图3" imageLocation={record.image3} /> },
+  { title: '图4', dataIndex: 'image4', render: (text, record) => <ImagePreview imageTitle="图4" imageLocation={record.image4} /> },
+  { title: '图5', dataIndex: 'image5', render: (text, record) => <ImagePreview imageTitle="图5" imageLocation={record.image5} /> },
+
 ]
 
 class VehiclePermitTable extends PureComponent {
@@ -97,6 +60,7 @@ class VehiclePermitTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
+      
     }
 
     const rowSelection = {
@@ -111,15 +75,13 @@ class VehiclePermitTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={
+            message={(
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
-                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  清空
-                </a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
+                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
-            }
+            )}
             type="info"
             showIcon
           />
@@ -140,3 +102,4 @@ class VehiclePermitTable extends PureComponent {
 }
 
 export default VehiclePermitTable
+

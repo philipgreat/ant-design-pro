@@ -1,35 +1,14 @@
+
+
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import {
-  Form,
-  Button,
-  Row,
-  Col,
-  Icon,
-  Card,
-  Tabs,
-  Table,
-  Radio,
-  DatePicker,
-  Tooltip,
-  Menu,
-  Dropdown,
-  Steps,
-  Badge,
-} from 'antd'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import moment from 'moment'
 import {
-  ChartCard,
-  yuan,
-  MiniArea,
-  MiniBar,
-  MiniProgress,
-  Field,
-  Bar,
-  Pie,
-  TimelineChart,
+  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
+
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
@@ -37,8 +16,8 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './ServiceFileMovementM2c.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
-import DescriptionList from '../../components/DescriptionList'
-const { Description } = DescriptionList
+import DescriptionList from '../../components/DescriptionList';
+const { Description } = DescriptionList;
 const { Step } = Steps
 
 const { TabPane } = Tabs
@@ -53,111 +32,93 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 }
 
-const summaryOf = serviceFileMovementM2c => {
-  return (
-    <DescriptionList className={styles.headerList} size="small" col="4">
-      <Description term="序号">{serviceFileMovementM2c.id}</Description>
-      <Description term="服务状态">
-        {serviceFileMovementM2c.serviceStatus}
-      </Description>
-      <Description term="拒收原因">
-        {serviceFileMovementM2c.rejectComments}
-      </Description>
-      <Description term="拒收凭证1">
-        {serviceFileMovementM2c.rejectEvidence1}
-      </Description>
-      <Description term="拒收凭证2">
-        {serviceFileMovementM2c.rejectEvidence2}
-      </Description>
-      <Description term="拒收凭证3">
-        {serviceFileMovementM2c.rejectEvidence3}
-      </Description>
-      <Description term="拒收凭证4">
-        {serviceFileMovementM2c.rejectEvidence4}
-      </Description>
-      <Description term="拒收凭证5">
-        {serviceFileMovementM2c.rejectEvidence5}
-      </Description>
-      <Description term="开始时间">
-        {moment(serviceFileMovementM2c.startTime).format('YYYY-MM-DD')}
-      </Description>
-      <Description term="最后的位置">
-        {serviceFileMovementM2c.lastLocation}
-      </Description>
-      <Description term="最后更新时间">
-        {moment(serviceFileMovementM2c.lastUpdateTime).format('YYYY-MM-DD')}
-      </Description>
-      <Description term="移动目的">
-        {serviceFileMovementM2c.movementPurpose}
-      </Description>
-      <Description term="联系人姓名">
-        {serviceFileMovementM2c.contactName}
-      </Description>
-      <Description term="联系手机号码">
-        {serviceFileMovementM2c.contactMobileNumber}
-      </Description>
-    </DescriptionList>
-  )
+const summaryOf = (serviceFileMovementM2c) =>{
+
+	return (
+	<DescriptionList className={styles.headerList} size="small" col="4">
+<Description term="ID">{serviceFileMovementM2c.id}</Description> 
+<Description term="服务状态">{serviceFileMovementM2c.serviceStatus}</Description> 
+<Description term="开始时间">{ moment(serviceFileMovementM2c.startTime).format('YYYY-MM-DD')}</Description> 
+<Description term="最后的位置">{serviceFileMovementM2c.lastLocation}</Description> 
+<Description term="最后更新时间">{ moment(serviceFileMovementM2c.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="移动目的">{serviceFileMovementM2c.movementPurpose}</Description> 
+<Description term="联系人姓名">{serviceFileMovementM2c.contactName}</Description> 
+<Description term="联系手机号码">{serviceFileMovementM2c.contactMobileNumber}</Description> 
+	
+        
+      </DescriptionList>
+	)
+
 }
 
 @connect(state => ({
   serviceFileMovementM2c: state._serviceFileMovementM2c,
 }))
 export default class ServiceFileMovementM2cViewDetail extends Component {
+
+
   state = {
-    tabKey: `serviceFileMovementM2cChecklistResultList`,
+    tabKey: `reportHandoverList`,
     stepDirection: 'horizontal',
   }
-
-  onTabChange = key => {
-    this.setState({ tabKey: key })
-  }
+ 
+  onTabChange = (key) => {
+    this.setState({ tabKey: key });
+  }  
   render() {
-    const { ServiceFileMovementM2cChecklistResultViewTable } = GlobalComponents
-
+    const {ReportHandoverViewTable} = GlobalComponents;
+  
     // eslint-disable-next-line max-len
-
+    
     const serviceFileMovementM2c = this.props.serviceFileMovementM2c
-    const {
-      id,
-      serviceFileMovementM2cChecklistResultCount,
-    } = serviceFileMovementM2c
-    const { serviceFileMovementM2cChecklistResultList } = serviceFileMovementM2c
-
+    const { id, reportHandoverCount } = serviceFileMovementM2c
+    const { reportHandoverList } = serviceFileMovementM2c
+    
     const owner = { type: '_serviceFileMovementM2c', id }
-
+    
     const tabList = [
-      {
-        key: 'serviceFileMovementM2cChecklistResultList',
-        tab: `还件服务检查结果(${serviceFileMovementM2cChecklistResultCount})`,
-      },
-    ]
 
+      {key: 'reportHandoverList',tab: `交接报告(${reportHandoverCount})`}, 
+   
+
+   ];
+   
+   
     const contentList = {
-      serviceFileMovementM2cChecklistResultList: (
-        <ServiceFileMovementM2cChecklistResultViewTable
-          data={serviceFileMovementM2cChecklistResultList}
-          owner={owner}
-          {...this.props}
-        />
-      ),
-    }
+       reportHandoverList:  
+        <ReportHandoverViewTable data={reportHandoverList} owner={owner} {...this.props} />,
+ 
+    
+    };
+    
 
+
+    
+    
+    
     return (
+
       <PageHeaderLayout
         title="还件服务总览"
         content={summaryOf(this.props.serviceFileMovementM2c)}
         wrapperClassName={styles.advancedForm}
       >
-        <Card
-          className={styles.card}
-          bordered={false}
-          tabList={tabList}
-          onTabChange={this.onTabChange}
-        >
-          {contentList[this.state.tabKey]}
+
+      
+      
+	<Card 
+  		className={styles.card} 
+  		bordered={false}
+  		tabList={tabList}
+  		onTabChange={this.onTabChange}>
+            {contentList[this.state.tabKey]}
         </Card>
+
+ 
       </PageHeaderLayout>
     )
   }
 }
+
+
+

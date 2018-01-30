@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -26,14 +14,28 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   repairingQuotationDescription: '维修报价描述',
+  repairingQuotationImage1: '维修报价图片1',
+  repairingQuotationImage2: '维修报价图2',
+  repairingQuotationImage3: '维修报价图片3',
+  repairingQuotationImage4: '维修报价图片4',
+  repairingQuotationImage5: '维修报价图片5',
+  repairingQuotationTotalAmount: '维修报价总金额',
   service: '服务',
+
 }
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+const imageKeys = [
+  'repairingQuotationImage1',
+  'repairingQuotationImage2',
+  'repairingQuotationImage3',
+  'repairingQuotationImage4',
+  'repairingQuotationImage5',
+]
+
 
 class RepairingQuotationUpdateForm extends Component {
   state = {
@@ -48,7 +50,7 @@ class RepairingQuotationUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow),
+      convertedImagesValues: this.mapFromImageValues(selectedRow)
     })
   }
 
@@ -77,9 +79,10 @@ class RepairingQuotationUpdateForm extends Component {
     if (currentUpdateIndex >= selectedRows.length) {
       return
     }
-    const convertiedValues = selectedRows.map(item => {
+    const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
+
       }
     })
     const selectedRow = convertiedValues[currentUpdateIndex]
@@ -95,14 +98,10 @@ class RepairingQuotationUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues = (convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -129,8 +128,8 @@ class RepairingQuotationUpdateForm extends Component {
     })
     return targetImages
   }
-
-  mapFromImageValues = selectedRow => {
+  
+  mapFromImageValues = (selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -138,14 +137,14 @@ class RepairingQuotationUpdateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
   }
 
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -154,17 +153,12 @@ class RepairingQuotationUpdateForm extends Component {
   }
 
   render() {
-    const {
-      form,
-      dispatch,
-      submitting,
-      selectedRows,
-      currentUpdateIndex,
-    } = this.props
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const { convertedImagesValues } = this.state
     const { setFieldsValue } = this.props.form
-
+    
+    
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -191,7 +185,7 @@ class RepairingQuotationUpdateForm extends Component {
         })
       })
     }
-
+    
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -206,7 +200,7 @@ class RepairingQuotationUpdateForm extends Component {
 
         // TODO
         const { currentUpdateIndex } = this.props
-
+        
         if (currentUpdateIndex >= selectedRows.length - 1) {
           return
         }
@@ -228,11 +222,11 @@ class RepairingQuotationUpdateForm extends Component {
         })
       })
     }
-
+    
     const skipToNext = () => {
       const { currentUpdateIndex } = this.props
       const { owner } = this.props
-
+        
       const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextRepairingQuotationUpdateRow`,
@@ -246,7 +240,7 @@ class RepairingQuotationUpdateForm extends Component {
         },
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -263,22 +257,18 @@ class RepairingQuotationUpdateForm extends Component {
       if (!errors || errorCount === 0) {
         return null
       }
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -300,28 +290,30 @@ class RepairingQuotationUpdateForm extends Component {
         </span>
       )
     }
-
+    
     if (!selectedRows) {
-      return <div>缺少被更新的对象</div>
+      return (<div>缺少被更新的对象</div>)
     }
 
     // TODO
     return (
       <PageHeaderLayout
-        title={
-          '更新维修报价' + (currentUpdateIndex + 1) + '/' + selectedRows.length
-        }
+        title={"更新维修报价"+(currentUpdateIndex+1)+"/"+selectedRows.length}
         content="更新维修报价"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+            
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
-                    rules: [{ required: true, message: '请输入序号' }],
-                  })(<Input placeholder="请输入请输入序号string" disabled />)}
+                    rules: [{ required: true, message: '请输入ID' }],
+                  })(
+                    <Input placeholder="请输入请输入IDstring" disabled />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -329,37 +321,89 @@ class RepairingQuotationUpdateForm extends Component {
                 <Form.Item label={fieldLabels.repairingQuotationDescription}>
                   {getFieldDecorator('repairingQuotationDescription', {
                     rules: [{ required: true, message: '请输入维修报价描述' }],
-                  })(<Input placeholder="请输入请输入维修报价描述string" />)}
+                  })(
+                    <Input placeholder="请输入请输入维修报价描述string" />
+                  )}
                 </Form.Item>
               </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.repairingQuotationTotalAmount}>
+                  {getFieldDecorator('repairingQuotationTotalAmount', {
+                    rules: [{ required: true, message: '请输入维修报价总金额' }],
+                  })(
+                    <Input placeholder="请输入请输入维修报价总金额money" />
+                  )}
+                </Form.Item>
+              </Col>
+
+            </Row>
+          </Form>  
+        </Card>
+
+
+        <Card title="附件" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+
+              <Col lg={6} md={12} sm={24}>
+                <PictureEdit
+                  buttonTitle="维修报价图片1"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingQuotationImage1')}
+                  fileList={convertedImagesValues.repairingQuotationImage1}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <PictureEdit
+                  buttonTitle="维修报价图2"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingQuotationImage2')}
+                  fileList={convertedImagesValues.repairingQuotationImage2}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <PictureEdit
+                  buttonTitle="维修报价图片3"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingQuotationImage3')}
+                  fileList={convertedImagesValues.repairingQuotationImage3}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <PictureEdit
+                  buttonTitle="维修报价图片4"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingQuotationImage4')}
+                  fileList={convertedImagesValues.repairingQuotationImage4}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <PictureEdit
+                  buttonTitle="维修报价图片5"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingQuotationImage5')}
+                  fileList={convertedImagesValues.repairingQuotationImage5}
+                />
+              </Col>
+
             </Row>
           </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitUpdateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
             更新
           </Button>
-          <Button
-            type="primary"
-            onClick={submitUpdateFormAndContinue}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             更新并装载下一个
           </Button>
-          <Button
-            type="info"
-            onClick={skipToNext}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             略过
           </Button>
           <Button type="info" onClick={goback} loading={submitting}>
@@ -374,3 +418,6 @@ class RepairingQuotationUpdateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(RepairingQuotationUpdateForm))
+
+
+
