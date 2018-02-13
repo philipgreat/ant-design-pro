@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import {
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -28,7 +40,6 @@ const fieldLabels = {
   account: '对账单',
 }
 
-
 const testValues = {
   serviceOrderNumber: 'SID11234',
   serviceOrderCode: 'V_M2C',
@@ -47,10 +58,7 @@ const testValues = {
 
 const imageURLPrefix = '//localhost:2090'
 
-
-const imageKeys = [
-]
-
+const imageKeys = []
 
 class ServiceCompanyAccountCreateForm extends Component {
   state = {
@@ -67,7 +75,7 @@ class ServiceCompanyAccountCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -86,10 +94,14 @@ class ServiceCompanyAccountCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
+  mapBackToImageValues = convertedImagesValues => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
+    Object.keys(convertedImagesValues).map(key => {
+      if (
+        !convertedImagesValues ||
+        !convertedImagesValues[key] ||
+        !convertedImagesValues[key][0]
+      ) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -105,7 +117,7 @@ class ServiceCompanyAccountCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues=(selectedRow) => {
+  mapFromImageValues = selectedRow => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -113,8 +125,8 @@ class ServiceCompanyAccountCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
+    imageKeys.map(key => {
+      targetImages[key] = buildFileList(key, selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -148,18 +160,23 @@ class ServiceCompanyAccountCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addServiceCompanyAccount`,
-          payload: { id: owner.id, type: 'serviceCompanyAccount', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'serviceCompanyAccount',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -174,18 +191,22 @@ class ServiceCompanyAccountCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -216,14 +237,11 @@ class ServiceCompanyAccountCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceOrderNumber}>
                   {getFieldDecorator('serviceOrderNumber', {
                     rules: [{ required: true, message: '请输入服务订单号' }],
-                  })(
-                    <Input placeholder="请输入请输入服务订单号string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务订单号string" />)}
                 </Form.Item>
               </Col>
 
@@ -231,9 +249,7 @@ class ServiceCompanyAccountCreateForm extends Component {
                 <Form.Item label={fieldLabels.serviceOrderCode}>
                   {getFieldDecorator('serviceOrderCode', {
                     rules: [{ required: true, message: '请输入服务订单代码' }],
-                  })(
-                    <Input placeholder="请输入请输入服务订单代码string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务订单代码string" />)}
                 </Form.Item>
               </Col>
 
@@ -241,16 +257,16 @@ class ServiceCompanyAccountCreateForm extends Component {
                 <Form.Item label={fieldLabels.serviceOrderName}>
                   {getFieldDecorator('serviceOrderName', {
                     rules: [{ required: true, message: '请输入服务订单名称' }],
-                  })(
-                    <Input placeholder="请输入请输入服务订单名称string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务订单名称string" />)}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceFulfilledDatetime}>
                   {getFieldDecorator('serviceFulfilledDatetime', {
-                    rules: [{ required: true, message: '请输入服务完成日期时间' }],
+                    rules: [
+                      { required: true, message: '请输入服务完成日期时间' },
+                    ],
                   })(
                     <Input placeholder="请输入请输入服务完成日期时间date_time" />
                   )}
@@ -261,19 +277,17 @@ class ServiceCompanyAccountCreateForm extends Component {
                 <Form.Item label={fieldLabels.contractId}>
                   {getFieldDecorator('contractId', {
                     rules: [{ required: true, message: '请输入合同标识' }],
-                  })(
-                    <Input placeholder="请输入请输入合同标识string" />
-                  )}
+                  })(<Input placeholder="请输入请输入合同标识string" />)}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.contractPriceValue}>
                   {getFieldDecorator('contractPriceValue', {
-                    rules: [{ required: true, message: '请输入合同价格的价值' }],
-                  })(
-                    <Input placeholder="请输入请输入合同价格的价值money" />
-                  )}
+                    rules: [
+                      { required: true, message: '请输入合同价格的价值' },
+                    ],
+                  })(<Input placeholder="请输入请输入合同价格的价值money" />)}
                 </Form.Item>
               </Col>
 
@@ -281,19 +295,17 @@ class ServiceCompanyAccountCreateForm extends Component {
                 <Form.Item label={fieldLabels.contractPriceType}>
                   {getFieldDecorator('contractPriceType', {
                     rules: [{ required: true, message: '请输入合同价格类型' }],
-                  })(
-                    <Input placeholder="请输入请输入合同价格类型string" />
-                  )}
+                  })(<Input placeholder="请输入请输入合同价格类型string" />)}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceWorkerName}>
                   {getFieldDecorator('serviceWorkerName', {
-                    rules: [{ required: true, message: '请输入服务人员的名字' }],
-                  })(
-                    <Input placeholder="请输入请输入服务人员的名字string" />
-                  )}
+                    rules: [
+                      { required: true, message: '请输入服务人员的名字' },
+                    ],
+                  })(<Input placeholder="请输入请输入服务人员的名字string" />)}
                 </Form.Item>
               </Col>
 
@@ -301,9 +313,7 @@ class ServiceCompanyAccountCreateForm extends Component {
                 <Form.Item label={fieldLabels.serviceCompanyName}>
                   {getFieldDecorator('serviceCompanyName', {
                     rules: [{ required: true, message: '请输入服务公司名称' }],
-                  })(
-                    <Input placeholder="请输入请输入服务公司名称string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务公司名称string" />)}
                 </Form.Item>
               </Col>
 
@@ -311,32 +321,21 @@ class ServiceCompanyAccountCreateForm extends Component {
                 <Form.Item label={fieldLabels.mainOrderId}>
                   {getFieldDecorator('mainOrderId', {
                     rules: [{ required: true, message: '请输入主要订单Id' }],
-                  })(
-                    <Input placeholder="请输入请输入主要订单Idstring" />
-                  )}
+                  })(<Input placeholder="请输入请输入主要订单Idstring" />)}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
-
-
-
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.merchant}>
                   {getFieldDecorator('merchantId', {
                     rules: [{ required: true, message: '请输入商户' }],
-                  })(
-                    <Input placeholder="请输入请输入商户" />
-                  )}
+                  })(<Input placeholder="请输入请输入商户" />)}
                 </Form.Item>
               </Col>
 
@@ -344,9 +343,7 @@ class ServiceCompanyAccountCreateForm extends Component {
                 <Form.Item label={fieldLabels.responsibleWorker}>
                   {getFieldDecorator('responsibleWorkerId', {
                     rules: [{ required: true, message: '请输入服务人员' }],
-                  })(
-                    <Input placeholder="请输入请输入服务人员" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务人员" />)}
                 </Form.Item>
               </Col>
 
@@ -354,22 +351,28 @@ class ServiceCompanyAccountCreateForm extends Component {
                 <Form.Item label={fieldLabels.account}>
                   {getFieldDecorator('accountId', {
                     rules: [{ required: true, message: '请输入对账单' }],
-                  })(
-                    <Input placeholder="请输入请输入对账单" />
-                  )}
+                  })(<Input placeholder="请输入请输入对账单" />)}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -384,7 +387,3 @@ class ServiceCompanyAccountCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ServiceCompanyAccountCreateForm))
-
-
-
-

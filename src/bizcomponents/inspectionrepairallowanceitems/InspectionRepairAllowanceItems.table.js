@@ -1,19 +1,46 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './InspectionRepairAllowanceItems.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '津贴标题', debugtype: 'string', dataIndex: 'allowanceTitle', width: '9' },
-  { title: '补贴代码', debugtype: 'string', dataIndex: 'allowanceCode', width: '23' },
-  { title: '补贴费用', dataIndex: 'allowanceAmount', className:'money', render: (text, record) => (`￥${text.toFixed(2)}`) },
-  { title: '车辆上线检测', dataIndex: 'serviceVehicleInspection', render: (text, record) => (record.serviceVehicleInspection ? (<Link to={`/serviceVehicleInspection/${record.serviceVehicleInspection.id}/dashboard`}>{record.serviceVehicleInspection.id}</Link>) : '暂无') },
-
+  {
+    title: '津贴标题',
+    debugtype: 'string',
+    dataIndex: 'allowanceTitle',
+    width: '9',
+  },
+  {
+    title: '补贴代码',
+    debugtype: 'string',
+    dataIndex: 'allowanceCode',
+    width: '23',
+  },
+  {
+    title: '补贴费用',
+    dataIndex: 'allowanceAmount',
+    className: 'money',
+    render: (text, record) => `￥${text.toFixed(2)}`,
+  },
+  {
+    title: '车辆上线检测',
+    dataIndex: 'serviceVehicleInspection',
+    render: (text, record) =>
+      record.serviceVehicleInspection ? (
+        <Link
+          to={`/serviceVehicleInspection/${
+            record.serviceVehicleInspection.id
+          }/dashboard`}
+        >
+          {record.serviceVehicleInspection.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
 ]
 
 class InspectionRepairAllowanceItemsTable extends PureComponent {
@@ -56,7 +83,6 @@ class InspectionRepairAllowanceItemsTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -71,13 +97,15 @@ class InspectionRepairAllowanceItemsTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -98,4 +126,3 @@ class InspectionRepairAllowanceItemsTable extends PureComponent {
 }
 
 export default InspectionRepairAllowanceItemsTable
-

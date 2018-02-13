@@ -1,18 +1,42 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './ServiceCompanyAuthenticationInfo.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '营业执照Img', dataIndex: 'businessLicenseImg', render: (text, record) => <ImagePreview imageTitle="营业执照Img" imageLocation={record.businessLicenseImg} /> },
-  { title: '营业执照代码', debugtype: 'string', dataIndex: 'businessLicenseCode', width: '20' },
-  { title: '服务公司', dataIndex: 'serviceCompany', render: (text, record) => (record.serviceCompany ? (<Link to={`/vehicleServiceCompany/${record.serviceCompany.id}/dashboard`}>{record.serviceCompany.id}</Link>) : '暂无') },
-
+  {
+    title: '营业执照Img',
+    dataIndex: 'businessLicenseImg',
+    render: (text, record) => (
+      <ImagePreview
+        imageTitle="营业执照Img"
+        imageLocation={record.businessLicenseImg}
+      />
+    ),
+  },
+  {
+    title: '营业执照代码',
+    debugtype: 'string',
+    dataIndex: 'businessLicenseCode',
+    width: '20',
+  },
+  {
+    title: '服务公司',
+    dataIndex: 'serviceCompany',
+    render: (text, record) =>
+      record.serviceCompany ? (
+        <Link
+          to={`/vehicleServiceCompany/${record.serviceCompany.id}/dashboard`}
+        >
+          {record.serviceCompany.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
 ]
 
 class ServiceCompanyAuthenticationInfoTable extends PureComponent {
@@ -55,7 +79,6 @@ class ServiceCompanyAuthenticationInfoTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -70,13 +93,15 @@ class ServiceCompanyAuthenticationInfoTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -97,4 +122,3 @@ class ServiceCompanyAuthenticationInfoTable extends PureComponent {
 }
 
 export default ServiceCompanyAuthenticationInfoTable
-

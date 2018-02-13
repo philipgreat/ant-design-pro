@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}repairingQuotationManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -16,9 +19,8 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
-const RepairingQuotationService = { view,
-  load }
+const RepairingQuotationService = {
+  view,
+  load,
+}
 export default RepairingQuotationService
-

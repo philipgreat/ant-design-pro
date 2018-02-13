@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}serviceFileInspectionManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -15,8 +18,6 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}serviceFileInspectionManager/loadServiceFileInspection/${targetObjectId}/${parametersExpr}/`,
   })
 }
-
-
 
 const addReportFileInspectionReport = (targetObjectId, parameters) => {
   const url = `${PREFIX}serviceFileInspectionManager/addReportFileInspectionReport/inspectionServiceOrderId/description/inspectionReportImage1/inspectionReportImage2/inspectionReportImage3/inspectionReportImage4/inspectionReportImage5/mainOrderId/tokensExpr/`
@@ -33,7 +34,11 @@ const addReportFileInspectionReport = (targetObjectId, parameters) => {
 const updateReportFileInspectionReport = (targetObjectId, parameters) => {
   const url = `${PREFIX}serviceFileInspectionManager/updateReportFileInspectionReportProperties/serviceFileInspectionId/id/description/inspectionReportImage1/inspectionReportImage2/inspectionReportImage3/inspectionReportImage4/inspectionReportImage5/tokensExpr/`
   const serviceFileInspectionId = targetObjectId
-  const requestParameters = { ...parameters, serviceFileInspectionId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    serviceFileInspectionId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -44,7 +49,11 @@ const updateReportFileInspectionReport = (targetObjectId, parameters) => {
 
 const removeReportFileInspectionReportList = (targetObjectId, parameters) => {
   const url = `${PREFIX}serviceFileInspectionManager/removeReportFileInspectionReportList/serviceFileInspectionId/reportFileInspectionReportIds/tokensExpr/`
-  const requestParameters = { ...parameters, serviceFileInspectionId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    serviceFileInspectionId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -53,11 +62,11 @@ const removeReportFileInspectionReportList = (targetObjectId, parameters) => {
   })
 }
 
-
-const ServiceFileInspectionService = { view,
+const ServiceFileInspectionService = {
+  view,
   load,
   addReportFileInspectionReport,
   updateReportFileInspectionReport,
-  removeReportFileInspectionReportList }
+  removeReportFileInspectionReportList,
+}
 export default ServiceFileInspectionService
-

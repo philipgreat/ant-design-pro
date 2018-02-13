@@ -1,14 +1,35 @@
-
-
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Icon,
+  Card,
+  Tabs,
+  Table,
+  Radio,
+  DatePicker,
+  Tooltip,
+  Menu,
+  Dropdown,
+  Steps,
+  Badge,
+} from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import moment from 'moment'
 import {
-  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
-
+  ChartCard,
+  yuan,
+  MiniArea,
+  MiniBar,
+  MiniProgress,
+  Field,
+  Bar,
+  Pie,
+  TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
@@ -16,8 +37,8 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './ServiceInsuranceForInspection.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
-import DescriptionList from '../../components/DescriptionList';
-const { Description } = DescriptionList;
+import DescriptionList from '../../components/DescriptionList'
+const { Description } = DescriptionList
 const { Step } = Steps
 
 const { TabPane } = Tabs
@@ -32,90 +53,94 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 }
 
-const summaryOf = (serviceInsuranceForInspection) =>{
-
-	return (
-	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{serviceInsuranceForInspection.id}</Description> 
-<Description term="服务状态">{serviceInsuranceForInspection.serviceStatus}</Description> 
-<Description term="服务的评论">{serviceInsuranceForInspection.serviceComments}</Description> 
-<Description term="开始时间">{ moment(serviceInsuranceForInspection.startTime).format('YYYY-MM-DD')}</Description> 
-<Description term="最后更新时间">{ moment(serviceInsuranceForInspection.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
-<Description term="保险产品名称">{serviceInsuranceForInspection.insuranceName}</Description> 
-<Description term="保险承保方">{serviceInsuranceForInspection.insuranceVendor}</Description> 
-<Description term="保险价格">{serviceInsuranceForInspection.insurancePrice}</Description> 
-<Description term="概览">{serviceInsuranceForInspection.summary}</Description> 
-<Description term="保单号码">{serviceInsuranceForInspection.insuranceNumber}</Description> 
-<Description term="保单图片">{serviceInsuranceForInspection.insuranceImage1}</Description> 
-<Description term="保单图片">{serviceInsuranceForInspection.insuranceImage2}</Description> 
-<Description term="保单图片">{serviceInsuranceForInspection.insuranceImage3}</Description> 
-<Description term="保单图片">{serviceInsuranceForInspection.insuranceImage4}</Description> 
-<Description term="保单图片">{serviceInsuranceForInspection.insuranceImage5}</Description> 
-	
-        
-      </DescriptionList>
-	)
-
+const summaryOf = serviceInsuranceForInspection => {
+  return (
+    <DescriptionList className={styles.headerList} size="small" col="4">
+      <Description term="ID">{serviceInsuranceForInspection.id}</Description>
+      <Description term="服务状态">
+        {serviceInsuranceForInspection.serviceStatus}
+      </Description>
+      <Description term="服务的评论">
+        {serviceInsuranceForInspection.serviceComments}
+      </Description>
+      <Description term="开始时间">
+        {moment(serviceInsuranceForInspection.startTime).format('YYYY-MM-DD')}
+      </Description>
+      <Description term="最后更新时间">
+        {moment(serviceInsuranceForInspection.lastUpdateTime).format(
+          'YYYY-MM-DD'
+        )}
+      </Description>
+      <Description term="保险产品名称">
+        {serviceInsuranceForInspection.insuranceName}
+      </Description>
+      <Description term="保险承保方">
+        {serviceInsuranceForInspection.insuranceVendor}
+      </Description>
+      <Description term="保险价格">
+        {serviceInsuranceForInspection.insurancePrice}
+      </Description>
+      <Description term="概览">
+        {serviceInsuranceForInspection.summary}
+      </Description>
+      <Description term="保单号码">
+        {serviceInsuranceForInspection.insuranceNumber}
+      </Description>
+      <Description term="保单图片">
+        {serviceInsuranceForInspection.insuranceImage1}
+      </Description>
+      <Description term="保单图片">
+        {serviceInsuranceForInspection.insuranceImage2}
+      </Description>
+      <Description term="保单图片">
+        {serviceInsuranceForInspection.insuranceImage3}
+      </Description>
+      <Description term="保单图片">
+        {serviceInsuranceForInspection.insuranceImage4}
+      </Description>
+      <Description term="保单图片">
+        {serviceInsuranceForInspection.insuranceImage5}
+      </Description>
+    </DescriptionList>
+  )
 }
 
 @connect(state => ({
   serviceInsuranceForInspection: state._serviceInsuranceForInspection,
 }))
 export default class ServiceInsuranceForInspectionViewDetail extends Component {
-
- 
-  onTabChange = (key) => {
-    this.setState({ tabKey: key });
-  }  
+  onTabChange = key => {
+    this.setState({ tabKey: key })
+  }
   render() {
-  
     // eslint-disable-next-line max-len
-    
-    const serviceInsuranceForInspection = this.props.serviceInsuranceForInspection
-    const { id,  } = serviceInsuranceForInspection
-    const {  } = serviceInsuranceForInspection
-    
+
+    const serviceInsuranceForInspection = this.props
+      .serviceInsuranceForInspection
+    const { id } = serviceInsuranceForInspection
+    const {} = serviceInsuranceForInspection
+
     const owner = { type: '_serviceInsuranceForInspection', id }
-    
-    const tabList = [
 
-   
+    const tabList = []
 
-   ];
-   
-   
-    const contentList = {
-     
-    };
-    
+    const contentList = {}
 
-
-    
-    
-    
     return (
-
       <PageHeaderLayout
         title="保险增值服务总览"
         content={summaryOf(this.props.serviceInsuranceForInspection)}
         wrapperClassName={styles.advancedForm}
       >
-
-      
-      
-	<Card 
-  		className={styles.card} 
-  		bordered={false}
-  		tabList={tabList}
-  		onTabChange={this.onTabChange}>
-            {contentList[this.state.tabKey]}
+        <Card
+          className={styles.card}
+          bordered={false}
+          tabList={tabList}
+          onTabChange={this.onTabChange}
+        >
+          {contentList[this.state.tabKey]}
         </Card>
-
- 
       </PageHeaderLayout>
     )
   }
 }
-
-
-

@@ -1,22 +1,72 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './ServicePrice.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '合同', dataIndex: 'contract', render: (text, record) => (record.contract ? (<Link to={`/contract/${record.contract.id}/dashboard`}>{record.contract.id}</Link>) : '暂无') },
-  { title: '服务范围', dataIndex: 'availableService', render: (text, record) => (record.availableService ? (<Link to={`/availableService/${record.availableService.id}/dashboard`}>{record.availableService.id}</Link>) : '暂无') },
-  { title: '产品', dataIndex: 'product', render: (text, record) => (record.product ? (<Link to={`/availableProduct/${record.product.id}/dashboard`}>{record.product.id}</Link>) : '暂无') },
-  { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '30' },
-  { title: '服务价格类型', debugtype: 'string', dataIndex: 'servicePriceType', width: '11' },
-  { title: '首次服务价格', debugtype: 'double', dataIndex: 'basePriceValue', width: '9' },
-  { title: '后续服务价格', debugtype: 'double', dataIndex: 'otherPriceValue', width: '9' },
-
+  {
+    title: '合同',
+    dataIndex: 'contract',
+    render: (text, record) =>
+      record.contract ? (
+        <Link to={`/contract/${record.contract.id}/dashboard`}>
+          {record.contract.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '服务范围',
+    dataIndex: 'availableService',
+    render: (text, record) =>
+      record.availableService ? (
+        <Link to={`/availableService/${record.availableService.id}/dashboard`}>
+          {record.availableService.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '产品',
+    dataIndex: 'product',
+    render: (text, record) =>
+      record.product ? (
+        <Link to={`/availableProduct/${record.product.id}/dashboard`}>
+          {record.product.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '服务代码',
+    debugtype: 'string',
+    dataIndex: 'serviceKey',
+    width: '30',
+  },
+  {
+    title: '服务价格类型',
+    debugtype: 'string',
+    dataIndex: 'servicePriceType',
+    width: '11',
+  },
+  {
+    title: '首次服务价格',
+    debugtype: 'double',
+    dataIndex: 'basePriceValue',
+    width: '9',
+  },
+  {
+    title: '后续服务价格',
+    debugtype: 'double',
+    dataIndex: 'otherPriceValue',
+    width: '9',
+  },
 ]
 
 class ServicePriceTable extends PureComponent {
@@ -59,7 +109,6 @@ class ServicePriceTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -74,13 +123,15 @@ class ServicePriceTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -101,4 +152,3 @@ class ServicePriceTable extends PureComponent {
 }
 
 export default ServicePriceTable
-

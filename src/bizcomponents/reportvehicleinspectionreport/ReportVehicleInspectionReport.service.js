@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}reportVehicleInspectionReportManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -16,9 +19,8 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
-const ReportVehicleInspectionReportService = { view,
-  load }
+const ReportVehicleInspectionReportService = {
+  view,
+  load,
+}
 export default ReportVehicleInspectionReportService
-

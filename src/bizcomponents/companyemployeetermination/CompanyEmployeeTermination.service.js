@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}companyEmployeeTerminationManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -15,8 +18,6 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}companyEmployeeTerminationManager/loadCompanyEmployeeTermination/${targetObjectId}/${parametersExpr}/`,
   })
 }
-
-
 
 const addVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
   const url = `${PREFIX}companyEmployeeTerminationManager/addVehicleServiceCompanyEmployee/terminationId/employeeName/profileImage/gender/availableState/innocentEvidenceImage/identityCardNumber/companyId/availableMoveCar/availableInspectionCar/availableRepairCar/mobileNumber/tokensExpr/`
@@ -33,7 +34,11 @@ const addVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
 const updateVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
   const url = `${PREFIX}companyEmployeeTerminationManager/updateVehicleServiceCompanyEmployeeProperties/companyEmployeeTerminationId/id/employeeName/profileImage/gender/availableState/innocentEvidenceImage/identityCardNumber/availableMoveCar/availableInspectionCar/availableRepairCar/mobileNumber/tokensExpr/`
   const companyEmployeeTerminationId = targetObjectId
-  const requestParameters = { ...parameters, companyEmployeeTerminationId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    companyEmployeeTerminationId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -42,9 +47,16 @@ const updateVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
   })
 }
 
-const removeVehicleServiceCompanyEmployeeList = (targetObjectId, parameters) => {
+const removeVehicleServiceCompanyEmployeeList = (
+  targetObjectId,
+  parameters
+) => {
   const url = `${PREFIX}companyEmployeeTerminationManager/removeVehicleServiceCompanyEmployeeList/companyEmployeeTerminationId/vehicleServiceCompanyEmployeeIds/tokensExpr/`
-  const requestParameters = { ...parameters, companyEmployeeTerminationId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    companyEmployeeTerminationId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -53,11 +65,11 @@ const removeVehicleServiceCompanyEmployeeList = (targetObjectId, parameters) => 
   })
 }
 
-
-const CompanyEmployeeTerminationService = { view,
+const CompanyEmployeeTerminationService = {
+  view,
   load,
   addVehicleServiceCompanyEmployee,
   updateVehicleServiceCompanyEmployee,
-  removeVehicleServiceCompanyEmployeeList }
+  removeVehicleServiceCompanyEmployeeList,
+}
 export default CompanyEmployeeTerminationService
-

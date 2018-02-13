@@ -1,27 +1,93 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
 import { Table, Alert, Badge } from 'antd'
 import styles from './RepairingCompanyAccount.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '修理工人的名字', debugtype: 'string', dataIndex: 'repairingWorkerName', width: '36' },
-  { title: '修理公司名称', debugtype: 'string', dataIndex: 'repairingCompanyName', width: '27' },
-  { title: '车牌号码', debugtype: 'string', dataIndex: 'vehicleLicensePlateNumber', width: '11' },
-  { title: '车辆维修订单号', debugtype: 'string', dataIndex: 'vehicleRepairingOrderNumber', width: '14' },
-  { title: '原始金额', debugtype: 'money', dataIndex: 'originalAmount', width: '11' },
-  { title: '补贴费用', debugtype: 'money', dataIndex: 'allowanceAmount', width: '10' },
-  { title: '实际的数量', debugtype: 'money', dataIndex: 'actualAmount', width: '11' },
-  { title: '主要订单Id', debugtype: 'string', dataIndex: 'mainOrderId', width: '15' },
-  { title: '付款日期时间', dataIndex: 'paymentDatetime', render: (text, record) => moment(record.paymentDatetime).format('YYYY-MM-DD') },
-  { title: '微信订单Id', debugtype: 'string', dataIndex: 'wechatOrderId', width: '36' },
-  { title: '微信提前支付Id', debugtype: 'string', dataIndex: 'wechatPrepayId', width: '25' },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.id : '暂无') },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.id : '暂无') },
-  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? record.account.id : '暂无') },
+  {
+    title: '修理工人的名字',
+    debugtype: 'string',
+    dataIndex: 'repairingWorkerName',
+    width: '36',
+  },
+  {
+    title: '修理公司名称',
+    debugtype: 'string',
+    dataIndex: 'repairingCompanyName',
+    width: '27',
+  },
+  {
+    title: '车牌号码',
+    debugtype: 'string',
+    dataIndex: 'vehicleLicensePlateNumber',
+    width: '11',
+  },
+  {
+    title: '车辆维修订单号',
+    debugtype: 'string',
+    dataIndex: 'vehicleRepairingOrderNumber',
+    width: '14',
+  },
+  {
+    title: '原始金额',
+    debugtype: 'money',
+    dataIndex: 'originalAmount',
+    width: '11',
+  },
+  {
+    title: '补贴费用',
+    debugtype: 'money',
+    dataIndex: 'allowanceAmount',
+    width: '10',
+  },
+  {
+    title: '实际的数量',
+    debugtype: 'money',
+    dataIndex: 'actualAmount',
+    width: '11',
+  },
+  {
+    title: '主要订单Id',
+    debugtype: 'string',
+    dataIndex: 'mainOrderId',
+    width: '15',
+  },
+  {
+    title: '付款日期时间',
+    dataIndex: 'paymentDatetime',
+    render: (text, record) =>
+      moment(record.paymentDatetime).format('YYYY-MM-DD'),
+  },
+  {
+    title: '微信订单Id',
+    debugtype: 'string',
+    dataIndex: 'wechatOrderId',
+    width: '36',
+  },
+  {
+    title: '微信提前支付Id',
+    debugtype: 'string',
+    dataIndex: 'wechatPrepayId',
+    width: '25',
+  },
+  {
+    title: '商户',
+    dataIndex: 'merchant',
+    render: (text, record) => (record.merchant ? record.merchant.id : '暂无'),
+  },
+  {
+    title: '服务人员',
+    dataIndex: 'responsibleWorker',
+    render: (text, record) =>
+      record.responsibleWorker ? record.responsibleWorker.id : '暂无',
+  },
+  {
+    title: '对账单',
+    dataIndex: 'account',
+    render: (text, record) => (record.account ? record.account.id : '暂无'),
+  },
 ]
 
 class RepairingCompanyAccountConfirmationTable extends PureComponent {
@@ -29,16 +95,15 @@ class RepairingCompanyAccountConfirmationTable extends PureComponent {
     // const { data,count,current, owner } = this.props
     const { data } = this.props
 
-
     return (
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{data.length}</a> 项 
+                一共 <a style={{ fontWeight: 600 }}>{data.length}</a> 项
               </p>
-            )}
+            }
             type="warning"
             showIcon
           />
@@ -56,4 +121,3 @@ class RepairingCompanyAccountConfirmationTable extends PureComponent {
 }
 
 export default RepairingCompanyAccountConfirmationTable
-

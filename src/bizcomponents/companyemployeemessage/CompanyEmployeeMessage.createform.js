@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import {
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -24,10 +36,10 @@ const fieldLabels = {
   status: '状态',
 }
 
-
 const testValues = {
   title: '您有新上门取车订单',
-  messageContent: '客户朱瞻基要求上门取车,地址:江苏省南京市秦淮区明故宫路 午朝门',
+  messageContent:
+    '客户朱瞻基要求上门取车,地址:江苏省南京市秦淮区明故宫路 午朝门',
   serviceTicket: 'sub-order-12345',
   sendTime: '2997-03-12 05:07:10',
   readTime: '2996-02-29 08:42:49',
@@ -39,10 +51,7 @@ const testValues = {
 
 const imageURLPrefix = '//localhost:2090'
 
-
-const imageKeys = [
-]
-
+const imageKeys = []
 
 class CompanyEmployeeMessageCreateForm extends Component {
   state = {
@@ -59,7 +68,7 @@ class CompanyEmployeeMessageCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -78,10 +87,14 @@ class CompanyEmployeeMessageCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
+  mapBackToImageValues = convertedImagesValues => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
+    Object.keys(convertedImagesValues).map(key => {
+      if (
+        !convertedImagesValues ||
+        !convertedImagesValues[key] ||
+        !convertedImagesValues[key][0]
+      ) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -97,7 +110,7 @@ class CompanyEmployeeMessageCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues=(selectedRow) => {
+  mapFromImageValues = selectedRow => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -105,8 +118,8 @@ class CompanyEmployeeMessageCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
+    imageKeys.map(key => {
+      targetImages[key] = buildFileList(key, selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -140,18 +153,23 @@ class CompanyEmployeeMessageCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addCompanyEmployeeMessage`,
-          payload: { id: owner.id, type: 'companyEmployeeMessage', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'companyEmployeeMessage',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -166,18 +184,22 @@ class CompanyEmployeeMessageCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -208,14 +230,11 @@ class CompanyEmployeeMessageCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.title}>
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: '请输入标题' }],
-                  })(
-                    <Input placeholder="请输入请输入标题string" />
-                  )}
+                  })(<Input placeholder="请输入请输入标题string" />)}
                 </Form.Item>
               </Col>
 
@@ -223,9 +242,7 @@ class CompanyEmployeeMessageCreateForm extends Component {
                 <Form.Item label={fieldLabels.messageContent}>
                   {getFieldDecorator('messageContent', {
                     rules: [{ required: true, message: '请输入消息内容' }],
-                  })(
-                    <Input placeholder="请输入请输入消息内容string" />
-                  )}
+                  })(<Input placeholder="请输入请输入消息内容string" />)}
                 </Form.Item>
               </Col>
 
@@ -233,9 +250,7 @@ class CompanyEmployeeMessageCreateForm extends Component {
                 <Form.Item label={fieldLabels.serviceTicket}>
                   {getFieldDecorator('serviceTicket', {
                     rules: [{ required: true, message: '请输入服务单号' }],
-                  })(
-                    <Input placeholder="请输入请输入服务单号string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务单号string" />)}
                 </Form.Item>
               </Col>
 
@@ -243,9 +258,7 @@ class CompanyEmployeeMessageCreateForm extends Component {
                 <Form.Item label={fieldLabels.sendTime}>
                   {getFieldDecorator('sendTime', {
                     rules: [{ required: true, message: '请输入发送时间' }],
-                  })(
-                    <Input placeholder="请输入请输入发送时间date_time" />
-                  )}
+                  })(<Input placeholder="请输入请输入发送时间date_time" />)}
                 </Form.Item>
               </Col>
 
@@ -253,9 +266,7 @@ class CompanyEmployeeMessageCreateForm extends Component {
                 <Form.Item label={fieldLabels.readTime}>
                   {getFieldDecorator('readTime', {
                     rules: [{ required: true, message: '请输入阅读时间' }],
-                  })(
-                    <Input placeholder="请输入请输入阅读时间date_time" />
-                  )}
+                  })(<Input placeholder="请输入请输入阅读时间date_time" />)}
                 </Form.Item>
               </Col>
 
@@ -263,32 +274,21 @@ class CompanyEmployeeMessageCreateForm extends Component {
                 <Form.Item label={fieldLabels.status}>
                   {getFieldDecorator('status', {
                     rules: [{ required: true, message: '请输入状态' }],
-                  })(
-                    <Input placeholder="请输入请输入状态string" />
-                  )}
+                  })(<Input placeholder="请输入请输入状态string" />)}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
-
-
-
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.sender}>
                   {getFieldDecorator('senderId', {
                     rules: [{ required: true, message: '请输入发送方' }],
-                  })(
-                    <Input placeholder="请输入请输入发送方" />
-                  )}
+                  })(<Input placeholder="请输入请输入发送方" />)}
                 </Form.Item>
               </Col>
 
@@ -296,9 +296,7 @@ class CompanyEmployeeMessageCreateForm extends Component {
                 <Form.Item label={fieldLabels.receiver}>
                   {getFieldDecorator('receiverId', {
                     rules: [{ required: true, message: '请输入接收方' }],
-                  })(
-                    <Input placeholder="请输入请输入接收方" />
-                  )}
+                  })(<Input placeholder="请输入请输入接收方" />)}
                 </Form.Item>
               </Col>
 
@@ -306,22 +304,28 @@ class CompanyEmployeeMessageCreateForm extends Component {
                 <Form.Item label={fieldLabels.serviceType}>
                   {getFieldDecorator('serviceTypeId', {
                     rules: [{ required: true, message: '请输入服务类型' }],
-                  })(
-                    <Input placeholder="请输入请输入服务类型" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务类型" />)}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -336,7 +340,3 @@ class CompanyEmployeeMessageCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(CompanyEmployeeMessageCreateForm))
-
-
-
-

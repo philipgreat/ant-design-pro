@@ -1,14 +1,35 @@
-
-
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Icon,
+  Card,
+  Tabs,
+  Table,
+  Radio,
+  DatePicker,
+  Tooltip,
+  Menu,
+  Dropdown,
+  Steps,
+  Badge,
+} from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import moment from 'moment'
 import {
-  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
-
+  ChartCard,
+  yuan,
+  MiniArea,
+  MiniBar,
+  MiniProgress,
+  Field,
+  Bar,
+  Pie,
+  TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
@@ -16,8 +37,8 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './ServiceVehicleInspection.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
-import DescriptionList from '../../components/DescriptionList';
-const { Description } = DescriptionList;
+import DescriptionList from '../../components/DescriptionList'
+const { Description } = DescriptionList
 const { Step } = Steps
 
 const { TabPane } = Tabs
@@ -32,99 +53,113 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 }
 
-const summaryOf = (serviceVehicleInspection) =>{
-
-	return (
-	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{serviceVehicleInspection.id}</Description> 
-<Description term="服务状态">{serviceVehicleInspection.serviceStatus}</Description> 
-<Description term="开始时间">{ moment(serviceVehicleInspection.startTime).format('YYYY-MM-DD')}</Description> 
-<Description term="经度">{serviceVehicleInspection.longitude}</Description> 
-<Description term="纬度">{serviceVehicleInspection.latitude}</Description> 
-<Description term="最后更新时间">{ moment(serviceVehicleInspection.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
-<Description term="检验日期时间">{ moment(serviceVehicleInspection.inspectionDatetime).format('YYYY-MM-DD')}</Description> 
-<Description term="检测结果">{serviceVehicleInspection.inspectionResult}</Description> 
-<Description term="是否要修理">{serviceVehicleInspection.inspectionNeedRepair}</Description> 
-	
-        
-      </DescriptionList>
-	)
-
+const summaryOf = serviceVehicleInspection => {
+  return (
+    <DescriptionList className={styles.headerList} size="small" col="4">
+      <Description term="ID">{serviceVehicleInspection.id}</Description>
+      <Description term="服务状态">
+        {serviceVehicleInspection.serviceStatus}
+      </Description>
+      <Description term="开始时间">
+        {moment(serviceVehicleInspection.startTime).format('YYYY-MM-DD')}
+      </Description>
+      <Description term="经度">
+        {serviceVehicleInspection.longitude}
+      </Description>
+      <Description term="纬度">{serviceVehicleInspection.latitude}</Description>
+      <Description term="最后更新时间">
+        {moment(serviceVehicleInspection.lastUpdateTime).format('YYYY-MM-DD')}
+      </Description>
+      <Description term="检验日期时间">
+        {moment(serviceVehicleInspection.inspectionDatetime).format(
+          'YYYY-MM-DD'
+        )}
+      </Description>
+      <Description term="检测结果">
+        {serviceVehicleInspection.inspectionResult}
+      </Description>
+      <Description term="是否要修理">
+        {serviceVehicleInspection.inspectionNeedRepair}
+      </Description>
+    </DescriptionList>
+  )
 }
 
 @connect(state => ({
   serviceVehicleInspection: state._serviceVehicleInspection,
 }))
 export default class ServiceVehicleInspectionViewDetail extends Component {
-
-
   state = {
     tabKey: `reportVehicleInspectionReportList`,
     stepDirection: 'horizontal',
   }
- 
-  onTabChange = (key) => {
-    this.setState({ tabKey: key });
-  }  
+
+  onTabChange = key => {
+    this.setState({ tabKey: key })
+  }
   render() {
-    const {ReportVehicleInspectionReportViewTable} = GlobalComponents;
-    const {InspectionRepairAllowanceItemsViewTable} = GlobalComponents;
-  
+    const { ReportVehicleInspectionReportViewTable } = GlobalComponents
+    const { InspectionRepairAllowanceItemsViewTable } = GlobalComponents
+
     // eslint-disable-next-line max-len
-    
+
     const serviceVehicleInspection = this.props.serviceVehicleInspection
-    const { id, reportVehicleInspectionReportCount, inspectionRepairAllowanceItemsCount } = serviceVehicleInspection
-    const { reportVehicleInspectionReportList, inspectionRepairAllowanceItemsList } = serviceVehicleInspection
-    
+    const {
+      id,
+      reportVehicleInspectionReportCount,
+      inspectionRepairAllowanceItemsCount,
+    } = serviceVehicleInspection
+    const {
+      reportVehicleInspectionReportList,
+      inspectionRepairAllowanceItemsList,
+    } = serviceVehicleInspection
+
     const owner = { type: '_serviceVehicleInspection', id }
-    
+
     const tabList = [
+      {
+        key: 'reportVehicleInspectionReportList',
+        tab: `车辆检验报告(${reportVehicleInspectionReportCount})`,
+      },
+      {
+        key: 'inspectionRepairAllowanceItemsList',
+        tab: `检测修理建议项(${inspectionRepairAllowanceItemsCount})`,
+      },
+    ]
 
-      {key: 'reportVehicleInspectionReportList',tab: `车辆检验报告(${reportVehicleInspectionReportCount})`}, 
-      {key: 'inspectionRepairAllowanceItemsList',tab: `检测修理建议项(${inspectionRepairAllowanceItemsCount})`}, 
-   
-
-   ];
-   
-   
     const contentList = {
-       reportVehicleInspectionReportList:  
-        <ReportVehicleInspectionReportViewTable data={reportVehicleInspectionReportList} owner={owner} {...this.props} />,
- 
-      inspectionRepairAllowanceItemsList:  
-        <InspectionRepairAllowanceItemsViewTable data={inspectionRepairAllowanceItemsList} owner={owner} {...this.props} />,
- 
-    
-    };
-    
+      reportVehicleInspectionReportList: (
+        <ReportVehicleInspectionReportViewTable
+          data={reportVehicleInspectionReportList}
+          owner={owner}
+          {...this.props}
+        />
+      ),
 
+      inspectionRepairAllowanceItemsList: (
+        <InspectionRepairAllowanceItemsViewTable
+          data={inspectionRepairAllowanceItemsList}
+          owner={owner}
+          {...this.props}
+        />
+      ),
+    }
 
-    
-    
-    
     return (
-
       <PageHeaderLayout
         title="车辆上线检测总览"
         content={summaryOf(this.props.serviceVehicleInspection)}
         wrapperClassName={styles.advancedForm}
       >
-
-      
-      
-	<Card 
-  		className={styles.card} 
-  		bordered={false}
-  		tabList={tabList}
-  		onTabChange={this.onTabChange}>
-            {contentList[this.state.tabKey]}
+        <Card
+          className={styles.card}
+          bordered={false}
+          tabList={tabList}
+          onTabChange={this.onTabChange}
+        >
+          {contentList[this.state.tabKey]}
         </Card>
-
- 
       </PageHeaderLayout>
     )
   }
 }
-
-
-

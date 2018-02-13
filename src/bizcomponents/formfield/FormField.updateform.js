@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import {
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+} from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -31,14 +43,11 @@ const fieldLabels = {
   customRendering: '自定义渲染',
   candidateValues: '候选人的价值观',
   suggestValues: '建议值',
-
 }
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = [
-]
-
+const imageKeys = []
 
 class FormFieldUpdateForm extends Component {
   state = {
@@ -53,7 +62,7 @@ class FormFieldUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow)
+      convertedImagesValues: this.mapFromImageValues(selectedRow),
     })
   }
 
@@ -82,10 +91,9 @@ class FormFieldUpdateForm extends Component {
     if (currentUpdateIndex >= selectedRows.length) {
       return
     }
-    const convertiedValues = selectedRows.map((item) => {
+    const convertiedValues = selectedRows.map(item => {
       return {
         ...item,
-
       }
     })
     const selectedRow = convertiedValues[currentUpdateIndex]
@@ -101,10 +109,14 @@ class FormFieldUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = (convertedImagesValues) => {
+  mapBackToImageValues = convertedImagesValues => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
+    Object.keys(convertedImagesValues).map(key => {
+      if (
+        !convertedImagesValues ||
+        !convertedImagesValues[key] ||
+        !convertedImagesValues[key][0]
+      ) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -131,8 +143,8 @@ class FormFieldUpdateForm extends Component {
     })
     return targetImages
   }
-  
-  mapFromImageValues = (selectedRow) => {
+
+  mapFromImageValues = selectedRow => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -140,14 +152,14 @@ class FormFieldUpdateForm extends Component {
       }
       return []
     }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
+    imageKeys.map(key => {
+      targetImages[key] = buildFileList(key, selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
   }
 
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -156,12 +168,17 @@ class FormFieldUpdateForm extends Component {
   }
 
   render() {
-    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
+    const {
+      form,
+      dispatch,
+      submitting,
+      selectedRows,
+      currentUpdateIndex,
+    } = this.props
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const { convertedImagesValues } = this.state
     const { setFieldsValue } = this.props.form
-    
-    
+
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -188,7 +205,7 @@ class FormFieldUpdateForm extends Component {
         })
       })
     }
-    
+
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -203,7 +220,7 @@ class FormFieldUpdateForm extends Component {
 
         // TODO
         const { currentUpdateIndex } = this.props
-        
+
         if (currentUpdateIndex >= selectedRows.length - 1) {
           return
         }
@@ -225,11 +242,11 @@ class FormFieldUpdateForm extends Component {
         })
       })
     }
-    
+
     const skipToNext = () => {
       const { currentUpdateIndex } = this.props
       const { owner } = this.props
-        
+
       const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextFormFieldUpdateRow`,
@@ -243,7 +260,7 @@ class FormFieldUpdateForm extends Component {
         },
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -260,18 +277,22 @@ class FormFieldUpdateForm extends Component {
       if (!errors || errorCount === 0) {
         return null
       }
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -293,30 +314,28 @@ class FormFieldUpdateForm extends Component {
         </span>
       )
     }
-    
+
     if (!selectedRows) {
-      return (<div>缺少被更新的对象</div>)
+      return <div>缺少被更新的对象</div>
     }
 
     // TODO
     return (
       <PageHeaderLayout
-        title={"更新表单字段"+(currentUpdateIndex+1)+"/"+selectedRows.length}
+        title={
+          '更新表单字段' + (currentUpdateIndex + 1) + '/' + selectedRows.length
+        }
         content="更新表单字段"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-            
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
                     rules: [{ required: true, message: '请输入ID' }],
-                  })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
-                  )}
+                  })(<Input placeholder="请输入请输入IDstring" disabled />)}
                 </Form.Item>
               </Col>
 
@@ -324,19 +343,17 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.label}>
                   {getFieldDecorator('label', {
                     rules: [{ required: true, message: '请输入标签' }],
-                  })(
-                    <Input placeholder="请输入请输入标签string" />
-                  )}
+                  })(<Input placeholder="请输入请输入标签string" />)}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.localeKey}>
                   {getFieldDecorator('localeKey', {
-                    rules: [{ required: true, message: '请输入语言环境的关键' }],
-                  })(
-                    <Input placeholder="请输入请输入语言环境的关键string" />
-                  )}
+                    rules: [
+                      { required: true, message: '请输入语言环境的关键' },
+                    ],
+                  })(<Input placeholder="请输入请输入语言环境的关键string" />)}
                 </Form.Item>
               </Col>
 
@@ -344,9 +361,7 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.parameterName}>
                   {getFieldDecorator('parameterName', {
                     rules: [{ required: true, message: '请输入参数名称' }],
-                  })(
-                    <Input placeholder="请输入请输入参数名称string" />
-                  )}
+                  })(<Input placeholder="请输入请输入参数名称string" />)}
                 </Form.Item>
               </Col>
 
@@ -354,9 +369,7 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.type}>
                   {getFieldDecorator('type', {
                     rules: [{ required: true, message: '请输入类型' }],
-                  })(
-                    <Input placeholder="请输入请输入类型string" />
-                  )}
+                  })(<Input placeholder="请输入请输入类型string" />)}
                 </Form.Item>
               </Col>
 
@@ -364,9 +377,7 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.placeholder}>
                   {getFieldDecorator('placeholder', {
                     rules: [{ required: true, message: '请输入占位符' }],
-                  })(
-                    <Input placeholder="请输入请输入占位符string" />
-                  )}
+                  })(<Input placeholder="请输入请输入占位符string" />)}
                 </Form.Item>
               </Col>
 
@@ -374,9 +385,7 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.defaultValue}>
                   {getFieldDecorator('defaultValue', {
                     rules: [{ required: true, message: '请输入默认值' }],
-                  })(
-                    <Input placeholder="请输入请输入默认值string" />
-                  )}
+                  })(<Input placeholder="请输入请输入默认值string" />)}
                 </Form.Item>
               </Col>
 
@@ -384,9 +393,7 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.description}>
                   {getFieldDecorator('description', {
                     rules: [{ required: true, message: '请输入描述' }],
-                  })(
-                    <Input placeholder="请输入请输入描述string" />
-                  )}
+                  })(<Input placeholder="请输入请输入描述string" />)}
                 </Form.Item>
               </Col>
 
@@ -394,9 +401,7 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.fieldGroup}>
                   {getFieldDecorator('fieldGroup', {
                     rules: [{ required: true, message: '请输入字段组' }],
-                  })(
-                    <Input placeholder="请输入请输入字段组string" />
-                  )}
+                  })(<Input placeholder="请输入请输入字段组string" />)}
                 </Form.Item>
               </Col>
 
@@ -404,9 +409,7 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.minValue}>
                   {getFieldDecorator('minValue', {
                     rules: [{ required: true, message: '请输入最小值' }],
-                  })(
-                    <Input placeholder="请输入请输入最小值string" />
-                  )}
+                  })(<Input placeholder="请输入请输入最小值string" />)}
                 </Form.Item>
               </Col>
 
@@ -414,9 +417,7 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.maxValue}>
                   {getFieldDecorator('maxValue', {
                     rules: [{ required: true, message: '请输入最大的价值' }],
-                  })(
-                    <Input placeholder="请输入请输入最大的价值string" />
-                  )}
+                  })(<Input placeholder="请输入请输入最大的价值string" />)}
                 </Form.Item>
               </Col>
 
@@ -424,9 +425,7 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.required}>
                   {getFieldDecorator('required', {
                     rules: [{ required: true, message: '请输入要求' }],
-                  })(
-                    <Input placeholder="请输入请输入要求bool" />
-                  )}
+                  })(<Input placeholder="请输入请输入要求bool" />)}
                 </Form.Item>
               </Col>
 
@@ -434,9 +433,7 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.disabled}>
                   {getFieldDecorator('disabled', {
                     rules: [{ required: true, message: '请输入禁用' }],
-                  })(
-                    <Input placeholder="请输入请输入禁用bool" />
-                  )}
+                  })(<Input placeholder="请输入请输入禁用bool" />)}
                 </Form.Item>
               </Col>
 
@@ -444,19 +441,17 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.customRendering}>
                   {getFieldDecorator('customRendering', {
                     rules: [{ required: true, message: '请输入自定义渲染' }],
-                  })(
-                    <Input placeholder="请输入请输入自定义渲染bool" />
-                  )}
+                  })(<Input placeholder="请输入请输入自定义渲染bool" />)}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.candidateValues}>
                   {getFieldDecorator('candidateValues', {
-                    rules: [{ required: true, message: '请输入候选人的价值观' }],
-                  })(
-                    <Input placeholder="请输入请输入候选人的价值观string" />
-                  )}
+                    rules: [
+                      { required: true, message: '请输入候选人的价值观' },
+                    ],
+                  })(<Input placeholder="请输入请输入候选人的价值观string" />)}
                 </Form.Item>
               </Col>
 
@@ -464,26 +459,37 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.suggestValues}>
                   {getFieldDecorator('suggestValues', {
                     rules: [{ required: true, message: '请输入建议值' }],
-                  })(
-                    <Input placeholder="请输入请输入建议值string" />
-                  )}
+                  })(<Input placeholder="请输入请输入建议值string" />)}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
-
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitUpdateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             更新
           </Button>
-          <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
+          <Button
+            type="primary"
+            onClick={submitUpdateFormAndContinue}
+            loading={submitting}
+            disabled={currentUpdateIndex + 1 >= selectedRows.length}
+          >
             更新并装载下一个
           </Button>
-          <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
+          <Button
+            type="info"
+            onClick={skipToNext}
+            loading={submitting}
+            disabled={currentUpdateIndex + 1 >= selectedRows.length}
+          >
             略过
           </Button>
           <Button type="info" onClick={goback} loading={submitting}>
@@ -498,6 +504,3 @@ class FormFieldUpdateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(FormFieldUpdateForm))
-
-
-

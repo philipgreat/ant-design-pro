@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import {
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -23,7 +35,6 @@ const fieldLabels = {
   mainOrder: '主订单',
 }
 
-
 const testValues = {
   couponTitle: '优惠￥10元',
   discountAmount: '10.00',
@@ -36,10 +47,7 @@ const testValues = {
 
 const imageURLPrefix = '//localhost:2090'
 
-
-const imageKeys = [
-]
-
+const imageKeys = []
 
 class VehicleInspectionOrderCouponCreateForm extends Component {
   state = {
@@ -56,7 +64,7 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -75,10 +83,14 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
+  mapBackToImageValues = convertedImagesValues => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
+    Object.keys(convertedImagesValues).map(key => {
+      if (
+        !convertedImagesValues ||
+        !convertedImagesValues[key] ||
+        !convertedImagesValues[key][0]
+      ) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -94,7 +106,7 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues=(selectedRow) => {
+  mapFromImageValues = selectedRow => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -102,8 +114,8 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
+    imageKeys.map(key => {
+      targetImages[key] = buildFileList(key, selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -127,7 +139,11 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleInspectionOrderCoupon`,
-          payload: { id: owner.id, type: 'vehicleInspectionOrderCoupon', parameters },
+          payload: {
+            id: owner.id,
+            type: 'vehicleInspectionOrderCoupon',
+            parameters,
+          },
         })
       })
     }
@@ -137,18 +153,23 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleInspectionOrderCoupon`,
-          payload: { id: owner.id, type: 'vehicleInspectionOrderCoupon', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'vehicleInspectionOrderCoupon',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -163,18 +184,22 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -205,14 +230,11 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.couponTitle}>
                   {getFieldDecorator('couponTitle', {
                     rules: [{ required: true, message: '请输入优惠券名称' }],
-                  })(
-                    <Input placeholder="请输入请输入优惠券名称string" />
-                  )}
+                  })(<Input placeholder="请输入请输入优惠券名称string" />)}
                 </Form.Item>
               </Col>
 
@@ -220,9 +242,7 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
                 <Form.Item label={fieldLabels.discountAmount}>
                   {getFieldDecorator('discountAmount', {
                     rules: [{ required: true, message: '请输入折扣金额' }],
-                  })(
-                    <Input placeholder="请输入请输入折扣金额money" />
-                  )}
+                  })(<Input placeholder="请输入请输入折扣金额money" />)}
                 </Form.Item>
               </Col>
 
@@ -230,9 +250,7 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
                 <Form.Item label={fieldLabels.endDate}>
                   {getFieldDecorator('endDate', {
                     rules: [{ required: true, message: '请输入结束日期' }],
-                  })(
-                    <Input placeholder="请输入请输入结束日期date_time" />
-                  )}
+                  })(<Input placeholder="请输入请输入结束日期date_time" />)}
                 </Form.Item>
               </Col>
 
@@ -240,9 +258,7 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
                 <Form.Item label={fieldLabels.appliedDate}>
                   {getFieldDecorator('appliedDate', {
                     rules: [{ required: true, message: '请输入申请日期' }],
-                  })(
-                    <Input placeholder="请输入请输入申请日期date_time" />
-                  )}
+                  })(<Input placeholder="请输入请输入申请日期date_time" />)}
                 </Form.Item>
               </Col>
 
@@ -250,32 +266,21 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
                 <Form.Item label={fieldLabels.couponStatus}>
                   {getFieldDecorator('couponStatus', {
                     rules: [{ required: true, message: '请输入息状态' }],
-                  })(
-                    <Input placeholder="请输入请输入息状态string" />
-                  )}
+                  })(<Input placeholder="请输入请输入息状态string" />)}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
-
-
-
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.customer}>
                   {getFieldDecorator('customerId', {
                     rules: [{ required: true, message: '请输入客户' }],
-                  })(
-                    <Input placeholder="请输入请输入客户" />
-                  )}
+                  })(<Input placeholder="请输入请输入客户" />)}
                 </Form.Item>
               </Col>
 
@@ -283,22 +288,28 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
                 <Form.Item label={fieldLabels.mainOrder}>
                   {getFieldDecorator('mainOrderId', {
                     rules: [{ required: true, message: '请输入主订单' }],
-                  })(
-                    <Input placeholder="请输入请输入主订单" />
-                  )}
+                  })(<Input placeholder="请输入请输入主订单" />)}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -313,7 +324,3 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(VehicleInspectionOrderCouponCreateForm))
-
-
-
-

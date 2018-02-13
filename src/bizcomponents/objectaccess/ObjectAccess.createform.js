@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import {
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -27,7 +39,6 @@ const fieldLabels = {
   app: '应用程序',
 }
 
-
 const testValues = {
   displayName: '控制访问列表1',
   objectType: 'FranchiseeStoreCountryCenter',
@@ -45,10 +56,7 @@ const testValues = {
 
 const imageURLPrefix = '//localhost:2090'
 
-
-const imageKeys = [
-]
-
+const imageKeys = []
 
 class ObjectAccessCreateForm extends Component {
   state = {
@@ -65,7 +73,7 @@ class ObjectAccessCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -84,10 +92,14 @@ class ObjectAccessCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
+  mapBackToImageValues = convertedImagesValues => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
+    Object.keys(convertedImagesValues).map(key => {
+      if (
+        !convertedImagesValues ||
+        !convertedImagesValues[key] ||
+        !convertedImagesValues[key][0]
+      ) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -103,7 +115,7 @@ class ObjectAccessCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues=(selectedRow) => {
+  mapFromImageValues = selectedRow => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -111,8 +123,8 @@ class ObjectAccessCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
+    imageKeys.map(key => {
+      targetImages[key] = buildFileList(key, selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -146,18 +158,23 @@ class ObjectAccessCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addObjectAccess`,
-          payload: { id: owner.id, type: 'objectAccess', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'objectAccess',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -172,18 +189,22 @@ class ObjectAccessCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -214,14 +235,11 @@ class ObjectAccessCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.displayName}>
                   {getFieldDecorator('displayName', {
                     rules: [{ required: true, message: '请输入显示名称' }],
-                  })(
-                    <Input placeholder="请输入请输入显示名称string" />
-                  )}
+                  })(<Input placeholder="请输入请输入显示名称string" />)}
                 </Form.Item>
               </Col>
 
@@ -229,9 +247,7 @@ class ObjectAccessCreateForm extends Component {
                 <Form.Item label={fieldLabels.objectType}>
                   {getFieldDecorator('objectType', {
                     rules: [{ required: true, message: '请输入访问对象类型' }],
-                  })(
-                    <Input placeholder="请输入请输入访问对象类型string" />
-                  )}
+                  })(<Input placeholder="请输入请输入访问对象类型string" />)}
                 </Form.Item>
               </Col>
 
@@ -239,9 +255,7 @@ class ObjectAccessCreateForm extends Component {
                 <Form.Item label={fieldLabels.list1}>
                   {getFieldDecorator('list1', {
                     rules: [{ required: true, message: '请输入列表1' }],
-                  })(
-                    <Input placeholder="请输入请输入列表1string" />
-                  )}
+                  })(<Input placeholder="请输入请输入列表1string" />)}
                 </Form.Item>
               </Col>
 
@@ -249,9 +263,7 @@ class ObjectAccessCreateForm extends Component {
                 <Form.Item label={fieldLabels.list2}>
                   {getFieldDecorator('list2', {
                     rules: [{ required: true, message: '请输入列表2' }],
-                  })(
-                    <Input placeholder="请输入请输入列表2string" />
-                  )}
+                  })(<Input placeholder="请输入请输入列表2string" />)}
                 </Form.Item>
               </Col>
 
@@ -259,9 +271,7 @@ class ObjectAccessCreateForm extends Component {
                 <Form.Item label={fieldLabels.list3}>
                   {getFieldDecorator('list3', {
                     rules: [{ required: true, message: '请输入列表3' }],
-                  })(
-                    <Input placeholder="请输入请输入列表3string" />
-                  )}
+                  })(<Input placeholder="请输入请输入列表3string" />)}
                 </Form.Item>
               </Col>
 
@@ -269,9 +279,7 @@ class ObjectAccessCreateForm extends Component {
                 <Form.Item label={fieldLabels.list4}>
                   {getFieldDecorator('list4', {
                     rules: [{ required: true, message: '请输入列表4' }],
-                  })(
-                    <Input placeholder="请输入请输入列表4string" />
-                  )}
+                  })(<Input placeholder="请输入请输入列表4string" />)}
                 </Form.Item>
               </Col>
 
@@ -279,9 +287,7 @@ class ObjectAccessCreateForm extends Component {
                 <Form.Item label={fieldLabels.list5}>
                   {getFieldDecorator('list5', {
                     rules: [{ required: true, message: '请输入列表5' }],
-                  })(
-                    <Input placeholder="请输入请输入列表5string" />
-                  )}
+                  })(<Input placeholder="请输入请输入列表5string" />)}
                 </Form.Item>
               </Col>
 
@@ -289,9 +295,7 @@ class ObjectAccessCreateForm extends Component {
                 <Form.Item label={fieldLabels.list6}>
                   {getFieldDecorator('list6', {
                     rules: [{ required: true, message: '请输入列表6' }],
-                  })(
-                    <Input placeholder="请输入请输入列表6string" />
-                  )}
+                  })(<Input placeholder="请输入请输入列表6string" />)}
                 </Form.Item>
               </Col>
 
@@ -299,9 +303,7 @@ class ObjectAccessCreateForm extends Component {
                 <Form.Item label={fieldLabels.list7}>
                   {getFieldDecorator('list7', {
                     rules: [{ required: true, message: '请输入列表7' }],
-                  })(
-                    <Input placeholder="请输入请输入列表7string" />
-                  )}
+                  })(<Input placeholder="请输入请输入列表7string" />)}
                 </Form.Item>
               </Col>
 
@@ -309,9 +311,7 @@ class ObjectAccessCreateForm extends Component {
                 <Form.Item label={fieldLabels.list8}>
                   {getFieldDecorator('list8', {
                     rules: [{ required: true, message: '请输入列表8' }],
-                  })(
-                    <Input placeholder="请输入请输入列表8string" />
-                  )}
+                  })(<Input placeholder="请输入请输入列表8string" />)}
                 </Form.Item>
               </Col>
 
@@ -319,45 +319,42 @@ class ObjectAccessCreateForm extends Component {
                 <Form.Item label={fieldLabels.list9}>
                   {getFieldDecorator('list9', {
                     rules: [{ required: true, message: '请输入列表9' }],
-                  })(
-                    <Input placeholder="请输入请输入列表9string" />
-                  )}
+                  })(<Input placeholder="请输入请输入列表9string" />)}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
-
-
-
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.app}>
                   {getFieldDecorator('appId', {
                     rules: [{ required: true, message: '请输入应用程序' }],
-                  })(
-                    <Input placeholder="请输入请输入应用程序" />
-                  )}
+                  })(<Input placeholder="请输入请输入应用程序" />)}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -372,7 +369,3 @@ class ObjectAccessCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ObjectAccessCreateForm))
-
-
-
-

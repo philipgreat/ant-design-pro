@@ -1,26 +1,108 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './InspectionStationAccount.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '服务订单号', debugtype: 'string', dataIndex: 'serviceOrderNumber', width: '14' },
-  { title: '检查类型', debugtype: 'string', dataIndex: 'inspectionType', width: '8' },
-  { title: '检查车辆信息', debugtype: 'string', dataIndex: 'inspectionVehicleInfo', width: '11' },
-  { title: '最终检验结果', debugtype: 'string', dataIndex: 'inspectionFinalResult', width: '7' },
-  { title: '检验日期时间', dataIndex: 'inspectionDatetime', render: (text, record) => moment(record.inspectionDatetime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '检查站的名字', debugtype: 'string', dataIndex: 'inspectionStationName', width: '11' },
-  { title: '主要的订单号', debugtype: 'string', dataIndex: 'mainOrderNumber', width: '28' },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.id}</Link>) : '暂无') },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.id}</Link>) : '暂无') },
-  { title: '检测站', dataIndex: 'inspectionStation', render: (text, record) => (record.inspectionStation ? (<Link to={`/inspectionStation/${record.inspectionStation.id}/dashboard`}>{record.inspectionStation.id}</Link>) : '暂无') },
-  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? (<Link to={`/account/${record.account.id}/dashboard`}>{record.account.id}</Link>) : '暂无') },
-
+  {
+    title: '服务订单号',
+    debugtype: 'string',
+    dataIndex: 'serviceOrderNumber',
+    width: '14',
+  },
+  {
+    title: '检查类型',
+    debugtype: 'string',
+    dataIndex: 'inspectionType',
+    width: '8',
+  },
+  {
+    title: '检查车辆信息',
+    debugtype: 'string',
+    dataIndex: 'inspectionVehicleInfo',
+    width: '11',
+  },
+  {
+    title: '最终检验结果',
+    debugtype: 'string',
+    dataIndex: 'inspectionFinalResult',
+    width: '7',
+  },
+  {
+    title: '检验日期时间',
+    dataIndex: 'inspectionDatetime',
+    render: (text, record) =>
+      moment(record.inspectionDatetime).format('YYYY-MM-DD HH:mm:ss'),
+  },
+  {
+    title: '检查站的名字',
+    debugtype: 'string',
+    dataIndex: 'inspectionStationName',
+    width: '11',
+  },
+  {
+    title: '主要的订单号',
+    debugtype: 'string',
+    dataIndex: 'mainOrderNumber',
+    width: '28',
+  },
+  {
+    title: '商户',
+    dataIndex: 'merchant',
+    render: (text, record) =>
+      record.merchant ? (
+        <Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>
+          {record.merchant.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '服务人员',
+    dataIndex: 'responsibleWorker',
+    render: (text, record) =>
+      record.responsibleWorker ? (
+        <Link
+          to={`/vehicleServiceCompanyEmployee/${
+            record.responsibleWorker.id
+          }/dashboard`}
+        >
+          {record.responsibleWorker.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '检测站',
+    dataIndex: 'inspectionStation',
+    render: (text, record) =>
+      record.inspectionStation ? (
+        <Link
+          to={`/inspectionStation/${record.inspectionStation.id}/dashboard`}
+        >
+          {record.inspectionStation.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '对账单',
+    dataIndex: 'account',
+    render: (text, record) =>
+      record.account ? (
+        <Link to={`/account/${record.account.id}/dashboard`}>
+          {record.account.id}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
 ]
 
 class InspectionStationAccountTable extends PureComponent {
@@ -63,7 +145,6 @@ class InspectionStationAccountTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -78,13 +159,15 @@ class InspectionStationAccountTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -105,4 +188,3 @@ class InspectionStationAccountTable extends PureComponent {
 }
 
 export default InspectionStationAccountTable
-
