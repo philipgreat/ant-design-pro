@@ -11,7 +11,6 @@ const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '评论内容', debugtype: 'string', dataIndex: 'reviewName', width: '8' },
   { title: '评论结果', debugtype: 'string', dataIndex: 'reviewResult', width: '9' },
-  { title: '评论条目', dataIndex: 'availableReviewItem', render: (text, record) => (record.availableReviewItem ? (<Link to={`/availableReviewItem/${record.availableReviewItem.id}/dashboard`}>{record.availableReviewItem.id}</Link>) : '暂无') },
   { title: '主订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.id}</Link>) : '暂无') },
 
 ]

@@ -31,7 +31,7 @@ const summaryOf = (formField) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{formField.id}</Description> 
+<Description term="ID">{formField.id}</Description> 
 <Description term="标签">{formField.label}</Description> 
 <Description term="语言环境的关键">{formField.localeKey}</Description> 
 <Description term="参数名称">{formField.parameterName}</Description> 
@@ -43,6 +43,7 @@ const summaryOf = (formField) =>{
 <Description term="最小值">{formField.minValue}</Description> 
 <Description term="最大的价值">{formField.maxValue}</Description> 
 <Description term="要求">{formField.required?'是':'否'}</Description> 
+<Description term="禁用">{formField.disabled?'是':'否'}</Description> 
 <Description term="自定义渲染">{formField.customRendering?'是':'否'}</Description> 
 <Description term="候选人的价值观">{formField.candidateValues}</Description> 
 <Description term="建议值">{formField.suggestValues}</Description> 

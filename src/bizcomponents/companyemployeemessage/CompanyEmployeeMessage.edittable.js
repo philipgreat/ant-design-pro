@@ -199,8 +199,8 @@ class CompanyEmployeeMessageEditTable extends PureComponent {
   { title: '接收方', dataIndex: 'receiver', render: (text, record) => (record.receiver ? record.receiver.id : '暂无') },
   { title: '服务类型', dataIndex: 'serviceType', render: (text, record) => (record.serviceType ? record.serviceType.id : '暂无') },
   { title: '服务单号', debugtype: 'string', dataIndex: 'serviceTicket', width: '19', render: (text, record) => renderStringEdit('serviceTicket',text, record)  },
-  { title: '发送时间', dataIndex: 'sendTime', render: (text, record) => moment(record.sendTime).format('YYYY-MM-DD') },
-  { title: '阅读时间', dataIndex: 'readTime', render: (text, record) => moment(record.readTime).format('YYYY-MM-DD') },
+  { title: '发送时间', dataIndex: 'sendTime', render: (text, record) => moment(record.sendTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '阅读时间', dataIndex: 'readTime', render: (text, record) => moment(record.readTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '状态', debugtype: 'string', dataIndex: 'status', width: '6', render: (text, record) => renderStringEdit('status',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]

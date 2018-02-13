@@ -94,6 +94,12 @@ class CustomerBizApp extends React.PureComponent {
         <Menu.Item>
           <Link to={`/customer/${objectId}/list/vehicleInspectionOrderList`}>上线检测订单</Link>
         </Menu.Item>
+        <Menu.Item>
+          <Link to={`/customer/${objectId}/list/orderDiscountCouponList`}>订单的折扣券</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/customer/${objectId}/list/vehicleInspectionOrderCouponList`}>优惠券</Link>
+        </Menu.Item>
       </SubMenu>
     )
   }
@@ -165,6 +171,74 @@ class CustomerBizApp extends React.PureComponent {
       currentUpdateIndex: state._customer.currentUpdateIndex,
       owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderList' }, // this is for model namespace and
     }))(VehicleInspectionOrderUpdateForm)
+  }
+
+  getOrderDiscountCouponSearch = () => {
+    const {OrderDiscountCouponSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._customer.orderDiscountCouponList,
+      count: state._customer.orderDiscountCouponCount,
+      currentPage: state._customer.orderDiscountCouponCurrentPageNumber,
+      searchFormParameters: state._customer.orderDiscountCouponSearchFormParameters,
+      loading: state._customer.loading,
+      owner: { type: '_customer', id: state._customer.id, listName: 'orderDiscountCouponList' }, // this is for model namespace and
+    }))(OrderDiscountCouponSearch)
+  }
+  getOrderDiscountCouponCreateForm = () => {
+   	const {OrderDiscountCouponCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._customer.orderDiscountCouponList,
+      count: state._customer.orderDiscountCouponCount,
+      currentPage: state._customer.orderDiscountCouponCurrentPageNumber,
+      searchFormParameters: state._customer.orderDiscountCouponSearchFormParameters,
+      loading: state._customer.loading,
+      owner: { type: '_customer', id: state._customer.id, listName: 'orderDiscountCouponList'}, // this is for model namespace and
+    }))(OrderDiscountCouponCreateForm)
+  }
+  
+  getOrderDiscountCouponUpdateForm = () => {
+  	const {OrderDiscountCouponUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._customer.selectedRows,
+      currentUpdateIndex: state._customer.currentUpdateIndex,
+      owner: { type: '_customer', id: state._customer.id, listName: 'orderDiscountCouponList' }, // this is for model namespace and
+    }))(OrderDiscountCouponUpdateForm)
+  }
+
+  getVehicleInspectionOrderCouponSearch = () => {
+    const {VehicleInspectionOrderCouponSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._customer.vehicleInspectionOrderCouponList,
+      count: state._customer.vehicleInspectionOrderCouponCount,
+      currentPage: state._customer.vehicleInspectionOrderCouponCurrentPageNumber,
+      searchFormParameters: state._customer.vehicleInspectionOrderCouponSearchFormParameters,
+      loading: state._customer.loading,
+      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderCouponList' }, // this is for model namespace and
+    }))(VehicleInspectionOrderCouponSearch)
+  }
+  getVehicleInspectionOrderCouponCreateForm = () => {
+   	const {VehicleInspectionOrderCouponCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._customer.vehicleInspectionOrderCouponList,
+      count: state._customer.vehicleInspectionOrderCouponCount,
+      currentPage: state._customer.vehicleInspectionOrderCouponCurrentPageNumber,
+      searchFormParameters: state._customer.vehicleInspectionOrderCouponSearchFormParameters,
+      loading: state._customer.loading,
+      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderCouponList'}, // this is for model namespace and
+    }))(VehicleInspectionOrderCouponCreateForm)
+  }
+  
+  getVehicleInspectionOrderCouponUpdateForm = () => {
+  	const {VehicleInspectionOrderCouponUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._customer.selectedRows,
+      currentUpdateIndex: state._customer.currentUpdateIndex,
+      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderCouponList' }, // this is for model namespace and
+    }))(VehicleInspectionOrderCouponUpdateForm)
   }
 
   getPageTitle = () => {
@@ -261,6 +335,14 @@ class CustomerBizApp extends React.PureComponent {
                <Route path="/customer/:id/list/vehicleInspectionOrderList" component={this.getVehicleInspectionOrderSearch()} />
                <Route path="/customer/:id/list/vehicleInspectionOrderCreateForm" component={this.getVehicleInspectionOrderCreateForm()} />
                <Route path="/customer/:id/list/vehicleInspectionOrderUpdateForm" component={this.getVehicleInspectionOrderUpdateForm()} />
+
+               <Route path="/customer/:id/list/orderDiscountCouponList" component={this.getOrderDiscountCouponSearch()} />
+               <Route path="/customer/:id/list/orderDiscountCouponCreateForm" component={this.getOrderDiscountCouponCreateForm()} />
+               <Route path="/customer/:id/list/orderDiscountCouponUpdateForm" component={this.getOrderDiscountCouponUpdateForm()} />
+
+               <Route path="/customer/:id/list/vehicleInspectionOrderCouponList" component={this.getVehicleInspectionOrderCouponSearch()} />
+               <Route path="/customer/:id/list/vehicleInspectionOrderCouponCreateForm" component={this.getVehicleInspectionOrderCouponCreateForm()} />
+               <Route path="/customer/:id/list/vehicleInspectionOrderCouponUpdateForm" component={this.getVehicleInspectionOrderCouponUpdateForm()} />
               
              </Switch>
            </Content>

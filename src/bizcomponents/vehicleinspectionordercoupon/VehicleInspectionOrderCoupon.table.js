@@ -9,12 +9,13 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '11' },
-  { title: '生效日期', dataIndex: 'startDate', render: (text, record) => moment(record.startDate).format('YYYY-MM-DD') },
-  { title: '失效日期', dataIndex: 'expirationDate', render: (text, record) => moment(record.expirationDate).format('YYYY-MM-DD') },
-  { title: '金额', dataIndex: 'amount', className:'money', render: (text, record) => (`￥${text.toFixed(2)}`) },
-  { title: '优惠码', debugtype: 'string', dataIndex: 'code', width: '16' },
-  { title: '使用日期', dataIndex: 'usedDate', render: (text, record) => moment(record.usedDate).format('YYYY-MM-DD') },
+  { title: '优惠券名称', debugtype: 'string', dataIndex: 'couponTitle', width: '10' },
+  { title: '折扣金额', dataIndex: 'discountAmount', className:'money', render: (text, record) => (`￥${text.toFixed(2)}`) },
+  { title: '结束日期', dataIndex: 'endDate', render: (text, record) => moment(record.endDate).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '申请日期', dataIndex: 'appliedDate', render: (text, record) => moment(record.appliedDate).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '息状态', debugtype: 'string', dataIndex: 'couponStatus', width: '7' },
+  { title: '客户', dataIndex: 'customer', render: (text, record) => (record.customer ? (<Link to={`/customer/${record.customer.id}/dashboard`}>{record.customer.id}</Link>) : '暂无') },
   { title: '主订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.id}</Link>) : '暂无') },
 
 ]
@@ -93,7 +94,7 @@ class VehicleInspectionOrderCouponTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 800 }}
+          scroll={{ x: 1200 }}
         />
       </div>
     )

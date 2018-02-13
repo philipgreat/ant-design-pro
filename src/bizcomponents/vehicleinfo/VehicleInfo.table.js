@@ -20,8 +20,6 @@ const columns = [
   { title: '车架号', debugtype: 'string', dataIndex: 'vehicleIdentificationNumber', width: '21' },
   { title: '发证日期', dataIndex: 'vehiclePermitIssueDate', render: (text, record) => moment(record.vehiclePermitIssueDate).format('YYYY-MM-DD') },
   { title: '所有人', debugtype: 'string', dataIndex: 'vehiclePermitHolderName', width: '7' },
-  { title: '车辆行驶证号码', debugtype: 'string', dataIndex: 'vehiclePermitNumber', width: '20' },
-  { title: '行驶证有效期', dataIndex: 'vehiclePermitExpirationDate', render: (text, record) => moment(record.vehiclePermitExpirationDate).format('YYYY-MM-DD') },
   { title: '图1', dataIndex: 'vehiclePermitImage1', render: (text, record) => <ImagePreview imageTitle="图1" imageLocation={record.vehiclePermitImage1} /> },
   { title: '图2', dataIndex: 'vehiclePermitImage2', render: (text, record) => <ImagePreview imageTitle="图2" imageLocation={record.vehiclePermitImage2} /> },
   { title: '图3', dataIndex: 'vehiclePermitImage3', render: (text, record) => <ImagePreview imageTitle="图3" imageLocation={record.vehiclePermitImage3} /> },
@@ -106,7 +104,7 @@ class VehicleInfoTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 2325 }}
+          scroll={{ x: 1935 }}
         />
       </div>
     )

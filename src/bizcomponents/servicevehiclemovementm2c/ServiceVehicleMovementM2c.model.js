@@ -116,12 +116,12 @@ export default {
       yield put(routerRedux.push(`/serviceVehicleMovementM2c/${id}/list/${type}List`))
     },
 
-    *addReportHandover({ payload }, { call, put }) {
+    *addHandOverChecklistResult({ payload }, { call, put }) {
       const {ServiceVehicleMovementM2cService} = GlobalComponents;
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(ServiceVehicleMovementM2cService.addReportHandover, id, parameters)
+      const data = yield call(ServiceVehicleMovementM2cService.addHandOverChecklistResult, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -139,11 +139,11 @@ export default {
       const location = { pathname: `/serviceVehicleMovementM2c/${id}/list/${type}List`, state: data }
       yield put(routerRedux.push(location))
     },
-    *updateReportHandover({ payload }, { call, put }) {
+    *updateHandOverChecklistResult({ payload }, { call, put }) {
       const {ServiceVehicleMovementM2cService} = GlobalComponents;      
       const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(ServiceVehicleMovementM2cService.updateReportHandover, id, parameters)
+      const data = yield call(ServiceVehicleMovementM2cService.updateHandOverChecklistResult, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -161,16 +161,16 @@ export default {
       const location = { pathname: `/serviceVehicleMovementM2c/${id}/list/${type}List`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
-    *gotoNextReportHandoverUpdateRow({ payload }, { call, put }) {
+    *gotoNextHandOverChecklistResultUpdateRow({ payload }, { call, put }) {
       const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
-    *removeReportHandoverList({ payload }, { call, put }) {
+    *removeHandOverChecklistResultList({ payload }, { call, put }) {
       const {ServiceVehicleMovementM2cService} = GlobalComponents; 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(ServiceVehicleMovementM2cService.removeReportHandoverList, id, parameters)
+      const data = yield call(ServiceVehicleMovementM2cService.removeHandOverChecklistResultList, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return

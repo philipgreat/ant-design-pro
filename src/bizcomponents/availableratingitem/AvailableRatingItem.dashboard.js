@@ -46,7 +46,7 @@ const summaryOf = (availableRatingItem) =>{
 export default class AvailableRatingItemDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, orderRatingResultCount } = this.props.availableRatingItem
+    const { id,  } = this.props.availableRatingItem
     
     
     
@@ -59,24 +59,6 @@ export default class AvailableRatingItemDashboard extends Component {
       >
         <div>
           <Row gutter={24}>
-
-          
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="订单评级结果"
-                action={<Tooltip title="订单评级结果"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(orderRatingResultCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/availableRatingItem/${id}/list/orderRatingResultList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/availableRatingItem/${id}/list/orderRatingResultCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/availableRatingItem/${id}/list/orderRatingResultList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
 
           </Row>
         </div>

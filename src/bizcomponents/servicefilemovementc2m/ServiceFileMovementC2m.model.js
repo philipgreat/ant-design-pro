@@ -116,12 +116,12 @@ export default {
       yield put(routerRedux.push(`/serviceFileMovementC2m/${id}/list/${type}List`))
     },
 
-    *addReportHandover({ payload }, { call, put }) {
+    *addHandOverChecklistResult({ payload }, { call, put }) {
       const {ServiceFileMovementC2mService} = GlobalComponents;
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(ServiceFileMovementC2mService.addReportHandover, id, parameters)
+      const data = yield call(ServiceFileMovementC2mService.addHandOverChecklistResult, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -139,11 +139,11 @@ export default {
       const location = { pathname: `/serviceFileMovementC2m/${id}/list/${type}List`, state: data }
       yield put(routerRedux.push(location))
     },
-    *updateReportHandover({ payload }, { call, put }) {
+    *updateHandOverChecklistResult({ payload }, { call, put }) {
       const {ServiceFileMovementC2mService} = GlobalComponents;      
       const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(ServiceFileMovementC2mService.updateReportHandover, id, parameters)
+      const data = yield call(ServiceFileMovementC2mService.updateHandOverChecklistResult, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -161,16 +161,16 @@ export default {
       const location = { pathname: `/serviceFileMovementC2m/${id}/list/${type}List`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
-    *gotoNextReportHandoverUpdateRow({ payload }, { call, put }) {
+    *gotoNextHandOverChecklistResultUpdateRow({ payload }, { call, put }) {
       const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
-    *removeReportHandoverList({ payload }, { call, put }) {
+    *removeHandOverChecklistResultList({ payload }, { call, put }) {
       const {ServiceFileMovementC2mService} = GlobalComponents; 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(ServiceFileMovementC2mService.removeReportHandoverList, id, parameters)
+      const data = yield call(ServiceFileMovementC2mService.removeHandOverChecklistResultList, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return

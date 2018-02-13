@@ -40,7 +40,8 @@ const summaryOf = (inspectionStation) =>{
 <Description term="名称">{inspectionStation.name}</Description> 
 <Description term="服务状态">{inspectionStation.operatingStatus}</Description> 
 <Description term="所在地址">{inspectionStation.addressDetail}</Description> 
-<Description term="位置">{inspectionStation.location}</Description> 
+<Description term="经度">{inspectionStation.longitude}</Description> 
+<Description term="纬度">{inspectionStation.latitude}</Description> 
 <Description term="联系人姓名">{inspectionStation.contactName}</Description> 
 <Description term="联系手机">{inspectionStation.contactMobile}</Description> 
 <Description term="计量资格认证">{inspectionStation.metrologyAccreditationImage}</Description> 
@@ -68,12 +69,13 @@ export default class InspectionStationViewDetail extends Component {
   render() {
     const {ServiceVehicleInspectionViewTable} = GlobalComponents;
     const {ServiceFileInspectionViewTable} = GlobalComponents;
+    const {InspectionStationAccountViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const inspectionStation = this.props.inspectionStation
-    const { id, serviceVehicleInspectionCount, serviceFileInspectionCount } = inspectionStation
-    const { serviceVehicleInspectionList, serviceFileInspectionList } = inspectionStation
+    const { id, serviceVehicleInspectionCount, serviceFileInspectionCount, inspectionStationAccountCount } = inspectionStation
+    const { serviceVehicleInspectionList, serviceFileInspectionList, inspectionStationAccountList } = inspectionStation
     
     const owner = { type: '_inspectionStation', id }
     
@@ -81,6 +83,7 @@ export default class InspectionStationViewDetail extends Component {
 
       {key: 'serviceVehicleInspectionList',tab: `车辆上线检测(${serviceVehicleInspectionCount})`}, 
       {key: 'serviceFileInspectionList',tab: `6年免检服务(${serviceFileInspectionCount})`}, 
+      {key: 'inspectionStationAccountList',tab: `检查站对账单(${inspectionStationAccountCount})`}, 
    
 
    ];
@@ -92,6 +95,9 @@ export default class InspectionStationViewDetail extends Component {
  
       serviceFileInspectionList:  
         <ServiceFileInspectionViewTable data={serviceFileInspectionList} owner={owner} {...this.props} />,
+ 
+      inspectionStationAccountList:  
+        <InspectionStationAccountViewTable data={inspectionStationAccountList} owner={owner} {...this.props} />,
  
     
     };

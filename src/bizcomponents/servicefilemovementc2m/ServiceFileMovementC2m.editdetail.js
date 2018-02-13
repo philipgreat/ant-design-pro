@@ -36,11 +36,11 @@ const topColResponsiveProps = {
 }))
 export default class ServiceFileMovementC2mEditDetail extends Component {
   render() {
-    const {ReportHandoverEditTable} = GlobalComponents;
+    const {HandOverChecklistResultEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, reportHandoverCount } = this.props.serviceFileMovementC2m
-    const { reportHandoverList } = this.props.serviceFileMovementC2m
+    const { id, handOverChecklistResultCount } = this.props.serviceFileMovementC2m
+    const { handOverChecklistResultList } = this.props.serviceFileMovementC2m
     
     const owner = { type: '_serviceFileMovementC2m', id }
     return (
@@ -52,9 +52,9 @@ export default class ServiceFileMovementC2mEditDetail extends Component {
       >
 
 
-		<Card title="交接报告列表" className={styles.card} bordered={false}>
+		<Card title="移交清单结果列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
-            <ReportHandoverEditTable data={reportHandoverList} owner={owner} {...this.props} />
+            <HandOverChecklistResultEditTable data={handOverChecklistResultList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

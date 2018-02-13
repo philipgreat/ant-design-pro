@@ -84,10 +84,11 @@ class ServiceVehicleRepairingEditTable extends PureComponent {
     }
     const remapReference = (record) => {
 			const responsibleWorkerId = record.responsibleWorker.id
+			const merchantId = record.merchant.id
 			const mainOrderId = record.mainOrder.id
 
       //const communityId = record.community.id;
-      return {responsibleWorkerId,mainOrderId,};
+      return {responsibleWorkerId,merchantId,mainOrderId,};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -192,11 +193,13 @@ class ServiceVehicleRepairingEditTable extends PureComponent {
     
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '服务状态', debugtype: 'string', dataIndex: 'serviceStatus', width: '8', render: (text, record) => renderStringEdit('serviceStatus',text, record)  },
+  { title: '服务状态', debugtype: 'string', dataIndex: 'serviceStatus', width: '7', render: (text, record) => renderStringEdit('serviceStatus',text, record)  },
   { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.id : '暂无') },
-  { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD') },
-  { title: '最后的位置', debugtype: 'string', dataIndex: 'lastLocation', width: '17', render: (text, record) => renderStringEdit('lastLocation',text, record)  },
-  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD') },
+  { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '经度', debugtype: 'double', dataIndex: 'longitude', width: '12', render: (text, record) => renderStringEdit('longitude',text, record)  },
+  { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '11', render: (text, record) => renderStringEdit('latitude',text, record)  },
+  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.id : '暂无') },
   { title: '主订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -207,8 +210,10 @@ class ServiceVehicleRepairingEditTable extends PureComponent {
 				'serviceStatus':'',
 				'responsibleWorker':'',
 				'startTime':'',
-				'lastLocation':'',
+				'longitude':'',
+				'latitude':'',
 				'lastUpdateTime':'',
+				'merchant':'',
 				'mainOrder':'',
 
 

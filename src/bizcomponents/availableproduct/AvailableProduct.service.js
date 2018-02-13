@@ -18,6 +18,42 @@ const load = (targetObjectId, parameters) => {
 
 
 
+const addServicePrice = (targetObjectId, parameters) => {
+  const url = `${PREFIX}availableProductManager/addServicePrice/productId/contractId/availableServiceId/serviceKey/servicePriceType/basePriceValue/otherPriceValue/tokensExpr/`
+  const requestParameters = { ...parameters, tokensExpr: 'none' }
+
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const updateServicePrice = (targetObjectId, parameters) => {
+  const url = `${PREFIX}availableProductManager/updateServicePriceProperties/availableProductId/id/serviceKey/servicePriceType/basePriceValue/otherPriceValue/tokensExpr/`
+  const availableProductId = targetObjectId
+  const requestParameters = { ...parameters, availableProductId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const removeServicePriceList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}availableProductManager/removeServicePriceList/availableProductId/servicePriceIds/tokensExpr/`
+  const requestParameters = { ...parameters, availableProductId: targetObjectId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+
 const addAvailableService = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableProductManager/addAvailableService/availableProductId/serviceName/serviceKey/serviceDescription/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
@@ -164,14 +200,17 @@ const removeAvailableHandOverItemList = (targetObjectId, parameters) => {
 
 const AvailableProductService = { view,
   load,
+  addServicePrice,
   addAvailableService,
   addProductPrice,
   addAvailableInsurance,
   addAvailableHandOverItem,
+  updateServicePrice,
   updateAvailableService,
   updateProductPrice,
   updateAvailableInsurance,
   updateAvailableHandOverItem,
+  removeServicePriceList,
   removeAvailableServiceList,
   removeProductPriceList,
   removeAvailableInsuranceList,

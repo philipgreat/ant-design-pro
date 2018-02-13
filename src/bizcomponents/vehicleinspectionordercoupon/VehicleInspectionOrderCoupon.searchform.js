@@ -64,8 +64,8 @@ export default class VehicleInspectionOrderCouponSearchForm extends PureComponen
       if (err) return
       const params = {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
-        ...this.buildStringSearchParameters(fieldsValue, 'title'),
-        ...this.buildStringSearchParameters(fieldsValue, 'code'),
+        ...this.buildStringSearchParameters(fieldsValue, 'couponTitle'),
+        ...this.buildStringSearchParameters(fieldsValue, 'couponStatus'),
 
       }
       const { owner } = this.props
@@ -91,9 +91,9 @@ export default class VehicleInspectionOrderCouponSearchForm extends PureComponen
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="标题">
-              {getFieldDecorator('title')(
-                <Input placeholder="请输入标题" />
+            <FormItem label="优惠券名称">
+              {getFieldDecorator('couponTitle')(
+                <Input placeholder="请输入优惠券名称" />
                )}
             </FormItem>
           </Col>
@@ -124,17 +124,17 @@ export default class VehicleInspectionOrderCouponSearchForm extends PureComponen
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="标题">
-              {getFieldDecorator('title')(
-                <Input placeholder="请输入标题" />
+            <FormItem label="优惠券名称">
+              {getFieldDecorator('couponTitle')(
+                <Input placeholder="请输入优惠券名称" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="优惠码">
-              {getFieldDecorator('code')(
-                <Input placeholder="请输入优惠码" />
+            <FormItem label="息状态">
+              {getFieldDecorator('couponStatus')(
+                <Input placeholder="请输入息状态" />
               )}
             </FormItem>
           </Col>

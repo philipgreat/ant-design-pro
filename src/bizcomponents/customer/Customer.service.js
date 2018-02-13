@@ -19,7 +19,7 @@ const load = (targetObjectId, parameters) => {
 
 
 const addVehicleInfo = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/addVehicleInfo/customerId/licensePlateNumber/vehicleType/useCharacter/seatsQuantity/registrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitNumber/vehiclePermitExpirationDate/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/platformId/tokensExpr/`
+  const url = `${PREFIX}customerManager/addVehicleInfo/customerId/licensePlateNumber/vehicleType/useCharacter/seatsQuantity/registrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/platformId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -31,7 +31,7 @@ const addVehicleInfo = (targetObjectId, parameters) => {
 }
 
 const updateVehicleInfo = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/updateVehicleInfoProperties/customerId/id/licensePlateNumber/vehicleType/useCharacter/seatsQuantity/registrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitNumber/vehiclePermitExpirationDate/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/tokensExpr/`
+  const url = `${PREFIX}customerManager/updateVehicleInfoProperties/customerId/id/licensePlateNumber/vehicleType/useCharacter/seatsQuantity/registrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/tokensExpr/`
   const customerId = targetObjectId
   const requestParameters = { ...parameters, customerId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -55,7 +55,7 @@ const removeVehicleInfoList = (targetObjectId, parameters) => {
 
 
 const addVehicleInspectionOrder = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/addVehicleInspectionOrder/customerId/orderStatus/createTime/planInspectionDate/trafficAccidentAnnouncement/homePickUp/contactName/contactMobileNumber/contactAddressCityId/contactAddressDetail/vehicleLicensePlateNumber/vehicleType/vehicleUseCharacter/vehicleSeatsQuantity/vehicleRegistrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitNumber/vehiclePermitExpirationDate/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/productType/serviceCompanyId/platformId/tokensExpr/`
+  const url = `${PREFIX}customerManager/addVehicleInspectionOrder/customerId/orderStatus/createTime/planInspectionDate/trafficAccidentAnnouncement/homePickUp/contactName/contactMobileNumber/contactAddressCityId/contactAddressDetail/vehicleLicensePlateNumber/vehicleType/vehicleUseCharacter/vehicleSeatsQuantity/vehicleRegistrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/productType/serviceCompanyId/platformId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -67,7 +67,7 @@ const addVehicleInspectionOrder = (targetObjectId, parameters) => {
 }
 
 const updateVehicleInspectionOrder = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/updateVehicleInspectionOrderProperties/customerId/id/orderStatus/createTime/planInspectionDate/trafficAccidentAnnouncement/homePickUp/contactName/contactMobileNumber/contactAddressDetail/vehicleLicensePlateNumber/vehicleType/vehicleUseCharacter/vehicleSeatsQuantity/vehicleRegistrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitNumber/vehiclePermitExpirationDate/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/productType/tokensExpr/`
+  const url = `${PREFIX}customerManager/updateVehicleInspectionOrderProperties/customerId/id/orderStatus/createTime/planInspectionDate/trafficAccidentAnnouncement/homePickUp/contactName/contactMobileNumber/contactAddressDetail/vehicleLicensePlateNumber/vehicleType/vehicleUseCharacter/vehicleSeatsQuantity/vehicleRegistrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/productType/tokensExpr/`
   const customerId = targetObjectId
   const requestParameters = { ...parameters, customerId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -90,13 +90,91 @@ const removeVehicleInspectionOrderList = (targetObjectId, parameters) => {
 }
 
 
+const addOrderDiscountCoupon = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/addOrderDiscountCoupon/customerId/couponTitle/discountAmount/endDate/couponStatus/shareCode/mainOrderId/platformId/tokensExpr/`
+  const requestParameters = { ...parameters, tokensExpr: 'none' }
+
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const updateOrderDiscountCoupon = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/updateOrderDiscountCouponProperties/customerId/id/couponTitle/discountAmount/endDate/couponStatus/shareCode/tokensExpr/`
+  const customerId = targetObjectId
+  const requestParameters = { ...parameters, customerId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const removeOrderDiscountCouponList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/removeOrderDiscountCouponList/customerId/orderDiscountCouponIds/tokensExpr/`
+  const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+
+const addVehicleInspectionOrderCoupon = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/addVehicleInspectionOrderCoupon/customerId/couponTitle/discountAmount/endDate/appliedDate/couponStatus/mainOrderId/tokensExpr/`
+  const requestParameters = { ...parameters, tokensExpr: 'none' }
+
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const updateVehicleInspectionOrderCoupon = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/updateVehicleInspectionOrderCouponProperties/customerId/id/couponTitle/discountAmount/endDate/appliedDate/couponStatus/tokensExpr/`
+  const customerId = targetObjectId
+  const requestParameters = { ...parameters, customerId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const removeVehicleInspectionOrderCouponList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/removeVehicleInspectionOrderCouponList/customerId/vehicleInspectionOrderCouponIds/tokensExpr/`
+  const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+
 const CustomerService = { view,
   load,
   addVehicleInfo,
   addVehicleInspectionOrder,
+  addOrderDiscountCoupon,
+  addVehicleInspectionOrderCoupon,
   updateVehicleInfo,
   updateVehicleInspectionOrder,
+  updateOrderDiscountCoupon,
+  updateVehicleInspectionOrderCoupon,
   removeVehicleInfoList,
-  removeVehicleInspectionOrderList }
+  removeVehicleInspectionOrderList,
+  removeOrderDiscountCouponList,
+  removeVehicleInspectionOrderCouponList }
 export default CustomerService
 

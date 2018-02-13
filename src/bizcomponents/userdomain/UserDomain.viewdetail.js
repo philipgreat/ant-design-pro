@@ -36,7 +36,7 @@ const summaryOf = (userDomain) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{userDomain.id}</Description> 
+<Description term="ID">{userDomain.id}</Description> 
 <Description term="名称">{userDomain.name}</Description> 
 	
         
@@ -72,7 +72,7 @@ export default class UserDomainViewDetail extends Component {
     
     const tabList = [
 
-      {key: 'secUserList',tab: `Sec的用户(${secUserCount})`}, 
+      {key: 'secUserList',tab: `SEC的用户(${secUserCount})`}, 
    
 
    ];

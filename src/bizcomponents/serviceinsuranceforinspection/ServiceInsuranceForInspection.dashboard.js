@@ -36,6 +36,10 @@ const summaryOf = (serviceInsuranceForInspection) =>{
 <Description term="服务的评论">{serviceInsuranceForInspection.serviceComments}</Description> 
 <Description term="开始时间">{ moment(serviceInsuranceForInspection.startTime).format('YYYY-MM-DD')}</Description> 
 <Description term="最后更新时间">{ moment(serviceInsuranceForInspection.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="保险产品名称">{serviceInsuranceForInspection.insuranceName}</Description> 
+<Description term="保险承保方">{serviceInsuranceForInspection.insuranceVendor}</Description> 
+<Description term="保险价格">{serviceInsuranceForInspection.insurancePrice}</Description> 
+<Description term="概览">{serviceInsuranceForInspection.summary}</Description> 
 <Description term="保单号码">{serviceInsuranceForInspection.insuranceNumber}</Description> 
 <Description term="保单图片">{serviceInsuranceForInspection.insuranceImage1}</Description> 
 <Description term="保单图片">{serviceInsuranceForInspection.insuranceImage2}</Description> 

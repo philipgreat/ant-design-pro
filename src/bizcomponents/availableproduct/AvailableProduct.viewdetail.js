@@ -54,7 +54,7 @@ export default class AvailableProductViewDetail extends Component {
 
 
   state = {
-    tabKey: `availableServiceList`,
+    tabKey: `servicePriceList`,
     stepDirection: 'horizontal',
   }
  
@@ -62,6 +62,7 @@ export default class AvailableProductViewDetail extends Component {
     this.setState({ tabKey: key });
   }  
   render() {
+    const {ServicePriceViewTable} = GlobalComponents;
     const {AvailableServiceViewTable} = GlobalComponents;
     const {ProductPriceViewTable} = GlobalComponents;
     const {AvailableInsuranceViewTable} = GlobalComponents;
@@ -70,24 +71,28 @@ export default class AvailableProductViewDetail extends Component {
     // eslint-disable-next-line max-len
     
     const availableProduct = this.props.availableProduct
-    const { id, availableServiceCount, productPriceCount, availableInsuranceCount, availableHandOverItemCount } = availableProduct
-    const { availableServiceList, productPriceList, availableInsuranceList, availableHandOverItemList } = availableProduct
+    const { id, servicePriceCount, availableServiceCount, productPriceCount, availableInsuranceCount, availableHandOverItemCount } = availableProduct
+    const { servicePriceList, availableServiceList, productPriceList, availableInsuranceList, availableHandOverItemList } = availableProduct
     
     const owner = { type: '_availableProduct', id }
     
     const tabList = [
 
+      {key: 'servicePriceList',tab: `服务价格(${servicePriceCount})`}, 
       {key: 'availableServiceList',tab: `服务范围(${availableServiceCount})`}, 
       {key: 'productPriceList',tab: `产品价格(${productPriceCount})`}, 
       {key: 'availableInsuranceList',tab: `保险增值服务(${availableInsuranceCount})`}, 
-      {key: 'availableHandOverItemList',tab: `交接检查清单(${availableHandOverItemCount})`}, 
+      {key: 'availableHandOverItemList',tab: `可用移交项目(${availableHandOverItemCount})`}, 
    
 
    ];
    
    
     const contentList = {
-       availableServiceList:  
+       servicePriceList:  
+        <ServicePriceViewTable data={servicePriceList} owner={owner} {...this.props} />,
+ 
+      availableServiceList:  
         <AvailableServiceViewTable data={availableServiceList} owner={owner} {...this.props} />,
  
       productPriceList:  

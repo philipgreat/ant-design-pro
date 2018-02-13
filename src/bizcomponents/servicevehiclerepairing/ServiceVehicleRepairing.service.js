@@ -162,19 +162,58 @@ const removeVehicleRepairingPaymentList = (targetObjectId, parameters) => {
 }
 
 
+const addVehicleRepairingReport = (targetObjectId, parameters) => {
+  const url = `${PREFIX}serviceVehicleRepairingManager/addVehicleRepairingReport/serviceId/repairingPartImg1/repairingPartImg2/repairingPartImg3/repairingPartImg4/repairingPartImg5/repairingPartImg6/repairingPartImg7/repairingPartImg8/repairingPartImg9/repairingPartImg10/repairingPartListComment/mainOrderId/repairingFinishedDatetime/tokensExpr/`
+  const requestParameters = { ...parameters, tokensExpr: 'none' }
+
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const updateVehicleRepairingReport = (targetObjectId, parameters) => {
+  const url = `${PREFIX}serviceVehicleRepairingManager/updateVehicleRepairingReportProperties/serviceVehicleRepairingId/id/repairingPartImg1/repairingPartImg2/repairingPartImg3/repairingPartImg4/repairingPartImg5/repairingPartImg6/repairingPartImg7/repairingPartImg8/repairingPartImg9/repairingPartImg10/repairingPartListComment/repairingFinishedDatetime/tokensExpr/`
+  const serviceVehicleRepairingId = targetObjectId
+  const requestParameters = { ...parameters, serviceVehicleRepairingId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const removeVehicleRepairingReportList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}serviceVehicleRepairingManager/removeVehicleRepairingReportList/serviceVehicleRepairingId/vehicleRepairingReportIds/tokensExpr/`
+  const requestParameters = { ...parameters, serviceVehicleRepairingId: targetObjectId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+
 const ServiceVehicleRepairingService = { view,
   load,
   addReportVehicleInspectionReport,
   addRepairingQuotation,
   addRepairingAllowanceItem,
   addVehicleRepairingPayment,
+  addVehicleRepairingReport,
   updateReportVehicleInspectionReport,
   updateRepairingQuotation,
   updateRepairingAllowanceItem,
   updateVehicleRepairingPayment,
+  updateVehicleRepairingReport,
   removeReportVehicleInspectionReportList,
   removeRepairingQuotationList,
   removeRepairingAllowanceItemList,
-  removeVehicleRepairingPaymentList }
+  removeVehicleRepairingPaymentList,
+  removeVehicleRepairingReportList }
 export default ServiceVehicleRepairingService
 

@@ -55,7 +55,7 @@ const removeVehicleInspectionInsuranceOrderList = (targetObjectId, parameters) =
 
 
 const addServiceInsuranceForInspection = (targetObjectId, parameters) => {
-  const url = `${PREFIX}availableInsuranceManager/addServiceInsuranceForInspection/orderedInsuranceId/serviceStatus/responsibleWorkerId/serviceComments/startTime/insuranceNumber/insuranceImage1/insuranceImage2/insuranceImage3/insuranceImage4/insuranceImage5/mainOrderId/tokensExpr/`
+  const url = `${PREFIX}availableInsuranceManager/addServiceInsuranceForInspection/orderedInsuranceId/serviceStatus/responsibleWorkerId/serviceComments/startTime/insuranceName/insuranceVendor/insurancePrice/summary/insuranceNumber/insuranceImage1/insuranceImage2/insuranceImage3/insuranceImage4/insuranceImage5/merchantId/mainOrderId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -67,7 +67,7 @@ const addServiceInsuranceForInspection = (targetObjectId, parameters) => {
 }
 
 const updateServiceInsuranceForInspection = (targetObjectId, parameters) => {
-  const url = `${PREFIX}availableInsuranceManager/updateServiceInsuranceForInspectionProperties/availableInsuranceId/id/serviceStatus/serviceComments/startTime/insuranceNumber/insuranceImage1/insuranceImage2/insuranceImage3/insuranceImage4/insuranceImage5/tokensExpr/`
+  const url = `${PREFIX}availableInsuranceManager/updateServiceInsuranceForInspectionProperties/availableInsuranceId/id/serviceStatus/serviceComments/startTime/insuranceName/insuranceVendor/insurancePrice/summary/insuranceNumber/insuranceImage1/insuranceImage2/insuranceImage3/insuranceImage4/insuranceImage5/tokensExpr/`
   const availableInsuranceId = targetObjectId
   const requestParameters = { ...parameters, availableInsuranceId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }

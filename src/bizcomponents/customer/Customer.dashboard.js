@@ -49,7 +49,7 @@ const summaryOf = (customer) =>{
 export default class CustomerDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, vehicleInfoCount, vehicleInspectionOrderCount } = this.props.customer
+    const { id, vehicleInfoCount, vehicleInspectionOrderCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.customer
     
     
     
@@ -96,6 +96,42 @@ export default class CustomerDashboard extends Component {
                 <Link to={`/customer/${id}/list/vehicleInspectionOrderCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/customer/${id}/list/vehicleInspectionOrderList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="订单的折扣券"
+                action={<Tooltip title="订单的折扣券"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(orderDiscountCouponCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/customer/${id}/list/orderDiscountCouponList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/customer/${id}/list/orderDiscountCouponCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/customer/${id}/list/orderDiscountCouponList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="优惠券"
+                action={<Tooltip title="优惠券"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(vehicleInspectionOrderCouponCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/customer/${id}/list/vehicleInspectionOrderCouponList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/customer/${id}/list/vehicleInspectionOrderCouponCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/customer/${id}/list/vehicleInspectionOrderCouponList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

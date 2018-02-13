@@ -65,7 +65,6 @@ export default class ServiceVehicleRepairingSearchForm extends PureComponent {
       const params = {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
         ...this.buildStringSearchParameters(fieldsValue, 'serviceStatus'),
-        ...this.buildStringSearchParameters(fieldsValue, 'lastLocation'),
 
       }
       const { owner } = this.props
@@ -127,14 +126,6 @@ export default class ServiceVehicleRepairingSearchForm extends PureComponent {
             <FormItem label="服务状态">
               {getFieldDecorator('serviceStatus')(
                 <Input placeholder="请输入服务状态" />
-              )}
-            </FormItem>
-          </Col>
-
-          <Col md={8} sm={24}>
-            <FormItem label="最后的位置">
-              {getFieldDecorator('lastLocation')(
-                <Input placeholder="请输入最后的位置" />
               )}
             </FormItem>
           </Col>

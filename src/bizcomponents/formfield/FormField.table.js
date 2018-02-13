@@ -8,7 +8,7 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '标签', debugtype: 'string', dataIndex: 'label', width: '7' },
   { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey', width: '15' },
   { title: '参数名称', debugtype: 'string', dataIndex: 'parameterName', width: '8' },
@@ -21,6 +21,7 @@ const columns = [
   { title: '最小值', debugtype: 'string', dataIndex: 'minValue', width: '19' },
   { title: '最大的价值', debugtype: 'string', dataIndex: 'maxValue', width: '22' },
   { title: '要求', dataIndex: 'required', render: (text, record) => (record.required ? '是' : '否') },
+  { title: '禁用', dataIndex: 'disabled', render: (text, record) => (record.disabled ? '是' : '否') },
   { title: '自定义渲染', dataIndex: 'customRendering', render: (text, record) => (record.customRendering ? '是' : '否') },
   { title: '候选人的价值观', debugtype: 'string', dataIndex: 'candidateValues', width: '7' },
   { title: '建议值', debugtype: 'string', dataIndex: 'suggestValues', width: '7' },
@@ -101,7 +102,7 @@ class FormFieldTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 1845 }}
+          scroll={{ x: 1920 }}
         />
       </div>
     )

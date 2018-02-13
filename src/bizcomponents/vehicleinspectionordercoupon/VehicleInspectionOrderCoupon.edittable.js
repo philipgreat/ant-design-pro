@@ -83,10 +83,11 @@ class VehicleInspectionOrderCouponEditTable extends PureComponent {
       this.setState({ data: newData, appendInProcess:false });
     }
     const remapReference = (record) => {
+			const customerId = record.customer.id
 			const mainOrderId = record.mainOrder.id
 
       //const communityId = record.community.id;
-      return {mainOrderId,};
+      return {customerId,mainOrderId,};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -191,12 +192,13 @@ class VehicleInspectionOrderCouponEditTable extends PureComponent {
     
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '11', render: (text, record) => renderStringEdit('title',text, record)  },
-  { title: '生效日期', dataIndex: 'startDate', render: (text, record) => moment(record.startDate).format('YYYY-MM-DD') },
-  { title: '失效日期', dataIndex: 'expirationDate', render: (text, record) => moment(record.expirationDate).format('YYYY-MM-DD') },
-  { title: '金额', dataIndex: 'amount', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
-  { title: '优惠码', debugtype: 'string', dataIndex: 'code', width: '16', render: (text, record) => renderStringEdit('code',text, record)  },
-  { title: '使用日期', dataIndex: 'usedDate', render: (text, record) => moment(record.usedDate).format('YYYY-MM-DD') },
+  { title: '优惠券名称', debugtype: 'string', dataIndex: 'couponTitle', width: '10', render: (text, record) => renderStringEdit('couponTitle',text, record)  },
+  { title: '折扣金额', dataIndex: 'discountAmount', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
+  { title: '结束日期', dataIndex: 'endDate', render: (text, record) => moment(record.endDate).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '申请日期', dataIndex: 'appliedDate', render: (text, record) => moment(record.appliedDate).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '息状态', debugtype: 'string', dataIndex: 'couponStatus', width: '7', render: (text, record) => renderStringEdit('couponStatus',text, record)  },
+  { title: '客户', dataIndex: 'customer', render: (text, record) => (record.customer ? record.customer.id : '暂无') },
   { title: '主订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -204,12 +206,13 @@ class VehicleInspectionOrderCouponEditTable extends PureComponent {
     const newRecord =()=>{
       const newVehicleInspectionOrderCouponToAppend  = {
       	'id':`+1`, 
-				'title':'',
-				'startDate':'',
-				'expirationDate':'',
-				'amount':'',
-				'code':'',
-				'usedDate':'',
+				'couponTitle':'',
+				'discountAmount':'',
+				'endDate':'',
+				'lastUpdateTime':'',
+				'appliedDate':'',
+				'couponStatus':'',
+				'customer':'',
 				'mainOrder':'',
 
 

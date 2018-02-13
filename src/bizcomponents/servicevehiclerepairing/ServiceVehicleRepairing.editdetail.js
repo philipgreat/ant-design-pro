@@ -40,10 +40,11 @@ export default class ServiceVehicleRepairingEditDetail extends Component {
     const {RepairingQuotationEditTable} = GlobalComponents;
     const {RepairingAllowanceItemEditTable} = GlobalComponents;
     const {VehicleRepairingPaymentEditTable} = GlobalComponents;
+    const {VehicleRepairingReportEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, reportVehicleInspectionReportCount, repairingQuotationCount, repairingAllowanceItemCount, vehicleRepairingPaymentCount } = this.props.serviceVehicleRepairing
-    const { reportVehicleInspectionReportList, repairingQuotationList, repairingAllowanceItemList, vehicleRepairingPaymentList } = this.props.serviceVehicleRepairing
+    const { id, reportVehicleInspectionReportCount, repairingQuotationCount, repairingAllowanceItemCount, vehicleRepairingPaymentCount, vehicleRepairingReportCount } = this.props.serviceVehicleRepairing
+    const { reportVehicleInspectionReportList, repairingQuotationList, repairingAllowanceItemList, vehicleRepairingPaymentList, vehicleRepairingReportList } = this.props.serviceVehicleRepairing
     
     const owner = { type: '_serviceVehicleRepairing', id }
     return (
@@ -76,6 +77,12 @@ export default class ServiceVehicleRepairingEditDetail extends Component {
 		<Card title="修理付款列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <VehicleRepairingPaymentEditTable data={vehicleRepairingPaymentList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="车辆维修报告列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <VehicleRepairingReportEditTable data={vehicleRepairingReportList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

@@ -8,7 +8,7 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/availableRatingItem/${text}/dashboard`}>{text}</Link>) },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '评分名称', debugtype: 'string', dataIndex: 'ratingName', width: '11' },
   { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.id}</Link>) : '暂无') },
 

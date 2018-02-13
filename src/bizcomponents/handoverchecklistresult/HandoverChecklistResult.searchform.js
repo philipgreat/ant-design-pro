@@ -4,14 +4,14 @@ import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd'
 
-import styles from './HandoverChecklistResult.search.less'
+import styles from './HandOverChecklistResult.search.less'
 
 const FormItem = Form.Item
 const { Option } = Select
 const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',')
 
 @Form.create()
-export default class HandoverChecklistResultSearchForm extends PureComponent {
+export default class HandOverChecklistResultSearchForm extends PureComponent {
   state = {
     // addInputValue: '',
     // modalVisible: false,
@@ -51,10 +51,10 @@ export default class HandoverChecklistResultSearchForm extends PureComponent {
       return {}
     }
     return {
-      handoverChecklistResultList: 1,
-      'handoverChecklistResultList.searchField': fieldName,
-      'handoverChecklistResultList.searchVerb': 'startsWith',
-      'handoverChecklistResultList.searchValue': fieldValue,
+      handOverChecklistResultList: 1,
+      'handOverChecklistResultList.searchField': fieldName,
+      'handOverChecklistResultList.searchVerb': 'startsWith',
+      'handOverChecklistResultList.searchValue': fieldValue,
     }
   }
   handleSearch = (e) => {
@@ -64,14 +64,15 @@ export default class HandoverChecklistResultSearchForm extends PureComponent {
       if (err) return
       const params = {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
-        ...this.buildStringSearchParameters(fieldsValue, 'handoverCheckResult'),
-        ...this.buildStringSearchParameters(fieldsValue, 'handoverCheckComment'),
+        ...this.buildStringSearchParameters(fieldsValue, 'handOverCheckItemName'),
+        ...this.buildStringSearchParameters(fieldsValue, 'handOverCheckResult'),
+        ...this.buildStringSearchParameters(fieldsValue, 'handOverCheckComment'),
 
       }
       const { owner } = this.props
       dispatch({
         type: `${owner.type}/load`,
-        payload: { id: owner.id, parameters: params, handoverChecklistResultSearchFormParameters: fieldsValue },
+        payload: { id: owner.id, parameters: params, handOverChecklistResultSearchFormParameters: fieldsValue },
       })
     })
   }
@@ -91,9 +92,9 @@ export default class HandoverChecklistResultSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="回归检验结果">
-              {getFieldDecorator('handoverCheckResult')(
-                <Input placeholder="请输入回归检验结果" />
+            <FormItem label="移交检查项目名称。">
+              {getFieldDecorator('handOverCheckItemName')(
+                <Input placeholder="请输入移交检查项目名称。" />
                )}
             </FormItem>
           </Col>
@@ -124,17 +125,25 @@ export default class HandoverChecklistResultSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="回归检验结果">
-              {getFieldDecorator('handoverCheckResult')(
-                <Input placeholder="请输入回归检验结果" />
+            <FormItem label="移交检查项目名称。">
+              {getFieldDecorator('handOverCheckItemName')(
+                <Input placeholder="请输入移交检查项目名称。" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="交接检查评论">
-              {getFieldDecorator('handoverCheckComment')(
-                <Input placeholder="请输入交接检查评论" />
+            <FormItem label="移交检查结果">
+              {getFieldDecorator('handOverCheckResult')(
+                <Input placeholder="请输入移交检查结果" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="移交检查评论">
+              {getFieldDecorator('handOverCheckComment')(
+                <Input placeholder="请输入移交检查评论" />
               )}
             </FormItem>
           </Col>

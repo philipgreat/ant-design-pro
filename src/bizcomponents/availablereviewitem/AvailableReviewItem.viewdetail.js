@@ -50,39 +50,29 @@ const summaryOf = (availableReviewItem) =>{
 }))
 export default class AvailableReviewItemViewDetail extends Component {
 
-
-  state = {
-    tabKey: `orderReviewResultList`,
-    stepDirection: 'horizontal',
-  }
  
   onTabChange = (key) => {
     this.setState({ tabKey: key });
   }  
   render() {
-    const {OrderReviewResultViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const availableReviewItem = this.props.availableReviewItem
-    const { id, orderReviewResultCount } = availableReviewItem
-    const { orderReviewResultList } = availableReviewItem
+    const { id,  } = availableReviewItem
+    const {  } = availableReviewItem
     
     const owner = { type: '_availableReviewItem', id }
     
     const tabList = [
 
-      {key: 'orderReviewResultList',tab: `订单评论结果(${orderReviewResultCount})`}, 
    
 
    ];
    
    
     const contentList = {
-       orderReviewResultList:  
-        <OrderReviewResultViewTable data={orderReviewResultList} owner={owner} {...this.props} />,
- 
-    
+     
     };
     
 

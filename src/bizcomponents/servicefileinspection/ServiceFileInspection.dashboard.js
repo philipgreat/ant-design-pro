@@ -35,8 +35,10 @@ const summaryOf = (serviceFileInspection) =>{
 <Description term="服务状态">{serviceFileInspection.serviceStatus}</Description> 
 <Description term="检测结果">{serviceFileInspection.inspectionResult}</Description> 
 <Description term="开始时间">{ moment(serviceFileInspection.startTime).format('YYYY-MM-DD')}</Description> 
-<Description term="最后的位置">{serviceFileInspection.lastLocation}</Description> 
+<Description term="经度">{serviceFileInspection.longitude}</Description> 
+<Description term="纬度">{serviceFileInspection.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceFileInspection.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="检验日期时间">{ moment(serviceFileInspection.inspectionDatetime).format('YYYY-MM-DD')}</Description> 
 	
         
       </DescriptionList>

@@ -36,22 +36,29 @@ const topColResponsiveProps = {
 }))
 export default class SecUserEditDetail extends Component {
   render() {
+    const {CustomerEditTable} = GlobalComponents;
     const {UserAppEditTable} = GlobalComponents;
     const {LoginHistoryEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, userAppCount, loginHistoryCount } = this.props.secUser
-    const { userAppList, loginHistoryList } = this.props.secUser
+    const { id, customerCount, userAppCount, loginHistoryCount } = this.props.secUser
+    const { customerList, userAppList, loginHistoryList } = this.props.secUser
     
     const owner = { type: '_secUser', id }
     return (
 
       <PageHeaderLayout
-        title="Sec的用户总览"
-        content="Sec的用户总览"
+        title="SEC的用户总览"
+        content="SEC的用户总览"
         wrapperClassName={styles.advancedForm}
       >
 
+
+		<Card title="客户列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <CustomerEditTable data={customerList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
 
 		<Card title="用户应用程序列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>

@@ -84,7 +84,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
       <SubMenu title={
         <span>
           <Icon type="profile" />
-          <span>交接检查清单</span>
+          <span>可用移交项目</span>
         </span>}
       >
 
@@ -92,7 +92,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
           <Link to={`/availableHandOverItem/${objectId}/list/handOverChecklistItemList`}>移交清单项目</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/availableHandOverItem/${objectId}/list/handoverChecklistResultList`}>交接清单结果</Link>
+          <Link to={`/availableHandOverItem/${objectId}/list/handOverChecklistResultList`}>移交清单结果</Link>
         </Menu.Item>
       </SubMenu>
     )
@@ -133,38 +133,38 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
     }))(HandOverChecklistItemUpdateForm)
   }
 
-  getHandoverChecklistResultSearch = () => {
-    const {HandoverChecklistResultSearch} = GlobalComponents;
+  getHandOverChecklistResultSearch = () => {
+    const {HandOverChecklistResultSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._availableHandOverItem.handoverChecklistResultList,
-      count: state._availableHandOverItem.handoverChecklistResultCount,
-      currentPage: state._availableHandOverItem.handoverChecklistResultCurrentPageNumber,
-      searchFormParameters: state._availableHandOverItem.handoverChecklistResultSearchFormParameters,
+      data: state._availableHandOverItem.handOverChecklistResultList,
+      count: state._availableHandOverItem.handOverChecklistResultCount,
+      currentPage: state._availableHandOverItem.handOverChecklistResultCurrentPageNumber,
+      searchFormParameters: state._availableHandOverItem.handOverChecklistResultSearchFormParameters,
       loading: state._availableHandOverItem.loading,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handoverChecklistResultList' }, // this is for model namespace and
-    }))(HandoverChecklistResultSearch)
+      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistResultList' }, // this is for model namespace and
+    }))(HandOverChecklistResultSearch)
   }
-  getHandoverChecklistResultCreateForm = () => {
-   	const {HandoverChecklistResultCreateForm} = GlobalComponents;
+  getHandOverChecklistResultCreateForm = () => {
+   	const {HandOverChecklistResultCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._availableHandOverItem.handoverChecklistResultList,
-      count: state._availableHandOverItem.handoverChecklistResultCount,
-      currentPage: state._availableHandOverItem.handoverChecklistResultCurrentPageNumber,
-      searchFormParameters: state._availableHandOverItem.handoverChecklistResultSearchFormParameters,
+      data: state._availableHandOverItem.handOverChecklistResultList,
+      count: state._availableHandOverItem.handOverChecklistResultCount,
+      currentPage: state._availableHandOverItem.handOverChecklistResultCurrentPageNumber,
+      searchFormParameters: state._availableHandOverItem.handOverChecklistResultSearchFormParameters,
       loading: state._availableHandOverItem.loading,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handoverChecklistResultList'}, // this is for model namespace and
-    }))(HandoverChecklistResultCreateForm)
+      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistResultList'}, // this is for model namespace and
+    }))(HandOverChecklistResultCreateForm)
   }
   
-  getHandoverChecklistResultUpdateForm = () => {
-  	const {HandoverChecklistResultUpdateForm} = GlobalComponents;
+  getHandOverChecklistResultUpdateForm = () => {
+  	const {HandOverChecklistResultUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._availableHandOverItem.selectedRows,
       currentUpdateIndex: state._availableHandOverItem.currentUpdateIndex,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handoverChecklistResultList' }, // this is for model namespace and
-    }))(HandoverChecklistResultUpdateForm)
+      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistResultList' }, // this is for model namespace and
+    }))(HandOverChecklistResultUpdateForm)
   }
 
   getPageTitle = () => {
@@ -216,7 +216,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
          >
            <div className={styles.logo}>
              <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>交接检查清单</h1></Link>
+             <Link to="/home"> <h1>可用移交项目</h1></Link>
            </div>
 
            <Menu
@@ -258,9 +258,9 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
                <Route path="/availableHandOverItem/:id/list/handOverChecklistItemCreateForm" component={this.getHandOverChecklistItemCreateForm()} />
                <Route path="/availableHandOverItem/:id/list/handOverChecklistItemUpdateForm" component={this.getHandOverChecklistItemUpdateForm()} />
 
-               <Route path="/availableHandOverItem/:id/list/handoverChecklistResultList" component={this.getHandoverChecklistResultSearch()} />
-               <Route path="/availableHandOverItem/:id/list/handoverChecklistResultCreateForm" component={this.getHandoverChecklistResultCreateForm()} />
-               <Route path="/availableHandOverItem/:id/list/handoverChecklistResultUpdateForm" component={this.getHandoverChecklistResultUpdateForm()} />
+               <Route path="/availableHandOverItem/:id/list/handOverChecklistResultList" component={this.getHandOverChecklistResultSearch()} />
+               <Route path="/availableHandOverItem/:id/list/handOverChecklistResultCreateForm" component={this.getHandOverChecklistResultCreateForm()} />
+               <Route path="/availableHandOverItem/:id/list/handOverChecklistResultUpdateForm" component={this.getHandOverChecklistResultUpdateForm()} />
               
              </Switch>
            </Content>

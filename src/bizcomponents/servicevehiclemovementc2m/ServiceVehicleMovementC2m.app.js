@@ -89,45 +89,45 @@ class ServiceVehicleMovementC2mBizApp extends React.PureComponent {
       >
 
         <Menu.Item>
-          <Link to={`/serviceVehicleMovementC2m/${objectId}/list/reportHandoverList`}>交接报告</Link>
+          <Link to={`/serviceVehicleMovementC2m/${objectId}/list/handOverChecklistResultList`}>移交清单结果</Link>
         </Menu.Item>
       </SubMenu>
     )
   }
 
 
-  getReportHandoverSearch = () => {
-    const {ReportHandoverSearch} = GlobalComponents;
+  getHandOverChecklistResultSearch = () => {
+    const {HandOverChecklistResultSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._serviceVehicleMovementC2m.reportHandoverList,
-      count: state._serviceVehicleMovementC2m.reportHandoverCount,
-      currentPage: state._serviceVehicleMovementC2m.reportHandoverCurrentPageNumber,
-      searchFormParameters: state._serviceVehicleMovementC2m.reportHandoverSearchFormParameters,
+      data: state._serviceVehicleMovementC2m.handOverChecklistResultList,
+      count: state._serviceVehicleMovementC2m.handOverChecklistResultCount,
+      currentPage: state._serviceVehicleMovementC2m.handOverChecklistResultCurrentPageNumber,
+      searchFormParameters: state._serviceVehicleMovementC2m.handOverChecklistResultSearchFormParameters,
       loading: state._serviceVehicleMovementC2m.loading,
-      owner: { type: '_serviceVehicleMovementC2m', id: state._serviceVehicleMovementC2m.id, listName: 'reportHandoverList' }, // this is for model namespace and
-    }))(ReportHandoverSearch)
+      owner: { type: '_serviceVehicleMovementC2m', id: state._serviceVehicleMovementC2m.id, listName: 'handOverChecklistResultList' }, // this is for model namespace and
+    }))(HandOverChecklistResultSearch)
   }
-  getReportHandoverCreateForm = () => {
-   	const {ReportHandoverCreateForm} = GlobalComponents;
+  getHandOverChecklistResultCreateForm = () => {
+   	const {HandOverChecklistResultCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._serviceVehicleMovementC2m.reportHandoverList,
-      count: state._serviceVehicleMovementC2m.reportHandoverCount,
-      currentPage: state._serviceVehicleMovementC2m.reportHandoverCurrentPageNumber,
-      searchFormParameters: state._serviceVehicleMovementC2m.reportHandoverSearchFormParameters,
+      data: state._serviceVehicleMovementC2m.handOverChecklistResultList,
+      count: state._serviceVehicleMovementC2m.handOverChecklistResultCount,
+      currentPage: state._serviceVehicleMovementC2m.handOverChecklistResultCurrentPageNumber,
+      searchFormParameters: state._serviceVehicleMovementC2m.handOverChecklistResultSearchFormParameters,
       loading: state._serviceVehicleMovementC2m.loading,
-      owner: { type: '_serviceVehicleMovementC2m', id: state._serviceVehicleMovementC2m.id, listName: 'reportHandoverList'}, // this is for model namespace and
-    }))(ReportHandoverCreateForm)
+      owner: { type: '_serviceVehicleMovementC2m', id: state._serviceVehicleMovementC2m.id, listName: 'handOverChecklistResultList'}, // this is for model namespace and
+    }))(HandOverChecklistResultCreateForm)
   }
   
-  getReportHandoverUpdateForm = () => {
-  	const {ReportHandoverUpdateForm} = GlobalComponents;
+  getHandOverChecklistResultUpdateForm = () => {
+  	const {HandOverChecklistResultUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._serviceVehicleMovementC2m.selectedRows,
       currentUpdateIndex: state._serviceVehicleMovementC2m.currentUpdateIndex,
-      owner: { type: '_serviceVehicleMovementC2m', id: state._serviceVehicleMovementC2m.id, listName: 'reportHandoverList' }, // this is for model namespace and
-    }))(ReportHandoverUpdateForm)
+      owner: { type: '_serviceVehicleMovementC2m', id: state._serviceVehicleMovementC2m.id, listName: 'handOverChecklistResultList' }, // this is for model namespace and
+    }))(HandOverChecklistResultUpdateForm)
   }
 
   getPageTitle = () => {
@@ -217,9 +217,9 @@ class ServiceVehicleMovementC2mBizApp extends React.PureComponent {
                <Route path="/serviceVehicleMovementC2m/:id/viewDetail" component={ServiceVehicleMovementC2mViewDetail} />
                
 
-               <Route path="/serviceVehicleMovementC2m/:id/list/reportHandoverList" component={this.getReportHandoverSearch()} />
-               <Route path="/serviceVehicleMovementC2m/:id/list/reportHandoverCreateForm" component={this.getReportHandoverCreateForm()} />
-               <Route path="/serviceVehicleMovementC2m/:id/list/reportHandoverUpdateForm" component={this.getReportHandoverUpdateForm()} />
+               <Route path="/serviceVehicleMovementC2m/:id/list/handOverChecklistResultList" component={this.getHandOverChecklistResultSearch()} />
+               <Route path="/serviceVehicleMovementC2m/:id/list/handOverChecklistResultCreateForm" component={this.getHandOverChecklistResultCreateForm()} />
+               <Route path="/serviceVehicleMovementC2m/:id/list/handOverChecklistResultUpdateForm" component={this.getHandOverChecklistResultUpdateForm()} />
               
              </Switch>
            </Content>

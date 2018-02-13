@@ -34,11 +34,15 @@ const summaryOf = (serviceVehicleMovementM2c) =>{
 <Description term="ID">{serviceVehicleMovementM2c.id}</Description> 
 <Description term="服务状态">{serviceVehicleMovementM2c.serviceStatus}</Description> 
 <Description term="开始时间">{ moment(serviceVehicleMovementM2c.startTime).format('YYYY-MM-DD')}</Description> 
-<Description term="最后的位置">{serviceVehicleMovementM2c.lastLocation}</Description> 
+<Description term="经度">{serviceVehicleMovementM2c.longitude}</Description> 
+<Description term="纬度">{serviceVehicleMovementM2c.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceVehicleMovementM2c.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="转移验证代码">{serviceVehicleMovementM2c.transferVerifyCode}</Description> 
 <Description term="移动目的">{serviceVehicleMovementM2c.movementPurpose}</Description> 
 <Description term="联系人姓名">{serviceVehicleMovementM2c.contactName}</Description> 
 <Description term="联系手机号码">{serviceVehicleMovementM2c.contactMobileNumber}</Description> 
+<Description term="回归结果">{serviceVehicleMovementM2c.handoverResult}</Description> 
+<Description term="回归结果的评论">{serviceVehicleMovementM2c.handoverResultComment}</Description> 
 	
         
       </DescriptionList>
@@ -52,7 +56,7 @@ const summaryOf = (serviceVehicleMovementM2c) =>{
 export default class ServiceVehicleMovementM2cDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, reportHandoverCount } = this.props.serviceVehicleMovementM2c
+    const { id, handOverChecklistResultCount } = this.props.serviceVehicleMovementM2c
     
     
     
@@ -70,17 +74,17 @@ export default class ServiceVehicleMovementM2cDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
-                title="交接报告"
-                action={<Tooltip title="交接报告"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(reportHandoverCount).format('0,0')}
+                title="移交清单结果"
+                action={<Tooltip title="移交清单结果"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(handOverChecklistResultCount).format('0,0')}
                 footer={<Field label="状态" value="良好" />}
                 contentHeight={46}
               >
-                <Link to={`/serviceVehicleMovementM2c/${id}/list/reportHandoverList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                <Link to={`/serviceVehicleMovementM2c/${id}/list/handOverChecklistResultList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
-                <Link to={`/serviceVehicleMovementM2c/${id}/list/reportHandoverCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                <Link to={`/serviceVehicleMovementM2c/${id}/list/handOverChecklistResultCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
-                <Link to={`/serviceVehicleMovementM2c/${id}/list/reportHandoverList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                <Link to={`/serviceVehicleMovementM2c/${id}/list/handOverChecklistResultList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

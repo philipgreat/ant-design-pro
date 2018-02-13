@@ -59,19 +59,55 @@ const summaryOf = (vehicleServiceCompany) =>{
 export default class VehicleServiceCompanyDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, vehicleInspectionPlateNumberPatternCount, fileInspectionPlateNumberPatternCount, vehicleServiceCompanyBusinessScopeCount, vehicleServiceCompanyDispatcherCount, vehicleServiceCompanyEmployeeCount, vehicleInspectionOrderCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2cCount } = this.props.vehicleServiceCompany
+    const { id, contractCount, serviceCompanyAuthenticationInfoCount, vehicleInspectionPlateNumberPatternCount, fileInspectionPlateNumberPatternCount, vehicleServiceCompanyBusinessScopeCount, vehicleServiceCompanyDispatcherCount, vehicleServiceCompanyEmployeeCount, vehicleInspectionOrderCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, serviceCompanyAccountCount, repairingCompanyAccountCount, insuranceServiceAccountCount, inspectionStationAccountCount } = this.props.vehicleServiceCompany
     
     
     
     return (
 
       <PageHeaderLayout
-        title="商户管理总览"
+        title="商户总览"
         content={summaryOf(this.props.vehicleServiceCompany)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
           <Row gutter={24}>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="合同"
+                action={<Tooltip title="合同"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(contractCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/contractList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/contractCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/contractList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="服务公司认证信息"
+                action={<Tooltip title="服务公司认证信息"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(serviceCompanyAuthenticationInfoCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceCompanyAuthenticationInfoList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceCompanyAuthenticationInfoCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceCompanyAuthenticationInfoList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
 
           
             <Col {...topColResponsiveProps}>
@@ -203,6 +239,24 @@ export default class VehicleServiceCompanyDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
+                title="移车服务"
+                action={<Tooltip title="移车服务"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(serviceVehicleMovementM2mCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceVehicleMovementM2mList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceVehicleMovementM2mCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceVehicleMovementM2mList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
                 title="还车服务"
                 action={<Tooltip title="还车服务"><Icon type="info-circle-o" /></Tooltip>}
                 total={numeral(serviceVehicleMovementM2cCount).format('0,0')}
@@ -239,6 +293,24 @@ export default class VehicleServiceCompanyDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
+                title="移件服务"
+                action={<Tooltip title="移件服务"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(serviceFileMovementM2mCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceFileMovementM2mList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceFileMovementM2mCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceFileMovementM2mList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
                 title="还件服务"
                 action={<Tooltip title="还件服务"><Icon type="info-circle-o" /></Tooltip>}
                 total={numeral(serviceFileMovementM2cCount).format('0,0')}
@@ -250,6 +322,150 @@ export default class VehicleServiceCompanyDashboard extends Component {
                 <Link to={`/vehicleServiceCompany/${id}/list/serviceFileMovementM2cCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/vehicleServiceCompany/${id}/list/serviceFileMovementM2cList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="保险增值服务"
+                action={<Tooltip title="保险增值服务"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(serviceInsuranceForInspectionCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceInsuranceForInspectionList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceInsuranceForInspectionCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceInsuranceForInspectionList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="车辆上线检测"
+                action={<Tooltip title="车辆上线检测"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(serviceVehicleInspectionCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceVehicleInspectionList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceVehicleInspectionCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceVehicleInspectionList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="6年免检服务"
+                action={<Tooltip title="6年免检服务"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(serviceFileInspectionCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceFileInspectionList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceFileInspectionCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceFileInspectionList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="修车服务"
+                action={<Tooltip title="修车服务"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(serviceVehicleRepairingCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceVehicleRepairingList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceVehicleRepairingCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceVehicleRepairingList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="服务公司对账单"
+                action={<Tooltip title="服务公司对账单"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(serviceCompanyAccountCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceCompanyAccountList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceCompanyAccountCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/serviceCompanyAccountList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="修理公司对账单"
+                action={<Tooltip title="修理公司对账单"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(repairingCompanyAccountCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/repairingCompanyAccountList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/repairingCompanyAccountCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/repairingCompanyAccountList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="保险服务帐户"
+                action={<Tooltip title="保险服务帐户"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(insuranceServiceAccountCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/insuranceServiceAccountList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/insuranceServiceAccountCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/insuranceServiceAccountList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="检查站对账单"
+                action={<Tooltip title="检查站对账单"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(inspectionStationAccountCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/inspectionStationAccountList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/inspectionStationAccountCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/inspectionStationAccountList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

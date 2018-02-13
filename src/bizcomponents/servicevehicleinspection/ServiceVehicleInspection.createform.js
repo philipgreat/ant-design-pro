@@ -17,22 +17,28 @@ const fieldLabels = {
   responsibleWorker: '服务人员',
   inspectionStation: '检测站',
   startTime: '开始时间',
-  lastLocation: '最后的位置',
+  longitude: '经度',
+  latitude: '纬度',
   lastUpdateTime: '最后更新时间',
+  inspectionDatetime: '检验日期时间',
   inspectionResult: '检测结果',
   inspectionNeedRepair: '是否要修理',
+  merchant: '商户',
   mainOrder: '主订单',
 }
 
 
 const testValues = {
-  serviceStatus: '待检测',
-  startTime: '2014-05-01 16:49:12',
-  lastLocation: '目前先用字符串地址占个位置',
+  serviceStatus: '审核中',
+  startTime: '2015-05-27 21:57:21',
+  longitude: '104.92098611134904',
+  latitude: '31.294417534377473',
+  inspectionDatetime: '2996-09-20 22:24:34',
   inspectionResult: '通过',
   inspectionNeedRepair: '送修',
   responsibleWorkerId: 'VSCE000001',
   inspectionStationId: 'IS000001',
+  merchantId: 'VSC000001',
   mainOrderId: 'VIO000001',
 }
 
@@ -229,11 +235,31 @@ class ServiceVehicleInspectionCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.lastLocation}>
-                  {getFieldDecorator('lastLocation', {
-                    rules: [{ required: true, message: '请输入最后的位置' }],
+                <Form.Item label={fieldLabels.longitude}>
+                  {getFieldDecorator('longitude', {
+                    rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入最后的位置string" />
+                    <Input placeholder="请输入请输入经度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude}>
+                  {getFieldDecorator('latitude', {
+                    rules: [{ required: true, message: '请输入纬度' }],
+                  })(
+                    <Input placeholder="请输入请输入纬度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.inspectionDatetime}>
+                  {getFieldDecorator('inspectionDatetime', {
+                    rules: [{ required: true, message: '请输入检验日期时间' }],
+                  })(
+                    <Input placeholder="请输入请输入检验日期时间date_time" />
                   )}
                 </Form.Item>
               </Col>
@@ -287,6 +313,16 @@ class ServiceVehicleInspectionCreateForm extends Component {
                     rules: [{ required: true, message: '请输入检测站' }],
                   })(
                     <Input placeholder="请输入请输入检测站" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.merchant}>
+                  {getFieldDecorator('merchantId', {
+                    rules: [{ required: true, message: '请输入商户' }],
+                  })(
+                    <Input placeholder="请输入请输入商户" />
                   )}
                 </Form.Item>
               </Col>

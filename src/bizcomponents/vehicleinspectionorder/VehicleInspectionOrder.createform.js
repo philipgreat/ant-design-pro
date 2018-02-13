@@ -34,8 +34,6 @@ const fieldLabels = {
   vehicleIdentificationNumber: '车架号',
   vehiclePermitIssueDate: '发证日期',
   vehiclePermitHolderName: '所有人',
-  vehiclePermitNumber: '车辆行驶证号码',
-  vehiclePermitExpirationDate: '行驶证有效期',
   vehiclePermitImage1: '图1',
   vehiclePermitImage2: '图2',
   vehiclePermitImage3: '图3',
@@ -50,8 +48,8 @@ const fieldLabels = {
 
 const testValues = {
   orderStatus: '未支付',
-  createTime: '2996-12-10 11:09:36',
-  planInspectionDate: '2997-10-15',
+  createTime: '2998-12-21 17:17:41',
+  planInspectionDate: '2999-10-06',
   trafficAccidentAnnouncement: '0',
   homePickUp: '1',
   contactName: '张秋文',
@@ -61,15 +59,13 @@ const testValues = {
   vehicleType: '面包车',
   vehicleUseCharacter: '营运',
   vehicleSeatsQuantity: '5',
-  vehicleRegistrationDate: '2015-03-31',
-  inspectionValidationDate: '2998-06-28',
-  insuranceValidationDate: '2997-11-19',
+  vehicleRegistrationDate: '2013-09-11',
+  inspectionValidationDate: '2999-09-11',
+  insuranceValidationDate: '2998-11-21',
   engineNumber: '4172XYS',
   vehicleIdentificationNumber: 'WAUZZZ4E24N016553',
-  vehiclePermitIssueDate: '2016-02-03',
+  vehiclePermitIssueDate: '2013-09-07',
   vehiclePermitHolderName: '张秋文',
-  vehiclePermitNumber: 'A123123102312312',
-  vehiclePermitExpirationDate: '2998-05-15',
   productType: 'NORMAL',
   customerId: 'C000001',
   contactAddressCityId: 'C000001',
@@ -440,26 +436,6 @@ class VehicleInspectionOrderCreateForm extends Component {
                     rules: [{ required: true, message: '请输入所有人' }],
                   })(
                     <Input placeholder="请输入请输入所有人string" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehiclePermitNumber}>
-                  {getFieldDecorator('vehiclePermitNumber', {
-                    rules: [{ required: true, message: '请输入车辆行驶证号码' }],
-                  })(
-                    <Input placeholder="请输入请输入车辆行驶证号码string" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehiclePermitExpirationDate}>
-                  {getFieldDecorator('vehiclePermitExpirationDate', {
-                    rules: [{ required: true, message: '请输入行驶证有效期' }],
-                  })(
-                    <Input placeholder="请输入请输入行驶证有效期date" />
                   )}
                 </Form.Item>
               </Col>

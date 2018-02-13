@@ -17,7 +17,8 @@ const fieldLabels = {
   operatingStatus: '服务状态',
   addressCity: '所在城市',
   addressDetail: '所在地址',
-  location: '位置',
+  longitude: '经度',
+  latitude: '纬度',
   contactName: '联系人姓名',
   contactMobile: '联系手机',
   metrologyAccreditationImage: '计量资格认证',
@@ -28,7 +29,8 @@ const testValues = {
   name: '西浦机动车检测站',
   operatingStatus: '正常',
   addressDetail: '武侯区火车南站西路799号',
-  location: '先用字符串占个位置',
+  longitude: '104.05155926526946',
+  latitude: '29.883455234110297',
   contactName: '张邱生',
   contactMobile: '13812345678',
   addressCityId: 'C000001',
@@ -238,11 +240,21 @@ class InspectionStationCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.location}>
-                  {getFieldDecorator('location', {
-                    rules: [{ required: true, message: '请输入位置' }],
+                <Form.Item label={fieldLabels.longitude}>
+                  {getFieldDecorator('longitude', {
+                    rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入位置string" />
+                    <Input placeholder="请输入请输入经度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude}>
+                  {getFieldDecorator('latitude', {
+                    rules: [{ required: true, message: '请输入纬度' }],
+                  })(
+                    <Input placeholder="请输入请输入纬度double" />
                   )}
                 </Form.Item>
               </Col>

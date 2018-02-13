@@ -36,11 +36,10 @@ const topColResponsiveProps = {
 }))
 export default class AvailableRatingItemEditDetail extends Component {
   render() {
-    const {OrderRatingResultEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, orderRatingResultCount } = this.props.availableRatingItem
-    const { orderRatingResultList } = this.props.availableRatingItem
+    const { id,  } = this.props.availableRatingItem
+    const {  } = this.props.availableRatingItem
     
     const owner = { type: '_availableRatingItem', id }
     return (
@@ -51,12 +50,6 @@ export default class AvailableRatingItemEditDetail extends Component {
         wrapperClassName={styles.advancedForm}
       >
 
-
-		<Card title="订单评级结果列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <OrderRatingResultEditTable data={orderRatingResultList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
 
  
       </PageHeaderLayout>

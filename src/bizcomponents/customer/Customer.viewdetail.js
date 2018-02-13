@@ -65,12 +65,14 @@ export default class CustomerViewDetail extends Component {
   render() {
     const {VehicleInfoViewTable} = GlobalComponents;
     const {VehicleInspectionOrderViewTable} = GlobalComponents;
+    const {OrderDiscountCouponViewTable} = GlobalComponents;
+    const {VehicleInspectionOrderCouponViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const customer = this.props.customer
-    const { id, vehicleInfoCount, vehicleInspectionOrderCount } = customer
-    const { vehicleInfoList, vehicleInspectionOrderList } = customer
+    const { id, vehicleInfoCount, vehicleInspectionOrderCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = customer
+    const { vehicleInfoList, vehicleInspectionOrderList, orderDiscountCouponList, vehicleInspectionOrderCouponList } = customer
     
     const owner = { type: '_customer', id }
     
@@ -78,6 +80,8 @@ export default class CustomerViewDetail extends Component {
 
       {key: 'vehicleInfoList',tab: `车辆信息(${vehicleInfoCount})`}, 
       {key: 'vehicleInspectionOrderList',tab: `上线检测订单(${vehicleInspectionOrderCount})`}, 
+      {key: 'orderDiscountCouponList',tab: `订单的折扣券(${orderDiscountCouponCount})`}, 
+      {key: 'vehicleInspectionOrderCouponList',tab: `优惠券(${vehicleInspectionOrderCouponCount})`}, 
    
 
    ];
@@ -89,6 +93,12 @@ export default class CustomerViewDetail extends Component {
  
       vehicleInspectionOrderList:  
         <VehicleInspectionOrderViewTable data={vehicleInspectionOrderList} owner={owner} {...this.props} />,
+ 
+      orderDiscountCouponList:  
+        <OrderDiscountCouponViewTable data={orderDiscountCouponList} owner={owner} {...this.props} />,
+ 
+      vehicleInspectionOrderCouponList:  
+        <VehicleInspectionOrderCouponViewTable data={vehicleInspectionOrderCouponList} owner={owner} {...this.props} />,
  
     
     };

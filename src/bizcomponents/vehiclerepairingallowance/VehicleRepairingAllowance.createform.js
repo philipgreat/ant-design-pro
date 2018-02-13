@@ -23,7 +23,7 @@ const fieldLabels = {
 const testValues = {
   allowanceTitle: '维修费补贴',
   allowanceCode: 'REPAIRING_ALLOWANCE',
-  allowanceAmount: '14.26',
+  allowanceAmount: '14.12',
   serviceId: 'AS000001',
 }
 

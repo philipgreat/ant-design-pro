@@ -34,8 +34,10 @@ const summaryOf = (serviceVehicleInspection) =>{
 <Description term="ID">{serviceVehicleInspection.id}</Description> 
 <Description term="服务状态">{serviceVehicleInspection.serviceStatus}</Description> 
 <Description term="开始时间">{ moment(serviceVehicleInspection.startTime).format('YYYY-MM-DD')}</Description> 
-<Description term="最后的位置">{serviceVehicleInspection.lastLocation}</Description> 
+<Description term="经度">{serviceVehicleInspection.longitude}</Description> 
+<Description term="纬度">{serviceVehicleInspection.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceVehicleInspection.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="检验日期时间">{ moment(serviceVehicleInspection.inspectionDatetime).format('YYYY-MM-DD')}</Description> 
 <Description term="检测结果">{serviceVehicleInspection.inspectionResult}</Description> 
 <Description term="是否要修理">{serviceVehicleInspection.inspectionNeedRepair}</Description> 
 	

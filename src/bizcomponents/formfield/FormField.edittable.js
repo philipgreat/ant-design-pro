@@ -190,7 +190,7 @@ class FormFieldEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '标签', debugtype: 'string', dataIndex: 'label', width: '7', render: (text, record) => renderStringEdit('label',text, record)  },
   { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey', width: '15', render: (text, record) => renderStringEdit('localeKey',text, record)  },
   { title: '参数名称', debugtype: 'string', dataIndex: 'parameterName', width: '8', render: (text, record) => renderStringEdit('parameterName',text, record)  },
@@ -203,6 +203,7 @@ class FormFieldEditTable extends PureComponent {
   { title: '最小值', debugtype: 'string', dataIndex: 'minValue', width: '19', render: (text, record) => renderStringEdit('minValue',text, record)  },
   { title: '最大的价值', debugtype: 'string', dataIndex: 'maxValue', width: '22', render: (text, record) => renderStringEdit('maxValue',text, record)  },
   { title: '要求', dataIndex: 'required', render: (text, record) => (record.required ? '是' : '否') },
+  { title: '禁用', dataIndex: 'disabled', render: (text, record) => (record.disabled ? '是' : '否') },
   { title: '自定义渲染', dataIndex: 'customRendering', render: (text, record) => (record.customRendering ? '是' : '否') },
   { title: '候选人的价值观', debugtype: 'string', dataIndex: 'candidateValues', width: '7', render: (text, record) => renderStringEdit('candidateValues',text, record)  },
   { title: '建议值', debugtype: 'string', dataIndex: 'suggestValues', width: '7', render: (text, record) => renderStringEdit('suggestValues',text, record)  },
@@ -224,6 +225,7 @@ class FormFieldEditTable extends PureComponent {
 				'minValue':'',
 				'maxValue':'',
 				'required':'',
+				'disabled':'',
 				'customRendering':'',
 				'candidateValues':'',
 				'suggestValues':'',

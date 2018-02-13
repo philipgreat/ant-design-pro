@@ -190,7 +190,7 @@ class CompanyEmployeeQualificationEditTable extends PureComponent {
     
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '事件时间', dataIndex: 'eventTime', render: (text, record) => moment(record.eventTime).format('YYYY-MM-DD') },
+  { title: '事件时间', dataIndex: 'eventTime', render: (text, record) => moment(record.eventTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17', render: (text, record) => renderStringEdit('who',text, record)  },
   { title: '评论', debugtype: 'string', dataIndex: 'comment', width: '13', render: (text, record) => renderStringEdit('comment',text, record)  },
 { title: '操作',

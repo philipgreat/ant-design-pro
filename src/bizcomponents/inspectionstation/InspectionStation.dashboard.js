@@ -35,7 +35,8 @@ const summaryOf = (inspectionStation) =>{
 <Description term="名称">{inspectionStation.name}</Description> 
 <Description term="服务状态">{inspectionStation.operatingStatus}</Description> 
 <Description term="所在地址">{inspectionStation.addressDetail}</Description> 
-<Description term="位置">{inspectionStation.location}</Description> 
+<Description term="经度">{inspectionStation.longitude}</Description> 
+<Description term="纬度">{inspectionStation.latitude}</Description> 
 <Description term="联系人姓名">{inspectionStation.contactName}</Description> 
 <Description term="联系手机">{inspectionStation.contactMobile}</Description> 
 <Description term="计量资格认证">{inspectionStation.metrologyAccreditationImage}</Description> 
@@ -52,7 +53,7 @@ const summaryOf = (inspectionStation) =>{
 export default class InspectionStationDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, serviceVehicleInspectionCount, serviceFileInspectionCount } = this.props.inspectionStation
+    const { id, serviceVehicleInspectionCount, serviceFileInspectionCount, inspectionStationAccountCount } = this.props.inspectionStation
     
     
     
@@ -99,6 +100,24 @@ export default class InspectionStationDashboard extends Component {
                 <Link to={`/inspectionStation/${id}/list/serviceFileInspectionCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/inspectionStation/${id}/list/serviceFileInspectionList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="检查站对账单"
+                action={<Tooltip title="检查站对账单"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(inspectionStationAccountCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/inspectionStation/${id}/list/inspectionStationAccountList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/inspectionStation/${id}/list/inspectionStationAccountCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/inspectionStation/${id}/list/inspectionStationAccountList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

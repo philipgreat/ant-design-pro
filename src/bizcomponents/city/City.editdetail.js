@@ -61,7 +61,7 @@ export default class CityEditDetail extends Component {
           </Form>
         </Card>
 
-		<Card title="商户管理列表" className={styles.card} bordered={false}>
+		<Card title="商户列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <VehicleServiceCompanyEditTable data={vehicleServiceCompanyList} owner={owner} {...this.props} />
           </Form>

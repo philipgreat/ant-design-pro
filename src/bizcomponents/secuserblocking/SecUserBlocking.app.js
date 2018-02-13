@@ -84,12 +84,12 @@ class SecUserBlockingBizApp extends React.PureComponent {
       <SubMenu title={
         <span>
           <Icon type="profile" />
-          <span>Sec用户屏蔽</span>
+          <span>SEC用户阻塞</span>
         </span>}
       >
 
         <Menu.Item>
-          <Link to={`/secUserBlocking/${objectId}/list/secUserList`}>Sec的用户</Link>
+          <Link to={`/secUserBlocking/${objectId}/list/secUserList`}>SEC的用户</Link>
         </Menu.Item>
       </SubMenu>
     )
@@ -133,7 +133,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '环保装备方案管理系统'
+    const title = '代审车服务平台'
     return title
   }
  
@@ -179,7 +179,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
          >
            <div className={styles.logo}>
              <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>Sec用户屏蔽</h1></Link>
+             <Link to="/home"> <h1>SEC用户阻塞</h1></Link>
            </div>
 
            <Menu

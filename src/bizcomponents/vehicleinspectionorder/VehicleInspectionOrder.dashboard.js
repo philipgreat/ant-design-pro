@@ -51,8 +51,6 @@ const summaryOf = (vehicleInspectionOrder) =>{
 <Description term="车架号">{vehicleInspectionOrder.vehicleIdentificationNumber}</Description> 
 <Description term="发证日期">{ moment(vehicleInspectionOrder.vehiclePermitIssueDate).format('YYYY-MM-DD')}</Description> 
 <Description term="所有人">{vehicleInspectionOrder.vehiclePermitHolderName}</Description> 
-<Description term="车辆行驶证号码">{vehicleInspectionOrder.vehiclePermitNumber}</Description> 
-<Description term="行驶证有效期">{ moment(vehicleInspectionOrder.vehiclePermitExpirationDate).format('YYYY-MM-DD')}</Description> 
 <Description term="图1">{vehicleInspectionOrder.vehiclePermitImage1}</Description> 
 <Description term="图2">{vehicleInspectionOrder.vehiclePermitImage2}</Description> 
 <Description term="图3">{vehicleInspectionOrder.vehiclePermitImage3}</Description> 
@@ -73,7 +71,7 @@ const summaryOf = (vehicleInspectionOrder) =>{
 export default class VehicleInspectionOrderDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, vehicleInspectionInsuranceOrderCount, vehicleInspectionOrderServiceLogCount, vehicleInspectionOrderCouponCount, vehicleInspectionOrderPaymentCount, handOverChecklistItemCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, reportVehicleInspectionReportCount, reportFileInspectionReportCount, serviceVehicleRepairingCount, orderReviewResultCount, orderRatingResultCount } = this.props.vehicleInspectionOrder
+    const { id, vehicleInspectionInsuranceOrderCount, vehicleInspectionOrderServiceLogCount, vehicleInspectionOrderPaymentCount, handOverChecklistItemCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, reportVehicleInspectionReportCount, reportFileInspectionReportCount, serviceVehicleRepairingCount, vehicleRepairingReportCount, orderReviewResultCount, orderRatingResultCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.vehicleInspectionOrder
     
     
     
@@ -120,24 +118,6 @@ export default class VehicleInspectionOrderDashboard extends Component {
                 <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionOrderServiceLogCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionOrderServiceLogList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
-
-          
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="优惠券"
-                action={<Tooltip title="优惠券"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(vehicleInspectionOrderCouponCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionOrderCouponList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionOrderCouponCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionOrderCouponList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 
@@ -397,6 +377,24 @@ export default class VehicleInspectionOrderDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
+                title="车辆维修报告"
+                action={<Tooltip title="车辆维修报告"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(vehicleRepairingReportCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleRepairingReportList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleRepairingReportCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleRepairingReportList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
                 title="订单评论结果"
                 action={<Tooltip title="订单评论结果"><Icon type="info-circle-o" /></Tooltip>}
                 total={numeral(orderReviewResultCount).format('0,0')}
@@ -426,6 +424,42 @@ export default class VehicleInspectionOrderDashboard extends Component {
                 <Link to={`/vehicleInspectionOrder/${id}/list/orderRatingResultCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/vehicleInspectionOrder/${id}/list/orderRatingResultList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="订单的折扣券"
+                action={<Tooltip title="订单的折扣券"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(orderDiscountCouponCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleInspectionOrder/${id}/list/orderDiscountCouponList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleInspectionOrder/${id}/list/orderDiscountCouponCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleInspectionOrder/${id}/list/orderDiscountCouponList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="优惠券"
+                action={<Tooltip title="优惠券"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(vehicleInspectionOrderCouponCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionOrderCouponList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionOrderCouponCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionOrderCouponList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

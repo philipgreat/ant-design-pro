@@ -26,8 +26,6 @@ const fieldLabels = {
   vehicleIdentificationNumber: '车架号',
   vehiclePermitIssueDate: '发证日期',
   vehiclePermitHolderName: '所有人',
-  vehiclePermitNumber: '车辆行驶证号码',
-  vehiclePermitExpirationDate: '行驶证有效期',
   vehiclePermitImage1: '图1',
   vehiclePermitImage2: '图2',
   vehiclePermitImage3: '图3',
@@ -98,7 +96,6 @@ class VehicleInfoUpdateForm extends Component {
         inspectionValidationDate: moment(item.inspectionValidationDate).format('YYYY-MM-DD'),
         insuranceValidationDate: moment(item.insuranceValidationDate).format('YYYY-MM-DD'),
         vehiclePermitIssueDate: moment(item.vehiclePermitIssueDate).format('YYYY-MM-DD'),
-        vehiclePermitExpirationDate: moment(item.vehiclePermitExpirationDate).format('YYYY-MM-DD'),
 
       }
     })
@@ -440,26 +437,6 @@ class VehicleInfoUpdateForm extends Component {
                     rules: [{ required: true, message: '请输入所有人' }],
                   })(
                     <Input placeholder="请输入请输入所有人string" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehiclePermitNumber}>
-                  {getFieldDecorator('vehiclePermitNumber', {
-                    rules: [{ required: true, message: '请输入车辆行驶证号码' }],
-                  })(
-                    <Input placeholder="请输入请输入车辆行驶证号码string" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehiclePermitExpirationDate}>
-                  {getFieldDecorator('vehiclePermitExpirationDate', {
-                    rules: [{ required: true, message: '请输入行驶证有效期' }],
-                  })(
-                    <Input placeholder="请输入请输入行驶证有效期date" />
                   )}
                 </Form.Item>
               </Col>

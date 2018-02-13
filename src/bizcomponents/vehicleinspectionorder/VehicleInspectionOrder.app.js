@@ -95,9 +95,6 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
           <Link to={`/vehicleInspectionOrder/${objectId}/list/vehicleInspectionOrderServiceLogList`}>车辆检测服务订单日志</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/vehicleInspectionOrder/${objectId}/list/vehicleInspectionOrderCouponList`}>优惠券</Link>
-        </Menu.Item>
-        <Menu.Item>
           <Link to={`/vehicleInspectionOrder/${objectId}/list/vehicleInspectionOrderPaymentList`}>订单支付管理</Link>
         </Menu.Item>
         <Menu.Item>
@@ -140,10 +137,19 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
           <Link to={`/vehicleInspectionOrder/${objectId}/list/serviceVehicleRepairingList`}>修车服务</Link>
         </Menu.Item>
         <Menu.Item>
+          <Link to={`/vehicleInspectionOrder/${objectId}/list/vehicleRepairingReportList`}>车辆维修报告</Link>
+        </Menu.Item>
+        <Menu.Item>
           <Link to={`/vehicleInspectionOrder/${objectId}/list/orderReviewResultList`}>订单评论结果</Link>
         </Menu.Item>
         <Menu.Item>
           <Link to={`/vehicleInspectionOrder/${objectId}/list/orderRatingResultList`}>订单评级结果</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/vehicleInspectionOrder/${objectId}/list/orderDiscountCouponList`}>订单的折扣券</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/vehicleInspectionOrder/${objectId}/list/vehicleInspectionOrderCouponList`}>优惠券</Link>
         </Menu.Item>
       </SubMenu>
     )
@@ -216,40 +222,6 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
       owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderServiceLogList' }, // this is for model namespace and
     }))(VehicleInspectionOrderServiceLogUpdateForm)
-  }
-
-  getVehicleInspectionOrderCouponSearch = () => {
-    const {VehicleInspectionOrderCouponSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._vehicleInspectionOrder.vehicleInspectionOrderCouponList,
-      count: state._vehicleInspectionOrder.vehicleInspectionOrderCouponCount,
-      currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderCouponCurrentPageNumber,
-      searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderCouponSearchFormParameters,
-      loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderCouponList' }, // this is for model namespace and
-    }))(VehicleInspectionOrderCouponSearch)
-  }
-  getVehicleInspectionOrderCouponCreateForm = () => {
-   	const {VehicleInspectionOrderCouponCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._vehicleInspectionOrder.vehicleInspectionOrderCouponList,
-      count: state._vehicleInspectionOrder.vehicleInspectionOrderCouponCount,
-      currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderCouponCurrentPageNumber,
-      searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderCouponSearchFormParameters,
-      loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderCouponList'}, // this is for model namespace and
-    }))(VehicleInspectionOrderCouponCreateForm)
-  }
-  
-  getVehicleInspectionOrderCouponUpdateForm = () => {
-  	const {VehicleInspectionOrderCouponUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._vehicleInspectionOrder.selectedRows,
-      currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderCouponList' }, // this is for model namespace and
-    }))(VehicleInspectionOrderCouponUpdateForm)
   }
 
   getVehicleInspectionOrderPaymentSearch = () => {
@@ -728,6 +700,40 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
     }))(ServiceVehicleRepairingUpdateForm)
   }
 
+  getVehicleRepairingReportSearch = () => {
+    const {VehicleRepairingReportSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleInspectionOrder.vehicleRepairingReportList,
+      count: state._vehicleInspectionOrder.vehicleRepairingReportCount,
+      currentPage: state._vehicleInspectionOrder.vehicleRepairingReportCurrentPageNumber,
+      searchFormParameters: state._vehicleInspectionOrder.vehicleRepairingReportSearchFormParameters,
+      loading: state._vehicleInspectionOrder.loading,
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleRepairingReportList' }, // this is for model namespace and
+    }))(VehicleRepairingReportSearch)
+  }
+  getVehicleRepairingReportCreateForm = () => {
+   	const {VehicleRepairingReportCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleInspectionOrder.vehicleRepairingReportList,
+      count: state._vehicleInspectionOrder.vehicleRepairingReportCount,
+      currentPage: state._vehicleInspectionOrder.vehicleRepairingReportCurrentPageNumber,
+      searchFormParameters: state._vehicleInspectionOrder.vehicleRepairingReportSearchFormParameters,
+      loading: state._vehicleInspectionOrder.loading,
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleRepairingReportList'}, // this is for model namespace and
+    }))(VehicleRepairingReportCreateForm)
+  }
+  
+  getVehicleRepairingReportUpdateForm = () => {
+  	const {VehicleRepairingReportUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._vehicleInspectionOrder.selectedRows,
+      currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleRepairingReportList' }, // this is for model namespace and
+    }))(VehicleRepairingReportUpdateForm)
+  }
+
   getOrderReviewResultSearch = () => {
     const {OrderReviewResultSearch} = GlobalComponents;
     return connect(state => ({
@@ -794,6 +800,74 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
       owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'orderRatingResultList' }, // this is for model namespace and
     }))(OrderRatingResultUpdateForm)
+  }
+
+  getOrderDiscountCouponSearch = () => {
+    const {OrderDiscountCouponSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleInspectionOrder.orderDiscountCouponList,
+      count: state._vehicleInspectionOrder.orderDiscountCouponCount,
+      currentPage: state._vehicleInspectionOrder.orderDiscountCouponCurrentPageNumber,
+      searchFormParameters: state._vehicleInspectionOrder.orderDiscountCouponSearchFormParameters,
+      loading: state._vehicleInspectionOrder.loading,
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'orderDiscountCouponList' }, // this is for model namespace and
+    }))(OrderDiscountCouponSearch)
+  }
+  getOrderDiscountCouponCreateForm = () => {
+   	const {OrderDiscountCouponCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleInspectionOrder.orderDiscountCouponList,
+      count: state._vehicleInspectionOrder.orderDiscountCouponCount,
+      currentPage: state._vehicleInspectionOrder.orderDiscountCouponCurrentPageNumber,
+      searchFormParameters: state._vehicleInspectionOrder.orderDiscountCouponSearchFormParameters,
+      loading: state._vehicleInspectionOrder.loading,
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'orderDiscountCouponList'}, // this is for model namespace and
+    }))(OrderDiscountCouponCreateForm)
+  }
+  
+  getOrderDiscountCouponUpdateForm = () => {
+  	const {OrderDiscountCouponUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._vehicleInspectionOrder.selectedRows,
+      currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'orderDiscountCouponList' }, // this is for model namespace and
+    }))(OrderDiscountCouponUpdateForm)
+  }
+
+  getVehicleInspectionOrderCouponSearch = () => {
+    const {VehicleInspectionOrderCouponSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleInspectionOrder.vehicleInspectionOrderCouponList,
+      count: state._vehicleInspectionOrder.vehicleInspectionOrderCouponCount,
+      currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderCouponCurrentPageNumber,
+      searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderCouponSearchFormParameters,
+      loading: state._vehicleInspectionOrder.loading,
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderCouponList' }, // this is for model namespace and
+    }))(VehicleInspectionOrderCouponSearch)
+  }
+  getVehicleInspectionOrderCouponCreateForm = () => {
+   	const {VehicleInspectionOrderCouponCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleInspectionOrder.vehicleInspectionOrderCouponList,
+      count: state._vehicleInspectionOrder.vehicleInspectionOrderCouponCount,
+      currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderCouponCurrentPageNumber,
+      searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderCouponSearchFormParameters,
+      loading: state._vehicleInspectionOrder.loading,
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderCouponList'}, // this is for model namespace and
+    }))(VehicleInspectionOrderCouponCreateForm)
+  }
+  
+  getVehicleInspectionOrderCouponUpdateForm = () => {
+  	const {VehicleInspectionOrderCouponUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._vehicleInspectionOrder.selectedRows,
+      currentUpdateIndex: state._vehicleInspectionOrder.currentUpdateIndex,
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderCouponList' }, // this is for model namespace and
+    }))(VehicleInspectionOrderCouponUpdateForm)
   }
 
   getPageTitle = () => {
@@ -891,10 +965,6 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
                <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionOrderServiceLogCreateForm" component={this.getVehicleInspectionOrderServiceLogCreateForm()} />
                <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionOrderServiceLogUpdateForm" component={this.getVehicleInspectionOrderServiceLogUpdateForm()} />
 
-               <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionOrderCouponList" component={this.getVehicleInspectionOrderCouponSearch()} />
-               <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionOrderCouponCreateForm" component={this.getVehicleInspectionOrderCouponCreateForm()} />
-               <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionOrderCouponUpdateForm" component={this.getVehicleInspectionOrderCouponUpdateForm()} />
-
                <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionOrderPaymentList" component={this.getVehicleInspectionOrderPaymentSearch()} />
                <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionOrderPaymentCreateForm" component={this.getVehicleInspectionOrderPaymentCreateForm()} />
                <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionOrderPaymentUpdateForm" component={this.getVehicleInspectionOrderPaymentUpdateForm()} />
@@ -951,6 +1021,10 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
                <Route path="/vehicleInspectionOrder/:id/list/serviceVehicleRepairingCreateForm" component={this.getServiceVehicleRepairingCreateForm()} />
                <Route path="/vehicleInspectionOrder/:id/list/serviceVehicleRepairingUpdateForm" component={this.getServiceVehicleRepairingUpdateForm()} />
 
+               <Route path="/vehicleInspectionOrder/:id/list/vehicleRepairingReportList" component={this.getVehicleRepairingReportSearch()} />
+               <Route path="/vehicleInspectionOrder/:id/list/vehicleRepairingReportCreateForm" component={this.getVehicleRepairingReportCreateForm()} />
+               <Route path="/vehicleInspectionOrder/:id/list/vehicleRepairingReportUpdateForm" component={this.getVehicleRepairingReportUpdateForm()} />
+
                <Route path="/vehicleInspectionOrder/:id/list/orderReviewResultList" component={this.getOrderReviewResultSearch()} />
                <Route path="/vehicleInspectionOrder/:id/list/orderReviewResultCreateForm" component={this.getOrderReviewResultCreateForm()} />
                <Route path="/vehicleInspectionOrder/:id/list/orderReviewResultUpdateForm" component={this.getOrderReviewResultUpdateForm()} />
@@ -958,6 +1032,14 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
                <Route path="/vehicleInspectionOrder/:id/list/orderRatingResultList" component={this.getOrderRatingResultSearch()} />
                <Route path="/vehicleInspectionOrder/:id/list/orderRatingResultCreateForm" component={this.getOrderRatingResultCreateForm()} />
                <Route path="/vehicleInspectionOrder/:id/list/orderRatingResultUpdateForm" component={this.getOrderRatingResultUpdateForm()} />
+
+               <Route path="/vehicleInspectionOrder/:id/list/orderDiscountCouponList" component={this.getOrderDiscountCouponSearch()} />
+               <Route path="/vehicleInspectionOrder/:id/list/orderDiscountCouponCreateForm" component={this.getOrderDiscountCouponCreateForm()} />
+               <Route path="/vehicleInspectionOrder/:id/list/orderDiscountCouponUpdateForm" component={this.getOrderDiscountCouponUpdateForm()} />
+
+               <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionOrderCouponList" component={this.getVehicleInspectionOrderCouponSearch()} />
+               <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionOrderCouponCreateForm" component={this.getVehicleInspectionOrderCouponCreateForm()} />
+               <Route path="/vehicleInspectionOrder/:id/list/vehicleInspectionOrderCouponUpdateForm" component={this.getVehicleInspectionOrderCouponUpdateForm()} />
               
              </Switch>
            </Content>

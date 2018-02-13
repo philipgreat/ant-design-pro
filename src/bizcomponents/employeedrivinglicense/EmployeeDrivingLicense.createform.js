@@ -30,7 +30,7 @@ const testValues = {
   holderName: '李立国',
   licenseType: 'C1',
   licenseNumber: '510124199012010000',
-  expirationDate: '2998-05-10',
+  expirationDate: '2995-11-19',
   employeeId: 'VSCE000001',
 }
 

@@ -16,7 +16,8 @@ const fieldLabels = {
   summary: '概览',
   createTime: '创建时间',
   responsibleWorker: '服务人员',
-  location: '位置',
+  longitude: '经度',
+  latitude: '纬度',
   serviceType: '服务类型',
   serviceTicket: '服务单号',
   mainOrder: '主订单',
@@ -25,7 +26,8 @@ const fieldLabels = {
 
 const testValues = {
   summary: '建国汽车服务公司已收车',
-  location: '后面改成GPS坐标,用地图显示. 目前就是店家的地址拷贝过来',
+  longitude: '104.79259109680811',
+  latitude: '29.704100034936726',
   serviceTicket: 'sub-order-12345',
   responsibleWorkerId: 'VSCE000001',
   serviceTypeId: 'AS000001',
@@ -215,11 +217,21 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.location}>
-                  {getFieldDecorator('location', {
-                    rules: [{ required: true, message: '请输入位置' }],
+                <Form.Item label={fieldLabels.longitude}>
+                  {getFieldDecorator('longitude', {
+                    rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入位置string" />
+                    <Input placeholder="请输入请输入经度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude}>
+                  {getFieldDecorator('latitude', {
+                    rules: [{ required: true, message: '请输入纬度' }],
+                  })(
+                    <Input placeholder="请输入请输入纬度double" />
                   )}
                 </Form.Item>
               </Col>

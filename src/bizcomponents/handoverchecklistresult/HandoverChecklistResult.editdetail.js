@@ -13,7 +13,7 @@ import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
 import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import styles from './HandoverChecklistResult.editdetail.less'
+import styles from './HandOverChecklistResult.editdetail.less'
 import GlobalComponents from '../../custcomponents'
 
 
@@ -32,21 +32,21 @@ const topColResponsiveProps = {
 
 
 @connect(state => ({
-  handoverChecklistResult: state._handoverChecklistResult,
+  handOverChecklistResult: state._handOverChecklistResult,
 }))
-export default class HandoverChecklistResultEditDetail extends Component {
+export default class HandOverChecklistResultEditDetail extends Component {
   render() {
   
     // eslint-disable-next-line max-len
-    const { id,  } = this.props.handoverChecklistResult
-    const {  } = this.props.handoverChecklistResult
+    const { id,  } = this.props.handOverChecklistResult
+    const {  } = this.props.handOverChecklistResult
     
-    const owner = { type: '_handoverChecklistResult', id }
+    const owner = { type: '_handOverChecklistResult', id }
     return (
 
       <PageHeaderLayout
-        title="交接清单结果总览"
-        content="交接清单结果总览"
+        title="移交清单结果总览"
+        content="移交清单结果总览"
         wrapperClassName={styles.advancedForm}
       >
 

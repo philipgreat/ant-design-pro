@@ -17,7 +17,6 @@ const fieldLabels = {
   id: 'ID',
   reviewName: '评论内容',
   reviewResult: '评论结果',
-  availableReviewItem: '评论条目',
   mainOrder: '主订单',
 
 }

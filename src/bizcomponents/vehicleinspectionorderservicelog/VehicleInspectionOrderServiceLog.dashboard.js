@@ -34,7 +34,8 @@ const summaryOf = (vehicleInspectionOrderServiceLog) =>{
 <Description term="ID">{vehicleInspectionOrderServiceLog.id}</Description> 
 <Description term="概览">{vehicleInspectionOrderServiceLog.summary}</Description> 
 <Description term="创建时间">{ moment(vehicleInspectionOrderServiceLog.createTime).format('YYYY-MM-DD')}</Description> 
-<Description term="位置">{vehicleInspectionOrderServiceLog.location}</Description> 
+<Description term="经度">{vehicleInspectionOrderServiceLog.longitude}</Description> 
+<Description term="纬度">{vehicleInspectionOrderServiceLog.latitude}</Description> 
 <Description term="服务单号">{vehicleInspectionOrderServiceLog.serviceTicket}</Description> 
 	
         

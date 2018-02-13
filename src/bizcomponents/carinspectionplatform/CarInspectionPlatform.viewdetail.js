@@ -63,18 +63,23 @@ export default class CarInspectionPlatformViewDetail extends Component {
   render() {
     const {ProvinceViewTable} = GlobalComponents;
     const {AvailableProductViewTable} = GlobalComponents;
+    const {AvailableVehicleTypeViewTable} = GlobalComponents;
+    const {ContractViewTable} = GlobalComponents;
     const {CustomerViewTable} = GlobalComponents;
     const {VehicleServiceCompanyViewTable} = GlobalComponents;
     const {VehicleInfoViewTable} = GlobalComponents;
     const {VehicleInspectionOrderViewTable} = GlobalComponents;
     const {AvailableReviewItemViewTable} = GlobalComponents;
     const {AvailableRatingItemViewTable} = GlobalComponents;
+    const {PreorderPromotionViewTable} = GlobalComponents;
+    const {OrderDiscountCouponViewTable} = GlobalComponents;
+    const {AccountViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const carInspectionPlatform = this.props.carInspectionPlatform
-    const { id, provinceCount, availableProductCount, customerCount, vehicleServiceCompanyCount, vehicleInfoCount, vehicleInspectionOrderCount, availableReviewItemCount, availableRatingItemCount } = carInspectionPlatform
-    const { provinceList, availableProductList, customerList, vehicleServiceCompanyList, vehicleInfoList, vehicleInspectionOrderList, availableReviewItemList, availableRatingItemList } = carInspectionPlatform
+    const { id, provinceCount, availableProductCount, availableVehicleTypeCount, contractCount, customerCount, vehicleServiceCompanyCount, vehicleInfoCount, vehicleInspectionOrderCount, availableReviewItemCount, availableRatingItemCount, preorderPromotionCount, orderDiscountCouponCount, accountCount } = carInspectionPlatform
+    const { provinceList, availableProductList, availableVehicleTypeList, contractList, customerList, vehicleServiceCompanyList, vehicleInfoList, vehicleInspectionOrderList, availableReviewItemList, availableRatingItemList, preorderPromotionList, orderDiscountCouponList, accountList } = carInspectionPlatform
     
     const owner = { type: '_carInspectionPlatform', id }
     
@@ -82,12 +87,17 @@ export default class CarInspectionPlatformViewDetail extends Component {
 
       {key: 'provinceList',tab: `省(${provinceCount})`}, 
       {key: 'availableProductList',tab: `产品类型(${availableProductCount})`}, 
+      {key: 'availableVehicleTypeList',tab: `可用的车辆类型(${availableVehicleTypeCount})`}, 
+      {key: 'contractList',tab: `合同(${contractCount})`}, 
       {key: 'customerList',tab: `客户(${customerCount})`}, 
-      {key: 'vehicleServiceCompanyList',tab: `商户管理(${vehicleServiceCompanyCount})`}, 
+      {key: 'vehicleServiceCompanyList',tab: `商户(${vehicleServiceCompanyCount})`}, 
       {key: 'vehicleInfoList',tab: `车辆信息(${vehicleInfoCount})`}, 
       {key: 'vehicleInspectionOrderList',tab: `上线检测订单(${vehicleInspectionOrderCount})`}, 
       {key: 'availableReviewItemList',tab: `评论条目(${availableReviewItemCount})`}, 
       {key: 'availableRatingItemList',tab: `评分条目(${availableRatingItemCount})`}, 
+      {key: 'preorderPromotionList',tab: `预订促销(${preorderPromotionCount})`}, 
+      {key: 'orderDiscountCouponList',tab: `订单的折扣券(${orderDiscountCouponCount})`}, 
+      {key: 'accountList',tab: `对账单(${accountCount})`}, 
    
 
    ];
@@ -99,6 +109,12 @@ export default class CarInspectionPlatformViewDetail extends Component {
  
       availableProductList:  
         <AvailableProductViewTable data={availableProductList} owner={owner} {...this.props} />,
+ 
+      availableVehicleTypeList:  
+        <AvailableVehicleTypeViewTable data={availableVehicleTypeList} owner={owner} {...this.props} />,
+ 
+      contractList:  
+        <ContractViewTable data={contractList} owner={owner} {...this.props} />,
  
       customerList:  
         <CustomerViewTable data={customerList} owner={owner} {...this.props} />,
@@ -117,6 +133,15 @@ export default class CarInspectionPlatformViewDetail extends Component {
  
       availableRatingItemList:  
         <AvailableRatingItemViewTable data={availableRatingItemList} owner={owner} {...this.props} />,
+ 
+      preorderPromotionList:  
+        <PreorderPromotionViewTable data={preorderPromotionList} owner={owner} {...this.props} />,
+ 
+      orderDiscountCouponList:  
+        <OrderDiscountCouponViewTable data={orderDiscountCouponList} owner={owner} {...this.props} />,
+ 
+      accountList:  
+        <AccountViewTable data={accountList} owner={owner} {...this.props} />,
  
     
     };

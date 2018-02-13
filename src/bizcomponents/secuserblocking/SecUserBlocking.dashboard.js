@@ -31,9 +31,9 @@ const summaryOf = (secUserBlocking) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{secUserBlocking.id}</Description> 
+<Description term="ID">{secUserBlocking.id}</Description> 
 <Description term="谁">{secUserBlocking.who}</Description> 
-<Description term="块的时间">{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD')}</Description> 
+<Description term="块时间">{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD')}</Description> 
 <Description term="评论">{secUserBlocking.comments}</Description> 
 	
         
@@ -55,7 +55,7 @@ export default class SecUserBlockingDashboard extends Component {
     return (
 
       <PageHeaderLayout
-        title="Sec用户屏蔽总览"
+        title="SEC用户阻塞总览"
         content={summaryOf(this.props.secUserBlocking)}
         wrapperClassName={styles.advancedForm}
       >
@@ -66,8 +66,8 @@ export default class SecUserBlockingDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
-                title="Sec的用户"
-                action={<Tooltip title="Sec的用户"><Icon type="info-circle-o" /></Tooltip>}
+                title="SEC的用户"
+                action={<Tooltip title="SEC的用户"><Icon type="info-circle-o" /></Tooltip>}
                 total={numeral(secUserCount).format('0,0')}
                 footer={<Field label="状态" value="良好" />}
                 contentHeight={46}

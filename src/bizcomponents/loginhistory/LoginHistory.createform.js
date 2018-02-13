@@ -12,11 +12,11 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   loginTime: '登录时间',
-  fromIp: '从知识产权',
+  fromIp: '来自IP',
   description: '描述',
-  secUser: 'Sec的用户',
+  secUser: 'SEC的用户',
 }
 
 
@@ -201,9 +201,9 @@ class LoginHistoryCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.fromIp}>
                   {getFieldDecorator('fromIp', {
-                    rules: [{ required: true, message: '请输入从知识产权' }],
+                    rules: [{ required: true, message: '请输入来自IP' }],
                   })(
-                    <Input placeholder="请输入请输入从知识产权string" />
+                    <Input placeholder="请输入请输入来自IPstring" />
                   )}
                 </Form.Item>
               </Col>
@@ -234,9 +234,9 @@ class LoginHistoryCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.secUser}>
                   {getFieldDecorator('secUserId', {
-                    rules: [{ required: true, message: '请输入Sec的用户' }],
+                    rules: [{ required: true, message: '请输入SEC的用户' }],
                   })(
-                    <Input placeholder="请输入请输入Sec的用户" />
+                    <Input placeholder="请输入请输入SEC的用户" />
                   )}
                 </Form.Item>
               </Col>

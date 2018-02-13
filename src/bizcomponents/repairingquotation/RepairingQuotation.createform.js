@@ -26,7 +26,7 @@ const fieldLabels = {
 
 const testValues = {
   repairingQuotationDescription: '车辆检测修理报价单',
-  repairingQuotationTotalAmount: '724.20',
+  repairingQuotationTotalAmount: '877.29',
   serviceId: 'SVR000001',
 }
 

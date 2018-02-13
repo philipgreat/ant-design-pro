@@ -14,7 +14,7 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   name: '名称',
 
 }
@@ -298,9 +298,9 @@ class UserDomainUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
-                    rules: [{ required: true, message: '请输入序号' }],
+                    rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入序号string" disabled />
+                    <Input placeholder="请输入请输入IDstring" disabled />
                   )}
                 </Form.Item>
               </Col>

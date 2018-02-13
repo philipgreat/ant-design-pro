@@ -48,7 +48,7 @@ const summaryOf = (availableService) =>{
 export default class AvailableServiceDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount, companyEmployeeMessageCount, vehicleInspectionOrderServiceLogCount } = this.props.availableService
+    const { id, servicePriceCount, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount, companyEmployeeMessageCount, vehicleInspectionOrderServiceLogCount } = this.props.availableService
     
     
     
@@ -61,6 +61,24 @@ export default class AvailableServiceDashboard extends Component {
       >
         <div>
           <Row gutter={24}>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="服务价格"
+                action={<Tooltip title="服务价格"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(servicePriceCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/availableService/${id}/list/servicePriceList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/availableService/${id}/list/servicePriceCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/availableService/${id}/list/servicePriceList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
 
           
             <Col {...topColResponsiveProps}>

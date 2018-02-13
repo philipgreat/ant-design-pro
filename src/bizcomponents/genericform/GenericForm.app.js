@@ -244,7 +244,7 @@ class GenericFormBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '环保装备方案管理系统'
+    const title = '代审车服务平台'
     return title
   }
  

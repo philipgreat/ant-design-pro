@@ -219,7 +219,7 @@ export default class VehicleServiceCompanySearch extends PureComponent {
     }
     
     return (
-      <PageHeaderLayout title="商户管理列表">
+      <PageHeaderLayout title="商户列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

@@ -84,12 +84,16 @@ export default class VehicleServiceCompanyEmployeeViewDetail extends Component {
     const {ServiceVehicleInspectionViewTable} = GlobalComponents;
     const {ServiceFileInspectionViewTable} = GlobalComponents;
     const {ServiceVehicleRepairingViewTable} = GlobalComponents;
+    const {ServiceCompanyAccountViewTable} = GlobalComponents;
+    const {RepairingCompanyAccountViewTable} = GlobalComponents;
+    const {InsuranceServiceAccountViewTable} = GlobalComponents;
+    const {InspectionStationAccountViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const vehicleServiceCompanyEmployee = this.props.vehicleServiceCompanyEmployee
-    const { id, serviceOrderFilterCount, employeeDrivingLicenseCount, companyEmployeeMessageAsSenderCount, companyEmployeeMessageAsReceiverCount, vehicleInspectionOrderServiceLogCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mAsResponsibleWorkerCount, serviceVehicleMovementM2mAsDriverCount, serviceVehicleMovementM2mAsReceiverCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mAsResponsibleWorkerCount, serviceFileMovementM2mAsSenderCount, serviceFileMovementM2mAsReceiverCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount } = vehicleServiceCompanyEmployee
-    const { serviceOrderFilterList, employeeDrivingLicenseList, companyEmployeeMessageListAsSender, companyEmployeeMessageListAsReceiver, vehicleInspectionOrderServiceLogList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mListAsResponsibleWorker, serviceVehicleMovementM2mListAsDriver, serviceVehicleMovementM2mListAsReceiver, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mListAsResponsibleWorker, serviceFileMovementM2mListAsSender, serviceFileMovementM2mListAsReceiver, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList } = vehicleServiceCompanyEmployee
+    const { id, serviceOrderFilterCount, employeeDrivingLicenseCount, companyEmployeeMessageAsSenderCount, companyEmployeeMessageAsReceiverCount, vehicleInspectionOrderServiceLogCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mAsResponsibleWorkerCount, serviceVehicleMovementM2mAsDriverCount, serviceVehicleMovementM2mAsReceiverCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mAsResponsibleWorkerCount, serviceFileMovementM2mAsSenderCount, serviceFileMovementM2mAsReceiverCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, serviceCompanyAccountCount, repairingCompanyAccountCount, insuranceServiceAccountCount, inspectionStationAccountCount } = vehicleServiceCompanyEmployee
+    const { serviceOrderFilterList, employeeDrivingLicenseList, companyEmployeeMessageListAsSender, companyEmployeeMessageListAsReceiver, vehicleInspectionOrderServiceLogList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mListAsResponsibleWorker, serviceVehicleMovementM2mListAsDriver, serviceVehicleMovementM2mListAsReceiver, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mListAsResponsibleWorker, serviceFileMovementM2mListAsSender, serviceFileMovementM2mListAsReceiver, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList, serviceCompanyAccountList, repairingCompanyAccountList, insuranceServiceAccountList, inspectionStationAccountList } = vehicleServiceCompanyEmployee
     
     const owner = { type: '_vehicleServiceCompanyEmployee', id }
     
@@ -114,6 +118,10 @@ export default class VehicleServiceCompanyEmployeeViewDetail extends Component {
       {key: 'serviceVehicleInspectionList',tab: `车辆上线检测(${serviceVehicleInspectionCount})`}, 
       {key: 'serviceFileInspectionList',tab: `6年免检服务(${serviceFileInspectionCount})`}, 
       {key: 'serviceVehicleRepairingList',tab: `修车服务(${serviceVehicleRepairingCount})`}, 
+      {key: 'serviceCompanyAccountList',tab: `服务公司对账单(${serviceCompanyAccountCount})`}, 
+      {key: 'repairingCompanyAccountList',tab: `修理公司对账单(${repairingCompanyAccountCount})`}, 
+      {key: 'insuranceServiceAccountList',tab: `保险服务帐户(${insuranceServiceAccountCount})`}, 
+      {key: 'inspectionStationAccountList',tab: `检查站对账单(${inspectionStationAccountCount})`}, 
    
 
    ];
@@ -176,6 +184,18 @@ export default class VehicleServiceCompanyEmployeeViewDetail extends Component {
  
       serviceVehicleRepairingList:  
         <ServiceVehicleRepairingViewTable data={serviceVehicleRepairingList} owner={owner} {...this.props} />,
+ 
+      serviceCompanyAccountList:  
+        <ServiceCompanyAccountViewTable data={serviceCompanyAccountList} owner={owner} {...this.props} />,
+ 
+      repairingCompanyAccountList:  
+        <RepairingCompanyAccountViewTable data={repairingCompanyAccountList} owner={owner} {...this.props} />,
+ 
+      insuranceServiceAccountList:  
+        <InsuranceServiceAccountViewTable data={insuranceServiceAccountList} owner={owner} {...this.props} />,
+ 
+      inspectionStationAccountList:  
+        <InspectionStationAccountViewTable data={inspectionStationAccountList} owner={owner} {...this.props} />,
  
     
     };

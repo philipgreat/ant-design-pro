@@ -18,12 +18,17 @@ const fieldLabels = {
   serviceStatus: '服务状态',
   responsibleWorker: '服务人员',
   startTime: '开始时间',
-  lastLocation: '最后的位置',
+  longitude: '经度',
+  latitude: '纬度',
   lastUpdateTime: '最后更新时间',
+  transferVerifyCode: '转移验证代码',
   mainOrder: '主订单',
   movementPurpose: '移动目的',
   sender: '发送方',
   receiver: '接收方',
+  handoverResult: '回归结果',
+  handoverResultComment: '回归结果的评论',
+  merchant: '商户',
 
 }
 
@@ -336,11 +341,31 @@ class ServiceFileMovementM2mUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.lastLocation}>
-                  {getFieldDecorator('lastLocation', {
-                    rules: [{ required: true, message: '请输入最后的位置' }],
+                <Form.Item label={fieldLabels.longitude}>
+                  {getFieldDecorator('longitude', {
+                    rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入最后的位置string" />
+                    <Input placeholder="请输入请输入经度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude}>
+                  {getFieldDecorator('latitude', {
+                    rules: [{ required: true, message: '请输入纬度' }],
+                  })(
+                    <Input placeholder="请输入请输入纬度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.transferVerifyCode}>
+                  {getFieldDecorator('transferVerifyCode', {
+                    rules: [{ required: true, message: '请输入转移验证代码' }],
+                  })(
+                    <Input placeholder="请输入请输入转移验证代码string" />
                   )}
                 </Form.Item>
               </Col>
@@ -351,6 +376,26 @@ class ServiceFileMovementM2mUpdateForm extends Component {
                     rules: [{ required: true, message: '请输入移动目的' }],
                   })(
                     <Input placeholder="请输入请输入移动目的string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.handoverResult}>
+                  {getFieldDecorator('handoverResult', {
+                    rules: [{ required: true, message: '请输入回归结果' }],
+                  })(
+                    <Input placeholder="请输入请输入回归结果string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.handoverResultComment}>
+                  {getFieldDecorator('handoverResultComment', {
+                    rules: [{ required: true, message: '请输入回归结果的评论' }],
+                  })(
+                    <Input placeholder="请输入请输入回归结果的评论string" />
                   )}
                 </Form.Item>
               </Col>

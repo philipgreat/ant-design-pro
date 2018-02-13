@@ -34,7 +34,8 @@ const summaryOf = (serviceVehicleRepairing) =>{
 <Description term="ID">{serviceVehicleRepairing.id}</Description> 
 <Description term="服务状态">{serviceVehicleRepairing.serviceStatus}</Description> 
 <Description term="开始时间">{ moment(serviceVehicleRepairing.startTime).format('YYYY-MM-DD')}</Description> 
-<Description term="最后的位置">{serviceVehicleRepairing.lastLocation}</Description> 
+<Description term="经度">{serviceVehicleRepairing.longitude}</Description> 
+<Description term="纬度">{serviceVehicleRepairing.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceVehicleRepairing.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
 	
         
@@ -49,7 +50,7 @@ const summaryOf = (serviceVehicleRepairing) =>{
 export default class ServiceVehicleRepairingDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, reportVehicleInspectionReportCount, repairingQuotationCount, repairingAllowanceItemCount, vehicleRepairingPaymentCount } = this.props.serviceVehicleRepairing
+    const { id, reportVehicleInspectionReportCount, repairingQuotationCount, repairingAllowanceItemCount, vehicleRepairingPaymentCount, vehicleRepairingReportCount } = this.props.serviceVehicleRepairing
     
     
     
@@ -132,6 +133,24 @@ export default class ServiceVehicleRepairingDashboard extends Component {
                 <Link to={`/serviceVehicleRepairing/${id}/list/vehicleRepairingPaymentCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/serviceVehicleRepairing/${id}/list/vehicleRepairingPaymentList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="车辆维修报告"
+                action={<Tooltip title="车辆维修报告"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(vehicleRepairingReportCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/serviceVehicleRepairing/${id}/list/vehicleRepairingReportList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/serviceVehicleRepairing/${id}/list/vehicleRepairingReportCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/serviceVehicleRepairing/${id}/list/vehicleRepairingReportList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

@@ -219,7 +219,7 @@ export default class SecUserBlockingSearch extends PureComponent {
     }
     
     return (
-      <PageHeaderLayout title="Sec用户屏蔽列表">
+      <PageHeaderLayout title="SEC用户阻塞列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

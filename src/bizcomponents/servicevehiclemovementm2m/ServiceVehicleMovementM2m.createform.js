@@ -16,24 +16,34 @@ const fieldLabels = {
   serviceStatus: '服务状态',
   responsibleWorker: '服务人员',
   startTime: '开始时间',
-  lastLocation: '最后的位置',
+  longitude: '经度',
+  latitude: '纬度',
   lastUpdateTime: '最后更新时间',
+  transferVerifyCode: '转移验证代码',
   mainOrder: '主订单',
   movementPurpose: '移动目的',
   driver: '司机',
   receiver: '接收方',
+  handoverResult: '回归结果',
+  handoverResultComment: '回归结果的评论',
+  merchant: '商户',
 }
 
 
 const testValues = {
-  serviceStatus: '待收单',
-  startTime: '2013-03-21 16:18:50',
-  lastLocation: '目前先用字符串地址占个位置',
-  movementPurpose: '门店接车',
+  serviceStatus: '待验收',
+  startTime: '2017-08-06 21:46:14',
+  longitude: '105.50092791257944',
+  latitude: '32.23861100904723',
+  transferVerifyCode: 'O12345',
+  movementPurpose: 'VEHICLE_M2M_PICK_IN_STORE',
+  handoverResult: '接收',
+  handoverResultComment: '车辆检查没有问题，同意接收',
   responsibleWorkerId: 'VSCE000001',
   mainOrderId: 'VIO000001',
   driverId: 'VSCE000001',
   receiverId: 'VSCE000001',
+  merchantId: 'VSC000001',
 }
 
 const imageURLPrefix = '//localhost:2090'
@@ -229,11 +239,31 @@ class ServiceVehicleMovementM2mCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.lastLocation}>
-                  {getFieldDecorator('lastLocation', {
-                    rules: [{ required: true, message: '请输入最后的位置' }],
+                <Form.Item label={fieldLabels.longitude}>
+                  {getFieldDecorator('longitude', {
+                    rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入最后的位置string" />
+                    <Input placeholder="请输入请输入经度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude}>
+                  {getFieldDecorator('latitude', {
+                    rules: [{ required: true, message: '请输入纬度' }],
+                  })(
+                    <Input placeholder="请输入请输入纬度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.transferVerifyCode}>
+                  {getFieldDecorator('transferVerifyCode', {
+                    rules: [{ required: true, message: '请输入转移验证代码' }],
+                  })(
+                    <Input placeholder="请输入请输入转移验证代码string" />
                   )}
                 </Form.Item>
               </Col>
@@ -244,6 +274,26 @@ class ServiceVehicleMovementM2mCreateForm extends Component {
                     rules: [{ required: true, message: '请输入移动目的' }],
                   })(
                     <Input placeholder="请输入请输入移动目的string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.handoverResult}>
+                  {getFieldDecorator('handoverResult', {
+                    rules: [{ required: true, message: '请输入回归结果' }],
+                  })(
+                    <Input placeholder="请输入请输入回归结果string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.handoverResultComment}>
+                  {getFieldDecorator('handoverResultComment', {
+                    rules: [{ required: true, message: '请输入回归结果的评论' }],
+                  })(
+                    <Input placeholder="请输入请输入回归结果的评论string" />
                   )}
                 </Form.Item>
               </Col>
@@ -297,6 +347,16 @@ class ServiceVehicleMovementM2mCreateForm extends Component {
                     rules: [{ required: true, message: '请输入接收方' }],
                   })(
                     <Input placeholder="请输入请输入接收方" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.merchant}>
+                  {getFieldDecorator('merchantId', {
+                    rules: [{ required: true, message: '请输入商户' }],
+                  })(
+                    <Input placeholder="请输入请输入商户" />
                   )}
                 </Form.Item>
               </Col>

@@ -24,8 +24,8 @@ const fieldLabels = {
 
 const testValues = {
   vehicleType: '小车',
-  inspectionPrice: '157.82',
-  agentServicePrice: '136.83',
+  inspectionPrice: '179.79',
+  agentServicePrice: '162.26',
   description: '含车辆检测费$200.00元和车辆检测待办服务费$168.00元',
   productId: 'AP000001',
   cityId: 'C000001',

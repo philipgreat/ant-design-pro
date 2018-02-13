@@ -67,7 +67,6 @@ export default class InspectionStationSearchForm extends PureComponent {
         ...this.buildStringSearchParameters(fieldsValue, 'name'),
         ...this.buildStringSearchParameters(fieldsValue, 'operatingStatus'),
         ...this.buildStringSearchParameters(fieldsValue, 'addressDetail'),
-        ...this.buildStringSearchParameters(fieldsValue, 'location'),
         ...this.buildStringSearchParameters(fieldsValue, 'contactName'),
         ...this.buildStringSearchParameters(fieldsValue, 'contactMobile'),
 
@@ -147,14 +146,6 @@ export default class InspectionStationSearchForm extends PureComponent {
             <FormItem label="所在地址">
               {getFieldDecorator('addressDetail')(
                 <Input placeholder="请输入所在地址" />
-              )}
-            </FormItem>
-          </Col>
-
-          <Col md={8} sm={24}>
-            <FormItem label="位置">
-              {getFieldDecorator('location')(
-                <Input placeholder="请输入位置" />
               )}
             </FormItem>
           </Col>

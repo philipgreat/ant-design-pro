@@ -94,6 +94,9 @@ class InspectionStationBizApp extends React.PureComponent {
         <Menu.Item>
           <Link to={`/inspectionStation/${objectId}/list/serviceFileInspectionList`}>6年免检服务</Link>
         </Menu.Item>
+        <Menu.Item>
+          <Link to={`/inspectionStation/${objectId}/list/inspectionStationAccountList`}>检查站对账单</Link>
+        </Menu.Item>
       </SubMenu>
     )
   }
@@ -165,6 +168,40 @@ class InspectionStationBizApp extends React.PureComponent {
       currentUpdateIndex: state._inspectionStation.currentUpdateIndex,
       owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'serviceFileInspectionList' }, // this is for model namespace and
     }))(ServiceFileInspectionUpdateForm)
+  }
+
+  getInspectionStationAccountSearch = () => {
+    const {InspectionStationAccountSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._inspectionStation.inspectionStationAccountList,
+      count: state._inspectionStation.inspectionStationAccountCount,
+      currentPage: state._inspectionStation.inspectionStationAccountCurrentPageNumber,
+      searchFormParameters: state._inspectionStation.inspectionStationAccountSearchFormParameters,
+      loading: state._inspectionStation.loading,
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'inspectionStationAccountList' }, // this is for model namespace and
+    }))(InspectionStationAccountSearch)
+  }
+  getInspectionStationAccountCreateForm = () => {
+   	const {InspectionStationAccountCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._inspectionStation.inspectionStationAccountList,
+      count: state._inspectionStation.inspectionStationAccountCount,
+      currentPage: state._inspectionStation.inspectionStationAccountCurrentPageNumber,
+      searchFormParameters: state._inspectionStation.inspectionStationAccountSearchFormParameters,
+      loading: state._inspectionStation.loading,
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'inspectionStationAccountList'}, // this is for model namespace and
+    }))(InspectionStationAccountCreateForm)
+  }
+  
+  getInspectionStationAccountUpdateForm = () => {
+  	const {InspectionStationAccountUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._inspectionStation.selectedRows,
+      currentUpdateIndex: state._inspectionStation.currentUpdateIndex,
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'inspectionStationAccountList' }, // this is for model namespace and
+    }))(InspectionStationAccountUpdateForm)
   }
 
   getPageTitle = () => {
@@ -261,6 +298,10 @@ class InspectionStationBizApp extends React.PureComponent {
                <Route path="/inspectionStation/:id/list/serviceFileInspectionList" component={this.getServiceFileInspectionSearch()} />
                <Route path="/inspectionStation/:id/list/serviceFileInspectionCreateForm" component={this.getServiceFileInspectionCreateForm()} />
                <Route path="/inspectionStation/:id/list/serviceFileInspectionUpdateForm" component={this.getServiceFileInspectionUpdateForm()} />
+
+               <Route path="/inspectionStation/:id/list/inspectionStationAccountList" component={this.getInspectionStationAccountSearch()} />
+               <Route path="/inspectionStation/:id/list/inspectionStationAccountCreateForm" component={this.getInspectionStationAccountCreateForm()} />
+               <Route path="/inspectionStation/:id/list/inspectionStationAccountUpdateForm" component={this.getInspectionStationAccountUpdateForm()} />
               
              </Switch>
            </Content>

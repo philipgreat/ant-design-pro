@@ -27,12 +27,12 @@ const fieldLabels = {
 
 const testValues = {
   paymentMethod: '微信',
-  originalAmount: '384.07',
-  actualAmount: '383.81',
+  originalAmount: '366.38',
+  actualAmount: '416.88',
   status: '未支付',
   wechatOrderId: '5K8264ILTKCH16CQ2502SI8ZNMTM67VS',
   wechatPrepayId: 'u802345jgfjsdfgsdg888',
-  createTime: '2998-12-12 16:45:38',
+  createTime: '2998-11-10 03:53:15',
   mainOrderId: 'VIO000001',
 }
 

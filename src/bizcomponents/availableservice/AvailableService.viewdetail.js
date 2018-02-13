@@ -54,7 +54,7 @@ export default class AvailableServiceViewDetail extends Component {
 
 
   state = {
-    tabKey: `vehicleRepairingAllowanceList`,
+    tabKey: `servicePriceList`,
     stepDirection: 'horizontal',
   }
  
@@ -62,6 +62,7 @@ export default class AvailableServiceViewDetail extends Component {
     this.setState({ tabKey: key });
   }  
   render() {
+    const {ServicePriceViewTable} = GlobalComponents;
     const {VehicleRepairingAllowanceViewTable} = GlobalComponents;
     const {VehicleServiceCompanyBusinessScopeViewTable} = GlobalComponents;
     const {CompanyEmployeeMessageViewTable} = GlobalComponents;
@@ -70,13 +71,14 @@ export default class AvailableServiceViewDetail extends Component {
     // eslint-disable-next-line max-len
     
     const availableService = this.props.availableService
-    const { id, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount, companyEmployeeMessageCount, vehicleInspectionOrderServiceLogCount } = availableService
-    const { vehicleRepairingAllowanceList, vehicleServiceCompanyBusinessScopeList, companyEmployeeMessageList, vehicleInspectionOrderServiceLogList } = availableService
+    const { id, servicePriceCount, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount, companyEmployeeMessageCount, vehicleInspectionOrderServiceLogCount } = availableService
+    const { servicePriceList, vehicleRepairingAllowanceList, vehicleServiceCompanyBusinessScopeList, companyEmployeeMessageList, vehicleInspectionOrderServiceLogList } = availableService
     
     const owner = { type: '_availableService', id }
     
     const tabList = [
 
+      {key: 'servicePriceList',tab: `服务价格(${servicePriceCount})`}, 
       {key: 'vehicleRepairingAllowanceList',tab: `汽车修理平台补贴(${vehicleRepairingAllowanceCount})`}, 
       {key: 'vehicleServiceCompanyBusinessScopeList',tab: `服务提供商服务范围管理(${vehicleServiceCompanyBusinessScopeCount})`}, 
       {key: 'companyEmployeeMessageList',tab: `消息管理(${companyEmployeeMessageCount})`}, 
@@ -87,7 +89,10 @@ export default class AvailableServiceViewDetail extends Component {
    
    
     const contentList = {
-       vehicleRepairingAllowanceList:  
+       servicePriceList:  
+        <ServicePriceViewTable data={servicePriceList} owner={owner} {...this.props} />,
+ 
+      vehicleRepairingAllowanceList:  
         <VehicleRepairingAllowanceViewTable data={vehicleRepairingAllowanceList} owner={owner} {...this.props} />,
  
       vehicleServiceCompanyBusinessScopeList:  

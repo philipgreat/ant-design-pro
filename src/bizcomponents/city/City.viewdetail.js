@@ -76,7 +76,7 @@ export default class CityViewDetail extends Component {
     const tabList = [
 
       {key: 'productPriceList',tab: `产品价格(${productPriceCount})`}, 
-      {key: 'vehicleServiceCompanyList',tab: `商户管理(${vehicleServiceCompanyCount})`}, 
+      {key: 'vehicleServiceCompanyList',tab: `商户(${vehicleServiceCompanyCount})`}, 
       {key: 'inspectionStationList',tab: `检测站(${inspectionStationCount})`}, 
       {key: 'vehicleInspectionOrderList',tab: `上线检测订单(${vehicleInspectionOrderCount})`}, 
    

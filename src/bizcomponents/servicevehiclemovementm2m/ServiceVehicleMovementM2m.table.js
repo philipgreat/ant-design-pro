@@ -11,13 +11,18 @@ const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/serviceVehicleMovementM2m/${text}/dashboard`}>{text}</Link>) },
   { title: '服务状态', debugtype: 'string', dataIndex: 'serviceStatus', width: '7' },
   { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.id}</Link>) : '暂无') },
-  { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD') },
-  { title: '最后的位置', debugtype: 'string', dataIndex: 'lastLocation', width: '17' },
-  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD') },
+  { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '经度', debugtype: 'double', dataIndex: 'longitude', width: '12' },
+  { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '11' },
+  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '转移验证代码', debugtype: 'string', dataIndex: 'transferVerifyCode', width: '10' },
   { title: '主订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.id}</Link>) : '暂无') },
-  { title: '移动目的', debugtype: 'string', dataIndex: 'movementPurpose', width: '8' },
+  { title: '移动目的', debugtype: 'string', dataIndex: 'movementPurpose', width: '30' },
   { title: '司机', dataIndex: 'driver', render: (text, record) => (record.driver ? (<Link to={`/vehicleServiceCompanyEmployee/${record.driver.id}/dashboard`}>{record.driver.id}</Link>) : '暂无') },
   { title: '接收方', dataIndex: 'receiver', render: (text, record) => (record.receiver ? (<Link to={`/vehicleServiceCompanyEmployee/${record.receiver.id}/dashboard`}>{record.receiver.id}</Link>) : '暂无') },
+  { title: '回归结果', debugtype: 'string', dataIndex: 'handoverResult', width: '6' },
+  { title: '回归结果的评论', debugtype: 'string', dataIndex: 'handoverResultComment', width: '22' },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.id}</Link>) : '暂无') },
 
 ]
 
@@ -95,7 +100,7 @@ class ServiceVehicleMovementM2mTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 1305 }}
+          scroll={{ x: 2190 }}
         />
       </div>
     )

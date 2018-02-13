@@ -37,7 +37,7 @@ const handleServerError = (data) => {
 
 export default {
 
-  namespace: '_handoverChecklistResult',
+  namespace: '_handOverChecklistResult',
 
   state: {},
 
@@ -46,7 +46,7 @@ export default {
     setup({ dispatch, history }) { 
       history.listen((location) => {
         const { pathname } = location
-        if (!pathname.startsWith('/handoverChecklistResult')) {
+        if (!pathname.startsWith('/handOverChecklistResult')) {
           return
         }
         const newstate = location.state
@@ -54,26 +54,26 @@ export default {
           dispatch({ type: 'updateState', payload: newstate })
           return
         }
-        const dashboardmatch = pathToRegexp('/handoverChecklistResult/:id/dashboard').exec(pathname)
+        const dashboardmatch = pathToRegexp('/handOverChecklistResult/:id/dashboard').exec(pathname)
         if (dashboardmatch) {
           const id = dashboardmatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const editDetailMatch = pathToRegexp('/handoverChecklistResult/:id/editDetail').exec(pathname)
+        const editDetailMatch = pathToRegexp('/handOverChecklistResult/:id/editDetail').exec(pathname)
         if (editDetailMatch) {
           const id = editDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const viewDetailMatch = pathToRegexp('/handoverChecklistResult/:id/viewDetail').exec(pathname)
+        const viewDetailMatch = pathToRegexp('/handOverChecklistResult/:id/viewDetail').exec(pathname)
         if (viewDetailMatch) {
           const id = viewDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
         
-        const match = pathToRegexp('/handoverChecklistResult/:id/list/:listName').exec(pathname)
+        const match = pathToRegexp('/handOverChecklistResult/:id/list/:listName').exec(pathname)
         if (!match) {
           return
           //  dispatch action with userId
@@ -85,16 +85,16 @@ export default {
   },
   effects: {
     *view({ payload }, { call, put }) { 
-      const {HandoverChecklistResultService} = GlobalComponents;
+      const {HandOverChecklistResultService} = GlobalComponents;
       yield put({ type: 'showLoading', payload })
-      const data = yield call(HandoverChecklistResultService.view, payload.id)
+      const data = yield call(HandOverChecklistResultService.view, payload.id)
       console.log('this is the data id:', data.id)
       yield put({ type: 'updateState', payload: data })
     },
     *load({ payload }, { call, put }) { 
-      const {HandoverChecklistResultService} = GlobalComponents;
+      const {HandOverChecklistResultService} = GlobalComponents;
       yield put({ type: 'showLoading', payload })
-      const data = yield call(HandoverChecklistResultService.load, payload.id, payload.parameters)
+      const data = yield call(HandOverChecklistResultService.load, payload.id, payload.parameters)
       
       const newPlayload = { ...payload, ...data }
       
@@ -103,17 +103,17 @@ export default {
     },
     *gotoCreateForm({ payload }, { put }) {
       const { id, type } = payload
-      yield put(routerRedux.push(`/handoverChecklistResult/${id}/list/${type}CreateForm`))
+      yield put(routerRedux.push(`/handOverChecklistResult/${id}/list/${type}CreateForm`))
     },
     *gotoUpdateForm({ payload }, { put }) {
       const { id, type, selectedRows, currentUpdateIndex } = payload
       const state = { id, type, selectedRows, currentUpdateIndex }
-      const location = { pathname: `/handoverChecklistResult/${id}/list/${type}UpdateForm`, state }
+      const location = { pathname: `/handOverChecklistResult/${id}/list/${type}UpdateForm`, state }
       yield put(routerRedux.push(location))
     },
     *goback({ payload }, { put }) {
       const { id, type } = payload
-      yield put(routerRedux.push(`/handoverChecklistResult/${id}/list/${type}List`))
+      yield put(routerRedux.push(`/handOverChecklistResult/${id}/list/${type}List`))
     },
 
   },

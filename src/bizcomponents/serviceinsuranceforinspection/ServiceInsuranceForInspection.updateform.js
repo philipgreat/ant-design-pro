@@ -21,12 +21,17 @@ const fieldLabels = {
   serviceComments: '服务的评论',
   startTime: '开始时间',
   lastUpdateTime: '最后更新时间',
+  insuranceName: '保险产品名称',
+  insuranceVendor: '保险承保方',
+  insurancePrice: '保险价格',
+  summary: '概览',
   insuranceNumber: '保单号码',
   insuranceImage1: '保单图片',
   insuranceImage2: '保单图片',
   insuranceImage3: '保单图片',
   insuranceImage4: '保单图片',
   insuranceImage5: '保单图片',
+  merchant: '商户',
   mainOrder: '主订单',
 
 }
@@ -350,6 +355,46 @@ class ServiceInsuranceForInspectionUpdateForm extends Component {
                     rules: [{ required: true, message: '请输入开始时间' }],
                   })(
                     <Input placeholder="请输入请输入开始时间date_time" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceName}>
+                  {getFieldDecorator('insuranceName', {
+                    rules: [{ required: true, message: '请输入保险产品名称' }],
+                  })(
+                    <Input placeholder="请输入请输入保险产品名称string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceVendor}>
+                  {getFieldDecorator('insuranceVendor', {
+                    rules: [{ required: true, message: '请输入保险承保方' }],
+                  })(
+                    <Input placeholder="请输入请输入保险承保方string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insurancePrice}>
+                  {getFieldDecorator('insurancePrice', {
+                    rules: [{ required: true, message: '请输入保险价格' }],
+                  })(
+                    <Input placeholder="请输入请输入保险价格money" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.summary}>
+                  {getFieldDecorator('summary', {
+                    rules: [{ required: true, message: '请输入概览' }],
+                  })(
+                    <Input placeholder="请输入请输入概览string" />
                   )}
                 </Form.Item>
               </Col>

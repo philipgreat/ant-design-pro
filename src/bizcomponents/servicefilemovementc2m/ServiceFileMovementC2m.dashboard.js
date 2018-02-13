@@ -34,11 +34,15 @@ const summaryOf = (serviceFileMovementC2m) =>{
 <Description term="ID">{serviceFileMovementC2m.id}</Description> 
 <Description term="服务状态">{serviceFileMovementC2m.serviceStatus}</Description> 
 <Description term="开始时间">{ moment(serviceFileMovementC2m.startTime).format('YYYY-MM-DD')}</Description> 
-<Description term="最后的位置">{serviceFileMovementC2m.lastLocation}</Description> 
+<Description term="经度">{serviceFileMovementC2m.longitude}</Description> 
+<Description term="纬度">{serviceFileMovementC2m.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceFileMovementC2m.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="转移验证代码">{serviceFileMovementC2m.transferVerifyCode}</Description> 
 <Description term="移动目的">{serviceFileMovementC2m.movementPurpose}</Description> 
 <Description term="联系人姓名">{serviceFileMovementC2m.contactName}</Description> 
 <Description term="联系手机号码">{serviceFileMovementC2m.contactMobileNumber}</Description> 
+<Description term="回归结果">{serviceFileMovementC2m.handoverResult}</Description> 
+<Description term="回归结果的评论">{serviceFileMovementC2m.handoverResultComment}</Description> 
 	
         
       </DescriptionList>
@@ -52,7 +56,7 @@ const summaryOf = (serviceFileMovementC2m) =>{
 export default class ServiceFileMovementC2mDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, reportHandoverCount } = this.props.serviceFileMovementC2m
+    const { id, handOverChecklistResultCount } = this.props.serviceFileMovementC2m
     
     
     
@@ -70,17 +74,17 @@ export default class ServiceFileMovementC2mDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
-                title="交接报告"
-                action={<Tooltip title="交接报告"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(reportHandoverCount).format('0,0')}
+                title="移交清单结果"
+                action={<Tooltip title="移交清单结果"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(handOverChecklistResultCount).format('0,0')}
                 footer={<Field label="状态" value="良好" />}
                 contentHeight={46}
               >
-                <Link to={`/serviceFileMovementC2m/${id}/list/reportHandoverList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                <Link to={`/serviceFileMovementC2m/${id}/list/handOverChecklistResultList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
-                <Link to={`/serviceFileMovementC2m/${id}/list/reportHandoverCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                <Link to={`/serviceFileMovementC2m/${id}/list/handOverChecklistResultCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
-                <Link to={`/serviceFileMovementC2m/${id}/list/reportHandoverList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                <Link to={`/serviceFileMovementC2m/${id}/list/handOverChecklistResultList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

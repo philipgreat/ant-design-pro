@@ -88,47 +88,10 @@ class AvailableRatingItemBizApp extends React.PureComponent {
         </span>}
       >
 
-        <Menu.Item>
-          <Link to={`/availableRatingItem/${objectId}/list/orderRatingResultList`}>订单评级结果</Link>
-        </Menu.Item>
       </SubMenu>
     )
   }
 
-
-  getOrderRatingResultSearch = () => {
-    const {OrderRatingResultSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._availableRatingItem.orderRatingResultList,
-      count: state._availableRatingItem.orderRatingResultCount,
-      currentPage: state._availableRatingItem.orderRatingResultCurrentPageNumber,
-      searchFormParameters: state._availableRatingItem.orderRatingResultSearchFormParameters,
-      loading: state._availableRatingItem.loading,
-      owner: { type: '_availableRatingItem', id: state._availableRatingItem.id, listName: 'orderRatingResultList' }, // this is for model namespace and
-    }))(OrderRatingResultSearch)
-  }
-  getOrderRatingResultCreateForm = () => {
-   	const {OrderRatingResultCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._availableRatingItem.orderRatingResultList,
-      count: state._availableRatingItem.orderRatingResultCount,
-      currentPage: state._availableRatingItem.orderRatingResultCurrentPageNumber,
-      searchFormParameters: state._availableRatingItem.orderRatingResultSearchFormParameters,
-      loading: state._availableRatingItem.loading,
-      owner: { type: '_availableRatingItem', id: state._availableRatingItem.id, listName: 'orderRatingResultList'}, // this is for model namespace and
-    }))(OrderRatingResultCreateForm)
-  }
-  
-  getOrderRatingResultUpdateForm = () => {
-  	const {OrderRatingResultUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._availableRatingItem.selectedRows,
-      currentUpdateIndex: state._availableRatingItem.currentUpdateIndex,
-      owner: { type: '_availableRatingItem', id: state._availableRatingItem.id, listName: 'orderRatingResultList' }, // this is for model namespace and
-    }))(OrderRatingResultUpdateForm)
-  }
 
   getPageTitle = () => {
     // const { location } = this.props
@@ -216,10 +179,6 @@ class AvailableRatingItemBizApp extends React.PureComponent {
                <Route path="/availableRatingItem/:id/editDetail" component={AvailableRatingItemEditDetail} />
                <Route path="/availableRatingItem/:id/viewDetail" component={AvailableRatingItemViewDetail} />
                
-
-               <Route path="/availableRatingItem/:id/list/orderRatingResultList" component={this.getOrderRatingResultSearch()} />
-               <Route path="/availableRatingItem/:id/list/orderRatingResultCreateForm" component={this.getOrderRatingResultCreateForm()} />
-               <Route path="/availableRatingItem/:id/list/orderRatingResultUpdateForm" component={this.getOrderRatingResultUpdateForm()} />
               
              </Switch>
            </Content>

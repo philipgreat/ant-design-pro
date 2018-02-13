@@ -306,8 +306,8 @@ class VehicleServiceCompanyUpdateForm extends Component {
     // TODO
     return (
       <PageHeaderLayout
-        title={"更新商户管理"+(currentUpdateIndex+1)+"/"+selectedRows.length}
-        content="更新商户管理"
+        title={"更新商户"+(currentUpdateIndex+1)+"/"+selectedRows.length}
+        content="更新商户"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>

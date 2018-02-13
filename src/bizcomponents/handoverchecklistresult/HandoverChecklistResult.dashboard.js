@@ -13,7 +13,7 @@ import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
 import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import styles from './HandoverChecklistResult.dashboard.less'
+import styles from './HandOverChecklistResult.dashboard.less'
 import DescriptionList from '../../components/DescriptionList';
 const { Description } = DescriptionList;
 const { TabPane } = Tabs
@@ -27,18 +27,19 @@ const topColResponsiveProps = {
   xl: 6,
   style: { marginBottom: 24 },
 }
-const summaryOf = (handoverChecklistResult) =>{
+const summaryOf = (handOverChecklistResult) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{handoverChecklistResult.id}</Description> 
-<Description term="回归检验结果">{handoverChecklistResult.handoverCheckResult}</Description> 
-<Description term="交接检查评论">{handoverChecklistResult.handoverCheckComment}</Description> 
-<Description term="切换检查证据图片1">{handoverChecklistResult.handoverCheckEvidenceImage1}</Description> 
-<Description term="切换检查证据图片2">{handoverChecklistResult.handoverCheckEvidenceImage2}</Description> 
-<Description term="切换检查证据图片3">{handoverChecklistResult.handoverCheckEvidenceImage3}</Description> 
-<Description term="切换检查证据图片4">{handoverChecklistResult.handoverCheckEvidenceImage4}</Description> 
-<Description term="切换检查证据图片5">{handoverChecklistResult.handoverCheckEvidenceImage5}</Description> 
+<Description term="ID">{handOverChecklistResult.id}</Description> 
+<Description term="移交检查项目名称。">{handOverChecklistResult.handOverCheckItemName}</Description> 
+<Description term="移交检查结果">{handOverChecklistResult.handOverCheckResult}</Description> 
+<Description term="移交检查评论">{handOverChecklistResult.handOverCheckComment}</Description> 
+<Description term="移交检查证据图片1。">{handOverChecklistResult.handOverCheckEvidenceImage1}</Description> 
+<Description term="移交检查证据图2。">{handOverChecklistResult.handOverCheckEvidenceImage2}</Description> 
+<Description term="移交检查证据图3。">{handOverChecklistResult.handOverCheckEvidenceImage3}</Description> 
+<Description term="移交检查证据图片4。">{handOverChecklistResult.handOverCheckEvidenceImage4}</Description> 
+<Description term="移交检查证据图片5。">{handOverChecklistResult.handOverCheckEvidenceImage5}</Description> 
 	
         
       </DescriptionList>
@@ -47,20 +48,20 @@ const summaryOf = (handoverChecklistResult) =>{
 }
 
 @connect(state => ({
-  handoverChecklistResult: state._handoverChecklistResult,
+  handOverChecklistResult: state._handOverChecklistResult,
 }))
-export default class HandoverChecklistResultDashboard extends Component {
+export default class HandOverChecklistResultDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id,  } = this.props.handoverChecklistResult
+    const { id,  } = this.props.handOverChecklistResult
     
     
     
     return (
 
       <PageHeaderLayout
-        title="交接清单结果总览"
-        content={summaryOf(this.props.handoverChecklistResult)}
+        title="移交清单结果总览"
+        content={summaryOf(this.props.handOverChecklistResult)}
         wrapperClassName={styles.advancedForm}
       >
         <div>

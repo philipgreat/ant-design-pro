@@ -62,20 +62,20 @@ export default class AvailableHandOverItemViewDetail extends Component {
   }  
   render() {
     const {HandOverChecklistItemViewTable} = GlobalComponents;
-    const {HandoverChecklistResultViewTable} = GlobalComponents;
+    const {HandOverChecklistResultViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const availableHandOverItem = this.props.availableHandOverItem
-    const { id, handOverChecklistItemCount, handoverChecklistResultCount } = availableHandOverItem
-    const { handOverChecklistItemList, handoverChecklistResultList } = availableHandOverItem
+    const { id, handOverChecklistItemCount, handOverChecklistResultCount } = availableHandOverItem
+    const { handOverChecklistItemList, handOverChecklistResultList } = availableHandOverItem
     
     const owner = { type: '_availableHandOverItem', id }
     
     const tabList = [
 
       {key: 'handOverChecklistItemList',tab: `移交清单项目(${handOverChecklistItemCount})`}, 
-      {key: 'handoverChecklistResultList',tab: `交接清单结果(${handoverChecklistResultCount})`}, 
+      {key: 'handOverChecklistResultList',tab: `移交清单结果(${handOverChecklistResultCount})`}, 
    
 
    ];
@@ -85,8 +85,8 @@ export default class AvailableHandOverItemViewDetail extends Component {
        handOverChecklistItemList:  
         <HandOverChecklistItemViewTable data={handOverChecklistItemList} owner={owner} {...this.props} />,
  
-      handoverChecklistResultList:  
-        <HandoverChecklistResultViewTable data={handoverChecklistResultList} owner={owner} {...this.props} />,
+      handOverChecklistResultList:  
+        <HandOverChecklistResultViewTable data={handOverChecklistResultList} owner={owner} {...this.props} />,
  
     
     };
@@ -99,7 +99,7 @@ export default class AvailableHandOverItemViewDetail extends Component {
     return (
 
       <PageHeaderLayout
-        title="交接检查清单总览"
+        title="可用移交项目总览"
         content={summaryOf(this.props.availableHandOverItem)}
         wrapperClassName={styles.advancedForm}
       >

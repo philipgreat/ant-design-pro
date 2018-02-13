@@ -3,7 +3,7 @@
 import React, { PureComponent } from 'react'
 import moment from 'moment'
 import {Form,Button, Table, Alert, Badge,Input,Divider,Popconfirm } from 'antd'
-import styles from './HandoverChecklistResult.edittable.less'
+import styles from './HandOverChecklistResult.edittable.less'
 import ImagePreview from '../../components/ImagePreview'
 
 
@@ -23,7 +23,7 @@ const toggleEdit = (e,data,id) =>{
 
 
 
-class HandoverChecklistResultEditTable extends PureComponent {
+class HandOverChecklistResultEditTable extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -84,19 +84,24 @@ class HandoverChecklistResultEditTable extends PureComponent {
     }
     const remapReference = (record) => {
 			const availableHandOverItemId = record.availableHandOverItem.id
-			const reportHandoverId = record.reportHandover.id
+			const serviceTypeVehicleC2mId = record.serviceTypeVehicleC2m.id
+			const serviceTypeVehicleM2mId = record.serviceTypeVehicleM2m.id
+			const serviceTypeVehicleM2cId = record.serviceTypeVehicleM2c.id
+			const serviceTypeFileC2mId = record.serviceTypeFileC2m.id
+			const serviceTypeFileM2mId = record.serviceTypeFileM2m.id
+			const serviceTypeFileM2cId = record.serviceTypeFileM2c.id
 
       //const communityId = record.community.id;
-      return {availableHandOverItemId,reportHandoverId,};
+      return {availableHandOverItemId,serviceTypeVehicleC2mId,serviceTypeVehicleM2mId,serviceTypeVehicleM2cId,serviceTypeFileC2mId,serviceTypeFileM2mId,serviceTypeFileM2cId,};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const handoverChecklistResultIds = [record.id];
-      const parameters = { handoverChecklistResultIds }
+      const handOverChecklistResultIds = [record.id];
+      const parameters = { handOverChecklistResultIds }
       dispatch({
-        type: `${owner.type}/removeHandoverChecklistResultList`,
-        payload: { id: owner.id, type: 'handoverChecklistResult', parameters },
+        type: `${owner.type}/removeHandOverChecklistResultList`,
+        payload: { id: owner.id, type: 'handOverChecklistResult', parameters },
       })
     }
 
@@ -110,10 +115,10 @@ class HandoverChecklistResultEditTable extends PureComponent {
       
 
       dispatch({
-        type: `${owner.type}/addHandoverChecklistResult`,
+        type: `${owner.type}/addHandOverChecklistResult`,
         payload: {
           id: owner.id,
-          type: 'handoverChecklistResult',
+          type: 'handOverChecklistResult',
           parameters,
           selectedRows:newData,
           currentUpdateIndex: 0,
@@ -127,17 +132,17 @@ class HandoverChecklistResultEditTable extends PureComponent {
     const updateRecord = (e,record) =>{
       const {dispatch, owner} = this.props
       const {data} = this.state
-      const {handoverChecklistResultId} = record.id
-      const parameters = { ...record, handoverChecklistResultId }
+      const {handOverChecklistResultId} = record.id
+      const parameters = { ...record, handOverChecklistResultId }
       const newData = [...data];
       const row =  newData.filter(item => item.id === record.id)[0];
       row.editable = !row.editable 
 
       dispatch({
-        type: `${owner.type}/updateHandoverChecklistResult`,
+        type: `${owner.type}/updateHandOverChecklistResult`,
         payload: {
           id: owner.id,
-          type: 'handoverChecklistResult',
+          type: 'handOverChecklistResult',
           parameters,
           selectedRows:newData,
           currentUpdateIndex: 0,
@@ -192,35 +197,47 @@ class HandoverChecklistResultEditTable extends PureComponent {
     
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '回归检验结果', debugtype: 'string', dataIndex: 'handoverCheckResult', width: '6', render: (text, record) => renderStringEdit('handoverCheckResult',text, record)  },
-  { title: '交接检查评论', debugtype: 'string', dataIndex: 'handoverCheckComment', width: '10', render: (text, record) => renderStringEdit('handoverCheckComment',text, record)  },
-  { title: '切换检查证据图片1', dataIndex: 'handoverCheckEvidenceImage1', render: (text, record) => <ImagePreview imageLocation={record.handoverCheckEvidenceImage1} /> },
-  { title: '切换检查证据图片2', dataIndex: 'handoverCheckEvidenceImage2', render: (text, record) => <ImagePreview imageLocation={record.handoverCheckEvidenceImage2} /> },
-  { title: '切换检查证据图片3', dataIndex: 'handoverCheckEvidenceImage3', render: (text, record) => <ImagePreview imageLocation={record.handoverCheckEvidenceImage3} /> },
-  { title: '切换检查证据图片4', dataIndex: 'handoverCheckEvidenceImage4', render: (text, record) => <ImagePreview imageLocation={record.handoverCheckEvidenceImage4} /> },
-  { title: '切换检查证据图片5', dataIndex: 'handoverCheckEvidenceImage5', render: (text, record) => <ImagePreview imageLocation={record.handoverCheckEvidenceImage5} /> },
-  { title: '交接检查清单', dataIndex: 'availableHandOverItem', render: (text, record) => (record.availableHandOverItem ? record.availableHandOverItem.id : '暂无') },
-  { title: '交接报告', dataIndex: 'reportHandover', render: (text, record) => (record.reportHandover ? record.reportHandover.id : '暂无') },
+  { title: '移交检查项目名称。', debugtype: 'string', dataIndex: 'handOverCheckItemName', width: '11', render: (text, record) => renderStringEdit('handOverCheckItemName',text, record)  },
+  { title: '移交检查结果', debugtype: 'string', dataIndex: 'handOverCheckResult', width: '6', render: (text, record) => renderStringEdit('handOverCheckResult',text, record)  },
+  { title: '移交检查评论', debugtype: 'string', dataIndex: 'handOverCheckComment', width: '10', render: (text, record) => renderStringEdit('handOverCheckComment',text, record)  },
+  { title: '移交检查证据图片1。', dataIndex: 'handOverCheckEvidenceImage1', render: (text, record) => <ImagePreview imageLocation={record.handOverCheckEvidenceImage1} /> },
+  { title: '移交检查证据图2。', dataIndex: 'handOverCheckEvidenceImage2', render: (text, record) => <ImagePreview imageLocation={record.handOverCheckEvidenceImage2} /> },
+  { title: '移交检查证据图3。', dataIndex: 'handOverCheckEvidenceImage3', render: (text, record) => <ImagePreview imageLocation={record.handOverCheckEvidenceImage3} /> },
+  { title: '移交检查证据图片4。', dataIndex: 'handOverCheckEvidenceImage4', render: (text, record) => <ImagePreview imageLocation={record.handOverCheckEvidenceImage4} /> },
+  { title: '移交检查证据图片5。', dataIndex: 'handOverCheckEvidenceImage5', render: (text, record) => <ImagePreview imageLocation={record.handOverCheckEvidenceImage5} /> },
+  { title: '可用移交项目', dataIndex: 'availableHandOverItem', render: (text, record) => (record.availableHandOverItem ? record.availableHandOverItem.id : '暂无') },
+  { title: '服务类型车辆C2m', dataIndex: 'serviceTypeVehicleC2m', render: (text, record) => (record.serviceTypeVehicleC2m ? record.serviceTypeVehicleC2m.id : '暂无') },
+  { title: '服务类型车辆M2m', dataIndex: 'serviceTypeVehicleM2m', render: (text, record) => (record.serviceTypeVehicleM2m ? record.serviceTypeVehicleM2m.id : '暂无') },
+  { title: '服务类型车辆M2c', dataIndex: 'serviceTypeVehicleM2c', render: (text, record) => (record.serviceTypeVehicleM2c ? record.serviceTypeVehicleM2c.id : '暂无') },
+  { title: '服务类型文件C2m', dataIndex: 'serviceTypeFileC2m', render: (text, record) => (record.serviceTypeFileC2m ? record.serviceTypeFileC2m.id : '暂无') },
+  { title: '服务类型文件M2m', dataIndex: 'serviceTypeFileM2m', render: (text, record) => (record.serviceTypeFileM2m ? record.serviceTypeFileM2m.id : '暂无') },
+  { title: '服务类型文件M2c', dataIndex: 'serviceTypeFileM2c', render: (text, record) => (record.serviceTypeFileM2c ? record.serviceTypeFileM2c.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    
     const newRecord =()=>{
-      const newHandoverChecklistResultToAppend  = {
+      const newHandOverChecklistResultToAppend  = {
       	'id':`+1`, 
-				'handoverCheckResult':'',
-				'handoverCheckComment':'',
-				'handoverCheckEvidenceImage1':'',
-				'handoverCheckEvidenceImage2':'',
-				'handoverCheckEvidenceImage3':'',
-				'handoverCheckEvidenceImage4':'',
-				'handoverCheckEvidenceImage5':'',
+				'handOverCheckItemName':'',
+				'handOverCheckResult':'',
+				'handOverCheckComment':'',
+				'handOverCheckEvidenceImage1':'',
+				'handOverCheckEvidenceImage2':'',
+				'handOverCheckEvidenceImage3':'',
+				'handOverCheckEvidenceImage4':'',
+				'handOverCheckEvidenceImage5':'',
 				'availableHandOverItem':'',
-				'reportHandover':'',
+				'serviceTypeVehicleC2m':'',
+				'serviceTypeVehicleM2m':'',
+				'serviceTypeVehicleM2c':'',
+				'serviceTypeFileC2m':'',
+				'serviceTypeFileM2m':'',
+				'serviceTypeFileM2c':'',
 
 
       };
       const newData = data ? [...data]:[];
-      newData.push(newHandoverChecklistResultToAppend);
+      newData.push(newHandOverChecklistResultToAppend);
       this.setState({ data: newData, appendInProcess: true });
 
 
@@ -255,7 +272,7 @@ class HandoverChecklistResultEditTable extends PureComponent {
   }
 }
 
-export default Form.create()(HandoverChecklistResultEditTable)
+export default Form.create()(HandOverChecklistResultEditTable)
 
 
 

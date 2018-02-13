@@ -48,7 +48,7 @@ const summaryOf = (availableProduct) =>{
 export default class AvailableProductDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, availableServiceCount, productPriceCount, availableInsuranceCount, availableHandOverItemCount } = this.props.availableProduct
+    const { id, servicePriceCount, availableServiceCount, productPriceCount, availableInsuranceCount, availableHandOverItemCount } = this.props.availableProduct
     
     
     
@@ -61,6 +61,24 @@ export default class AvailableProductDashboard extends Component {
       >
         <div>
           <Row gutter={24}>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="服务价格"
+                action={<Tooltip title="服务价格"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(servicePriceCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/availableProduct/${id}/list/servicePriceList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/availableProduct/${id}/list/servicePriceCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/availableProduct/${id}/list/servicePriceList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
 
           
             <Col {...topColResponsiveProps}>
@@ -120,8 +138,8 @@ export default class AvailableProductDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
-                title="交接检查清单"
-                action={<Tooltip title="交接检查清单"><Icon type="info-circle-o" /></Tooltip>}
+                title="可用移交项目"
+                action={<Tooltip title="可用移交项目"><Icon type="info-circle-o" /></Tooltip>}
                 total={numeral(availableHandOverItemCount).format('0,0')}
                 footer={<Field label="状态" value="良好" />}
                 contentHeight={46}

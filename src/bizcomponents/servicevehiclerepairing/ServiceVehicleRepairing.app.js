@@ -100,6 +100,9 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
         <Menu.Item>
           <Link to={`/serviceVehicleRepairing/${objectId}/list/vehicleRepairingPaymentList`}>修理付款</Link>
         </Menu.Item>
+        <Menu.Item>
+          <Link to={`/serviceVehicleRepairing/${objectId}/list/vehicleRepairingReportList`}>车辆维修报告</Link>
+        </Menu.Item>
       </SubMenu>
     )
   }
@@ -241,6 +244,40 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
     }))(VehicleRepairingPaymentUpdateForm)
   }
 
+  getVehicleRepairingReportSearch = () => {
+    const {VehicleRepairingReportSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._serviceVehicleRepairing.vehicleRepairingReportList,
+      count: state._serviceVehicleRepairing.vehicleRepairingReportCount,
+      currentPage: state._serviceVehicleRepairing.vehicleRepairingReportCurrentPageNumber,
+      searchFormParameters: state._serviceVehicleRepairing.vehicleRepairingReportSearchFormParameters,
+      loading: state._serviceVehicleRepairing.loading,
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'vehicleRepairingReportList' }, // this is for model namespace and
+    }))(VehicleRepairingReportSearch)
+  }
+  getVehicleRepairingReportCreateForm = () => {
+   	const {VehicleRepairingReportCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._serviceVehicleRepairing.vehicleRepairingReportList,
+      count: state._serviceVehicleRepairing.vehicleRepairingReportCount,
+      currentPage: state._serviceVehicleRepairing.vehicleRepairingReportCurrentPageNumber,
+      searchFormParameters: state._serviceVehicleRepairing.vehicleRepairingReportSearchFormParameters,
+      loading: state._serviceVehicleRepairing.loading,
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'vehicleRepairingReportList'}, // this is for model namespace and
+    }))(VehicleRepairingReportCreateForm)
+  }
+  
+  getVehicleRepairingReportUpdateForm = () => {
+  	const {VehicleRepairingReportUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._serviceVehicleRepairing.selectedRows,
+      currentUpdateIndex: state._serviceVehicleRepairing.currentUpdateIndex,
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'vehicleRepairingReportList' }, // this is for model namespace and
+    }))(VehicleRepairingReportUpdateForm)
+  }
+
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
@@ -343,6 +380,10 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
                <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingPaymentList" component={this.getVehicleRepairingPaymentSearch()} />
                <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingPaymentCreateForm" component={this.getVehicleRepairingPaymentCreateForm()} />
                <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingPaymentUpdateForm" component={this.getVehicleRepairingPaymentUpdateForm()} />
+
+               <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingReportList" component={this.getVehicleRepairingReportSearch()} />
+               <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingReportCreateForm" component={this.getVehicleRepairingReportCreateForm()} />
+               <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingReportUpdateForm" component={this.getVehicleRepairingReportUpdateForm()} />
               
              </Switch>
            </Content>

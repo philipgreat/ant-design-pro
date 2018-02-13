@@ -6,45 +6,57 @@ import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
 
-import styles from './HandoverChecklistResult.createform.less'
+import styles from './HandOverChecklistResult.createform.less'
 
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  handoverCheckResult: '回归检验结果',
-  handoverCheckComment: '交接检查评论',
-  handoverCheckEvidenceImage1: '切换检查证据图片1',
-  handoverCheckEvidenceImage2: '切换检查证据图片2',
-  handoverCheckEvidenceImage3: '切换检查证据图片3',
-  handoverCheckEvidenceImage4: '切换检查证据图片4',
-  handoverCheckEvidenceImage5: '切换检查证据图片5',
-  availableHandOverItem: '交接检查清单',
-  reportHandover: '交接报告',
+  handOverCheckItemName: '移交检查项目名称。',
+  handOverCheckResult: '移交检查结果',
+  handOverCheckComment: '移交检查评论',
+  handOverCheckEvidenceImage1: '移交检查证据图片1。',
+  handOverCheckEvidenceImage2: '移交检查证据图2。',
+  handOverCheckEvidenceImage3: '移交检查证据图3。',
+  handOverCheckEvidenceImage4: '移交检查证据图片4。',
+  handOverCheckEvidenceImage5: '移交检查证据图片5。',
+  availableHandOverItem: '可用移交项目',
+  serviceTypeVehicleC2m: '服务类型车辆C2m',
+  serviceTypeVehicleM2m: '服务类型车辆M2m',
+  serviceTypeVehicleM2c: '服务类型车辆M2c',
+  serviceTypeFileC2m: '服务类型文件C2m',
+  serviceTypeFileM2m: '服务类型文件M2m',
+  serviceTypeFileM2c: '服务类型文件M2c',
 }
 
 
 const testValues = {
-  handoverCheckResult: '通过',
-  handoverCheckComment: '检查结果描述',
+  handOverCheckItemName: '刹车是否完好?',
+  handOverCheckResult: '通过',
+  handOverCheckComment: '检查结果描述',
   availableHandOverItemId: 'AHOI000001',
-  reportHandoverId: 'RH000001',
+  serviceTypeVehicleC2mId: 'SVMC000001',
+  serviceTypeVehicleM2mId: 'SVMM000001',
+  serviceTypeVehicleM2cId: 'SVMM000001',
+  serviceTypeFileC2mId: 'SFMC000001',
+  serviceTypeFileM2mId: 'SFMM000001',
+  serviceTypeFileM2cId: 'SFMM000001',
 }
 
 const imageURLPrefix = '//localhost:2090'
 
 
 const imageKeys = [
-  'handoverCheckEvidenceImage1',
-  'handoverCheckEvidenceImage2',
-  'handoverCheckEvidenceImage3',
-  'handoverCheckEvidenceImage4',
-  'handoverCheckEvidenceImage5',
+  'handOverCheckEvidenceImage1',
+  'handOverCheckEvidenceImage2',
+  'handOverCheckEvidenceImage3',
+  'handOverCheckEvidenceImage4',
+  'handOverCheckEvidenceImage5',
 ]
 
 
-class HandoverChecklistResultCreateForm extends Component {
+class HandOverChecklistResultCreateForm extends Component {
   state = {
     previewVisible: false,
     previewImage: '',
@@ -129,8 +141,8 @@ class HandoverChecklistResultCreateForm extends Component {
 
         const parameters = { ...values, ...imagesValues }
         dispatch({
-          type: `${owner.type}/addHandoverChecklistResult`,
-          payload: { id: owner.id, type: 'handoverChecklistResult', parameters },
+          type: `${owner.type}/addHandOverChecklistResult`,
+          payload: { id: owner.id, type: 'handOverChecklistResult', parameters },
         })
       })
     }
@@ -146,8 +158,8 @@ class HandoverChecklistResultCreateForm extends Component {
         
         const parameters = { ...values, ...imagesValues }
         dispatch({
-          type: `${owner.type}/addHandoverChecklistResult`,
-          payload: { id: owner.id, type: 'handoverChecklistResult', parameters, continueNext: true },
+          type: `${owner.type}/addHandOverChecklistResult`,
+          payload: { id: owner.id, type: 'handOverChecklistResult', parameters, continueNext: true },
         })
       })
     }
@@ -156,7 +168,7 @@ class HandoverChecklistResultCreateForm extends Component {
       const { owner } = this.props
       dispatch({
         type: `${owner.type}/goback`,
-        payload: { id: owner.id, type: 'handoverChecklistResult' },
+        payload: { id: owner.id, type: 'handOverChecklistResult' },
       })
     }
     const errors = getFieldsError()
@@ -201,8 +213,8 @@ class HandoverChecklistResultCreateForm extends Component {
     }
     return (
       <PageHeaderLayout
-        title="新建一个交接清单结果"
-        content="新建一个交接清单结果"
+        title="新建一个移交清单结果"
+        content="新建一个移交清单结果"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
@@ -210,21 +222,31 @@ class HandoverChecklistResultCreateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.handoverCheckResult}>
-                  {getFieldDecorator('handoverCheckResult', {
-                    rules: [{ required: true, message: '请输入回归检验结果' }],
+                <Form.Item label={fieldLabels.handOverCheckItemName}>
+                  {getFieldDecorator('handOverCheckItemName', {
+                    rules: [{ required: true, message: '请输入移交检查项目名称。' }],
                   })(
-                    <Input placeholder="请输入请输入回归检验结果string" />
+                    <Input placeholder="请输入请输入移交检查项目名称。string" />
                   )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.handoverCheckComment}>
-                  {getFieldDecorator('handoverCheckComment', {
-                    rules: [{ required: true, message: '请输入交接检查评论' }],
+                <Form.Item label={fieldLabels.handOverCheckResult}>
+                  {getFieldDecorator('handOverCheckResult', {
+                    rules: [{ required: true, message: '请输入移交检查结果' }],
                   })(
-                    <Input placeholder="请输入请输入交接检查评论string" />
+                    <Input placeholder="请输入请输入移交检查结果string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.handOverCheckComment}>
+                  {getFieldDecorator('handOverCheckComment', {
+                    rules: [{ required: true, message: '请输入移交检查评论' }],
+                  })(
+                    <Input placeholder="请输入请输入移交检查评论string" />
                   )}
                 </Form.Item>
               </Col>
@@ -242,46 +264,46 @@ class HandoverChecklistResultCreateForm extends Component {
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="切换检查证据图片1"
+                  buttonTitle="移交检查证据图片1。"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handoverCheckEvidenceImage1')}
-                  fileList={convertedImagesValues.handoverCheckEvidenceImage1}
+                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage1')}
+                  fileList={convertedImagesValues.handOverCheckEvidenceImage1}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="切换检查证据图片2"
+                  buttonTitle="移交检查证据图2。"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handoverCheckEvidenceImage2')}
-                  fileList={convertedImagesValues.handoverCheckEvidenceImage2}
+                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage2')}
+                  fileList={convertedImagesValues.handOverCheckEvidenceImage2}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="切换检查证据图片3"
+                  buttonTitle="移交检查证据图3。"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handoverCheckEvidenceImage3')}
-                  fileList={convertedImagesValues.handoverCheckEvidenceImage3}
+                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage3')}
+                  fileList={convertedImagesValues.handOverCheckEvidenceImage3}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="切换检查证据图片4"
+                  buttonTitle="移交检查证据图片4。"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handoverCheckEvidenceImage4')}
-                  fileList={convertedImagesValues.handoverCheckEvidenceImage4}
+                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage4')}
+                  fileList={convertedImagesValues.handOverCheckEvidenceImage4}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="切换检查证据图片5"
+                  buttonTitle="移交检查证据图片5。"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handoverCheckEvidenceImage5')}
-                  fileList={convertedImagesValues.handoverCheckEvidenceImage5}
+                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage5')}
+                  fileList={convertedImagesValues.handOverCheckEvidenceImage5}
                 />
               </Col>
 
@@ -298,19 +320,69 @@ class HandoverChecklistResultCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.availableHandOverItem}>
                   {getFieldDecorator('availableHandOverItemId', {
-                    rules: [{ required: true, message: '请输入交接检查清单' }],
+                    rules: [{ required: true, message: '请输入可用移交项目' }],
                   })(
-                    <Input placeholder="请输入请输入交接检查清单" />
+                    <Input placeholder="请输入请输入可用移交项目" />
                   )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.reportHandover}>
-                  {getFieldDecorator('reportHandoverId', {
-                    rules: [{ required: true, message: '请输入交接报告' }],
+                <Form.Item label={fieldLabels.serviceTypeVehicleC2m}>
+                  {getFieldDecorator('serviceTypeVehicleC2mId', {
+                    rules: [{ required: true, message: '请输入服务类型车辆C2m' }],
                   })(
-                    <Input placeholder="请输入请输入交接报告" />
+                    <Input placeholder="请输入请输入服务类型车辆C2m" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTypeVehicleM2m}>
+                  {getFieldDecorator('serviceTypeVehicleM2mId', {
+                    rules: [{ required: true, message: '请输入服务类型车辆M2m' }],
+                  })(
+                    <Input placeholder="请输入请输入服务类型车辆M2m" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTypeVehicleM2c}>
+                  {getFieldDecorator('serviceTypeVehicleM2cId', {
+                    rules: [{ required: true, message: '请输入服务类型车辆M2c' }],
+                  })(
+                    <Input placeholder="请输入请输入服务类型车辆M2c" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTypeFileC2m}>
+                  {getFieldDecorator('serviceTypeFileC2mId', {
+                    rules: [{ required: true, message: '请输入服务类型文件C2m' }],
+                  })(
+                    <Input placeholder="请输入请输入服务类型文件C2m" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTypeFileM2m}>
+                  {getFieldDecorator('serviceTypeFileM2mId', {
+                    rules: [{ required: true, message: '请输入服务类型文件M2m' }],
+                  })(
+                    <Input placeholder="请输入请输入服务类型文件M2m" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTypeFileM2c}>
+                  {getFieldDecorator('serviceTypeFileM2cId', {
+                    rules: [{ required: true, message: '请输入服务类型文件M2c' }],
+                  })(
+                    <Input placeholder="请输入请输入服务类型文件M2c" />
                   )}
                 </Form.Item>
               </Col>
@@ -338,7 +410,7 @@ class HandoverChecklistResultCreateForm extends Component {
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-}))(Form.create()(HandoverChecklistResultCreateForm))
+}))(Form.create()(HandOverChecklistResultCreateForm))
 
 
 

@@ -145,6 +145,18 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
         <Menu.Item>
           <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceVehicleRepairingList`}>修车服务</Link>
         </Menu.Item>
+        <Menu.Item>
+          <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/serviceCompanyAccountList`}>服务公司对账单</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/repairingCompanyAccountList`}>修理公司对账单</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/insuranceServiceAccountList`}>保险服务帐户</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/vehicleServiceCompanyEmployee/${objectId}/list/inspectionStationAccountList`}>检查站对账单</Link>
+        </Menu.Item>
       </SubMenu>
     )
   }
@@ -796,6 +808,142 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
     }))(ServiceVehicleRepairingUpdateForm)
   }
 
+  getServiceCompanyAccountSearch = () => {
+    const {ServiceCompanyAccountSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompanyEmployee.serviceCompanyAccountList,
+      count: state._vehicleServiceCompanyEmployee.serviceCompanyAccountCount,
+      currentPage: state._vehicleServiceCompanyEmployee.serviceCompanyAccountCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompanyEmployee.serviceCompanyAccountSearchFormParameters,
+      loading: state._vehicleServiceCompanyEmployee.loading,
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceCompanyAccountList' }, // this is for model namespace and
+    }))(ServiceCompanyAccountSearch)
+  }
+  getServiceCompanyAccountCreateForm = () => {
+   	const {ServiceCompanyAccountCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompanyEmployee.serviceCompanyAccountList,
+      count: state._vehicleServiceCompanyEmployee.serviceCompanyAccountCount,
+      currentPage: state._vehicleServiceCompanyEmployee.serviceCompanyAccountCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompanyEmployee.serviceCompanyAccountSearchFormParameters,
+      loading: state._vehicleServiceCompanyEmployee.loading,
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceCompanyAccountList'}, // this is for model namespace and
+    }))(ServiceCompanyAccountCreateForm)
+  }
+  
+  getServiceCompanyAccountUpdateForm = () => {
+  	const {ServiceCompanyAccountUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._vehicleServiceCompanyEmployee.selectedRows,
+      currentUpdateIndex: state._vehicleServiceCompanyEmployee.currentUpdateIndex,
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceCompanyAccountList' }, // this is for model namespace and
+    }))(ServiceCompanyAccountUpdateForm)
+  }
+
+  getRepairingCompanyAccountSearch = () => {
+    const {RepairingCompanyAccountSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompanyEmployee.repairingCompanyAccountList,
+      count: state._vehicleServiceCompanyEmployee.repairingCompanyAccountCount,
+      currentPage: state._vehicleServiceCompanyEmployee.repairingCompanyAccountCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompanyEmployee.repairingCompanyAccountSearchFormParameters,
+      loading: state._vehicleServiceCompanyEmployee.loading,
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'repairingCompanyAccountList' }, // this is for model namespace and
+    }))(RepairingCompanyAccountSearch)
+  }
+  getRepairingCompanyAccountCreateForm = () => {
+   	const {RepairingCompanyAccountCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompanyEmployee.repairingCompanyAccountList,
+      count: state._vehicleServiceCompanyEmployee.repairingCompanyAccountCount,
+      currentPage: state._vehicleServiceCompanyEmployee.repairingCompanyAccountCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompanyEmployee.repairingCompanyAccountSearchFormParameters,
+      loading: state._vehicleServiceCompanyEmployee.loading,
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'repairingCompanyAccountList'}, // this is for model namespace and
+    }))(RepairingCompanyAccountCreateForm)
+  }
+  
+  getRepairingCompanyAccountUpdateForm = () => {
+  	const {RepairingCompanyAccountUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._vehicleServiceCompanyEmployee.selectedRows,
+      currentUpdateIndex: state._vehicleServiceCompanyEmployee.currentUpdateIndex,
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'repairingCompanyAccountList' }, // this is for model namespace and
+    }))(RepairingCompanyAccountUpdateForm)
+  }
+
+  getInsuranceServiceAccountSearch = () => {
+    const {InsuranceServiceAccountSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompanyEmployee.insuranceServiceAccountList,
+      count: state._vehicleServiceCompanyEmployee.insuranceServiceAccountCount,
+      currentPage: state._vehicleServiceCompanyEmployee.insuranceServiceAccountCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompanyEmployee.insuranceServiceAccountSearchFormParameters,
+      loading: state._vehicleServiceCompanyEmployee.loading,
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'insuranceServiceAccountList' }, // this is for model namespace and
+    }))(InsuranceServiceAccountSearch)
+  }
+  getInsuranceServiceAccountCreateForm = () => {
+   	const {InsuranceServiceAccountCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompanyEmployee.insuranceServiceAccountList,
+      count: state._vehicleServiceCompanyEmployee.insuranceServiceAccountCount,
+      currentPage: state._vehicleServiceCompanyEmployee.insuranceServiceAccountCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompanyEmployee.insuranceServiceAccountSearchFormParameters,
+      loading: state._vehicleServiceCompanyEmployee.loading,
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'insuranceServiceAccountList'}, // this is for model namespace and
+    }))(InsuranceServiceAccountCreateForm)
+  }
+  
+  getInsuranceServiceAccountUpdateForm = () => {
+  	const {InsuranceServiceAccountUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._vehicleServiceCompanyEmployee.selectedRows,
+      currentUpdateIndex: state._vehicleServiceCompanyEmployee.currentUpdateIndex,
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'insuranceServiceAccountList' }, // this is for model namespace and
+    }))(InsuranceServiceAccountUpdateForm)
+  }
+
+  getInspectionStationAccountSearch = () => {
+    const {InspectionStationAccountSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompanyEmployee.inspectionStationAccountList,
+      count: state._vehicleServiceCompanyEmployee.inspectionStationAccountCount,
+      currentPage: state._vehicleServiceCompanyEmployee.inspectionStationAccountCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompanyEmployee.inspectionStationAccountSearchFormParameters,
+      loading: state._vehicleServiceCompanyEmployee.loading,
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'inspectionStationAccountList' }, // this is for model namespace and
+    }))(InspectionStationAccountSearch)
+  }
+  getInspectionStationAccountCreateForm = () => {
+   	const {InspectionStationAccountCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompanyEmployee.inspectionStationAccountList,
+      count: state._vehicleServiceCompanyEmployee.inspectionStationAccountCount,
+      currentPage: state._vehicleServiceCompanyEmployee.inspectionStationAccountCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompanyEmployee.inspectionStationAccountSearchFormParameters,
+      loading: state._vehicleServiceCompanyEmployee.loading,
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'inspectionStationAccountList'}, // this is for model namespace and
+    }))(InspectionStationAccountCreateForm)
+  }
+  
+  getInspectionStationAccountUpdateForm = () => {
+  	const {InspectionStationAccountUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._vehicleServiceCompanyEmployee.selectedRows,
+      currentUpdateIndex: state._vehicleServiceCompanyEmployee.currentUpdateIndex,
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'inspectionStationAccountList' }, // this is for model namespace and
+    }))(InspectionStationAccountUpdateForm)
+  }
+
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
@@ -958,6 +1106,22 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
                <Route path="/vehicleServiceCompanyEmployee/:id/list/serviceVehicleRepairingList" component={this.getServiceVehicleRepairingSearch()} />
                <Route path="/vehicleServiceCompanyEmployee/:id/list/serviceVehicleRepairingCreateForm" component={this.getServiceVehicleRepairingCreateForm()} />
                <Route path="/vehicleServiceCompanyEmployee/:id/list/serviceVehicleRepairingUpdateForm" component={this.getServiceVehicleRepairingUpdateForm()} />
+
+               <Route path="/vehicleServiceCompanyEmployee/:id/list/serviceCompanyAccountList" component={this.getServiceCompanyAccountSearch()} />
+               <Route path="/vehicleServiceCompanyEmployee/:id/list/serviceCompanyAccountCreateForm" component={this.getServiceCompanyAccountCreateForm()} />
+               <Route path="/vehicleServiceCompanyEmployee/:id/list/serviceCompanyAccountUpdateForm" component={this.getServiceCompanyAccountUpdateForm()} />
+
+               <Route path="/vehicleServiceCompanyEmployee/:id/list/repairingCompanyAccountList" component={this.getRepairingCompanyAccountSearch()} />
+               <Route path="/vehicleServiceCompanyEmployee/:id/list/repairingCompanyAccountCreateForm" component={this.getRepairingCompanyAccountCreateForm()} />
+               <Route path="/vehicleServiceCompanyEmployee/:id/list/repairingCompanyAccountUpdateForm" component={this.getRepairingCompanyAccountUpdateForm()} />
+
+               <Route path="/vehicleServiceCompanyEmployee/:id/list/insuranceServiceAccountList" component={this.getInsuranceServiceAccountSearch()} />
+               <Route path="/vehicleServiceCompanyEmployee/:id/list/insuranceServiceAccountCreateForm" component={this.getInsuranceServiceAccountCreateForm()} />
+               <Route path="/vehicleServiceCompanyEmployee/:id/list/insuranceServiceAccountUpdateForm" component={this.getInsuranceServiceAccountUpdateForm()} />
+
+               <Route path="/vehicleServiceCompanyEmployee/:id/list/inspectionStationAccountList" component={this.getInspectionStationAccountSearch()} />
+               <Route path="/vehicleServiceCompanyEmployee/:id/list/inspectionStationAccountCreateForm" component={this.getInspectionStationAccountCreateForm()} />
+               <Route path="/vehicleServiceCompanyEmployee/:id/list/inspectionStationAccountUpdateForm" component={this.getInspectionStationAccountUpdateForm()} />
               
              </Switch>
            </Content>

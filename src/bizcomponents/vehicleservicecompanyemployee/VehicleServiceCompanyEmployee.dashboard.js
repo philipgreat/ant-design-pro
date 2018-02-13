@@ -56,7 +56,7 @@ const summaryOf = (vehicleServiceCompanyEmployee) =>{
 export default class VehicleServiceCompanyEmployeeDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, serviceOrderFilterCount, employeeDrivingLicenseCount, companyEmployeeMessageAsSenderCount, companyEmployeeMessageAsReceiverCount, vehicleInspectionOrderServiceLogCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mAsResponsibleWorkerCount, serviceVehicleMovementM2mAsDriverCount, serviceVehicleMovementM2mAsReceiverCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mAsResponsibleWorkerCount, serviceFileMovementM2mAsSenderCount, serviceFileMovementM2mAsReceiverCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount } = this.props.vehicleServiceCompanyEmployee
+    const { id, serviceOrderFilterCount, employeeDrivingLicenseCount, companyEmployeeMessageAsSenderCount, companyEmployeeMessageAsReceiverCount, vehicleInspectionOrderServiceLogCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mAsResponsibleWorkerCount, serviceVehicleMovementM2mAsDriverCount, serviceVehicleMovementM2mAsReceiverCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mAsResponsibleWorkerCount, serviceFileMovementM2mAsSenderCount, serviceFileMovementM2mAsReceiverCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, serviceCompanyAccountCount, repairingCompanyAccountCount, insuranceServiceAccountCount, inspectionStationAccountCount } = this.props.vehicleServiceCompanyEmployee
     
     
     
@@ -409,6 +409,78 @@ export default class VehicleServiceCompanyEmployeeDashboard extends Component {
                 <Link to={`/vehicleServiceCompanyEmployee/${id}/list/serviceVehicleRepairingCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/vehicleServiceCompanyEmployee/${id}/list/serviceVehicleRepairingList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="服务公司对账单"
+                action={<Tooltip title="服务公司对账单"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(serviceCompanyAccountCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompanyEmployee/${id}/list/serviceCompanyAccountList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompanyEmployee/${id}/list/serviceCompanyAccountCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompanyEmployee/${id}/list/serviceCompanyAccountList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="修理公司对账单"
+                action={<Tooltip title="修理公司对账单"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(repairingCompanyAccountCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompanyEmployee/${id}/list/repairingCompanyAccountList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompanyEmployee/${id}/list/repairingCompanyAccountCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompanyEmployee/${id}/list/repairingCompanyAccountList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="保险服务帐户"
+                action={<Tooltip title="保险服务帐户"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(insuranceServiceAccountCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompanyEmployee/${id}/list/insuranceServiceAccountList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompanyEmployee/${id}/list/insuranceServiceAccountCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompanyEmployee/${id}/list/insuranceServiceAccountList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="检查站对账单"
+                action={<Tooltip title="检查站对账单"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(inspectionStationAccountCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompanyEmployee/${id}/list/inspectionStationAccountList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompanyEmployee/${id}/list/inspectionStationAccountCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompanyEmployee/${id}/list/inspectionStationAccountList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

@@ -38,7 +38,6 @@ export default class VehicleInspectionOrderEditDetail extends Component {
   render() {
     const {VehicleInspectionInsuranceOrderEditTable} = GlobalComponents;
     const {VehicleInspectionOrderServiceLogEditTable} = GlobalComponents;
-    const {VehicleInspectionOrderCouponEditTable} = GlobalComponents;
     const {VehicleInspectionOrderPaymentEditTable} = GlobalComponents;
     const {HandOverChecklistItemEditTable} = GlobalComponents;
     const {ServiceVehicleMovementC2mEditTable} = GlobalComponents;
@@ -53,12 +52,15 @@ export default class VehicleInspectionOrderEditDetail extends Component {
     const {ReportVehicleInspectionReportEditTable} = GlobalComponents;
     const {ReportFileInspectionReportEditTable} = GlobalComponents;
     const {ServiceVehicleRepairingEditTable} = GlobalComponents;
+    const {VehicleRepairingReportEditTable} = GlobalComponents;
     const {OrderReviewResultEditTable} = GlobalComponents;
     const {OrderRatingResultEditTable} = GlobalComponents;
+    const {OrderDiscountCouponEditTable} = GlobalComponents;
+    const {VehicleInspectionOrderCouponEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, vehicleInspectionInsuranceOrderCount, vehicleInspectionOrderServiceLogCount, vehicleInspectionOrderCouponCount, vehicleInspectionOrderPaymentCount, handOverChecklistItemCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, reportVehicleInspectionReportCount, reportFileInspectionReportCount, serviceVehicleRepairingCount, orderReviewResultCount, orderRatingResultCount } = this.props.vehicleInspectionOrder
-    const { vehicleInspectionInsuranceOrderList, vehicleInspectionOrderServiceLogList, vehicleInspectionOrderCouponList, vehicleInspectionOrderPaymentList, handOverChecklistItemList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mList, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, reportVehicleInspectionReportList, reportFileInspectionReportList, serviceVehicleRepairingList, orderReviewResultList, orderRatingResultList } = this.props.vehicleInspectionOrder
+    const { id, vehicleInspectionInsuranceOrderCount, vehicleInspectionOrderServiceLogCount, vehicleInspectionOrderPaymentCount, handOverChecklistItemCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, reportVehicleInspectionReportCount, reportFileInspectionReportCount, serviceVehicleRepairingCount, vehicleRepairingReportCount, orderReviewResultCount, orderRatingResultCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.vehicleInspectionOrder
+    const { vehicleInspectionInsuranceOrderList, vehicleInspectionOrderServiceLogList, vehicleInspectionOrderPaymentList, handOverChecklistItemList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mList, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, reportVehicleInspectionReportList, reportFileInspectionReportList, serviceVehicleRepairingList, vehicleRepairingReportList, orderReviewResultList, orderRatingResultList, orderDiscountCouponList, vehicleInspectionOrderCouponList } = this.props.vehicleInspectionOrder
     
     const owner = { type: '_vehicleInspectionOrder', id }
     return (
@@ -79,12 +81,6 @@ export default class VehicleInspectionOrderEditDetail extends Component {
 		<Card title="车辆检测服务订单日志列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <VehicleInspectionOrderServiceLogEditTable data={vehicleInspectionOrderServiceLogList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="优惠券列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <VehicleInspectionOrderCouponEditTable data={vehicleInspectionOrderCouponList} owner={owner} {...this.props} />
           </Form>
         </Card>
 
@@ -172,6 +168,12 @@ export default class VehicleInspectionOrderEditDetail extends Component {
           </Form>
         </Card>
 
+		<Card title="车辆维修报告列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <VehicleRepairingReportEditTable data={vehicleRepairingReportList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
 		<Card title="订单评论结果列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <OrderReviewResultEditTable data={orderReviewResultList} owner={owner} {...this.props} />
@@ -181,6 +183,18 @@ export default class VehicleInspectionOrderEditDetail extends Component {
 		<Card title="订单评级结果列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <OrderRatingResultEditTable data={orderRatingResultList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="订单的折扣券列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <OrderDiscountCouponEditTable data={orderDiscountCouponList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="优惠券列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <VehicleInspectionOrderCouponEditTable data={vehicleInspectionOrderCouponList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

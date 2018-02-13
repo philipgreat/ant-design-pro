@@ -36,14 +36,15 @@ const topColResponsiveProps = {
 }))
 export default class AvailableProductEditDetail extends Component {
   render() {
+    const {ServicePriceEditTable} = GlobalComponents;
     const {AvailableServiceEditTable} = GlobalComponents;
     const {ProductPriceEditTable} = GlobalComponents;
     const {AvailableInsuranceEditTable} = GlobalComponents;
     const {AvailableHandOverItemEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, availableServiceCount, productPriceCount, availableInsuranceCount, availableHandOverItemCount } = this.props.availableProduct
-    const { availableServiceList, productPriceList, availableInsuranceList, availableHandOverItemList } = this.props.availableProduct
+    const { id, servicePriceCount, availableServiceCount, productPriceCount, availableInsuranceCount, availableHandOverItemCount } = this.props.availableProduct
+    const { servicePriceList, availableServiceList, productPriceList, availableInsuranceList, availableHandOverItemList } = this.props.availableProduct
     
     const owner = { type: '_availableProduct', id }
     return (
@@ -54,6 +55,12 @@ export default class AvailableProductEditDetail extends Component {
         wrapperClassName={styles.advancedForm}
       >
 
+
+		<Card title="服务价格列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ServicePriceEditTable data={servicePriceList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
 
 		<Card title="服务范围列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
@@ -73,7 +80,7 @@ export default class AvailableProductEditDetail extends Component {
           </Form>
         </Card>
 
-		<Card title="交接检查清单列表" className={styles.card} bordered={false}>
+		<Card title="可用移交项目列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <AvailableHandOverItemEditTable data={availableHandOverItemList} owner={owner} {...this.props} />
           </Form>

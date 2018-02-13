@@ -39,9 +39,13 @@ const summaryOf = (serviceVehicleMovementM2m) =>{
 <Description term="ID">{serviceVehicleMovementM2m.id}</Description> 
 <Description term="服务状态">{serviceVehicleMovementM2m.serviceStatus}</Description> 
 <Description term="开始时间">{ moment(serviceVehicleMovementM2m.startTime).format('YYYY-MM-DD')}</Description> 
-<Description term="最后的位置">{serviceVehicleMovementM2m.lastLocation}</Description> 
+<Description term="经度">{serviceVehicleMovementM2m.longitude}</Description> 
+<Description term="纬度">{serviceVehicleMovementM2m.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceVehicleMovementM2m.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="转移验证代码">{serviceVehicleMovementM2m.transferVerifyCode}</Description> 
 <Description term="移动目的">{serviceVehicleMovementM2m.movementPurpose}</Description> 
+<Description term="回归结果">{serviceVehicleMovementM2m.handoverResult}</Description> 
+<Description term="回归结果的评论">{serviceVehicleMovementM2m.handoverResultComment}</Description> 
 	
         
       </DescriptionList>
@@ -56,7 +60,7 @@ export default class ServiceVehicleMovementM2mViewDetail extends Component {
 
 
   state = {
-    tabKey: `reportHandoverList`,
+    tabKey: `handOverChecklistResultList`,
     stepDirection: 'horizontal',
   }
  
@@ -64,27 +68,27 @@ export default class ServiceVehicleMovementM2mViewDetail extends Component {
     this.setState({ tabKey: key });
   }  
   render() {
-    const {ReportHandoverViewTable} = GlobalComponents;
+    const {HandOverChecklistResultViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const serviceVehicleMovementM2m = this.props.serviceVehicleMovementM2m
-    const { id, reportHandoverCount } = serviceVehicleMovementM2m
-    const { reportHandoverList } = serviceVehicleMovementM2m
+    const { id, handOverChecklistResultCount } = serviceVehicleMovementM2m
+    const { handOverChecklistResultList } = serviceVehicleMovementM2m
     
     const owner = { type: '_serviceVehicleMovementM2m', id }
     
     const tabList = [
 
-      {key: 'reportHandoverList',tab: `交接报告(${reportHandoverCount})`}, 
+      {key: 'handOverChecklistResultList',tab: `移交清单结果(${handOverChecklistResultCount})`}, 
    
 
    ];
    
    
     const contentList = {
-       reportHandoverList:  
-        <ReportHandoverViewTable data={reportHandoverList} owner={owner} {...this.props} />,
+       handOverChecklistResultList:  
+        <HandOverChecklistResultViewTable data={handOverChecklistResultList} owner={owner} {...this.props} />,
  
     
     };

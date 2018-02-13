@@ -12,9 +12,10 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   label: '标签',
   localeKey: '语言环境的关键',
+  level: '水平',
   url: 'url',
   form: '形式',
 }
@@ -23,6 +24,7 @@ const fieldLabels = {
 const testValues = {
   label: '功能',
   localeKey: 'name',
+  level: 'success',
   url: 'genericFormManager/name/name0002/name0003/',
   formId: 'GF000001',
 }
@@ -215,6 +217,16 @@ class FormActionCreateForm extends Component {
                     rules: [{ required: true, message: '请输入语言环境的关键' }],
                   })(
                     <Input placeholder="请输入请输入语言环境的关键string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.level}>
+                  {getFieldDecorator('level', {
+                    rules: [{ required: true, message: '请输入水平' }],
+                  })(
+                    <Input placeholder="请输入请输入水平string" />
                   )}
                 </Form.Item>
               </Col>

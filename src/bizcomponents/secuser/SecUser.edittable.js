@@ -190,7 +190,7 @@ class SecUserEditTable extends PureComponent {
     
     
     const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '登录', debugtype: 'string', dataIndex: 'login', width: '9', render: (text, record) => renderStringEdit('login',text, record)  },
   { title: '手机号码', debugtype: 'string_china_mobile_phone', dataIndex: 'mobile', width: '15', render: (text, record) => renderStringEdit('mobile',text, record)  },
   { title: '电子邮件', debugtype: 'string_email', dataIndex: 'email', width: '23', render: (text, record) => renderStringEdit('email',text, record)  },
@@ -199,7 +199,7 @@ class SecUserEditTable extends PureComponent {
   { title: '验证码过期', dataIndex: 'verificationCodeExpire', render: (text, record) => moment(record.verificationCodeExpire).format('YYYY-MM-DD HH:mm:ss') },
   { title: '最后登录时间', dataIndex: 'lastLoginTime', render: (text, record) => moment(record.lastLoginTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '域', dataIndex: 'domain', render: (text, record) => (record.domain ? record.domain.id : '暂无') },
-  { title: '屏蔽', dataIndex: 'blocking', render: (text, record) => (record.blocking ? record.blocking.id : '暂无') },
+  { title: '舞台调度', dataIndex: 'blocking', render: (text, record) => (record.blocking ? record.blocking.id : '暂无') },
   { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '11', render: (text, record) => renderStringEdit('currentStatus',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]

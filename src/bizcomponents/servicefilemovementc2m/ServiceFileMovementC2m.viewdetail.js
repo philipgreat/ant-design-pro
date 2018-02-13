@@ -39,11 +39,15 @@ const summaryOf = (serviceFileMovementC2m) =>{
 <Description term="ID">{serviceFileMovementC2m.id}</Description> 
 <Description term="服务状态">{serviceFileMovementC2m.serviceStatus}</Description> 
 <Description term="开始时间">{ moment(serviceFileMovementC2m.startTime).format('YYYY-MM-DD')}</Description> 
-<Description term="最后的位置">{serviceFileMovementC2m.lastLocation}</Description> 
+<Description term="经度">{serviceFileMovementC2m.longitude}</Description> 
+<Description term="纬度">{serviceFileMovementC2m.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceFileMovementC2m.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="转移验证代码">{serviceFileMovementC2m.transferVerifyCode}</Description> 
 <Description term="移动目的">{serviceFileMovementC2m.movementPurpose}</Description> 
 <Description term="联系人姓名">{serviceFileMovementC2m.contactName}</Description> 
 <Description term="联系手机号码">{serviceFileMovementC2m.contactMobileNumber}</Description> 
+<Description term="回归结果">{serviceFileMovementC2m.handoverResult}</Description> 
+<Description term="回归结果的评论">{serviceFileMovementC2m.handoverResultComment}</Description> 
 	
         
       </DescriptionList>
@@ -58,7 +62,7 @@ export default class ServiceFileMovementC2mViewDetail extends Component {
 
 
   state = {
-    tabKey: `reportHandoverList`,
+    tabKey: `handOverChecklistResultList`,
     stepDirection: 'horizontal',
   }
  
@@ -66,27 +70,27 @@ export default class ServiceFileMovementC2mViewDetail extends Component {
     this.setState({ tabKey: key });
   }  
   render() {
-    const {ReportHandoverViewTable} = GlobalComponents;
+    const {HandOverChecklistResultViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const serviceFileMovementC2m = this.props.serviceFileMovementC2m
-    const { id, reportHandoverCount } = serviceFileMovementC2m
-    const { reportHandoverList } = serviceFileMovementC2m
+    const { id, handOverChecklistResultCount } = serviceFileMovementC2m
+    const { handOverChecklistResultList } = serviceFileMovementC2m
     
     const owner = { type: '_serviceFileMovementC2m', id }
     
     const tabList = [
 
-      {key: 'reportHandoverList',tab: `交接报告(${reportHandoverCount})`}, 
+      {key: 'handOverChecklistResultList',tab: `移交清单结果(${handOverChecklistResultCount})`}, 
    
 
    ];
    
    
     const contentList = {
-       reportHandoverList:  
-        <ReportHandoverViewTable data={reportHandoverList} owner={owner} {...this.props} />,
+       handOverChecklistResultList:  
+        <HandOverChecklistResultViewTable data={handOverChecklistResultList} owner={owner} {...this.props} />,
  
     
     };

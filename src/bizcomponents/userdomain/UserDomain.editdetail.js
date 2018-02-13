@@ -52,7 +52,7 @@ export default class UserDomainEditDetail extends Component {
       >
 
 
-		<Card title="Sec的用户列表" className={styles.card} bordered={false}>
+		<Card title="SEC的用户列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <SecUserEditTable data={secUserList} owner={owner} {...this.props} />
           </Form>

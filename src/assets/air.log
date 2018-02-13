@@ -1,37 +1,5 @@
-	<!--
-     type="text|longtext|date|date_time|money|url|image|password|number|switch|vcode"
-    -->
-    
-    <formfield name='int' value='number'/>
-	<formfield name='bool' value='switch'/>
-	<formfield name='uint' value='number'/>
-	<formfield name='long' value='number'/>
-	<formfield name='ulong' value='number'/>
-	<formfield name='float' value='number'/>
-	<formfield name='double' value='number'/>
-	<formfield name='money' value='money'/>
-	
-	<formfield name='string' value='text'/>
-	<formfield name='string_email' value='text'/>
-	<formfield name='string_longtext' value='longtext'/>
-	<formfield name='string_url' value='url'/>
-	<formfield name='object' value='String'/>
-	<formfield name='date' value='date'/>
-	<formfield name='date_past' value='Date'/>
-	<formfield name='date_time_now' value='date_time'/>
-	<formfield name='date_today' value='date'/>
-	<formfield name='date_future' value='date'/>
-	<formfield name='date_time' value='date_time'/>
-	<formfield name='time' value='date_time'/>
-	
-	
-	
-	<formfield name='string_image' value='String'/>
-	<formfield name='string_document' value='String'/>
-	<formfield name='string_china_mobile_phone' value='String'/>
-	<formfield name='string_password' value='String'/>
-	<formfield name='string_html' value='String'/>
-	<formfield name='string_current_user_name' value='String'/>
-	<formfield name='string_current_user_id' value='String'/>
-	
-	
+
+
+
+
+[{\"车辆上线检测费\":144.45},{\"车辆上线代检服务\":146.34},{\"代检保险费\":4.51},{\"优惠券\":15.0},{\"提前下单优惠\":5.0},{\"应付款\":275.29999999999995}]

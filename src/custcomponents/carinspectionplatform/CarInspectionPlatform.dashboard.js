@@ -54,7 +54,7 @@ const markList = (carInspectionPlatform) =>{
   if(!vehicleServiceCompanyList){
     return [];
   }
-
+//"request" > d:\485.log
   var pointList=vehicleServiceCompanyList.map((item,indexValue)=>{
     
     const lng=item.longitude;
@@ -144,7 +144,7 @@ const getMap=(carInspectionPlatform)=>{
 
 }
 
-
+//curl 'http://localhost:8080/naf/secUserManager/selectApp/UA000054/'  -H 'Cookie: OFBiz.Visitor=10000; JSESSIONID=abcpJsWB_yF1Y5vy-86dw'  --compressed
 @connect(state => ({
   carInspectionPlatform: state._carInspectionPlatform,
 }))
@@ -159,7 +159,7 @@ export default class CarInspectionPlatformDashboard extends Component {
     return (
 
       <PageHeaderLayout
-        title="驾乐乐车辆代审服务平台总览定制1111"
+        title="驾乐乐车辆代审服务平台总览"
         content={summaryOf(this.props.carInspectionPlatform)}
         wrapperClassName={styles.advancedForm}
       >

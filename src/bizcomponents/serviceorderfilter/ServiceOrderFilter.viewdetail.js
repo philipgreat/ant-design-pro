@@ -37,7 +37,7 @@ const summaryOf = (serviceOrderFilter) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{serviceOrderFilter.id}</Description> 
-<Description term="名称">{serviceOrderFilter.name}</Description> 
+<Description term="过滤器的名字">{serviceOrderFilter.filterName}</Description> 
 <Description term="订单数量">{serviceOrderFilter.orderCount}</Description> 
 <Description term="选择">{serviceOrderFilter.selected?'是':'否'}</Description> 
 <Description term="链接网址">{serviceOrderFilter.linkUrl}</Description> 

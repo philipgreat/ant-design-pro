@@ -88,47 +88,10 @@ class AvailableReviewItemBizApp extends React.PureComponent {
         </span>}
       >
 
-        <Menu.Item>
-          <Link to={`/availableReviewItem/${objectId}/list/orderReviewResultList`}>订单评论结果</Link>
-        </Menu.Item>
       </SubMenu>
     )
   }
 
-
-  getOrderReviewResultSearch = () => {
-    const {OrderReviewResultSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._availableReviewItem.orderReviewResultList,
-      count: state._availableReviewItem.orderReviewResultCount,
-      currentPage: state._availableReviewItem.orderReviewResultCurrentPageNumber,
-      searchFormParameters: state._availableReviewItem.orderReviewResultSearchFormParameters,
-      loading: state._availableReviewItem.loading,
-      owner: { type: '_availableReviewItem', id: state._availableReviewItem.id, listName: 'orderReviewResultList' }, // this is for model namespace and
-    }))(OrderReviewResultSearch)
-  }
-  getOrderReviewResultCreateForm = () => {
-   	const {OrderReviewResultCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._availableReviewItem.orderReviewResultList,
-      count: state._availableReviewItem.orderReviewResultCount,
-      currentPage: state._availableReviewItem.orderReviewResultCurrentPageNumber,
-      searchFormParameters: state._availableReviewItem.orderReviewResultSearchFormParameters,
-      loading: state._availableReviewItem.loading,
-      owner: { type: '_availableReviewItem', id: state._availableReviewItem.id, listName: 'orderReviewResultList'}, // this is for model namespace and
-    }))(OrderReviewResultCreateForm)
-  }
-  
-  getOrderReviewResultUpdateForm = () => {
-  	const {OrderReviewResultUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._availableReviewItem.selectedRows,
-      currentUpdateIndex: state._availableReviewItem.currentUpdateIndex,
-      owner: { type: '_availableReviewItem', id: state._availableReviewItem.id, listName: 'orderReviewResultList' }, // this is for model namespace and
-    }))(OrderReviewResultUpdateForm)
-  }
 
   getPageTitle = () => {
     // const { location } = this.props
@@ -216,10 +179,6 @@ class AvailableReviewItemBizApp extends React.PureComponent {
                <Route path="/availableReviewItem/:id/editDetail" component={AvailableReviewItemEditDetail} />
                <Route path="/availableReviewItem/:id/viewDetail" component={AvailableReviewItemViewDetail} />
                
-
-               <Route path="/availableReviewItem/:id/list/orderReviewResultList" component={this.getOrderReviewResultSearch()} />
-               <Route path="/availableReviewItem/:id/list/orderReviewResultCreateForm" component={this.getOrderReviewResultCreateForm()} />
-               <Route path="/availableReviewItem/:id/list/orderReviewResultUpdateForm" component={this.getOrderReviewResultUpdateForm()} />
               
              </Switch>
            </Content>

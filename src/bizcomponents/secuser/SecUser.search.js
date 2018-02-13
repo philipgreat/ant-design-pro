@@ -219,7 +219,7 @@ export default class SecUserSearch extends PureComponent {
     }
     
     return (
-      <PageHeaderLayout title="Sec的用户列表">
+      <PageHeaderLayout title="SEC的用户列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

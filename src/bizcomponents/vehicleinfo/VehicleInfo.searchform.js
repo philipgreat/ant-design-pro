@@ -70,7 +70,6 @@ export default class VehicleInfoSearchForm extends PureComponent {
         ...this.buildStringSearchParameters(fieldsValue, 'engineNumber'),
         ...this.buildStringSearchParameters(fieldsValue, 'vehicleIdentificationNumber'),
         ...this.buildStringSearchParameters(fieldsValue, 'vehiclePermitHolderName'),
-        ...this.buildStringSearchParameters(fieldsValue, 'vehiclePermitNumber'),
 
       }
       const { owner } = this.props
@@ -172,14 +171,6 @@ export default class VehicleInfoSearchForm extends PureComponent {
             <FormItem label="所有人">
               {getFieldDecorator('vehiclePermitHolderName')(
                 <Input placeholder="请输入所有人" />
-              )}
-            </FormItem>
-          </Col>
-
-          <Col md={8} sm={24}>
-            <FormItem label="车辆行驶证号码">
-              {getFieldDecorator('vehiclePermitNumber')(
-                <Input placeholder="请输入车辆行驶证号码" />
               )}
             </FormItem>
           </Col>

@@ -38,10 +38,11 @@ export default class InspectionStationEditDetail extends Component {
   render() {
     const {ServiceVehicleInspectionEditTable} = GlobalComponents;
     const {ServiceFileInspectionEditTable} = GlobalComponents;
+    const {InspectionStationAccountEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, serviceVehicleInspectionCount, serviceFileInspectionCount } = this.props.inspectionStation
-    const { serviceVehicleInspectionList, serviceFileInspectionList } = this.props.inspectionStation
+    const { id, serviceVehicleInspectionCount, serviceFileInspectionCount, inspectionStationAccountCount } = this.props.inspectionStation
+    const { serviceVehicleInspectionList, serviceFileInspectionList, inspectionStationAccountList } = this.props.inspectionStation
     
     const owner = { type: '_inspectionStation', id }
     return (
@@ -62,6 +63,12 @@ export default class InspectionStationEditDetail extends Component {
 		<Card title="6年免检服务列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <ServiceFileInspectionEditTable data={serviceFileInspectionList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="检查站对账单列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <InspectionStationAccountEditTable data={inspectionStationAccountList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

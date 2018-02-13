@@ -65,10 +65,12 @@ export default class ServiceFileMovementM2cSearchForm extends PureComponent {
       const params = {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
         ...this.buildStringSearchParameters(fieldsValue, 'serviceStatus'),
-        ...this.buildStringSearchParameters(fieldsValue, 'lastLocation'),
+        ...this.buildStringSearchParameters(fieldsValue, 'transferVerifyCode'),
         ...this.buildStringSearchParameters(fieldsValue, 'movementPurpose'),
         ...this.buildStringSearchParameters(fieldsValue, 'contactName'),
         ...this.buildStringSearchParameters(fieldsValue, 'contactMobileNumber'),
+        ...this.buildStringSearchParameters(fieldsValue, 'handoverResult'),
+        ...this.buildStringSearchParameters(fieldsValue, 'handoverResultComment'),
 
       }
       const { owner } = this.props
@@ -135,9 +137,9 @@ export default class ServiceFileMovementM2cSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="最后的位置">
-              {getFieldDecorator('lastLocation')(
-                <Input placeholder="请输入最后的位置" />
+            <FormItem label="转移验证代码">
+              {getFieldDecorator('transferVerifyCode')(
+                <Input placeholder="请输入转移验证代码" />
               )}
             </FormItem>
           </Col>
@@ -162,6 +164,22 @@ export default class ServiceFileMovementM2cSearchForm extends PureComponent {
             <FormItem label="联系手机号码">
               {getFieldDecorator('contactMobileNumber')(
                 <Input placeholder="请输入联系手机号码" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="回归结果">
+              {getFieldDecorator('handoverResult')(
+                <Input placeholder="请输入回归结果" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="回归结果的评论">
+              {getFieldDecorator('handoverResultComment')(
+                <Input placeholder="请输入回归结果的评论" />
               )}
             </FormItem>
           </Col>

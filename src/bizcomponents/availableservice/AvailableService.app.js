@@ -89,6 +89,9 @@ class AvailableServiceBizApp extends React.PureComponent {
       >
 
         <Menu.Item>
+          <Link to={`/availableService/${objectId}/list/servicePriceList`}>服务价格</Link>
+        </Menu.Item>
+        <Menu.Item>
           <Link to={`/availableService/${objectId}/list/vehicleRepairingAllowanceList`}>汽车修理平台补贴</Link>
         </Menu.Item>
         <Menu.Item>
@@ -104,6 +107,40 @@ class AvailableServiceBizApp extends React.PureComponent {
     )
   }
 
+
+  getServicePriceSearch = () => {
+    const {ServicePriceSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._availableService.servicePriceList,
+      count: state._availableService.servicePriceCount,
+      currentPage: state._availableService.servicePriceCurrentPageNumber,
+      searchFormParameters: state._availableService.servicePriceSearchFormParameters,
+      loading: state._availableService.loading,
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'servicePriceList' }, // this is for model namespace and
+    }))(ServicePriceSearch)
+  }
+  getServicePriceCreateForm = () => {
+   	const {ServicePriceCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._availableService.servicePriceList,
+      count: state._availableService.servicePriceCount,
+      currentPage: state._availableService.servicePriceCurrentPageNumber,
+      searchFormParameters: state._availableService.servicePriceSearchFormParameters,
+      loading: state._availableService.loading,
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'servicePriceList'}, // this is for model namespace and
+    }))(ServicePriceCreateForm)
+  }
+  
+  getServicePriceUpdateForm = () => {
+  	const {ServicePriceUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._availableService.selectedRows,
+      currentUpdateIndex: state._availableService.currentUpdateIndex,
+      owner: { type: '_availableService', id: state._availableService.id, listName: 'servicePriceList' }, // this is for model namespace and
+    }))(ServicePriceUpdateForm)
+  }
 
   getVehicleRepairingAllowanceSearch = () => {
     const {VehicleRepairingAllowanceSearch} = GlobalComponents;
@@ -327,6 +364,10 @@ class AvailableServiceBizApp extends React.PureComponent {
                <Route path="/availableService/:id/editDetail" component={AvailableServiceEditDetail} />
                <Route path="/availableService/:id/viewDetail" component={AvailableServiceViewDetail} />
                
+
+               <Route path="/availableService/:id/list/servicePriceList" component={this.getServicePriceSearch()} />
+               <Route path="/availableService/:id/list/servicePriceCreateForm" component={this.getServicePriceCreateForm()} />
+               <Route path="/availableService/:id/list/servicePriceUpdateForm" component={this.getServicePriceUpdateForm()} />
 
                <Route path="/availableService/:id/list/vehicleRepairingAllowanceList" component={this.getVehicleRepairingAllowanceSearch()} />
                <Route path="/availableService/:id/list/vehicleRepairingAllowanceCreateForm" component={this.getVehicleRepairingAllowanceCreateForm()} />

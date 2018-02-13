@@ -66,7 +66,6 @@ export default class ServiceFileInspectionSearchForm extends PureComponent {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
         ...this.buildStringSearchParameters(fieldsValue, 'serviceStatus'),
         ...this.buildStringSearchParameters(fieldsValue, 'inspectionResult'),
-        ...this.buildStringSearchParameters(fieldsValue, 'lastLocation'),
 
       }
       const { owner } = this.props
@@ -136,14 +135,6 @@ export default class ServiceFileInspectionSearchForm extends PureComponent {
             <FormItem label="检测结果">
               {getFieldDecorator('inspectionResult')(
                 <Input placeholder="请输入检测结果" />
-              )}
-            </FormItem>
-          </Col>
-
-          <Col md={8} sm={24}>
-            <FormItem label="最后的位置">
-              {getFieldDecorator('lastLocation')(
-                <Input placeholder="请输入最后的位置" />
               )}
             </FormItem>
           </Col>

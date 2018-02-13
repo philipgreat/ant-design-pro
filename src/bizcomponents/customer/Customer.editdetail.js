@@ -38,10 +38,12 @@ export default class CustomerEditDetail extends Component {
   render() {
     const {VehicleInfoEditTable} = GlobalComponents;
     const {VehicleInspectionOrderEditTable} = GlobalComponents;
+    const {OrderDiscountCouponEditTable} = GlobalComponents;
+    const {VehicleInspectionOrderCouponEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, vehicleInfoCount, vehicleInspectionOrderCount } = this.props.customer
-    const { vehicleInfoList, vehicleInspectionOrderList } = this.props.customer
+    const { id, vehicleInfoCount, vehicleInspectionOrderCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.customer
+    const { vehicleInfoList, vehicleInspectionOrderList, orderDiscountCouponList, vehicleInspectionOrderCouponList } = this.props.customer
     
     const owner = { type: '_customer', id }
     return (
@@ -62,6 +64,18 @@ export default class CustomerEditDetail extends Component {
 		<Card title="上线检测订单列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <VehicleInspectionOrderEditTable data={vehicleInspectionOrderList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="订单的折扣券列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <OrderDiscountCouponEditTable data={orderDiscountCouponList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="优惠券列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <VehicleInspectionOrderCouponEditTable data={vehicleInspectionOrderCouponList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

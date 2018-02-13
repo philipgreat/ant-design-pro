@@ -37,18 +37,18 @@ const topColResponsiveProps = {
 export default class AvailableHandOverItemEditDetail extends Component {
   render() {
     const {HandOverChecklistItemEditTable} = GlobalComponents;
-    const {HandoverChecklistResultEditTable} = GlobalComponents;
+    const {HandOverChecklistResultEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, handOverChecklistItemCount, handoverChecklistResultCount } = this.props.availableHandOverItem
-    const { handOverChecklistItemList, handoverChecklistResultList } = this.props.availableHandOverItem
+    const { id, handOverChecklistItemCount, handOverChecklistResultCount } = this.props.availableHandOverItem
+    const { handOverChecklistItemList, handOverChecklistResultList } = this.props.availableHandOverItem
     
     const owner = { type: '_availableHandOverItem', id }
     return (
 
       <PageHeaderLayout
-        title="交接检查清单总览"
-        content="交接检查清单总览"
+        title="可用移交项目总览"
+        content="可用移交项目总览"
         wrapperClassName={styles.advancedForm}
       >
 
@@ -59,9 +59,9 @@ export default class AvailableHandOverItemEditDetail extends Component {
           </Form>
         </Card>
 
-		<Card title="交接清单结果列表" className={styles.card} bordered={false}>
+		<Card title="移交清单结果列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
-            <HandoverChecklistResultEditTable data={handoverChecklistResultList} owner={owner} {...this.props} />
+            <HandOverChecklistResultEditTable data={handOverChecklistResultList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

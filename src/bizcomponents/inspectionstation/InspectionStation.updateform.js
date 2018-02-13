@@ -19,7 +19,8 @@ const fieldLabels = {
   operatingStatus: '服务状态',
   addressCity: '所在城市',
   addressDetail: '所在地址',
-  location: '位置',
+  longitude: '经度',
+  latitude: '纬度',
   contactName: '联系人姓名',
   contactMobile: '联系手机',
   metrologyAccreditationImage: '计量资格认证',
@@ -344,11 +345,21 @@ class InspectionStationUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.location}>
-                  {getFieldDecorator('location', {
-                    rules: [{ required: true, message: '请输入位置' }],
+                <Form.Item label={fieldLabels.longitude}>
+                  {getFieldDecorator('longitude', {
+                    rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入位置string" />
+                    <Input placeholder="请输入请输入经度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude}>
+                  {getFieldDecorator('latitude', {
+                    rules: [{ required: true, message: '请输入纬度' }],
+                  })(
+                    <Input placeholder="请输入请输入纬度double" />
                   )}
                 </Form.Item>
               </Col>

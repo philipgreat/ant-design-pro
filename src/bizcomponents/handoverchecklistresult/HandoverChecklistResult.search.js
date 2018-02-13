@@ -11,7 +11,7 @@ import GlobalComponents from '../../custcomponents'
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 
-import styles from './HandoverChecklistResult.search.less'
+import styles from './HandOverChecklistResult.search.less'
 
 const FormItem = Form.Item
 const { Option } = Select
@@ -19,7 +19,7 @@ const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',')
 
 
 @Form.create()
-export default class HandoverChecklistResultSearch extends PureComponent {
+export default class HandOverChecklistResultSearch extends PureComponent {
   state = {
     addInputValue: '',
     modalVisible: false,
@@ -109,12 +109,12 @@ export default class HandoverChecklistResultSearch extends PureComponent {
       showDeleteResult: true,
     })
     
-    const handoverChecklistResultIds = selectedRows.map((item) => { return item.id })
-    console.log('handoverChecklistResultIds', handoverChecklistResultIds)
-    const parameters = { handoverChecklistResultIds }
+    const handOverChecklistResultIds = selectedRows.map((item) => { return item.id })
+    console.log('handOverChecklistResultIds', handOverChecklistResultIds)
+    const parameters = { handOverChecklistResultIds }
     dispatch({
-      type: `${owner.type}/removeHandoverChecklistResultList`,
-      payload: { id: owner.id, type: 'handoverChecklistResult', parameters },
+      type: `${owner.type}/removeHandOverChecklistResultList`,
+      payload: { id: owner.id, type: 'handOverChecklistResult', parameters },
     })
   }
   
@@ -140,7 +140,7 @@ export default class HandoverChecklistResultSearch extends PureComponent {
     const { dispatch, owner } = this.props
     dispatch({
       type: `${owner.type}/gotoCreateForm`,
-      payload: { id: owner.id, type: 'handoverChecklistResult' },
+      payload: { id: owner.id, type: 'handOverChecklistResult' },
     })
   }
 
@@ -151,7 +151,7 @@ export default class HandoverChecklistResultSearch extends PureComponent {
     const currentUpdateIndex = 0
     dispatch({
       type: `${owner.type}/gotoUpdateForm`,
-      payload: { id: owner.id, type: 'handoverChecklistResult', selectedRows, currentUpdateIndex },
+      payload: { id: owner.id, type: 'handOverChecklistResult', selectedRows, currentUpdateIndex },
     })
   }
   
@@ -177,9 +177,9 @@ export default class HandoverChecklistResultSearch extends PureComponent {
   render() {
     const { data, loading, count, currentPage, owner } = this.props;
     const { showDeleteResult, selectedRows, modalVisible } = this.state;
-    const {HandoverChecklistResultTable} = GlobalComponents;
-    const {HandoverChecklistResultConfirmationTable} = GlobalComponents;
-    const {HandoverChecklistResultSearchForm} = GlobalComponents;
+    const {HandOverChecklistResultTable} = GlobalComponents;
+    const {HandOverChecklistResultConfirmationTable} = GlobalComponents;
+    const {HandOverChecklistResultSearchForm} = GlobalComponents;
     
  
     const menu = (
@@ -214,16 +214,16 @@ export default class HandoverChecklistResultSearch extends PureComponent {
           width={920}
           style={{ top: 40 }}
         >
-          <HandoverChecklistResultConfirmationTable data={selectedRows} owner={owner} />
+          <HandOverChecklistResultConfirmationTable data={selectedRows} owner={owner} />
         </Modal>)
     }
     
     return (
-      <PageHeaderLayout title="交接清单结果列表">
+      <PageHeaderLayout title="移交清单结果列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>
-              <HandoverChecklistResultSearchForm {...this.props} />
+              <HandOverChecklistResultSearchForm {...this.props} />
             </div>
             <div className={styles.tableListOperator}>
               <Button icon="plus" type="primary" onClick={() => this.handleCreate()}>新建</Button>
@@ -241,7 +241,7 @@ export default class HandoverChecklistResultSearch extends PureComponent {
                 )
               }
             </div>
-            <HandoverChecklistResultTable
+            <HandOverChecklistResultTable
               selectedRows={selectedRows}
               loading={loading}
               data={data}

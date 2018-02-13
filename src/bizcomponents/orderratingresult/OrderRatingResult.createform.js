@@ -15,7 +15,6 @@ const fieldLabels = {
   id: 'ID',
   ratingName: '评分名称',
   ratingResult: '评分结果',
-  availableRatingItem: '评分条目',
   mainOrder: '主订单',
 }
 
@@ -23,7 +22,6 @@ const fieldLabels = {
 const testValues = {
   ratingName: '总体服务满意度',
   ratingResult: '1.0',
-  availableRatingItemId: 'ARI000001',
   mainOrderId: 'VIO000001',
 }
 
@@ -231,16 +229,6 @@ class OrderRatingResultCreateForm extends Component {
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.availableRatingItem}>
-                  {getFieldDecorator('availableRatingItemId', {
-                    rules: [{ required: true, message: '请输入评分条目' }],
-                  })(
-                    <Input placeholder="请输入请输入评分条目" />
-                  )}
-                </Form.Item>
-              </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.mainOrder}>

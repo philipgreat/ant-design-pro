@@ -36,14 +36,15 @@ const topColResponsiveProps = {
 }))
 export default class AvailableServiceEditDetail extends Component {
   render() {
+    const {ServicePriceEditTable} = GlobalComponents;
     const {VehicleRepairingAllowanceEditTable} = GlobalComponents;
     const {VehicleServiceCompanyBusinessScopeEditTable} = GlobalComponents;
     const {CompanyEmployeeMessageEditTable} = GlobalComponents;
     const {VehicleInspectionOrderServiceLogEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount, companyEmployeeMessageCount, vehicleInspectionOrderServiceLogCount } = this.props.availableService
-    const { vehicleRepairingAllowanceList, vehicleServiceCompanyBusinessScopeList, companyEmployeeMessageList, vehicleInspectionOrderServiceLogList } = this.props.availableService
+    const { id, servicePriceCount, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount, companyEmployeeMessageCount, vehicleInspectionOrderServiceLogCount } = this.props.availableService
+    const { servicePriceList, vehicleRepairingAllowanceList, vehicleServiceCompanyBusinessScopeList, companyEmployeeMessageList, vehicleInspectionOrderServiceLogList } = this.props.availableService
     
     const owner = { type: '_availableService', id }
     return (
@@ -54,6 +55,12 @@ export default class AvailableServiceEditDetail extends Component {
         wrapperClassName={styles.advancedForm}
       >
 
+
+		<Card title="服务价格列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ServicePriceEditTable data={servicePriceList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
 
 		<Card title="汽车修理平台补贴列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>

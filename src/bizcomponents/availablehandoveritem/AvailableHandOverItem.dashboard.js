@@ -47,14 +47,14 @@ const summaryOf = (availableHandOverItem) =>{
 export default class AvailableHandOverItemDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, handOverChecklistItemCount, handoverChecklistResultCount } = this.props.availableHandOverItem
+    const { id, handOverChecklistItemCount, handOverChecklistResultCount } = this.props.availableHandOverItem
     
     
     
     return (
 
       <PageHeaderLayout
-        title="交接检查清单总览"
+        title="可用移交项目总览"
         content={summaryOf(this.props.availableHandOverItem)}
         wrapperClassName={styles.advancedForm}
       >
@@ -83,17 +83,17 @@ export default class AvailableHandOverItemDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
-                title="交接清单结果"
-                action={<Tooltip title="交接清单结果"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(handoverChecklistResultCount).format('0,0')}
+                title="移交清单结果"
+                action={<Tooltip title="移交清单结果"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(handOverChecklistResultCount).format('0,0')}
                 footer={<Field label="状态" value="良好" />}
                 contentHeight={46}
               >
-                <Link to={`/availableHandOverItem/${id}/list/handoverChecklistResultList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                <Link to={`/availableHandOverItem/${id}/list/handOverChecklistResultList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
-                <Link to={`/availableHandOverItem/${id}/list/handoverChecklistResultCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                <Link to={`/availableHandOverItem/${id}/list/handOverChecklistResultCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
-                <Link to={`/availableHandOverItem/${id}/list/handoverChecklistResultList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                <Link to={`/availableHandOverItem/${id}/list/handOverChecklistResultList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

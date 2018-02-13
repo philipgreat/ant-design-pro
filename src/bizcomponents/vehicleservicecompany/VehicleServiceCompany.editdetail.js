@@ -36,6 +36,8 @@ const topColResponsiveProps = {
 }))
 export default class VehicleServiceCompanyEditDetail extends Component {
   render() {
+    const {ContractEditTable} = GlobalComponents;
+    const {ServiceCompanyAuthenticationInfoEditTable} = GlobalComponents;
     const {VehicleInspectionPlateNumberPatternEditTable} = GlobalComponents;
     const {FileInspectionPlateNumberPatternEditTable} = GlobalComponents;
     const {VehicleServiceCompanyBusinessScopeEditTable} = GlobalComponents;
@@ -43,23 +45,45 @@ export default class VehicleServiceCompanyEditDetail extends Component {
     const {VehicleServiceCompanyEmployeeEditTable} = GlobalComponents;
     const {VehicleInspectionOrderEditTable} = GlobalComponents;
     const {ServiceVehicleMovementC2mEditTable} = GlobalComponents;
+    const {ServiceVehicleMovementM2mEditTable} = GlobalComponents;
     const {ServiceVehicleMovementM2cEditTable} = GlobalComponents;
     const {ServiceFileMovementC2mEditTable} = GlobalComponents;
+    const {ServiceFileMovementM2mEditTable} = GlobalComponents;
     const {ServiceFileMovementM2cEditTable} = GlobalComponents;
+    const {ServiceInsuranceForInspectionEditTable} = GlobalComponents;
+    const {ServiceVehicleInspectionEditTable} = GlobalComponents;
+    const {ServiceFileInspectionEditTable} = GlobalComponents;
+    const {ServiceVehicleRepairingEditTable} = GlobalComponents;
+    const {ServiceCompanyAccountEditTable} = GlobalComponents;
+    const {RepairingCompanyAccountEditTable} = GlobalComponents;
+    const {InsuranceServiceAccountEditTable} = GlobalComponents;
+    const {InspectionStationAccountEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, vehicleInspectionPlateNumberPatternCount, fileInspectionPlateNumberPatternCount, vehicleServiceCompanyBusinessScopeCount, vehicleServiceCompanyDispatcherCount, vehicleServiceCompanyEmployeeCount, vehicleInspectionOrderCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2cCount } = this.props.vehicleServiceCompany
-    const { vehicleInspectionPlateNumberPatternList, fileInspectionPlateNumberPatternList, vehicleServiceCompanyBusinessScopeList, vehicleServiceCompanyDispatcherList, vehicleServiceCompanyEmployeeList, vehicleInspectionOrderList, serviceVehicleMovementC2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2cList } = this.props.vehicleServiceCompany
+    const { id, contractCount, serviceCompanyAuthenticationInfoCount, vehicleInspectionPlateNumberPatternCount, fileInspectionPlateNumberPatternCount, vehicleServiceCompanyBusinessScopeCount, vehicleServiceCompanyDispatcherCount, vehicleServiceCompanyEmployeeCount, vehicleInspectionOrderCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, serviceCompanyAccountCount, repairingCompanyAccountCount, insuranceServiceAccountCount, inspectionStationAccountCount } = this.props.vehicleServiceCompany
+    const { contractList, serviceCompanyAuthenticationInfoList, vehicleInspectionPlateNumberPatternList, fileInspectionPlateNumberPatternList, vehicleServiceCompanyBusinessScopeList, vehicleServiceCompanyDispatcherList, vehicleServiceCompanyEmployeeList, vehicleInspectionOrderList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mList, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList, serviceCompanyAccountList, repairingCompanyAccountList, insuranceServiceAccountList, inspectionStationAccountList } = this.props.vehicleServiceCompany
     
     const owner = { type: '_vehicleServiceCompany', id }
     return (
 
       <PageHeaderLayout
-        title="商户管理总览"
-        content="商户管理总览"
+        title="商户总览"
+        content="商户总览"
         wrapperClassName={styles.advancedForm}
       >
 
+
+		<Card title="合同列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ContractEditTable data={contractList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="服务公司认证信息列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ServiceCompanyAuthenticationInfoEditTable data={serviceCompanyAuthenticationInfoList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
 
 		<Card title="车辆检验牌照号码模式列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
@@ -103,6 +127,12 @@ export default class VehicleServiceCompanyEditDetail extends Component {
           </Form>
         </Card>
 
+		<Card title="移车服务列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ServiceVehicleMovementM2mEditTable data={serviceVehicleMovementM2mList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
 		<Card title="还车服务列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <ServiceVehicleMovementM2cEditTable data={serviceVehicleMovementM2cList} owner={owner} {...this.props} />
@@ -115,9 +145,63 @@ export default class VehicleServiceCompanyEditDetail extends Component {
           </Form>
         </Card>
 
+		<Card title="移件服务列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ServiceFileMovementM2mEditTable data={serviceFileMovementM2mList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
 		<Card title="还件服务列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <ServiceFileMovementM2cEditTable data={serviceFileMovementM2cList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="保险增值服务列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ServiceInsuranceForInspectionEditTable data={serviceInsuranceForInspectionList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="车辆上线检测列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ServiceVehicleInspectionEditTable data={serviceVehicleInspectionList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="6年免检服务列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ServiceFileInspectionEditTable data={serviceFileInspectionList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="修车服务列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ServiceVehicleRepairingEditTable data={serviceVehicleRepairingList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="服务公司对账单列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ServiceCompanyAccountEditTable data={serviceCompanyAccountList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="修理公司对账单列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <RepairingCompanyAccountEditTable data={repairingCompanyAccountList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="保险服务帐户列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <InsuranceServiceAccountEditTable data={insuranceServiceAccountList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="检查站对账单列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <InspectionStationAccountEditTable data={inspectionStationAccountList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

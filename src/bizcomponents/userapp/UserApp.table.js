@@ -8,7 +8,7 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/userApp/${text}/dashboard`}>{text}</Link>) },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/userApp/${text}/dashboard`}>{text}</Link>) },
   { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8' },
   { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? (<Link to={`/secUser/${record.secUser.id}/dashboard`}>{record.secUser.id}</Link>) : '暂无') },
   { title: '应用程序图标', debugtype: 'string', dataIndex: 'appIcon', width: '13' },

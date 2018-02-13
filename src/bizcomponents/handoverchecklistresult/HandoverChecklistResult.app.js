@@ -8,7 +8,7 @@ import moment from 'moment'
 import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
-import styles from './HandoverChecklistResult.app.less'
+import styles from './HandOverChecklistResult.app.less'
 
 
 import HeaderSearch from '../../components/HeaderSearch';
@@ -42,7 +42,7 @@ const query = {
   },
 }
 
-class HandoverChecklistResultBizApp extends React.PureComponent {
+class HandOverChecklistResultBizApp extends React.PureComponent {
   constructor(props) {
     super(props)
     // 把一级 Layout 的 children 作为菜单项
@@ -67,7 +67,7 @@ class HandoverChecklistResultBizApp extends React.PureComponent {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
-      return ['/handoverChecklistResult/']
+      return ['/handOverChecklistResult/']
     }
     return currentMenuSelectedKeys
   }
@@ -84,7 +84,7 @@ class HandoverChecklistResultBizApp extends React.PureComponent {
       <SubMenu title={
         <span>
           <Icon type="profile" />
-          <span>交接清单结果</span>
+          <span>移交清单结果</span>
         </span>}
       >
 
@@ -118,9 +118,9 @@ class HandoverChecklistResultBizApp extends React.PureComponent {
      // const { collapsed, fetchingNotices,loading } = this.props
      const { collapsed } = this.props
     
-     const {HandoverChecklistResultDashboard} = GlobalComponents
-     const {HandoverChecklistResultEditDetail} = GlobalComponents
-     const {HandoverChecklistResultViewDetail} = GlobalComponents
+     const {HandOverChecklistResultDashboard} = GlobalComponents
+     const {HandOverChecklistResultEditDetail} = GlobalComponents
+     const {HandOverChecklistResultViewDetail} = GlobalComponents
      
      
      
@@ -142,7 +142,7 @@ class HandoverChecklistResultBizApp extends React.PureComponent {
          >
            <div className={styles.logo}>
              <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>交接清单结果</h1></Link>
+             <Link to="/home"> <h1>移交清单结果</h1></Link>
            </div>
 
            <Menu
@@ -156,17 +156,17 @@ class HandoverChecklistResultBizApp extends React.PureComponent {
            
 
              <Menu.Item >
-               <Link to={`/handoverChecklistResult/${this.props.handoverChecklistResult.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
+               <Link to={`/handOverChecklistResult/${this.props.handOverChecklistResult.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
              </Menu.Item>
              <Menu.Item >
-               <Link to={`/handoverChecklistResult/${this.props.handoverChecklistResult.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
+               <Link to={`/handOverChecklistResult/${this.props.handOverChecklistResult.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
              </Menu.Item>
              <Menu.Item >
-               <Link to={`/handoverChecklistResult/${this.props.handoverChecklistResult.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
+               <Link to={`/handOverChecklistResult/${this.props.handOverChecklistResult.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
              </Menu.Item>
              
 
-             {this.getNavMenuItems(this.props.handoverChecklistResult.id)}
+             {this.getNavMenuItems(this.props.handOverChecklistResult.id)}
              <Menu.Item >
                <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
              </Menu.Item>
@@ -175,9 +175,9 @@ class HandoverChecklistResultBizApp extends React.PureComponent {
          <Layout>
            <Content style={{ margin: '24px 24px 0', height: '100%' }}>
              <Switch>
-               <Route path="/handoverChecklistResult/:id/dashboard" component={HandoverChecklistResultDashboard} />
-               <Route path="/handoverChecklistResult/:id/editDetail" component={HandoverChecklistResultEditDetail} />
-               <Route path="/handoverChecklistResult/:id/viewDetail" component={HandoverChecklistResultViewDetail} />
+               <Route path="/handOverChecklistResult/:id/dashboard" component={HandOverChecklistResultDashboard} />
+               <Route path="/handOverChecklistResult/:id/editDetail" component={HandOverChecklistResultEditDetail} />
+               <Route path="/handOverChecklistResult/:id/viewDetail" component={HandOverChecklistResultViewDetail} />
                
               
              </Switch>
@@ -199,9 +199,9 @@ export default connect(state => ({
   collapsed: state.global.collapsed,
   fetchingNotices: state.global.fetchingNotices,
   notices: state.global.notices,
-  handoverChecklistResult: state._handoverChecklistResult,
+  handOverChecklistResult: state._handOverChecklistResult,
   ...state,
-}))(HandoverChecklistResultBizApp)
+}))(HandOverChecklistResultBizApp)
 
 
 

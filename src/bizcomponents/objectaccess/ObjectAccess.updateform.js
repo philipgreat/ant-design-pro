@@ -14,9 +14,9 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   displayName: '显示名称',
-  objectType: '对象类型',
+  objectType: '访问对象类型',
   list1: '列表1',
   list2: '列表2',
   list3: '列表3',
@@ -309,9 +309,9 @@ class ObjectAccessUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
-                    rules: [{ required: true, message: '请输入序号' }],
+                    rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入序号string" disabled />
+                    <Input placeholder="请输入请输入IDstring" disabled />
                   )}
                 </Form.Item>
               </Col>
@@ -329,9 +329,9 @@ class ObjectAccessUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.objectType}>
                   {getFieldDecorator('objectType', {
-                    rules: [{ required: true, message: '请输入对象类型' }],
+                    rules: [{ required: true, message: '请输入访问对象类型' }],
                   })(
-                    <Input placeholder="请输入请输入对象类型string" />
+                    <Input placeholder="请输入请输入访问对象类型string" />
                   )}
                 </Form.Item>
               </Col>

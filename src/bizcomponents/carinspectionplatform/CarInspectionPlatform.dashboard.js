@@ -47,7 +47,7 @@ const summaryOf = (carInspectionPlatform) =>{
 export default class CarInspectionPlatformDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, provinceCount, availableProductCount, customerCount, vehicleServiceCompanyCount, vehicleInfoCount, vehicleInspectionOrderCount, availableReviewItemCount, availableRatingItemCount } = this.props.carInspectionPlatform
+    const { id, provinceCount, availableProductCount, availableVehicleTypeCount, contractCount, customerCount, vehicleServiceCompanyCount, vehicleInfoCount, vehicleInspectionOrderCount, availableReviewItemCount, availableRatingItemCount, preorderPromotionCount, orderDiscountCouponCount, accountCount } = this.props.carInspectionPlatform
     
     
     
@@ -101,6 +101,42 @@ export default class CarInspectionPlatformDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
+                title="可用的车辆类型"
+                action={<Tooltip title="可用的车辆类型"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(availableVehicleTypeCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/carInspectionPlatform/${id}/list/availableVehicleTypeList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/carInspectionPlatform/${id}/list/availableVehicleTypeCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/carInspectionPlatform/${id}/list/availableVehicleTypeList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="合同"
+                action={<Tooltip title="合同"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(contractCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/carInspectionPlatform/${id}/list/contractList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/carInspectionPlatform/${id}/list/contractCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/carInspectionPlatform/${id}/list/contractList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
                 title="客户"
                 action={<Tooltip title="客户"><Icon type="info-circle-o" /></Tooltip>}
                 total={numeral(customerCount).format('0,0')}
@@ -119,8 +155,8 @@ export default class CarInspectionPlatformDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
-                title="商户管理"
-                action={<Tooltip title="商户管理"><Icon type="info-circle-o" /></Tooltip>}
+                title="商户"
+                action={<Tooltip title="商户"><Icon type="info-circle-o" /></Tooltip>}
                 total={numeral(vehicleServiceCompanyCount).format('0,0')}
                 footer={<Field label="状态" value="良好" />}
                 contentHeight={46}
@@ -202,6 +238,60 @@ export default class CarInspectionPlatformDashboard extends Component {
                 <Link to={`/carInspectionPlatform/${id}/list/availableRatingItemCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/carInspectionPlatform/${id}/list/availableRatingItemList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="预订促销"
+                action={<Tooltip title="预订促销"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(preorderPromotionCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/carInspectionPlatform/${id}/list/preorderPromotionList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/carInspectionPlatform/${id}/list/preorderPromotionCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/carInspectionPlatform/${id}/list/preorderPromotionList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="订单的折扣券"
+                action={<Tooltip title="订单的折扣券"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(orderDiscountCouponCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/carInspectionPlatform/${id}/list/orderDiscountCouponList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/carInspectionPlatform/${id}/list/orderDiscountCouponCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/carInspectionPlatform/${id}/list/orderDiscountCouponList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="对账单"
+                action={<Tooltip title="对账单"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(accountCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/carInspectionPlatform/${id}/list/accountList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/carInspectionPlatform/${id}/list/accountCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/carInspectionPlatform/${id}/list/accountList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

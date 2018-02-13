@@ -18,6 +18,42 @@ const load = (targetObjectId, parameters) => {
 
 
 
+const addServicePrice = (targetObjectId, parameters) => {
+  const url = `${PREFIX}availableServiceManager/addServicePrice/availableServiceId/contractId/productId/serviceKey/servicePriceType/basePriceValue/otherPriceValue/tokensExpr/`
+  const requestParameters = { ...parameters, tokensExpr: 'none' }
+
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const updateServicePrice = (targetObjectId, parameters) => {
+  const url = `${PREFIX}availableServiceManager/updateServicePriceProperties/availableServiceId/id/serviceKey/servicePriceType/basePriceValue/otherPriceValue/tokensExpr/`
+  const availableServiceId = targetObjectId
+  const requestParameters = { ...parameters, availableServiceId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const removeServicePriceList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}availableServiceManager/removeServicePriceList/availableServiceId/servicePriceIds/tokensExpr/`
+  const requestParameters = { ...parameters, availableServiceId: targetObjectId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+
 const addVehicleRepairingAllowance = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableServiceManager/addVehicleRepairingAllowance/serviceId/allowanceTitle/allowanceCode/allowanceAmount/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
@@ -127,7 +163,7 @@ const removeCompanyEmployeeMessageList = (targetObjectId, parameters) => {
 
 
 const addVehicleInspectionOrderServiceLog = (targetObjectId, parameters) => {
-  const url = `${PREFIX}availableServiceManager/addVehicleInspectionOrderServiceLog/serviceTypeId/summary/responsibleWorkerId/location/serviceTicket/mainOrderId/tokensExpr/`
+  const url = `${PREFIX}availableServiceManager/addVehicleInspectionOrderServiceLog/serviceTypeId/summary/responsibleWorkerId/longitude/latitude/serviceTicket/mainOrderId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -139,7 +175,7 @@ const addVehicleInspectionOrderServiceLog = (targetObjectId, parameters) => {
 }
 
 const updateVehicleInspectionOrderServiceLog = (targetObjectId, parameters) => {
-  const url = `${PREFIX}availableServiceManager/updateVehicleInspectionOrderServiceLogProperties/availableServiceId/id/summary/location/serviceTicket/tokensExpr/`
+  const url = `${PREFIX}availableServiceManager/updateVehicleInspectionOrderServiceLogProperties/availableServiceId/id/summary/longitude/latitude/serviceTicket/tokensExpr/`
   const availableServiceId = targetObjectId
   const requestParameters = { ...parameters, availableServiceId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -164,14 +200,17 @@ const removeVehicleInspectionOrderServiceLogList = (targetObjectId, parameters) 
 
 const AvailableServiceService = { view,
   load,
+  addServicePrice,
   addVehicleRepairingAllowance,
   addVehicleServiceCompanyBusinessScope,
   addCompanyEmployeeMessage,
   addVehicleInspectionOrderServiceLog,
+  updateServicePrice,
   updateVehicleRepairingAllowance,
   updateVehicleServiceCompanyBusinessScope,
   updateCompanyEmployeeMessage,
   updateVehicleInspectionOrderServiceLog,
+  removeServicePriceList,
   removeVehicleRepairingAllowanceList,
   removeVehicleServiceCompanyBusinessScopeList,
   removeCompanyEmployeeMessageList,

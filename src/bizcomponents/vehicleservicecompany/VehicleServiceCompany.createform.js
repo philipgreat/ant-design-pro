@@ -39,8 +39,8 @@ const testValues = {
   availableStoreService: '1',
   availableHomeService: '1',
   openingTime: '早上8点到下午6点提供服务,周末24小时营业',
-  longitude: '105.32441674677392',
-  latitude: '31.099011358573147',
+  longitude: '104.69213860351863',
+  latitude: '30.08050384459793',
   contactPhone: '028-61554793',
   addressCityId: 'C000001',
   platformId: 'CIP000001',
@@ -215,8 +215,8 @@ class VehicleServiceCompanyCreateForm extends Component {
     }
     return (
       <PageHeaderLayout
-        title="新建一个商户管理"
-        content="新建一个商户管理"
+        title="新建一个商户"
+        content="新建一个商户"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>

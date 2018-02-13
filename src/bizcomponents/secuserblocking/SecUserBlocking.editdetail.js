@@ -46,13 +46,13 @@ export default class SecUserBlockingEditDetail extends Component {
     return (
 
       <PageHeaderLayout
-        title="Sec用户屏蔽总览"
-        content="Sec用户屏蔽总览"
+        title="SEC用户阻塞总览"
+        content="SEC用户阻塞总览"
         wrapperClassName={styles.advancedForm}
       >
 
 
-		<Card title="Sec的用户列表" className={styles.card} bordered={false}>
+		<Card title="SEC的用户列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <SecUserEditTable data={secUserList} owner={owner} {...this.props} />
           </Form>

@@ -188,12 +188,12 @@ export default {
       // yield put(routerRedux.push(location))
     },
 
-    *addHandoverChecklistResult({ payload }, { call, put }) {
+    *addHandOverChecklistResult({ payload }, { call, put }) {
       const {AvailableHandOverItemService} = GlobalComponents;
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(AvailableHandOverItemService.addHandoverChecklistResult, id, parameters)
+      const data = yield call(AvailableHandOverItemService.addHandOverChecklistResult, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -211,11 +211,11 @@ export default {
       const location = { pathname: `/availableHandOverItem/${id}/list/${type}List`, state: data }
       yield put(routerRedux.push(location))
     },
-    *updateHandoverChecklistResult({ payload }, { call, put }) {
+    *updateHandOverChecklistResult({ payload }, { call, put }) {
       const {AvailableHandOverItemService} = GlobalComponents;      
       const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(AvailableHandOverItemService.updateHandoverChecklistResult, id, parameters)
+      const data = yield call(AvailableHandOverItemService.updateHandOverChecklistResult, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -233,16 +233,16 @@ export default {
       const location = { pathname: `/availableHandOverItem/${id}/list/${type}List`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
-    *gotoNextHandoverChecklistResultUpdateRow({ payload }, { call, put }) {
+    *gotoNextHandOverChecklistResultUpdateRow({ payload }, { call, put }) {
       const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
-    *removeHandoverChecklistResultList({ payload }, { call, put }) {
+    *removeHandOverChecklistResultList({ payload }, { call, put }) {
       const {AvailableHandOverItemService} = GlobalComponents; 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(AvailableHandOverItemService.removeHandoverChecklistResultList, id, parameters)
+      const data = yield call(AvailableHandOverItemService.removeHandOverChecklistResultList, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return

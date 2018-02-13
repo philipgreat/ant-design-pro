@@ -189,8 +189,8 @@ class AvailableHandOverItemCreateForm extends Component {
     }
     return (
       <PageHeaderLayout
-        title="新建一个交接检查清单"
-        content="新建一个交接检查清单"
+        title="新建一个可用移交项目"
+        content="新建一个可用移交项目"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>

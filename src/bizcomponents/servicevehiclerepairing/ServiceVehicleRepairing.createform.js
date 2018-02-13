@@ -16,17 +16,21 @@ const fieldLabels = {
   serviceStatus: '服务状态',
   responsibleWorker: '服务人员',
   startTime: '开始时间',
-  lastLocation: '最后的位置',
+  longitude: '经度',
+  latitude: '纬度',
   lastUpdateTime: '最后更新时间',
+  merchant: '商户',
   mainOrder: '主订单',
 }
 
 
 const testValues = {
-  serviceStatus: '待处理',
-  startTime: '2014-05-20 10:45:31',
-  lastLocation: '目前先用字符串地址占个位置',
+  serviceStatus: '报价',
+  startTime: '2015-01-30 02:26:08',
+  longitude: '105.65279187750292',
+  latitude: '30.882185388208008',
   responsibleWorkerId: 'VSCE000001',
+  merchantId: 'VSC000001',
   mainOrderId: 'VIO000001',
 }
 
@@ -223,11 +227,21 @@ class ServiceVehicleRepairingCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.lastLocation}>
-                  {getFieldDecorator('lastLocation', {
-                    rules: [{ required: true, message: '请输入最后的位置' }],
+                <Form.Item label={fieldLabels.longitude}>
+                  {getFieldDecorator('longitude', {
+                    rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入最后的位置string" />
+                    <Input placeholder="请输入请输入经度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude}>
+                  {getFieldDecorator('latitude', {
+                    rules: [{ required: true, message: '请输入纬度' }],
+                  })(
+                    <Input placeholder="请输入请输入纬度double" />
                   )}
                 </Form.Item>
               </Col>
@@ -251,6 +265,16 @@ class ServiceVehicleRepairingCreateForm extends Component {
                     rules: [{ required: true, message: '请输入服务人员' }],
                   })(
                     <Input placeholder="请输入请输入服务人员" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.merchant}>
+                  {getFieldDecorator('merchantId', {
+                    rules: [{ required: true, message: '请输入商户' }],
+                  })(
+                    <Input placeholder="请输入请输入商户" />
                   )}
                 </Form.Item>
               </Col>

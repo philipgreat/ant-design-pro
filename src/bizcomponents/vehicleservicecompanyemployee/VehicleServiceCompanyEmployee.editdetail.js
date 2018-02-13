@@ -50,10 +50,14 @@ export default class VehicleServiceCompanyEmployeeEditDetail extends Component {
     const {ServiceVehicleInspectionEditTable} = GlobalComponents;
     const {ServiceFileInspectionEditTable} = GlobalComponents;
     const {ServiceVehicleRepairingEditTable} = GlobalComponents;
+    const {ServiceCompanyAccountEditTable} = GlobalComponents;
+    const {RepairingCompanyAccountEditTable} = GlobalComponents;
+    const {InsuranceServiceAccountEditTable} = GlobalComponents;
+    const {InspectionStationAccountEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, serviceOrderFilterCount, employeeDrivingLicenseCount, companyEmployeeMessageAsSenderCount, companyEmployeeMessageAsReceiverCount, vehicleInspectionOrderServiceLogCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mAsResponsibleWorkerCount, serviceVehicleMovementM2mAsDriverCount, serviceVehicleMovementM2mAsReceiverCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mAsResponsibleWorkerCount, serviceFileMovementM2mAsSenderCount, serviceFileMovementM2mAsReceiverCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount } = this.props.vehicleServiceCompanyEmployee
-    const { serviceOrderFilterList, employeeDrivingLicenseList, companyEmployeeMessageListAsSender, companyEmployeeMessageListAsReceiver, vehicleInspectionOrderServiceLogList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mListAsResponsibleWorker, serviceVehicleMovementM2mListAsDriver, serviceVehicleMovementM2mListAsReceiver, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mListAsResponsibleWorker, serviceFileMovementM2mListAsSender, serviceFileMovementM2mListAsReceiver, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList } = this.props.vehicleServiceCompanyEmployee
+    const { id, serviceOrderFilterCount, employeeDrivingLicenseCount, companyEmployeeMessageAsSenderCount, companyEmployeeMessageAsReceiverCount, vehicleInspectionOrderServiceLogCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mAsResponsibleWorkerCount, serviceVehicleMovementM2mAsDriverCount, serviceVehicleMovementM2mAsReceiverCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mAsResponsibleWorkerCount, serviceFileMovementM2mAsSenderCount, serviceFileMovementM2mAsReceiverCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, serviceCompanyAccountCount, repairingCompanyAccountCount, insuranceServiceAccountCount, inspectionStationAccountCount } = this.props.vehicleServiceCompanyEmployee
+    const { serviceOrderFilterList, employeeDrivingLicenseList, companyEmployeeMessageListAsSender, companyEmployeeMessageListAsReceiver, vehicleInspectionOrderServiceLogList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mListAsResponsibleWorker, serviceVehicleMovementM2mListAsDriver, serviceVehicleMovementM2mListAsReceiver, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mListAsResponsibleWorker, serviceFileMovementM2mListAsSender, serviceFileMovementM2mListAsReceiver, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList, serviceCompanyAccountList, repairingCompanyAccountList, insuranceServiceAccountList, inspectionStationAccountList } = this.props.vehicleServiceCompanyEmployee
     
     const owner = { type: '_vehicleServiceCompanyEmployee', id }
     return (
@@ -146,6 +150,30 @@ export default class VehicleServiceCompanyEmployeeEditDetail extends Component {
 		<Card title="修车服务列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <ServiceVehicleRepairingEditTable data={serviceVehicleRepairingList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="服务公司对账单列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ServiceCompanyAccountEditTable data={serviceCompanyAccountList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="修理公司对账单列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <RepairingCompanyAccountEditTable data={repairingCompanyAccountList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="保险服务帐户列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <InsuranceServiceAccountEditTable data={insuranceServiceAccountList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="检查站对账单列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <InspectionStationAccountEditTable data={inspectionStationAccountList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

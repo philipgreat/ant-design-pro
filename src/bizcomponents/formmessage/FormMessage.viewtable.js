@@ -7,7 +7,7 @@ import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '标题', debugtype: 'string', dataIndex: 'title', width: '10' },
   { title: '形式',dataIndex: 'form', render: (text, record) => (record.form ? record.form.id : '暂无') },
   { title: '水平', debugtype: 'string', dataIndex: 'level', width: '11' },

@@ -15,8 +15,8 @@ const columns = [
   { title: '接收方', dataIndex: 'receiver', render: (text, record) => (record.receiver ? (<Link to={`/vehicleServiceCompanyEmployee/${record.receiver.id}/dashboard`}>{record.receiver.id}</Link>) : '暂无') },
   { title: '服务类型', dataIndex: 'serviceType', render: (text, record) => (record.serviceType ? (<Link to={`/availableService/${record.serviceType.id}/dashboard`}>{record.serviceType.id}</Link>) : '暂无') },
   { title: '服务单号', debugtype: 'string', dataIndex: 'serviceTicket', width: '19' },
-  { title: '发送时间', dataIndex: 'sendTime', render: (text, record) => moment(record.sendTime).format('YYYY-MM-DD') },
-  { title: '阅读时间', dataIndex: 'readTime', render: (text, record) => moment(record.readTime).format('YYYY-MM-DD') },
+  { title: '发送时间', dataIndex: 'sendTime', render: (text, record) => moment(record.sendTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '阅读时间', dataIndex: 'readTime', render: (text, record) => moment(record.readTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '状态', debugtype: 'string', dataIndex: 'status', width: '6' },
 
 ]

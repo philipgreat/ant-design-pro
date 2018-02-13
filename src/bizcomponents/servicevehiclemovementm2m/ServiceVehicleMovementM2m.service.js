@@ -18,8 +18,8 @@ const load = (targetObjectId, parameters) => {
 
 
 
-const addReportHandover = (targetObjectId, parameters) => {
-  const url = `${PREFIX}serviceVehicleMovementM2mManager/addReportHandover/serviceTypeVehicleM2mId/handoverResult/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/serviceTypeVehicleC2mId/serviceTypeVehicleM2cId/serviceTypeFileC2mId/serviceTypeFileM2mId/serviceTypeFileM2cId/tokensExpr/`
+const addHandOverChecklistResult = (targetObjectId, parameters) => {
+  const url = `${PREFIX}serviceVehicleMovementM2mManager/addHandOverChecklistResult/serviceTypeVehicleM2mId/handOverCheckItemName/handOverCheckResult/handOverCheckComment/handOverCheckEvidenceImage1/handOverCheckEvidenceImage2/handOverCheckEvidenceImage3/handOverCheckEvidenceImage4/handOverCheckEvidenceImage5/availableHandOverItemId/serviceTypeVehicleC2mId/serviceTypeVehicleM2cId/serviceTypeFileC2mId/serviceTypeFileM2mId/serviceTypeFileM2cId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -30,8 +30,8 @@ const addReportHandover = (targetObjectId, parameters) => {
   })
 }
 
-const updateReportHandover = (targetObjectId, parameters) => {
-  const url = `${PREFIX}serviceVehicleMovementM2mManager/updateReportHandoverProperties/serviceVehicleMovementM2mId/id/handoverResult/rejectComments/rejectEvidence1/rejectEvidence2/rejectEvidence3/rejectEvidence4/rejectEvidence5/tokensExpr/`
+const updateHandOverChecklistResult = (targetObjectId, parameters) => {
+  const url = `${PREFIX}serviceVehicleMovementM2mManager/updateHandOverChecklistResultProperties/serviceVehicleMovementM2mId/id/handOverCheckItemName/handOverCheckResult/handOverCheckComment/handOverCheckEvidenceImage1/handOverCheckEvidenceImage2/handOverCheckEvidenceImage3/handOverCheckEvidenceImage4/handOverCheckEvidenceImage5/tokensExpr/`
   const serviceVehicleMovementM2mId = targetObjectId
   const requestParameters = { ...parameters, serviceVehicleMovementM2mId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -42,8 +42,8 @@ const updateReportHandover = (targetObjectId, parameters) => {
   })
 }
 
-const removeReportHandoverList = (targetObjectId, parameters) => {
-  const url = `${PREFIX}serviceVehicleMovementM2mManager/removeReportHandoverList/serviceVehicleMovementM2mId/reportHandoverIds/tokensExpr/`
+const removeHandOverChecklistResultList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}serviceVehicleMovementM2mManager/removeHandOverChecklistResultList/serviceVehicleMovementM2mId/handOverChecklistResultIds/tokensExpr/`
   const requestParameters = { ...parameters, serviceVehicleMovementM2mId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
@@ -56,8 +56,8 @@ const removeReportHandoverList = (targetObjectId, parameters) => {
 
 const ServiceVehicleMovementM2mService = { view,
   load,
-  addReportHandover,
-  updateReportHandover,
-  removeReportHandoverList }
+  addHandOverChecklistResult,
+  updateHandOverChecklistResult,
+  removeHandOverChecklistResultList }
 export default ServiceVehicleMovementM2mService
 

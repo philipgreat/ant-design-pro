@@ -15,7 +15,7 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  name: '名称',
+  filterName: '过滤器的名字',
   orderCount: '订单数量',
   selected: '选择',
   linkUrl: '链接网址',
@@ -310,11 +310,11 @@ class ServiceOrderFilterUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.name}>
-                  {getFieldDecorator('name', {
-                    rules: [{ required: true, message: '请输入名称' }],
+                <Form.Item label={fieldLabels.filterName}>
+                  {getFieldDecorator('filterName', {
+                    rules: [{ required: true, message: '请输入过滤器的名字' }],
                   })(
-                    <Input placeholder="请输入请输入名称string" />
+                    <Input placeholder="请输入请输入过滤器的名字string" />
                   )}
                 </Form.Item>
               </Col>

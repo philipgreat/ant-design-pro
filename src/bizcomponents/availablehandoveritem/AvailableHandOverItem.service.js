@@ -54,8 +54,8 @@ const removeHandOverChecklistItemList = (targetObjectId, parameters) => {
 }
 
 
-const addHandoverChecklistResult = (targetObjectId, parameters) => {
-  const url = `${PREFIX}availableHandOverItemManager/addHandoverChecklistResult/availableHandOverItemId/handoverCheckResult/handoverCheckComment/handoverCheckEvidenceImage1/handoverCheckEvidenceImage2/handoverCheckEvidenceImage3/handoverCheckEvidenceImage4/handoverCheckEvidenceImage5/reportHandoverId/tokensExpr/`
+const addHandOverChecklistResult = (targetObjectId, parameters) => {
+  const url = `${PREFIX}availableHandOverItemManager/addHandOverChecklistResult/availableHandOverItemId/handOverCheckItemName/handOverCheckResult/handOverCheckComment/handOverCheckEvidenceImage1/handOverCheckEvidenceImage2/handOverCheckEvidenceImage3/handOverCheckEvidenceImage4/handOverCheckEvidenceImage5/serviceTypeVehicleC2mId/serviceTypeVehicleM2mId/serviceTypeVehicleM2cId/serviceTypeFileC2mId/serviceTypeFileM2mId/serviceTypeFileM2cId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -66,8 +66,8 @@ const addHandoverChecklistResult = (targetObjectId, parameters) => {
   })
 }
 
-const updateHandoverChecklistResult = (targetObjectId, parameters) => {
-  const url = `${PREFIX}availableHandOverItemManager/updateHandoverChecklistResultProperties/availableHandOverItemId/id/handoverCheckResult/handoverCheckComment/handoverCheckEvidenceImage1/handoverCheckEvidenceImage2/handoverCheckEvidenceImage3/handoverCheckEvidenceImage4/handoverCheckEvidenceImage5/tokensExpr/`
+const updateHandOverChecklistResult = (targetObjectId, parameters) => {
+  const url = `${PREFIX}availableHandOverItemManager/updateHandOverChecklistResultProperties/availableHandOverItemId/id/handOverCheckItemName/handOverCheckResult/handOverCheckComment/handOverCheckEvidenceImage1/handOverCheckEvidenceImage2/handOverCheckEvidenceImage3/handOverCheckEvidenceImage4/handOverCheckEvidenceImage5/tokensExpr/`
   const availableHandOverItemId = targetObjectId
   const requestParameters = { ...parameters, availableHandOverItemId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -78,8 +78,8 @@ const updateHandoverChecklistResult = (targetObjectId, parameters) => {
   })
 }
 
-const removeHandoverChecklistResultList = (targetObjectId, parameters) => {
-  const url = `${PREFIX}availableHandOverItemManager/removeHandoverChecklistResultList/availableHandOverItemId/handoverChecklistResultIds/tokensExpr/`
+const removeHandOverChecklistResultList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}availableHandOverItemManager/removeHandOverChecklistResultList/availableHandOverItemId/handOverChecklistResultIds/tokensExpr/`
   const requestParameters = { ...parameters, availableHandOverItemId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
@@ -93,10 +93,10 @@ const removeHandoverChecklistResultList = (targetObjectId, parameters) => {
 const AvailableHandOverItemService = { view,
   load,
   addHandOverChecklistItem,
-  addHandoverChecklistResult,
+  addHandOverChecklistResult,
   updateHandOverChecklistItem,
-  updateHandoverChecklistResult,
+  updateHandOverChecklistResult,
   removeHandOverChecklistItemList,
-  removeHandoverChecklistResultList }
+  removeHandOverChecklistResultList }
 export default AvailableHandOverItemService
 

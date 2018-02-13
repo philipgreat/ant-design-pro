@@ -9,7 +9,7 @@ import ImagePreview from '../../components/ImagePreview';
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17' },
-  { title: '事件时间', dataIndex: 'eventTime', render: (text, record) => moment(record.eventTime).format('YYYY-MM-DD') },
+  { title: '事件时间', dataIndex: 'eventTime', render: (text, record) => moment(record.eventTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '评论', debugtype: 'string', dataIndex: 'comment', width: '8' },
 ];
 

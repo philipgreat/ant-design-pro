@@ -9,7 +9,7 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7' },
+  { title: '过滤器的名字', debugtype: 'string', dataIndex: 'filterName', width: '8' },
   { title: '订单数量', debugtype: 'int', dataIndex: 'orderCount', width: '6' },
   { title: '选择', dataIndex: 'selected', render: (text, record) => (record.selected ? '是' : '否') },
   { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '56' },

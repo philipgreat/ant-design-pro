@@ -288,8 +288,8 @@ class AvailableHandOverItemUpdateForm extends Component {
     // TODO
     return (
       <PageHeaderLayout
-        title={"更新交接检查清单"+(currentUpdateIndex+1)+"/"+selectedRows.length}
-        content="更新交接检查清单"
+        title={"更新可用移交项目"+(currentUpdateIndex+1)+"/"+selectedRows.length}
+        content="更新可用移交项目"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>

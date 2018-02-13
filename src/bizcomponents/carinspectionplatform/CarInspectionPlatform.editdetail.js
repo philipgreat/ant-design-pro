@@ -38,16 +38,21 @@ export default class CarInspectionPlatformEditDetail extends Component {
   render() {
     const {ProvinceEditTable} = GlobalComponents;
     const {AvailableProductEditTable} = GlobalComponents;
+    const {AvailableVehicleTypeEditTable} = GlobalComponents;
+    const {ContractEditTable} = GlobalComponents;
     const {CustomerEditTable} = GlobalComponents;
     const {VehicleServiceCompanyEditTable} = GlobalComponents;
     const {VehicleInfoEditTable} = GlobalComponents;
     const {VehicleInspectionOrderEditTable} = GlobalComponents;
     const {AvailableReviewItemEditTable} = GlobalComponents;
     const {AvailableRatingItemEditTable} = GlobalComponents;
+    const {PreorderPromotionEditTable} = GlobalComponents;
+    const {OrderDiscountCouponEditTable} = GlobalComponents;
+    const {AccountEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, provinceCount, availableProductCount, customerCount, vehicleServiceCompanyCount, vehicleInfoCount, vehicleInspectionOrderCount, availableReviewItemCount, availableRatingItemCount } = this.props.carInspectionPlatform
-    const { provinceList, availableProductList, customerList, vehicleServiceCompanyList, vehicleInfoList, vehicleInspectionOrderList, availableReviewItemList, availableRatingItemList } = this.props.carInspectionPlatform
+    const { id, provinceCount, availableProductCount, availableVehicleTypeCount, contractCount, customerCount, vehicleServiceCompanyCount, vehicleInfoCount, vehicleInspectionOrderCount, availableReviewItemCount, availableRatingItemCount, preorderPromotionCount, orderDiscountCouponCount, accountCount } = this.props.carInspectionPlatform
+    const { provinceList, availableProductList, availableVehicleTypeList, contractList, customerList, vehicleServiceCompanyList, vehicleInfoList, vehicleInspectionOrderList, availableReviewItemList, availableRatingItemList, preorderPromotionList, orderDiscountCouponList, accountList } = this.props.carInspectionPlatform
     
     const owner = { type: '_carInspectionPlatform', id }
     return (
@@ -71,13 +76,25 @@ export default class CarInspectionPlatformEditDetail extends Component {
           </Form>
         </Card>
 
+		<Card title="可用的车辆类型列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <AvailableVehicleTypeEditTable data={availableVehicleTypeList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="合同列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <ContractEditTable data={contractList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
 		<Card title="客户列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <CustomerEditTable data={customerList} owner={owner} {...this.props} />
           </Form>
         </Card>
 
-		<Card title="商户管理列表" className={styles.card} bordered={false}>
+		<Card title="商户列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <VehicleServiceCompanyEditTable data={vehicleServiceCompanyList} owner={owner} {...this.props} />
           </Form>
@@ -104,6 +121,24 @@ export default class CarInspectionPlatformEditDetail extends Component {
 		<Card title="评分条目列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <AvailableRatingItemEditTable data={availableRatingItemList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="预订促销列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <PreorderPromotionEditTable data={preorderPromotionList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="订单的折扣券列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <OrderDiscountCouponEditTable data={orderDiscountCouponList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="对账单列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <AccountEditTable data={accountList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

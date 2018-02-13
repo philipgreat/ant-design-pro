@@ -15,12 +15,13 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  title: '标题',
-  startDate: '生效日期',
-  expirationDate: '失效日期',
-  amount: '金额',
-  code: '优惠码',
-  usedDate: '使用日期',
+  couponTitle: '优惠券名称',
+  discountAmount: '折扣金额',
+  endDate: '结束日期',
+  lastUpdateTime: '最后更新时间',
+  appliedDate: '申请日期',
+  couponStatus: '息状态',
+  customer: '客户',
   mainOrder: '主订单',
 
 }
@@ -76,9 +77,9 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
-        startDate: moment(item.startDate).format('YYYY-MM-DD'),
-        expirationDate: moment(item.expirationDate).format('YYYY-MM-DD'),
-        usedDate: moment(item.usedDate).format('YYYY-MM-DD'),
+        endDate: moment(item.endDate).format('YYYY-MM-DD'),
+        lastUpdateTime: moment(item.lastUpdateTime).format('YYYY-MM-DD'),
+        appliedDate: moment(item.appliedDate).format('YYYY-MM-DD'),
 
       }
     })
@@ -315,61 +316,51 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.title}>
-                  {getFieldDecorator('title', {
-                    rules: [{ required: true, message: '请输入标题' }],
+                <Form.Item label={fieldLabels.couponTitle}>
+                  {getFieldDecorator('couponTitle', {
+                    rules: [{ required: true, message: '请输入优惠券名称' }],
                   })(
-                    <Input placeholder="请输入请输入标题string" />
+                    <Input placeholder="请输入请输入优惠券名称string" />
                   )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.startDate}>
-                  {getFieldDecorator('startDate', {
-                    rules: [{ required: true, message: '请输入生效日期' }],
+                <Form.Item label={fieldLabels.discountAmount}>
+                  {getFieldDecorator('discountAmount', {
+                    rules: [{ required: true, message: '请输入折扣金额' }],
                   })(
-                    <Input placeholder="请输入请输入生效日期date" />
+                    <Input placeholder="请输入请输入折扣金额money" />
                   )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.expirationDate}>
-                  {getFieldDecorator('expirationDate', {
-                    rules: [{ required: true, message: '请输入失效日期' }],
+                <Form.Item label={fieldLabels.endDate}>
+                  {getFieldDecorator('endDate', {
+                    rules: [{ required: true, message: '请输入结束日期' }],
                   })(
-                    <Input placeholder="请输入请输入失效日期date" />
+                    <Input placeholder="请输入请输入结束日期date_time" />
                   )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.amount}>
-                  {getFieldDecorator('amount', {
-                    rules: [{ required: true, message: '请输入金额' }],
+                <Form.Item label={fieldLabels.appliedDate}>
+                  {getFieldDecorator('appliedDate', {
+                    rules: [{ required: true, message: '请输入申请日期' }],
                   })(
-                    <Input placeholder="请输入请输入金额money" />
+                    <Input placeholder="请输入请输入申请日期date_time" />
                   )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.code}>
-                  {getFieldDecorator('code', {
-                    rules: [{ required: true, message: '请输入优惠码' }],
+                <Form.Item label={fieldLabels.couponStatus}>
+                  {getFieldDecorator('couponStatus', {
+                    rules: [{ required: true, message: '请输入息状态' }],
                   })(
-                    <Input placeholder="请输入请输入优惠码string" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.usedDate}>
-                  {getFieldDecorator('usedDate', {
-                    rules: [{ required: true, message: '请输入使用日期' }],
-                  })(
-                    <Input placeholder="请输入请输入使用日期date" />
+                    <Input placeholder="请输入请输入息状态string" />
                   )}
                 </Form.Item>
               </Col>

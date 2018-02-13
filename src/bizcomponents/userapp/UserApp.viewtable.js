@@ -7,7 +7,7 @@ import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8' },
   { title: 'SEC的用户',dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
   { title: '应用程序图标', debugtype: 'string', dataIndex: 'appIcon', width: '13' },

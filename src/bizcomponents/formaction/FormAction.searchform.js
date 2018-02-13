@@ -66,6 +66,7 @@ export default class FormActionSearchForm extends PureComponent {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
         ...this.buildStringSearchParameters(fieldsValue, 'label'),
         ...this.buildStringSearchParameters(fieldsValue, 'localeKey'),
+        ...this.buildStringSearchParameters(fieldsValue, 'level'),
         ...this.buildStringSearchParameters(fieldsValue, 'url'),
 
       }
@@ -84,9 +85,9 @@ export default class FormActionSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="序号">
+            <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入序号" />
+                <Input placeholder="请输入ID" />
                )}
             </FormItem>
           </Col>
@@ -117,9 +118,9 @@ export default class FormActionSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="序号">
+            <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入序号" />
+                <Input placeholder="请输入ID" />
               )}
             </FormItem>
           </Col>
@@ -136,6 +137,14 @@ export default class FormActionSearchForm extends PureComponent {
             <FormItem label="语言环境的关键">
               {getFieldDecorator('localeKey')(
                 <Input placeholder="请输入语言环境的关键" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="水平">
+              {getFieldDecorator('level')(
+                <Input placeholder="请输入水平" />
               )}
             </FormItem>
           </Col>

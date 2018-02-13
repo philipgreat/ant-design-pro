@@ -65,7 +65,7 @@ export default class VehicleServiceCompanyViewDetail extends Component {
 
 
   state = {
-    tabKey: `vehicleInspectionPlateNumberPatternList`,
+    tabKey: `contractList`,
     stepDirection: 'horizontal',
   }
  
@@ -73,6 +73,8 @@ export default class VehicleServiceCompanyViewDetail extends Component {
     this.setState({ tabKey: key });
   }  
   render() {
+    const {ContractViewTable} = GlobalComponents;
+    const {ServiceCompanyAuthenticationInfoViewTable} = GlobalComponents;
     const {VehicleInspectionPlateNumberPatternViewTable} = GlobalComponents;
     const {FileInspectionPlateNumberPatternViewTable} = GlobalComponents;
     const {VehicleServiceCompanyBusinessScopeViewTable} = GlobalComponents;
@@ -80,20 +82,32 @@ export default class VehicleServiceCompanyViewDetail extends Component {
     const {VehicleServiceCompanyEmployeeViewTable} = GlobalComponents;
     const {VehicleInspectionOrderViewTable} = GlobalComponents;
     const {ServiceVehicleMovementC2mViewTable} = GlobalComponents;
+    const {ServiceVehicleMovementM2mViewTable} = GlobalComponents;
     const {ServiceVehicleMovementM2cViewTable} = GlobalComponents;
     const {ServiceFileMovementC2mViewTable} = GlobalComponents;
+    const {ServiceFileMovementM2mViewTable} = GlobalComponents;
     const {ServiceFileMovementM2cViewTable} = GlobalComponents;
+    const {ServiceInsuranceForInspectionViewTable} = GlobalComponents;
+    const {ServiceVehicleInspectionViewTable} = GlobalComponents;
+    const {ServiceFileInspectionViewTable} = GlobalComponents;
+    const {ServiceVehicleRepairingViewTable} = GlobalComponents;
+    const {ServiceCompanyAccountViewTable} = GlobalComponents;
+    const {RepairingCompanyAccountViewTable} = GlobalComponents;
+    const {InsuranceServiceAccountViewTable} = GlobalComponents;
+    const {InspectionStationAccountViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const vehicleServiceCompany = this.props.vehicleServiceCompany
-    const { id, vehicleInspectionPlateNumberPatternCount, fileInspectionPlateNumberPatternCount, vehicleServiceCompanyBusinessScopeCount, vehicleServiceCompanyDispatcherCount, vehicleServiceCompanyEmployeeCount, vehicleInspectionOrderCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2cCount } = vehicleServiceCompany
-    const { vehicleInspectionPlateNumberPatternList, fileInspectionPlateNumberPatternList, vehicleServiceCompanyBusinessScopeList, vehicleServiceCompanyDispatcherList, vehicleServiceCompanyEmployeeList, vehicleInspectionOrderList, serviceVehicleMovementC2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2cList } = vehicleServiceCompany
+    const { id, contractCount, serviceCompanyAuthenticationInfoCount, vehicleInspectionPlateNumberPatternCount, fileInspectionPlateNumberPatternCount, vehicleServiceCompanyBusinessScopeCount, vehicleServiceCompanyDispatcherCount, vehicleServiceCompanyEmployeeCount, vehicleInspectionOrderCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, serviceCompanyAccountCount, repairingCompanyAccountCount, insuranceServiceAccountCount, inspectionStationAccountCount } = vehicleServiceCompany
+    const { contractList, serviceCompanyAuthenticationInfoList, vehicleInspectionPlateNumberPatternList, fileInspectionPlateNumberPatternList, vehicleServiceCompanyBusinessScopeList, vehicleServiceCompanyDispatcherList, vehicleServiceCompanyEmployeeList, vehicleInspectionOrderList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mList, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList, serviceCompanyAccountList, repairingCompanyAccountList, insuranceServiceAccountList, inspectionStationAccountList } = vehicleServiceCompany
     
     const owner = { type: '_vehicleServiceCompany', id }
     
     const tabList = [
 
+      {key: 'contractList',tab: `合同(${contractCount})`}, 
+      {key: 'serviceCompanyAuthenticationInfoList',tab: `服务公司认证信息(${serviceCompanyAuthenticationInfoCount})`}, 
       {key: 'vehicleInspectionPlateNumberPatternList',tab: `车辆检验牌照号码模式(${vehicleInspectionPlateNumberPatternCount})`}, 
       {key: 'fileInspectionPlateNumberPatternList',tab: `6年免检牌照号码模式(${fileInspectionPlateNumberPatternCount})`}, 
       {key: 'vehicleServiceCompanyBusinessScopeList',tab: `服务提供商服务范围管理(${vehicleServiceCompanyBusinessScopeCount})`}, 
@@ -101,16 +115,32 @@ export default class VehicleServiceCompanyViewDetail extends Component {
       {key: 'vehicleServiceCompanyEmployeeList',tab: `服务提供商员工管理(${vehicleServiceCompanyEmployeeCount})`}, 
       {key: 'vehicleInspectionOrderList',tab: `上线检测订单(${vehicleInspectionOrderCount})`}, 
       {key: 'serviceVehicleMovementC2mList',tab: `收车服务(${serviceVehicleMovementC2mCount})`}, 
+      {key: 'serviceVehicleMovementM2mList',tab: `移车服务(${serviceVehicleMovementM2mCount})`}, 
       {key: 'serviceVehicleMovementM2cList',tab: `还车服务(${serviceVehicleMovementM2cCount})`}, 
       {key: 'serviceFileMovementC2mList',tab: `收件服务(${serviceFileMovementC2mCount})`}, 
+      {key: 'serviceFileMovementM2mList',tab: `移件服务(${serviceFileMovementM2mCount})`}, 
       {key: 'serviceFileMovementM2cList',tab: `还件服务(${serviceFileMovementM2cCount})`}, 
+      {key: 'serviceInsuranceForInspectionList',tab: `保险增值服务(${serviceInsuranceForInspectionCount})`}, 
+      {key: 'serviceVehicleInspectionList',tab: `车辆上线检测(${serviceVehicleInspectionCount})`}, 
+      {key: 'serviceFileInspectionList',tab: `6年免检服务(${serviceFileInspectionCount})`}, 
+      {key: 'serviceVehicleRepairingList',tab: `修车服务(${serviceVehicleRepairingCount})`}, 
+      {key: 'serviceCompanyAccountList',tab: `服务公司对账单(${serviceCompanyAccountCount})`}, 
+      {key: 'repairingCompanyAccountList',tab: `修理公司对账单(${repairingCompanyAccountCount})`}, 
+      {key: 'insuranceServiceAccountList',tab: `保险服务帐户(${insuranceServiceAccountCount})`}, 
+      {key: 'inspectionStationAccountList',tab: `检查站对账单(${inspectionStationAccountCount})`}, 
    
 
    ];
    
    
     const contentList = {
-       vehicleInspectionPlateNumberPatternList:  
+       contractList:  
+        <ContractViewTable data={contractList} owner={owner} {...this.props} />,
+ 
+      serviceCompanyAuthenticationInfoList:  
+        <ServiceCompanyAuthenticationInfoViewTable data={serviceCompanyAuthenticationInfoList} owner={owner} {...this.props} />,
+ 
+      vehicleInspectionPlateNumberPatternList:  
         <VehicleInspectionPlateNumberPatternViewTable data={vehicleInspectionPlateNumberPatternList} owner={owner} {...this.props} />,
  
       fileInspectionPlateNumberPatternList:  
@@ -131,14 +161,44 @@ export default class VehicleServiceCompanyViewDetail extends Component {
       serviceVehicleMovementC2mList:  
         <ServiceVehicleMovementC2mViewTable data={serviceVehicleMovementC2mList} owner={owner} {...this.props} />,
  
+      serviceVehicleMovementM2mList:  
+        <ServiceVehicleMovementM2mViewTable data={serviceVehicleMovementM2mList} owner={owner} {...this.props} />,
+ 
       serviceVehicleMovementM2cList:  
         <ServiceVehicleMovementM2cViewTable data={serviceVehicleMovementM2cList} owner={owner} {...this.props} />,
  
       serviceFileMovementC2mList:  
         <ServiceFileMovementC2mViewTable data={serviceFileMovementC2mList} owner={owner} {...this.props} />,
  
+      serviceFileMovementM2mList:  
+        <ServiceFileMovementM2mViewTable data={serviceFileMovementM2mList} owner={owner} {...this.props} />,
+ 
       serviceFileMovementM2cList:  
         <ServiceFileMovementM2cViewTable data={serviceFileMovementM2cList} owner={owner} {...this.props} />,
+ 
+      serviceInsuranceForInspectionList:  
+        <ServiceInsuranceForInspectionViewTable data={serviceInsuranceForInspectionList} owner={owner} {...this.props} />,
+ 
+      serviceVehicleInspectionList:  
+        <ServiceVehicleInspectionViewTable data={serviceVehicleInspectionList} owner={owner} {...this.props} />,
+ 
+      serviceFileInspectionList:  
+        <ServiceFileInspectionViewTable data={serviceFileInspectionList} owner={owner} {...this.props} />,
+ 
+      serviceVehicleRepairingList:  
+        <ServiceVehicleRepairingViewTable data={serviceVehicleRepairingList} owner={owner} {...this.props} />,
+ 
+      serviceCompanyAccountList:  
+        <ServiceCompanyAccountViewTable data={serviceCompanyAccountList} owner={owner} {...this.props} />,
+ 
+      repairingCompanyAccountList:  
+        <RepairingCompanyAccountViewTable data={repairingCompanyAccountList} owner={owner} {...this.props} />,
+ 
+      insuranceServiceAccountList:  
+        <InsuranceServiceAccountViewTable data={insuranceServiceAccountList} owner={owner} {...this.props} />,
+ 
+      inspectionStationAccountList:  
+        <InspectionStationAccountViewTable data={inspectionStationAccountList} owner={owner} {...this.props} />,
  
     
     };
@@ -151,7 +211,7 @@ export default class VehicleServiceCompanyViewDetail extends Component {
     return (
 
       <PageHeaderLayout
-        title="商户管理总览"
+        title="商户总览"
         content={summaryOf(this.props.vehicleServiceCompany)}
         wrapperClassName={styles.advancedForm}
       >

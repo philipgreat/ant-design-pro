@@ -191,7 +191,7 @@ class ServiceOrderFilterEditTable extends PureComponent {
     
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '过滤器的名字', debugtype: 'string', dataIndex: 'filterName', width: '8', render: (text, record) => renderStringEdit('filterName',text, record)  },
   { title: '订单数量', debugtype: 'int', dataIndex: 'orderCount', width: '6', render: (text, record) => renderStringEdit('orderCount',text, record)  },
   { title: '选择', dataIndex: 'selected', render: (text, record) => (record.selected ? '是' : '否') },
   { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '56', render: (text, record) => renderStringEdit('linkUrl',text, record)  },
@@ -202,7 +202,7 @@ class ServiceOrderFilterEditTable extends PureComponent {
     const newRecord =()=>{
       const newServiceOrderFilterToAppend  = {
       	'id':`+1`, 
-				'name':'',
+				'filterName':'',
 				'orderCount':'',
 				'selected':'',
 				'linkUrl':'',

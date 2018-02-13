@@ -13,14 +13,19 @@ const columns = [
   { title: '要求保险', dataIndex: 'orderedInsurance', render: (text, record) => (record.orderedInsurance ? (<Link to={`/availableInsurance/${record.orderedInsurance.id}/dashboard`}>{record.orderedInsurance.id}</Link>) : '暂无') },
   { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.id}</Link>) : '暂无') },
   { title: '服务的评论', debugtype: 'string', dataIndex: 'serviceComments', width: '15' },
-  { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD') },
-  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD') },
+  { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '保险产品名称', debugtype: 'string', dataIndex: 'insuranceName', width: '10' },
+  { title: '保险承保方', debugtype: 'string', dataIndex: 'insuranceVendor', width: '11' },
+  { title: '保险价格', dataIndex: 'insurancePrice', className:'money', render: (text, record) => (`￥${text.toFixed(2)}`) },
+  { title: '概览', debugtype: 'string', dataIndex: 'summary', width: '20' },
   { title: '保单号码', debugtype: 'string', dataIndex: 'insuranceNumber', width: '19' },
   { title: '保单图片', dataIndex: 'insuranceImage1', render: (text, record) => <ImagePreview imageTitle="保单图片" imageLocation={record.insuranceImage1} /> },
   { title: '保单图片', dataIndex: 'insuranceImage2', render: (text, record) => <ImagePreview imageTitle="保单图片" imageLocation={record.insuranceImage2} /> },
   { title: '保单图片', dataIndex: 'insuranceImage3', render: (text, record) => <ImagePreview imageTitle="保单图片" imageLocation={record.insuranceImage3} /> },
   { title: '保单图片', dataIndex: 'insuranceImage4', render: (text, record) => <ImagePreview imageTitle="保单图片" imageLocation={record.insuranceImage4} /> },
   { title: '保单图片', dataIndex: 'insuranceImage5', render: (text, record) => <ImagePreview imageTitle="保单图片" imageLocation={record.insuranceImage5} /> },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.id}</Link>) : '暂无') },
   { title: '主订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.id}</Link>) : '暂无') },
 
 ]
@@ -99,7 +104,7 @@ class ServiceInsuranceForInspectionTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 1830 }}
+          scroll={{ x: 2475 }}
         />
       </div>
     )

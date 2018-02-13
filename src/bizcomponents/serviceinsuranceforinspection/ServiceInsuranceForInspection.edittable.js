@@ -85,10 +85,11 @@ class ServiceInsuranceForInspectionEditTable extends PureComponent {
     const remapReference = (record) => {
 			const orderedInsuranceId = record.orderedInsurance.id
 			const responsibleWorkerId = record.responsibleWorker.id
+			const merchantId = record.merchant.id
 			const mainOrderId = record.mainOrder.id
 
       //const communityId = record.community.id;
-      return {orderedInsuranceId,responsibleWorkerId,mainOrderId,};
+      return {orderedInsuranceId,responsibleWorkerId,merchantId,mainOrderId,};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -197,14 +198,19 @@ class ServiceInsuranceForInspectionEditTable extends PureComponent {
   { title: '要求保险', dataIndex: 'orderedInsurance', render: (text, record) => (record.orderedInsurance ? record.orderedInsurance.id : '暂无') },
   { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.id : '暂无') },
   { title: '服务的评论', debugtype: 'string', dataIndex: 'serviceComments', width: '15', render: (text, record) => renderStringEdit('serviceComments',text, record)  },
-  { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD') },
-  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD') },
+  { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '保险产品名称', debugtype: 'string', dataIndex: 'insuranceName', width: '10', render: (text, record) => renderStringEdit('insuranceName',text, record)  },
+  { title: '保险承保方', debugtype: 'string', dataIndex: 'insuranceVendor', width: '11', render: (text, record) => renderStringEdit('insuranceVendor',text, record)  },
+  { title: '保险价格', dataIndex: 'insurancePrice', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
+  { title: '概览', debugtype: 'string', dataIndex: 'summary', width: '20', render: (text, record) => renderStringEdit('summary',text, record)  },
   { title: '保单号码', debugtype: 'string', dataIndex: 'insuranceNumber', width: '19', render: (text, record) => renderStringEdit('insuranceNumber',text, record)  },
   { title: '保单图片', dataIndex: 'insuranceImage1', render: (text, record) => <ImagePreview imageLocation={record.insuranceImage1} /> },
   { title: '保单图片', dataIndex: 'insuranceImage2', render: (text, record) => <ImagePreview imageLocation={record.insuranceImage2} /> },
   { title: '保单图片', dataIndex: 'insuranceImage3', render: (text, record) => <ImagePreview imageLocation={record.insuranceImage3} /> },
   { title: '保单图片', dataIndex: 'insuranceImage4', render: (text, record) => <ImagePreview imageLocation={record.insuranceImage4} /> },
   { title: '保单图片', dataIndex: 'insuranceImage5', render: (text, record) => <ImagePreview imageLocation={record.insuranceImage5} /> },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.id : '暂无') },
   { title: '主订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -218,12 +224,17 @@ class ServiceInsuranceForInspectionEditTable extends PureComponent {
 				'serviceComments':'',
 				'startTime':'',
 				'lastUpdateTime':'',
+				'insuranceName':'',
+				'insuranceVendor':'',
+				'insurancePrice':'',
+				'summary':'',
 				'insuranceNumber':'',
 				'insuranceImage1':'',
 				'insuranceImage2':'',
 				'insuranceImage3':'',
 				'insuranceImage4':'',
 				'insuranceImage5':'',
+				'merchant':'',
 				'mainOrder':'',
 
 

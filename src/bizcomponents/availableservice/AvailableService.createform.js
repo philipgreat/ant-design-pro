@@ -22,7 +22,7 @@ const fieldLabels = {
 
 const testValues = {
   serviceName: '收车服务',
-  serviceKey: 'ACCEPT_VEHICLE',
+  serviceKey: 'VEHICLE_C2M_IN_STORE',
   serviceDescription: '客户开车到某门店送检',
   availableProductId: 'AP000001',
 }

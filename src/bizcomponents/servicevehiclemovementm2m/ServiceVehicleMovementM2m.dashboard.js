@@ -34,9 +34,13 @@ const summaryOf = (serviceVehicleMovementM2m) =>{
 <Description term="ID">{serviceVehicleMovementM2m.id}</Description> 
 <Description term="服务状态">{serviceVehicleMovementM2m.serviceStatus}</Description> 
 <Description term="开始时间">{ moment(serviceVehicleMovementM2m.startTime).format('YYYY-MM-DD')}</Description> 
-<Description term="最后的位置">{serviceVehicleMovementM2m.lastLocation}</Description> 
+<Description term="经度">{serviceVehicleMovementM2m.longitude}</Description> 
+<Description term="纬度">{serviceVehicleMovementM2m.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceVehicleMovementM2m.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="转移验证代码">{serviceVehicleMovementM2m.transferVerifyCode}</Description> 
 <Description term="移动目的">{serviceVehicleMovementM2m.movementPurpose}</Description> 
+<Description term="回归结果">{serviceVehicleMovementM2m.handoverResult}</Description> 
+<Description term="回归结果的评论">{serviceVehicleMovementM2m.handoverResultComment}</Description> 
 	
         
       </DescriptionList>
@@ -50,7 +54,7 @@ const summaryOf = (serviceVehicleMovementM2m) =>{
 export default class ServiceVehicleMovementM2mDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, reportHandoverCount } = this.props.serviceVehicleMovementM2m
+    const { id, handOverChecklistResultCount } = this.props.serviceVehicleMovementM2m
     
     
     
@@ -68,17 +72,17 @@ export default class ServiceVehicleMovementM2mDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
-                title="交接报告"
-                action={<Tooltip title="交接报告"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(reportHandoverCount).format('0,0')}
+                title="移交清单结果"
+                action={<Tooltip title="移交清单结果"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(handOverChecklistResultCount).format('0,0')}
                 footer={<Field label="状态" value="良好" />}
                 contentHeight={46}
               >
-                <Link to={`/serviceVehicleMovementM2m/${id}/list/reportHandoverList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                <Link to={`/serviceVehicleMovementM2m/${id}/list/handOverChecklistResultList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
-                <Link to={`/serviceVehicleMovementM2m/${id}/list/reportHandoverCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                <Link to={`/serviceVehicleMovementM2m/${id}/list/handOverChecklistResultCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
-                <Link to={`/serviceVehicleMovementM2m/${id}/list/reportHandoverList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                <Link to={`/serviceVehicleMovementM2m/${id}/list/handOverChecklistResultList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

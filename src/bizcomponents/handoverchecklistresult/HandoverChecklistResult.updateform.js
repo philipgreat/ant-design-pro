@@ -8,37 +8,43 @@ import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
-import styles from './HandoverChecklistResult.updateform.less'
+import styles from './HandOverChecklistResult.updateform.less'
 
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  handoverCheckResult: '回归检验结果',
-  handoverCheckComment: '交接检查评论',
-  handoverCheckEvidenceImage1: '切换检查证据图片1',
-  handoverCheckEvidenceImage2: '切换检查证据图片2',
-  handoverCheckEvidenceImage3: '切换检查证据图片3',
-  handoverCheckEvidenceImage4: '切换检查证据图片4',
-  handoverCheckEvidenceImage5: '切换检查证据图片5',
-  availableHandOverItem: '交接检查清单',
-  reportHandover: '交接报告',
+  handOverCheckItemName: '移交检查项目名称。',
+  handOverCheckResult: '移交检查结果',
+  handOverCheckComment: '移交检查评论',
+  handOverCheckEvidenceImage1: '移交检查证据图片1。',
+  handOverCheckEvidenceImage2: '移交检查证据图2。',
+  handOverCheckEvidenceImage3: '移交检查证据图3。',
+  handOverCheckEvidenceImage4: '移交检查证据图片4。',
+  handOverCheckEvidenceImage5: '移交检查证据图片5。',
+  availableHandOverItem: '可用移交项目',
+  serviceTypeVehicleC2m: '服务类型车辆C2m',
+  serviceTypeVehicleM2m: '服务类型车辆M2m',
+  serviceTypeVehicleM2c: '服务类型车辆M2c',
+  serviceTypeFileC2m: '服务类型文件C2m',
+  serviceTypeFileM2m: '服务类型文件M2m',
+  serviceTypeFileM2c: '服务类型文件M2c',
 
 }
 
 const imageURLPrefix = '//localhost:2090'
 
 const imageKeys = [
-  'handoverCheckEvidenceImage1',
-  'handoverCheckEvidenceImage2',
-  'handoverCheckEvidenceImage3',
-  'handoverCheckEvidenceImage4',
-  'handoverCheckEvidenceImage5',
+  'handOverCheckEvidenceImage1',
+  'handOverCheckEvidenceImage2',
+  'handOverCheckEvidenceImage3',
+  'handOverCheckEvidenceImage4',
+  'handOverCheckEvidenceImage5',
 ]
 
 
-class HandoverChecklistResultUpdateForm extends Component {
+class HandOverChecklistResultUpdateForm extends Component {
   state = {
     previewVisible: false,
     previewImage: '',
@@ -168,16 +174,16 @@ class HandoverChecklistResultUpdateForm extends Component {
         }
 
         const { owner } = this.props
-        const handoverChecklistResultId = values.id
+        const handOverChecklistResultId = values.id
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = { ...values, handoverChecklistResultId, ...imagesValues }
+        const parameters = { ...values, handOverChecklistResultId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
         dispatch({
-          type: `${owner.type}/updateHandoverChecklistResult`,
+          type: `${owner.type}/updateHandOverChecklistResult`,
           payload: {
             id: owner.id,
-            type: 'handoverChecklistResult',
+            type: 'handOverChecklistResult',
             parameters,
             selectedRows,
             currentUpdateIndex: 0,
@@ -195,9 +201,9 @@ class HandoverChecklistResultUpdateForm extends Component {
         }
 
         const { owner } = this.props
-        const handoverChecklistResultId = values.id
+        const handOverChecklistResultId = values.id
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = { ...values, handoverChecklistResultId, ...imagesValues }
+        const parameters = { ...values, handOverChecklistResultId, ...imagesValues }
 
         // TODO
         const { currentUpdateIndex } = this.props
@@ -211,10 +217,10 @@ class HandoverChecklistResultUpdateForm extends Component {
         setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
-          type: `${owner.type}/updateHandoverChecklistResult`,
+          type: `${owner.type}/updateHandOverChecklistResult`,
           payload: {
             id: owner.id,
-            type: 'handoverChecklistResult',
+            type: 'handOverChecklistResult',
             parameters,
             selectedRows,
             currentUpdateIndex: newIndex,
@@ -230,10 +236,10 @@ class HandoverChecklistResultUpdateForm extends Component {
         
       const newIndex = currentUpdateIndex + 1
       dispatch({
-        type: `${owner.type}/gotoNextHandoverChecklistResultUpdateRow`,
+        type: `${owner.type}/gotoNextHandOverChecklistResultUpdateRow`,
         payload: {
           id: owner.id,
-          type: 'handoverChecklistResult',
+          type: 'handOverChecklistResult',
           selectedRows,
           currentUpdateIndex: newIndex,
           continueNext: true,
@@ -248,7 +254,7 @@ class HandoverChecklistResultUpdateForm extends Component {
         type: `${owner.type}/goback`,
         payload: {
           id: owner.id,
-          type: 'handoverChecklistResult',
+          type: 'handOverChecklistResult',
         },
       })
     }
@@ -299,8 +305,8 @@ class HandoverChecklistResultUpdateForm extends Component {
     // TODO
     return (
       <PageHeaderLayout
-        title={"更新交接清单结果"+(currentUpdateIndex+1)+"/"+selectedRows.length}
-        content="更新交接清单结果"
+        title={"更新移交清单结果"+(currentUpdateIndex+1)+"/"+selectedRows.length}
+        content="更新移交清单结果"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
@@ -319,21 +325,31 @@ class HandoverChecklistResultUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.handoverCheckResult}>
-                  {getFieldDecorator('handoverCheckResult', {
-                    rules: [{ required: true, message: '请输入回归检验结果' }],
+                <Form.Item label={fieldLabels.handOverCheckItemName}>
+                  {getFieldDecorator('handOverCheckItemName', {
+                    rules: [{ required: true, message: '请输入移交检查项目名称。' }],
                   })(
-                    <Input placeholder="请输入请输入回归检验结果string" />
+                    <Input placeholder="请输入请输入移交检查项目名称。string" />
                   )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.handoverCheckComment}>
-                  {getFieldDecorator('handoverCheckComment', {
-                    rules: [{ required: true, message: '请输入交接检查评论' }],
+                <Form.Item label={fieldLabels.handOverCheckResult}>
+                  {getFieldDecorator('handOverCheckResult', {
+                    rules: [{ required: true, message: '请输入移交检查结果' }],
                   })(
-                    <Input placeholder="请输入请输入交接检查评论string" />
+                    <Input placeholder="请输入请输入移交检查结果string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.handOverCheckComment}>
+                  {getFieldDecorator('handOverCheckComment', {
+                    rules: [{ required: true, message: '请输入移交检查评论' }],
+                  })(
+                    <Input placeholder="请输入请输入移交检查评论string" />
                   )}
                 </Form.Item>
               </Col>
@@ -349,46 +365,46 @@ class HandoverChecklistResultUpdateForm extends Component {
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="切换检查证据图片1"
+                  buttonTitle="移交检查证据图片1。"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handoverCheckEvidenceImage1')}
-                  fileList={convertedImagesValues.handoverCheckEvidenceImage1}
+                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage1')}
+                  fileList={convertedImagesValues.handOverCheckEvidenceImage1}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="切换检查证据图片2"
+                  buttonTitle="移交检查证据图2。"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handoverCheckEvidenceImage2')}
-                  fileList={convertedImagesValues.handoverCheckEvidenceImage2}
+                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage2')}
+                  fileList={convertedImagesValues.handOverCheckEvidenceImage2}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="切换检查证据图片3"
+                  buttonTitle="移交检查证据图3。"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handoverCheckEvidenceImage3')}
-                  fileList={convertedImagesValues.handoverCheckEvidenceImage3}
+                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage3')}
+                  fileList={convertedImagesValues.handOverCheckEvidenceImage3}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="切换检查证据图片4"
+                  buttonTitle="移交检查证据图片4。"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handoverCheckEvidenceImage4')}
-                  fileList={convertedImagesValues.handoverCheckEvidenceImage4}
+                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage4')}
+                  fileList={convertedImagesValues.handOverCheckEvidenceImage4}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="切换检查证据图片5"
+                  buttonTitle="移交检查证据图片5。"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handoverCheckEvidenceImage5')}
-                  fileList={convertedImagesValues.handoverCheckEvidenceImage5}
+                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage5')}
+                  fileList={convertedImagesValues.handOverCheckEvidenceImage5}
                 />
               </Col>
 
@@ -418,7 +434,7 @@ class HandoverChecklistResultUpdateForm extends Component {
 
 export default connect(state => ({
   collapsed: state.global.collapsed,
-}))(Form.create()(HandoverChecklistResultUpdateForm))
+}))(Form.create()(HandOverChecklistResultUpdateForm))
 
 
 

@@ -219,7 +219,7 @@ export default class AvailableHandOverItemSearch extends PureComponent {
     }
     
     return (
-      <PageHeaderLayout title="交接检查清单列表">
+      <PageHeaderLayout title="可用移交项目列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>

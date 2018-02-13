@@ -84,10 +84,13 @@ class SecUserBizApp extends React.PureComponent {
       <SubMenu title={
         <span>
           <Icon type="profile" />
-          <span>Sec的用户</span>
+          <span>SEC的用户</span>
         </span>}
       >
 
+        <Menu.Item>
+          <Link to={`/secUser/${objectId}/list/customerList`}>客户</Link>
+        </Menu.Item>
         <Menu.Item>
           <Link to={`/secUser/${objectId}/list/userAppList`}>用户应用程序</Link>
         </Menu.Item>
@@ -98,6 +101,40 @@ class SecUserBizApp extends React.PureComponent {
     )
   }
 
+
+  getCustomerSearch = () => {
+    const {CustomerSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._secUser.customerList,
+      count: state._secUser.customerCount,
+      currentPage: state._secUser.customerCurrentPageNumber,
+      searchFormParameters: state._secUser.customerSearchFormParameters,
+      loading: state._secUser.loading,
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList' }, // this is for model namespace and
+    }))(CustomerSearch)
+  }
+  getCustomerCreateForm = () => {
+   	const {CustomerCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._secUser.customerList,
+      count: state._secUser.customerCount,
+      currentPage: state._secUser.customerCurrentPageNumber,
+      searchFormParameters: state._secUser.customerSearchFormParameters,
+      loading: state._secUser.loading,
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList'}, // this is for model namespace and
+    }))(CustomerCreateForm)
+  }
+  
+  getCustomerUpdateForm = () => {
+  	const {CustomerUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._secUser.selectedRows,
+      currentUpdateIndex: state._secUser.currentUpdateIndex,
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList' }, // this is for model namespace and
+    }))(CustomerUpdateForm)
+  }
 
   getUserAppSearch = () => {
     const {UserAppSearch} = GlobalComponents;
@@ -170,7 +207,7 @@ class SecUserBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '环保装备方案管理系统'
+    const title = '代审车服务平台'
     return title
   }
  
@@ -216,7 +253,7 @@ class SecUserBizApp extends React.PureComponent {
          >
            <div className={styles.logo}>
              <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>Sec的用户</h1></Link>
+             <Link to="/home"> <h1>SEC的用户</h1></Link>
            </div>
 
            <Menu
@@ -253,6 +290,10 @@ class SecUserBizApp extends React.PureComponent {
                <Route path="/secUser/:id/editDetail" component={SecUserEditDetail} />
                <Route path="/secUser/:id/viewDetail" component={SecUserViewDetail} />
                
+
+               <Route path="/secUser/:id/list/customerList" component={this.getCustomerSearch()} />
+               <Route path="/secUser/:id/list/customerCreateForm" component={this.getCustomerCreateForm()} />
+               <Route path="/secUser/:id/list/customerUpdateForm" component={this.getCustomerUpdateForm()} />
 
                <Route path="/secUser/:id/list/userAppList" component={this.getUserAppSearch()} />
                <Route path="/secUser/:id/list/userAppCreateForm" component={this.getUserAppCreateForm()} />

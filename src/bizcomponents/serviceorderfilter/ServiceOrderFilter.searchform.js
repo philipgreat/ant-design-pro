@@ -64,7 +64,7 @@ export default class ServiceOrderFilterSearchForm extends PureComponent {
       if (err) return
       const params = {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
-        ...this.buildStringSearchParameters(fieldsValue, 'name'),
+        ...this.buildStringSearchParameters(fieldsValue, 'filterName'),
         ...this.buildStringSearchParameters(fieldsValue, 'linkUrl'),
 
       }
@@ -91,9 +91,9 @@ export default class ServiceOrderFilterSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="名称">
-              {getFieldDecorator('name')(
-                <Input placeholder="请输入名称" />
+            <FormItem label="过滤器的名字">
+              {getFieldDecorator('filterName')(
+                <Input placeholder="请输入过滤器的名字" />
                )}
             </FormItem>
           </Col>
@@ -124,9 +124,9 @@ export default class ServiceOrderFilterSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="名称">
-              {getFieldDecorator('name')(
-                <Input placeholder="请输入名称" />
+            <FormItem label="过滤器的名字">
+              {getFieldDecorator('filterName')(
+                <Input placeholder="请输入过滤器的名字" />
               )}
             </FormItem>
           </Col>

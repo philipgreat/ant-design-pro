@@ -95,10 +95,16 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
           <Link to={`/carInspectionPlatform/${objectId}/list/availableProductList`}>产品类型</Link>
         </Menu.Item>
         <Menu.Item>
+          <Link to={`/carInspectionPlatform/${objectId}/list/availableVehicleTypeList`}>可用的车辆类型</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/carInspectionPlatform/${objectId}/list/contractList`}>合同</Link>
+        </Menu.Item>
+        <Menu.Item>
           <Link to={`/carInspectionPlatform/${objectId}/list/customerList`}>客户</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/carInspectionPlatform/${objectId}/list/vehicleServiceCompanyList`}>商户管理</Link>
+          <Link to={`/carInspectionPlatform/${objectId}/list/vehicleServiceCompanyList`}>商户</Link>
         </Menu.Item>
         <Menu.Item>
           <Link to={`/carInspectionPlatform/${objectId}/list/vehicleInfoList`}>车辆信息</Link>
@@ -111,6 +117,15 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
         </Menu.Item>
         <Menu.Item>
           <Link to={`/carInspectionPlatform/${objectId}/list/availableRatingItemList`}>评分条目</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/carInspectionPlatform/${objectId}/list/preorderPromotionList`}>预订促销</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/carInspectionPlatform/${objectId}/list/orderDiscountCouponList`}>订单的折扣券</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`/carInspectionPlatform/${objectId}/list/accountList`}>对账单</Link>
         </Menu.Item>
       </SubMenu>
     )
@@ -183,6 +198,74 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
       currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
       owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'availableProductList' }, // this is for model namespace and
     }))(AvailableProductUpdateForm)
+  }
+
+  getAvailableVehicleTypeSearch = () => {
+    const {AvailableVehicleTypeSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._carInspectionPlatform.availableVehicleTypeList,
+      count: state._carInspectionPlatform.availableVehicleTypeCount,
+      currentPage: state._carInspectionPlatform.availableVehicleTypeCurrentPageNumber,
+      searchFormParameters: state._carInspectionPlatform.availableVehicleTypeSearchFormParameters,
+      loading: state._carInspectionPlatform.loading,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'availableVehicleTypeList' }, // this is for model namespace and
+    }))(AvailableVehicleTypeSearch)
+  }
+  getAvailableVehicleTypeCreateForm = () => {
+   	const {AvailableVehicleTypeCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._carInspectionPlatform.availableVehicleTypeList,
+      count: state._carInspectionPlatform.availableVehicleTypeCount,
+      currentPage: state._carInspectionPlatform.availableVehicleTypeCurrentPageNumber,
+      searchFormParameters: state._carInspectionPlatform.availableVehicleTypeSearchFormParameters,
+      loading: state._carInspectionPlatform.loading,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'availableVehicleTypeList'}, // this is for model namespace and
+    }))(AvailableVehicleTypeCreateForm)
+  }
+  
+  getAvailableVehicleTypeUpdateForm = () => {
+  	const {AvailableVehicleTypeUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._carInspectionPlatform.selectedRows,
+      currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'availableVehicleTypeList' }, // this is for model namespace and
+    }))(AvailableVehicleTypeUpdateForm)
+  }
+
+  getContractSearch = () => {
+    const {ContractSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._carInspectionPlatform.contractList,
+      count: state._carInspectionPlatform.contractCount,
+      currentPage: state._carInspectionPlatform.contractCurrentPageNumber,
+      searchFormParameters: state._carInspectionPlatform.contractSearchFormParameters,
+      loading: state._carInspectionPlatform.loading,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'contractList' }, // this is for model namespace and
+    }))(ContractSearch)
+  }
+  getContractCreateForm = () => {
+   	const {ContractCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._carInspectionPlatform.contractList,
+      count: state._carInspectionPlatform.contractCount,
+      currentPage: state._carInspectionPlatform.contractCurrentPageNumber,
+      searchFormParameters: state._carInspectionPlatform.contractSearchFormParameters,
+      loading: state._carInspectionPlatform.loading,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'contractList'}, // this is for model namespace and
+    }))(ContractCreateForm)
+  }
+  
+  getContractUpdateForm = () => {
+  	const {ContractUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._carInspectionPlatform.selectedRows,
+      currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'contractList' }, // this is for model namespace and
+    }))(ContractUpdateForm)
   }
 
   getCustomerSearch = () => {
@@ -389,6 +472,108 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
     }))(AvailableRatingItemUpdateForm)
   }
 
+  getPreorderPromotionSearch = () => {
+    const {PreorderPromotionSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._carInspectionPlatform.preorderPromotionList,
+      count: state._carInspectionPlatform.preorderPromotionCount,
+      currentPage: state._carInspectionPlatform.preorderPromotionCurrentPageNumber,
+      searchFormParameters: state._carInspectionPlatform.preorderPromotionSearchFormParameters,
+      loading: state._carInspectionPlatform.loading,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'preorderPromotionList' }, // this is for model namespace and
+    }))(PreorderPromotionSearch)
+  }
+  getPreorderPromotionCreateForm = () => {
+   	const {PreorderPromotionCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._carInspectionPlatform.preorderPromotionList,
+      count: state._carInspectionPlatform.preorderPromotionCount,
+      currentPage: state._carInspectionPlatform.preorderPromotionCurrentPageNumber,
+      searchFormParameters: state._carInspectionPlatform.preorderPromotionSearchFormParameters,
+      loading: state._carInspectionPlatform.loading,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'preorderPromotionList'}, // this is for model namespace and
+    }))(PreorderPromotionCreateForm)
+  }
+  
+  getPreorderPromotionUpdateForm = () => {
+  	const {PreorderPromotionUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._carInspectionPlatform.selectedRows,
+      currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'preorderPromotionList' }, // this is for model namespace and
+    }))(PreorderPromotionUpdateForm)
+  }
+
+  getOrderDiscountCouponSearch = () => {
+    const {OrderDiscountCouponSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._carInspectionPlatform.orderDiscountCouponList,
+      count: state._carInspectionPlatform.orderDiscountCouponCount,
+      currentPage: state._carInspectionPlatform.orderDiscountCouponCurrentPageNumber,
+      searchFormParameters: state._carInspectionPlatform.orderDiscountCouponSearchFormParameters,
+      loading: state._carInspectionPlatform.loading,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'orderDiscountCouponList' }, // this is for model namespace and
+    }))(OrderDiscountCouponSearch)
+  }
+  getOrderDiscountCouponCreateForm = () => {
+   	const {OrderDiscountCouponCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._carInspectionPlatform.orderDiscountCouponList,
+      count: state._carInspectionPlatform.orderDiscountCouponCount,
+      currentPage: state._carInspectionPlatform.orderDiscountCouponCurrentPageNumber,
+      searchFormParameters: state._carInspectionPlatform.orderDiscountCouponSearchFormParameters,
+      loading: state._carInspectionPlatform.loading,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'orderDiscountCouponList'}, // this is for model namespace and
+    }))(OrderDiscountCouponCreateForm)
+  }
+  
+  getOrderDiscountCouponUpdateForm = () => {
+  	const {OrderDiscountCouponUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._carInspectionPlatform.selectedRows,
+      currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'orderDiscountCouponList' }, // this is for model namespace and
+    }))(OrderDiscountCouponUpdateForm)
+  }
+
+  getAccountSearch = () => {
+    const {AccountSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._carInspectionPlatform.accountList,
+      count: state._carInspectionPlatform.accountCount,
+      currentPage: state._carInspectionPlatform.accountCurrentPageNumber,
+      searchFormParameters: state._carInspectionPlatform.accountSearchFormParameters,
+      loading: state._carInspectionPlatform.loading,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'accountList' }, // this is for model namespace and
+    }))(AccountSearch)
+  }
+  getAccountCreateForm = () => {
+   	const {AccountCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._carInspectionPlatform.accountList,
+      count: state._carInspectionPlatform.accountCount,
+      currentPage: state._carInspectionPlatform.accountCurrentPageNumber,
+      searchFormParameters: state._carInspectionPlatform.accountSearchFormParameters,
+      loading: state._carInspectionPlatform.loading,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'accountList'}, // this is for model namespace and
+    }))(AccountCreateForm)
+  }
+  
+  getAccountUpdateForm = () => {
+  	const {AccountUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._carInspectionPlatform.selectedRows,
+      currentUpdateIndex: state._carInspectionPlatform.currentUpdateIndex,
+      owner: { type: '_carInspectionPlatform', id: state._carInspectionPlatform.id, listName: 'accountList' }, // this is for model namespace and
+    }))(AccountUpdateForm)
+  }
+
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
@@ -484,6 +669,14 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
                <Route path="/carInspectionPlatform/:id/list/availableProductCreateForm" component={this.getAvailableProductCreateForm()} />
                <Route path="/carInspectionPlatform/:id/list/availableProductUpdateForm" component={this.getAvailableProductUpdateForm()} />
 
+               <Route path="/carInspectionPlatform/:id/list/availableVehicleTypeList" component={this.getAvailableVehicleTypeSearch()} />
+               <Route path="/carInspectionPlatform/:id/list/availableVehicleTypeCreateForm" component={this.getAvailableVehicleTypeCreateForm()} />
+               <Route path="/carInspectionPlatform/:id/list/availableVehicleTypeUpdateForm" component={this.getAvailableVehicleTypeUpdateForm()} />
+
+               <Route path="/carInspectionPlatform/:id/list/contractList" component={this.getContractSearch()} />
+               <Route path="/carInspectionPlatform/:id/list/contractCreateForm" component={this.getContractCreateForm()} />
+               <Route path="/carInspectionPlatform/:id/list/contractUpdateForm" component={this.getContractUpdateForm()} />
+
                <Route path="/carInspectionPlatform/:id/list/customerList" component={this.getCustomerSearch()} />
                <Route path="/carInspectionPlatform/:id/list/customerCreateForm" component={this.getCustomerCreateForm()} />
                <Route path="/carInspectionPlatform/:id/list/customerUpdateForm" component={this.getCustomerUpdateForm()} />
@@ -507,6 +700,18 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
                <Route path="/carInspectionPlatform/:id/list/availableRatingItemList" component={this.getAvailableRatingItemSearch()} />
                <Route path="/carInspectionPlatform/:id/list/availableRatingItemCreateForm" component={this.getAvailableRatingItemCreateForm()} />
                <Route path="/carInspectionPlatform/:id/list/availableRatingItemUpdateForm" component={this.getAvailableRatingItemUpdateForm()} />
+
+               <Route path="/carInspectionPlatform/:id/list/preorderPromotionList" component={this.getPreorderPromotionSearch()} />
+               <Route path="/carInspectionPlatform/:id/list/preorderPromotionCreateForm" component={this.getPreorderPromotionCreateForm()} />
+               <Route path="/carInspectionPlatform/:id/list/preorderPromotionUpdateForm" component={this.getPreorderPromotionUpdateForm()} />
+
+               <Route path="/carInspectionPlatform/:id/list/orderDiscountCouponList" component={this.getOrderDiscountCouponSearch()} />
+               <Route path="/carInspectionPlatform/:id/list/orderDiscountCouponCreateForm" component={this.getOrderDiscountCouponCreateForm()} />
+               <Route path="/carInspectionPlatform/:id/list/orderDiscountCouponUpdateForm" component={this.getOrderDiscountCouponUpdateForm()} />
+
+               <Route path="/carInspectionPlatform/:id/list/accountList" component={this.getAccountSearch()} />
+               <Route path="/carInspectionPlatform/:id/list/accountCreateForm" component={this.getAccountCreateForm()} />
+               <Route path="/carInspectionPlatform/:id/list/accountUpdateForm" component={this.getAccountUpdateForm()} />
               
              </Switch>
            </Content>

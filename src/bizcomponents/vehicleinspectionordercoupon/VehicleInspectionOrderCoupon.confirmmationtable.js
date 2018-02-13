@@ -8,12 +8,13 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '11' },
-  { title: '生效日期', dataIndex: 'startDate', render: (text, record) => moment(record.startDate).format('YYYY-MM-DD') },
-  { title: '失效日期', dataIndex: 'expirationDate', render: (text, record) => moment(record.expirationDate).format('YYYY-MM-DD') },
-  { title: '金额', debugtype: 'money', dataIndex: 'amount', width: '10' },
-  { title: '优惠码', debugtype: 'string', dataIndex: 'code', width: '16' },
-  { title: '使用日期', dataIndex: 'usedDate', render: (text, record) => moment(record.usedDate).format('YYYY-MM-DD') },
+  { title: '优惠券名称', debugtype: 'string', dataIndex: 'couponTitle', width: '10' },
+  { title: '折扣金额', debugtype: 'money', dataIndex: 'discountAmount', width: '10' },
+  { title: '结束日期', dataIndex: 'endDate', render: (text, record) => moment(record.endDate).format('YYYY-MM-DD') },
+  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD') },
+  { title: '申请日期', dataIndex: 'appliedDate', render: (text, record) => moment(record.appliedDate).format('YYYY-MM-DD') },
+  { title: '息状态', debugtype: 'string', dataIndex: 'couponStatus', width: '7' },
+  { title: '客户', dataIndex: 'customer', render: (text, record) => (record.customer ? record.customer.id : '暂无') },
   { title: '主订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
 ]
 
@@ -41,7 +42,7 @@ class VehicleInspectionOrderCouponConfirmationTable extends PureComponent {
           dataSource={data}
           columns={columns}
           size="small"
-          scroll={{ x: 800 }}
+          scroll={{ x: 1200 }}
         />
       </div>
     )

@@ -43,8 +43,6 @@ const summaryOf = (vehicleInfo) =>{
 <Description term="车架号">{vehicleInfo.vehicleIdentificationNumber}</Description> 
 <Description term="发证日期">{ moment(vehicleInfo.vehiclePermitIssueDate).format('YYYY-MM-DD')}</Description> 
 <Description term="所有人">{vehicleInfo.vehiclePermitHolderName}</Description> 
-<Description term="车辆行驶证号码">{vehicleInfo.vehiclePermitNumber}</Description> 
-<Description term="行驶证有效期">{ moment(vehicleInfo.vehiclePermitExpirationDate).format('YYYY-MM-DD')}</Description> 
 <Description term="图1">{vehicleInfo.vehiclePermitImage1}</Description> 
 <Description term="图2">{vehicleInfo.vehiclePermitImage2}</Description> 
 <Description term="图3">{vehicleInfo.vehiclePermitImage3}</Description> 

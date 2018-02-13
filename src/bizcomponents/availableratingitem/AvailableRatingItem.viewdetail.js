@@ -50,39 +50,29 @@ const summaryOf = (availableRatingItem) =>{
 }))
 export default class AvailableRatingItemViewDetail extends Component {
 
-
-  state = {
-    tabKey: `orderRatingResultList`,
-    stepDirection: 'horizontal',
-  }
  
   onTabChange = (key) => {
     this.setState({ tabKey: key });
   }  
   render() {
-    const {OrderRatingResultViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const availableRatingItem = this.props.availableRatingItem
-    const { id, orderRatingResultCount } = availableRatingItem
-    const { orderRatingResultList } = availableRatingItem
+    const { id,  } = availableRatingItem
+    const {  } = availableRatingItem
     
     const owner = { type: '_availableRatingItem', id }
     
     const tabList = [
 
-      {key: 'orderRatingResultList',tab: `订单评级结果(${orderRatingResultCount})`}, 
    
 
    ];
    
    
     const contentList = {
-       orderRatingResultList:  
-        <OrderRatingResultViewTable data={orderRatingResultList} owner={owner} {...this.props} />,
- 
-    
+     
     };
     
 

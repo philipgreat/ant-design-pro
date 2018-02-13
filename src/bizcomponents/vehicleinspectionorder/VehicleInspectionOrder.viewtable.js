@@ -10,7 +10,7 @@ const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '订单状态', debugtype: 'string', dataIndex: 'orderStatus', width: '7' },
   { title: '客户',dataIndex: 'customer', render: (text, record) => (record.customer ? record.customer.id : '暂无') },
-  { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD') },
+  { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '计划检查日期', dataIndex: 'planInspectionDate', render: (text, record) => moment(record.planInspectionDate).format('YYYY-MM-DD') },
   { title: '交通事故公告',dataIndex: 'trafficAccidentAnnouncement', render: (text, record) => (record.trafficAccidentAnnouncement ? '是' : '否') },
   { title: '家里收拾',dataIndex: 'homePickUp', render: (text, record) => (record.homePickUp ? '是' : '否') },
@@ -29,15 +29,13 @@ const columns = [
   { title: '车架号', debugtype: 'string', dataIndex: 'vehicleIdentificationNumber', width: '21' },
   { title: '发证日期', dataIndex: 'vehiclePermitIssueDate', render: (text, record) => moment(record.vehiclePermitIssueDate).format('YYYY-MM-DD') },
   { title: '所有人', debugtype: 'string', dataIndex: 'vehiclePermitHolderName', width: '7' },
-  { title: '车辆行驶证号码', debugtype: 'string', dataIndex: 'vehiclePermitNumber', width: '20' },
-  { title: '行驶证有效期', dataIndex: 'vehiclePermitExpirationDate', render: (text, record) => moment(record.vehiclePermitExpirationDate).format('YYYY-MM-DD') },
   { title: '图1', dataIndex: 'vehiclePermitImage1', render: (text, record) => <ImagePreview imageLocation={record.vehiclePermitImage1}/> },
   { title: '图2', dataIndex: 'vehiclePermitImage2', render: (text, record) => <ImagePreview imageLocation={record.vehiclePermitImage2}/> },
   { title: '图3', dataIndex: 'vehiclePermitImage3', render: (text, record) => <ImagePreview imageLocation={record.vehiclePermitImage3}/> },
   { title: '图4', dataIndex: 'vehiclePermitImage4', render: (text, record) => <ImagePreview imageLocation={record.vehiclePermitImage4}/> },
   { title: '图5', dataIndex: 'vehiclePermitImage5', render: (text, record) => <ImagePreview imageLocation={record.vehiclePermitImage5}/> },
   { title: '产品类型', debugtype: 'string', dataIndex: 'productType', width: '14' },
-  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD') },
+  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '服务公司',dataIndex: 'serviceCompany', render: (text, record) => (record.serviceCompany ? record.serviceCompany.id : '暂无') },
   { title: '平台',dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
 ];
@@ -58,7 +56,7 @@ class VehicleInspectionOrderViewTable extends PureComponent {
           columns={columns}
           size="small"
           pagination={false}
-          scroll={{ x: 3930 }}
+          scroll={{ x: 3540 }}
         />
         
       </div>

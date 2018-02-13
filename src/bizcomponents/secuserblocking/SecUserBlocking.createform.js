@@ -12,9 +12,9 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   who: '谁',
-  blockTime: '块的时间',
+  blockTime: '块时间',
   comments: '评论',
 }
 
@@ -188,8 +188,8 @@ class SecUserBlockingCreateForm extends Component {
     }
     return (
       <PageHeaderLayout
-        title="新建一个Sec用户屏蔽"
-        content="新建一个Sec用户屏蔽"
+        title="新建一个SEC用户阻塞"
+        content="新建一个SEC用户阻塞"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>

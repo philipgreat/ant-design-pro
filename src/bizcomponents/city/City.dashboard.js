@@ -82,8 +82,8 @@ export default class CityDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
-                title="商户管理"
-                action={<Tooltip title="商户管理"><Icon type="info-circle-o" /></Tooltip>}
+                title="商户"
+                action={<Tooltip title="商户"><Icon type="info-circle-o" /></Tooltip>}
                 total={numeral(vehicleServiceCompanyCount).format('0,0')}
                 footer={<Field label="状态" value="良好" />}
                 contentHeight={46}

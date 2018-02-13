@@ -89,7 +89,7 @@ class UserDomainBizApp extends React.PureComponent {
       >
 
         <Menu.Item>
-          <Link to={`/userDomain/${objectId}/list/secUserList`}>Sec的用户</Link>
+          <Link to={`/userDomain/${objectId}/list/secUserList`}>SEC的用户</Link>
         </Menu.Item>
       </SubMenu>
     )
@@ -133,7 +133,7 @@ class UserDomainBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '环保装备方案管理系统'
+    const title = '代审车服务平台'
     return title
   }
  

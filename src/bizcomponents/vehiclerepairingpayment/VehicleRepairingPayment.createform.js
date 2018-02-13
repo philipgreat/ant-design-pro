@@ -25,12 +25,12 @@ const fieldLabels = {
 
 
 const testValues = {
-  originalAmount: '473.04',
-  actualAmount: '431.96',
+  originalAmount: '481.01',
+  actualAmount: '391.20',
   status: '未支付',
   wechatOrderId: '5K8264ILTKCH16CQ2502SI8ZNMTM67VS',
   wechatPrepayId: 'u802345jgfjsdfgsdg888',
-  createTime: '2995-05-21 15:46:31',
+  createTime: '2999-12-21 18:32:33',
   serviceVehicleRepairingId: 'SVR000001',
 }
 

@@ -31,7 +31,7 @@ const summaryOf = (userDomain) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{userDomain.id}</Description> 
+<Description term="ID">{userDomain.id}</Description> 
 <Description term="名称">{userDomain.name}</Description> 
 	
         
@@ -64,8 +64,8 @@ export default class UserDomainDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
-                title="Sec的用户"
-                action={<Tooltip title="Sec的用户"><Icon type="info-circle-o" /></Tooltip>}
+                title="SEC的用户"
+                action={<Tooltip title="SEC的用户"><Icon type="info-circle-o" /></Tooltip>}
                 total={numeral(secUserCount).format('0,0')}
                 footer={<Field label="状态" value="良好" />}
                 contentHeight={46}

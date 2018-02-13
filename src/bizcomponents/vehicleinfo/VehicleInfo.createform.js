@@ -24,8 +24,6 @@ const fieldLabels = {
   vehicleIdentificationNumber: '车架号',
   vehiclePermitIssueDate: '发证日期',
   vehiclePermitHolderName: '所有人',
-  vehiclePermitNumber: '车辆行驶证号码',
-  vehiclePermitExpirationDate: '行驶证有效期',
   vehiclePermitImage1: '图1',
   vehiclePermitImage2: '图2',
   vehiclePermitImage3: '图3',
@@ -41,15 +39,13 @@ const testValues = {
   vehicleType: '面包车',
   useCharacter: '营运',
   seatsQuantity: '5',
-  registrationDate: '2015-06-05',
-  inspectionValidationDate: '2997-03-13',
-  insuranceValidationDate: '2997-02-27',
+  registrationDate: '2016-06-15',
+  inspectionValidationDate: '2998-08-09',
+  insuranceValidationDate: '2995-07-24',
   engineNumber: '4172XYS',
   vehicleIdentificationNumber: 'WAUZZZ4E24N016553',
-  vehiclePermitIssueDate: '2013-06-26',
+  vehiclePermitIssueDate: '2015-11-04',
   vehiclePermitHolderName: '张秋文',
-  vehiclePermitNumber: 'A123123102312312',
-  vehiclePermitExpirationDate: '2999-04-20',
   customerId: 'C000001',
   platformId: 'CIP000001',
 }
@@ -337,26 +333,6 @@ class VehicleInfoCreateForm extends Component {
                     rules: [{ required: true, message: '请输入所有人' }],
                   })(
                     <Input placeholder="请输入请输入所有人string" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehiclePermitNumber}>
-                  {getFieldDecorator('vehiclePermitNumber', {
-                    rules: [{ required: true, message: '请输入车辆行驶证号码' }],
-                  })(
-                    <Input placeholder="请输入请输入车辆行驶证号码string" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehiclePermitExpirationDate}>
-                  {getFieldDecorator('vehiclePermitExpirationDate', {
-                    rules: [{ required: true, message: '请输入行驶证有效期' }],
-                  })(
-                    <Input placeholder="请输入请输入行驶证有效期date" />
                   )}
                 </Form.Item>
               </Col>

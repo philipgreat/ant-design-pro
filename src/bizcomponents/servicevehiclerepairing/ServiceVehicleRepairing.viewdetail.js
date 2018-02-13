@@ -39,7 +39,8 @@ const summaryOf = (serviceVehicleRepairing) =>{
 <Description term="ID">{serviceVehicleRepairing.id}</Description> 
 <Description term="服务状态">{serviceVehicleRepairing.serviceStatus}</Description> 
 <Description term="开始时间">{ moment(serviceVehicleRepairing.startTime).format('YYYY-MM-DD')}</Description> 
-<Description term="最后的位置">{serviceVehicleRepairing.lastLocation}</Description> 
+<Description term="经度">{serviceVehicleRepairing.longitude}</Description> 
+<Description term="纬度">{serviceVehicleRepairing.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceVehicleRepairing.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
 	
         
@@ -67,12 +68,13 @@ export default class ServiceVehicleRepairingViewDetail extends Component {
     const {RepairingQuotationViewTable} = GlobalComponents;
     const {RepairingAllowanceItemViewTable} = GlobalComponents;
     const {VehicleRepairingPaymentViewTable} = GlobalComponents;
+    const {VehicleRepairingReportViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const serviceVehicleRepairing = this.props.serviceVehicleRepairing
-    const { id, reportVehicleInspectionReportCount, repairingQuotationCount, repairingAllowanceItemCount, vehicleRepairingPaymentCount } = serviceVehicleRepairing
-    const { reportVehicleInspectionReportList, repairingQuotationList, repairingAllowanceItemList, vehicleRepairingPaymentList } = serviceVehicleRepairing
+    const { id, reportVehicleInspectionReportCount, repairingQuotationCount, repairingAllowanceItemCount, vehicleRepairingPaymentCount, vehicleRepairingReportCount } = serviceVehicleRepairing
+    const { reportVehicleInspectionReportList, repairingQuotationList, repairingAllowanceItemList, vehicleRepairingPaymentList, vehicleRepairingReportList } = serviceVehicleRepairing
     
     const owner = { type: '_serviceVehicleRepairing', id }
     
@@ -82,6 +84,7 @@ export default class ServiceVehicleRepairingViewDetail extends Component {
       {key: 'repairingQuotationList',tab: `维修报价(${repairingQuotationCount})`}, 
       {key: 'repairingAllowanceItemList',tab: `修补贴项目(${repairingAllowanceItemCount})`}, 
       {key: 'vehicleRepairingPaymentList',tab: `修理付款(${vehicleRepairingPaymentCount})`}, 
+      {key: 'vehicleRepairingReportList',tab: `车辆维修报告(${vehicleRepairingReportCount})`}, 
    
 
    ];
@@ -99,6 +102,9 @@ export default class ServiceVehicleRepairingViewDetail extends Component {
  
       vehicleRepairingPaymentList:  
         <VehicleRepairingPaymentViewTable data={vehicleRepairingPaymentList} owner={owner} {...this.props} />,
+ 
+      vehicleRepairingReportList:  
+        <VehicleRepairingReportViewTable data={vehicleRepairingReportList} owner={owner} {...this.props} />,
  
     
     };

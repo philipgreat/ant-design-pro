@@ -3,7 +3,7 @@ import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/
 
 const view = (targetObjectId) => {
   return get({
-    url: `${PREFIX}handoverChecklistResultManager/view/${targetObjectId}/`,
+    url: `${PREFIX}handOverChecklistResultManager/view/${targetObjectId}/`,
   })
 }
 
@@ -12,13 +12,13 @@ const view = (targetObjectId) => {
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
   return get({
-    url: `${PREFIX}handoverChecklistResultManager/loadHandoverChecklistResult/${targetObjectId}/${parametersExpr}/`,
+    url: `${PREFIX}handOverChecklistResultManager/loadHandOverChecklistResult/${targetObjectId}/${parametersExpr}/`,
   })
 }
 
 
 
-const HandoverChecklistResultService = { view,
+const HandOverChecklistResultService = { view,
   load }
-export default HandoverChecklistResultService
+export default HandOverChecklistResultService
 

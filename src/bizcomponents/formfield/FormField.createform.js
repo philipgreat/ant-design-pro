@@ -12,7 +12,7 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   label: '标签',
   localeKey: '语言环境的关键',
   parameterName: '参数名称',
@@ -25,6 +25,7 @@ const fieldLabels = {
   minValue: '最小值',
   maxValue: '最大的价值',
   required: '要求',
+  disabled: '禁用',
   customRendering: '自定义渲染',
   candidateValues: '候选人的价值观',
   suggestValues: '建议值',
@@ -43,6 +44,7 @@ const testValues = {
   minValue: 'maybe any value',
   maxValue: 'a value expression',
   required: 'true',
+  disabled: 'true',
   customRendering: '0',
   candidateValues: '',
   suggestValues: '',
@@ -327,6 +329,16 @@ class FormFieldCreateForm extends Component {
                     rules: [{ required: true, message: '请输入要求' }],
                   })(
                     <Input placeholder="请输入请输入要求bool" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.disabled}>
+                  {getFieldDecorator('disabled', {
+                    rules: [{ required: true, message: '请输入禁用' }],
+                  })(
+                    <Input placeholder="请输入请输入禁用bool" />
                   )}
                 </Form.Item>
               </Col>

@@ -16,23 +16,31 @@ const fieldLabels = {
   serviceStatus: '服务状态',
   responsibleWorker: '服务人员',
   startTime: '开始时间',
-  lastLocation: '最后的位置',
+  longitude: '经度',
+  latitude: '纬度',
   lastUpdateTime: '最后更新时间',
+  transferVerifyCode: '转移验证代码',
   mainOrder: '主订单',
   movementPurpose: '移动目的',
   contactName: '联系人姓名',
   contactMobileNumber: '联系手机号码',
+  handoverResult: '回归结果',
+  handoverResultComment: '回归结果的评论',
   merchant: '商户',
 }
 
 
 const testValues = {
-  serviceStatus: '待收单',
-  startTime: '2015-05-27 01:14:53',
-  lastLocation: '目前先用字符串地址占个位置',
-  movementPurpose: '门店收车',
+  serviceStatus: '待验收',
+  startTime: '2016-03-16 16:45:06',
+  longitude: '104.74835132930042',
+  latitude: '30.725100663043495',
+  transferVerifyCode: 'O12345',
+  movementPurpose: 'VEHICLE_C2M_RECEIVE_IN_STORE',
   contactName: '张秋文',
   contactMobileNumber: '13812345678',
+  handoverResult: '接收',
+  handoverResultComment: '车辆检查没有问题，同意接收',
   responsibleWorkerId: 'VSCE000001',
   mainOrderId: 'VIO000001',
   merchantId: 'VSC000001',
@@ -231,11 +239,31 @@ class ServiceVehicleMovementC2mCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.lastLocation}>
-                  {getFieldDecorator('lastLocation', {
-                    rules: [{ required: true, message: '请输入最后的位置' }],
+                <Form.Item label={fieldLabels.longitude}>
+                  {getFieldDecorator('longitude', {
+                    rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入最后的位置string" />
+                    <Input placeholder="请输入请输入经度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude}>
+                  {getFieldDecorator('latitude', {
+                    rules: [{ required: true, message: '请输入纬度' }],
+                  })(
+                    <Input placeholder="请输入请输入纬度double" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.transferVerifyCode}>
+                  {getFieldDecorator('transferVerifyCode', {
+                    rules: [{ required: true, message: '请输入转移验证代码' }],
+                  })(
+                    <Input placeholder="请输入请输入转移验证代码string" />
                   )}
                 </Form.Item>
               </Col>
@@ -266,6 +294,26 @@ class ServiceVehicleMovementC2mCreateForm extends Component {
                     rules: [{ required: true, message: '请输入联系手机号码' }],
                   })(
                     <Input placeholder="请输入请输入联系手机号码string_china_mobile_phone" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.handoverResult}>
+                  {getFieldDecorator('handoverResult', {
+                    rules: [{ required: true, message: '请输入回归结果' }],
+                  })(
+                    <Input placeholder="请输入请输入回归结果string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.handoverResultComment}>
+                  {getFieldDecorator('handoverResultComment', {
+                    rules: [{ required: true, message: '请输入回归结果的评论' }],
+                  })(
+                    <Input placeholder="请输入请输入回归结果的评论string" />
                   )}
                 </Form.Item>
               </Col>

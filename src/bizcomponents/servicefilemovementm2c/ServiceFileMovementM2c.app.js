@@ -89,45 +89,45 @@ class ServiceFileMovementM2cBizApp extends React.PureComponent {
       >
 
         <Menu.Item>
-          <Link to={`/serviceFileMovementM2c/${objectId}/list/reportHandoverList`}>交接报告</Link>
+          <Link to={`/serviceFileMovementM2c/${objectId}/list/handOverChecklistResultList`}>移交清单结果</Link>
         </Menu.Item>
       </SubMenu>
     )
   }
 
 
-  getReportHandoverSearch = () => {
-    const {ReportHandoverSearch} = GlobalComponents;
+  getHandOverChecklistResultSearch = () => {
+    const {HandOverChecklistResultSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._serviceFileMovementM2c.reportHandoverList,
-      count: state._serviceFileMovementM2c.reportHandoverCount,
-      currentPage: state._serviceFileMovementM2c.reportHandoverCurrentPageNumber,
-      searchFormParameters: state._serviceFileMovementM2c.reportHandoverSearchFormParameters,
+      data: state._serviceFileMovementM2c.handOverChecklistResultList,
+      count: state._serviceFileMovementM2c.handOverChecklistResultCount,
+      currentPage: state._serviceFileMovementM2c.handOverChecklistResultCurrentPageNumber,
+      searchFormParameters: state._serviceFileMovementM2c.handOverChecklistResultSearchFormParameters,
       loading: state._serviceFileMovementM2c.loading,
-      owner: { type: '_serviceFileMovementM2c', id: state._serviceFileMovementM2c.id, listName: 'reportHandoverList' }, // this is for model namespace and
-    }))(ReportHandoverSearch)
+      owner: { type: '_serviceFileMovementM2c', id: state._serviceFileMovementM2c.id, listName: 'handOverChecklistResultList' }, // this is for model namespace and
+    }))(HandOverChecklistResultSearch)
   }
-  getReportHandoverCreateForm = () => {
-   	const {ReportHandoverCreateForm} = GlobalComponents;
+  getHandOverChecklistResultCreateForm = () => {
+   	const {HandOverChecklistResultCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._serviceFileMovementM2c.reportHandoverList,
-      count: state._serviceFileMovementM2c.reportHandoverCount,
-      currentPage: state._serviceFileMovementM2c.reportHandoverCurrentPageNumber,
-      searchFormParameters: state._serviceFileMovementM2c.reportHandoverSearchFormParameters,
+      data: state._serviceFileMovementM2c.handOverChecklistResultList,
+      count: state._serviceFileMovementM2c.handOverChecklistResultCount,
+      currentPage: state._serviceFileMovementM2c.handOverChecklistResultCurrentPageNumber,
+      searchFormParameters: state._serviceFileMovementM2c.handOverChecklistResultSearchFormParameters,
       loading: state._serviceFileMovementM2c.loading,
-      owner: { type: '_serviceFileMovementM2c', id: state._serviceFileMovementM2c.id, listName: 'reportHandoverList'}, // this is for model namespace and
-    }))(ReportHandoverCreateForm)
+      owner: { type: '_serviceFileMovementM2c', id: state._serviceFileMovementM2c.id, listName: 'handOverChecklistResultList'}, // this is for model namespace and
+    }))(HandOverChecklistResultCreateForm)
   }
   
-  getReportHandoverUpdateForm = () => {
-  	const {ReportHandoverUpdateForm} = GlobalComponents;
+  getHandOverChecklistResultUpdateForm = () => {
+  	const {HandOverChecklistResultUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._serviceFileMovementM2c.selectedRows,
       currentUpdateIndex: state._serviceFileMovementM2c.currentUpdateIndex,
-      owner: { type: '_serviceFileMovementM2c', id: state._serviceFileMovementM2c.id, listName: 'reportHandoverList' }, // this is for model namespace and
-    }))(ReportHandoverUpdateForm)
+      owner: { type: '_serviceFileMovementM2c', id: state._serviceFileMovementM2c.id, listName: 'handOverChecklistResultList' }, // this is for model namespace and
+    }))(HandOverChecklistResultUpdateForm)
   }
 
   getPageTitle = () => {
@@ -217,9 +217,9 @@ class ServiceFileMovementM2cBizApp extends React.PureComponent {
                <Route path="/serviceFileMovementM2c/:id/viewDetail" component={ServiceFileMovementM2cViewDetail} />
                
 
-               <Route path="/serviceFileMovementM2c/:id/list/reportHandoverList" component={this.getReportHandoverSearch()} />
-               <Route path="/serviceFileMovementM2c/:id/list/reportHandoverCreateForm" component={this.getReportHandoverCreateForm()} />
-               <Route path="/serviceFileMovementM2c/:id/list/reportHandoverUpdateForm" component={this.getReportHandoverUpdateForm()} />
+               <Route path="/serviceFileMovementM2c/:id/list/handOverChecklistResultList" component={this.getHandOverChecklistResultSearch()} />
+               <Route path="/serviceFileMovementM2c/:id/list/handOverChecklistResultCreateForm" component={this.getHandOverChecklistResultCreateForm()} />
+               <Route path="/serviceFileMovementM2c/:id/list/handOverChecklistResultUpdateForm" component={this.getHandOverChecklistResultUpdateForm()} />
               
              </Switch>
            </Content>

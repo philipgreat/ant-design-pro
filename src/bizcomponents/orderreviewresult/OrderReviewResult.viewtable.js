@@ -10,7 +10,6 @@ const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '评论内容', debugtype: 'string', dataIndex: 'reviewName', width: '8' },
   { title: '评论结果', debugtype: 'string', dataIndex: 'reviewResult', width: '9' },
-  { title: '评论条目',dataIndex: 'availableReviewItem', render: (text, record) => (record.availableReviewItem ? record.availableReviewItem.id : '暂无') },
   { title: '主订单',dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
 ];
 

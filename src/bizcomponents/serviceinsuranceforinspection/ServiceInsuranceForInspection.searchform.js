@@ -66,6 +66,9 @@ export default class ServiceInsuranceForInspectionSearchForm extends PureCompone
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
         ...this.buildStringSearchParameters(fieldsValue, 'serviceStatus'),
         ...this.buildStringSearchParameters(fieldsValue, 'serviceComments'),
+        ...this.buildStringSearchParameters(fieldsValue, 'insuranceName'),
+        ...this.buildStringSearchParameters(fieldsValue, 'insuranceVendor'),
+        ...this.buildStringSearchParameters(fieldsValue, 'summary'),
         ...this.buildStringSearchParameters(fieldsValue, 'insuranceNumber'),
 
       }
@@ -136,6 +139,30 @@ export default class ServiceInsuranceForInspectionSearchForm extends PureCompone
             <FormItem label="服务的评论">
               {getFieldDecorator('serviceComments')(
                 <Input placeholder="请输入服务的评论" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="保险产品名称">
+              {getFieldDecorator('insuranceName')(
+                <Input placeholder="请输入保险产品名称" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="保险承保方">
+              {getFieldDecorator('insuranceVendor')(
+                <Input placeholder="请输入保险承保方" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="概览">
+              {getFieldDecorator('summary')(
+                <Input placeholder="请输入概览" />
               )}
             </FormItem>
           </Col>

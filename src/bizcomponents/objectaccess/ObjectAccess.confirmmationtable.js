@@ -7,9 +7,9 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '显示名称', debugtype: 'string', dataIndex: 'displayName', width: '11' },
-  { title: '对象类型', debugtype: 'string', dataIndex: 'objectType', width: '32' },
+  { title: '访问对象类型', debugtype: 'string', dataIndex: 'objectType', width: '32' },
   { title: '列表1', debugtype: 'string', dataIndex: 'list1', width: '24' },
   { title: '列表2', debugtype: 'string', dataIndex: 'list2', width: '24' },
   { title: '列表3', debugtype: 'string', dataIndex: 'list3', width: '24' },

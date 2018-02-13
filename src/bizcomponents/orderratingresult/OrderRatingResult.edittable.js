@@ -83,11 +83,10 @@ class OrderRatingResultEditTable extends PureComponent {
       this.setState({ data: newData, appendInProcess:false });
     }
     const remapReference = (record) => {
-			const availableRatingItemId = record.availableRatingItem.id
 			const mainOrderId = record.mainOrder.id
 
       //const communityId = record.community.id;
-      return {availableRatingItemId,mainOrderId,};
+      return {mainOrderId,};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -194,7 +193,6 @@ class OrderRatingResultEditTable extends PureComponent {
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '评分名称', debugtype: 'string', dataIndex: 'ratingName', width: '11', render: (text, record) => renderStringEdit('ratingName',text, record)  },
   { title: '评分结果', debugtype: 'double', dataIndex: 'ratingResult', width: '7', render: (text, record) => renderStringEdit('ratingResult',text, record)  },
-  { title: '评分条目', dataIndex: 'availableRatingItem', render: (text, record) => (record.availableRatingItem ? record.availableRatingItem.id : '暂无') },
   { title: '主订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -204,7 +202,6 @@ class OrderRatingResultEditTable extends PureComponent {
       	'id':`+1`, 
 				'ratingName':'',
 				'ratingResult':'',
-				'availableRatingItem':'',
 				'mainOrder':'',
 
 

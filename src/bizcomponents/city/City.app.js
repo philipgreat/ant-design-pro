@@ -92,7 +92,7 @@ class CityBizApp extends React.PureComponent {
           <Link to={`/city/${objectId}/list/productPriceList`}>产品价格</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/city/${objectId}/list/vehicleServiceCompanyList`}>商户管理</Link>
+          <Link to={`/city/${objectId}/list/vehicleServiceCompanyList`}>商户</Link>
         </Menu.Item>
         <Menu.Item>
           <Link to={`/city/${objectId}/list/inspectionStationList`}>检测站</Link>

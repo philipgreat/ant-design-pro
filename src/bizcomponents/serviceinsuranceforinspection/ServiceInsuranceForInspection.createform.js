@@ -19,12 +19,17 @@ const fieldLabels = {
   serviceComments: '服务的评论',
   startTime: '开始时间',
   lastUpdateTime: '最后更新时间',
+  insuranceName: '保险产品名称',
+  insuranceVendor: '保险承保方',
+  insurancePrice: '保险价格',
+  summary: '概览',
   insuranceNumber: '保单号码',
   insuranceImage1: '保单图片',
   insuranceImage2: '保单图片',
   insuranceImage3: '保单图片',
   insuranceImage4: '保单图片',
   insuranceImage5: '保单图片',
+  merchant: '商户',
   mainOrder: '主订单',
 }
 
@@ -32,10 +37,15 @@ const fieldLabels = {
 const testValues = {
   serviceStatus: '待购买',
   serviceComments: '购买系统赠送的基本保险',
-  startTime: '2016-07-17 05:14:01',
+  startTime: '2016-12-26 12:25:24',
+  insuranceName: '基本保险',
+  insuranceVendor: '太平洋财产保险',
+  insurancePrice: '4.69',
+  summary: '除了基本保险，还可以购买额外保险',
   insuranceNumber: 'ADK123123087KMN',
   orderedInsuranceId: 'AI000001',
   responsibleWorkerId: 'VSCE000001',
+  merchantId: 'VSC000001',
   mainOrderId: 'VIO000001',
 }
 
@@ -247,6 +257,46 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceName}>
+                  {getFieldDecorator('insuranceName', {
+                    rules: [{ required: true, message: '请输入保险产品名称' }],
+                  })(
+                    <Input placeholder="请输入请输入保险产品名称string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceVendor}>
+                  {getFieldDecorator('insuranceVendor', {
+                    rules: [{ required: true, message: '请输入保险承保方' }],
+                  })(
+                    <Input placeholder="请输入请输入保险承保方string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insurancePrice}>
+                  {getFieldDecorator('insurancePrice', {
+                    rules: [{ required: true, message: '请输入保险价格' }],
+                  })(
+                    <Input placeholder="请输入请输入保险价格money" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.summary}>
+                  {getFieldDecorator('summary', {
+                    rules: [{ required: true, message: '请输入概览' }],
+                  })(
+                    <Input placeholder="请输入请输入概览string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.insuranceNumber}>
                   {getFieldDecorator('insuranceNumber', {
                     rules: [{ required: true, message: '请输入保单号码' }],
@@ -338,6 +388,16 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
                     rules: [{ required: true, message: '请输入服务人员' }],
                   })(
                     <Input placeholder="请输入请输入服务人员" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.merchant}>
+                  {getFieldDecorator('merchantId', {
+                    rules: [{ required: true, message: '请输入商户' }],
+                  })(
+                    <Input placeholder="请输入请输入商户" />
                   )}
                 </Form.Item>
               </Col>

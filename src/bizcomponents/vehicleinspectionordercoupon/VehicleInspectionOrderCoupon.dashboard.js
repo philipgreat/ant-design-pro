@@ -32,12 +32,12 @@ const summaryOf = (vehicleInspectionOrderCoupon) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{vehicleInspectionOrderCoupon.id}</Description> 
-<Description term="标题">{vehicleInspectionOrderCoupon.title}</Description> 
-<Description term="生效日期">{ moment(vehicleInspectionOrderCoupon.startDate).format('YYYY-MM-DD')}</Description> 
-<Description term="失效日期">{ moment(vehicleInspectionOrderCoupon.expirationDate).format('YYYY-MM-DD')}</Description> 
-<Description term="金额">{vehicleInspectionOrderCoupon.amount}</Description> 
-<Description term="优惠码">{vehicleInspectionOrderCoupon.code}</Description> 
-<Description term="使用日期">{ moment(vehicleInspectionOrderCoupon.usedDate).format('YYYY-MM-DD')}</Description> 
+<Description term="优惠券名称">{vehicleInspectionOrderCoupon.couponTitle}</Description> 
+<Description term="折扣金额">{vehicleInspectionOrderCoupon.discountAmount}</Description> 
+<Description term="结束日期">{ moment(vehicleInspectionOrderCoupon.endDate).format('YYYY-MM-DD')}</Description> 
+<Description term="最后更新时间">{ moment(vehicleInspectionOrderCoupon.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="申请日期">{ moment(vehicleInspectionOrderCoupon.appliedDate).format('YYYY-MM-DD')}</Description> 
+<Description term="息状态">{vehicleInspectionOrderCoupon.couponStatus}</Description> 
 	
         
       </DescriptionList>
