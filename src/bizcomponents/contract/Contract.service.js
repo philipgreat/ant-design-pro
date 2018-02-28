@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}contractManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -18,6 +15,8 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}contractManager/loadContract/${targetObjectId}/${parametersExpr}/`,
   })
 }
+
+
 
 const addServicePrice = (targetObjectId, parameters) => {
   const url = `${PREFIX}contractManager/addServicePrice/contractId/availableServiceId/productId/serviceKey/servicePriceType/basePriceValue/otherPriceValue/tokensExpr/`
@@ -45,11 +44,7 @@ const updateServicePrice = (targetObjectId, parameters) => {
 
 const removeServicePriceList = (targetObjectId, parameters) => {
   const url = `${PREFIX}contractManager/removeServicePriceList/contractId/servicePriceIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    contractId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, contractId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -58,11 +53,11 @@ const removeServicePriceList = (targetObjectId, parameters) => {
   })
 }
 
-const ContractService = {
-  view,
+
+const ContractService = { view,
   load,
   addServicePrice,
   updateServicePrice,
-  removeServicePriceList,
-}
+  removeServicePriceList }
 export default ContractService
+

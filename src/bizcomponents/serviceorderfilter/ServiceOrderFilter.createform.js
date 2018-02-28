@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -25,12 +13,13 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  filterName: '过滤器的名字',
-  orderCount: '订单数量',
-  selected: '选择',
-  linkUrl: '链接网址',
+  filterName: '服务单状态名称',
+  orderCount: '服务单数量',
+  selected: '选中',
+  linkUrl: '服务单状态接口',
   employee: '员工',
 }
+
 
 const testValues = {
   filterName: '待处理',
@@ -42,7 +31,10 @@ const testValues = {
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+
+const imageKeys = [
+]
+
 
 class ServiceOrderFilterCreateForm extends Component {
   state = {
@@ -59,7 +51,7 @@ class ServiceOrderFilterCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -78,14 +70,10 @@ class ServiceOrderFilterCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues=(convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
       const value = convertedImagesValues[key][0]
@@ -101,7 +89,7 @@ class ServiceOrderFilterCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues = selectedRow => {
+  mapFromImageValues=(selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -109,8 +97,8 @@ class ServiceOrderFilterCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -144,23 +132,18 @@ class ServiceOrderFilterCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addServiceOrderFilter`,
-          payload: {
-            id: owner.id,
-            type: 'serviceOrderFilter',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'serviceOrderFilter', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -175,22 +158,18 @@ class ServiceOrderFilterCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -214,77 +193,87 @@ class ServiceOrderFilterCreateForm extends Component {
     }
     return (
       <PageHeaderLayout
-        title="新建一个服务订单过滤器"
-        content="新建一个服务订单过滤器"
+        title="新建一个服务单状态类型"
+        content="新建一个服务单状态类型"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.filterName}>
                   {getFieldDecorator('filterName', {
-                    rules: [{ required: true, message: '请输入过滤器的名字' }],
-                  })(<Input placeholder="请输入请输入过滤器的名字string" />)}
+                    rules: [{ required: true, message: '请输入服务单状态名称' }],
+                  })(
+                    <Input placeholder="请输入请输入服务单状态名称string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.orderCount}>
                   {getFieldDecorator('orderCount', {
-                    rules: [{ required: true, message: '请输入订单数量' }],
-                  })(<Input placeholder="请输入请输入订单数量int" />)}
+                    rules: [{ required: true, message: '请输入服务单数量' }],
+                  })(
+                    <Input placeholder="请输入请输入服务单数量int" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.selected}>
                   {getFieldDecorator('selected', {
-                    rules: [{ required: true, message: '请输入选择' }],
-                  })(<Input placeholder="请输入请输入选择bool" />)}
+                    rules: [{ required: true, message: '请输入选中' }],
+                  })(
+                    <Input placeholder="请输入请输入选中bool" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.linkUrl}>
                   {getFieldDecorator('linkUrl', {
-                    rules: [{ required: true, message: '请输入链接网址' }],
-                  })(<Input placeholder="请输入请输入链接网址string" />)}
+                    rules: [{ required: true, message: '请输入服务单状态接口' }],
+                  })(
+                    <Input placeholder="请输入请输入服务单状态接口string" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
           </Form>
         </Card>
+
+
+
+
+
 
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.employee}>
                   {getFieldDecorator('employeeId', {
                     rules: [{ required: true, message: '请输入员工' }],
-                  })(<Input placeholder="请输入请输入员工" />)}
+                  })(
+                    <Input placeholder="请输入请输入员工" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -299,3 +288,7 @@ class ServiceOrderFilterCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ServiceOrderFilterCreateForm))
+
+
+
+

@@ -34,7 +34,6 @@ import {CompanyEmployeeQualificationBizApp} from './custcomponents';
 import {CompanyEmployeeServingBizApp} from './custcomponents';
 import {CompanyEmployeeTerminationBizApp} from './custcomponents';
 import {EmployeeDrivingLicenseBizApp} from './custcomponents';
-import {CompanyEmployeeMessageBizApp} from './custcomponents';
 import {InspectionStationBizApp} from './custcomponents';
 import {VehicleInfoBizApp} from './custcomponents';
 import {VehicleInspectionOrderBizApp} from './custcomponents';
@@ -53,7 +52,6 @@ import {ServiceInsuranceForInspectionBizApp} from './custcomponents';
 import {ServiceVehicleInspectionBizApp} from './custcomponents';
 import {ServiceFileInspectionBizApp} from './custcomponents';
 import {ReportVehicleInspectionReportBizApp} from './custcomponents';
-import {InspectionRepairAllowanceItemsBizApp} from './custcomponents';
 import {ReportFileInspectionReportBizApp} from './custcomponents';
 import {ServiceVehicleRepairingBizApp} from './custcomponents';
 import {RepairingQuotationBizApp} from './custcomponents';
@@ -119,7 +117,6 @@ function RouterConfig({ history }) {
           <Route path="/companyEmployeeServing/" component={CompanyEmployeeServingBizApp} />
           <Route path="/companyEmployeeTermination/" component={CompanyEmployeeTerminationBizApp} />
           <Route path="/employeeDrivingLicense/" component={EmployeeDrivingLicenseBizApp} />
-          <Route path="/companyEmployeeMessage/" component={CompanyEmployeeMessageBizApp} />
           <Route path="/inspectionStation/" component={InspectionStationBizApp} />
           <Route path="/vehicleInfo/" component={VehicleInfoBizApp} />
           <Route path="/vehicleInspectionOrder/" component={VehicleInspectionOrderBizApp} />
@@ -138,7 +135,6 @@ function RouterConfig({ history }) {
           <Route path="/serviceVehicleInspection/" component={ServiceVehicleInspectionBizApp} />
           <Route path="/serviceFileInspection/" component={ServiceFileInspectionBizApp} />
           <Route path="/reportVehicleInspectionReport/" component={ReportVehicleInspectionReportBizApp} />
-          <Route path="/inspectionRepairAllowanceItems/" component={InspectionRepairAllowanceItemsBizApp} />
           <Route path="/reportFileInspectionReport/" component={ReportFileInspectionReportBizApp} />
           <Route path="/serviceVehicleRepairing/" component={ServiceVehicleRepairingBizApp} />
           <Route path="/repairingQuotation/" component={RepairingQuotationBizApp} />

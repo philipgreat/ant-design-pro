@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -27,20 +15,24 @@ const fieldLabels = {
   id: 'ID',
   platform: '平台',
   company: '商户',
-  startDate: '生效日期',
+  startDate: '开始日期',
   endDate: '结束日期',
 }
 
+
 const testValues = {
-  startDate: '2014-10-08',
-  endDate: '2996-06-24',
+  startDate: '2998-08-23',
+  endDate: '2999-03-21',
   platformId: 'CIP000001',
   companyId: 'VSC000001',
 }
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+
+const imageKeys = [
+]
+
 
 class ContractCreateForm extends Component {
   state = {
@@ -57,7 +49,7 @@ class ContractCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -76,14 +68,10 @@ class ContractCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues=(convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
       const value = convertedImagesValues[key][0]
@@ -99,7 +87,7 @@ class ContractCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues = selectedRow => {
+  mapFromImageValues=(selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -107,8 +95,8 @@ class ContractCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -142,23 +130,18 @@ class ContractCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addContract`,
-          payload: {
-            id: owner.id,
-            type: 'contract',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'contract', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -173,22 +156,18 @@ class ContractCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -219,11 +198,14 @@ class ContractCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.startDate}>
                   {getFieldDecorator('startDate', {
-                    rules: [{ required: true, message: '请输入生效日期' }],
-                  })(<Input placeholder="请输入请输入生效日期date" />)}
+                    rules: [{ required: true, message: '请输入开始日期' }],
+                  })(
+                    <Input placeholder="请输入请输入开始日期date" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -231,21 +213,32 @@ class ContractCreateForm extends Component {
                 <Form.Item label={fieldLabels.endDate}>
                   {getFieldDecorator('endDate', {
                     rules: [{ required: true, message: '请输入结束日期' }],
-                  })(<Input placeholder="请输入请输入结束日期date" />)}
+                  })(
+                    <Input placeholder="请输入请输入结束日期date" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
           </Form>
         </Card>
 
+
+
+
+
+
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.platform}>
                   {getFieldDecorator('platformId', {
                     rules: [{ required: true, message: '请输入平台' }],
-                  })(<Input placeholder="请输入请输入平台" />)}
+                  })(
+                    <Input placeholder="请输入请输入平台" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -253,28 +246,22 @@ class ContractCreateForm extends Component {
                 <Form.Item label={fieldLabels.company}>
                   {getFieldDecorator('companyId', {
                     rules: [{ required: true, message: '请输入商户' }],
-                  })(<Input placeholder="请输入请输入商户" />)}
+                  })(
+                    <Input placeholder="请输入请输入商户" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -289,3 +276,7 @@ class ContractCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ContractCreateForm))
+
+
+
+

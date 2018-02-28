@@ -115,10 +115,7 @@ const getMap=(carInspectionPlatform)=>{
   return (
     <Map center = {{ lng: 104.0668, lat: 30.5728 }} zoom='8' >
   
-      <Marker position={{lng: 109.430831, lat: 38.211366}} 
-        offset={new BMap.Size(-75, -60)}>
-                <div onClick={function(){alert(1)}} style={{width: '150px', height: '20px', lineHeight: '20px', background: 'red', textAlign: 'center'}}>自定义覆盖物</div>
-            </Marker>
+     
     {
       vehicleServiceCompanyList.map((item,indexValue)=>{
     
@@ -127,7 +124,7 @@ const getMap=(carInspectionPlatform)=>{
         const name=item.companyName;
         const point = {lng,lat};
         const icon = "red" + (indexValue + 1);
-        return ( <Marker  position={{lng, lat}} offset={new BMap.Size(-75, -60)} icon={icon}>
+        return ( <Marker  position={{lng, lat}} offset={new BMap.Size(0, 0)} icon={icon}>
          
         </Marker>);
     

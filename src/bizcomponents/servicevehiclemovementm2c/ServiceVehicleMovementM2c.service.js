@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}serviceVehicleMovementM2cManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -19,8 +16,10 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
+
+
 const addHandOverChecklistResult = (targetObjectId, parameters) => {
-  const url = `${PREFIX}serviceVehicleMovementM2cManager/addHandOverChecklistResult/serviceTypeVehicleM2cId/handOverCheckItemName/handOverCheckResult/handOverCheckComment/handOverCheckEvidenceImage1/handOverCheckEvidenceImage2/handOverCheckEvidenceImage3/handOverCheckEvidenceImage4/handOverCheckEvidenceImage5/availableHandOverItemId/serviceTypeVehicleC2mId/serviceTypeVehicleM2mId/serviceTypeFileC2mId/serviceTypeFileM2mId/serviceTypeFileM2cId/tokensExpr/`
+  const url = `${PREFIX}serviceVehicleMovementM2cManager/addHandOverChecklistResult/serviceTypeVehicleM2cId/handOverCheckItemName/checkItemDescription/handOverCheckResult/handOverCheckComment/handOverCheckEvidenceImage1/handOverCheckEvidenceImage2/handOverCheckEvidenceImage3/handOverCheckEvidenceImage4/handOverCheckEvidenceImage5/availableHandOverItemId/serviceTypeVehicleC2mId/serviceTypeVehicleM2mId/serviceTypeFileC2mId/serviceTypeFileM2mId/serviceTypeFileM2cId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -32,13 +31,9 @@ const addHandOverChecklistResult = (targetObjectId, parameters) => {
 }
 
 const updateHandOverChecklistResult = (targetObjectId, parameters) => {
-  const url = `${PREFIX}serviceVehicleMovementM2cManager/updateHandOverChecklistResultProperties/serviceVehicleMovementM2cId/id/handOverCheckItemName/handOverCheckResult/handOverCheckComment/handOverCheckEvidenceImage1/handOverCheckEvidenceImage2/handOverCheckEvidenceImage3/handOverCheckEvidenceImage4/handOverCheckEvidenceImage5/tokensExpr/`
+  const url = `${PREFIX}serviceVehicleMovementM2cManager/updateHandOverChecklistResultProperties/serviceVehicleMovementM2cId/id/handOverCheckItemName/checkItemDescription/handOverCheckResult/handOverCheckComment/handOverCheckEvidenceImage1/handOverCheckEvidenceImage2/handOverCheckEvidenceImage3/handOverCheckEvidenceImage4/handOverCheckEvidenceImage5/tokensExpr/`
   const serviceVehicleMovementM2cId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    serviceVehicleMovementM2cId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, serviceVehicleMovementM2cId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -49,11 +44,7 @@ const updateHandOverChecklistResult = (targetObjectId, parameters) => {
 
 const removeHandOverChecklistResultList = (targetObjectId, parameters) => {
   const url = `${PREFIX}serviceVehicleMovementM2cManager/removeHandOverChecklistResultList/serviceVehicleMovementM2cId/handOverChecklistResultIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    serviceVehicleMovementM2cId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, serviceVehicleMovementM2cId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -62,11 +53,11 @@ const removeHandOverChecklistResultList = (targetObjectId, parameters) => {
   })
 }
 
-const ServiceVehicleMovementM2cService = {
-  view,
+
+const ServiceVehicleMovementM2cService = { view,
   load,
   addHandOverChecklistResult,
   updateHandOverChecklistResult,
-  removeHandOverChecklistResultList,
-}
+  removeHandOverChecklistResultList }
 export default ServiceVehicleMovementM2cService
+

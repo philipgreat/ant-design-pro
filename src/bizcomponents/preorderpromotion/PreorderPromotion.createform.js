@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -25,26 +13,30 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  promotionMessage: '促销信息',
-  preorderDays: '预订的日子',
-  discountAmount: '折扣金额',
-  startDate: '生效日期',
+  promotionMessage: '优惠信息',
+  preorderDays: '提前天数',
+  discountAmount: '优惠金额',
+  startDate: '开始日期',
   endDate: '结束日期',
   platform: '平台',
 }
+
 
 const testValues = {
   promotionMessage: '提前30天，立减10元',
   preorderDays: '5',
   discountAmount: '10.00',
-  startDate: '2994-10-17 21:24:57',
-  endDate: '2994-04-15 10:43:06',
+  startDate: '2995-07-17 04:48:25',
+  endDate: '2996-03-19 01:36:46',
   platformId: 'CIP000001',
 }
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+
+const imageKeys = [
+]
+
 
 class PreorderPromotionCreateForm extends Component {
   state = {
@@ -61,7 +53,7 @@ class PreorderPromotionCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -80,14 +72,10 @@ class PreorderPromotionCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues=(convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
       const value = convertedImagesValues[key][0]
@@ -103,7 +91,7 @@ class PreorderPromotionCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues = selectedRow => {
+  mapFromImageValues=(selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -111,8 +99,8 @@ class PreorderPromotionCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -146,23 +134,18 @@ class PreorderPromotionCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addPreorderPromotion`,
-          payload: {
-            id: owner.id,
-            type: 'preorderPromotion',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'preorderPromotion', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -177,22 +160,18 @@ class PreorderPromotionCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -216,42 +195,51 @@ class PreorderPromotionCreateForm extends Component {
     }
     return (
       <PageHeaderLayout
-        title="新建一个预订促销"
-        content="新建一个预订促销"
+        title="新建一个提前下单优惠"
+        content="新建一个提前下单优惠"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.promotionMessage}>
                   {getFieldDecorator('promotionMessage', {
-                    rules: [{ required: true, message: '请输入促销信息' }],
-                  })(<Input placeholder="请输入请输入促销信息string" />)}
+                    rules: [{ required: true, message: '请输入优惠信息' }],
+                  })(
+                    <Input placeholder="请输入请输入优惠信息string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.preorderDays}>
                   {getFieldDecorator('preorderDays', {
-                    rules: [{ required: true, message: '请输入预订的日子' }],
-                  })(<Input placeholder="请输入请输入预订的日子int" />)}
+                    rules: [{ required: true, message: '请输入提前天数' }],
+                  })(
+                    <Input placeholder="请输入请输入提前天数int" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.discountAmount}>
                   {getFieldDecorator('discountAmount', {
-                    rules: [{ required: true, message: '请输入折扣金额' }],
-                  })(<Input placeholder="请输入请输入折扣金额money" />)}
+                    rules: [{ required: true, message: '请输入优惠金额' }],
+                  })(
+                    <Input placeholder="请输入请输入优惠金额money" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.startDate}>
                   {getFieldDecorator('startDate', {
-                    rules: [{ required: true, message: '请输入生效日期' }],
-                  })(<Input placeholder="请输入请输入生效日期date_time" />)}
+                    rules: [{ required: true, message: '请输入开始日期' }],
+                  })(
+                    <Input placeholder="请输入请输入开始日期date_time" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -259,42 +247,45 @@ class PreorderPromotionCreateForm extends Component {
                 <Form.Item label={fieldLabels.endDate}>
                   {getFieldDecorator('endDate', {
                     rules: [{ required: true, message: '请输入结束日期' }],
-                  })(<Input placeholder="请输入请输入结束日期date_time" />)}
+                  })(
+                    <Input placeholder="请输入请输入结束日期date_time" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
           </Form>
         </Card>
+
+
+
+
+
 
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.platform}>
                   {getFieldDecorator('platformId', {
                     rules: [{ required: true, message: '请输入平台' }],
-                  })(<Input placeholder="请输入请输入平台" />)}
+                  })(
+                    <Input placeholder="请输入请输入平台" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -309,3 +300,7 @@ class PreorderPromotionCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(PreorderPromotionCreateForm))
+
+
+
+

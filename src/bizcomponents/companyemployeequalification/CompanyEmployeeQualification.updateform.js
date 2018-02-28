@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -27,14 +15,17 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  eventTime: '事件时间',
+  eventTime: '执行时间',
   who: '谁',
-  comment: '评论',
+  comment: '批注',
+
 }
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+const imageKeys = [
+]
+
 
 class CompanyEmployeeQualificationUpdateForm extends Component {
   state = {
@@ -49,7 +40,7 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow),
+      convertedImagesValues: this.mapFromImageValues(selectedRow)
     })
   }
 
@@ -78,10 +69,11 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
     if (currentUpdateIndex >= selectedRows.length) {
       return
     }
-    const convertiedValues = selectedRows.map(item => {
+    const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
         eventTime: moment(item.eventTime).format('YYYY-MM-DD'),
+
       }
     })
     const selectedRow = convertiedValues[currentUpdateIndex]
@@ -97,14 +89,10 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues = (convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -131,8 +119,8 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
     })
     return targetImages
   }
-
-  mapFromImageValues = selectedRow => {
+  
+  mapFromImageValues = (selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -140,14 +128,14 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
   }
 
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -156,17 +144,12 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
   }
 
   render() {
-    const {
-      form,
-      dispatch,
-      submitting,
-      selectedRows,
-      currentUpdateIndex,
-    } = this.props
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const { convertedImagesValues } = this.state
     const { setFieldsValue } = this.props.form
-
+    
+    
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -177,11 +160,7 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
         const { owner } = this.props
         const companyEmployeeQualificationId = values.id
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = {
-          ...values,
-          companyEmployeeQualificationId,
-          ...imagesValues,
-        }
+        const parameters = { ...values, companyEmployeeQualificationId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
         dispatch({
@@ -197,7 +176,7 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
         })
       })
     }
-
+    
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -208,15 +187,11 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
         const { owner } = this.props
         const companyEmployeeQualificationId = values.id
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = {
-          ...values,
-          companyEmployeeQualificationId,
-          ...imagesValues,
-        }
+        const parameters = { ...values, companyEmployeeQualificationId, ...imagesValues }
 
         // TODO
         const { currentUpdateIndex } = this.props
-
+        
         if (currentUpdateIndex >= selectedRows.length - 1) {
           return
         }
@@ -238,11 +213,11 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
         })
       })
     }
-
+    
     const skipToNext = () => {
       const { currentUpdateIndex } = this.props
       const { owner } = this.props
-
+        
       const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextCompanyEmployeeQualificationUpdateRow`,
@@ -256,7 +231,7 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
         },
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -273,22 +248,18 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
       if (!errors || errorCount === 0) {
         return null
       }
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -310,31 +281,30 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
         </span>
       )
     }
-
+    
     if (!selectedRows) {
-      return <div>缺少被更新的对象</div>
+      return (<div>缺少被更新的对象</div>)
     }
 
     // TODO
     return (
       <PageHeaderLayout
-        title={
-          '更新公司员工资格' +
-          (currentUpdateIndex + 1) +
-          '/' +
-          selectedRows.length
-        }
-        content="更新公司员工资格"
+        title={"更新商户员工资格审查"+(currentUpdateIndex+1)+"/"+selectedRows.length}
+        content="更新商户员工资格审查"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+            
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
                     rules: [{ required: true, message: '请输入ID' }],
-                  })(<Input placeholder="请输入请输入IDstring" disabled />)}
+                  })(
+                    <Input placeholder="请输入请输入IDstring" disabled />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -342,45 +312,36 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
                 <Form.Item label={fieldLabels.who}>
                   {getFieldDecorator('who', {
                     rules: [{ required: true, message: '请输入谁' }],
-                  })(<Input placeholder="请输入请输入谁string" />)}
+                  })(
+                    <Input placeholder="请输入请输入谁string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.comment}>
                   {getFieldDecorator('comment', {
-                    rules: [{ required: true, message: '请输入评论' }],
-                  })(<Input placeholder="请输入请输入评论string" />)}
+                    rules: [{ required: true, message: '请输入批注' }],
+                  })(
+                    <Input placeholder="请输入请输入批注string" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
+
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitUpdateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
             更新
           </Button>
-          <Button
-            type="primary"
-            onClick={submitUpdateFormAndContinue}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             更新并装载下一个
           </Button>
-          <Button
-            type="info"
-            onClick={skipToNext}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             略过
           </Button>
           <Button type="info" onClick={goback} loading={submitting}>
@@ -395,3 +356,6 @@ class CompanyEmployeeQualificationUpdateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(CompanyEmployeeQualificationUpdateForm))
+
+
+

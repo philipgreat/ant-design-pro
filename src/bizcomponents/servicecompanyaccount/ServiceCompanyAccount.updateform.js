@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -27,24 +15,27 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  serviceOrderNumber: '服务订单号',
-  serviceOrderCode: '服务订单代码',
-  serviceOrderName: '服务订单名称',
-  serviceFulfilledDatetime: '服务完成日期时间',
-  contractId: '合同标识',
-  contractPriceValue: '合同价格的价值',
-  contractPriceType: '合同价格类型',
-  serviceWorkerName: '服务人员的名字',
-  serviceCompanyName: '服务公司名称',
-  mainOrderId: '主要订单Id',
+  serviceOrderNumber: '服务单号',
+  serviceOrderCode: '服务单代码',
+  serviceOrderName: '服务单名称',
+  serviceFulfilledDatetime: '服务完成时间',
+  contractId: '合同编号',
+  contractPriceValue: '服务价格',
+  contractPriceType: '服务类型',
+  serviceWorkerName: '服务人员',
+  serviceCompanyName: '商户名称',
+  mainOrderId: '年检订单ID',
   merchant: '商户',
   responsibleWorker: '服务人员',
   account: '对账单',
+
 }
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+const imageKeys = [
+]
+
 
 class ServiceCompanyAccountUpdateForm extends Component {
   state = {
@@ -59,7 +50,7 @@ class ServiceCompanyAccountUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow),
+      convertedImagesValues: this.mapFromImageValues(selectedRow)
     })
   }
 
@@ -88,12 +79,11 @@ class ServiceCompanyAccountUpdateForm extends Component {
     if (currentUpdateIndex >= selectedRows.length) {
       return
     }
-    const convertiedValues = selectedRows.map(item => {
+    const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
-        serviceFulfilledDatetime: moment(item.serviceFulfilledDatetime).format(
-          'YYYY-MM-DD'
-        ),
+        serviceFulfilledDatetime: moment(item.serviceFulfilledDatetime).format('YYYY-MM-DD'),
+
       }
     })
     const selectedRow = convertiedValues[currentUpdateIndex]
@@ -109,14 +99,10 @@ class ServiceCompanyAccountUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues = (convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -143,8 +129,8 @@ class ServiceCompanyAccountUpdateForm extends Component {
     })
     return targetImages
   }
-
-  mapFromImageValues = selectedRow => {
+  
+  mapFromImageValues = (selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -152,14 +138,14 @@ class ServiceCompanyAccountUpdateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
   }
 
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -168,17 +154,12 @@ class ServiceCompanyAccountUpdateForm extends Component {
   }
 
   render() {
-    const {
-      form,
-      dispatch,
-      submitting,
-      selectedRows,
-      currentUpdateIndex,
-    } = this.props
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const { convertedImagesValues } = this.state
     const { setFieldsValue } = this.props.form
-
+    
+    
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -189,11 +170,7 @@ class ServiceCompanyAccountUpdateForm extends Component {
         const { owner } = this.props
         const serviceCompanyAccountId = values.id
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = {
-          ...values,
-          serviceCompanyAccountId,
-          ...imagesValues,
-        }
+        const parameters = { ...values, serviceCompanyAccountId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
         dispatch({
@@ -209,7 +186,7 @@ class ServiceCompanyAccountUpdateForm extends Component {
         })
       })
     }
-
+    
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -220,15 +197,11 @@ class ServiceCompanyAccountUpdateForm extends Component {
         const { owner } = this.props
         const serviceCompanyAccountId = values.id
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = {
-          ...values,
-          serviceCompanyAccountId,
-          ...imagesValues,
-        }
+        const parameters = { ...values, serviceCompanyAccountId, ...imagesValues }
 
         // TODO
         const { currentUpdateIndex } = this.props
-
+        
         if (currentUpdateIndex >= selectedRows.length - 1) {
           return
         }
@@ -250,11 +223,11 @@ class ServiceCompanyAccountUpdateForm extends Component {
         })
       })
     }
-
+    
     const skipToNext = () => {
       const { currentUpdateIndex } = this.props
       const { owner } = this.props
-
+        
       const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextServiceCompanyAccountUpdateRow`,
@@ -268,7 +241,7 @@ class ServiceCompanyAccountUpdateForm extends Component {
         },
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -285,22 +258,18 @@ class ServiceCompanyAccountUpdateForm extends Component {
       if (!errors || errorCount === 0) {
         return null
       }
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -322,66 +291,69 @@ class ServiceCompanyAccountUpdateForm extends Component {
         </span>
       )
     }
-
+    
     if (!selectedRows) {
-      return <div>缺少被更新的对象</div>
+      return (<div>缺少被更新的对象</div>)
     }
 
     // TODO
     return (
       <PageHeaderLayout
-        title={
-          '更新服务公司对账单' +
-          (currentUpdateIndex + 1) +
-          '/' +
-          selectedRows.length
-        }
-        content="更新服务公司对账单"
+        title={"更新服务商户对账单"+(currentUpdateIndex+1)+"/"+selectedRows.length}
+        content="更新服务商户对账单"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+            
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
                     rules: [{ required: true, message: '请输入ID' }],
-                  })(<Input placeholder="请输入请输入IDstring" disabled />)}
+                  })(
+                    <Input placeholder="请输入请输入IDstring" disabled />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceOrderNumber}>
                   {getFieldDecorator('serviceOrderNumber', {
-                    rules: [{ required: true, message: '请输入服务订单号' }],
-                  })(<Input placeholder="请输入请输入服务订单号string" />)}
+                    rules: [{ required: true, message: '请输入服务单号' }],
+                  })(
+                    <Input placeholder="请输入请输入服务单号string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceOrderCode}>
                   {getFieldDecorator('serviceOrderCode', {
-                    rules: [{ required: true, message: '请输入服务订单代码' }],
-                  })(<Input placeholder="请输入请输入服务订单代码string" />)}
+                    rules: [{ required: true, message: '请输入服务单代码' }],
+                  })(
+                    <Input placeholder="请输入请输入服务单代码string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceOrderName}>
                   {getFieldDecorator('serviceOrderName', {
-                    rules: [{ required: true, message: '请输入服务订单名称' }],
-                  })(<Input placeholder="请输入请输入服务订单名称string" />)}
+                    rules: [{ required: true, message: '请输入服务单名称' }],
+                  })(
+                    <Input placeholder="请输入请输入服务单名称string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceFulfilledDatetime}>
                   {getFieldDecorator('serviceFulfilledDatetime', {
-                    rules: [
-                      { required: true, message: '请输入服务完成日期时间' },
-                    ],
+                    rules: [{ required: true, message: '请输入服务完成时间' }],
                   })(
-                    <Input placeholder="请输入请输入服务完成日期时间date_time" />
+                    <Input placeholder="请输入请输入服务完成时间date_time" />
                   )}
                 </Form.Item>
               </Col>
@@ -389,82 +361,77 @@ class ServiceCompanyAccountUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.contractId}>
                   {getFieldDecorator('contractId', {
-                    rules: [{ required: true, message: '请输入合同标识' }],
-                  })(<Input placeholder="请输入请输入合同标识string" />)}
+                    rules: [{ required: true, message: '请输入合同编号' }],
+                  })(
+                    <Input placeholder="请输入请输入合同编号string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.contractPriceValue}>
                   {getFieldDecorator('contractPriceValue', {
-                    rules: [
-                      { required: true, message: '请输入合同价格的价值' },
-                    ],
-                  })(<Input placeholder="请输入请输入合同价格的价值money" />)}
+                    rules: [{ required: true, message: '请输入服务价格' }],
+                  })(
+                    <Input placeholder="请输入请输入服务价格money" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.contractPriceType}>
                   {getFieldDecorator('contractPriceType', {
-                    rules: [{ required: true, message: '请输入合同价格类型' }],
-                  })(<Input placeholder="请输入请输入合同价格类型string" />)}
+                    rules: [{ required: true, message: '请输入服务类型' }],
+                  })(
+                    <Input placeholder="请输入请输入服务类型string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceWorkerName}>
                   {getFieldDecorator('serviceWorkerName', {
-                    rules: [
-                      { required: true, message: '请输入服务人员的名字' },
-                    ],
-                  })(<Input placeholder="请输入请输入服务人员的名字string" />)}
+                    rules: [{ required: true, message: '请输入服务人员' }],
+                  })(
+                    <Input placeholder="请输入请输入服务人员string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceCompanyName}>
                   {getFieldDecorator('serviceCompanyName', {
-                    rules: [{ required: true, message: '请输入服务公司名称' }],
-                  })(<Input placeholder="请输入请输入服务公司名称string" />)}
+                    rules: [{ required: true, message: '请输入商户名称' }],
+                  })(
+                    <Input placeholder="请输入请输入商户名称string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.mainOrderId}>
                   {getFieldDecorator('mainOrderId', {
-                    rules: [{ required: true, message: '请输入主要订单Id' }],
-                  })(<Input placeholder="请输入请输入主要订单Idstring" />)}
+                    rules: [{ required: true, message: '请输入年检订单ID' }],
+                  })(
+                    <Input placeholder="请输入请输入年检订单IDstring" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
+
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitUpdateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
             更新
           </Button>
-          <Button
-            type="primary"
-            onClick={submitUpdateFormAndContinue}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             更新并装载下一个
           </Button>
-          <Button
-            type="info"
-            onClick={skipToNext}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             略过
           </Button>
           <Button type="info" onClick={goback} loading={submitting}>
@@ -479,3 +446,6 @@ class ServiceCompanyAccountUpdateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ServiceCompanyAccountUpdateForm))
+
+
+

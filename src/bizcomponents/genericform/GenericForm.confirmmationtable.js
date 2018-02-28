@@ -1,8 +1,10 @@
+
 import React, { PureComponent } from 'react'
 import moment from 'moment'
 import { Table, Alert, Badge } from 'antd'
 import styles from './GenericForm.table.less'
 import ImagePreview from '../../components/ImagePreview'
+
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
@@ -15,15 +17,16 @@ class GenericFormConfirmationTable extends PureComponent {
     // const { data,count,current, owner } = this.props
     const { data } = this.props
 
+
     return (
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={
+            message={(
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{data.length}</a> 项
+                一共 <a style={{ fontWeight: 600 }}>{data.length}</a> 项 
               </p>
-            }
+            )}
             type="warning"
             showIcon
           />
@@ -41,3 +44,4 @@ class GenericFormConfirmationTable extends PureComponent {
 }
 
 export default GenericFormConfirmationTable
+

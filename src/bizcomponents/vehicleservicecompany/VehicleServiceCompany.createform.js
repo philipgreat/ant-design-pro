@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -25,23 +13,26 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  companyName: '公司名称',
+  companyName: '商户名称',
   operatingStatus: '服务状态',
   addressCity: '所在城市',
   addressDetail: '所在地址',
-  availableStoreService: '到店服务',
-  availableHomeService: '上门服务',
+  availableStoreService: '是否提供门店收车(件)服务',
+  availableHomeService: '是否提供上门取车(件)服务',
   openingTime: '营业时间',
   longitude: '经度',
   latitude: '纬度',
   contactPhone: '联系电话',
-  companyImage1: '公司形象1',
-  companyImage2: '公司形象2',
-  companyImage3: '公司形象3',
-  companyImage4: '公司形象4',
-  companyImage5: '公司形象5',
+  companyImage1: '公司照片1',
+  companyImage2: '公司照片2',
+  companyImage3: '公司照片3',
+  companyImage4: '公司照片4',
+  companyImage5: '公司照片5',
+  orderContact: '订单默认联系人',
+  orderContactPhone: '订单默认联系人电话',
   platform: '平台',
 }
+
 
 const testValues = {
   companyName: '大成洗车店',
@@ -50,14 +41,17 @@ const testValues = {
   availableStoreService: '1',
   availableHomeService: '1',
   openingTime: '早上8点到下午6点提供服务,周末24小时营业',
-  longitude: '104.69213860351863',
-  latitude: '30.08050384459793',
+  longitude: '104.51043747823113',
+  latitude: '31.708165166292858',
   contactPhone: '028-61554793',
+  orderContact: '王城武',
+  orderContactPhone: '13312345678',
   addressCityId: 'C000001',
   platformId: 'CIP000001',
 }
 
 const imageURLPrefix = '//localhost:2090'
+
 
 const imageKeys = [
   'companyImage1',
@@ -66,6 +60,7 @@ const imageKeys = [
   'companyImage4',
   'companyImage5',
 ]
+
 
 class VehicleServiceCompanyCreateForm extends Component {
   state = {
@@ -82,7 +77,7 @@ class VehicleServiceCompanyCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -101,14 +96,10 @@ class VehicleServiceCompanyCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues=(convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
       const value = convertedImagesValues[key][0]
@@ -124,7 +115,7 @@ class VehicleServiceCompanyCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues = selectedRow => {
+  mapFromImageValues=(selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -132,8 +123,8 @@ class VehicleServiceCompanyCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -167,23 +158,18 @@ class VehicleServiceCompanyCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleServiceCompany`,
-          payload: {
-            id: owner.id,
-            type: 'vehicleServiceCompany',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'vehicleServiceCompany', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -198,22 +184,18 @@ class VehicleServiceCompanyCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -244,11 +226,14 @@ class VehicleServiceCompanyCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.companyName}>
                   {getFieldDecorator('companyName', {
-                    rules: [{ required: true, message: '请输入公司名称' }],
-                  })(<Input placeholder="请输入请输入公司名称string" />)}
+                    rules: [{ required: true, message: '请输入商户名称' }],
+                  })(
+                    <Input placeholder="请输入请输入商户名称string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -256,7 +241,9 @@ class VehicleServiceCompanyCreateForm extends Component {
                 <Form.Item label={fieldLabels.operatingStatus}>
                   {getFieldDecorator('operatingStatus', {
                     rules: [{ required: true, message: '请输入服务状态' }],
-                  })(<Input placeholder="请输入请输入服务状态string" />)}
+                  })(
+                    <Input placeholder="请输入请输入服务状态string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -264,23 +251,29 @@ class VehicleServiceCompanyCreateForm extends Component {
                 <Form.Item label={fieldLabels.addressDetail}>
                   {getFieldDecorator('addressDetail', {
                     rules: [{ required: true, message: '请输入所在地址' }],
-                  })(<Input placeholder="请输入请输入所在地址string" />)}
+                  })(
+                    <Input placeholder="请输入请输入所在地址string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.availableStoreService}>
                   {getFieldDecorator('availableStoreService', {
-                    rules: [{ required: true, message: '请输入到店服务' }],
-                  })(<Input placeholder="请输入请输入到店服务bool" />)}
+                    rules: [{ required: true, message: '请输入是否提供门店收车(件)服务' }],
+                  })(
+                    <Input placeholder="请输入请输入是否提供门店收车(件)服务bool" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.availableHomeService}>
                   {getFieldDecorator('availableHomeService', {
-                    rules: [{ required: true, message: '请输入上门服务' }],
-                  })(<Input placeholder="请输入请输入上门服务bool" />)}
+                    rules: [{ required: true, message: '请输入是否提供上门取车(件)服务' }],
+                  })(
+                    <Input placeholder="请输入请输入是否提供上门取车(件)服务bool" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -288,7 +281,9 @@ class VehicleServiceCompanyCreateForm extends Component {
                 <Form.Item label={fieldLabels.openingTime}>
                   {getFieldDecorator('openingTime', {
                     rules: [{ required: true, message: '请输入营业时间' }],
-                  })(<Input placeholder="请输入请输入营业时间string" />)}
+                  })(
+                    <Input placeholder="请输入请输入营业时间string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -296,7 +291,9 @@ class VehicleServiceCompanyCreateForm extends Component {
                 <Form.Item label={fieldLabels.longitude}>
                   {getFieldDecorator('longitude', {
                     rules: [{ required: true, message: '请输入经度' }],
-                  })(<Input placeholder="请输入请输入经度double" />)}
+                  })(
+                    <Input placeholder="请输入请输入经度double" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -304,7 +301,9 @@ class VehicleServiceCompanyCreateForm extends Component {
                 <Form.Item label={fieldLabels.latitude}>
                   {getFieldDecorator('latitude', {
                     rules: [{ required: true, message: '请输入纬度' }],
-                  })(<Input placeholder="请输入请输入纬度double" />)}
+                  })(
+                    <Input placeholder="请输入请输入纬度double" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -312,82 +311,105 @@ class VehicleServiceCompanyCreateForm extends Component {
                 <Form.Item label={fieldLabels.contactPhone}>
                   {getFieldDecorator('contactPhone', {
                     rules: [{ required: true, message: '请输入联系电话' }],
-                  })(<Input placeholder="请输入请输入联系电话string" />)}
+                  })(
+                    <Input placeholder="请输入请输入联系电话string" />
+                  )}
                 </Form.Item>
               </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderContact}>
+                  {getFieldDecorator('orderContact', {
+                    rules: [{ required: true, message: '请输入订单默认联系人' }],
+                  })(
+                    <Input placeholder="请输入请输入订单默认联系人string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderContactPhone}>
+                  {getFieldDecorator('orderContactPhone', {
+                    rules: [{ required: true, message: '请输入订单默认联系人电话' }],
+                  })(
+                    <Input placeholder="请输入请输入订单默认联系人电话string_china_mobile_phone" />
+                  )}
+                </Form.Item>
+              </Col>
+
             </Row>
           </Form>
         </Card>
 
+
+
+
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="公司形象1"
+                  buttonTitle="公司照片1"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'companyImage1')
-                  }
+                  handleChange={event => this.handleChange(event, 'companyImage1')}
                   fileList={convertedImagesValues.companyImage1}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="公司形象2"
+                  buttonTitle="公司照片2"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'companyImage2')
-                  }
+                  handleChange={event => this.handleChange(event, 'companyImage2')}
                   fileList={convertedImagesValues.companyImage2}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="公司形象3"
+                  buttonTitle="公司照片3"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'companyImage3')
-                  }
+                  handleChange={event => this.handleChange(event, 'companyImage3')}
                   fileList={convertedImagesValues.companyImage3}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="公司形象4"
+                  buttonTitle="公司照片4"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'companyImage4')
-                  }
+                  handleChange={event => this.handleChange(event, 'companyImage4')}
                   fileList={convertedImagesValues.companyImage4}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="公司形象5"
+                  buttonTitle="公司照片5"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'companyImage5')
-                  }
+                  handleChange={event => this.handleChange(event, 'companyImage5')}
                   fileList={convertedImagesValues.companyImage5}
                 />
               </Col>
+
             </Row>
           </Form>
         </Card>
 
+
+
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.addressCity}>
                   {getFieldDecorator('addressCityId', {
                     rules: [{ required: true, message: '请输入所在城市' }],
-                  })(<Input placeholder="请输入请输入所在城市" />)}
+                  })(
+                    <Input placeholder="请输入请输入所在城市" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -395,28 +417,22 @@ class VehicleServiceCompanyCreateForm extends Component {
                 <Form.Item label={fieldLabels.platform}>
                   {getFieldDecorator('platformId', {
                     rules: [{ required: true, message: '请输入平台' }],
-                  })(<Input placeholder="请输入请输入平台" />)}
+                  })(
+                    <Input placeholder="请输入请输入平台" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -431,3 +447,7 @@ class VehicleServiceCompanyCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(VehicleServiceCompanyCreateForm))
+
+
+
+

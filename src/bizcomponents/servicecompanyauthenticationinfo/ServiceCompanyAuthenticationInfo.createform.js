@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -25,10 +13,11 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  businessLicenseImg: '营业执照Img',
+  businessLicenseImg: '营业执照照片',
   businessLicenseCode: '营业执照代码',
-  serviceCompany: '服务公司',
+  serviceCompany: '商户',
 }
+
 
 const testValues = {
   businessLicenseCode: '123123123ABC1231',
@@ -37,7 +26,11 @@ const testValues = {
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = ['businessLicenseImg']
+
+const imageKeys = [
+  'businessLicenseImg',
+]
+
 
 class ServiceCompanyAuthenticationInfoCreateForm extends Component {
   state = {
@@ -54,7 +47,7 @@ class ServiceCompanyAuthenticationInfoCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -73,14 +66,10 @@ class ServiceCompanyAuthenticationInfoCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues=(convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
       const value = convertedImagesValues[key][0]
@@ -96,7 +85,7 @@ class ServiceCompanyAuthenticationInfoCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues = selectedRow => {
+  mapFromImageValues=(selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -104,8 +93,8 @@ class ServiceCompanyAuthenticationInfoCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -129,11 +118,7 @@ class ServiceCompanyAuthenticationInfoCreateForm extends Component {
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addServiceCompanyAuthenticationInfo`,
-          payload: {
-            id: owner.id,
-            type: 'serviceCompanyAuthenticationInfo',
-            parameters,
-          },
+          payload: { id: owner.id, type: 'serviceCompanyAuthenticationInfo', parameters },
         })
       })
     }
@@ -143,23 +128,18 @@ class ServiceCompanyAuthenticationInfoCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addServiceCompanyAuthenticationInfo`,
-          payload: {
-            id: owner.id,
-            type: 'serviceCompanyAuthenticationInfo',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'serviceCompanyAuthenticationInfo', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -174,22 +154,18 @@ class ServiceCompanyAuthenticationInfoCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -213,70 +189,74 @@ class ServiceCompanyAuthenticationInfoCreateForm extends Component {
     }
     return (
       <PageHeaderLayout
-        title="新建一个服务公司认证信息"
-        content="新建一个服务公司认证信息"
+        title="新建一个商户认证信息"
+        content="新建一个商户认证信息"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.businessLicenseCode}>
                   {getFieldDecorator('businessLicenseCode', {
                     rules: [{ required: true, message: '请输入营业执照代码' }],
-                  })(<Input placeholder="请输入请输入营业执照代码string" />)}
+                  })(
+                    <Input placeholder="请输入请输入营业执照代码string" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
           </Form>
         </Card>
+
+
+
 
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="营业执照Img"
+                  buttonTitle="营业执照照片"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'businessLicenseImg')
-                  }
+                  handleChange={event => this.handleChange(event, 'businessLicenseImg')}
                   fileList={convertedImagesValues.businessLicenseImg}
                 />
               </Col>
+
             </Row>
           </Form>
         </Card>
+
+
 
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceCompany}>
                   {getFieldDecorator('serviceCompanyId', {
-                    rules: [{ required: true, message: '请输入服务公司' }],
-                  })(<Input placeholder="请输入请输入服务公司" />)}
+                    rules: [{ required: true, message: '请输入商户' }],
+                  })(
+                    <Input placeholder="请输入请输入商户" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -291,3 +271,7 @@ class ServiceCompanyAuthenticationInfoCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ServiceCompanyAuthenticationInfoCreateForm))
+
+
+
+

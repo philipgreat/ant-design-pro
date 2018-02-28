@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}repairingAllowanceItemManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -19,8 +16,9 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-const RepairingAllowanceItemService = {
-  view,
-  load,
-}
+
+
+const RepairingAllowanceItemService = { view,
+  load }
 export default RepairingAllowanceItemService
+

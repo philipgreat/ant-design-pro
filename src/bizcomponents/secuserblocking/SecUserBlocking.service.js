@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}secUserBlockingManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -18,6 +15,8 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}secUserBlockingManager/loadSecUserBlocking/${targetObjectId}/${parametersExpr}/`,
   })
 }
+
+
 
 const addSecUser = (targetObjectId, parameters) => {
   const url = `${PREFIX}secUserBlockingManager/addSecUser/blockingId/login/mobile/email/pwd/verificationCode/verificationCodeExpire/lastLoginTime/domainId/tokensExpr/`
@@ -34,11 +33,7 @@ const addSecUser = (targetObjectId, parameters) => {
 const updateSecUser = (targetObjectId, parameters) => {
   const url = `${PREFIX}secUserBlockingManager/updateSecUserProperties/secUserBlockingId/id/login/mobile/email/pwd/verificationCode/verificationCodeExpire/lastLoginTime/tokensExpr/`
   const secUserBlockingId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    secUserBlockingId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, secUserBlockingId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -49,11 +44,7 @@ const updateSecUser = (targetObjectId, parameters) => {
 
 const removeSecUserList = (targetObjectId, parameters) => {
   const url = `${PREFIX}secUserBlockingManager/removeSecUserList/secUserBlockingId/secUserIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    secUserBlockingId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, secUserBlockingId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -62,11 +53,11 @@ const removeSecUserList = (targetObjectId, parameters) => {
   })
 }
 
-const SecUserBlockingService = {
-  view,
+
+const SecUserBlockingService = { view,
   load,
   addSecUser,
   updateSecUser,
-  removeSecUserList,
-}
+  removeSecUserList }
 export default SecUserBlockingService
+

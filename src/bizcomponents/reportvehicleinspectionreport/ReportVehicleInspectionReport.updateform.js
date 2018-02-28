@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -28,14 +16,15 @@ const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
   description: '描述',
-  inspectionReportImage1: '检验报告图1',
-  inspectionReportImage2: '检验报告图2',
-  inspectionReportImage3: '检验报告图片3',
-  inspectionReportImage4: '检验报告图片4',
-  inspectionReportImage5: '检验报告图片5',
-  inspectionServiceOrder: '检查服务订单',
+  inspectionReportImage1: '年检报告1',
+  inspectionReportImage2: '年检报告2',
+  inspectionReportImage3: '年检报告3',
+  inspectionReportImage4: '年检报告4',
+  inspectionReportImage5: '年检报告5',
+  inspectionServiceOrder: '年检服务单',
   repairingServiceOrder: '维修服务订单',
-  mainOrder: '主订单',
+  mainOrder: '年检订单',
+
 }
 
 const imageURLPrefix = '//localhost:2090'
@@ -47,6 +36,7 @@ const imageKeys = [
   'inspectionReportImage4',
   'inspectionReportImage5',
 ]
+
 
 class ReportVehicleInspectionReportUpdateForm extends Component {
   state = {
@@ -61,7 +51,7 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow),
+      convertedImagesValues: this.mapFromImageValues(selectedRow)
     })
   }
 
@@ -90,9 +80,10 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
     if (currentUpdateIndex >= selectedRows.length) {
       return
     }
-    const convertiedValues = selectedRows.map(item => {
+    const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
+
       }
     })
     const selectedRow = convertiedValues[currentUpdateIndex]
@@ -108,14 +99,10 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues = (convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
         return
       }
       const value = convertedImagesValues[key][0]
@@ -142,8 +129,8 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
     })
     return targetImages
   }
-
-  mapFromImageValues = selectedRow => {
+  
+  mapFromImageValues = (selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -151,14 +138,14 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
   }
 
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -167,17 +154,12 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
   }
 
   render() {
-    const {
-      form,
-      dispatch,
-      submitting,
-      selectedRows,
-      currentUpdateIndex,
-    } = this.props
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const { convertedImagesValues } = this.state
     const { setFieldsValue } = this.props.form
-
+    
+    
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -188,11 +170,7 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
         const { owner } = this.props
         const reportVehicleInspectionReportId = values.id
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = {
-          ...values,
-          reportVehicleInspectionReportId,
-          ...imagesValues,
-        }
+        const parameters = { ...values, reportVehicleInspectionReportId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
         dispatch({
@@ -208,7 +186,7 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
         })
       })
     }
-
+    
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -219,15 +197,11 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
         const { owner } = this.props
         const reportVehicleInspectionReportId = values.id
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-        const parameters = {
-          ...values,
-          reportVehicleInspectionReportId,
-          ...imagesValues,
-        }
+        const parameters = { ...values, reportVehicleInspectionReportId, ...imagesValues }
 
         // TODO
         const { currentUpdateIndex } = this.props
-
+        
         if (currentUpdateIndex >= selectedRows.length - 1) {
           return
         }
@@ -249,11 +223,11 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
         })
       })
     }
-
+    
     const skipToNext = () => {
       const { currentUpdateIndex } = this.props
       const { owner } = this.props
-
+        
       const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextReportVehicleInspectionReportUpdateRow`,
@@ -267,7 +241,7 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
         },
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -284,22 +258,18 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
       if (!errors || errorCount === 0) {
         return null
       }
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -321,31 +291,30 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
         </span>
       )
     }
-
+    
     if (!selectedRows) {
-      return <div>缺少被更新的对象</div>
+      return (<div>缺少被更新的对象</div>)
     }
 
     // TODO
     return (
       <PageHeaderLayout
-        title={
-          '更新车辆检验报告' +
-          (currentUpdateIndex + 1) +
-          '/' +
-          selectedRows.length
-        }
-        content="更新车辆检验报告"
+        title={"更新车辆上线年检报告"+(currentUpdateIndex+1)+"/"+selectedRows.length}
+        content="更新车辆上线年检报告"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+            
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
                     rules: [{ required: true, message: '请输入ID' }],
-                  })(<Input placeholder="请输入请输入IDstring" disabled />)}
+                  })(
+                    <Input placeholder="请输入请输入IDstring" disabled />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -353,98 +322,79 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
                 <Form.Item label={fieldLabels.description}>
                   {getFieldDecorator('description', {
                     rules: [{ required: true, message: '请输入描述' }],
-                  })(<Input placeholder="请输入请输入描述string" />)}
+                  })(
+                    <Input placeholder="请输入请输入描述string" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
+
 
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="检验报告图1"
+                  buttonTitle="年检报告1"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'inspectionReportImage1')
-                  }
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage1')}
                   fileList={convertedImagesValues.inspectionReportImage1}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="检验报告图2"
+                  buttonTitle="年检报告2"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'inspectionReportImage2')
-                  }
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage2')}
                   fileList={convertedImagesValues.inspectionReportImage2}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="检验报告图片3"
+                  buttonTitle="年检报告3"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'inspectionReportImage3')
-                  }
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage3')}
                   fileList={convertedImagesValues.inspectionReportImage3}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="检验报告图片4"
+                  buttonTitle="年检报告4"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'inspectionReportImage4')
-                  }
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage4')}
                   fileList={convertedImagesValues.inspectionReportImage4}
                 />
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <PictureEdit
-                  buttonTitle="检验报告图片5"
+                  buttonTitle="年检报告5"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'inspectionReportImage5')
-                  }
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage5')}
                   fileList={convertedImagesValues.inspectionReportImage5}
                 />
               </Col>
+
             </Row>
           </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitUpdateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
             更新
           </Button>
-          <Button
-            type="primary"
-            onClick={submitUpdateFormAndContinue}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             更新并装载下一个
           </Button>
-          <Button
-            type="info"
-            onClick={skipToNext}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             略过
           </Button>
           <Button type="info" onClick={goback} loading={submitting}>
@@ -459,3 +409,6 @@ class ReportVehicleInspectionReportUpdateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ReportVehicleInspectionReportUpdateForm))
+
+
+

@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -25,24 +13,28 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  insuranceName: '保险产品名称',
-  insuranceVendor: '保险承保方',
-  insurancePrice: '保险价格',
-  summary: '概览',
-  product: '产品',
+  insuranceName: '保险名称',
+  insuranceVendor: '承保方',
+  insurancePrice: '保费',
+  summary: '摘要',
+  product: '产品名称',
 }
+
 
 const testValues = {
   insuranceName: '基本保险',
   insuranceVendor: '太平洋财产保险',
-  insurancePrice: '4.39',
+  insurancePrice: '4.87',
   summary: '除了基本保险，还可以购买额外保险',
   productId: 'AP000001',
 }
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+
+const imageKeys = [
+]
+
 
 class AvailableInsuranceCreateForm extends Component {
   state = {
@@ -59,7 +51,7 @@ class AvailableInsuranceCreateForm extends Component {
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -78,14 +70,10 @@ class AvailableInsuranceCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues = convertedImagesValues => {
+  mapBackToImageValues=(convertedImagesValues) => {
     const targetImages = []
-    Object.keys(convertedImagesValues).map(key => {
-      if (
-        !convertedImagesValues ||
-        !convertedImagesValues[key] ||
-        !convertedImagesValues[key][0]
-      ) {
+    Object.keys(convertedImagesValues).map((key) => {
+      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
         return
       }
       const value = convertedImagesValues[key][0]
@@ -101,7 +89,7 @@ class AvailableInsuranceCreateForm extends Component {
     return targetImages
   }
 
-  mapFromImageValues = selectedRow => {
+  mapFromImageValues=(selectedRow) => {
     const targetImages = {}
     const buildFileList = (key, value) => {
       if (value) {
@@ -109,8 +97,8 @@ class AvailableInsuranceCreateForm extends Component {
       }
       return []
     }
-    imageKeys.map(key => {
-      targetImages[key] = buildFileList(key, selectedRow[key])
+    imageKeys.map((key) => {
+      targetImages[key] = buildFileList(key,selectedRow[key])
     })
     console.log(targetImages)
     return targetImages
@@ -144,23 +132,18 @@ class AvailableInsuranceCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = this.mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addAvailableInsurance`,
-          payload: {
-            id: owner.id,
-            type: 'availableInsurance',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'availableInsurance', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -175,22 +158,18 @@ class AvailableInsuranceCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -214,77 +193,87 @@ class AvailableInsuranceCreateForm extends Component {
     }
     return (
       <PageHeaderLayout
-        title="新建一个保险增值服务"
-        content="新建一个保险增值服务"
+        title="新建一个车辆代办保险"
+        content="新建一个车辆代办保险"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.insuranceName}>
                   {getFieldDecorator('insuranceName', {
-                    rules: [{ required: true, message: '请输入保险产品名称' }],
-                  })(<Input placeholder="请输入请输入保险产品名称string" />)}
+                    rules: [{ required: true, message: '请输入保险名称' }],
+                  })(
+                    <Input placeholder="请输入请输入保险名称string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.insuranceVendor}>
                   {getFieldDecorator('insuranceVendor', {
-                    rules: [{ required: true, message: '请输入保险承保方' }],
-                  })(<Input placeholder="请输入请输入保险承保方string" />)}
+                    rules: [{ required: true, message: '请输入承保方' }],
+                  })(
+                    <Input placeholder="请输入请输入承保方string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.insurancePrice}>
                   {getFieldDecorator('insurancePrice', {
-                    rules: [{ required: true, message: '请输入保险价格' }],
-                  })(<Input placeholder="请输入请输入保险价格money" />)}
+                    rules: [{ required: true, message: '请输入保费' }],
+                  })(
+                    <Input placeholder="请输入请输入保费money" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.summary}>
                   {getFieldDecorator('summary', {
-                    rules: [{ required: true, message: '请输入概览' }],
-                  })(<Input placeholder="请输入请输入概览string" />)}
+                    rules: [{ required: true, message: '请输入摘要' }],
+                  })(
+                    <Input placeholder="请输入请输入摘要string" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
           </Form>
         </Card>
+
+
+
+
+
 
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.product}>
                   {getFieldDecorator('productId', {
-                    rules: [{ required: true, message: '请输入产品' }],
-                  })(<Input placeholder="请输入请输入产品" />)}
+                    rules: [{ required: true, message: '请输入产品名称' }],
+                  })(
+                    <Input placeholder="请输入请输入产品名称" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -299,3 +288,7 @@ class AvailableInsuranceCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(AvailableInsuranceCreateForm))
+
+
+
+

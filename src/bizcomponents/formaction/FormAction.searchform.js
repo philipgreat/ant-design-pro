@@ -1,30 +1,14 @@
+
+
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
-import {
-  Row,
-  Col,
-  Card,
-  Form,
-  Input,
-  Select,
-  Icon,
-  Button,
-  Dropdown,
-  Menu,
-  InputNumber,
-  DatePicker,
-  Modal,
-  message,
-} from 'antd'
+import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd'
 
 import styles from './FormAction.search.less'
 
 const FormItem = Form.Item
 const { Option } = Select
-const getValue = obj =>
-  Object.keys(obj)
-    .map(key => obj[key])
-    .join(',')
+const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',')
 
 @Form.create()
 export default class FormActionSearchForm extends PureComponent {
@@ -73,7 +57,7 @@ export default class FormActionSearchForm extends PureComponent {
       'formActionList.searchValue': fieldValue,
     }
   }
-  handleSearch = e => {
+  handleSearch = (e) => {
     e.preventDefault()
     const { dispatch, form } = this.props
     form.validateFields((err, fieldsValue) => {
@@ -84,48 +68,43 @@ export default class FormActionSearchForm extends PureComponent {
         ...this.buildStringSearchParameters(fieldsValue, 'localeKey'),
         ...this.buildStringSearchParameters(fieldsValue, 'level'),
         ...this.buildStringSearchParameters(fieldsValue, 'url'),
+
       }
       const { owner } = this.props
       dispatch({
         type: `${owner.type}/load`,
-        payload: {
-          id: owner.id,
-          parameters: params,
-          formActionSearchFormParameters: fieldsValue,
-        },
+        payload: { id: owner.id, parameters: params, formActionSearchFormParameters: fieldsValue },
       })
     })
   }
-
+      
   renderSimpleForm() {
     const { getFieldDecorator } = this.props.form
     return (
       <Form onSubmit={this.handleSearch} layout="inline">
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+
           <Col md={8} sm={24}>
             <FormItem label="ID">
-              {getFieldDecorator('id')(<Input placeholder="请输入ID" />)}
+              {getFieldDecorator('id')(
+                <Input placeholder="请输入ID" />
+               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
             <FormItem label="标签">
-              {getFieldDecorator('label')(<Input placeholder="请输入标签" />)}
+              {getFieldDecorator('label')(
+                <Input placeholder="请输入标签" />
+               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
             <span className={styles.submitButtons}>
-              <Button type="primary" htmlType="submit">
-                查询
-              </Button>
-              <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>
-                重置
-              </Button>
-              <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
-                {' '}
-                展开 <Icon type="down" />{' '}
-              </a>
+              <Button type="primary" htmlType="submit">查询</Button>
+              <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>重置</Button>
+              <a style={{ marginLeft: 8 }} onClick={this.toggleForm}> 展开 <Icon type="down" /> </a>
             </span>
           </Col>
         </Row>
@@ -137,15 +116,20 @@ export default class FormActionSearchForm extends PureComponent {
     return (
       <Form onSubmit={this.handleSearch} layout="inline">
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+
           <Col md={8} sm={24}>
             <FormItem label="ID">
-              {getFieldDecorator('id')(<Input placeholder="请输入ID" />)}
+              {getFieldDecorator('id')(
+                <Input placeholder="请输入ID" />
+              )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
             <FormItem label="标签">
-              {getFieldDecorator('label')(<Input placeholder="请输入标签" />)}
+              {getFieldDecorator('label')(
+                <Input placeholder="请输入标签" />
+              )}
             </FormItem>
           </Col>
 
@@ -159,27 +143,26 @@ export default class FormActionSearchForm extends PureComponent {
 
           <Col md={8} sm={24}>
             <FormItem label="水平">
-              {getFieldDecorator('level')(<Input placeholder="请输入水平" />)}
+              {getFieldDecorator('level')(
+                <Input placeholder="请输入水平" />
+              )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
             <FormItem label="url">
-              {getFieldDecorator('url')(<Input placeholder="请输入url" />)}
+              {getFieldDecorator('url')(
+                <Input placeholder="请输入url" />
+              )}
             </FormItem>
           </Col>
+
         </Row>
         <div style={{ overflow: 'hidden' }}>
           <span style={{ float: 'right', marginBottom: 24 }}>
-            <Button type="primary" htmlType="submit">
-              查询
-            </Button>
-            <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>
-              重置
-            </Button>
-            <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
-              收起 <Icon type="up" />
-            </a>
+            <Button type="primary" htmlType="submit">查询</Button>
+            <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>重置</Button>
+            <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>收起 <Icon type="up" /></a>
           </span>
         </div>
       </Form>
@@ -187,8 +170,16 @@ export default class FormActionSearchForm extends PureComponent {
   }
 
   render() {
-    return this.state.expandForm
-      ? this.renderAdvancedForm()
-      : this.renderSimpleForm()
+    return this.state.expandForm ? this.renderAdvancedForm() : this.renderSimpleForm()
   }
 }
+
+
+
+
+
+
+
+
+
+

@@ -55,7 +55,9 @@ export const get = ({ url, msg = '接口异常', headers }) =>
 export const getURLPrefix = () => {
     const url = new URL(window.location)
     if (url.hostname === 'localhost') {
-        return `http://${url.hostname}:8080/naf/`
+        //return `http://${url.hostname}:8080/naf/`
+        return `http://clariones.doublechaintech.com/naf/`
+        
     }
     if (url.hostname === "30.30.126.37") {
         return `http://${url.hostname}:8080/naf/`

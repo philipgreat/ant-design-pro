@@ -37,7 +37,6 @@ import CompanyEmployeeQualificationModel from './bizcomponents/companyemployeequ
 import CompanyEmployeeServingModel from './bizcomponents/companyemployeeserving/CompanyEmployeeServing.model'
 import CompanyEmployeeTerminationModel from './bizcomponents/companyemployeetermination/CompanyEmployeeTermination.model'
 import EmployeeDrivingLicenseModel from './bizcomponents/employeedrivinglicense/EmployeeDrivingLicense.model'
-import CompanyEmployeeMessageModel from './bizcomponents/companyemployeemessage/CompanyEmployeeMessage.model'
 import InspectionStationModel from './bizcomponents/inspectionstation/InspectionStation.model'
 import VehicleInfoModel from './bizcomponents/vehicleinfo/VehicleInfo.model'
 import VehicleInspectionOrderModel from './bizcomponents/vehicleinspectionorder/VehicleInspectionOrder.model'
@@ -56,7 +55,6 @@ import ServiceInsuranceForInspectionModel from './bizcomponents/serviceinsurance
 import ServiceVehicleInspectionModel from './bizcomponents/servicevehicleinspection/ServiceVehicleInspection.model'
 import ServiceFileInspectionModel from './bizcomponents/servicefileinspection/ServiceFileInspection.model'
 import ReportVehicleInspectionReportModel from './bizcomponents/reportvehicleinspectionreport/ReportVehicleInspectionReport.model'
-import InspectionRepairAllowanceItemsModel from './bizcomponents/inspectionrepairallowanceitems/InspectionRepairAllowanceItems.model'
 import ReportFileInspectionReportModel from './bizcomponents/reportfileinspectionreport/ReportFileInspectionReport.model'
 import ServiceVehicleRepairingModel from './bizcomponents/servicevehiclerepairing/ServiceVehicleRepairing.model'
 import RepairingQuotationModel from './bizcomponents/repairingquotation/RepairingQuotation.model'
@@ -128,7 +126,6 @@ app.model(CompanyEmployeeQualificationModel)
 app.model(CompanyEmployeeServingModel)
 app.model(CompanyEmployeeTerminationModel)
 app.model(EmployeeDrivingLicenseModel)
-app.model(CompanyEmployeeMessageModel)
 app.model(InspectionStationModel)
 app.model(VehicleInfoModel)
 app.model(VehicleInspectionOrderModel)
@@ -147,7 +144,6 @@ app.model(ServiceInsuranceForInspectionModel)
 app.model(ServiceVehicleInspectionModel)
 app.model(ServiceFileInspectionModel)
 app.model(ReportVehicleInspectionReportModel)
-app.model(InspectionRepairAllowanceItemsModel)
 app.model(ReportFileInspectionReportModel)
 app.model(ServiceVehicleRepairingModel)
 app.model(RepairingQuotationModel)

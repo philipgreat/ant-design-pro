@@ -1,39 +1,20 @@
+
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge } from 'antd'
+import { Table, Alert, Badge} from 'antd'
 import { Link } from 'dva/router'
 import styles from './ServiceOrderFilter.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
+
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  {
-    title: '过滤器的名字',
-    debugtype: 'string',
-    dataIndex: 'filterName',
-    width: '8',
-  },
-  { title: '订单数量', debugtype: 'int', dataIndex: 'orderCount', width: '6' },
-  {
-    title: '选择',
-    dataIndex: 'selected',
-    render: (text, record) => (record.selected ? '是' : '否'),
-  },
-  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '56' },
-  {
-    title: '员工',
-    dataIndex: 'employee',
-    render: (text, record) =>
-      record.employee ? (
-        <Link
-          to={`/vehicleServiceCompanyEmployee/${record.employee.id}/dashboard`}
-        >
-          {record.employee.id}
-        </Link>
-      ) : (
-        '暂无'
-      ),
-  },
+  { title: '服务单状态名称', debugtype: 'string', dataIndex: 'filterName', width: '8' },
+  { title: '服务单数量', debugtype: 'int', dataIndex: 'orderCount', width: '6' },
+  { title: '选中', dataIndex: 'selected', render: (text, record) => (record.selected ? '是' : '否') },
+  { title: '服务单状态接口', debugtype: 'string', dataIndex: 'linkUrl', width: '56' },
+  { title: '员工', dataIndex: 'employee', render: (text, record) => (record.employee ? (<Link to={`/vehicleServiceCompanyEmployee/${record.employee.id}/dashboard`}>{record.employee.id}</Link>) : '暂无') },
+
 ]
 
 class ServiceOrderFilterTable extends PureComponent {
@@ -76,6 +57,7 @@ class ServiceOrderFilterTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
+      
     }
 
     const rowSelection = {
@@ -90,15 +72,13 @@ class ServiceOrderFilterTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={
+            message={(
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
-                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  清空
-                </a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
+                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
-            }
+            )}
             type="info"
             showIcon
           />
@@ -119,3 +99,4 @@ class ServiceOrderFilterTable extends PureComponent {
 }
 
 export default ServiceOrderFilterTable
+

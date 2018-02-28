@@ -1,25 +1,13 @@
+
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import Result from '../../components/Result'
 
-import {
-  Row,
-  Col,
-  Card,
-  Form,
-  Input,
-  Select,
-  Icon,
-  Button,
-  Dropdown,
-  Menu,
-  InputNumber,
-  DatePicker,
-  Modal,
-  message,
-} from 'antd'
+
+import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
 
 import GlobalComponents from '../../custcomponents'
+
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 
@@ -27,10 +15,8 @@ import styles from './CompanyEmployeeServing.search.less'
 
 const FormItem = Form.Item
 const { Option } = Select
-const getValue = obj =>
-  Object.keys(obj)
-    .map(key => obj[key])
-    .join(',')
+const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',')
+
 
 @Form.create()
 export default class CompanyEmployeeServingSearch extends PureComponent {
@@ -56,13 +42,13 @@ export default class CompanyEmployeeServingSearch extends PureComponent {
       newObj[key] = getValue(filtersArg[key])
       return newObj
     }, {})
-    const { owner } = this.props
-    const { listName } = owner
-    let listParameters = {}
-    listParameters[listName] = 1
-    listParameters[`${listName}CurrentPage`] = pagination.current
-    listParameters[`${listName}RowsPerPage`] = pagination.pageSize
-
+	const { owner } = this.props
+	const {listName} = owner;
+	let listParameters = {};
+    listParameters[listName]=1;
+    listParameters[`${listName}CurrentPage`]=pagination.current;
+    listParameters[`${listName}RowsPerPage`]=pagination.pageSize;
+    
     const params = {
       ...listParameters,
       ...formValues,
@@ -71,14 +57,14 @@ export default class CompanyEmployeeServingSearch extends PureComponent {
     if (sorter.field) {
       params.sorter = '_'
     }
-
+    
     dispatch({
       type: `${owner.type}/load`,
       payload: { id: owner.id, parameters: params },
     })
   }
 
-  handleMenuClick = e => {
+  handleMenuClick = (e) => {
     const { dispatch } = this.props
     const { selectedRows } = this.state
     if (!selectedRows) return
@@ -101,13 +87,13 @@ export default class CompanyEmployeeServingSearch extends PureComponent {
     }
   }
 
-  handleSelectRows = rows => {
+  handleSelectRows = (rows) => {
     this.setState({
       selectedRows: rows,
     })
   }
 
-  handleModalVisible = flag => {
+  handleModalVisible = (flag) => {
     this.setState({
       modalVisible: !!flag,
       showDeleteResult: false,
@@ -122,10 +108,8 @@ export default class CompanyEmployeeServingSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true,
     })
-
-    const companyEmployeeServingIds = selectedRows.map(item => {
-      return item.id
-    })
+    
+    const companyEmployeeServingIds = selectedRows.map((item) => { return item.id })
     console.log('companyEmployeeServingIds', companyEmployeeServingIds)
     const parameters = { companyEmployeeServingIds }
     dispatch({
@@ -133,7 +117,7 @@ export default class CompanyEmployeeServingSearch extends PureComponent {
       payload: { id: owner.id, type: 'companyEmployeeServing', parameters },
     })
   }
-
+  
   showModal = () => {
     // const { selectedRows } = this.state
     // const { dispatch, owner } = this.props
@@ -167,16 +151,11 @@ export default class CompanyEmployeeServingSearch extends PureComponent {
     const currentUpdateIndex = 0
     dispatch({
       type: `${owner.type}/gotoUpdateForm`,
-      payload: {
-        id: owner.id,
-        type: 'companyEmployeeServing',
-        selectedRows,
-        currentUpdateIndex,
-      },
+      payload: { id: owner.id, type: 'companyEmployeeServing', selectedRows, currentUpdateIndex },
     })
   }
-
-  handleAddInput = e => {
+  
+  handleAddInput = (e) => {
     this.setState({
       addInputValue: e.target.value,
     })
@@ -196,12 +175,13 @@ export default class CompanyEmployeeServingSearch extends PureComponent {
   }
 
   render() {
-    const { data, loading, count, currentPage, owner } = this.props
-    const { showDeleteResult, selectedRows, modalVisible } = this.state
-    const { CompanyEmployeeServingTable } = GlobalComponents
-    const { CompanyEmployeeServingConfirmationTable } = GlobalComponents
-    const { CompanyEmployeeServingSearchForm } = GlobalComponents
-
+    const { data, loading, count, currentPage, owner } = this.props;
+    const { showDeleteResult, selectedRows, modalVisible } = this.state;
+    const {CompanyEmployeeServingTable} = GlobalComponents;
+    const {CompanyEmployeeServingConfirmationTable} = GlobalComponents;
+    const {CompanyEmployeeServingSearchForm} = GlobalComponents;
+    
+ 
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
         <Menu.Item key="remove">删除</Menu.Item>
@@ -213,22 +193,16 @@ export default class CompanyEmployeeServingSearch extends PureComponent {
     const modalContent = (data, owner) => {
       if (showDeleteResult) {
         return (
-          <Modal
-            title="成功删除"
-            visible={modalVisible}
-            onOk={() => this.confirmAfterDelete()}
-            onCancel={() => this.confirmAfterDelete()}
-            width={920}
-            style={{ top: 40 }}
-          >
-            <Result
-              type="success"
-              title="删除成功，干得漂亮"
-              description=""
-              style={{ marginTop: 48, marginBottom: 16 }}
-            />
-          </Modal>
-        )
+        <Modal
+          title="成功删除"
+          visible={modalVisible}
+          onOk={() => this.confirmAfterDelete()}
+          onCancel={() => this.confirmAfterDelete()}
+          width={920}
+          style={{ top: 40 }}
+        >
+          <Result type="success" title="删除成功，干得漂亮" description="" style={{ marginTop: 48, marginBottom: 16 }} />
+        </Modal>)
       }
 
       return (
@@ -240,52 +214,32 @@ export default class CompanyEmployeeServingSearch extends PureComponent {
           width={920}
           style={{ top: 40 }}
         >
-          <CompanyEmployeeServingConfirmationTable
-            data={selectedRows}
-            owner={owner}
-          />
-        </Modal>
-      )
+          <CompanyEmployeeServingConfirmationTable data={selectedRows} owner={owner} />
+        </Modal>)
     }
-
+    
     return (
-      <PageHeaderLayout title="公司员工服务列表">
+      <PageHeaderLayout title="商户员工服务状态变更列表">
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>
               <CompanyEmployeeServingSearchForm {...this.props} />
             </div>
             <div className={styles.tableListOperator}>
-              <Button
-                icon="plus"
-                type="primary"
-                onClick={() => this.handleCreate()}
-              >
-                新建
-              </Button>
-              {selectedRows.length > 0 && (
-                <span>
-                  <Button
-                    onClick={this.handleModalVisible}
-                    type="danger"
-                    icon="delete"
-                  >
-                    批量删除
-                  </Button>
-                  <Button
-                    onClick={this.handleUpdate}
-                    type="primary"
-                    icon="update"
-                  >
-                    批量更新
-                  </Button>
-                  <Dropdown overlay={menu}>
-                    <Button>
-                      更多操作 <Icon type="down" />
-                    </Button>
-                  </Dropdown>
-                </span>
-              )}
+              <Button icon="plus" type="primary" onClick={() => this.handleCreate()}>新建</Button>
+              {
+                selectedRows.length > 0 && (
+                  <span>
+                    <Button onClick={this.handleModalVisible} type="danger" icon="delete">批量删除</Button>
+                    <Button onClick={this.handleUpdate} type="primary" icon="update">批量更新</Button>
+                    <Dropdown overlay={menu}>
+                      <Button>
+                        更多操作 <Icon type="down" />
+                      </Button>
+                    </Dropdown>
+                  </span>
+                )
+              }
             </div>
             <CompanyEmployeeServingTable
               selectedRows={selectedRows}
@@ -304,3 +258,5 @@ export default class CompanyEmployeeServingSearch extends PureComponent {
     )
   }
 }
+
+
