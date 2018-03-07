@@ -89,6 +89,9 @@ class InspectionStationBizApp extends React.PureComponent {
       >
 
         <Menu.Item>
+          <Link to={`/inspectionStation/${objectId}/list/vehicleServiceCompanyEmployeeList`}>商户员工</Link>
+        </Menu.Item>
+        <Menu.Item>
           <Link to={`/inspectionStation/${objectId}/list/serviceVehicleInspectionList`}>车辆上线检测</Link>
         </Menu.Item>
         <Menu.Item>
@@ -101,6 +104,40 @@ class InspectionStationBizApp extends React.PureComponent {
     )
   }
 
+
+  getVehicleServiceCompanyEmployeeSearch = () => {
+    const {VehicleServiceCompanyEmployeeSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._inspectionStation.vehicleServiceCompanyEmployeeList,
+      count: state._inspectionStation.vehicleServiceCompanyEmployeeCount,
+      currentPage: state._inspectionStation.vehicleServiceCompanyEmployeeCurrentPageNumber,
+      searchFormParameters: state._inspectionStation.vehicleServiceCompanyEmployeeSearchFormParameters,
+      loading: state._inspectionStation.loading,
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'vehicleServiceCompanyEmployeeList' }, // this is for model namespace and
+    }))(VehicleServiceCompanyEmployeeSearch)
+  }
+  getVehicleServiceCompanyEmployeeCreateForm = () => {
+   	const {VehicleServiceCompanyEmployeeCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._inspectionStation.vehicleServiceCompanyEmployeeList,
+      count: state._inspectionStation.vehicleServiceCompanyEmployeeCount,
+      currentPage: state._inspectionStation.vehicleServiceCompanyEmployeeCurrentPageNumber,
+      searchFormParameters: state._inspectionStation.vehicleServiceCompanyEmployeeSearchFormParameters,
+      loading: state._inspectionStation.loading,
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'vehicleServiceCompanyEmployeeList'}, // this is for model namespace and
+    }))(VehicleServiceCompanyEmployeeCreateForm)
+  }
+  
+  getVehicleServiceCompanyEmployeeUpdateForm = () => {
+  	const {VehicleServiceCompanyEmployeeUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._inspectionStation.selectedRows,
+      currentUpdateIndex: state._inspectionStation.currentUpdateIndex,
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'vehicleServiceCompanyEmployeeList' }, // this is for model namespace and
+    }))(VehicleServiceCompanyEmployeeUpdateForm)
+  }
 
   getServiceVehicleInspectionSearch = () => {
     const {ServiceVehicleInspectionSearch} = GlobalComponents;
@@ -290,6 +327,10 @@ class InspectionStationBizApp extends React.PureComponent {
                <Route path="/inspectionStation/:id/editDetail" component={InspectionStationEditDetail} />
                <Route path="/inspectionStation/:id/viewDetail" component={InspectionStationViewDetail} />
                
+
+               <Route path="/inspectionStation/:id/list/vehicleServiceCompanyEmployeeList" component={this.getVehicleServiceCompanyEmployeeSearch()} />
+               <Route path="/inspectionStation/:id/list/vehicleServiceCompanyEmployeeCreateForm" component={this.getVehicleServiceCompanyEmployeeCreateForm()} />
+               <Route path="/inspectionStation/:id/list/vehicleServiceCompanyEmployeeUpdateForm" component={this.getVehicleServiceCompanyEmployeeUpdateForm()} />
 
                <Route path="/inspectionStation/:id/list/serviceVehicleInspectionList" component={this.getServiceVehicleInspectionSearch()} />
                <Route path="/inspectionStation/:id/list/serviceVehicleInspectionCreateForm" component={this.getServiceVehicleInspectionCreateForm()} />

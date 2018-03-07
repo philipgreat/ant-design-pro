@@ -54,7 +54,7 @@ export const get = ({ url, msg = '接口异常', headers }) =>
 
 export const getURLPrefix = () => {
     const url = new URL(window.location)
-    if (url.hostname === 'localhost') {
+    if (url.hostname === 'clariones.doublechaintech.com') {
         //return `http://${url.hostname}:8080/naf/`
         return `http://clariones.doublechaintech.com/naf/`
         
@@ -62,7 +62,12 @@ export const getURLPrefix = () => {
     if (url.hostname === "30.30.126.37") {
         return `http://${url.hostname}:8080/naf/`
     }
+    if (url.hostname === "localhost") {
+        return `http://${url.hostname}:8080/naf/`
+    }
     return `${url.origin}/${SYSTEM_SHORT_NAME}/`
+    //return `${url.origin}/${SYSTEM_SHORT_NAME}/`
+    
 }
 export const joinParameters = (parameters) => {
     const obj = parameters // {value1: 'prop1', value2: 'prop2', value3: 'prop3'}
@@ -108,3 +113,91 @@ export const post = ({ url, data, msg = '接口异常', headers }) =>
         console.log(err);
         message.warn(msg);
     });
+
+
+ //提交表单的时候，把相关的值写到上传的form里面去   
+
+ export  const mapBackToImageValuesFlatResponse = (convertedImagesValues) => {
+        const targetImages = []
+        Object.keys(convertedImagesValues).map((key) => {
+          if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
+            return
+          }
+          const value = convertedImagesValues[key][0]
+          if (value.response) {
+            if (value.response.indexOf('//') === 0) {
+              targetImages[key] = value.response
+              return
+            }
+            if (value.response.indexOf('http://') === 0) {
+              targetImages[key] = value.response
+              return
+            }
+            if (value.response.indexOf('https://') === 0) {
+              targetImages[key] = value.response
+              return
+            }
+            targetImages[key] = imageURLPrefix + value.response
+            return
+          }
+          if (value.url) {
+            targetImages[key] = value.url
+            return
+          }
+        })
+        return targetImages
+      }
+export  const mapBackToImageValuesSkynetMediaServer = (convertedImagesValues) => {
+        const targetImages = []
+        Object.keys(convertedImagesValues).map((key) => {
+          if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
+            return
+          }
+          const value = convertedImagesValues[key][0]
+          if(!value.response){
+              //no response yet
+              console.log("No response yet for ",key );
+              targetImages[key] = value.url
+              return;
+          }
+          if(!value.response.status){
+            console.log("No status yet for ",key );
+            targetImages[key] = value.url
+            return
+          }
+          if(!(value.response.status==='success')){
+            console.log("Get a failed response  for ",key );
+            targetImages[key] = value.url
+            return
+          }
+          if(!value.response.resourceUris){
+            console.log("This is a server internal error, No URIs yet for ",key );
+            targetImages[key] = value.url
+            return
+          }
+          const uri=value.response.resourceUris[0];
+          //{"status":"success","resourceUris":["public/example/product/shores/girls/pid456/skuid456/235/19/144/172/p456s456main.picture.png"]}
+          targetImages[key] = "https://www.doublechaintech.com/mss/"+uri;
+
+        })
+        return targetImages
+      }
+export  const mapBackToImageValues = mapBackToImageValuesSkynetMediaServer;
+            
+
+
+export const mapFromImageValues = (selectedRow,imageKeys) => {
+        const targetImages = {}
+        const buildFileList = (key, value) => {
+          if (value) {
+            return [{ uid: key, url: value }]
+          }
+          return []
+        }
+        imageKeys.map((key) => {
+          targetImages[key] = buildFileList(key,selectedRow[key])
+        })
+        console.log("targetImages",targetImages)
+        return targetImages
+      }
+    

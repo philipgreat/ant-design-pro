@@ -11,7 +11,7 @@ const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '营业执照照片', dataIndex: 'businessLicenseImg', render: (text, record) => <ImagePreview imageTitle="营业执照照片" imageLocation={record.businessLicenseImg} /> },
   { title: '营业执照代码', debugtype: 'string', dataIndex: 'businessLicenseCode', width: '20' },
-  { title: '商户', dataIndex: 'serviceCompany', render: (text, record) => (record.serviceCompany ? (<Link to={`/vehicleServiceCompany/${record.serviceCompany.id}/dashboard`}>{record.serviceCompany.id}</Link>) : '暂无') },
+  { title: '商户', dataIndex: 'serviceCompany', render: (text, record) => (record.serviceCompany ? (<Link to={`/vehicleServiceCompany/${record.serviceCompany.id}/dashboard`}>{record.serviceCompany.displayName}</Link>) : '暂无') },
 
 ]
 

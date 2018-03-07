@@ -43,6 +43,24 @@ const summaryOf = (serviceVehicleRepairing) =>{
 <Description term="经度">{serviceVehicleRepairing.longitude}</Description> 
 <Description term="纬度">{serviceVehicleRepairing.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceVehicleRepairing.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="年检报告1">{serviceVehicleRepairing.inspectionReportImage1}</Description> 
+<Description term="年检报告2">{serviceVehicleRepairing.inspectionReportImage2}</Description> 
+<Description term="年检报告3">{serviceVehicleRepairing.inspectionReportImage3}</Description> 
+<Description term="年检报告4">{serviceVehicleRepairing.inspectionReportImage4}</Description> 
+<Description term="年检报告5">{serviceVehicleRepairing.inspectionReportImage5}</Description> 
+<Description term="车辆维修报价单1">{serviceVehicleRepairing.repairingQuotationImage1}</Description> 
+<Description term="车辆维修报价单2">{serviceVehicleRepairing.repairingQuotationImage2}</Description> 
+<Description term="车辆维修报价单3">{serviceVehicleRepairing.repairingQuotationImage3}</Description> 
+<Description term="车辆维修报价单4">{serviceVehicleRepairing.repairingQuotationImage4}</Description> 
+<Description term="车辆维修报价单5">{serviceVehicleRepairing.repairingQuotationImage5}</Description> 
+<Description term="车辆维修报价总金额">{serviceVehicleRepairing.repairingQuotationTotalAmount}</Description> 
+<Description term="车辆维修部分图片1">{serviceVehicleRepairing.repairingPartImg1}</Description> 
+<Description term="车辆维修部分图片2">{serviceVehicleRepairing.repairingPartImg2}</Description> 
+<Description term="车辆维修部分图片3">{serviceVehicleRepairing.repairingPartImg3}</Description> 
+<Description term="车辆维修部分图片4">{serviceVehicleRepairing.repairingPartImg4}</Description> 
+<Description term="车辆维修部分图片5">{serviceVehicleRepairing.repairingPartImg5}</Description> 
+<Description term="车辆维修备注">{serviceVehicleRepairing.repairingPartListComment}</Description> 
+<Description term="维修完成日期时间">{ moment(serviceVehicleRepairing.repairingFinishedDatetime).format('YYYY-MM-DD')}</Description> 
 	
         
       </DescriptionList>
@@ -57,7 +75,7 @@ export default class ServiceVehicleRepairingViewDetail extends Component {
 
 
   state = {
-    tabKey: `reportVehicleInspectionReportList`,
+    tabKey: `repairingAllowanceItemList`,
     stepDirection: 'horizontal',
   }
  
@@ -65,47 +83,32 @@ export default class ServiceVehicleRepairingViewDetail extends Component {
     this.setState({ tabKey: key });
   }  
   render() {
-    const {ReportVehicleInspectionReportViewTable} = GlobalComponents;
-    const {RepairingQuotationViewTable} = GlobalComponents;
     const {RepairingAllowanceItemViewTable} = GlobalComponents;
     const {VehicleRepairingPaymentViewTable} = GlobalComponents;
-    const {VehicleRepairingReportViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const serviceVehicleRepairing = this.props.serviceVehicleRepairing
-    const { id, reportVehicleInspectionReportCount, repairingQuotationCount, repairingAllowanceItemCount, vehicleRepairingPaymentCount, vehicleRepairingReportCount } = serviceVehicleRepairing
-    const { reportVehicleInspectionReportList, repairingQuotationList, repairingAllowanceItemList, vehicleRepairingPaymentList, vehicleRepairingReportList } = serviceVehicleRepairing
+    const { id, repairingAllowanceItemCount, vehicleRepairingPaymentCount } = serviceVehicleRepairing
+    const { repairingAllowanceItemList, vehicleRepairingPaymentList } = serviceVehicleRepairing
     
     const owner = { type: '_serviceVehicleRepairing', id }
     
     const tabList = [
 
-      {key: 'reportVehicleInspectionReportList',tab: `车辆上线年检报告(${reportVehicleInspectionReportCount})`}, 
-      {key: 'repairingQuotationList',tab: `车辆维修报价(${repairingQuotationCount})`}, 
       {key: 'repairingAllowanceItemList',tab: `车辆维修补贴项(${repairingAllowanceItemCount})`}, 
       {key: 'vehicleRepairingPaymentList',tab: `支付维修订单(${vehicleRepairingPaymentCount})`}, 
-      {key: 'vehicleRepairingReportList',tab: `车辆维修报告(${vehicleRepairingReportCount})`}, 
    
 
    ];
    
    
     const contentList = {
-       reportVehicleInspectionReportList:  
-        <ReportVehicleInspectionReportViewTable data={reportVehicleInspectionReportList} owner={owner} {...this.props} />,
- 
-      repairingQuotationList:  
-        <RepairingQuotationViewTable data={repairingQuotationList} owner={owner} {...this.props} />,
- 
-      repairingAllowanceItemList:  
+       repairingAllowanceItemList:  
         <RepairingAllowanceItemViewTable data={repairingAllowanceItemList} owner={owner} {...this.props} />,
  
       vehicleRepairingPaymentList:  
         <VehicleRepairingPaymentViewTable data={vehicleRepairingPaymentList} owner={owner} {...this.props} />,
- 
-      vehicleRepairingReportList:  
-        <VehicleRepairingReportViewTable data={vehicleRepairingReportList} owner={owner} {...this.props} />,
  
     
     };

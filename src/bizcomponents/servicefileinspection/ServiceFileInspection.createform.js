@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
+//import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-
+import ImageUpload from '../../components/ImageUpload'
 import styles from './ServiceFileInspection.createform.less'
-
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -18,6 +18,11 @@ const fieldLabels = {
   serviceSummary: '服务概述',
   inspectionStation: '检测站',
   inspectionResult: '检测结果',
+  inspectionReportImage1: '年检报告1',
+  inspectionReportImage2: '年检报告2',
+  inspectionReportImage3: '年检报告3',
+  inspectionReportImage4: '年检报告4',
+  inspectionReportImage5: '年检报告5',
   startTime: '开始时间',
   longitude: '经度',
   latitude: '纬度',
@@ -32,10 +37,10 @@ const testValues = {
   serviceStatus: '审核中',
   serviceSummary: '请处理车辆 {车牌号码} 6年免检事项',
   inspectionResult: '通过',
-  startTime: '2996-06-04 17:51:08',
-  longitude: '103.20601026130808',
-  latitude: '30.42673137067933',
-  inspectionDatetime: '2997-01-07 16:49:59',
+  startTime: '2995-08-28 03:33:54',
+  longitude: '105.1210000155482',
+  latitude: '29.683932682025496',
+  inspectionDatetime: '2996-01-31 02:27:19',
   responsibleWorkerId: 'VSCE000001',
   inspectionStationId: 'IS000001',
   merchantId: 'VSC000001',
@@ -46,6 +51,11 @@ const imageURLPrefix = '//localhost:2090'
 
 
 const imageKeys = [
+  'inspectionReportImage1',
+  'inspectionReportImage2',
+  'inspectionReportImage3',
+  'inspectionReportImage4',
+  'inspectionReportImage5',
 ]
 
 
@@ -83,39 +93,6 @@ class ServiceFileInspectionCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-
-  mapFromImageValues=(selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -130,7 +107,7 @@ class ServiceFileInspectionCreateForm extends Component {
         }
 
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
 
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -147,7 +124,7 @@ class ServiceFileInspectionCreateForm extends Component {
         }
         
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -290,6 +267,67 @@ class ServiceFileInspectionCreateForm extends Component {
 
 
 
+       
+        
+
+
+
+
+
+
+
+        <Card title="附件" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告1"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage1')}
+                  fileList={convertedImagesValues.inspectionReportImage1}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告2"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage2')}
+                  fileList={convertedImagesValues.inspectionReportImage2}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告3"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage3')}
+                  fileList={convertedImagesValues.inspectionReportImage3}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告4"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage4')}
+                  fileList={convertedImagesValues.inspectionReportImage4}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告5"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage5')}
+                  fileList={convertedImagesValues.inspectionReportImage5}
+                />
+              </Col>
+
+            </Row>
+          </Form>
+        </Card>
 
 
 

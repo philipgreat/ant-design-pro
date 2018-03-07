@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover, Switch } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
-import OSSPictureEdit from '../../components/OSSPictureEdit'
+import ImageUpload from '../../components/ImageUpload'
+//import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
@@ -16,7 +17,8 @@ const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
   label: '标签',
-  localeKey: '语言环境的关键',
+  localeKey: '消息键值',
+  actionKey: '行动的关键',
   level: '水平',
   url: 'url',
   form: '形式',
@@ -42,7 +44,7 @@ class FormActionUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow)
+      convertedImagesValues: mapFromImageValues(selectedRow,imageKeys)
     })
   }
 
@@ -90,51 +92,6 @@ class FormActionUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = (convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        if (value.response.indexOf('//') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('http://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('https://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-  
-  mapFromImageValues = (selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   handlePreview = (file) => {
     console.log('preview file', file)
@@ -160,7 +117,7 @@ class FormActionUpdateForm extends Component {
 
         const { owner } = this.props
         const formActionId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, formActionId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
@@ -187,7 +144,7 @@ class FormActionUpdateForm extends Component {
 
         const { owner } = this.props
         const formActionId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, formActionId, ...imagesValues }
 
         // TODO
@@ -322,9 +279,19 @@ class FormActionUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.localeKey}>
                   {getFieldDecorator('localeKey', {
-                    rules: [{ required: true, message: '请输入语言环境的关键' }],
+                    rules: [{ required: true, message: '请输入消息键值' }],
                   })(
-                    <Input placeholder="请输入请输入语言环境的关键string" />
+                    <Input placeholder="请输入请输入消息键值string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.actionKey}>
+                  {getFieldDecorator('actionKey', {
+                    rules: [{ required: true, message: '请输入行动的关键' }],
+                  })(
+                    <Input placeholder="请输入请输入行动的关键string" />
                   )}
                 </Form.Item>
               </Col>
@@ -352,6 +319,10 @@ class FormActionUpdateForm extends Component {
             </Row>
           </Form>  
         </Card>
+       
+        
+        
+        
 
 
         <FooterToolbar>

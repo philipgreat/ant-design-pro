@@ -18,6 +18,42 @@ const load = (targetObjectId, parameters) => {
 
 
 
+const addCompanyQrcodePromotionRecord = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/addCompanyQrcodePromotionRecord/customerId/companyId/tokensExpr/`
+  const requestParameters = { ...parameters, tokensExpr: 'none' }
+
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const updateCompanyQrcodePromotionRecord = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/updateCompanyQrcodePromotionRecordProperties/customerId/id/tokensExpr/`
+  const customerId = targetObjectId
+  const requestParameters = { ...parameters, customerId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const removeCompanyQrcodePromotionRecordList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/removeCompanyQrcodePromotionRecordList/customerId/companyQrcodePromotionRecordIds/tokensExpr/`
+  const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+
 const addVehicleInfo = (targetObjectId, parameters) => {
   const url = `${PREFIX}customerManager/addVehicleInfo/customerId/licensePlateNumber/vehicleType/useCharacter/seatsQuantity/registrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/platformId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
@@ -164,14 +200,17 @@ const removeVehicleInspectionOrderCouponList = (targetObjectId, parameters) => {
 
 const CustomerService = { view,
   load,
+  addCompanyQrcodePromotionRecord,
   addVehicleInfo,
   addVehicleInspectionOrder,
   addOrderDiscountCoupon,
   addVehicleInspectionOrderCoupon,
+  updateCompanyQrcodePromotionRecord,
   updateVehicleInfo,
   updateVehicleInspectionOrder,
   updateOrderDiscountCoupon,
   updateVehicleInspectionOrderCoupon,
+  removeCompanyQrcodePromotionRecordList,
   removeVehicleInfoList,
   removeVehicleInspectionOrderList,
   removeOrderDiscountCouponList,

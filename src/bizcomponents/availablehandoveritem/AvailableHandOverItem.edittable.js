@@ -193,7 +193,7 @@ class AvailableHandOverItemEditTable extends PureComponent {
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '检查项目名称', debugtype: 'string', dataIndex: 'checkItemName', width: '11', render: (text, record) => renderStringEdit('checkItemName',text, record)  },
   { title: '检查项目描述', debugtype: 'string', dataIndex: 'checkItemDescription', width: '37', render: (text, record) => renderStringEdit('checkItemDescription',text, record)  },
-  { title: '产品名称', dataIndex: 'product', render: (text, record) => (record.product ? record.product.id : '暂无') },
+  { title: '产品名称', dataIndex: 'product', render: (text, record) => (record.product ? record.product.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

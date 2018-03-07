@@ -210,7 +210,7 @@ class MainOrderAccountEditTable extends PureComponent {
   { title: '年检订单ID', debugtype: 'string', dataIndex: 'mainOrderId', width: '15', render: (text, record) => renderStringEdit('mainOrderId',text, record)  },
   { title: '微信订单ID', debugtype: 'string', dataIndex: 'wechatOrderId', width: '36', render: (text, record) => renderStringEdit('wechatOrderId',text, record)  },
   { title: '微信预付订单ID', debugtype: 'string', dataIndex: 'wechatPrepayId', width: '25', render: (text, record) => renderStringEdit('wechatPrepayId',text, record)  },
-  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? record.account.id : '暂无') },
+  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? record.account.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

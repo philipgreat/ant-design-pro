@@ -209,7 +209,7 @@ export default class VehicleServiceCompanyEmployeeViewDetail extends Component {
       <DescriptionList className={styles.headerList} size="small" col="1">
 			<Description term="ID">{qualification.id}</Description> 
 			<Description term="执行时间">{qualification.eventTime}</Description> 
-			<Description term="谁">{qualification.who}</Description> 
+			<Description term="审批人">{qualification.who}</Description> 
 			<Description term="批注">{qualification.comment}</Description> 
 			<Description term="版本">{qualification.version}</Description> 
 
@@ -233,7 +233,7 @@ export default class VehicleServiceCompanyEmployeeViewDetail extends Component {
       <DescriptionList className={styles.headerList} size="small" col="1">
 			<Description term="ID">{serving.id}</Description> 
 			<Description term="执行时间">{serving.eventTime}</Description> 
-			<Description term="谁">{serving.who}</Description> 
+			<Description term="审批人">{serving.who}</Description> 
 			<Description term="批注">{serving.comment}</Description> 
 			<Description term="版本">{serving.version}</Description> 
 
@@ -256,7 +256,7 @@ export default class VehicleServiceCompanyEmployeeViewDetail extends Component {
     
       <DescriptionList className={styles.headerList} size="small" col="1">
 			<Description term="ID">{termination.id}</Description> 
-			<Description term="谁">{termination.who}</Description> 
+			<Description term="审批人">{termination.who}</Description> 
 			<Description term="执行时间">{termination.eventTime}</Description> 
 			<Description term="批注">{termination.comment}</Description> 
 			<Description term="版本">{termination.version}</Description> 

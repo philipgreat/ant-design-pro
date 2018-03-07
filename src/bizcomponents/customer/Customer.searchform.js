@@ -133,17 +133,17 @@ export default class CustomerSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="WeixinOpenid">
+            <FormItem label="微信ID">
               {getFieldDecorator('weixinOpenid')(
-                <Input placeholder="请输入WeixinOpenid" />
+                <Input placeholder="请输入微信ID" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="WeixinAppid">
+            <FormItem label="微信APP">
               {getFieldDecorator('weixinAppid')(
-                <Input placeholder="请输入WeixinAppid" />
+                <Input placeholder="请输入微信APP" />
               )}
             </FormItem>
           </Col>

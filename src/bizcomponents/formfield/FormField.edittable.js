@@ -192,10 +192,10 @@ class FormFieldEditTable extends PureComponent {
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '标签', debugtype: 'string', dataIndex: 'label', width: '7', render: (text, record) => renderStringEdit('label',text, record)  },
-  { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey', width: '15', render: (text, record) => renderStringEdit('localeKey',text, record)  },
+  { title: '消息键值', debugtype: 'string', dataIndex: 'localeKey', width: '15', render: (text, record) => renderStringEdit('localeKey',text, record)  },
   { title: '参数名称', debugtype: 'string', dataIndex: 'parameterName', width: '8', render: (text, record) => renderStringEdit('parameterName',text, record)  },
   { title: '类型', debugtype: 'string', dataIndex: 'type', width: '13', render: (text, record) => renderStringEdit('type',text, record)  },
-  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.id : '暂无') },
+  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.displayName : '暂无') },
   { title: '占位符', debugtype: 'string', dataIndex: 'placeholder', width: '16', render: (text, record) => renderStringEdit('placeholder',text, record)  },
   { title: '默认值', debugtype: 'string', dataIndex: 'defaultValue', width: '7', render: (text, record) => renderStringEdit('defaultValue',text, record)  },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '16', render: (text, record) => renderStringEdit('description',text, record)  },

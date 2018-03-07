@@ -44,6 +44,11 @@ const summaryOf = (serviceVehicleInspection) =>{
 <Description term="纬度">{serviceVehicleInspection.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceVehicleInspection.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
 <Description term="检测日期">{ moment(serviceVehicleInspection.inspectionDatetime).format('YYYY-MM-DD')}</Description> 
+<Description term="年检报告1">{serviceVehicleInspection.inspectionReportImage1}</Description> 
+<Description term="年检报告2">{serviceVehicleInspection.inspectionReportImage2}</Description> 
+<Description term="年检报告3">{serviceVehicleInspection.inspectionReportImage3}</Description> 
+<Description term="年检报告4">{serviceVehicleInspection.inspectionReportImage4}</Description> 
+<Description term="年检报告5">{serviceVehicleInspection.inspectionReportImage5}</Description> 
 <Description term="检测结果">{serviceVehicleInspection.inspectionResult}</Description> 
 <Description term="是否要修理">{serviceVehicleInspection.inspectionNeedRepair}</Description> 
 	
@@ -58,39 +63,29 @@ const summaryOf = (serviceVehicleInspection) =>{
 }))
 export default class ServiceVehicleInspectionViewDetail extends Component {
 
-
-  state = {
-    tabKey: `reportVehicleInspectionReportList`,
-    stepDirection: 'horizontal',
-  }
  
   onTabChange = (key) => {
     this.setState({ tabKey: key });
   }  
   render() {
-    const {ReportVehicleInspectionReportViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const serviceVehicleInspection = this.props.serviceVehicleInspection
-    const { id, reportVehicleInspectionReportCount } = serviceVehicleInspection
-    const { reportVehicleInspectionReportList } = serviceVehicleInspection
+    const { id,  } = serviceVehicleInspection
+    const {  } = serviceVehicleInspection
     
     const owner = { type: '_serviceVehicleInspection', id }
     
     const tabList = [
 
-      {key: 'reportVehicleInspectionReportList',tab: `车辆上线年检报告(${reportVehicleInspectionReportCount})`}, 
    
 
    ];
    
    
     const contentList = {
-       reportVehicleInspectionReportList:  
-        <ReportVehicleInspectionReportViewTable data={reportVehicleInspectionReportList} owner={owner} {...this.props} />,
- 
-    
+     
     };
     
 

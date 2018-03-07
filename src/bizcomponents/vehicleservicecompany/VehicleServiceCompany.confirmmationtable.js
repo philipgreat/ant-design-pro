@@ -23,6 +23,7 @@ const columns = [
   { title: '公司照片3', dataIndex: 'companyImage3', render: (text, record) => <ImagePreview imageLocation={record.companyImage3} /> },
   { title: '公司照片4', dataIndex: 'companyImage4', render: (text, record) => <ImagePreview imageLocation={record.companyImage4} /> },
   { title: '公司照片5', dataIndex: 'companyImage5', render: (text, record) => <ImagePreview imageLocation={record.companyImage5} /> },
+  { title: '推广二维码', dataIndex: 'promoteQrcodeImage', render: (text, record) => <ImagePreview imageLocation={record.promoteQrcodeImage} /> },
   { title: '订单默认联系人', debugtype: 'string', dataIndex: 'orderContact', width: '7' },
   { title: '订单默认联系人电话', debugtype: 'string_china_mobile_phone', dataIndex: 'orderContactPhone', width: '15' },
   { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
@@ -52,7 +53,7 @@ class VehicleServiceCompanyConfirmationTable extends PureComponent {
           dataSource={data}
           columns={columns}
           size="small"
-          scroll={{ x: 2535 }}
+          scroll={{ x: 2805 }}
         />
       </div>
     )

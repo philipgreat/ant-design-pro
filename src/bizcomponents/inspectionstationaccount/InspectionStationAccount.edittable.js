@@ -201,10 +201,10 @@ class InspectionStationAccountEditTable extends PureComponent {
   { title: '检测日期', dataIndex: 'inspectionDatetime', render: (text, record) => moment(record.inspectionDatetime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '检测站', debugtype: 'string', dataIndex: 'inspectionStationName', width: '11', render: (text, record) => renderStringEdit('inspectionStationName',text, record)  },
   { title: '年检订单ID', debugtype: 'string', dataIndex: 'mainOrderNumber', width: '28', render: (text, record) => renderStringEdit('mainOrderNumber',text, record)  },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.id : '暂无') },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.id : '暂无') },
-  { title: '检测站', dataIndex: 'inspectionStation', render: (text, record) => (record.inspectionStation ? record.inspectionStation.id : '暂无') },
-  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? record.account.id : '暂无') },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.displayName : '暂无') },
+  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.displayName : '暂无') },
+  { title: '检测站', dataIndex: 'inspectionStation', render: (text, record) => (record.inspectionStation ? record.inspectionStation.displayName : '暂无') },
+  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? record.account.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

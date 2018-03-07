@@ -36,11 +36,10 @@ const topColResponsiveProps = {
 }))
 export default class ServiceFileInspectionEditDetail extends Component {
   render() {
-    const {ReportFileInspectionReportEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, reportFileInspectionReportCount } = this.props.serviceFileInspection
-    const { reportFileInspectionReportList } = this.props.serviceFileInspection
+    const { id,  } = this.props.serviceFileInspection
+    const {  } = this.props.serviceFileInspection
     
     const owner = { type: '_serviceFileInspection', id }
     return (
@@ -51,12 +50,6 @@ export default class ServiceFileInspectionEditDetail extends Component {
         wrapperClassName={styles.advancedForm}
       >
 
-
-		<Card title="车辆6年免检报告列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ReportFileInspectionReportEditTable data={reportFileInspectionReportList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
 
  
       </PageHeaderLayout>

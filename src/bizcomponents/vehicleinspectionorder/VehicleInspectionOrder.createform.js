@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
+//import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-
+import ImageUpload from '../../components/ImageUpload'
 import styles from './VehicleInspectionOrder.createform.less'
-
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -49,23 +49,23 @@ const fieldLabels = {
 const testValues = {
   orderStatus: '未支付',
   vehicleLicensePlateNumber: '川ACD234',
-  createTime: '2995-10-23 16:10:56',
+  createTime: '2996-06-10 02:56:55',
   contactName: '张秋文',
   contactMobileNumber: '13812345678',
   productType: 'NORMAL',
   contactAddressDetail: '四川省成都市学院路东段919号',
-  planInspectionDate: '2996-02-09',
+  planInspectionDate: '2996-04-27',
   trafficAccidentAnnouncement: '0',
   homePickUp: '1',
   vehicleType: '面包车',
   vehicleUseCharacter: '营运',
   vehicleSeatsQuantity: '5',
-  vehicleRegistrationDate: '2017-01-19',
-  inspectionValidationDate: '2995-05-11',
-  insuranceValidationDate: '2999-08-15',
+  vehicleRegistrationDate: '2013-03-24',
+  inspectionValidationDate: '2995-02-09',
+  insuranceValidationDate: '2996-04-02',
   engineNumber: '4172XYS',
   vehicleIdentificationNumber: 'WAUZZZ4E24N016553',
-  vehiclePermitIssueDate: '2016-12-18',
+  vehiclePermitIssueDate: '2015-09-22',
   vehiclePermitHolderName: '张秋文',
   serviceCompanyId: 'VSC000001',
   contactAddressCityId: 'C000001',
@@ -119,39 +119,6 @@ class VehicleInspectionOrderCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-
-  mapFromImageValues=(selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -166,7 +133,7 @@ class VehicleInspectionOrderCreateForm extends Component {
         }
 
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
 
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -183,7 +150,7 @@ class VehicleInspectionOrderCreateForm extends Component {
         }
         
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -456,13 +423,52 @@ class VehicleInspectionOrderCreateForm extends Component {
 
 
 
+        
+        <Card title="设置" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+            
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.trafficAccidentAnnouncement}>
+                  {getFieldDecorator('trafficAccidentAnnouncement', {
+                    rules: [{ required: true, message: '请输入无伤人交通事故' }],
+                    valuePropName: 'checked'
+                  })(
+                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入无伤人交通事故bool" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.homePickUp}>
+                  {getFieldDecorator('homePickUp', {
+                    rules: [{ required: true, message: '请输入上门取车' }],
+                    valuePropName: 'checked'
+                  })(
+                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入上门取车bool" />
+                  )}
+                </Form.Item>
+              </Col>
+
+            </Row>
+          </Form>  
+        </Card>        
+        
+        
+
+
+
+
+
+
 
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="行驶证图1"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage1')}
@@ -471,7 +477,7 @@ class VehicleInspectionOrderCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="行驶证图2"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage2')}
@@ -480,7 +486,7 @@ class VehicleInspectionOrderCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="行驶证图3"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage3')}
@@ -489,7 +495,7 @@ class VehicleInspectionOrderCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="行驶证图4"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage4')}
@@ -498,7 +504,7 @@ class VehicleInspectionOrderCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="行驶证图5"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage5')}

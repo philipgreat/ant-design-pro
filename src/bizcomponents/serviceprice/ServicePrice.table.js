@@ -9,10 +9,10 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '合同', dataIndex: 'contract', render: (text, record) => (record.contract ? (<Link to={`/contract/${record.contract.id}/dashboard`}>{record.contract.id}</Link>) : '暂无') },
-  { title: '服务范围', dataIndex: 'availableService', render: (text, record) => (record.availableService ? (<Link to={`/availableService/${record.availableService.id}/dashboard`}>{record.availableService.id}</Link>) : '暂无') },
-  { title: '产品名称', dataIndex: 'product', render: (text, record) => (record.product ? (<Link to={`/availableProduct/${record.product.id}/dashboard`}>{record.product.id}</Link>) : '暂无') },
-  { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '30' },
+  { title: '合同', dataIndex: 'contract', render: (text, record) => (record.contract ? (<Link to={`/contract/${record.contract.id}/dashboard`}>{record.contract.displayName}</Link>) : '暂无') },
+  { title: '服务范围', dataIndex: 'availableService', render: (text, record) => (record.availableService ? (<Link to={`/availableService/${record.availableService.id}/dashboard`}>{record.availableService.displayName}</Link>) : '暂无') },
+  { title: '产品名称', dataIndex: 'product', render: (text, record) => (record.product ? (<Link to={`/availableProduct/${record.product.id}/dashboard`}>{record.product.displayName}</Link>) : '暂无') },
+  { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '35' },
   { title: '服务价格类型', debugtype: 'string', dataIndex: 'servicePriceType', width: '11' },
   { title: '服务价格', debugtype: 'double', dataIndex: 'basePriceValue', width: '9' },
   { title: '后续服务价格', debugtype: 'double', dataIndex: 'otherPriceValue', width: '9' },
@@ -93,7 +93,7 @@ class ServicePriceTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 1065 }}
+          scroll={{ x: 1140 }}
         />
       </div>
     )

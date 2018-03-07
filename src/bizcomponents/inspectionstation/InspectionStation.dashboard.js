@@ -53,7 +53,7 @@ const summaryOf = (inspectionStation) =>{
 export default class InspectionStationDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, serviceVehicleInspectionCount, serviceFileInspectionCount, inspectionStationAccountCount } = this.props.inspectionStation
+    const { id, vehicleServiceCompanyEmployeeCount, serviceVehicleInspectionCount, serviceFileInspectionCount, inspectionStationAccountCount } = this.props.inspectionStation
     
     
     
@@ -66,6 +66,24 @@ export default class InspectionStationDashboard extends Component {
       >
         <div>
           <Row gutter={24}>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="商户员工"
+                action={<Tooltip title="商户员工"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(vehicleServiceCompanyEmployeeCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/inspectionStation/${id}/list/vehicleServiceCompanyEmployeeList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/inspectionStation/${id}/list/vehicleServiceCompanyEmployeeCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/inspectionStation/${id}/list/vehicleServiceCompanyEmployeeList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
 
           
             <Col {...topColResponsiveProps}>

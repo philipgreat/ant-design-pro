@@ -84,11 +84,10 @@ class VehicleInspectionOrderServiceLogEditTable extends PureComponent {
     }
     const remapReference = (record) => {
 			const responsibleWorkerId = record.responsibleWorker.id
-			const serviceTypeId = record.serviceType.id
 			const mainOrderId = record.mainOrder.id
 
       //const communityId = record.community.id;
-      return {responsibleWorkerId,serviceTypeId,mainOrderId,};
+      return {responsibleWorkerId,mainOrderId,};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -193,14 +192,14 @@ class VehicleInspectionOrderServiceLogEditTable extends PureComponent {
     
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '摘要', debugtype: 'string', dataIndex: 'summary', width: '15', render: (text, record) => renderStringEdit('summary',text, record)  },
+  { title: '摘要', debugtype: 'string', dataIndex: 'summary', width: '53', render: (text, record) => renderStringEdit('summary',text, record)  },
   { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.id : '暂无') },
+  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.displayName : '暂无') },
   { title: '经度', debugtype: 'double', dataIndex: 'longitude', width: '12', render: (text, record) => renderStringEdit('longitude',text, record)  },
   { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '11', render: (text, record) => renderStringEdit('latitude',text, record)  },
-  { title: '服务类型', dataIndex: 'serviceType', render: (text, record) => (record.serviceType ? record.serviceType.id : '暂无') },
+  { title: '服务类型', debugtype: 'string', dataIndex: 'serviceType', width: '38', render: (text, record) => renderStringEdit('serviceType',text, record)  },
   { title: '服务单号', debugtype: 'string', dataIndex: 'serviceTicket', width: '19', render: (text, record) => renderStringEdit('serviceTicket',text, record)  },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
+  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

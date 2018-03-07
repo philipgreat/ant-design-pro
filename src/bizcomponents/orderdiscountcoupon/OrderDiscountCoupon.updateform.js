@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover, Switch } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
-import OSSPictureEdit from '../../components/OSSPictureEdit'
+import ImageUpload from '../../components/ImageUpload'
+//import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
@@ -46,7 +47,7 @@ class OrderDiscountCouponUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow)
+      convertedImagesValues: mapFromImageValues(selectedRow,imageKeys)
     })
   }
 
@@ -96,51 +97,6 @@ class OrderDiscountCouponUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = (convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        if (value.response.indexOf('//') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('http://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('https://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-  
-  mapFromImageValues = (selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   handlePreview = (file) => {
     console.log('preview file', file)
@@ -166,7 +122,7 @@ class OrderDiscountCouponUpdateForm extends Component {
 
         const { owner } = this.props
         const orderDiscountCouponId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, orderDiscountCouponId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
@@ -193,7 +149,7 @@ class OrderDiscountCouponUpdateForm extends Component {
 
         const { owner } = this.props
         const orderDiscountCouponId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, orderDiscountCouponId, ...imagesValues }
 
         // TODO
@@ -368,6 +324,10 @@ class OrderDiscountCouponUpdateForm extends Component {
             </Row>
           </Form>  
         </Card>
+       
+        
+        
+        
 
 
         <FooterToolbar>

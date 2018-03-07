@@ -10,23 +10,23 @@ import ImagePreview from '../../components/ImagePreview'
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/serviceFileMovementM2m/${text}/dashboard`}>{text}</Link>) },
   { title: '服务状态', debugtype: 'string', dataIndex: 'serviceStatus', width: '7' },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.id}</Link>) : '暂无') },
+  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.displayName}</Link>) : '暂无') },
   { title: '服务概述', debugtype: 'string', dataIndex: 'serviceSummary', width: '42' },
   { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '经度', debugtype: 'double', dataIndex: 'longitude', width: '12' },
   { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '11' },
   { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '交接检查码', debugtype: 'string', dataIndex: 'transferVerifyCode', width: '10' },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.id}</Link>) : '暂无') },
+  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.displayName}</Link>) : '暂无') },
   { title: '服务类型', debugtype: 'string', dataIndex: 'movementPurpose', width: '26' },
-  { title: '发送方', dataIndex: 'sender', render: (text, record) => (record.sender ? (<Link to={`/vehicleServiceCompanyEmployee/${record.sender.id}/dashboard`}>{record.sender.id}</Link>) : '暂无') },
-  { title: '接收方', dataIndex: 'receiver', render: (text, record) => (record.receiver ? (<Link to={`/vehicleServiceCompanyEmployee/${record.receiver.id}/dashboard`}>{record.receiver.id}</Link>) : '暂无') },
+  { title: '发送方', dataIndex: 'sender', render: (text, record) => (record.sender ? (<Link to={`/vehicleServiceCompanyEmployee/${record.sender.id}/dashboard`}>{record.sender.displayName}</Link>) : '暂无') },
+  { title: '接收方', dataIndex: 'receiver', render: (text, record) => (record.receiver ? (<Link to={`/vehicleServiceCompanyEmployee/${record.receiver.id}/dashboard`}>{record.receiver.displayName}</Link>) : '暂无') },
   { title: '通知日期时间', dataIndex: 'notifyDatetime', render: (text, record) => moment(record.notifyDatetime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '通知地址', debugtype: 'string', dataIndex: 'notifyAddress', width: '18' },
   { title: '通知的评论', debugtype: 'string', dataIndex: 'notifyComment', width: '14' },
   { title: '交接检查结果', debugtype: 'string', dataIndex: 'handoverResult', width: '6' },
   { title: '交接检查备注', debugtype: 'string', dataIndex: 'handoverResultComment', width: '22' },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.id}</Link>) : '暂无') },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.displayName}</Link>) : '暂无') },
 
 ]
 

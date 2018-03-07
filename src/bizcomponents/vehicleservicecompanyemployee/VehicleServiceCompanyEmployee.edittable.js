@@ -84,9 +84,10 @@ class VehicleServiceCompanyEmployeeEditTable extends PureComponent {
     }
     const remapReference = (record) => {
 			const companyId = record.company.id
+			const inspectionStationId = record.inspectionStation.id
 
       //const communityId = record.community.id;
-      return {companyId,};
+      return {companyId,inspectionStationId,};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -199,13 +200,14 @@ class VehicleServiceCompanyEmployeeEditTable extends PureComponent {
   { title: '工作状态', debugtype: 'string', dataIndex: 'availableState', width: '8', render: (text, record) => renderStringEdit('availableState',text, record)  },
   { title: '无犯罪记录证明', dataIndex: 'innocentEvidenceImage', render: (text, record) => <ImagePreview imageLocation={record.innocentEvidenceImage} /> },
   { title: '身份证号码', debugtype: 'string', dataIndex: 'identityCardNumber', width: '22', render: (text, record) => renderStringEdit('identityCardNumber',text, record)  },
-  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? record.company.id : '暂无') },
+  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? record.company.displayName : '暂无') },
+  { title: '检测站', dataIndex: 'inspectionStation', render: (text, record) => (record.inspectionStation ? record.inspectionStation.displayName : '暂无') },
   { title: '是否可以移车', dataIndex: 'availableMoveCar', render: (text, record) => (record.availableMoveCar ? '是' : '否') },
   { title: '是否可以检车', dataIndex: 'availableInspectionCar', render: (text, record) => (record.availableInspectionCar ? '是' : '否') },
   { title: '是否可以修车', dataIndex: 'availableRepairCar', render: (text, record) => (record.availableRepairCar ? '是' : '否') },
-  { title: '资格认定', dataIndex: 'qualification', render: (text, record) => (record.qualification ? record.qualification.id : '暂无') },
-  { title: '服务状态', dataIndex: 'serving', render: (text, record) => (record.serving ? record.serving.id : '暂无') },
-  { title: '服务终止', dataIndex: 'termination', render: (text, record) => (record.termination ? record.termination.id : '暂无') },
+  { title: '资格认定', dataIndex: 'qualification', render: (text, record) => (record.qualification ? record.qualification.displayName : '暂无') },
+  { title: '服务状态', dataIndex: 'serving', render: (text, record) => (record.serving ? record.serving.displayName : '暂无') },
+  { title: '服务终止', dataIndex: 'termination', render: (text, record) => (record.termination ? record.termination.displayName : '暂无') },
   { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '14', render: (text, record) => renderStringEdit('currentStatus',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
@@ -222,6 +224,7 @@ class VehicleServiceCompanyEmployeeEditTable extends PureComponent {
 				'innocentEvidenceImage':'',
 				'identityCardNumber':'',
 				'company':'',
+				'inspectionStation':'',
 				'availableMoveCar':'',
 				'availableInspectionCar':'',
 				'availableRepairCar':'',

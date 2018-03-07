@@ -9,8 +9,9 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? (<Link to={`/vehicleServiceCompany/${record.company.id}/dashboard`}>{record.company.id}</Link>) : '暂无') },
-  { title: '服务范围', dataIndex: 'availableService', render: (text, record) => (record.availableService ? (<Link to={`/availableService/${record.availableService.id}/dashboard`}>{record.availableService.id}</Link>) : '暂无') },
+  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? (<Link to={`/vehicleServiceCompany/${record.company.id}/dashboard`}>{record.company.displayName}</Link>) : '暂无') },
+  { title: '服务范围', dataIndex: 'availableService', render: (text, record) => (record.availableService ? (<Link to={`/availableService/${record.availableService.id}/dashboard`}>{record.availableService.displayName}</Link>) : '暂无') },
+  { title: '可用状态', dataIndex: 'serviceAvaliability', render: (text, record) => (record.serviceAvaliability ? '是' : '否') },
 
 ]
 

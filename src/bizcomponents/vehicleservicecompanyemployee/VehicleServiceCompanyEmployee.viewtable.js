@@ -17,6 +17,7 @@ const columns = [
   { title: '无犯罪记录证明', dataIndex: 'innocentEvidenceImage', render: (text, record) => <ImagePreview imageLocation={record.innocentEvidenceImage}/> },
   { title: '身份证号码', debugtype: 'string', dataIndex: 'identityCardNumber', width: '22' },
   { title: '商户',dataIndex: 'company', render: (text, record) => (record.company ? record.company.id : '暂无') },
+  { title: '检测站',dataIndex: 'inspectionStation', render: (text, record) => (record.inspectionStation ? record.inspectionStation.id : '暂无') },
   { title: '是否可以移车',dataIndex: 'availableMoveCar', render: (text, record) => (record.availableMoveCar ? '是' : '否') },
   { title: '是否可以检车',dataIndex: 'availableInspectionCar', render: (text, record) => (record.availableInspectionCar ? '是' : '否') },
   { title: '是否可以修车',dataIndex: 'availableRepairCar', render: (text, record) => (record.availableRepairCar ? '是' : '否') },
@@ -42,7 +43,7 @@ class VehicleServiceCompanyEmployeeViewTable extends PureComponent {
           columns={columns}
           size="small"
           pagination={false}
-          scroll={{ x: 2145 }}
+          scroll={{ x: 2280 }}
         />
         
       </div>

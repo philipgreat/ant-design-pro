@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
+//import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-
+import ImageUpload from '../../components/ImageUpload'
 import styles from './ServiceVehicleMovementC2m.createform.less'
-
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -37,14 +37,14 @@ const fieldLabels = {
 const testValues = {
   serviceStatus: '待验收',
   serviceSummary: '请在 {日期} {时间} 前到 {地点} 联系 {姓名+电话}取车。{备注}',
-  startTime: '2998-02-11 01:48:15',
-  longitude: '103.92376428481165',
-  latitude: '30.92568621389576',
+  startTime: '2998-01-09 23:18:42',
+  longitude: '105.17191272596979',
+  latitude: '30.07694227212011',
   transferVerifyCode: 'O12345',
   movementPurpose: 'VEHICLE_C2M_RECEIVE_IN_STORE',
   contactName: '张秋文',
   contactMobileNumber: '13812345678',
-  notifyDatetime: '2995-03-21 21:44:57',
+  notifyDatetime: '2998-03-15 13:33:16',
   notifyAddress: '成都市高新区天府三街120号',
   notifyComment: '请在取件前联系客户',
   handoverResult: '',
@@ -95,39 +95,6 @@ class ServiceVehicleMovementC2mCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-
-  mapFromImageValues=(selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -142,7 +109,7 @@ class ServiceVehicleMovementC2mCreateForm extends Component {
         }
 
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
 
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -159,7 +126,7 @@ class ServiceVehicleMovementC2mCreateForm extends Component {
         }
         
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -369,6 +336,14 @@ class ServiceVehicleMovementC2mCreateForm extends Component {
             </Row>
           </Form>
         </Card>
+
+
+
+       
+        
+
+
+
 
 
 

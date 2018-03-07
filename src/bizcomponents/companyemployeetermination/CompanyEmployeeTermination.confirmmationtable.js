@@ -8,7 +8,7 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17' },
+  { title: '审批人', debugtype: 'string', dataIndex: 'who', width: '17' },
   { title: '执行时间', dataIndex: 'eventTime', render: (text, record) => moment(record.eventTime).format('YYYY-MM-DD') },
   { title: '批注', debugtype: 'string', dataIndex: 'comment', width: '8' },
 ]

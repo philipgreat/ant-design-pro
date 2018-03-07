@@ -8,12 +8,12 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '摘要', debugtype: 'string', dataIndex: 'summary', width: '15' },
+  { title: '摘要', debugtype: 'string', dataIndex: 'summary', width: '53' },
   { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD') },
   { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.id : '暂无') },
   { title: '经度', debugtype: 'double', dataIndex: 'longitude', width: '12' },
   { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '11' },
-  { title: '服务类型', dataIndex: 'serviceType', render: (text, record) => (record.serviceType ? record.serviceType.id : '暂无') },
+  { title: '服务类型', debugtype: 'string', dataIndex: 'serviceType', width: '38' },
   { title: '服务单号', debugtype: 'string', dataIndex: 'serviceTicket', width: '19' },
   { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
 ]
@@ -42,7 +42,7 @@ class VehicleInspectionOrderServiceLogConfirmationTable extends PureComponent {
           dataSource={data}
           columns={columns}
           size="small"
-          scroll={{ x: 1080 }}
+          scroll={{ x: 1455 }}
         />
       </div>
     )

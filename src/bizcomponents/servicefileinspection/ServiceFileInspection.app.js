@@ -88,47 +88,10 @@ class ServiceFileInspectionBizApp extends React.PureComponent {
         </span>}
       >
 
-        <Menu.Item>
-          <Link to={`/serviceFileInspection/${objectId}/list/reportFileInspectionReportList`}>车辆6年免检报告</Link>
-        </Menu.Item>
       </SubMenu>
     )
   }
 
-
-  getReportFileInspectionReportSearch = () => {
-    const {ReportFileInspectionReportSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._serviceFileInspection.reportFileInspectionReportList,
-      count: state._serviceFileInspection.reportFileInspectionReportCount,
-      currentPage: state._serviceFileInspection.reportFileInspectionReportCurrentPageNumber,
-      searchFormParameters: state._serviceFileInspection.reportFileInspectionReportSearchFormParameters,
-      loading: state._serviceFileInspection.loading,
-      owner: { type: '_serviceFileInspection', id: state._serviceFileInspection.id, listName: 'reportFileInspectionReportList' }, // this is for model namespace and
-    }))(ReportFileInspectionReportSearch)
-  }
-  getReportFileInspectionReportCreateForm = () => {
-   	const {ReportFileInspectionReportCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._serviceFileInspection.reportFileInspectionReportList,
-      count: state._serviceFileInspection.reportFileInspectionReportCount,
-      currentPage: state._serviceFileInspection.reportFileInspectionReportCurrentPageNumber,
-      searchFormParameters: state._serviceFileInspection.reportFileInspectionReportSearchFormParameters,
-      loading: state._serviceFileInspection.loading,
-      owner: { type: '_serviceFileInspection', id: state._serviceFileInspection.id, listName: 'reportFileInspectionReportList'}, // this is for model namespace and
-    }))(ReportFileInspectionReportCreateForm)
-  }
-  
-  getReportFileInspectionReportUpdateForm = () => {
-  	const {ReportFileInspectionReportUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._serviceFileInspection.selectedRows,
-      currentUpdateIndex: state._serviceFileInspection.currentUpdateIndex,
-      owner: { type: '_serviceFileInspection', id: state._serviceFileInspection.id, listName: 'reportFileInspectionReportList' }, // this is for model namespace and
-    }))(ReportFileInspectionReportUpdateForm)
-  }
 
   getPageTitle = () => {
     // const { location } = this.props
@@ -216,10 +179,6 @@ class ServiceFileInspectionBizApp extends React.PureComponent {
                <Route path="/serviceFileInspection/:id/editDetail" component={ServiceFileInspectionEditDetail} />
                <Route path="/serviceFileInspection/:id/viewDetail" component={ServiceFileInspectionViewDetail} />
                
-
-               <Route path="/serviceFileInspection/:id/list/reportFileInspectionReportList" component={this.getReportFileInspectionReportSearch()} />
-               <Route path="/serviceFileInspection/:id/list/reportFileInspectionReportCreateForm" component={this.getReportFileInspectionReportCreateForm()} />
-               <Route path="/serviceFileInspection/:id/list/reportFileInspectionReportUpdateForm" component={this.getReportFileInspectionReportUpdateForm()} />
               
              </Switch>
            </Content>

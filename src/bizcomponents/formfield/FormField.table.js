@@ -10,10 +10,10 @@ import ImagePreview from '../../components/ImagePreview'
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '标签', debugtype: 'string', dataIndex: 'label', width: '7' },
-  { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey', width: '15' },
+  { title: '消息键值', debugtype: 'string', dataIndex: 'localeKey', width: '15' },
   { title: '参数名称', debugtype: 'string', dataIndex: 'parameterName', width: '8' },
   { title: '类型', debugtype: 'string', dataIndex: 'type', width: '13' },
-  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? (<Link to={`/genericForm/${record.form.id}/dashboard`}>{record.form.id}</Link>) : '暂无') },
+  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? (<Link to={`/genericForm/${record.form.id}/dashboard`}>{record.form.displayName}</Link>) : '暂无') },
   { title: '占位符', debugtype: 'string', dataIndex: 'placeholder', width: '16' },
   { title: '默认值', debugtype: 'string', dataIndex: 'defaultValue', width: '7' },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '16' },

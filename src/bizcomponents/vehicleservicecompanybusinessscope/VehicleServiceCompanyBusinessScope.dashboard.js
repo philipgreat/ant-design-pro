@@ -32,6 +32,7 @@ const summaryOf = (vehicleServiceCompanyBusinessScope) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{vehicleServiceCompanyBusinessScope.id}</Description> 
+<Description term="可用状态">{vehicleServiceCompanyBusinessScope.serviceAvaliability?'是':'否'}</Description> 
 	
         
       </DescriptionList>

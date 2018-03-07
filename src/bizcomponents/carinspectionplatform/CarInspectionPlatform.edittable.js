@@ -192,6 +192,8 @@ class CarInspectionPlatformEditTable extends PureComponent {
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '11', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '11', render: (text, record) => renderStringEdit('description',text, record)  },
+  { title: '保险联系人姓名', debugtype: 'string', dataIndex: 'insuranceContactName', width: '8', render: (text, record) => renderStringEdit('insuranceContactName',text, record)  },
+  { title: '保险联系人手机', debugtype: 'string_china_mobile_phone', dataIndex: 'insuranceContactMobile', width: '15', render: (text, record) => renderStringEdit('insuranceContactMobile',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    
@@ -200,6 +202,8 @@ class CarInspectionPlatformEditTable extends PureComponent {
       	'id':`+1`, 
 				'name':'',
 				'description':'',
+				'insuranceContactName':'',
+				'insuranceContactMobile':'',
 
 
       };

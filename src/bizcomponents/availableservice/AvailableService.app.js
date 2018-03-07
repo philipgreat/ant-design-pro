@@ -97,9 +97,6 @@ class AvailableServiceBizApp extends React.PureComponent {
         <Menu.Item>
           <Link to={`/availableService/${objectId}/list/vehicleServiceCompanyBusinessScopeList`}>商户服务范围</Link>
         </Menu.Item>
-        <Menu.Item>
-          <Link to={`/availableService/${objectId}/list/vehicleInspectionOrderServiceLogList`}>年检订单执行日志</Link>
-        </Menu.Item>
       </SubMenu>
     )
   }
@@ -207,40 +204,6 @@ class AvailableServiceBizApp extends React.PureComponent {
     }))(VehicleServiceCompanyBusinessScopeUpdateForm)
   }
 
-  getVehicleInspectionOrderServiceLogSearch = () => {
-    const {VehicleInspectionOrderServiceLogSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._availableService.vehicleInspectionOrderServiceLogList,
-      count: state._availableService.vehicleInspectionOrderServiceLogCount,
-      currentPage: state._availableService.vehicleInspectionOrderServiceLogCurrentPageNumber,
-      searchFormParameters: state._availableService.vehicleInspectionOrderServiceLogSearchFormParameters,
-      loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleInspectionOrderServiceLogList' }, // this is for model namespace and
-    }))(VehicleInspectionOrderServiceLogSearch)
-  }
-  getVehicleInspectionOrderServiceLogCreateForm = () => {
-   	const {VehicleInspectionOrderServiceLogCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._availableService.vehicleInspectionOrderServiceLogList,
-      count: state._availableService.vehicleInspectionOrderServiceLogCount,
-      currentPage: state._availableService.vehicleInspectionOrderServiceLogCurrentPageNumber,
-      searchFormParameters: state._availableService.vehicleInspectionOrderServiceLogSearchFormParameters,
-      loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleInspectionOrderServiceLogList'}, // this is for model namespace and
-    }))(VehicleInspectionOrderServiceLogCreateForm)
-  }
-  
-  getVehicleInspectionOrderServiceLogUpdateForm = () => {
-  	const {VehicleInspectionOrderServiceLogUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._availableService.selectedRows,
-      currentUpdateIndex: state._availableService.currentUpdateIndex,
-      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleInspectionOrderServiceLogList' }, // this is for model namespace and
-    }))(VehicleInspectionOrderServiceLogUpdateForm)
-  }
-
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
@@ -339,10 +302,6 @@ class AvailableServiceBizApp extends React.PureComponent {
                <Route path="/availableService/:id/list/vehicleServiceCompanyBusinessScopeList" component={this.getVehicleServiceCompanyBusinessScopeSearch()} />
                <Route path="/availableService/:id/list/vehicleServiceCompanyBusinessScopeCreateForm" component={this.getVehicleServiceCompanyBusinessScopeCreateForm()} />
                <Route path="/availableService/:id/list/vehicleServiceCompanyBusinessScopeUpdateForm" component={this.getVehicleServiceCompanyBusinessScopeUpdateForm()} />
-
-               <Route path="/availableService/:id/list/vehicleInspectionOrderServiceLogList" component={this.getVehicleInspectionOrderServiceLogSearch()} />
-               <Route path="/availableService/:id/list/vehicleInspectionOrderServiceLogCreateForm" component={this.getVehicleInspectionOrderServiceLogCreateForm()} />
-               <Route path="/availableService/:id/list/vehicleInspectionOrderServiceLogUpdateForm" component={this.getVehicleInspectionOrderServiceLogUpdateForm()} />
               
              </Switch>
            </Content>

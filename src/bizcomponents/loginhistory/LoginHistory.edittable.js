@@ -194,7 +194,7 @@ class LoginHistoryEditTable extends PureComponent {
   { title: '登录时间', dataIndex: 'loginTime', render: (text, record) => moment(record.loginTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '来自IP', debugtype: 'string', dataIndex: 'fromIp', width: '15', render: (text, record) => renderStringEdit('fromIp',text, record)  },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8', render: (text, record) => renderStringEdit('description',text, record)  },
-  { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
+  { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

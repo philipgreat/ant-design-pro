@@ -89,92 +89,15 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
       >
 
         <Menu.Item>
-          <Link to={`/serviceVehicleRepairing/${objectId}/list/reportVehicleInspectionReportList`}>车辆上线年检报告</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/serviceVehicleRepairing/${objectId}/list/repairingQuotationList`}>车辆维修报价</Link>
-        </Menu.Item>
-        <Menu.Item>
           <Link to={`/serviceVehicleRepairing/${objectId}/list/repairingAllowanceItemList`}>车辆维修补贴项</Link>
         </Menu.Item>
         <Menu.Item>
           <Link to={`/serviceVehicleRepairing/${objectId}/list/vehicleRepairingPaymentList`}>支付维修订单</Link>
         </Menu.Item>
-        <Menu.Item>
-          <Link to={`/serviceVehicleRepairing/${objectId}/list/vehicleRepairingReportList`}>车辆维修报告</Link>
-        </Menu.Item>
       </SubMenu>
     )
   }
 
-
-  getReportVehicleInspectionReportSearch = () => {
-    const {ReportVehicleInspectionReportSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._serviceVehicleRepairing.reportVehicleInspectionReportList,
-      count: state._serviceVehicleRepairing.reportVehicleInspectionReportCount,
-      currentPage: state._serviceVehicleRepairing.reportVehicleInspectionReportCurrentPageNumber,
-      searchFormParameters: state._serviceVehicleRepairing.reportVehicleInspectionReportSearchFormParameters,
-      loading: state._serviceVehicleRepairing.loading,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'reportVehicleInspectionReportList' }, // this is for model namespace and
-    }))(ReportVehicleInspectionReportSearch)
-  }
-  getReportVehicleInspectionReportCreateForm = () => {
-   	const {ReportVehicleInspectionReportCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._serviceVehicleRepairing.reportVehicleInspectionReportList,
-      count: state._serviceVehicleRepairing.reportVehicleInspectionReportCount,
-      currentPage: state._serviceVehicleRepairing.reportVehicleInspectionReportCurrentPageNumber,
-      searchFormParameters: state._serviceVehicleRepairing.reportVehicleInspectionReportSearchFormParameters,
-      loading: state._serviceVehicleRepairing.loading,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'reportVehicleInspectionReportList'}, // this is for model namespace and
-    }))(ReportVehicleInspectionReportCreateForm)
-  }
-  
-  getReportVehicleInspectionReportUpdateForm = () => {
-  	const {ReportVehicleInspectionReportUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._serviceVehicleRepairing.selectedRows,
-      currentUpdateIndex: state._serviceVehicleRepairing.currentUpdateIndex,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'reportVehicleInspectionReportList' }, // this is for model namespace and
-    }))(ReportVehicleInspectionReportUpdateForm)
-  }
-
-  getRepairingQuotationSearch = () => {
-    const {RepairingQuotationSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._serviceVehicleRepairing.repairingQuotationList,
-      count: state._serviceVehicleRepairing.repairingQuotationCount,
-      currentPage: state._serviceVehicleRepairing.repairingQuotationCurrentPageNumber,
-      searchFormParameters: state._serviceVehicleRepairing.repairingQuotationSearchFormParameters,
-      loading: state._serviceVehicleRepairing.loading,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'repairingQuotationList' }, // this is for model namespace and
-    }))(RepairingQuotationSearch)
-  }
-  getRepairingQuotationCreateForm = () => {
-   	const {RepairingQuotationCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._serviceVehicleRepairing.repairingQuotationList,
-      count: state._serviceVehicleRepairing.repairingQuotationCount,
-      currentPage: state._serviceVehicleRepairing.repairingQuotationCurrentPageNumber,
-      searchFormParameters: state._serviceVehicleRepairing.repairingQuotationSearchFormParameters,
-      loading: state._serviceVehicleRepairing.loading,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'repairingQuotationList'}, // this is for model namespace and
-    }))(RepairingQuotationCreateForm)
-  }
-  
-  getRepairingQuotationUpdateForm = () => {
-  	const {RepairingQuotationUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._serviceVehicleRepairing.selectedRows,
-      currentUpdateIndex: state._serviceVehicleRepairing.currentUpdateIndex,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'repairingQuotationList' }, // this is for model namespace and
-    }))(RepairingQuotationUpdateForm)
-  }
 
   getRepairingAllowanceItemSearch = () => {
     const {RepairingAllowanceItemSearch} = GlobalComponents;
@@ -242,40 +165,6 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
       currentUpdateIndex: state._serviceVehicleRepairing.currentUpdateIndex,
       owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'vehicleRepairingPaymentList' }, // this is for model namespace and
     }))(VehicleRepairingPaymentUpdateForm)
-  }
-
-  getVehicleRepairingReportSearch = () => {
-    const {VehicleRepairingReportSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._serviceVehicleRepairing.vehicleRepairingReportList,
-      count: state._serviceVehicleRepairing.vehicleRepairingReportCount,
-      currentPage: state._serviceVehicleRepairing.vehicleRepairingReportCurrentPageNumber,
-      searchFormParameters: state._serviceVehicleRepairing.vehicleRepairingReportSearchFormParameters,
-      loading: state._serviceVehicleRepairing.loading,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'vehicleRepairingReportList' }, // this is for model namespace and
-    }))(VehicleRepairingReportSearch)
-  }
-  getVehicleRepairingReportCreateForm = () => {
-   	const {VehicleRepairingReportCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._serviceVehicleRepairing.vehicleRepairingReportList,
-      count: state._serviceVehicleRepairing.vehicleRepairingReportCount,
-      currentPage: state._serviceVehicleRepairing.vehicleRepairingReportCurrentPageNumber,
-      searchFormParameters: state._serviceVehicleRepairing.vehicleRepairingReportSearchFormParameters,
-      loading: state._serviceVehicleRepairing.loading,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'vehicleRepairingReportList'}, // this is for model namespace and
-    }))(VehicleRepairingReportCreateForm)
-  }
-  
-  getVehicleRepairingReportUpdateForm = () => {
-  	const {VehicleRepairingReportUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._serviceVehicleRepairing.selectedRows,
-      currentUpdateIndex: state._serviceVehicleRepairing.currentUpdateIndex,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'vehicleRepairingReportList' }, // this is for model namespace and
-    }))(VehicleRepairingReportUpdateForm)
   }
 
   getPageTitle = () => {
@@ -365,14 +254,6 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
                <Route path="/serviceVehicleRepairing/:id/viewDetail" component={ServiceVehicleRepairingViewDetail} />
                
 
-               <Route path="/serviceVehicleRepairing/:id/list/reportVehicleInspectionReportList" component={this.getReportVehicleInspectionReportSearch()} />
-               <Route path="/serviceVehicleRepairing/:id/list/reportVehicleInspectionReportCreateForm" component={this.getReportVehicleInspectionReportCreateForm()} />
-               <Route path="/serviceVehicleRepairing/:id/list/reportVehicleInspectionReportUpdateForm" component={this.getReportVehicleInspectionReportUpdateForm()} />
-
-               <Route path="/serviceVehicleRepairing/:id/list/repairingQuotationList" component={this.getRepairingQuotationSearch()} />
-               <Route path="/serviceVehicleRepairing/:id/list/repairingQuotationCreateForm" component={this.getRepairingQuotationCreateForm()} />
-               <Route path="/serviceVehicleRepairing/:id/list/repairingQuotationUpdateForm" component={this.getRepairingQuotationUpdateForm()} />
-
                <Route path="/serviceVehicleRepairing/:id/list/repairingAllowanceItemList" component={this.getRepairingAllowanceItemSearch()} />
                <Route path="/serviceVehicleRepairing/:id/list/repairingAllowanceItemCreateForm" component={this.getRepairingAllowanceItemCreateForm()} />
                <Route path="/serviceVehicleRepairing/:id/list/repairingAllowanceItemUpdateForm" component={this.getRepairingAllowanceItemUpdateForm()} />
@@ -380,10 +261,6 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
                <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingPaymentList" component={this.getVehicleRepairingPaymentSearch()} />
                <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingPaymentCreateForm" component={this.getVehicleRepairingPaymentCreateForm()} />
                <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingPaymentUpdateForm" component={this.getVehicleRepairingPaymentUpdateForm()} />
-
-               <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingReportList" component={this.getVehicleRepairingReportSearch()} />
-               <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingReportCreateForm" component={this.getVehicleRepairingReportCreateForm()} />
-               <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingReportUpdateForm" component={this.getVehicleRepairingReportUpdateForm()} />
               
              </Switch>
            </Content>

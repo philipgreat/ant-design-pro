@@ -16,10 +16,10 @@ const columns = [
   { title: '联系人手机', debugtype: 'string_china_mobile_phone', dataIndex: 'contactMobileNumber', width: '15' },
   { title: '产品类型', debugtype: 'string', dataIndex: 'productType', width: '14' },
   { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '商户', dataIndex: 'serviceCompany', render: (text, record) => (record.serviceCompany ? (<Link to={`/vehicleServiceCompany/${record.serviceCompany.id}/dashboard`}>{record.serviceCompany.id}</Link>) : '暂无') },
+  { title: '商户', dataIndex: 'serviceCompany', render: (text, record) => (record.serviceCompany ? (<Link to={`/vehicleServiceCompany/${record.serviceCompany.id}/dashboard`}>{record.serviceCompany.displayName}</Link>) : '暂无') },
   { title: '地址', debugtype: 'string', dataIndex: 'contactAddressDetail', width: '19' },
-  { title: '城市', dataIndex: 'contactAddressCity', render: (text, record) => (record.contactAddressCity ? (<Link to={`/city/${record.contactAddressCity.id}/dashboard`}>{record.contactAddressCity.id}</Link>) : '暂无') },
-  { title: '客户', dataIndex: 'customer', render: (text, record) => (record.customer ? (<Link to={`/customer/${record.customer.id}/dashboard`}>{record.customer.id}</Link>) : '暂无') },
+  { title: '城市', dataIndex: 'contactAddressCity', render: (text, record) => (record.contactAddressCity ? (<Link to={`/city/${record.contactAddressCity.id}/dashboard`}>{record.contactAddressCity.displayName}</Link>) : '暂无') },
+  { title: '客户', dataIndex: 'customer', render: (text, record) => (record.customer ? (<Link to={`/customer/${record.customer.id}/dashboard`}>{record.customer.displayName}</Link>) : '暂无') },
   { title: '计划年检日期', dataIndex: 'planInspectionDate', render: (text, record) => moment(record.planInspectionDate).format('YYYY-MM-DD') },
   { title: '无伤人交通事故', dataIndex: 'trafficAccidentAnnouncement', render: (text, record) => (record.trafficAccidentAnnouncement ? '是' : '否') },
   { title: '上门取车', dataIndex: 'homePickUp', render: (text, record) => (record.homePickUp ? '是' : '否') },
@@ -38,7 +38,7 @@ const columns = [
   { title: '行驶证图3', dataIndex: 'vehiclePermitImage3', render: (text, record) => <ImagePreview imageTitle="行驶证图3" imageLocation={record.vehiclePermitImage3} /> },
   { title: '行驶证图4', dataIndex: 'vehiclePermitImage4', render: (text, record) => <ImagePreview imageTitle="行驶证图4" imageLocation={record.vehiclePermitImage4} /> },
   { title: '行驶证图5', dataIndex: 'vehiclePermitImage5', render: (text, record) => <ImagePreview imageTitle="行驶证图5" imageLocation={record.vehiclePermitImage5} /> },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.id}</Link>) : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.displayName}</Link>) : '暂无') },
 
 ]
 

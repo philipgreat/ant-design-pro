@@ -40,11 +40,11 @@ const summaryOf = (vehiclePermit) =>{
 <Description term="姓名">{vehiclePermit.holderName}</Description> 
 <Description term="驾驶证号码">{vehiclePermit.licenseNumber}</Description> 
 <Description term="有效期至">{ moment(vehiclePermit.expirationDate).format('YYYY-MM-DD')}</Description> 
-<Description term="驾驶证图1">{vehiclePermit.image1}</Description> 
-<Description term="驾驶证图2">{vehiclePermit.image2}</Description> 
-<Description term="驾驶证图3">{vehiclePermit.image3}</Description> 
-<Description term="驾驶证图4">{vehiclePermit.image4}</Description> 
-<Description term="驾驶证图5">{vehiclePermit.image5}</Description> 
+<Description term="图1">{vehiclePermit.image1}</Description> 
+<Description term="图2">{vehiclePermit.image2}</Description> 
+<Description term="图3">{vehiclePermit.image3}</Description> 
+<Description term="图4">{vehiclePermit.image4}</Description> 
+<Description term="图5">{vehiclePermit.image5}</Description> 
 	
         
       </DescriptionList>

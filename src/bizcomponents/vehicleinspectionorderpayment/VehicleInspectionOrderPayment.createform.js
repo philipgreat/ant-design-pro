@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
+//import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-
+import ImageUpload from '../../components/ImageUpload'
 import styles from './VehicleInspectionOrderPayment.createform.less'
-
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -27,12 +27,12 @@ const fieldLabels = {
 
 const testValues = {
   paymentMethod: '微信',
-  originalAmount: '471.74',
-  actualAmount: '438.09',
+  originalAmount: '381.59',
+  actualAmount: '402.90',
   status: '未支付',
-  wechatOrderId: '5K8264ILTKCH16CQ2502SI8ZNMTM67VS',
-  wechatPrepayId: 'u802345jgfjsdfgsdg888',
-  createTime: '2995-11-20 08:02:36',
+  wechatOrderId: '',
+  wechatPrepayId: '',
+  createTime: '2999-09-30 10:08:16',
   mainOrderId: 'VIO000001',
 }
 
@@ -77,39 +77,6 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-
-  mapFromImageValues=(selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -124,7 +91,7 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
         }
 
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
 
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -141,7 +108,7 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
         }
         
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -281,6 +248,14 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
             </Row>
           </Form>
         </Card>
+
+
+
+       
+        
+
+
+
 
 
 

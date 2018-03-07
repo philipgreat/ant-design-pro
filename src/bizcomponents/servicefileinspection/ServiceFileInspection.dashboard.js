@@ -35,6 +35,11 @@ const summaryOf = (serviceFileInspection) =>{
 <Description term="服务状态">{serviceFileInspection.serviceStatus}</Description> 
 <Description term="服务概述">{serviceFileInspection.serviceSummary}</Description> 
 <Description term="检测结果">{serviceFileInspection.inspectionResult}</Description> 
+<Description term="年检报告1">{serviceFileInspection.inspectionReportImage1}</Description> 
+<Description term="年检报告2">{serviceFileInspection.inspectionReportImage2}</Description> 
+<Description term="年检报告3">{serviceFileInspection.inspectionReportImage3}</Description> 
+<Description term="年检报告4">{serviceFileInspection.inspectionReportImage4}</Description> 
+<Description term="年检报告5">{serviceFileInspection.inspectionReportImage5}</Description> 
 <Description term="开始时间">{ moment(serviceFileInspection.startTime).format('YYYY-MM-DD')}</Description> 
 <Description term="经度">{serviceFileInspection.longitude}</Description> 
 <Description term="纬度">{serviceFileInspection.latitude}</Description> 
@@ -53,7 +58,7 @@ const summaryOf = (serviceFileInspection) =>{
 export default class ServiceFileInspectionDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, reportFileInspectionReportCount } = this.props.serviceFileInspection
+    const { id,  } = this.props.serviceFileInspection
     
     
     
@@ -66,24 +71,6 @@ export default class ServiceFileInspectionDashboard extends Component {
       >
         <div>
           <Row gutter={24}>
-
-          
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="车辆6年免检报告"
-                action={<Tooltip title="车辆6年免检报告"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(reportFileInspectionReportCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/serviceFileInspection/${id}/list/reportFileInspectionReportList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/serviceFileInspection/${id}/list/reportFileInspectionReportCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/serviceFileInspection/${id}/list/reportFileInspectionReportList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
 
           </Row>
         </div>

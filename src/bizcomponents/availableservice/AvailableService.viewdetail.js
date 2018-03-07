@@ -65,13 +65,12 @@ export default class AvailableServiceViewDetail extends Component {
     const {ServicePriceViewTable} = GlobalComponents;
     const {VehicleRepairingAllowanceViewTable} = GlobalComponents;
     const {VehicleServiceCompanyBusinessScopeViewTable} = GlobalComponents;
-    const {VehicleInspectionOrderServiceLogViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const availableService = this.props.availableService
-    const { id, servicePriceCount, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount, vehicleInspectionOrderServiceLogCount } = availableService
-    const { servicePriceList, vehicleRepairingAllowanceList, vehicleServiceCompanyBusinessScopeList, vehicleInspectionOrderServiceLogList } = availableService
+    const { id, servicePriceCount, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount } = availableService
+    const { servicePriceList, vehicleRepairingAllowanceList, vehicleServiceCompanyBusinessScopeList } = availableService
     
     const owner = { type: '_availableService', id }
     
@@ -80,7 +79,6 @@ export default class AvailableServiceViewDetail extends Component {
       {key: 'servicePriceList',tab: `服务价格(${servicePriceCount})`}, 
       {key: 'vehicleRepairingAllowanceList',tab: `汽车修理平台补贴(${vehicleRepairingAllowanceCount})`}, 
       {key: 'vehicleServiceCompanyBusinessScopeList',tab: `商户服务范围(${vehicleServiceCompanyBusinessScopeCount})`}, 
-      {key: 'vehicleInspectionOrderServiceLogList',tab: `年检订单执行日志(${vehicleInspectionOrderServiceLogCount})`}, 
    
 
    ];
@@ -95,9 +93,6 @@ export default class AvailableServiceViewDetail extends Component {
  
       vehicleServiceCompanyBusinessScopeList:  
         <VehicleServiceCompanyBusinessScopeViewTable data={vehicleServiceCompanyBusinessScopeList} owner={owner} {...this.props} />,
- 
-      vehicleInspectionOrderServiceLogList:  
-        <VehicleInspectionOrderServiceLogViewTable data={vehicleInspectionOrderServiceLogList} owner={owner} {...this.props} />,
  
     
     };

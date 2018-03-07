@@ -195,8 +195,8 @@ class ServiceInsuranceForInspectionEditTable extends PureComponent {
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '服务状态', debugtype: 'string', dataIndex: 'serviceStatus', width: '7', render: (text, record) => renderStringEdit('serviceStatus',text, record)  },
-  { title: '选定保险', dataIndex: 'orderedInsurance', render: (text, record) => (record.orderedInsurance ? record.orderedInsurance.id : '暂无') },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.id : '暂无') },
+  { title: '选定保险', dataIndex: 'orderedInsurance', render: (text, record) => (record.orderedInsurance ? record.orderedInsurance.displayName : '暂无') },
+  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.displayName : '暂无') },
   { title: '服务概述', debugtype: 'string', dataIndex: 'serviceSummary', width: '24', render: (text, record) => renderStringEdit('serviceSummary',text, record)  },
   { title: '服务的评论', debugtype: 'string', dataIndex: 'serviceComments', width: '15', render: (text, record) => renderStringEdit('serviceComments',text, record)  },
   { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD HH:mm:ss') },
@@ -211,8 +211,8 @@ class ServiceInsuranceForInspectionEditTable extends PureComponent {
   { title: '保单凭证3', dataIndex: 'insuranceImage3', render: (text, record) => <ImagePreview imageLocation={record.insuranceImage3} /> },
   { title: '保单凭证4', dataIndex: 'insuranceImage4', render: (text, record) => <ImagePreview imageLocation={record.insuranceImage4} /> },
   { title: '保单凭证5', dataIndex: 'insuranceImage5', render: (text, record) => <ImagePreview imageLocation={record.insuranceImage5} /> },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.id : '暂无') },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.displayName : '暂无') },
+  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

@@ -80,7 +80,8 @@ export default class OSSPictureEdit extends React.Component {
       const url = new URL(window.location)
   
       if(url.hostname=="localhost"){
-          return "http://"+url.hostname+":8080/naf/secUserManager/testoss/";
+          //return "http://"+url.hostname+":8080/naf/secUserManager/testoss/";
+          return "https://www.kxbbt.com/bbt/secUserManager/testoss/";
       }
       return url.origin+"/bbt/secUserManager/testoss/";
   

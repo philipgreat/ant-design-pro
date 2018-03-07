@@ -10,6 +10,7 @@ const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '商户',dataIndex: 'company', render: (text, record) => (record.company ? record.company.id : '暂无') },
   { title: '服务范围',dataIndex: 'availableService', render: (text, record) => (record.availableService ? record.availableService.id : '暂无') },
+  { title: '可用状态',dataIndex: 'serviceAvaliability', render: (text, record) => (record.serviceAvaliability ? '是' : '否') },
 ];
 
 class VehicleServiceCompanyBusinessScopeViewTable extends PureComponent {

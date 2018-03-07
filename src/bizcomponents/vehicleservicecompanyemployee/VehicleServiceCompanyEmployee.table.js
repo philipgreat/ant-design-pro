@@ -17,13 +17,14 @@ const columns = [
   { title: '工作状态', debugtype: 'string', dataIndex: 'availableState', width: '8' },
   { title: '无犯罪记录证明', dataIndex: 'innocentEvidenceImage', render: (text, record) => <ImagePreview imageTitle="无犯罪记录证明" imageLocation={record.innocentEvidenceImage} /> },
   { title: '身份证号码', debugtype: 'string', dataIndex: 'identityCardNumber', width: '22' },
-  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? (<Link to={`/vehicleServiceCompany/${record.company.id}/dashboard`}>{record.company.id}</Link>) : '暂无') },
+  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? (<Link to={`/vehicleServiceCompany/${record.company.id}/dashboard`}>{record.company.displayName}</Link>) : '暂无') },
+  { title: '检测站', dataIndex: 'inspectionStation', render: (text, record) => (record.inspectionStation ? (<Link to={`/inspectionStation/${record.inspectionStation.id}/dashboard`}>{record.inspectionStation.displayName}</Link>) : '暂无') },
   { title: '是否可以移车', dataIndex: 'availableMoveCar', render: (text, record) => (record.availableMoveCar ? '是' : '否') },
   { title: '是否可以检车', dataIndex: 'availableInspectionCar', render: (text, record) => (record.availableInspectionCar ? '是' : '否') },
   { title: '是否可以修车', dataIndex: 'availableRepairCar', render: (text, record) => (record.availableRepairCar ? '是' : '否') },
-  { title: '资格认定', dataIndex: 'qualification', render: (text, record) => (record.qualification ? (<Link to={`/companyEmployeeQualification/${record.qualification.id}/dashboard`}>{record.qualification.id}</Link>) : '暂无') },
-  { title: '服务状态', dataIndex: 'serving', render: (text, record) => (record.serving ? (<Link to={`/companyEmployeeServing/${record.serving.id}/dashboard`}>{record.serving.id}</Link>) : '暂无') },
-  { title: '服务终止', dataIndex: 'termination', render: (text, record) => (record.termination ? (<Link to={`/companyEmployeeTermination/${record.termination.id}/dashboard`}>{record.termination.id}</Link>) : '暂无') },
+  { title: '资格认定', dataIndex: 'qualification', render: (text, record) => (record.qualification ? (<Link to={`/companyEmployeeQualification/${record.qualification.id}/dashboard`}>{record.qualification.displayName}</Link>) : '暂无') },
+  { title: '服务状态', dataIndex: 'serving', render: (text, record) => (record.serving ? (<Link to={`/companyEmployeeServing/${record.serving.id}/dashboard`}>{record.serving.displayName}</Link>) : '暂无') },
+  { title: '服务终止', dataIndex: 'termination', render: (text, record) => (record.termination ? (<Link to={`/companyEmployeeTermination/${record.termination.id}/dashboard`}>{record.termination.displayName}</Link>) : '暂无') },
   { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '14' },
 
 ]
@@ -102,7 +103,7 @@ class VehicleServiceCompanyEmployeeTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 2145 }}
+          scroll={{ x: 2280 }}
         />
       </div>
     )

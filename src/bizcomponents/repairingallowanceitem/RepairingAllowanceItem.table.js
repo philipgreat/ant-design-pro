@@ -12,7 +12,7 @@ const columns = [
   { title: '补贴项名称', debugtype: 'string', dataIndex: 'allowanceTitle', width: '9' },
   { title: '补贴代码', debugtype: 'string', dataIndex: 'allowanceCode', width: '23' },
   { title: '补贴金额', dataIndex: 'allowanceAmount', className:'money', render: (text, record) => (`￥${text.toFixed(2)}`) },
-  { title: '服务', dataIndex: 'service', render: (text, record) => (record.service ? (<Link to={`/serviceVehicleRepairing/${record.service.id}/dashboard`}>{record.service.id}</Link>) : '暂无') },
+  { title: '服务', dataIndex: 'service', render: (text, record) => (record.service ? (<Link to={`/serviceVehicleRepairing/${record.service.id}/dashboard`}>{record.service.displayName}</Link>) : '暂无') },
 
 ]
 

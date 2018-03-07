@@ -11,7 +11,7 @@ const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/inspectionStation/${text}/dashboard`}>{text}</Link>) },
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '12' },
   { title: '服务状态', debugtype: 'string', dataIndex: 'operatingStatus', width: '6' },
-  { title: '所在城市', dataIndex: 'addressCity', render: (text, record) => (record.addressCity ? (<Link to={`/city/${record.addressCity.id}/dashboard`}>{record.addressCity.id}</Link>) : '暂无') },
+  { title: '所在城市', dataIndex: 'addressCity', render: (text, record) => (record.addressCity ? (<Link to={`/city/${record.addressCity.id}/dashboard`}>{record.addressCity.displayName}</Link>) : '暂无') },
   { title: '所在地址', debugtype: 'string', dataIndex: 'addressDetail', width: '17' },
   { title: '经度', debugtype: 'double', dataIndex: 'longitude', width: '12' },
   { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '11' },

@@ -46,6 +46,7 @@ const summaryOf = (vehicleServiceCompany) =>{
 <Description term="公司照片3">{vehicleServiceCompany.companyImage3}</Description> 
 <Description term="公司照片4">{vehicleServiceCompany.companyImage4}</Description> 
 <Description term="公司照片5">{vehicleServiceCompany.companyImage5}</Description> 
+<Description term="推广二维码">{vehicleServiceCompany.promoteQrcodeImage}</Description> 
 <Description term="订单默认联系人">{vehicleServiceCompany.orderContact}</Description> 
 <Description term="订单默认联系人电话">{vehicleServiceCompany.orderContactPhone}</Description> 
 	
@@ -61,7 +62,7 @@ const summaryOf = (vehicleServiceCompany) =>{
 export default class VehicleServiceCompanyDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, contractCount, serviceCompanyAuthenticationInfoCount, vehicleInspectionPlateNumberPatternCount, fileInspectionPlateNumberPatternCount, vehicleServiceCompanyBusinessScopeCount, vehicleServiceCompanyDispatcherCount, vehicleServiceCompanyEmployeeCount, vehicleInspectionOrderCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, serviceCompanyAccountCount, repairingCompanyAccountCount, insuranceServiceAccountCount, inspectionStationAccountCount } = this.props.vehicleServiceCompany
+    const { id, contractCount, serviceCompanyAuthenticationInfoCount, vehicleInspectionPlateNumberPatternCount, fileInspectionPlateNumberPatternCount, vehicleServiceCompanyBusinessScopeCount, companyQrcodePromotionRecordCount, vehicleServiceCompanyDispatcherCount, vehicleServiceCompanyEmployeeCount, vehicleInspectionOrderCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, serviceCompanyAccountCount, repairingCompanyAccountCount, insuranceServiceAccountCount, inspectionStationAccountCount } = this.props.vehicleServiceCompany
     
     
     
@@ -162,6 +163,24 @@ export default class VehicleServiceCompanyDashboard extends Component {
                 <Link to={`/vehicleServiceCompany/${id}/list/vehicleServiceCompanyBusinessScopeCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/vehicleServiceCompany/${id}/list/vehicleServiceCompanyBusinessScopeList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="公司二维码推广记录"
+                action={<Tooltip title="公司二维码推广记录"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(companyQrcodePromotionRecordCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleServiceCompany/${id}/list/companyQrcodePromotionRecordList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/companyQrcodePromotionRecordCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleServiceCompany/${id}/list/companyQrcodePromotionRecordList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

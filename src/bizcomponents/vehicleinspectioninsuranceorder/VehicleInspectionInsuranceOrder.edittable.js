@@ -192,8 +192,8 @@ class VehicleInspectionInsuranceOrderEditTable extends PureComponent {
     
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '保险产品', dataIndex: 'insurance', render: (text, record) => (record.insurance ? record.insurance.id : '暂无') },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
+  { title: '保险产品', dataIndex: 'insurance', render: (text, record) => (record.insurance ? record.insurance.displayName : '暂无') },
+  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

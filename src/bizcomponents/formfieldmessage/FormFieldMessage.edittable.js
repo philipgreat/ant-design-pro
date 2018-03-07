@@ -193,7 +193,7 @@ class FormFieldMessageEditTable extends PureComponent {
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8', render: (text, record) => renderStringEdit('title',text, record)  },
   { title: '参数名称', debugtype: 'string', dataIndex: 'parameterName', width: '8', render: (text, record) => renderStringEdit('parameterName',text, record)  },
-  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.id : '暂无') },
+  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.displayName : '暂无') },
   { title: '水平', debugtype: 'string', dataIndex: 'level', width: '11', render: (text, record) => renderStringEdit('level',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]

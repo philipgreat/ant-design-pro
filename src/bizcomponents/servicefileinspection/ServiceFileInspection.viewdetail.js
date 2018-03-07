@@ -40,6 +40,11 @@ const summaryOf = (serviceFileInspection) =>{
 <Description term="服务状态">{serviceFileInspection.serviceStatus}</Description> 
 <Description term="服务概述">{serviceFileInspection.serviceSummary}</Description> 
 <Description term="检测结果">{serviceFileInspection.inspectionResult}</Description> 
+<Description term="年检报告1">{serviceFileInspection.inspectionReportImage1}</Description> 
+<Description term="年检报告2">{serviceFileInspection.inspectionReportImage2}</Description> 
+<Description term="年检报告3">{serviceFileInspection.inspectionReportImage3}</Description> 
+<Description term="年检报告4">{serviceFileInspection.inspectionReportImage4}</Description> 
+<Description term="年检报告5">{serviceFileInspection.inspectionReportImage5}</Description> 
 <Description term="开始时间">{ moment(serviceFileInspection.startTime).format('YYYY-MM-DD')}</Description> 
 <Description term="经度">{serviceFileInspection.longitude}</Description> 
 <Description term="纬度">{serviceFileInspection.latitude}</Description> 
@@ -57,39 +62,29 @@ const summaryOf = (serviceFileInspection) =>{
 }))
 export default class ServiceFileInspectionViewDetail extends Component {
 
-
-  state = {
-    tabKey: `reportFileInspectionReportList`,
-    stepDirection: 'horizontal',
-  }
  
   onTabChange = (key) => {
     this.setState({ tabKey: key });
   }  
   render() {
-    const {ReportFileInspectionReportViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const serviceFileInspection = this.props.serviceFileInspection
-    const { id, reportFileInspectionReportCount } = serviceFileInspection
-    const { reportFileInspectionReportList } = serviceFileInspection
+    const { id,  } = serviceFileInspection
+    const {  } = serviceFileInspection
     
     const owner = { type: '_serviceFileInspection', id }
     
     const tabList = [
 
-      {key: 'reportFileInspectionReportList',tab: `车辆6年免检报告(${reportFileInspectionReportCount})`}, 
    
 
    ];
    
    
     const contentList = {
-       reportFileInspectionReportList:  
-        <ReportFileInspectionReportViewTable data={reportFileInspectionReportList} owner={owner} {...this.props} />,
- 
-    
+     
     };
     
 

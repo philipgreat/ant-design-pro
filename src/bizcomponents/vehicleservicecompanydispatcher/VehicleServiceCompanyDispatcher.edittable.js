@@ -192,7 +192,7 @@ class VehicleServiceCompanyDispatcherEditTable extends PureComponent {
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '18', render: (text, record) => renderStringEdit('description',text, record)  },
-  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? record.company.id : '暂无') },
+  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? record.company.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

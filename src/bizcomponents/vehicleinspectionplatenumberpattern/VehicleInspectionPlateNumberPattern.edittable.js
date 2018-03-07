@@ -192,7 +192,7 @@ class VehicleInspectionPlateNumberPatternEditTable extends PureComponent {
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '车牌号类别', debugtype: 'string', dataIndex: 'plateNumberPattern', width: '6', render: (text, record) => renderStringEdit('plateNumberPattern',text, record)  },
-  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? record.company.id : '暂无') },
+  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? record.company.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

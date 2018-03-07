@@ -39,11 +39,10 @@ export default class AvailableServiceEditDetail extends Component {
     const {ServicePriceEditTable} = GlobalComponents;
     const {VehicleRepairingAllowanceEditTable} = GlobalComponents;
     const {VehicleServiceCompanyBusinessScopeEditTable} = GlobalComponents;
-    const {VehicleInspectionOrderServiceLogEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, servicePriceCount, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount, vehicleInspectionOrderServiceLogCount } = this.props.availableService
-    const { servicePriceList, vehicleRepairingAllowanceList, vehicleServiceCompanyBusinessScopeList, vehicleInspectionOrderServiceLogList } = this.props.availableService
+    const { id, servicePriceCount, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount } = this.props.availableService
+    const { servicePriceList, vehicleRepairingAllowanceList, vehicleServiceCompanyBusinessScopeList } = this.props.availableService
     
     const owner = { type: '_availableService', id }
     return (
@@ -70,12 +69,6 @@ export default class AvailableServiceEditDetail extends Component {
 		<Card title="商户服务范围列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <VehicleServiceCompanyBusinessScopeEditTable data={vehicleServiceCompanyBusinessScopeList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="年检订单执行日志列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <VehicleInspectionOrderServiceLogEditTable data={vehicleInspectionOrderServiceLogList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

@@ -11,7 +11,7 @@ const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '评论内容', debugtype: 'string', dataIndex: 'reviewName', width: '8' },
   { title: '评论结果', debugtype: 'string', dataIndex: 'reviewResult', width: '9' },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.id}</Link>) : '暂无') },
+  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.displayName}</Link>) : '暂无') },
 
 ]
 

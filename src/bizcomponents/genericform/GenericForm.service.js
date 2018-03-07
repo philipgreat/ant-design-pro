@@ -127,7 +127,7 @@ const removeFormFieldList = (targetObjectId, parameters) => {
 
 
 const addFormAction = (targetObjectId, parameters) => {
-  const url = `${PREFIX}genericFormManager/addFormAction/formId/label/localeKey/level/url/tokensExpr/`
+  const url = `${PREFIX}genericFormManager/addFormAction/formId/label/localeKey/actionKey/level/url/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -139,7 +139,7 @@ const addFormAction = (targetObjectId, parameters) => {
 }
 
 const updateFormAction = (targetObjectId, parameters) => {
-  const url = `${PREFIX}genericFormManager/updateFormActionProperties/genericFormId/id/label/localeKey/level/url/tokensExpr/`
+  const url = `${PREFIX}genericFormManager/updateFormActionProperties/genericFormId/id/label/localeKey/actionKey/level/url/tokensExpr/`
   const genericFormId = targetObjectId
   const requestParameters = { ...parameters, genericFormId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }

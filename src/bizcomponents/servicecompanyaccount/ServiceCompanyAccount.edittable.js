@@ -194,7 +194,7 @@ class ServiceCompanyAccountEditTable extends PureComponent {
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '服务单号', debugtype: 'string', dataIndex: 'serviceOrderNumber', width: '14', render: (text, record) => renderStringEdit('serviceOrderNumber',text, record)  },
-  { title: '服务单代码', debugtype: 'string', dataIndex: 'serviceOrderCode', width: '9', render: (text, record) => renderStringEdit('serviceOrderCode',text, record)  },
+  { title: '服务单代码', debugtype: 'string', dataIndex: 'serviceOrderCode', width: '35', render: (text, record) => renderStringEdit('serviceOrderCode',text, record)  },
   { title: '服务单名称', debugtype: 'string', dataIndex: 'serviceOrderName', width: '8', render: (text, record) => renderStringEdit('serviceOrderName',text, record)  },
   { title: '服务完成时间', dataIndex: 'serviceFulfilledDatetime', render: (text, record) => moment(record.serviceFulfilledDatetime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '合同编号', debugtype: 'string', dataIndex: 'contractId', width: '13', render: (text, record) => renderStringEdit('contractId',text, record)  },
@@ -203,9 +203,9 @@ class ServiceCompanyAccountEditTable extends PureComponent {
   { title: '服务人员', debugtype: 'string', dataIndex: 'serviceWorkerName', width: '7', render: (text, record) => renderStringEdit('serviceWorkerName',text, record)  },
   { title: '商户名称', debugtype: 'string', dataIndex: 'serviceCompanyName', width: '27', render: (text, record) => renderStringEdit('serviceCompanyName',text, record)  },
   { title: '年检订单ID', debugtype: 'string', dataIndex: 'mainOrderId', width: '28', render: (text, record) => renderStringEdit('mainOrderId',text, record)  },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.id : '暂无') },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.id : '暂无') },
-  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? record.account.id : '暂无') },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.displayName : '暂无') },
+  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.displayName : '暂无') },
+  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? record.account.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

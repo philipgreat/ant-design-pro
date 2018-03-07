@@ -192,7 +192,7 @@ class CityEditTable extends PureComponent {
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '6', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '省', dataIndex: 'province', render: (text, record) => (record.province ? record.province.id : '暂无') },
+  { title: '省', dataIndex: 'province', render: (text, record) => (record.province ? record.province.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

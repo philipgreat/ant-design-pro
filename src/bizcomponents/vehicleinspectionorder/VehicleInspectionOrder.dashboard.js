@@ -71,7 +71,7 @@ const summaryOf = (vehicleInspectionOrder) =>{
 export default class VehicleInspectionOrderDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, vehicleInspectionInsuranceOrderCount, vehicleInspectionOrderServiceLogCount, vehicleInspectionOrderPaymentCount, handOverChecklistItemCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, reportVehicleInspectionReportCount, reportFileInspectionReportCount, serviceVehicleRepairingCount, vehicleRepairingReportCount, orderReviewResultCount, orderRatingResultCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.vehicleInspectionOrder
+    const { id, vehicleInspectionInsuranceOrderCount, vehicleInspectionOrderChargeCount, vehicleInspectionOrderServiceLogCount, vehicleInspectionOrderPaymentCount, handOverChecklistItemCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, orderReviewResultCount, orderRatingResultCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.vehicleInspectionOrder
     
     
     
@@ -100,6 +100,24 @@ export default class VehicleInspectionOrderDashboard extends Component {
                 <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionInsuranceOrderCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionInsuranceOrderList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="车辆检验订单费用"
+                action={<Tooltip title="车辆检验订单费用"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(vehicleInspectionOrderChargeCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionOrderChargeList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionOrderChargeCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleInspectionOrderChargeList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 
@@ -323,42 +341,6 @@ export default class VehicleInspectionOrderDashboard extends Component {
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
-                title="车辆上线年检报告"
-                action={<Tooltip title="车辆上线年检报告"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(reportVehicleInspectionReportCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/vehicleInspectionOrder/${id}/list/reportVehicleInspectionReportList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/vehicleInspectionOrder/${id}/list/reportVehicleInspectionReportCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/vehicleInspectionOrder/${id}/list/reportVehicleInspectionReportList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
-
-          
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="车辆6年免检报告"
-                action={<Tooltip title="车辆6年免检报告"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(reportFileInspectionReportCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/vehicleInspectionOrder/${id}/list/reportFileInspectionReportList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/vehicleInspectionOrder/${id}/list/reportFileInspectionReportCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/vehicleInspectionOrder/${id}/list/reportFileInspectionReportList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
-
-          
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
                 title="维修服务"
                 action={<Tooltip title="维修服务"><Icon type="info-circle-o" /></Tooltip>}
                 total={numeral(serviceVehicleRepairingCount).format('0,0')}
@@ -370,24 +352,6 @@ export default class VehicleInspectionOrderDashboard extends Component {
                 <Link to={`/vehicleInspectionOrder/${id}/list/serviceVehicleRepairingCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/vehicleInspectionOrder/${id}/list/serviceVehicleRepairingList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
-
-          
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="车辆维修报告"
-                action={<Tooltip title="车辆维修报告"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(vehicleRepairingReportCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleRepairingReportList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleRepairingReportCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/vehicleInspectionOrder/${id}/list/vehicleRepairingReportList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

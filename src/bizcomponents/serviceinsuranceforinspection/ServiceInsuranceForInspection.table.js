@@ -10,8 +10,8 @@ import ImagePreview from '../../components/ImagePreview'
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '服务状态', debugtype: 'string', dataIndex: 'serviceStatus', width: '7' },
-  { title: '选定保险', dataIndex: 'orderedInsurance', render: (text, record) => (record.orderedInsurance ? (<Link to={`/availableInsurance/${record.orderedInsurance.id}/dashboard`}>{record.orderedInsurance.id}</Link>) : '暂无') },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.id}</Link>) : '暂无') },
+  { title: '选定保险', dataIndex: 'orderedInsurance', render: (text, record) => (record.orderedInsurance ? (<Link to={`/availableInsurance/${record.orderedInsurance.id}/dashboard`}>{record.orderedInsurance.displayName}</Link>) : '暂无') },
+  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.displayName}</Link>) : '暂无') },
   { title: '服务概述', debugtype: 'string', dataIndex: 'serviceSummary', width: '24' },
   { title: '服务的评论', debugtype: 'string', dataIndex: 'serviceComments', width: '15' },
   { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD HH:mm:ss') },
@@ -26,8 +26,8 @@ const columns = [
   { title: '保单凭证3', dataIndex: 'insuranceImage3', render: (text, record) => <ImagePreview imageTitle="保单凭证3" imageLocation={record.insuranceImage3} /> },
   { title: '保单凭证4', dataIndex: 'insuranceImage4', render: (text, record) => <ImagePreview imageTitle="保单凭证4" imageLocation={record.insuranceImage4} /> },
   { title: '保单凭证5', dataIndex: 'insuranceImage5', render: (text, record) => <ImagePreview imageTitle="保单凭证5" imageLocation={record.insuranceImage5} /> },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.id}</Link>) : '暂无') },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.id}</Link>) : '暂无') },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.displayName}</Link>) : '暂无') },
+  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.displayName}</Link>) : '暂无') },
 
 ]
 

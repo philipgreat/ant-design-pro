@@ -12,7 +12,7 @@ const columns = [
   { title: '产品名称', debugtype: 'string', dataIndex: 'productName', width: '9' },
   { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '11' },
   { title: '服务描述', debugtype: 'string', dataIndex: 'serviceDescription', width: '12' },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.id}</Link>) : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.displayName}</Link>) : '暂无') },
 
 ]
 

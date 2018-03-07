@@ -30,6 +30,7 @@ import ServiceCompanyAuthenticationInfoModel from './bizcomponents/servicecompan
 import VehicleInspectionPlateNumberPatternModel from './bizcomponents/vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.model'
 import FileInspectionPlateNumberPatternModel from './bizcomponents/fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.model'
 import VehicleServiceCompanyBusinessScopeModel from './bizcomponents/vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.model'
+import CompanyQrcodePromotionRecordModel from './bizcomponents/companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.model'
 import VehicleServiceCompanyDispatcherModel from './bizcomponents/vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.model'
 import VehicleServiceCompanyEmployeeModel from './bizcomponents/vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.model'
 import ServiceOrderFilterModel from './bizcomponents/serviceorderfilter/ServiceOrderFilter.model'
@@ -41,6 +42,7 @@ import InspectionStationModel from './bizcomponents/inspectionstation/Inspection
 import VehicleInfoModel from './bizcomponents/vehicleinfo/VehicleInfo.model'
 import VehicleInspectionOrderModel from './bizcomponents/vehicleinspectionorder/VehicleInspectionOrder.model'
 import VehicleInspectionInsuranceOrderModel from './bizcomponents/vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.model'
+import VehicleInspectionOrderChargeModel from './bizcomponents/vehicleinspectionordercharge/VehicleInspectionOrderCharge.model'
 import VehicleInspectionOrderServiceLogModel from './bizcomponents/vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.model'
 import VehicleInspectionOrderPaymentModel from './bizcomponents/vehicleinspectionorderpayment/VehicleInspectionOrderPayment.model'
 import HandOverChecklistItemModel from './bizcomponents/handoverchecklistitem/HandOverChecklistItem.model'
@@ -54,13 +56,9 @@ import HandOverChecklistResultModel from './bizcomponents/handoverchecklistresul
 import ServiceInsuranceForInspectionModel from './bizcomponents/serviceinsuranceforinspection/ServiceInsuranceForInspection.model'
 import ServiceVehicleInspectionModel from './bizcomponents/servicevehicleinspection/ServiceVehicleInspection.model'
 import ServiceFileInspectionModel from './bizcomponents/servicefileinspection/ServiceFileInspection.model'
-import ReportVehicleInspectionReportModel from './bizcomponents/reportvehicleinspectionreport/ReportVehicleInspectionReport.model'
-import ReportFileInspectionReportModel from './bizcomponents/reportfileinspectionreport/ReportFileInspectionReport.model'
 import ServiceVehicleRepairingModel from './bizcomponents/servicevehiclerepairing/ServiceVehicleRepairing.model'
-import RepairingQuotationModel from './bizcomponents/repairingquotation/RepairingQuotation.model'
 import RepairingAllowanceItemModel from './bizcomponents/repairingallowanceitem/RepairingAllowanceItem.model'
 import VehicleRepairingPaymentModel from './bizcomponents/vehiclerepairingpayment/VehicleRepairingPayment.model'
-import VehicleRepairingReportModel from './bizcomponents/vehiclerepairingreport/VehicleRepairingReport.model'
 import AvailableReviewItemModel from './bizcomponents/availablereviewitem/AvailableReviewItem.model'
 import OrderReviewResultModel from './bizcomponents/orderreviewresult/OrderReviewResult.model'
 import AvailableRatingItemModel from './bizcomponents/availableratingitem/AvailableRatingItem.model'
@@ -119,6 +117,7 @@ app.model(ServiceCompanyAuthenticationInfoModel)
 app.model(VehicleInspectionPlateNumberPatternModel)
 app.model(FileInspectionPlateNumberPatternModel)
 app.model(VehicleServiceCompanyBusinessScopeModel)
+app.model(CompanyQrcodePromotionRecordModel)
 app.model(VehicleServiceCompanyDispatcherModel)
 app.model(VehicleServiceCompanyEmployeeModel)
 app.model(ServiceOrderFilterModel)
@@ -130,6 +129,7 @@ app.model(InspectionStationModel)
 app.model(VehicleInfoModel)
 app.model(VehicleInspectionOrderModel)
 app.model(VehicleInspectionInsuranceOrderModel)
+app.model(VehicleInspectionOrderChargeModel)
 app.model(VehicleInspectionOrderServiceLogModel)
 app.model(VehicleInspectionOrderPaymentModel)
 app.model(HandOverChecklistItemModel)
@@ -143,13 +143,9 @@ app.model(HandOverChecklistResultModel)
 app.model(ServiceInsuranceForInspectionModel)
 app.model(ServiceVehicleInspectionModel)
 app.model(ServiceFileInspectionModel)
-app.model(ReportVehicleInspectionReportModel)
-app.model(ReportFileInspectionReportModel)
 app.model(ServiceVehicleRepairingModel)
-app.model(RepairingQuotationModel)
 app.model(RepairingAllowanceItemModel)
 app.model(VehicleRepairingPaymentModel)
-app.model(VehicleRepairingReportModel)
 app.model(AvailableReviewItemModel)
 app.model(OrderReviewResultModel)
 app.model(AvailableRatingItemModel)

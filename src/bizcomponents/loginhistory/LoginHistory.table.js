@@ -12,7 +12,7 @@ const columns = [
   { title: '登录时间', dataIndex: 'loginTime', render: (text, record) => moment(record.loginTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '来自IP', debugtype: 'string', dataIndex: 'fromIp', width: '15' },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8' },
-  { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? (<Link to={`/secUser/${record.secUser.id}/dashboard`}>{record.secUser.id}</Link>) : '暂无') },
+  { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? (<Link to={`/secUser/${record.secUser.id}/dashboard`}>{record.secUser.displayName}</Link>) : '暂无') },
 
 ]
 

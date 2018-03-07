@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
+//import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-
+import ImageUpload from '../../components/ImageUpload'
 import styles from './IdentityCard.createform.less'
-
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -24,7 +24,7 @@ const fieldLabels = {
 const testValues = {
   holderName: '张建力',
   cardNumber: '510124199012010000',
-  expirationDate: '2997-02-17',
+  expirationDate: '2995-04-29',
 }
 
 const imageURLPrefix = '//localhost:2090'
@@ -70,39 +70,6 @@ class IdentityCardCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-
-  mapFromImageValues=(selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -117,7 +84,7 @@ class IdentityCardCreateForm extends Component {
         }
 
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
 
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -134,7 +101,7 @@ class IdentityCardCreateForm extends Component {
         }
         
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -237,13 +204,21 @@ class IdentityCardCreateForm extends Component {
 
 
 
+       
+        
+
+
+
+
+
+
 
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="身份证正面照片"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'frontImage')}
@@ -252,7 +227,7 @@ class IdentityCardCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="身份证背面照片"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'backImage')}

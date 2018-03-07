@@ -36,11 +36,10 @@ const topColResponsiveProps = {
 }))
 export default class ServiceVehicleInspectionEditDetail extends Component {
   render() {
-    const {ReportVehicleInspectionReportEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, reportVehicleInspectionReportCount } = this.props.serviceVehicleInspection
-    const { reportVehicleInspectionReportList } = this.props.serviceVehicleInspection
+    const { id,  } = this.props.serviceVehicleInspection
+    const {  } = this.props.serviceVehicleInspection
     
     const owner = { type: '_serviceVehicleInspection', id }
     return (
@@ -51,12 +50,6 @@ export default class ServiceVehicleInspectionEditDetail extends Component {
         wrapperClassName={styles.advancedForm}
       >
 
-
-		<Card title="车辆上线年检报告列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ReportVehicleInspectionReportEditTable data={reportVehicleInspectionReportList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
 
  
       </PageHeaderLayout>

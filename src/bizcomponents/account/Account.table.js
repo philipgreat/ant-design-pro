@@ -9,7 +9,7 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/account/${text}/dashboard`}>{text}</Link>) },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.id}</Link>) : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.displayName}</Link>) : '暂无') },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '22' },
 
 ]

@@ -15,8 +15,8 @@ const columns = [
   { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '使用日期', dataIndex: 'appliedDate', render: (text, record) => moment(record.appliedDate).format('YYYY-MM-DD HH:mm:ss') },
   { title: '优惠券状态', debugtype: 'string', dataIndex: 'couponStatus', width: '7' },
-  { title: '客户', dataIndex: 'customer', render: (text, record) => (record.customer ? (<Link to={`/customer/${record.customer.id}/dashboard`}>{record.customer.id}</Link>) : '暂无') },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.id}</Link>) : '暂无') },
+  { title: '客户', dataIndex: 'customer', render: (text, record) => (record.customer ? (<Link to={`/customer/${record.customer.id}/dashboard`}>{record.customer.displayName}</Link>) : '暂无') },
+  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.displayName}</Link>) : '暂无') },
 
 ]
 

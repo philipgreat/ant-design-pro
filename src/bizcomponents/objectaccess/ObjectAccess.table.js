@@ -20,7 +20,7 @@ const columns = [
   { title: '列表7', debugtype: 'string', dataIndex: 'list7', width: '24' },
   { title: '列表8', debugtype: 'string', dataIndex: 'list8', width: '24' },
   { title: '列表9', debugtype: 'string', dataIndex: 'list9', width: '24' },
-  { title: '应用程序', dataIndex: 'app', render: (text, record) => (record.app ? (<Link to={`/userApp/${record.app.id}/dashboard`}>{record.app.id}</Link>) : '暂无') },
+  { title: '应用程序', dataIndex: 'app', render: (text, record) => (record.app ? (<Link to={`/userApp/${record.app.id}/dashboard`}>{record.app.displayName}</Link>) : '暂无') },
 
 ]
 

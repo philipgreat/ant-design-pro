@@ -51,6 +51,7 @@ const summaryOf = (vehicleServiceCompany) =>{
 <Description term="公司照片3">{vehicleServiceCompany.companyImage3}</Description> 
 <Description term="公司照片4">{vehicleServiceCompany.companyImage4}</Description> 
 <Description term="公司照片5">{vehicleServiceCompany.companyImage5}</Description> 
+<Description term="推广二维码">{vehicleServiceCompany.promoteQrcodeImage}</Description> 
 <Description term="订单默认联系人">{vehicleServiceCompany.orderContact}</Description> 
 <Description term="订单默认联系人电话">{vehicleServiceCompany.orderContactPhone}</Description> 
 	
@@ -80,6 +81,7 @@ export default class VehicleServiceCompanyViewDetail extends Component {
     const {VehicleInspectionPlateNumberPatternViewTable} = GlobalComponents;
     const {FileInspectionPlateNumberPatternViewTable} = GlobalComponents;
     const {VehicleServiceCompanyBusinessScopeViewTable} = GlobalComponents;
+    const {CompanyQrcodePromotionRecordViewTable} = GlobalComponents;
     const {VehicleServiceCompanyDispatcherViewTable} = GlobalComponents;
     const {VehicleServiceCompanyEmployeeViewTable} = GlobalComponents;
     const {VehicleInspectionOrderViewTable} = GlobalComponents;
@@ -101,8 +103,8 @@ export default class VehicleServiceCompanyViewDetail extends Component {
     // eslint-disable-next-line max-len
     
     const vehicleServiceCompany = this.props.vehicleServiceCompany
-    const { id, contractCount, serviceCompanyAuthenticationInfoCount, vehicleInspectionPlateNumberPatternCount, fileInspectionPlateNumberPatternCount, vehicleServiceCompanyBusinessScopeCount, vehicleServiceCompanyDispatcherCount, vehicleServiceCompanyEmployeeCount, vehicleInspectionOrderCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, serviceCompanyAccountCount, repairingCompanyAccountCount, insuranceServiceAccountCount, inspectionStationAccountCount } = vehicleServiceCompany
-    const { contractList, serviceCompanyAuthenticationInfoList, vehicleInspectionPlateNumberPatternList, fileInspectionPlateNumberPatternList, vehicleServiceCompanyBusinessScopeList, vehicleServiceCompanyDispatcherList, vehicleServiceCompanyEmployeeList, vehicleInspectionOrderList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mList, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList, serviceCompanyAccountList, repairingCompanyAccountList, insuranceServiceAccountList, inspectionStationAccountList } = vehicleServiceCompany
+    const { id, contractCount, serviceCompanyAuthenticationInfoCount, vehicleInspectionPlateNumberPatternCount, fileInspectionPlateNumberPatternCount, vehicleServiceCompanyBusinessScopeCount, companyQrcodePromotionRecordCount, vehicleServiceCompanyDispatcherCount, vehicleServiceCompanyEmployeeCount, vehicleInspectionOrderCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, serviceCompanyAccountCount, repairingCompanyAccountCount, insuranceServiceAccountCount, inspectionStationAccountCount } = vehicleServiceCompany
+    const { contractList, serviceCompanyAuthenticationInfoList, vehicleInspectionPlateNumberPatternList, fileInspectionPlateNumberPatternList, vehicleServiceCompanyBusinessScopeList, companyQrcodePromotionRecordList, vehicleServiceCompanyDispatcherList, vehicleServiceCompanyEmployeeList, vehicleInspectionOrderList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mList, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList, serviceCompanyAccountList, repairingCompanyAccountList, insuranceServiceAccountList, inspectionStationAccountList } = vehicleServiceCompany
     
     const owner = { type: '_vehicleServiceCompany', id }
     
@@ -113,6 +115,7 @@ export default class VehicleServiceCompanyViewDetail extends Component {
       {key: 'vehicleInspectionPlateNumberPatternList',tab: `上线检测支持的车牌号码类别(${vehicleInspectionPlateNumberPatternCount})`}, 
       {key: 'fileInspectionPlateNumberPatternList',tab: `6年免检检测支持的车牌号码类别(${fileInspectionPlateNumberPatternCount})`}, 
       {key: 'vehicleServiceCompanyBusinessScopeList',tab: `商户服务范围(${vehicleServiceCompanyBusinessScopeCount})`}, 
+      {key: 'companyQrcodePromotionRecordList',tab: `公司二维码推广记录(${companyQrcodePromotionRecordCount})`}, 
       {key: 'vehicleServiceCompanyDispatcherList',tab: `商户派单(${vehicleServiceCompanyDispatcherCount})`}, 
       {key: 'vehicleServiceCompanyEmployeeList',tab: `商户员工(${vehicleServiceCompanyEmployeeCount})`}, 
       {key: 'vehicleInspectionOrderList',tab: `年检订单(${vehicleInspectionOrderCount})`}, 
@@ -150,6 +153,9 @@ export default class VehicleServiceCompanyViewDetail extends Component {
  
       vehicleServiceCompanyBusinessScopeList:  
         <VehicleServiceCompanyBusinessScopeViewTable data={vehicleServiceCompanyBusinessScopeList} owner={owner} {...this.props} />,
+ 
+      companyQrcodePromotionRecordList:  
+        <CompanyQrcodePromotionRecordViewTable data={companyQrcodePromotionRecordList} owner={owner} {...this.props} />,
  
       vehicleServiceCompanyDispatcherList:  
         <VehicleServiceCompanyDispatcherViewTable data={vehicleServiceCompanyDispatcherList} owner={owner} {...this.props} />,

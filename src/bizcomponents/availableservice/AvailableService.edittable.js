@@ -192,9 +192,9 @@ class AvailableServiceEditTable extends PureComponent {
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '服务名称', debugtype: 'string', dataIndex: 'serviceName', width: '8', render: (text, record) => renderStringEdit('serviceName',text, record)  },
-  { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '30', render: (text, record) => renderStringEdit('serviceKey',text, record)  },
+  { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '35', render: (text, record) => renderStringEdit('serviceKey',text, record)  },
   { title: '服务描述', debugtype: 'string', dataIndex: 'serviceDescription', width: '41', render: (text, record) => renderStringEdit('serviceDescription',text, record)  },
-  { title: '产品类型', dataIndex: 'availableProduct', render: (text, record) => (record.availableProduct ? record.availableProduct.id : '暂无') },
+  { title: '产品类型', dataIndex: 'availableProduct', render: (text, record) => (record.availableProduct ? record.availableProduct.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

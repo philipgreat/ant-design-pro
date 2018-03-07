@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
+//import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-
+import ImageUpload from '../../components/ImageUpload'
 import styles from './ServiceInsuranceForInspection.createform.less'
-
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -39,10 +39,10 @@ const testValues = {
   serviceStatus: '待购买',
   serviceSummary: '请为{车牌号}购买{保险产品名称}保险。',
   serviceComments: '购买系统赠送的基本保险',
-  startTime: '2994-06-26 01:50:14',
+  startTime: '2995-04-29 11:07:01',
   insuranceName: '基本保险',
   insuranceVendor: '太平洋财产保险',
-  insurancePrice: '3.83',
+  insurancePrice: '4.29',
   summary: '除了基本保险，还可以购买额外保险',
   insuranceNumber: 'ADK123123087KMN',
   orderedInsuranceId: 'AI000001',
@@ -97,39 +97,6 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-
-  mapFromImageValues=(selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -144,7 +111,7 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
         }
 
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
 
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -161,7 +128,7 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
         }
         
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -324,13 +291,21 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
 
 
 
+       
+        
+
+
+
+
+
+
 
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="保单凭证1"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'insuranceImage1')}
@@ -339,7 +314,7 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="保单凭证2"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'insuranceImage2')}
@@ -348,7 +323,7 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="保单凭证3"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'insuranceImage3')}
@@ -357,7 +332,7 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="保单凭证4"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'insuranceImage4')}
@@ -366,7 +341,7 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="保单凭证5"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'insuranceImage5')}

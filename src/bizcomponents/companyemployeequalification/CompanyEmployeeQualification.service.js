@@ -19,7 +19,7 @@ const load = (targetObjectId, parameters) => {
 
 
 const addVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
-  const url = `${PREFIX}companyEmployeeQualificationManager/addVehicleServiceCompanyEmployee/qualificationId/employeeName/profileImage/companyName/mobileNumber/gender/availableState/innocentEvidenceImage/identityCardNumber/companyId/availableMoveCar/availableInspectionCar/availableRepairCar/tokensExpr/`
+  const url = `${PREFIX}companyEmployeeQualificationManager/addVehicleServiceCompanyEmployee/qualificationId/employeeName/profileImage/companyName/mobileNumber/gender/availableState/innocentEvidenceImage/identityCardNumber/companyId/inspectionStationId/availableMoveCar/availableInspectionCar/availableRepairCar/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }

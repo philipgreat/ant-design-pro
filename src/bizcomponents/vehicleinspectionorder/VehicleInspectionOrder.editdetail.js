@@ -37,6 +37,7 @@ const topColResponsiveProps = {
 export default class VehicleInspectionOrderEditDetail extends Component {
   render() {
     const {VehicleInspectionInsuranceOrderEditTable} = GlobalComponents;
+    const {VehicleInspectionOrderChargeEditTable} = GlobalComponents;
     const {VehicleInspectionOrderServiceLogEditTable} = GlobalComponents;
     const {VehicleInspectionOrderPaymentEditTable} = GlobalComponents;
     const {HandOverChecklistItemEditTable} = GlobalComponents;
@@ -49,18 +50,15 @@ export default class VehicleInspectionOrderEditDetail extends Component {
     const {ServiceInsuranceForInspectionEditTable} = GlobalComponents;
     const {ServiceVehicleInspectionEditTable} = GlobalComponents;
     const {ServiceFileInspectionEditTable} = GlobalComponents;
-    const {ReportVehicleInspectionReportEditTable} = GlobalComponents;
-    const {ReportFileInspectionReportEditTable} = GlobalComponents;
     const {ServiceVehicleRepairingEditTable} = GlobalComponents;
-    const {VehicleRepairingReportEditTable} = GlobalComponents;
     const {OrderReviewResultEditTable} = GlobalComponents;
     const {OrderRatingResultEditTable} = GlobalComponents;
     const {OrderDiscountCouponEditTable} = GlobalComponents;
     const {VehicleInspectionOrderCouponEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, vehicleInspectionInsuranceOrderCount, vehicleInspectionOrderServiceLogCount, vehicleInspectionOrderPaymentCount, handOverChecklistItemCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, reportVehicleInspectionReportCount, reportFileInspectionReportCount, serviceVehicleRepairingCount, vehicleRepairingReportCount, orderReviewResultCount, orderRatingResultCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.vehicleInspectionOrder
-    const { vehicleInspectionInsuranceOrderList, vehicleInspectionOrderServiceLogList, vehicleInspectionOrderPaymentList, handOverChecklistItemList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mList, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, reportVehicleInspectionReportList, reportFileInspectionReportList, serviceVehicleRepairingList, vehicleRepairingReportList, orderReviewResultList, orderRatingResultList, orderDiscountCouponList, vehicleInspectionOrderCouponList } = this.props.vehicleInspectionOrder
+    const { id, vehicleInspectionInsuranceOrderCount, vehicleInspectionOrderChargeCount, vehicleInspectionOrderServiceLogCount, vehicleInspectionOrderPaymentCount, handOverChecklistItemCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, orderReviewResultCount, orderRatingResultCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.vehicleInspectionOrder
+    const { vehicleInspectionInsuranceOrderList, vehicleInspectionOrderChargeList, vehicleInspectionOrderServiceLogList, vehicleInspectionOrderPaymentList, handOverChecklistItemList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mList, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList, orderReviewResultList, orderRatingResultList, orderDiscountCouponList, vehicleInspectionOrderCouponList } = this.props.vehicleInspectionOrder
     
     const owner = { type: '_vehicleInspectionOrder', id }
     return (
@@ -75,6 +73,12 @@ export default class VehicleInspectionOrderEditDetail extends Component {
 		<Card title="车辆上线检测保险订单列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <VehicleInspectionInsuranceOrderEditTable data={vehicleInspectionInsuranceOrderList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
+		<Card title="车辆检验订单费用列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <VehicleInspectionOrderChargeEditTable data={vehicleInspectionOrderChargeList} owner={owner} {...this.props} />
           </Form>
         </Card>
 
@@ -150,27 +154,9 @@ export default class VehicleInspectionOrderEditDetail extends Component {
           </Form>
         </Card>
 
-		<Card title="车辆上线年检报告列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ReportVehicleInspectionReportEditTable data={reportVehicleInspectionReportList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="车辆6年免检报告列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ReportFileInspectionReportEditTable data={reportFileInspectionReportList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
 		<Card title="维修服务列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <ServiceVehicleRepairingEditTable data={serviceVehicleRepairingList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="车辆维修报告列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <VehicleRepairingReportEditTable data={vehicleRepairingReportList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

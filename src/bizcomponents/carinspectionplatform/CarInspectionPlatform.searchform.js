@@ -66,6 +66,8 @@ export default class CarInspectionPlatformSearchForm extends PureComponent {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
         ...this.buildStringSearchParameters(fieldsValue, 'name'),
         ...this.buildStringSearchParameters(fieldsValue, 'description'),
+        ...this.buildStringSearchParameters(fieldsValue, 'insuranceContactName'),
+        ...this.buildStringSearchParameters(fieldsValue, 'insuranceContactMobile'),
 
       }
       const { owner } = this.props
@@ -135,6 +137,22 @@ export default class CarInspectionPlatformSearchForm extends PureComponent {
             <FormItem label="描述">
               {getFieldDecorator('description')(
                 <Input placeholder="请输入描述" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="保险联系人姓名">
+              {getFieldDecorator('insuranceContactName')(
+                <Input placeholder="请输入保险联系人姓名" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="保险联系人手机">
+              {getFieldDecorator('insuranceContactMobile')(
+                <Input placeholder="请输入保险联系人手机" />
               )}
             </FormItem>
           </Col>

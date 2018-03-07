@@ -18,8 +18,44 @@ const load = (targetObjectId, parameters) => {
 
 
 
+const addVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
+  const url = `${PREFIX}inspectionStationManager/addVehicleServiceCompanyEmployee/inspectionStationId/employeeName/profileImage/companyName/mobileNumber/gender/availableState/innocentEvidenceImage/identityCardNumber/companyId/availableMoveCar/availableInspectionCar/availableRepairCar/tokensExpr/`
+  const requestParameters = { ...parameters, tokensExpr: 'none' }
+
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const updateVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
+  const url = `${PREFIX}inspectionStationManager/updateVehicleServiceCompanyEmployeeProperties/inspectionStationId/id/employeeName/profileImage/companyName/mobileNumber/gender/availableState/innocentEvidenceImage/identityCardNumber/availableMoveCar/availableInspectionCar/availableRepairCar/tokensExpr/`
+  const inspectionStationId = targetObjectId
+  const requestParameters = { ...parameters, inspectionStationId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const removeVehicleServiceCompanyEmployeeList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}inspectionStationManager/removeVehicleServiceCompanyEmployeeList/inspectionStationId/vehicleServiceCompanyEmployeeIds/tokensExpr/`
+  const requestParameters = { ...parameters, inspectionStationId: targetObjectId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+
 const addServiceVehicleInspection = (targetObjectId, parameters) => {
-  const url = `${PREFIX}inspectionStationManager/addServiceVehicleInspection/inspectionStationId/serviceStatus/responsibleWorkerId/serviceSummary/startTime/longitude/latitude/inspectionDatetime/inspectionResult/inspectionNeedRepair/merchantId/mainOrderId/tokensExpr/`
+  const url = `${PREFIX}inspectionStationManager/addServiceVehicleInspection/inspectionStationId/serviceStatus/responsibleWorkerId/serviceSummary/startTime/longitude/latitude/inspectionDatetime/inspectionReportImage1/inspectionReportImage2/inspectionReportImage3/inspectionReportImage4/inspectionReportImage5/inspectionResult/inspectionNeedRepair/merchantId/mainOrderId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -31,7 +67,7 @@ const addServiceVehicleInspection = (targetObjectId, parameters) => {
 }
 
 const updateServiceVehicleInspection = (targetObjectId, parameters) => {
-  const url = `${PREFIX}inspectionStationManager/updateServiceVehicleInspectionProperties/inspectionStationId/id/serviceStatus/serviceSummary/startTime/longitude/latitude/inspectionDatetime/inspectionResult/inspectionNeedRepair/tokensExpr/`
+  const url = `${PREFIX}inspectionStationManager/updateServiceVehicleInspectionProperties/inspectionStationId/id/serviceStatus/serviceSummary/startTime/longitude/latitude/inspectionDatetime/inspectionReportImage1/inspectionReportImage2/inspectionReportImage3/inspectionReportImage4/inspectionReportImage5/inspectionResult/inspectionNeedRepair/tokensExpr/`
   const inspectionStationId = targetObjectId
   const requestParameters = { ...parameters, inspectionStationId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -55,7 +91,7 @@ const removeServiceVehicleInspectionList = (targetObjectId, parameters) => {
 
 
 const addServiceFileInspection = (targetObjectId, parameters) => {
-  const url = `${PREFIX}inspectionStationManager/addServiceFileInspection/inspectionStationId/serviceStatus/responsibleWorkerId/serviceSummary/inspectionResult/startTime/longitude/latitude/inspectionDatetime/merchantId/mainOrderId/tokensExpr/`
+  const url = `${PREFIX}inspectionStationManager/addServiceFileInspection/inspectionStationId/serviceStatus/responsibleWorkerId/serviceSummary/inspectionResult/inspectionReportImage1/inspectionReportImage2/inspectionReportImage3/inspectionReportImage4/inspectionReportImage5/startTime/longitude/latitude/inspectionDatetime/merchantId/mainOrderId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -67,7 +103,7 @@ const addServiceFileInspection = (targetObjectId, parameters) => {
 }
 
 const updateServiceFileInspection = (targetObjectId, parameters) => {
-  const url = `${PREFIX}inspectionStationManager/updateServiceFileInspectionProperties/inspectionStationId/id/serviceStatus/serviceSummary/inspectionResult/startTime/longitude/latitude/inspectionDatetime/tokensExpr/`
+  const url = `${PREFIX}inspectionStationManager/updateServiceFileInspectionProperties/inspectionStationId/id/serviceStatus/serviceSummary/inspectionResult/inspectionReportImage1/inspectionReportImage2/inspectionReportImage3/inspectionReportImage4/inspectionReportImage5/startTime/longitude/latitude/inspectionDatetime/tokensExpr/`
   const inspectionStationId = targetObjectId
   const requestParameters = { ...parameters, inspectionStationId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -128,12 +164,15 @@ const removeInspectionStationAccountList = (targetObjectId, parameters) => {
 
 const InspectionStationService = { view,
   load,
+  addVehicleServiceCompanyEmployee,
   addServiceVehicleInspection,
   addServiceFileInspection,
   addInspectionStationAccount,
+  updateVehicleServiceCompanyEmployee,
   updateServiceVehicleInspection,
   updateServiceFileInspection,
   updateInspectionStationAccount,
+  removeVehicleServiceCompanyEmployeeList,
   removeServiceVehicleInspectionList,
   removeServiceFileInspectionList,
   removeInspectionStationAccountList }

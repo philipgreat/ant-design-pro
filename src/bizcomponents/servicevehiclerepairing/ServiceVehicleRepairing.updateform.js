@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover, Switch } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
-import OSSPictureEdit from '../../components/OSSPictureEdit'
+import ImageUpload from '../../components/ImageUpload'
+//import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
@@ -22,6 +23,24 @@ const fieldLabels = {
   longitude: '经度',
   latitude: '纬度',
   lastUpdateTime: '最后更新时间',
+  inspectionReportImage1: '年检报告1',
+  inspectionReportImage2: '年检报告2',
+  inspectionReportImage3: '年检报告3',
+  inspectionReportImage4: '年检报告4',
+  inspectionReportImage5: '年检报告5',
+  repairingQuotationImage1: '车辆维修报价单1',
+  repairingQuotationImage2: '车辆维修报价单2',
+  repairingQuotationImage3: '车辆维修报价单3',
+  repairingQuotationImage4: '车辆维修报价单4',
+  repairingQuotationImage5: '车辆维修报价单5',
+  repairingQuotationTotalAmount: '车辆维修报价总金额',
+  repairingPartImg1: '车辆维修部分图片1',
+  repairingPartImg2: '车辆维修部分图片2',
+  repairingPartImg3: '车辆维修部分图片3',
+  repairingPartImg4: '车辆维修部分图片4',
+  repairingPartImg5: '车辆维修部分图片5',
+  repairingPartListComment: '车辆维修备注',
+  repairingFinishedDatetime: '维修完成日期时间',
   merchant: '商户',
   mainOrder: '年检订单',
 
@@ -30,6 +49,21 @@ const fieldLabels = {
 const imageURLPrefix = '//localhost:2090'
 
 const imageKeys = [
+  'inspectionReportImage1',
+  'inspectionReportImage2',
+  'inspectionReportImage3',
+  'inspectionReportImage4',
+  'inspectionReportImage5',
+  'repairingQuotationImage1',
+  'repairingQuotationImage2',
+  'repairingQuotationImage3',
+  'repairingQuotationImage4',
+  'repairingQuotationImage5',
+  'repairingPartImg1',
+  'repairingPartImg2',
+  'repairingPartImg3',
+  'repairingPartImg4',
+  'repairingPartImg5',
 ]
 
 
@@ -46,7 +80,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow)
+      convertedImagesValues: mapFromImageValues(selectedRow,imageKeys)
     })
   }
 
@@ -80,6 +114,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
         ...item,
         startTime: moment(item.startTime).format('YYYY-MM-DD'),
         lastUpdateTime: moment(item.lastUpdateTime).format('YYYY-MM-DD'),
+        repairingFinishedDatetime: moment(item.repairingFinishedDatetime).format('YYYY-MM-DD'),
 
       }
     })
@@ -96,51 +131,6 @@ class ServiceVehicleRepairingUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = (convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        if (value.response.indexOf('//') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('http://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('https://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-  
-  mapFromImageValues = (selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   handlePreview = (file) => {
     console.log('preview file', file)
@@ -166,7 +156,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
 
         const { owner } = this.props
         const serviceVehicleRepairingId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, serviceVehicleRepairingId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
@@ -193,7 +183,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
 
         const { owner } = this.props
         const serviceVehicleRepairingId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, serviceVehicleRepairingId, ...imagesValues }
 
         // TODO
@@ -365,10 +355,193 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 </Form.Item>
               </Col>
 
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.repairingQuotationTotalAmount}>
+                  {getFieldDecorator('repairingQuotationTotalAmount', {
+                    rules: [{ required: true, message: '请输入车辆维修报价总金额' }],
+                  })(
+                    <Input placeholder="请输入请输入车辆维修报价总金额money" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.repairingFinishedDatetime}>
+                  {getFieldDecorator('repairingFinishedDatetime', {
+                    rules: [{ required: true, message: '请输入维修完成日期时间' }],
+                  })(
+                    <Input placeholder="请输入请输入维修完成日期时间date_time" />
+                  )}
+                </Form.Item>
+              </Col>
+
             </Row>
           </Form>  
         </Card>
+       
+        
+        
+        
 
+        <Card title="车辆维修备注" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+              <Col lg={24} md={24} sm={24}>
+                <Form.Item>
+                  {getFieldDecorator('repairingPartListComment', {
+                    rules: [{ required: true, message: '请输入车辆维修备注' }],
+                  })(
+                    <TextArea rows={4} placeholder="请输入请输入车辆维修备注" />
+                  )}
+                </Form.Item>
+              </Col>
+            </Row>
+          </Form>
+        </Card>
+
+
+        <Card title="附件" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告1"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage1')}
+                  fileList={convertedImagesValues.inspectionReportImage1}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告2"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage2')}
+                  fileList={convertedImagesValues.inspectionReportImage2}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告3"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage3')}
+                  fileList={convertedImagesValues.inspectionReportImage3}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告4"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage4')}
+                  fileList={convertedImagesValues.inspectionReportImage4}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告5"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage5')}
+                  fileList={convertedImagesValues.inspectionReportImage5}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="车辆维修报价单1"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingQuotationImage1')}
+                  fileList={convertedImagesValues.repairingQuotationImage1}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="车辆维修报价单2"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingQuotationImage2')}
+                  fileList={convertedImagesValues.repairingQuotationImage2}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="车辆维修报价单3"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingQuotationImage3')}
+                  fileList={convertedImagesValues.repairingQuotationImage3}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="车辆维修报价单4"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingQuotationImage4')}
+                  fileList={convertedImagesValues.repairingQuotationImage4}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="车辆维修报价单5"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingQuotationImage5')}
+                  fileList={convertedImagesValues.repairingQuotationImage5}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="车辆维修部分图片1"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingPartImg1')}
+                  fileList={convertedImagesValues.repairingPartImg1}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="车辆维修部分图片2"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingPartImg2')}
+                  fileList={convertedImagesValues.repairingPartImg2}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="车辆维修部分图片3"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingPartImg3')}
+                  fileList={convertedImagesValues.repairingPartImg3}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="车辆维修部分图片4"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingPartImg4')}
+                  fileList={convertedImagesValues.repairingPartImg4}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="车辆维修部分图片5"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'repairingPartImg5')}
+                  fileList={convertedImagesValues.repairingPartImg5}
+                />
+              </Col>
+
+            </Row>
+          </Form>
+        </Card>
 
         <FooterToolbar>
           {getErrorInfo()}

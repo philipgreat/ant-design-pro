@@ -196,7 +196,7 @@ class PreorderPromotionEditTable extends PureComponent {
   { title: '优惠金额', dataIndex: 'discountAmount', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
   { title: '开始日期', dataIndex: 'startDate', render: (text, record) => moment(record.startDate).format('YYYY-MM-DD HH:mm:ss') },
   { title: '结束日期', dataIndex: 'endDate', render: (text, record) => moment(record.endDate).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

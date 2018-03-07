@@ -9,7 +9,7 @@ import ImagePreview from '../../components/ImagePreview'
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '服务单号', debugtype: 'string', dataIndex: 'serviceOrderNumber', width: '14' },
-  { title: '服务单代码', debugtype: 'string', dataIndex: 'serviceOrderCode', width: '9' },
+  { title: '服务单代码', debugtype: 'string', dataIndex: 'serviceOrderCode', width: '35' },
   { title: '服务单名称', debugtype: 'string', dataIndex: 'serviceOrderName', width: '8' },
   { title: '服务完成时间', dataIndex: 'serviceFulfilledDatetime', render: (text, record) => moment(record.serviceFulfilledDatetime).format('YYYY-MM-DD') },
   { title: '合同编号', debugtype: 'string', dataIndex: 'contractId', width: '13' },
@@ -47,7 +47,7 @@ class ServiceCompanyAccountConfirmationTable extends PureComponent {
           dataSource={data}
           columns={columns}
           size="small"
-          scroll={{ x: 2010 }}
+          scroll={{ x: 2400 }}
         />
       </div>
     )

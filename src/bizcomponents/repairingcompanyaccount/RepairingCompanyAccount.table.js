@@ -20,9 +20,9 @@ const columns = [
   { title: '付款日期时间', dataIndex: 'paymentDatetime', render: (text, record) => moment(record.paymentDatetime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '微信订单ID', debugtype: 'string', dataIndex: 'wechatOrderId', width: '36' },
   { title: '微信预付订单ID', debugtype: 'string', dataIndex: 'wechatPrepayId', width: '25' },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.id}</Link>) : '暂无') },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.id}</Link>) : '暂无') },
-  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? (<Link to={`/account/${record.account.id}/dashboard`}>{record.account.id}</Link>) : '暂无') },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.displayName}</Link>) : '暂无') },
+  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.displayName}</Link>) : '暂无') },
+  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? (<Link to={`/account/${record.account.id}/dashboard`}>{record.account.displayName}</Link>) : '暂无') },
 
 ]
 

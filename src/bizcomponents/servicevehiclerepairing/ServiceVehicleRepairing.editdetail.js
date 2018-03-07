@@ -36,15 +36,12 @@ const topColResponsiveProps = {
 }))
 export default class ServiceVehicleRepairingEditDetail extends Component {
   render() {
-    const {ReportVehicleInspectionReportEditTable} = GlobalComponents;
-    const {RepairingQuotationEditTable} = GlobalComponents;
     const {RepairingAllowanceItemEditTable} = GlobalComponents;
     const {VehicleRepairingPaymentEditTable} = GlobalComponents;
-    const {VehicleRepairingReportEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, reportVehicleInspectionReportCount, repairingQuotationCount, repairingAllowanceItemCount, vehicleRepairingPaymentCount, vehicleRepairingReportCount } = this.props.serviceVehicleRepairing
-    const { reportVehicleInspectionReportList, repairingQuotationList, repairingAllowanceItemList, vehicleRepairingPaymentList, vehicleRepairingReportList } = this.props.serviceVehicleRepairing
+    const { id, repairingAllowanceItemCount, vehicleRepairingPaymentCount } = this.props.serviceVehicleRepairing
+    const { repairingAllowanceItemList, vehicleRepairingPaymentList } = this.props.serviceVehicleRepairing
     
     const owner = { type: '_serviceVehicleRepairing', id }
     return (
@@ -56,18 +53,6 @@ export default class ServiceVehicleRepairingEditDetail extends Component {
       >
 
 
-		<Card title="车辆上线年检报告列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <ReportVehicleInspectionReportEditTable data={reportVehicleInspectionReportList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="车辆维修报价列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <RepairingQuotationEditTable data={repairingQuotationList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
 		<Card title="车辆维修补贴项列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <RepairingAllowanceItemEditTable data={repairingAllowanceItemList} owner={owner} {...this.props} />
@@ -77,12 +62,6 @@ export default class ServiceVehicleRepairingEditDetail extends Component {
 		<Card title="支付维修订单列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <VehicleRepairingPaymentEditTable data={vehicleRepairingPaymentList} owner={owner} {...this.props} />
-          </Form>
-        </Card>
-
-		<Card title="车辆维修报告列表" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <VehicleRepairingReportEditTable data={vehicleRepairingReportList} owner={owner} {...this.props} />
           </Form>
         </Card>
 

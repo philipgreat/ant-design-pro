@@ -9,7 +9,7 @@ import ImagePreview from '../../components/ImagePreview'
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '服务名称', debugtype: 'string', dataIndex: 'serviceName', width: '8' },
-  { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '30' },
+  { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '35' },
   { title: '服务描述', debugtype: 'string', dataIndex: 'serviceDescription', width: '41' },
   { title: '产品类型', dataIndex: 'availableProduct', render: (text, record) => (record.availableProduct ? record.availableProduct.id : '暂无') },
 ]
@@ -38,7 +38,7 @@ class AvailableServiceConfirmationTable extends PureComponent {
           dataSource={data}
           columns={columns}
           size="small"
-          scroll={{ x: 1230 }}
+          scroll={{ x: 1305 }}
         />
       </div>
     )

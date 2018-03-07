@@ -88,47 +88,10 @@ class ServiceVehicleInspectionBizApp extends React.PureComponent {
         </span>}
       >
 
-        <Menu.Item>
-          <Link to={`/serviceVehicleInspection/${objectId}/list/reportVehicleInspectionReportList`}>车辆上线年检报告</Link>
-        </Menu.Item>
       </SubMenu>
     )
   }
 
-
-  getReportVehicleInspectionReportSearch = () => {
-    const {ReportVehicleInspectionReportSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._serviceVehicleInspection.reportVehicleInspectionReportList,
-      count: state._serviceVehicleInspection.reportVehicleInspectionReportCount,
-      currentPage: state._serviceVehicleInspection.reportVehicleInspectionReportCurrentPageNumber,
-      searchFormParameters: state._serviceVehicleInspection.reportVehicleInspectionReportSearchFormParameters,
-      loading: state._serviceVehicleInspection.loading,
-      owner: { type: '_serviceVehicleInspection', id: state._serviceVehicleInspection.id, listName: 'reportVehicleInspectionReportList' }, // this is for model namespace and
-    }))(ReportVehicleInspectionReportSearch)
-  }
-  getReportVehicleInspectionReportCreateForm = () => {
-   	const {ReportVehicleInspectionReportCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._serviceVehicleInspection.reportVehicleInspectionReportList,
-      count: state._serviceVehicleInspection.reportVehicleInspectionReportCount,
-      currentPage: state._serviceVehicleInspection.reportVehicleInspectionReportCurrentPageNumber,
-      searchFormParameters: state._serviceVehicleInspection.reportVehicleInspectionReportSearchFormParameters,
-      loading: state._serviceVehicleInspection.loading,
-      owner: { type: '_serviceVehicleInspection', id: state._serviceVehicleInspection.id, listName: 'reportVehicleInspectionReportList'}, // this is for model namespace and
-    }))(ReportVehicleInspectionReportCreateForm)
-  }
-  
-  getReportVehicleInspectionReportUpdateForm = () => {
-  	const {ReportVehicleInspectionReportUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._serviceVehicleInspection.selectedRows,
-      currentUpdateIndex: state._serviceVehicleInspection.currentUpdateIndex,
-      owner: { type: '_serviceVehicleInspection', id: state._serviceVehicleInspection.id, listName: 'reportVehicleInspectionReportList' }, // this is for model namespace and
-    }))(ReportVehicleInspectionReportUpdateForm)
-  }
 
   getPageTitle = () => {
     // const { location } = this.props
@@ -216,10 +179,6 @@ class ServiceVehicleInspectionBizApp extends React.PureComponent {
                <Route path="/serviceVehicleInspection/:id/editDetail" component={ServiceVehicleInspectionEditDetail} />
                <Route path="/serviceVehicleInspection/:id/viewDetail" component={ServiceVehicleInspectionViewDetail} />
                
-
-               <Route path="/serviceVehicleInspection/:id/list/reportVehicleInspectionReportList" component={this.getReportVehicleInspectionReportSearch()} />
-               <Route path="/serviceVehicleInspection/:id/list/reportVehicleInspectionReportCreateForm" component={this.getReportVehicleInspectionReportCreateForm()} />
-               <Route path="/serviceVehicleInspection/:id/list/reportVehicleInspectionReportUpdateForm" component={this.getReportVehicleInspectionReportUpdateForm()} />
               
              </Switch>
            </Content>

@@ -39,6 +39,8 @@ const summaryOf = (carInspectionPlatform) =>{
 <Description term="ID">{carInspectionPlatform.id}</Description> 
 <Description term="名称">{carInspectionPlatform.name}</Description> 
 <Description term="描述">{carInspectionPlatform.description}</Description> 
+<Description term="保险联系人姓名">{carInspectionPlatform.insuranceContactName}</Description> 
+<Description term="保险联系人手机">{carInspectionPlatform.insuranceContactMobile}</Description> 
 	
         
       </DescriptionList>

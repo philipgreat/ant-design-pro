@@ -89,6 +89,9 @@ class CustomerBizApp extends React.PureComponent {
       >
 
         <Menu.Item>
+          <Link to={`/customer/${objectId}/list/companyQrcodePromotionRecordList`}>公司二维码推广记录</Link>
+        </Menu.Item>
+        <Menu.Item>
           <Link to={`/customer/${objectId}/list/vehicleInfoList`}>车辆信息</Link>
         </Menu.Item>
         <Menu.Item>
@@ -104,6 +107,40 @@ class CustomerBizApp extends React.PureComponent {
     )
   }
 
+
+  getCompanyQrcodePromotionRecordSearch = () => {
+    const {CompanyQrcodePromotionRecordSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._customer.companyQrcodePromotionRecordList,
+      count: state._customer.companyQrcodePromotionRecordCount,
+      currentPage: state._customer.companyQrcodePromotionRecordCurrentPageNumber,
+      searchFormParameters: state._customer.companyQrcodePromotionRecordSearchFormParameters,
+      loading: state._customer.loading,
+      owner: { type: '_customer', id: state._customer.id, listName: 'companyQrcodePromotionRecordList' }, // this is for model namespace and
+    }))(CompanyQrcodePromotionRecordSearch)
+  }
+  getCompanyQrcodePromotionRecordCreateForm = () => {
+   	const {CompanyQrcodePromotionRecordCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._customer.companyQrcodePromotionRecordList,
+      count: state._customer.companyQrcodePromotionRecordCount,
+      currentPage: state._customer.companyQrcodePromotionRecordCurrentPageNumber,
+      searchFormParameters: state._customer.companyQrcodePromotionRecordSearchFormParameters,
+      loading: state._customer.loading,
+      owner: { type: '_customer', id: state._customer.id, listName: 'companyQrcodePromotionRecordList'}, // this is for model namespace and
+    }))(CompanyQrcodePromotionRecordCreateForm)
+  }
+  
+  getCompanyQrcodePromotionRecordUpdateForm = () => {
+  	const {CompanyQrcodePromotionRecordUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._customer.selectedRows,
+      currentUpdateIndex: state._customer.currentUpdateIndex,
+      owner: { type: '_customer', id: state._customer.id, listName: 'companyQrcodePromotionRecordList' }, // this is for model namespace and
+    }))(CompanyQrcodePromotionRecordUpdateForm)
+  }
 
   getVehicleInfoSearch = () => {
     const {VehicleInfoSearch} = GlobalComponents;
@@ -327,6 +364,10 @@ class CustomerBizApp extends React.PureComponent {
                <Route path="/customer/:id/editDetail" component={CustomerEditDetail} />
                <Route path="/customer/:id/viewDetail" component={CustomerViewDetail} />
                
+
+               <Route path="/customer/:id/list/companyQrcodePromotionRecordList" component={this.getCompanyQrcodePromotionRecordSearch()} />
+               <Route path="/customer/:id/list/companyQrcodePromotionRecordCreateForm" component={this.getCompanyQrcodePromotionRecordCreateForm()} />
+               <Route path="/customer/:id/list/companyQrcodePromotionRecordUpdateForm" component={this.getCompanyQrcodePromotionRecordUpdateForm()} />
 
                <Route path="/customer/:id/list/vehicleInfoList" component={this.getVehicleInfoSearch()} />
                <Route path="/customer/:id/list/vehicleInfoCreateForm" component={this.getVehicleInfoCreateForm()} />

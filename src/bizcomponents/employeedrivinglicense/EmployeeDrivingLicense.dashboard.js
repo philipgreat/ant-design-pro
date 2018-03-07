@@ -36,11 +36,11 @@ const summaryOf = (employeeDrivingLicense) =>{
 <Description term="准驾车型">{employeeDrivingLicense.licenseType}</Description> 
 <Description term="驾驶证号码">{employeeDrivingLicense.licenseNumber}</Description> 
 <Description term="有效期至">{ moment(employeeDrivingLicense.expirationDate).format('YYYY-MM-DD')}</Description> 
-<Description term="驾驶证图1">{employeeDrivingLicense.image1}</Description> 
-<Description term="驾驶证图2">{employeeDrivingLicense.image2}</Description> 
-<Description term="驾驶证图3">{employeeDrivingLicense.image3}</Description> 
-<Description term="驾驶证图4">{employeeDrivingLicense.image4}</Description> 
-<Description term="驾驶证图5">{employeeDrivingLicense.image5}</Description> 
+<Description term="图1">{employeeDrivingLicense.image1}</Description> 
+<Description term="图2">{employeeDrivingLicense.image2}</Description> 
+<Description term="图3">{employeeDrivingLicense.image3}</Description> 
+<Description term="图4">{employeeDrivingLicense.image4}</Description> 
+<Description term="图5">{employeeDrivingLicense.image5}</Description> 
 	
         
       </DescriptionList>

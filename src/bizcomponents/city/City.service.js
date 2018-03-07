@@ -55,7 +55,7 @@ const removeProductPriceList = (targetObjectId, parameters) => {
 
 
 const addVehicleServiceCompany = (targetObjectId, parameters) => {
-  const url = `${PREFIX}cityManager/addVehicleServiceCompany/addressCityId/companyName/operatingStatus/addressDetail/availableStoreService/availableHomeService/openingTime/longitude/latitude/contactPhone/companyImage1/companyImage2/companyImage3/companyImage4/companyImage5/orderContact/orderContactPhone/platformId/tokensExpr/`
+  const url = `${PREFIX}cityManager/addVehicleServiceCompany/addressCityId/companyName/operatingStatus/addressDetail/availableStoreService/availableHomeService/openingTime/longitude/latitude/contactPhone/companyImage1/companyImage2/companyImage3/companyImage4/companyImage5/promoteQrcodeImage/orderContact/orderContactPhone/platformId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -67,7 +67,7 @@ const addVehicleServiceCompany = (targetObjectId, parameters) => {
 }
 
 const updateVehicleServiceCompany = (targetObjectId, parameters) => {
-  const url = `${PREFIX}cityManager/updateVehicleServiceCompanyProperties/cityId/id/companyName/operatingStatus/addressDetail/availableStoreService/availableHomeService/openingTime/longitude/latitude/contactPhone/companyImage1/companyImage2/companyImage3/companyImage4/companyImage5/orderContact/orderContactPhone/tokensExpr/`
+  const url = `${PREFIX}cityManager/updateVehicleServiceCompanyProperties/cityId/id/companyName/operatingStatus/addressDetail/availableStoreService/availableHomeService/openingTime/longitude/latitude/contactPhone/companyImage1/companyImage2/companyImage3/companyImage4/companyImage5/promoteQrcodeImage/orderContact/orderContactPhone/tokensExpr/`
   const cityId = targetObjectId
   const requestParameters = { ...parameters, cityId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }

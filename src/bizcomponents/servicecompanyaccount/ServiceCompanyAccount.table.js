@@ -10,7 +10,7 @@ import ImagePreview from '../../components/ImagePreview'
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '服务单号', debugtype: 'string', dataIndex: 'serviceOrderNumber', width: '14' },
-  { title: '服务单代码', debugtype: 'string', dataIndex: 'serviceOrderCode', width: '9' },
+  { title: '服务单代码', debugtype: 'string', dataIndex: 'serviceOrderCode', width: '35' },
   { title: '服务单名称', debugtype: 'string', dataIndex: 'serviceOrderName', width: '8' },
   { title: '服务完成时间', dataIndex: 'serviceFulfilledDatetime', render: (text, record) => moment(record.serviceFulfilledDatetime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '合同编号', debugtype: 'string', dataIndex: 'contractId', width: '13' },
@@ -19,9 +19,9 @@ const columns = [
   { title: '服务人员', debugtype: 'string', dataIndex: 'serviceWorkerName', width: '7' },
   { title: '商户名称', debugtype: 'string', dataIndex: 'serviceCompanyName', width: '27' },
   { title: '年检订单ID', debugtype: 'string', dataIndex: 'mainOrderId', width: '28' },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.id}</Link>) : '暂无') },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.id}</Link>) : '暂无') },
-  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? (<Link to={`/account/${record.account.id}/dashboard`}>{record.account.id}</Link>) : '暂无') },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.displayName}</Link>) : '暂无') },
+  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.displayName}</Link>) : '暂无') },
+  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? (<Link to={`/account/${record.account.id}/dashboard`}>{record.account.displayName}</Link>) : '暂无') },
 
 ]
 
@@ -99,7 +99,7 @@ class ServiceCompanyAccountTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 2010 }}
+          scroll={{ x: 2400 }}
         />
       </div>
     )

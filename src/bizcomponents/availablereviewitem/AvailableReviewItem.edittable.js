@@ -192,7 +192,7 @@ class AvailableReviewItemEditTable extends PureComponent {
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '评论内容', debugtype: 'string', dataIndex: 'reviewName', width: '8', render: (text, record) => renderStringEdit('reviewName',text, record)  },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

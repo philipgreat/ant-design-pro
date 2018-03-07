@@ -10,9 +10,9 @@ import ImagePreview from '../../components/ImagePreview'
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/availableService/${text}/dashboard`}>{text}</Link>) },
   { title: '服务名称', debugtype: 'string', dataIndex: 'serviceName', width: '8' },
-  { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '30' },
+  { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '35' },
   { title: '服务描述', debugtype: 'string', dataIndex: 'serviceDescription', width: '41' },
-  { title: '产品类型', dataIndex: 'availableProduct', render: (text, record) => (record.availableProduct ? (<Link to={`/availableProduct/${record.availableProduct.id}/dashboard`}>{record.availableProduct.id}</Link>) : '暂无') },
+  { title: '产品类型', dataIndex: 'availableProduct', render: (text, record) => (record.availableProduct ? (<Link to={`/availableProduct/${record.availableProduct.id}/dashboard`}>{record.availableProduct.displayName}</Link>) : '暂无') },
 
 ]
 
@@ -90,7 +90,7 @@ class AvailableServiceTable extends PureComponent {
           columns={columns}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 1230 }}
+          scroll={{ x: 1305 }}
         />
       </div>
     )

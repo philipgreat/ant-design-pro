@@ -194,10 +194,10 @@ class CustomerEditTable extends PureComponent {
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '客户昵称', debugtype: 'string', dataIndex: 'nickName', width: '24', render: (text, record) => renderStringEdit('nickName',text, record)  },
   { title: '头像', dataIndex: 'logoImage', render: (text, record) => <ImagePreview imageLocation={record.logoImage} /> },
-  { title: 'WeixinOpenid', debugtype: 'string', dataIndex: 'weixinOpenid', width: '29', render: (text, record) => renderStringEdit('weixinOpenid',text, record)  },
-  { title: 'WeixinAppid', debugtype: 'string', dataIndex: 'weixinAppid', width: '23', render: (text, record) => renderStringEdit('weixinAppid',text, record)  },
-  { title: 'SecUser', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.id : '暂无') },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
+  { title: '微信ID', debugtype: 'string', dataIndex: 'weixinOpenid', width: '29', render: (text, record) => renderStringEdit('weixinOpenid',text, record)  },
+  { title: '微信APP', debugtype: 'string', dataIndex: 'weixinAppid', width: '23', render: (text, record) => renderStringEdit('weixinAppid',text, record)  },
+  { title: 'SecUser', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.displayName : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

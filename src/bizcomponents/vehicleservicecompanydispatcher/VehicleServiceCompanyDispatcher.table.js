@@ -10,7 +10,7 @@ import ImagePreview from '../../components/ImagePreview'
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '18' },
-  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? (<Link to={`/vehicleServiceCompany/${record.company.id}/dashboard`}>{record.company.id}</Link>) : '暂无') },
+  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? (<Link to={`/vehicleServiceCompany/${record.company.id}/dashboard`}>{record.company.displayName}</Link>) : '暂无') },
 
 ]
 

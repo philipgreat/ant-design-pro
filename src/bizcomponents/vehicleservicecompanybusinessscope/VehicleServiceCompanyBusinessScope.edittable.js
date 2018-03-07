@@ -192,8 +192,9 @@ class VehicleServiceCompanyBusinessScopeEditTable extends PureComponent {
     
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? record.company.id : '暂无') },
-  { title: '服务范围', dataIndex: 'availableService', render: (text, record) => (record.availableService ? record.availableService.id : '暂无') },
+  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? record.company.displayName : '暂无') },
+  { title: '服务范围', dataIndex: 'availableService', render: (text, record) => (record.availableService ? record.availableService.displayName : '暂无') },
+  { title: '可用状态', dataIndex: 'serviceAvaliability', render: (text, record) => (record.serviceAvaliability ? '是' : '否') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    
@@ -202,6 +203,7 @@ class VehicleServiceCompanyBusinessScopeEditTable extends PureComponent {
       	'id':`+1`, 
 				'company':'',
 				'availableService':'',
+				'serviceAvaliability':'',
 
 
       };

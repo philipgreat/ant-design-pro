@@ -48,7 +48,7 @@ const summaryOf = (availableService) =>{
 export default class AvailableServiceDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, servicePriceCount, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount, vehicleInspectionOrderServiceLogCount } = this.props.availableService
+    const { id, servicePriceCount, vehicleRepairingAllowanceCount, vehicleServiceCompanyBusinessScopeCount } = this.props.availableService
     
     
     
@@ -113,24 +113,6 @@ export default class AvailableServiceDashboard extends Component {
                 <Link to={`/availableService/${id}/list/vehicleServiceCompanyBusinessScopeCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/availableService/${id}/list/vehicleServiceCompanyBusinessScopeList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
-
-          
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="年检订单执行日志"
-                action={<Tooltip title="年检订单执行日志"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(vehicleInspectionOrderServiceLogCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/availableService/${id}/list/vehicleInspectionOrderServiceLogList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/availableService/${id}/list/vehicleInspectionOrderServiceLogCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/availableService/${id}/list/vehicleInspectionOrderServiceLogList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

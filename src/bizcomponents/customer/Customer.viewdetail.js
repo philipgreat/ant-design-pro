@@ -39,8 +39,8 @@ const summaryOf = (customer) =>{
 <Description term="ID">{customer.id}</Description> 
 <Description term="客户昵称">{customer.nickName}</Description> 
 <Description term="头像">{customer.logoImage}</Description> 
-<Description term="WeixinOpenid">{customer.weixinOpenid}</Description> 
-<Description term="WeixinAppid">{customer.weixinAppid}</Description> 
+<Description term="微信ID">{customer.weixinOpenid}</Description> 
+<Description term="微信APP">{customer.weixinAppid}</Description> 
 	
         
       </DescriptionList>
@@ -55,7 +55,7 @@ export default class CustomerViewDetail extends Component {
 
 
   state = {
-    tabKey: `vehicleInfoList`,
+    tabKey: `companyQrcodePromotionRecordList`,
     stepDirection: 'horizontal',
   }
  
@@ -63,6 +63,7 @@ export default class CustomerViewDetail extends Component {
     this.setState({ tabKey: key });
   }  
   render() {
+    const {CompanyQrcodePromotionRecordViewTable} = GlobalComponents;
     const {VehicleInfoViewTable} = GlobalComponents;
     const {VehicleInspectionOrderViewTable} = GlobalComponents;
     const {OrderDiscountCouponViewTable} = GlobalComponents;
@@ -71,13 +72,14 @@ export default class CustomerViewDetail extends Component {
     // eslint-disable-next-line max-len
     
     const customer = this.props.customer
-    const { id, vehicleInfoCount, vehicleInspectionOrderCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = customer
-    const { vehicleInfoList, vehicleInspectionOrderList, orderDiscountCouponList, vehicleInspectionOrderCouponList } = customer
+    const { id, companyQrcodePromotionRecordCount, vehicleInfoCount, vehicleInspectionOrderCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = customer
+    const { companyQrcodePromotionRecordList, vehicleInfoList, vehicleInspectionOrderList, orderDiscountCouponList, vehicleInspectionOrderCouponList } = customer
     
     const owner = { type: '_customer', id }
     
     const tabList = [
 
+      {key: 'companyQrcodePromotionRecordList',tab: `公司二维码推广记录(${companyQrcodePromotionRecordCount})`}, 
       {key: 'vehicleInfoList',tab: `车辆信息(${vehicleInfoCount})`}, 
       {key: 'vehicleInspectionOrderList',tab: `年检订单(${vehicleInspectionOrderCount})`}, 
       {key: 'orderDiscountCouponList',tab: `优惠券(${orderDiscountCouponCount})`}, 
@@ -88,7 +90,10 @@ export default class CustomerViewDetail extends Component {
    
    
     const contentList = {
-       vehicleInfoList:  
+       companyQrcodePromotionRecordList:  
+        <CompanyQrcodePromotionRecordViewTable data={companyQrcodePromotionRecordList} owner={owner} {...this.props} />,
+ 
+      vehicleInfoList:  
         <VehicleInfoViewTable data={vehicleInfoList} owner={owner} {...this.props} />,
  
       vehicleInspectionOrderList:  

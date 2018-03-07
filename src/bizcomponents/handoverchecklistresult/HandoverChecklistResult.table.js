@@ -18,13 +18,13 @@ const columns = [
   { title: '凭证图片3', dataIndex: 'handOverCheckEvidenceImage3', render: (text, record) => <ImagePreview imageTitle="凭证图片3" imageLocation={record.handOverCheckEvidenceImage3} /> },
   { title: '凭证图片4', dataIndex: 'handOverCheckEvidenceImage4', render: (text, record) => <ImagePreview imageTitle="凭证图片4" imageLocation={record.handOverCheckEvidenceImage4} /> },
   { title: '凭证图片5', dataIndex: 'handOverCheckEvidenceImage5', render: (text, record) => <ImagePreview imageTitle="凭证图片5" imageLocation={record.handOverCheckEvidenceImage5} /> },
-  { title: '交接检查项', dataIndex: 'availableHandOverItem', render: (text, record) => (record.availableHandOverItem ? (<Link to={`/availableHandOverItem/${record.availableHandOverItem.id}/dashboard`}>{record.availableHandOverItem.id}</Link>) : '暂无') },
-  { title: '收车服务', dataIndex: 'serviceTypeVehicleC2m', render: (text, record) => (record.serviceTypeVehicleC2m ? (<Link to={`/serviceVehicleMovementC2m/${record.serviceTypeVehicleC2m.id}/dashboard`}>{record.serviceTypeVehicleC2m.id}</Link>) : '暂无') },
-  { title: '移车服务', dataIndex: 'serviceTypeVehicleM2m', render: (text, record) => (record.serviceTypeVehicleM2m ? (<Link to={`/serviceVehicleMovementM2m/${record.serviceTypeVehicleM2m.id}/dashboard`}>{record.serviceTypeVehicleM2m.id}</Link>) : '暂无') },
-  { title: '还车服务', dataIndex: 'serviceTypeVehicleM2c', render: (text, record) => (record.serviceTypeVehicleM2c ? (<Link to={`/serviceVehicleMovementM2c/${record.serviceTypeVehicleM2c.id}/dashboard`}>{record.serviceTypeVehicleM2c.id}</Link>) : '暂无') },
-  { title: '收件服务', dataIndex: 'serviceTypeFileC2m', render: (text, record) => (record.serviceTypeFileC2m ? (<Link to={`/serviceFileMovementC2m/${record.serviceTypeFileC2m.id}/dashboard`}>{record.serviceTypeFileC2m.id}</Link>) : '暂无') },
-  { title: '移件服务', dataIndex: 'serviceTypeFileM2m', render: (text, record) => (record.serviceTypeFileM2m ? (<Link to={`/serviceFileMovementM2m/${record.serviceTypeFileM2m.id}/dashboard`}>{record.serviceTypeFileM2m.id}</Link>) : '暂无') },
-  { title: '还件服务', dataIndex: 'serviceTypeFileM2c', render: (text, record) => (record.serviceTypeFileM2c ? (<Link to={`/serviceFileMovementM2c/${record.serviceTypeFileM2c.id}/dashboard`}>{record.serviceTypeFileM2c.id}</Link>) : '暂无') },
+  { title: '交接检查项', dataIndex: 'availableHandOverItem', render: (text, record) => (record.availableHandOverItem ? (<Link to={`/availableHandOverItem/${record.availableHandOverItem.id}/dashboard`}>{record.availableHandOverItem.displayName}</Link>) : '暂无') },
+  { title: '收车服务', dataIndex: 'serviceTypeVehicleC2m', render: (text, record) => (record.serviceTypeVehicleC2m ? (<Link to={`/serviceVehicleMovementC2m/${record.serviceTypeVehicleC2m.id}/dashboard`}>{record.serviceTypeVehicleC2m.displayName}</Link>) : '暂无') },
+  { title: '移车服务', dataIndex: 'serviceTypeVehicleM2m', render: (text, record) => (record.serviceTypeVehicleM2m ? (<Link to={`/serviceVehicleMovementM2m/${record.serviceTypeVehicleM2m.id}/dashboard`}>{record.serviceTypeVehicleM2m.displayName}</Link>) : '暂无') },
+  { title: '还车服务', dataIndex: 'serviceTypeVehicleM2c', render: (text, record) => (record.serviceTypeVehicleM2c ? (<Link to={`/serviceVehicleMovementM2c/${record.serviceTypeVehicleM2c.id}/dashboard`}>{record.serviceTypeVehicleM2c.displayName}</Link>) : '暂无') },
+  { title: '收件服务', dataIndex: 'serviceTypeFileC2m', render: (text, record) => (record.serviceTypeFileC2m ? (<Link to={`/serviceFileMovementC2m/${record.serviceTypeFileC2m.id}/dashboard`}>{record.serviceTypeFileC2m.displayName}</Link>) : '暂无') },
+  { title: '移件服务', dataIndex: 'serviceTypeFileM2m', render: (text, record) => (record.serviceTypeFileM2m ? (<Link to={`/serviceFileMovementM2m/${record.serviceTypeFileM2m.id}/dashboard`}>{record.serviceTypeFileM2m.displayName}</Link>) : '暂无') },
+  { title: '还件服务', dataIndex: 'serviceTypeFileM2c', render: (text, record) => (record.serviceTypeFileM2c ? (<Link to={`/serviceFileMovementM2c/${record.serviceTypeFileM2c.id}/dashboard`}>{record.serviceTypeFileM2c.displayName}</Link>) : '暂无') },
 
 ]
 

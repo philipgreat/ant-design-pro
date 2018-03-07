@@ -65,6 +65,7 @@ export default class VehicleInspectionOrderServiceLogSearchForm extends PureComp
       const params = {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
         ...this.buildStringSearchParameters(fieldsValue, 'summary'),
+        ...this.buildStringSearchParameters(fieldsValue, 'serviceType'),
         ...this.buildStringSearchParameters(fieldsValue, 'serviceTicket'),
 
       }
@@ -127,6 +128,14 @@ export default class VehicleInspectionOrderServiceLogSearchForm extends PureComp
             <FormItem label="摘要">
               {getFieldDecorator('summary')(
                 <Input placeholder="请输入摘要" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="服务类型">
+              {getFieldDecorator('serviceType')(
+                <Input placeholder="请输入服务类型" />
               )}
             </FormItem>
           </Col>

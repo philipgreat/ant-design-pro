@@ -36,13 +36,14 @@ const topColResponsiveProps = {
 }))
 export default class InspectionStationEditDetail extends Component {
   render() {
+    const {VehicleServiceCompanyEmployeeEditTable} = GlobalComponents;
     const {ServiceVehicleInspectionEditTable} = GlobalComponents;
     const {ServiceFileInspectionEditTable} = GlobalComponents;
     const {InspectionStationAccountEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, serviceVehicleInspectionCount, serviceFileInspectionCount, inspectionStationAccountCount } = this.props.inspectionStation
-    const { serviceVehicleInspectionList, serviceFileInspectionList, inspectionStationAccountList } = this.props.inspectionStation
+    const { id, vehicleServiceCompanyEmployeeCount, serviceVehicleInspectionCount, serviceFileInspectionCount, inspectionStationAccountCount } = this.props.inspectionStation
+    const { vehicleServiceCompanyEmployeeList, serviceVehicleInspectionList, serviceFileInspectionList, inspectionStationAccountList } = this.props.inspectionStation
     
     const owner = { type: '_inspectionStation', id }
     return (
@@ -53,6 +54,12 @@ export default class InspectionStationEditDetail extends Component {
         wrapperClassName={styles.advancedForm}
       >
 
+
+		<Card title="商户员工列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <VehicleServiceCompanyEmployeeEditTable data={vehicleServiceCompanyEmployeeList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
 
 		<Card title="车辆上线检测列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>

@@ -195,7 +195,7 @@ class AvailableInsuranceEditTable extends PureComponent {
   { title: '承保方', debugtype: 'string', dataIndex: 'insuranceVendor', width: '11', render: (text, record) => renderStringEdit('insuranceVendor',text, record)  },
   { title: '保费', dataIndex: 'insurancePrice', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
   { title: '摘要', debugtype: 'string', dataIndex: 'summary', width: '20', render: (text, record) => renderStringEdit('summary',text, record)  },
-  { title: '产品名称', dataIndex: 'product', render: (text, record) => (record.product ? record.product.id : '暂无') },
+  { title: '产品名称', dataIndex: 'product', render: (text, record) => (record.product ? record.product.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

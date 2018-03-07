@@ -201,10 +201,10 @@ class VehicleInspectionOrderEditTable extends PureComponent {
   { title: '联系人手机', debugtype: 'string_china_mobile_phone', dataIndex: 'contactMobileNumber', width: '15', render: (text, record) => renderStringEdit('contactMobileNumber',text, record)  },
   { title: '产品类型', debugtype: 'string', dataIndex: 'productType', width: '14', render: (text, record) => renderStringEdit('productType',text, record)  },
   { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '商户', dataIndex: 'serviceCompany', render: (text, record) => (record.serviceCompany ? record.serviceCompany.id : '暂无') },
+  { title: '商户', dataIndex: 'serviceCompany', render: (text, record) => (record.serviceCompany ? record.serviceCompany.displayName : '暂无') },
   { title: '地址', debugtype: 'string', dataIndex: 'contactAddressDetail', width: '19', render: (text, record) => renderStringEdit('contactAddressDetail',text, record)  },
-  { title: '城市', dataIndex: 'contactAddressCity', render: (text, record) => (record.contactAddressCity ? record.contactAddressCity.id : '暂无') },
-  { title: '客户', dataIndex: 'customer', render: (text, record) => (record.customer ? record.customer.id : '暂无') },
+  { title: '城市', dataIndex: 'contactAddressCity', render: (text, record) => (record.contactAddressCity ? record.contactAddressCity.displayName : '暂无') },
+  { title: '客户', dataIndex: 'customer', render: (text, record) => (record.customer ? record.customer.displayName : '暂无') },
   { title: '计划年检日期', dataIndex: 'planInspectionDate', render: (text, record) => moment(record.planInspectionDate).format('YYYY-MM-DD') },
   { title: '无伤人交通事故', dataIndex: 'trafficAccidentAnnouncement', render: (text, record) => (record.trafficAccidentAnnouncement ? '是' : '否') },
   { title: '上门取车', dataIndex: 'homePickUp', render: (text, record) => (record.homePickUp ? '是' : '否') },
@@ -223,7 +223,7 @@ class VehicleInspectionOrderEditTable extends PureComponent {
   { title: '行驶证图3', dataIndex: 'vehiclePermitImage3', render: (text, record) => <ImagePreview imageLocation={record.vehiclePermitImage3} /> },
   { title: '行驶证图4', dataIndex: 'vehiclePermitImage4', render: (text, record) => <ImagePreview imageLocation={record.vehiclePermitImage4} /> },
   { title: '行驶证图5', dataIndex: 'vehiclePermitImage5', render: (text, record) => <ImagePreview imageLocation={record.vehiclePermitImage5} /> },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

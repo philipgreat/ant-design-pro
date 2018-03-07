@@ -25,8 +25,8 @@ const columns = [
   { title: '行驶证图3', dataIndex: 'vehiclePermitImage3', render: (text, record) => <ImagePreview imageTitle="行驶证图3" imageLocation={record.vehiclePermitImage3} /> },
   { title: '行驶证图4', dataIndex: 'vehiclePermitImage4', render: (text, record) => <ImagePreview imageTitle="行驶证图4" imageLocation={record.vehiclePermitImage4} /> },
   { title: '行驶证图5', dataIndex: 'vehiclePermitImage5', render: (text, record) => <ImagePreview imageTitle="行驶证图5" imageLocation={record.vehiclePermitImage5} /> },
-  { title: '客户', dataIndex: 'customer', render: (text, record) => (record.customer ? (<Link to={`/customer/${record.customer.id}/dashboard`}>{record.customer.id}</Link>) : '暂无') },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.id}</Link>) : '暂无') },
+  { title: '客户', dataIndex: 'customer', render: (text, record) => (record.customer ? (<Link to={`/customer/${record.customer.id}/dashboard`}>{record.customer.displayName}</Link>) : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.displayName}</Link>) : '暂无') },
 
 ]
 

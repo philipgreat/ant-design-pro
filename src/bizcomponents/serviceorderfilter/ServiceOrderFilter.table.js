@@ -13,7 +13,7 @@ const columns = [
   { title: '服务单数量', debugtype: 'int', dataIndex: 'orderCount', width: '6' },
   { title: '选中', dataIndex: 'selected', render: (text, record) => (record.selected ? '是' : '否') },
   { title: '服务单状态接口', debugtype: 'string', dataIndex: 'linkUrl', width: '56' },
-  { title: '员工', dataIndex: 'employee', render: (text, record) => (record.employee ? (<Link to={`/vehicleServiceCompanyEmployee/${record.employee.id}/dashboard`}>{record.employee.id}</Link>) : '暂无') },
+  { title: '员工', dataIndex: 'employee', render: (text, record) => (record.employee ? (<Link to={`/vehicleServiceCompanyEmployee/${record.employee.id}/dashboard`}>{record.employee.displayName}</Link>) : '暂无') },
 
 ]
 

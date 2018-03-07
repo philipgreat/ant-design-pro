@@ -194,7 +194,7 @@ class AvailableProductEditTable extends PureComponent {
   { title: '产品名称', debugtype: 'string', dataIndex: 'productName', width: '9', render: (text, record) => renderStringEdit('productName',text, record)  },
   { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '11', render: (text, record) => renderStringEdit('serviceKey',text, record)  },
   { title: '服务描述', debugtype: 'string', dataIndex: 'serviceDescription', width: '12', render: (text, record) => renderStringEdit('serviceDescription',text, record)  },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

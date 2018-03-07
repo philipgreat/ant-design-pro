@@ -104,6 +104,9 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
           <Link to={`/vehicleServiceCompany/${objectId}/list/vehicleServiceCompanyBusinessScopeList`}>商户服务范围</Link>
         </Menu.Item>
         <Menu.Item>
+          <Link to={`/vehicleServiceCompany/${objectId}/list/companyQrcodePromotionRecordList`}>公司二维码推广记录</Link>
+        </Menu.Item>
+        <Menu.Item>
           <Link to={`/vehicleServiceCompany/${objectId}/list/vehicleServiceCompanyDispatcherList`}>商户派单</Link>
         </Menu.Item>
         <Menu.Item>
@@ -327,6 +330,40 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
       currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
       owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'vehicleServiceCompanyBusinessScopeList' }, // this is for model namespace and
     }))(VehicleServiceCompanyBusinessScopeUpdateForm)
+  }
+
+  getCompanyQrcodePromotionRecordSearch = () => {
+    const {CompanyQrcodePromotionRecordSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompany.companyQrcodePromotionRecordList,
+      count: state._vehicleServiceCompany.companyQrcodePromotionRecordCount,
+      currentPage: state._vehicleServiceCompany.companyQrcodePromotionRecordCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.companyQrcodePromotionRecordSearchFormParameters,
+      loading: state._vehicleServiceCompany.loading,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'companyQrcodePromotionRecordList' }, // this is for model namespace and
+    }))(CompanyQrcodePromotionRecordSearch)
+  }
+  getCompanyQrcodePromotionRecordCreateForm = () => {
+   	const {CompanyQrcodePromotionRecordCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._vehicleServiceCompany.companyQrcodePromotionRecordList,
+      count: state._vehicleServiceCompany.companyQrcodePromotionRecordCount,
+      currentPage: state._vehicleServiceCompany.companyQrcodePromotionRecordCurrentPageNumber,
+      searchFormParameters: state._vehicleServiceCompany.companyQrcodePromotionRecordSearchFormParameters,
+      loading: state._vehicleServiceCompany.loading,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'companyQrcodePromotionRecordList'}, // this is for model namespace and
+    }))(CompanyQrcodePromotionRecordCreateForm)
+  }
+  
+  getCompanyQrcodePromotionRecordUpdateForm = () => {
+  	const {CompanyQrcodePromotionRecordUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._vehicleServiceCompany.selectedRows,
+      currentUpdateIndex: state._vehicleServiceCompany.currentUpdateIndex,
+      owner: { type: '_vehicleServiceCompany', id: state._vehicleServiceCompany.id, listName: 'companyQrcodePromotionRecordList' }, // this is for model namespace and
+    }))(CompanyQrcodePromotionRecordUpdateForm)
   }
 
   getVehicleServiceCompanyDispatcherSearch = () => {
@@ -1013,6 +1050,10 @@ class VehicleServiceCompanyBizApp extends React.PureComponent {
                <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyBusinessScopeList" component={this.getVehicleServiceCompanyBusinessScopeSearch()} />
                <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyBusinessScopeCreateForm" component={this.getVehicleServiceCompanyBusinessScopeCreateForm()} />
                <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyBusinessScopeUpdateForm" component={this.getVehicleServiceCompanyBusinessScopeUpdateForm()} />
+
+               <Route path="/vehicleServiceCompany/:id/list/companyQrcodePromotionRecordList" component={this.getCompanyQrcodePromotionRecordSearch()} />
+               <Route path="/vehicleServiceCompany/:id/list/companyQrcodePromotionRecordCreateForm" component={this.getCompanyQrcodePromotionRecordCreateForm()} />
+               <Route path="/vehicleServiceCompany/:id/list/companyQrcodePromotionRecordUpdateForm" component={this.getCompanyQrcodePromotionRecordUpdateForm()} />
 
                <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyDispatcherList" component={this.getVehicleServiceCompanyDispatcherSearch()} />
                <Route path="/vehicleServiceCompany/:id/list/vehicleServiceCompanyDispatcherCreateForm" component={this.getVehicleServiceCompanyDispatcherCreateForm()} />

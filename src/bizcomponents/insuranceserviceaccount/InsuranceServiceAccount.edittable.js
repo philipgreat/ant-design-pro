@@ -202,9 +202,9 @@ class InsuranceServiceAccountEditTable extends PureComponent {
   { title: '保单号码', debugtype: 'string', dataIndex: 'insuranceNumber', width: '19', render: (text, record) => renderStringEdit('insuranceNumber',text, record)  },
   { title: '保险购买日期', dataIndex: 'insuranceOrderDatetime', render: (text, record) => moment(record.insuranceOrderDatetime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '年检订单ID', debugtype: 'string', dataIndex: 'mainOrderId', width: '28', render: (text, record) => renderStringEdit('mainOrderId',text, record)  },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.id : '暂无') },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.id : '暂无') },
-  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? record.account.id : '暂无') },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.displayName : '暂无') },
+  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.displayName : '暂无') },
+  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? record.account.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

@@ -282,6 +282,20 @@ import VehicleServiceCompanyBusinessScopeViewTable from './vehicleservicecompany
 import VehicleServiceCompanyBusinessScopeViewDetail from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.viewdetail';
 import VehicleServiceCompanyBusinessScopeService from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.service';
 import VehicleServiceCompanyBusinessScopeUpdateForm from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.updateform';
+import CompanyQrcodePromotionRecordBizApp from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.app';
+import CompanyQrcodePromotionRecordModel from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.model';
+import CompanyQrcodePromotionRecordDashboard from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.dashboard';
+import CompanyQrcodePromotionRecordConfirmationTable from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.confirmmationtable';
+import CompanyQrcodePromotionRecordSearch from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.search';
+import CompanyQrcodePromotionRecordSearchForm from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.searchform';
+import CompanyQrcodePromotionRecordCreateForm from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.createform';
+import CompanyQrcodePromotionRecordTable from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.table';
+import CompanyQrcodePromotionRecordEditTable from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.edittable';
+import CompanyQrcodePromotionRecordEditDetail from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.editdetail';
+import CompanyQrcodePromotionRecordViewTable from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.viewtable';
+import CompanyQrcodePromotionRecordViewDetail from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.viewdetail';
+import CompanyQrcodePromotionRecordService from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.service';
+import CompanyQrcodePromotionRecordUpdateForm from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.updateform';
 import VehicleServiceCompanyDispatcherBizApp from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.app';
 import VehicleServiceCompanyDispatcherModel from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.model';
 import VehicleServiceCompanyDispatcherDashboard from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.dashboard';
@@ -436,6 +450,20 @@ import VehicleInspectionInsuranceOrderViewTable from './vehicleinspectioninsuran
 import VehicleInspectionInsuranceOrderViewDetail from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.viewdetail';
 import VehicleInspectionInsuranceOrderService from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.service';
 import VehicleInspectionInsuranceOrderUpdateForm from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.updateform';
+import VehicleInspectionOrderChargeBizApp from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.app';
+import VehicleInspectionOrderChargeModel from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.model';
+import VehicleInspectionOrderChargeDashboard from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.dashboard';
+import VehicleInspectionOrderChargeConfirmationTable from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.confirmmationtable';
+import VehicleInspectionOrderChargeSearch from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.search';
+import VehicleInspectionOrderChargeSearchForm from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.searchform';
+import VehicleInspectionOrderChargeCreateForm from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.createform';
+import VehicleInspectionOrderChargeTable from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.table';
+import VehicleInspectionOrderChargeEditTable from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.edittable';
+import VehicleInspectionOrderChargeEditDetail from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.editdetail';
+import VehicleInspectionOrderChargeViewTable from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.viewtable';
+import VehicleInspectionOrderChargeViewDetail from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.viewdetail';
+import VehicleInspectionOrderChargeService from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.service';
+import VehicleInspectionOrderChargeUpdateForm from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.updateform';
 import VehicleInspectionOrderServiceLogBizApp from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.app';
 import VehicleInspectionOrderServiceLogModel from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.model';
 import VehicleInspectionOrderServiceLogDashboard from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.dashboard';
@@ -618,34 +646,6 @@ import ServiceFileInspectionViewTable from './servicefileinspection/ServiceFileI
 import ServiceFileInspectionViewDetail from './servicefileinspection/ServiceFileInspection.viewdetail';
 import ServiceFileInspectionService from './servicefileinspection/ServiceFileInspection.service';
 import ServiceFileInspectionUpdateForm from './servicefileinspection/ServiceFileInspection.updateform';
-import ReportVehicleInspectionReportBizApp from './reportvehicleinspectionreport/ReportVehicleInspectionReport.app';
-import ReportVehicleInspectionReportModel from './reportvehicleinspectionreport/ReportVehicleInspectionReport.model';
-import ReportVehicleInspectionReportDashboard from './reportvehicleinspectionreport/ReportVehicleInspectionReport.dashboard';
-import ReportVehicleInspectionReportConfirmationTable from './reportvehicleinspectionreport/ReportVehicleInspectionReport.confirmmationtable';
-import ReportVehicleInspectionReportSearch from './reportvehicleinspectionreport/ReportVehicleInspectionReport.search';
-import ReportVehicleInspectionReportSearchForm from './reportvehicleinspectionreport/ReportVehicleInspectionReport.searchform';
-import ReportVehicleInspectionReportCreateForm from './reportvehicleinspectionreport/ReportVehicleInspectionReport.createform';
-import ReportVehicleInspectionReportTable from './reportvehicleinspectionreport/ReportVehicleInspectionReport.table';
-import ReportVehicleInspectionReportEditTable from './reportvehicleinspectionreport/ReportVehicleInspectionReport.edittable';
-import ReportVehicleInspectionReportEditDetail from './reportvehicleinspectionreport/ReportVehicleInspectionReport.editdetail';
-import ReportVehicleInspectionReportViewTable from './reportvehicleinspectionreport/ReportVehicleInspectionReport.viewtable';
-import ReportVehicleInspectionReportViewDetail from './reportvehicleinspectionreport/ReportVehicleInspectionReport.viewdetail';
-import ReportVehicleInspectionReportService from './reportvehicleinspectionreport/ReportVehicleInspectionReport.service';
-import ReportVehicleInspectionReportUpdateForm from './reportvehicleinspectionreport/ReportVehicleInspectionReport.updateform';
-import ReportFileInspectionReportBizApp from './reportfileinspectionreport/ReportFileInspectionReport.app';
-import ReportFileInspectionReportModel from './reportfileinspectionreport/ReportFileInspectionReport.model';
-import ReportFileInspectionReportDashboard from './reportfileinspectionreport/ReportFileInspectionReport.dashboard';
-import ReportFileInspectionReportConfirmationTable from './reportfileinspectionreport/ReportFileInspectionReport.confirmmationtable';
-import ReportFileInspectionReportSearch from './reportfileinspectionreport/ReportFileInspectionReport.search';
-import ReportFileInspectionReportSearchForm from './reportfileinspectionreport/ReportFileInspectionReport.searchform';
-import ReportFileInspectionReportCreateForm from './reportfileinspectionreport/ReportFileInspectionReport.createform';
-import ReportFileInspectionReportTable from './reportfileinspectionreport/ReportFileInspectionReport.table';
-import ReportFileInspectionReportEditTable from './reportfileinspectionreport/ReportFileInspectionReport.edittable';
-import ReportFileInspectionReportEditDetail from './reportfileinspectionreport/ReportFileInspectionReport.editdetail';
-import ReportFileInspectionReportViewTable from './reportfileinspectionreport/ReportFileInspectionReport.viewtable';
-import ReportFileInspectionReportViewDetail from './reportfileinspectionreport/ReportFileInspectionReport.viewdetail';
-import ReportFileInspectionReportService from './reportfileinspectionreport/ReportFileInspectionReport.service';
-import ReportFileInspectionReportUpdateForm from './reportfileinspectionreport/ReportFileInspectionReport.updateform';
 import ServiceVehicleRepairingBizApp from './servicevehiclerepairing/ServiceVehicleRepairing.app';
 import ServiceVehicleRepairingModel from './servicevehiclerepairing/ServiceVehicleRepairing.model';
 import ServiceVehicleRepairingDashboard from './servicevehiclerepairing/ServiceVehicleRepairing.dashboard';
@@ -660,20 +660,6 @@ import ServiceVehicleRepairingViewTable from './servicevehiclerepairing/ServiceV
 import ServiceVehicleRepairingViewDetail from './servicevehiclerepairing/ServiceVehicleRepairing.viewdetail';
 import ServiceVehicleRepairingService from './servicevehiclerepairing/ServiceVehicleRepairing.service';
 import ServiceVehicleRepairingUpdateForm from './servicevehiclerepairing/ServiceVehicleRepairing.updateform';
-import RepairingQuotationBizApp from './repairingquotation/RepairingQuotation.app';
-import RepairingQuotationModel from './repairingquotation/RepairingQuotation.model';
-import RepairingQuotationDashboard from './repairingquotation/RepairingQuotation.dashboard';
-import RepairingQuotationConfirmationTable from './repairingquotation/RepairingQuotation.confirmmationtable';
-import RepairingQuotationSearch from './repairingquotation/RepairingQuotation.search';
-import RepairingQuotationSearchForm from './repairingquotation/RepairingQuotation.searchform';
-import RepairingQuotationCreateForm from './repairingquotation/RepairingQuotation.createform';
-import RepairingQuotationTable from './repairingquotation/RepairingQuotation.table';
-import RepairingQuotationEditTable from './repairingquotation/RepairingQuotation.edittable';
-import RepairingQuotationEditDetail from './repairingquotation/RepairingQuotation.editdetail';
-import RepairingQuotationViewTable from './repairingquotation/RepairingQuotation.viewtable';
-import RepairingQuotationViewDetail from './repairingquotation/RepairingQuotation.viewdetail';
-import RepairingQuotationService from './repairingquotation/RepairingQuotation.service';
-import RepairingQuotationUpdateForm from './repairingquotation/RepairingQuotation.updateform';
 import RepairingAllowanceItemBizApp from './repairingallowanceitem/RepairingAllowanceItem.app';
 import RepairingAllowanceItemModel from './repairingallowanceitem/RepairingAllowanceItem.model';
 import RepairingAllowanceItemDashboard from './repairingallowanceitem/RepairingAllowanceItem.dashboard';
@@ -702,20 +688,6 @@ import VehicleRepairingPaymentViewTable from './vehiclerepairingpayment/VehicleR
 import VehicleRepairingPaymentViewDetail from './vehiclerepairingpayment/VehicleRepairingPayment.viewdetail';
 import VehicleRepairingPaymentService from './vehiclerepairingpayment/VehicleRepairingPayment.service';
 import VehicleRepairingPaymentUpdateForm from './vehiclerepairingpayment/VehicleRepairingPayment.updateform';
-import VehicleRepairingReportBizApp from './vehiclerepairingreport/VehicleRepairingReport.app';
-import VehicleRepairingReportModel from './vehiclerepairingreport/VehicleRepairingReport.model';
-import VehicleRepairingReportDashboard from './vehiclerepairingreport/VehicleRepairingReport.dashboard';
-import VehicleRepairingReportConfirmationTable from './vehiclerepairingreport/VehicleRepairingReport.confirmmationtable';
-import VehicleRepairingReportSearch from './vehiclerepairingreport/VehicleRepairingReport.search';
-import VehicleRepairingReportSearchForm from './vehiclerepairingreport/VehicleRepairingReport.searchform';
-import VehicleRepairingReportCreateForm from './vehiclerepairingreport/VehicleRepairingReport.createform';
-import VehicleRepairingReportTable from './vehiclerepairingreport/VehicleRepairingReport.table';
-import VehicleRepairingReportEditTable from './vehiclerepairingreport/VehicleRepairingReport.edittable';
-import VehicleRepairingReportEditDetail from './vehiclerepairingreport/VehicleRepairingReport.editdetail';
-import VehicleRepairingReportViewTable from './vehiclerepairingreport/VehicleRepairingReport.viewtable';
-import VehicleRepairingReportViewDetail from './vehiclerepairingreport/VehicleRepairingReport.viewdetail';
-import VehicleRepairingReportService from './vehiclerepairingreport/VehicleRepairingReport.service';
-import VehicleRepairingReportUpdateForm from './vehiclerepairingreport/VehicleRepairingReport.updateform';
 import AvailableReviewItemBizApp from './availablereviewitem/AvailableReviewItem.app';
 import AvailableReviewItemModel from './availablereviewitem/AvailableReviewItem.model';
 import AvailableReviewItemDashboard from './availablereviewitem/AvailableReviewItem.dashboard';
@@ -1335,6 +1307,20 @@ const OOTBComponents={
     VehicleServiceCompanyBusinessScopeViewDetail,
     VehicleServiceCompanyBusinessScopeService,
     VehicleServiceCompanyBusinessScopeUpdateForm,
+    CompanyQrcodePromotionRecordBizApp,
+    CompanyQrcodePromotionRecordModel,
+    CompanyQrcodePromotionRecordDashboard,
+    CompanyQrcodePromotionRecordConfirmationTable,
+    CompanyQrcodePromotionRecordSearch,
+    CompanyQrcodePromotionRecordSearchForm,
+    CompanyQrcodePromotionRecordCreateForm,
+    CompanyQrcodePromotionRecordTable,
+    CompanyQrcodePromotionRecordEditTable,
+    CompanyQrcodePromotionRecordEditDetail,
+    CompanyQrcodePromotionRecordViewTable,
+    CompanyQrcodePromotionRecordViewDetail,
+    CompanyQrcodePromotionRecordService,
+    CompanyQrcodePromotionRecordUpdateForm,
     VehicleServiceCompanyDispatcherBizApp,
     VehicleServiceCompanyDispatcherModel,
     VehicleServiceCompanyDispatcherDashboard,
@@ -1489,6 +1475,20 @@ const OOTBComponents={
     VehicleInspectionInsuranceOrderViewDetail,
     VehicleInspectionInsuranceOrderService,
     VehicleInspectionInsuranceOrderUpdateForm,
+    VehicleInspectionOrderChargeBizApp,
+    VehicleInspectionOrderChargeModel,
+    VehicleInspectionOrderChargeDashboard,
+    VehicleInspectionOrderChargeConfirmationTable,
+    VehicleInspectionOrderChargeSearch,
+    VehicleInspectionOrderChargeSearchForm,
+    VehicleInspectionOrderChargeCreateForm,
+    VehicleInspectionOrderChargeTable,
+    VehicleInspectionOrderChargeEditTable,
+    VehicleInspectionOrderChargeEditDetail,
+    VehicleInspectionOrderChargeViewTable,
+    VehicleInspectionOrderChargeViewDetail,
+    VehicleInspectionOrderChargeService,
+    VehicleInspectionOrderChargeUpdateForm,
     VehicleInspectionOrderServiceLogBizApp,
     VehicleInspectionOrderServiceLogModel,
     VehicleInspectionOrderServiceLogDashboard,
@@ -1671,34 +1671,6 @@ const OOTBComponents={
     ServiceFileInspectionViewDetail,
     ServiceFileInspectionService,
     ServiceFileInspectionUpdateForm,
-    ReportVehicleInspectionReportBizApp,
-    ReportVehicleInspectionReportModel,
-    ReportVehicleInspectionReportDashboard,
-    ReportVehicleInspectionReportConfirmationTable,
-    ReportVehicleInspectionReportSearch,
-    ReportVehicleInspectionReportSearchForm,
-    ReportVehicleInspectionReportCreateForm,
-    ReportVehicleInspectionReportTable,
-    ReportVehicleInspectionReportEditTable,
-    ReportVehicleInspectionReportEditDetail,
-    ReportVehicleInspectionReportViewTable,
-    ReportVehicleInspectionReportViewDetail,
-    ReportVehicleInspectionReportService,
-    ReportVehicleInspectionReportUpdateForm,
-    ReportFileInspectionReportBizApp,
-    ReportFileInspectionReportModel,
-    ReportFileInspectionReportDashboard,
-    ReportFileInspectionReportConfirmationTable,
-    ReportFileInspectionReportSearch,
-    ReportFileInspectionReportSearchForm,
-    ReportFileInspectionReportCreateForm,
-    ReportFileInspectionReportTable,
-    ReportFileInspectionReportEditTable,
-    ReportFileInspectionReportEditDetail,
-    ReportFileInspectionReportViewTable,
-    ReportFileInspectionReportViewDetail,
-    ReportFileInspectionReportService,
-    ReportFileInspectionReportUpdateForm,
     ServiceVehicleRepairingBizApp,
     ServiceVehicleRepairingModel,
     ServiceVehicleRepairingDashboard,
@@ -1713,20 +1685,6 @@ const OOTBComponents={
     ServiceVehicleRepairingViewDetail,
     ServiceVehicleRepairingService,
     ServiceVehicleRepairingUpdateForm,
-    RepairingQuotationBizApp,
-    RepairingQuotationModel,
-    RepairingQuotationDashboard,
-    RepairingQuotationConfirmationTable,
-    RepairingQuotationSearch,
-    RepairingQuotationSearchForm,
-    RepairingQuotationCreateForm,
-    RepairingQuotationTable,
-    RepairingQuotationEditTable,
-    RepairingQuotationEditDetail,
-    RepairingQuotationViewTable,
-    RepairingQuotationViewDetail,
-    RepairingQuotationService,
-    RepairingQuotationUpdateForm,
     RepairingAllowanceItemBizApp,
     RepairingAllowanceItemModel,
     RepairingAllowanceItemDashboard,
@@ -1755,20 +1713,6 @@ const OOTBComponents={
     VehicleRepairingPaymentViewDetail,
     VehicleRepairingPaymentService,
     VehicleRepairingPaymentUpdateForm,
-    VehicleRepairingReportBizApp,
-    VehicleRepairingReportModel,
-    VehicleRepairingReportDashboard,
-    VehicleRepairingReportConfirmationTable,
-    VehicleRepairingReportSearch,
-    VehicleRepairingReportSearchForm,
-    VehicleRepairingReportCreateForm,
-    VehicleRepairingReportTable,
-    VehicleRepairingReportEditTable,
-    VehicleRepairingReportEditDetail,
-    VehicleRepairingReportViewTable,
-    VehicleRepairingReportViewDetail,
-    VehicleRepairingReportService,
-    VehicleRepairingReportUpdateForm,
     AvailableReviewItemBizApp,
     AvailableReviewItemModel,
     AvailableReviewItemDashboard,

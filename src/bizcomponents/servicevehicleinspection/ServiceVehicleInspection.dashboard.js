@@ -39,6 +39,11 @@ const summaryOf = (serviceVehicleInspection) =>{
 <Description term="纬度">{serviceVehicleInspection.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceVehicleInspection.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
 <Description term="检测日期">{ moment(serviceVehicleInspection.inspectionDatetime).format('YYYY-MM-DD')}</Description> 
+<Description term="年检报告1">{serviceVehicleInspection.inspectionReportImage1}</Description> 
+<Description term="年检报告2">{serviceVehicleInspection.inspectionReportImage2}</Description> 
+<Description term="年检报告3">{serviceVehicleInspection.inspectionReportImage3}</Description> 
+<Description term="年检报告4">{serviceVehicleInspection.inspectionReportImage4}</Description> 
+<Description term="年检报告5">{serviceVehicleInspection.inspectionReportImage5}</Description> 
 <Description term="检测结果">{serviceVehicleInspection.inspectionResult}</Description> 
 <Description term="是否要修理">{serviceVehicleInspection.inspectionNeedRepair}</Description> 
 	
@@ -54,7 +59,7 @@ const summaryOf = (serviceVehicleInspection) =>{
 export default class ServiceVehicleInspectionDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, reportVehicleInspectionReportCount } = this.props.serviceVehicleInspection
+    const { id,  } = this.props.serviceVehicleInspection
     
     
     
@@ -67,24 +72,6 @@ export default class ServiceVehicleInspectionDashboard extends Component {
       >
         <div>
           <Row gutter={24}>
-
-          
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="车辆上线年检报告"
-                action={<Tooltip title="车辆上线年检报告"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(reportVehicleInspectionReportCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/serviceVehicleInspection/${id}/list/reportVehicleInspectionReportList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/serviceVehicleInspection/${id}/list/reportVehicleInspectionReportCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/serviceVehicleInspection/${id}/list/reportVehicleInspectionReportList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
 
           </Row>
         </div>

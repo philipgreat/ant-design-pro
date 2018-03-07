@@ -204,9 +204,9 @@ class RepairingCompanyAccountEditTable extends PureComponent {
   { title: '付款日期时间', dataIndex: 'paymentDatetime', render: (text, record) => moment(record.paymentDatetime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '微信订单ID', debugtype: 'string', dataIndex: 'wechatOrderId', width: '36', render: (text, record) => renderStringEdit('wechatOrderId',text, record)  },
   { title: '微信预付订单ID', debugtype: 'string', dataIndex: 'wechatPrepayId', width: '25', render: (text, record) => renderStringEdit('wechatPrepayId',text, record)  },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.id : '暂无') },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.id : '暂无') },
-  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? record.account.id : '暂无') },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.displayName : '暂无') },
+  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.displayName : '暂无') },
+  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? record.account.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

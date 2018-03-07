@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
+//import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-
+import ImageUpload from '../../components/ImageUpload'
 import styles from './VehicleServiceCompanyBusinessScope.createform.less'
-
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -15,10 +15,12 @@ const fieldLabels = {
   id: 'ID',
   company: '商户',
   availableService: '服务范围',
+  serviceAvaliability: '可用状态',
 }
 
 
 const testValues = {
+  serviceAvaliability: 'true',
   companyId: 'VSC000001',
   availableServiceId: 'AS000001',
 }
@@ -64,39 +66,6 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-
-  mapFromImageValues=(selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -111,7 +80,7 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
         }
 
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
 
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -128,7 +97,7 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
         }
         
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -195,9 +164,47 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
 
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceAvaliability}>
+                  {getFieldDecorator('serviceAvaliability', {
+                    rules: [{ required: true, message: '请输入可用状态' }],
+                  })(
+                    <Input placeholder="请输入请输入可用状态bool" />
+                  )}
+                </Form.Item>
+              </Col>
+
             </Row>
           </Form>
         </Card>
+
+
+
+        
+        <Card title="设置" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+            
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceAvaliability}>
+                  {getFieldDecorator('serviceAvaliability', {
+                    rules: [{ required: true, message: '请输入可用状态' }],
+                    valuePropName: 'checked'
+                  })(
+                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入可用状态bool" />
+                  )}
+                </Form.Item>
+              </Col>
+
+            </Row>
+          </Form>  
+        </Card>        
+        
+        
+
+
+
 
 
 

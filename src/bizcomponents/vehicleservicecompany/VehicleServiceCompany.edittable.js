@@ -194,7 +194,7 @@ class VehicleServiceCompanyEditTable extends PureComponent {
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '商户名称', debugtype: 'string', dataIndex: 'companyName', width: '12', render: (text, record) => renderStringEdit('companyName',text, record)  },
   { title: '服务状态', debugtype: 'string', dataIndex: 'operatingStatus', width: '6', render: (text, record) => renderStringEdit('operatingStatus',text, record)  },
-  { title: '所在城市', dataIndex: 'addressCity', render: (text, record) => (record.addressCity ? record.addressCity.id : '暂无') },
+  { title: '所在城市', dataIndex: 'addressCity', render: (text, record) => (record.addressCity ? record.addressCity.displayName : '暂无') },
   { title: '所在地址', debugtype: 'string', dataIndex: 'addressDetail', width: '17', render: (text, record) => renderStringEdit('addressDetail',text, record)  },
   { title: '是否提供门店收车(件)服务', dataIndex: 'availableStoreService', render: (text, record) => (record.availableStoreService ? '是' : '否') },
   { title: '是否提供上门取车(件)服务', dataIndex: 'availableHomeService', render: (text, record) => (record.availableHomeService ? '是' : '否') },
@@ -207,9 +207,10 @@ class VehicleServiceCompanyEditTable extends PureComponent {
   { title: '公司照片3', dataIndex: 'companyImage3', render: (text, record) => <ImagePreview imageLocation={record.companyImage3} /> },
   { title: '公司照片4', dataIndex: 'companyImage4', render: (text, record) => <ImagePreview imageLocation={record.companyImage4} /> },
   { title: '公司照片5', dataIndex: 'companyImage5', render: (text, record) => <ImagePreview imageLocation={record.companyImage5} /> },
+  { title: '推广二维码', dataIndex: 'promoteQrcodeImage', render: (text, record) => <ImagePreview imageLocation={record.promoteQrcodeImage} /> },
   { title: '订单默认联系人', debugtype: 'string', dataIndex: 'orderContact', width: '7', render: (text, record) => renderStringEdit('orderContact',text, record)  },
   { title: '订单默认联系人电话', debugtype: 'string_china_mobile_phone', dataIndex: 'orderContactPhone', width: '15', render: (text, record) => renderStringEdit('orderContactPhone',text, record)  },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    
@@ -231,6 +232,7 @@ class VehicleServiceCompanyEditTable extends PureComponent {
 				'companyImage3':'',
 				'companyImage4':'',
 				'companyImage5':'',
+				'promoteQrcodeImage':'',
 				'orderContact':'',
 				'orderContactPhone':'',
 				'platform':'',

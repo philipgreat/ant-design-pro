@@ -116,6 +116,78 @@ export default {
       yield put(routerRedux.push(`/customer/${id}/list/${type}List`))
     },
 
+    *addCompanyQrcodePromotionRecord({ payload }, { call, put }) {
+      const {CustomerService} = GlobalComponents;
+
+      const { id, type, parameters, continueNext } = payload
+      console.log('get form parameters', parameters)
+      const data = yield call(CustomerService.addCompanyQrcodePromotionRecord, id, parameters)
+      if (hasError(data)) {
+        handleServerError(data)
+        return
+      }
+      const newPlayload = { ...payload, ...data }
+      yield put({ type: 'updateState', payload: newPlayload })
+      // yield put(routerRedux.push(`/customer/${id}/list/${type}CreateForm'))
+      notification.success({
+        message: '执行成功',
+        description: '执行成功',
+      })
+      if (continueNext) {
+        return
+      }
+      const location = { pathname: `/customer/${id}/list/${type}List`, state: data }
+      yield put(routerRedux.push(location))
+    },
+    *updateCompanyQrcodePromotionRecord({ payload }, { call, put }) {
+      const {CustomerService} = GlobalComponents;      
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      console.log('get form parameters', parameters)
+      const data = yield call(CustomerService.updateCompanyQrcodePromotionRecord, id, parameters)
+      if (hasError(data)) {
+        handleServerError(data)
+        return
+      }
+      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      yield put({ type: 'updateState', payload: newPlayload })
+      notification.success({
+        message: '执行成功',
+        description: '执行成功',
+      })
+        
+      if (continueNext) {
+        return
+      }
+      const location = { pathname: `/customer/${id}/list/${type}List`, state: newPlayload }
+      yield put(routerRedux.push(location))
+    },
+    *gotoNextCompanyQrcodePromotionRecordUpdateRow({ payload }, { call, put }) {
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
+      yield put({ type: 'updateState', payload: newPlayload })
+    },
+    *removeCompanyQrcodePromotionRecordList({ payload }, { call, put }) {
+      const {CustomerService} = GlobalComponents; 
+      const { id, type, parameters, continueNext } = payload
+      console.log('get form parameters', parameters)
+      const data = yield call(CustomerService.removeCompanyQrcodePromotionRecordList, id, parameters)
+      if (hasError(data)) {
+        handleServerError(data)
+        return
+      }
+      const newPlayload = { ...payload, ...data }
+
+      yield put({ type: 'updateState', payload: newPlayload })
+        
+      // yield put(routerRedux.push(`/customer/${id}/list/${type}CreateForm`))
+      notification.success({
+        message: '执行成功',
+        description: '执行成功',
+      })
+      // const location = { pathname: `customer/${id}/list/${type}List`, state: data}
+      // yield put(routerRedux.push(location))
+    },
+
     *addVehicleInfo({ payload }, { call, put }) {
       const {CustomerService} = GlobalComponents;
 

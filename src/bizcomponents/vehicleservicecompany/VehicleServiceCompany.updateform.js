@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover, Switch } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
-import OSSPictureEdit from '../../components/OSSPictureEdit'
+import ImageUpload from '../../components/ImageUpload'
+//import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
@@ -30,6 +31,7 @@ const fieldLabels = {
   companyImage3: '公司照片3',
   companyImage4: '公司照片4',
   companyImage5: '公司照片5',
+  promoteQrcodeImage: '推广二维码',
   orderContact: '订单默认联系人',
   orderContactPhone: '订单默认联系人电话',
   platform: '平台',
@@ -44,6 +46,7 @@ const imageKeys = [
   'companyImage3',
   'companyImage4',
   'companyImage5',
+  'promoteQrcodeImage',
 ]
 
 
@@ -60,7 +63,7 @@ class VehicleServiceCompanyUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow)
+      convertedImagesValues: mapFromImageValues(selectedRow,imageKeys)
     })
   }
 
@@ -108,51 +111,6 @@ class VehicleServiceCompanyUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = (convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        if (value.response.indexOf('//') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('http://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('https://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-  
-  mapFromImageValues = (selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   handlePreview = (file) => {
     console.log('preview file', file)
@@ -178,7 +136,7 @@ class VehicleServiceCompanyUpdateForm extends Component {
 
         const { owner } = this.props
         const vehicleServiceCompanyId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, vehicleServiceCompanyId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
@@ -205,7 +163,7 @@ class VehicleServiceCompanyUpdateForm extends Component {
 
         const { owner } = this.props
         const vehicleServiceCompanyId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, vehicleServiceCompanyId, ...imagesValues }
 
         // TODO
@@ -358,26 +316,6 @@ class VehicleServiceCompanyUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.availableStoreService}>
-                  {getFieldDecorator('availableStoreService', {
-                    rules: [{ required: true, message: '请输入是否提供门店收车(件)服务' }],
-                  })(
-                    <Input placeholder="请输入请输入是否提供门店收车(件)服务bool" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.availableHomeService}>
-                  {getFieldDecorator('availableHomeService', {
-                    rules: [{ required: true, message: '请输入是否提供上门取车(件)服务' }],
-                  })(
-                    <Input placeholder="请输入请输入是否提供上门取车(件)服务bool" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.openingTime}>
                   {getFieldDecorator('openingTime', {
                     rules: [{ required: true, message: '请输入营业时间' }],
@@ -440,6 +378,41 @@ class VehicleServiceCompanyUpdateForm extends Component {
             </Row>
           </Form>  
         </Card>
+        
+        <Card title="设置" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+            
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.availableStoreService}>
+                  {getFieldDecorator('availableStoreService', {
+                    rules: [{ required: true, message: '请输入是否提供门店收车(件)服务' }],
+                    valuePropName: 'checked'
+                  })(
+                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入是否提供门店收车(件)服务bool" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.availableHomeService}>
+                  {getFieldDecorator('availableHomeService', {
+                    rules: [{ required: true, message: '请输入是否提供上门取车(件)服务' }],
+                    valuePropName: 'checked'
+                  })(
+                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入是否提供上门取车(件)服务bool" />
+                  )}
+                </Form.Item>
+              </Col>
+
+            </Row>
+          </Form>  
+        </Card>        
+        
+        
+        
+        
 
 
         <Card title="附件" className={styles.card} bordered={false}>
@@ -447,7 +420,7 @@ class VehicleServiceCompanyUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="公司照片1"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'companyImage1')}
@@ -456,7 +429,7 @@ class VehicleServiceCompanyUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="公司照片2"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'companyImage2')}
@@ -465,7 +438,7 @@ class VehicleServiceCompanyUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="公司照片3"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'companyImage3')}
@@ -474,7 +447,7 @@ class VehicleServiceCompanyUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="公司照片4"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'companyImage4')}
@@ -483,11 +456,20 @@ class VehicleServiceCompanyUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="公司照片5"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'companyImage5')}
                   fileList={convertedImagesValues.companyImage5}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="推广二维码"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'promoteQrcodeImage')}
+                  fileList={convertedImagesValues.promoteQrcodeImage}
                 />
               </Col>
 

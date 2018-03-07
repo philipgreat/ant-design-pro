@@ -190,7 +190,7 @@ class SecUserBlockingEditTable extends PureComponent {
     
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17', render: (text, record) => renderStringEdit('who',text, record)  },
+  { title: '审批人', debugtype: 'string', dataIndex: 'who', width: '17', render: (text, record) => renderStringEdit('who',text, record)  },
   { title: '块时间', dataIndex: 'blockTime', render: (text, record) => moment(record.blockTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '28', render: (text, record) => renderStringEdit('comments',text, record)  },
 { title: '操作',

@@ -59,7 +59,7 @@ export default class InspectionStationViewDetail extends Component {
 
 
   state = {
-    tabKey: `serviceVehicleInspectionList`,
+    tabKey: `vehicleServiceCompanyEmployeeList`,
     stepDirection: 'horizontal',
   }
  
@@ -67,6 +67,7 @@ export default class InspectionStationViewDetail extends Component {
     this.setState({ tabKey: key });
   }  
   render() {
+    const {VehicleServiceCompanyEmployeeViewTable} = GlobalComponents;
     const {ServiceVehicleInspectionViewTable} = GlobalComponents;
     const {ServiceFileInspectionViewTable} = GlobalComponents;
     const {InspectionStationAccountViewTable} = GlobalComponents;
@@ -74,13 +75,14 @@ export default class InspectionStationViewDetail extends Component {
     // eslint-disable-next-line max-len
     
     const inspectionStation = this.props.inspectionStation
-    const { id, serviceVehicleInspectionCount, serviceFileInspectionCount, inspectionStationAccountCount } = inspectionStation
-    const { serviceVehicleInspectionList, serviceFileInspectionList, inspectionStationAccountList } = inspectionStation
+    const { id, vehicleServiceCompanyEmployeeCount, serviceVehicleInspectionCount, serviceFileInspectionCount, inspectionStationAccountCount } = inspectionStation
+    const { vehicleServiceCompanyEmployeeList, serviceVehicleInspectionList, serviceFileInspectionList, inspectionStationAccountList } = inspectionStation
     
     const owner = { type: '_inspectionStation', id }
     
     const tabList = [
 
+      {key: 'vehicleServiceCompanyEmployeeList',tab: `商户员工(${vehicleServiceCompanyEmployeeCount})`}, 
       {key: 'serviceVehicleInspectionList',tab: `车辆上线检测(${serviceVehicleInspectionCount})`}, 
       {key: 'serviceFileInspectionList',tab: `6年免检服务(${serviceFileInspectionCount})`}, 
       {key: 'inspectionStationAccountList',tab: `检测站对账单(${inspectionStationAccountCount})`}, 
@@ -90,7 +92,10 @@ export default class InspectionStationViewDetail extends Component {
    
    
     const contentList = {
-       serviceVehicleInspectionList:  
+       vehicleServiceCompanyEmployeeList:  
+        <VehicleServiceCompanyEmployeeViewTable data={vehicleServiceCompanyEmployeeList} owner={owner} {...this.props} />,
+ 
+      serviceVehicleInspectionList:  
         <ServiceVehicleInspectionViewTable data={serviceVehicleInspectionList} owner={owner} {...this.props} />,
  
       serviceFileInspectionList:  

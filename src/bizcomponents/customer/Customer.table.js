@@ -11,10 +11,10 @@ const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/customer/${text}/dashboard`}>{text}</Link>) },
   { title: '客户昵称', debugtype: 'string', dataIndex: 'nickName', width: '24' },
   { title: '头像', dataIndex: 'logoImage', render: (text, record) => <ImagePreview imageTitle="头像" imageLocation={record.logoImage} /> },
-  { title: 'WeixinOpenid', debugtype: 'string', dataIndex: 'weixinOpenid', width: '29' },
-  { title: 'WeixinAppid', debugtype: 'string', dataIndex: 'weixinAppid', width: '23' },
-  { title: 'SecUser', dataIndex: 'secUser', render: (text, record) => (record.secUser ? (<Link to={`/secUser/${record.secUser.id}/dashboard`}>{record.secUser.id}</Link>) : '暂无') },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.id}</Link>) : '暂无') },
+  { title: '微信ID', debugtype: 'string', dataIndex: 'weixinOpenid', width: '29' },
+  { title: '微信APP', debugtype: 'string', dataIndex: 'weixinAppid', width: '23' },
+  { title: 'SecUser', dataIndex: 'secUser', render: (text, record) => (record.secUser ? (<Link to={`/secUser/${record.secUser.id}/dashboard`}>{record.secUser.displayName}</Link>) : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.displayName}</Link>) : '暂无') },
 
 ]
 

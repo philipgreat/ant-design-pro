@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
+//import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-
+import ImageUpload from '../../components/ImageUpload'
 import styles from './MainOrderAccount.createform.less'
-
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -39,20 +39,20 @@ const fieldLabels = {
 const testValues = {
   vehicleLicensePlateNumber: '川A44W11',
   productName: '上线检测',
-  inspectionPrice: '193.75',
-  agentServicePrice: '145.47',
+  inspectionPrice: '195.36',
+  agentServicePrice: '124.66',
   city: '成都',
   vehicleType: '小轿车',
-  orderTotalAmount: '305.19',
-  orderPromotionDiscount: '7.64',
-  orderCouponDiscount: '9.83',
-  orderInsuranceAmount: '4.93',
-  orderCustomerPaymentAmount: '327.98',
-  orderServiceAmount: '79.60',
-  orderPlatformBalance: '16.86',
-  orderPlacedDatetime: '2995-11-17 09:39:06',
-  orderPaymentDatetime: '2995-07-01 23:18:16',
-  orderFinishedDatetime: '2997-10-29 02:13:10',
+  orderTotalAmount: '288.20',
+  orderPromotionDiscount: '7.24',
+  orderCouponDiscount: '8.65',
+  orderInsuranceAmount: '4.10',
+  orderCustomerPaymentAmount: '295.62',
+  orderServiceAmount: '63.10',
+  orderPlatformBalance: '15.45',
+  orderPlacedDatetime: '2994-04-21 15:13:12',
+  orderPaymentDatetime: '2998-07-11 13:42:24',
+  orderFinishedDatetime: '2994-10-30 22:13:46',
   mainOrderId: 'O1234567890',
   wechatOrderId: '5K8264ILTKCH16CQ2502SI8ZNMTM67VS',
   wechatPrepayId: 'u802345jgfjsdfgsdg888',
@@ -100,39 +100,6 @@ class MainOrderAccountCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-
-  mapFromImageValues=(selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -147,7 +114,7 @@ class MainOrderAccountCreateForm extends Component {
         }
 
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
 
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -164,7 +131,7 @@ class MainOrderAccountCreateForm extends Component {
         }
         
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -424,6 +391,14 @@ class MainOrderAccountCreateForm extends Component {
             </Row>
           </Form>
         </Card>
+
+
+
+       
+        
+
+
+
 
 
 

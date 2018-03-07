@@ -38,6 +38,24 @@ const summaryOf = (serviceVehicleRepairing) =>{
 <Description term="经度">{serviceVehicleRepairing.longitude}</Description> 
 <Description term="纬度">{serviceVehicleRepairing.latitude}</Description> 
 <Description term="最后更新时间">{ moment(serviceVehicleRepairing.lastUpdateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="年检报告1">{serviceVehicleRepairing.inspectionReportImage1}</Description> 
+<Description term="年检报告2">{serviceVehicleRepairing.inspectionReportImage2}</Description> 
+<Description term="年检报告3">{serviceVehicleRepairing.inspectionReportImage3}</Description> 
+<Description term="年检报告4">{serviceVehicleRepairing.inspectionReportImage4}</Description> 
+<Description term="年检报告5">{serviceVehicleRepairing.inspectionReportImage5}</Description> 
+<Description term="车辆维修报价单1">{serviceVehicleRepairing.repairingQuotationImage1}</Description> 
+<Description term="车辆维修报价单2">{serviceVehicleRepairing.repairingQuotationImage2}</Description> 
+<Description term="车辆维修报价单3">{serviceVehicleRepairing.repairingQuotationImage3}</Description> 
+<Description term="车辆维修报价单4">{serviceVehicleRepairing.repairingQuotationImage4}</Description> 
+<Description term="车辆维修报价单5">{serviceVehicleRepairing.repairingQuotationImage5}</Description> 
+<Description term="车辆维修报价总金额">{serviceVehicleRepairing.repairingQuotationTotalAmount}</Description> 
+<Description term="车辆维修部分图片1">{serviceVehicleRepairing.repairingPartImg1}</Description> 
+<Description term="车辆维修部分图片2">{serviceVehicleRepairing.repairingPartImg2}</Description> 
+<Description term="车辆维修部分图片3">{serviceVehicleRepairing.repairingPartImg3}</Description> 
+<Description term="车辆维修部分图片4">{serviceVehicleRepairing.repairingPartImg4}</Description> 
+<Description term="车辆维修部分图片5">{serviceVehicleRepairing.repairingPartImg5}</Description> 
+<Description term="车辆维修备注">{serviceVehicleRepairing.repairingPartListComment}</Description> 
+<Description term="维修完成日期时间">{ moment(serviceVehicleRepairing.repairingFinishedDatetime).format('YYYY-MM-DD')}</Description> 
 	
         
       </DescriptionList>
@@ -51,7 +69,7 @@ const summaryOf = (serviceVehicleRepairing) =>{
 export default class ServiceVehicleRepairingDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, reportVehicleInspectionReportCount, repairingQuotationCount, repairingAllowanceItemCount, vehicleRepairingPaymentCount, vehicleRepairingReportCount } = this.props.serviceVehicleRepairing
+    const { id, repairingAllowanceItemCount, vehicleRepairingPaymentCount } = this.props.serviceVehicleRepairing
     
     
     
@@ -64,42 +82,6 @@ export default class ServiceVehicleRepairingDashboard extends Component {
       >
         <div>
           <Row gutter={24}>
-
-          
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="车辆上线年检报告"
-                action={<Tooltip title="车辆上线年检报告"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(reportVehicleInspectionReportCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/serviceVehicleRepairing/${id}/list/reportVehicleInspectionReportList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/serviceVehicleRepairing/${id}/list/reportVehicleInspectionReportCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/serviceVehicleRepairing/${id}/list/reportVehicleInspectionReportList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
-
-          
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="车辆维修报价"
-                action={<Tooltip title="车辆维修报价"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(repairingQuotationCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/serviceVehicleRepairing/${id}/list/repairingQuotationList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/serviceVehicleRepairing/${id}/list/repairingQuotationCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/serviceVehicleRepairing/${id}/list/repairingQuotationList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
 
           
             <Col {...topColResponsiveProps}>
@@ -134,24 +116,6 @@ export default class ServiceVehicleRepairingDashboard extends Component {
                 <Link to={`/serviceVehicleRepairing/${id}/list/vehicleRepairingPaymentCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
                 <Link to={`/serviceVehicleRepairing/${id}/list/vehicleRepairingPaymentList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
-
-          
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="车辆维修报告"
-                action={<Tooltip title="车辆维修报告"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(vehicleRepairingReportCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/serviceVehicleRepairing/${id}/list/vehicleRepairingReportList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/serviceVehicleRepairing/${id}/list/vehicleRepairingReportCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/serviceVehicleRepairing/${id}/list/vehicleRepairingReportList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
 

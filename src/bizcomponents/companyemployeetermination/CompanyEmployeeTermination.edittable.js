@@ -190,7 +190,7 @@ class CompanyEmployeeTerminationEditTable extends PureComponent {
     
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17', render: (text, record) => renderStringEdit('who',text, record)  },
+  { title: '审批人', debugtype: 'string', dataIndex: 'who', width: '17', render: (text, record) => renderStringEdit('who',text, record)  },
   { title: '执行时间', dataIndex: 'eventTime', render: (text, record) => moment(record.eventTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '批注', debugtype: 'string', dataIndex: 'comment', width: '8', render: (text, record) => renderStringEdit('comment',text, record)  },
 { title: '操作',

@@ -188,6 +188,78 @@ export default {
       // yield put(routerRedux.push(location))
     },
 
+    *addVehicleInspectionOrderCharge({ payload }, { call, put }) {
+      const {VehicleInspectionOrderService} = GlobalComponents;
+
+      const { id, type, parameters, continueNext } = payload
+      console.log('get form parameters', parameters)
+      const data = yield call(VehicleInspectionOrderService.addVehicleInspectionOrderCharge, id, parameters)
+      if (hasError(data)) {
+        handleServerError(data)
+        return
+      }
+      const newPlayload = { ...payload, ...data }
+      yield put({ type: 'updateState', payload: newPlayload })
+      // yield put(routerRedux.push(`/vehicleInspectionOrder/${id}/list/${type}CreateForm'))
+      notification.success({
+        message: '执行成功',
+        description: '执行成功',
+      })
+      if (continueNext) {
+        return
+      }
+      const location = { pathname: `/vehicleInspectionOrder/${id}/list/${type}List`, state: data }
+      yield put(routerRedux.push(location))
+    },
+    *updateVehicleInspectionOrderCharge({ payload }, { call, put }) {
+      const {VehicleInspectionOrderService} = GlobalComponents;      
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      console.log('get form parameters', parameters)
+      const data = yield call(VehicleInspectionOrderService.updateVehicleInspectionOrderCharge, id, parameters)
+      if (hasError(data)) {
+        handleServerError(data)
+        return
+      }
+      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      yield put({ type: 'updateState', payload: newPlayload })
+      notification.success({
+        message: '执行成功',
+        description: '执行成功',
+      })
+        
+      if (continueNext) {
+        return
+      }
+      const location = { pathname: `/vehicleInspectionOrder/${id}/list/${type}List`, state: newPlayload }
+      yield put(routerRedux.push(location))
+    },
+    *gotoNextVehicleInspectionOrderChargeUpdateRow({ payload }, { call, put }) {
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
+      yield put({ type: 'updateState', payload: newPlayload })
+    },
+    *removeVehicleInspectionOrderChargeList({ payload }, { call, put }) {
+      const {VehicleInspectionOrderService} = GlobalComponents; 
+      const { id, type, parameters, continueNext } = payload
+      console.log('get form parameters', parameters)
+      const data = yield call(VehicleInspectionOrderService.removeVehicleInspectionOrderChargeList, id, parameters)
+      if (hasError(data)) {
+        handleServerError(data)
+        return
+      }
+      const newPlayload = { ...payload, ...data }
+
+      yield put({ type: 'updateState', payload: newPlayload })
+        
+      // yield put(routerRedux.push(`/vehicleInspectionOrder/${id}/list/${type}CreateForm`))
+      notification.success({
+        message: '执行成功',
+        description: '执行成功',
+      })
+      // const location = { pathname: `vehicleInspectionOrder/${id}/list/${type}List`, state: data}
+      // yield put(routerRedux.push(location))
+    },
+
     *addVehicleInspectionOrderServiceLog({ payload }, { call, put }) {
       const {VehicleInspectionOrderService} = GlobalComponents;
 
@@ -1052,150 +1124,6 @@ export default {
       // yield put(routerRedux.push(location))
     },
 
-    *addReportVehicleInspectionReport({ payload }, { call, put }) {
-      const {VehicleInspectionOrderService} = GlobalComponents;
-
-      const { id, type, parameters, continueNext } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(VehicleInspectionOrderService.addReportVehicleInspectionReport, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data }
-      yield put({ type: 'updateState', payload: newPlayload })
-      // yield put(routerRedux.push(`/vehicleInspectionOrder/${id}/list/${type}CreateForm'))
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      if (continueNext) {
-        return
-      }
-      const location = { pathname: `/vehicleInspectionOrder/${id}/list/${type}List`, state: data }
-      yield put(routerRedux.push(location))
-    },
-    *updateReportVehicleInspectionReport({ payload }, { call, put }) {
-      const {VehicleInspectionOrderService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(VehicleInspectionOrderService.updateReportVehicleInspectionReport, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
-      yield put({ type: 'updateState', payload: newPlayload })
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-        
-      if (continueNext) {
-        return
-      }
-      const location = { pathname: `/vehicleInspectionOrder/${id}/list/${type}List`, state: newPlayload }
-      yield put(routerRedux.push(location))
-    },
-    *gotoNextReportVehicleInspectionReportUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
-      const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
-      yield put({ type: 'updateState', payload: newPlayload })
-    },
-    *removeReportVehicleInspectionReportList({ payload }, { call, put }) {
-      const {VehicleInspectionOrderService} = GlobalComponents; 
-      const { id, type, parameters, continueNext } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(VehicleInspectionOrderService.removeReportVehicleInspectionReportList, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data }
-
-      yield put({ type: 'updateState', payload: newPlayload })
-        
-      // yield put(routerRedux.push(`/vehicleInspectionOrder/${id}/list/${type}CreateForm`))
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      // const location = { pathname: `vehicleInspectionOrder/${id}/list/${type}List`, state: data}
-      // yield put(routerRedux.push(location))
-    },
-
-    *addReportFileInspectionReport({ payload }, { call, put }) {
-      const {VehicleInspectionOrderService} = GlobalComponents;
-
-      const { id, type, parameters, continueNext } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(VehicleInspectionOrderService.addReportFileInspectionReport, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data }
-      yield put({ type: 'updateState', payload: newPlayload })
-      // yield put(routerRedux.push(`/vehicleInspectionOrder/${id}/list/${type}CreateForm'))
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      if (continueNext) {
-        return
-      }
-      const location = { pathname: `/vehicleInspectionOrder/${id}/list/${type}List`, state: data }
-      yield put(routerRedux.push(location))
-    },
-    *updateReportFileInspectionReport({ payload }, { call, put }) {
-      const {VehicleInspectionOrderService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(VehicleInspectionOrderService.updateReportFileInspectionReport, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
-      yield put({ type: 'updateState', payload: newPlayload })
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-        
-      if (continueNext) {
-        return
-      }
-      const location = { pathname: `/vehicleInspectionOrder/${id}/list/${type}List`, state: newPlayload }
-      yield put(routerRedux.push(location))
-    },
-    *gotoNextReportFileInspectionReportUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
-      const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
-      yield put({ type: 'updateState', payload: newPlayload })
-    },
-    *removeReportFileInspectionReportList({ payload }, { call, put }) {
-      const {VehicleInspectionOrderService} = GlobalComponents; 
-      const { id, type, parameters, continueNext } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(VehicleInspectionOrderService.removeReportFileInspectionReportList, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data }
-
-      yield put({ type: 'updateState', payload: newPlayload })
-        
-      // yield put(routerRedux.push(`/vehicleInspectionOrder/${id}/list/${type}CreateForm`))
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      // const location = { pathname: `vehicleInspectionOrder/${id}/list/${type}List`, state: data}
-      // yield put(routerRedux.push(location))
-    },
-
     *addServiceVehicleRepairing({ payload }, { call, put }) {
       const {VehicleInspectionOrderService} = GlobalComponents;
 
@@ -1251,78 +1179,6 @@ export default {
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
       const data = yield call(VehicleInspectionOrderService.removeServiceVehicleRepairingList, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data }
-
-      yield put({ type: 'updateState', payload: newPlayload })
-        
-      // yield put(routerRedux.push(`/vehicleInspectionOrder/${id}/list/${type}CreateForm`))
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      // const location = { pathname: `vehicleInspectionOrder/${id}/list/${type}List`, state: data}
-      // yield put(routerRedux.push(location))
-    },
-
-    *addVehicleRepairingReport({ payload }, { call, put }) {
-      const {VehicleInspectionOrderService} = GlobalComponents;
-
-      const { id, type, parameters, continueNext } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(VehicleInspectionOrderService.addVehicleRepairingReport, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data }
-      yield put({ type: 'updateState', payload: newPlayload })
-      // yield put(routerRedux.push(`/vehicleInspectionOrder/${id}/list/${type}CreateForm'))
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      if (continueNext) {
-        return
-      }
-      const location = { pathname: `/vehicleInspectionOrder/${id}/list/${type}List`, state: data }
-      yield put(routerRedux.push(location))
-    },
-    *updateVehicleRepairingReport({ payload }, { call, put }) {
-      const {VehicleInspectionOrderService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(VehicleInspectionOrderService.updateVehicleRepairingReport, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
-      yield put({ type: 'updateState', payload: newPlayload })
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-        
-      if (continueNext) {
-        return
-      }
-      const location = { pathname: `/vehicleInspectionOrder/${id}/list/${type}List`, state: newPlayload }
-      yield put(routerRedux.push(location))
-    },
-    *gotoNextVehicleRepairingReportUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
-      const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
-      yield put({ type: 'updateState', payload: newPlayload })
-    },
-    *removeVehicleRepairingReportList({ payload }, { call, put }) {
-      const {VehicleInspectionOrderService} = GlobalComponents; 
-      const { id, type, parameters, continueNext } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(VehicleInspectionOrderService.removeVehicleRepairingReportList, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return

@@ -197,7 +197,7 @@ class VehicleInspectionOrderPaymentEditTable extends PureComponent {
   { title: '状态', debugtype: 'string', dataIndex: 'status', width: '8', render: (text, record) => renderStringEdit('status',text, record)  },
   { title: '微信订单ID', debugtype: 'string', dataIndex: 'wechatOrderId', width: '36', render: (text, record) => renderStringEdit('wechatOrderId',text, record)  },
   { title: '微信预付订单ID', debugtype: 'string', dataIndex: 'wechatPrepayId', width: '25', render: (text, record) => renderStringEdit('wechatPrepayId',text, record)  },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
+  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.displayName : '暂无') },
   { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
 { title: '操作',

@@ -118,7 +118,7 @@ export default class SecUserViewDetail extends Component {
     
       <DescriptionList className={styles.headerList} size="small" col="1">
 			<Description term="ID">{blocking.id}</Description> 
-			<Description term="谁">{blocking.who}</Description> 
+			<Description term="审批人">{blocking.who}</Description> 
 			<Description term="块时间">{blocking.blockTime}</Description> 
 			<Description term="评论">{blocking.comments}</Description> 
 			<Description term="版本">{blocking.version}</Description> 

@@ -193,10 +193,10 @@ class ServicePriceEditTable extends PureComponent {
     
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '合同', dataIndex: 'contract', render: (text, record) => (record.contract ? record.contract.id : '暂无') },
-  { title: '服务范围', dataIndex: 'availableService', render: (text, record) => (record.availableService ? record.availableService.id : '暂无') },
-  { title: '产品名称', dataIndex: 'product', render: (text, record) => (record.product ? record.product.id : '暂无') },
-  { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '30', render: (text, record) => renderStringEdit('serviceKey',text, record)  },
+  { title: '合同', dataIndex: 'contract', render: (text, record) => (record.contract ? record.contract.displayName : '暂无') },
+  { title: '服务范围', dataIndex: 'availableService', render: (text, record) => (record.availableService ? record.availableService.displayName : '暂无') },
+  { title: '产品名称', dataIndex: 'product', render: (text, record) => (record.product ? record.product.displayName : '暂无') },
+  { title: '服务代码', debugtype: 'string', dataIndex: 'serviceKey', width: '35', render: (text, record) => renderStringEdit('serviceKey',text, record)  },
   { title: '服务价格类型', debugtype: 'string', dataIndex: 'servicePriceType', width: '11', render: (text, record) => renderStringEdit('servicePriceType',text, record)  },
   { title: '服务价格', debugtype: 'double', dataIndex: 'basePriceValue', width: '9', render: (text, record) => renderStringEdit('basePriceValue',text, record)  },
   { title: '后续服务价格', debugtype: 'double', dataIndex: 'otherPriceValue', width: '9', render: (text, record) => renderStringEdit('otherPriceValue',text, record)  },

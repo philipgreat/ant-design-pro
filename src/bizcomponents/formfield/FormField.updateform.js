@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover, Switch } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
-import OSSPictureEdit from '../../components/OSSPictureEdit'
+import ImageUpload from '../../components/ImageUpload'
+//import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
@@ -16,7 +17,7 @@ const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
   label: '标签',
-  localeKey: '语言环境的关键',
+  localeKey: '消息键值',
   parameterName: '参数名称',
   type: '类型',
   form: '形式',
@@ -53,7 +54,7 @@ class FormFieldUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow)
+      convertedImagesValues: mapFromImageValues(selectedRow,imageKeys)
     })
   }
 
@@ -101,51 +102,6 @@ class FormFieldUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = (convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        if (value.response.indexOf('//') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('http://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('https://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-  
-  mapFromImageValues = (selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   handlePreview = (file) => {
     console.log('preview file', file)
@@ -171,7 +127,7 @@ class FormFieldUpdateForm extends Component {
 
         const { owner } = this.props
         const formFieldId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, formFieldId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
@@ -198,7 +154,7 @@ class FormFieldUpdateForm extends Component {
 
         const { owner } = this.props
         const formFieldId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, formFieldId, ...imagesValues }
 
         // TODO
@@ -333,9 +289,9 @@ class FormFieldUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.localeKey}>
                   {getFieldDecorator('localeKey', {
-                    rules: [{ required: true, message: '请输入语言环境的关键' }],
+                    rules: [{ required: true, message: '请输入消息键值' }],
                   })(
-                    <Input placeholder="请输入请输入语言环境的关键string" />
+                    <Input placeholder="请输入请输入消息键值string" />
                   )}
                 </Form.Item>
               </Col>
@@ -421,36 +377,6 @@ class FormFieldUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.required}>
-                  {getFieldDecorator('required', {
-                    rules: [{ required: true, message: '请输入要求' }],
-                  })(
-                    <Input placeholder="请输入请输入要求bool" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.disabled}>
-                  {getFieldDecorator('disabled', {
-                    rules: [{ required: true, message: '请输入禁用' }],
-                  })(
-                    <Input placeholder="请输入请输入禁用bool" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.customRendering}>
-                  {getFieldDecorator('customRendering', {
-                    rules: [{ required: true, message: '请输入自定义渲染' }],
-                  })(
-                    <Input placeholder="请输入请输入自定义渲染bool" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.candidateValues}>
                   {getFieldDecorator('candidateValues', {
                     rules: [{ required: true, message: '请输入候选人的价值观' }],
@@ -473,6 +399,52 @@ class FormFieldUpdateForm extends Component {
             </Row>
           </Form>  
         </Card>
+        
+        <Card title="设置" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+            
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.required}>
+                  {getFieldDecorator('required', {
+                    rules: [{ required: true, message: '请输入要求' }],
+                    valuePropName: 'checked'
+                  })(
+                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入要求bool" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.disabled}>
+                  {getFieldDecorator('disabled', {
+                    rules: [{ required: true, message: '请输入禁用' }],
+                    valuePropName: 'checked'
+                  })(
+                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入禁用bool" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.customRendering}>
+                  {getFieldDecorator('customRendering', {
+                    rules: [{ required: true, message: '请输入自定义渲染' }],
+                    valuePropName: 'checked'
+                  })(
+                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入自定义渲染bool" />
+                  )}
+                </Form.Item>
+              </Col>
+
+            </Row>
+          </Form>  
+        </Card>        
+        
+        
+        
+        
 
 
         <FooterToolbar>

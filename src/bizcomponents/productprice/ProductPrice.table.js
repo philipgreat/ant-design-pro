@@ -9,8 +9,8 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '产品名称', dataIndex: 'product', render: (text, record) => (record.product ? (<Link to={`/availableProduct/${record.product.id}/dashboard`}>{record.product.id}</Link>) : '暂无') },
-  { title: '城市', dataIndex: 'city', render: (text, record) => (record.city ? (<Link to={`/city/${record.city.id}/dashboard`}>{record.city.id}</Link>) : '暂无') },
+  { title: '产品名称', dataIndex: 'product', render: (text, record) => (record.product ? (<Link to={`/availableProduct/${record.product.id}/dashboard`}>{record.product.displayName}</Link>) : '暂无') },
+  { title: '城市', dataIndex: 'city', render: (text, record) => (record.city ? (<Link to={`/city/${record.city.id}/dashboard`}>{record.city.displayName}</Link>) : '暂无') },
   { title: '车辆类型', debugtype: 'string', dataIndex: 'vehicleType', width: '6' },
   { title: '年检费用', dataIndex: 'inspectionPrice', className:'money', render: (text, record) => (`￥${text.toFixed(2)}`) },
   { title: '代办服务费用', dataIndex: 'agentServicePrice', className:'money', render: (text, record) => (`￥${text.toFixed(2)}`) },

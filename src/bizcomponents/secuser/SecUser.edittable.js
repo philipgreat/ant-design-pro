@@ -198,8 +198,8 @@ class SecUserEditTable extends PureComponent {
   { title: '验证码', debugtype: 'int', dataIndex: 'verificationCode', width: '11', render: (text, record) => renderStringEdit('verificationCode',text, record)  },
   { title: '验证码过期时间', dataIndex: 'verificationCodeExpire', render: (text, record) => moment(record.verificationCodeExpire).format('YYYY-MM-DD HH:mm:ss') },
   { title: '最后登录时间', dataIndex: 'lastLoginTime', render: (text, record) => moment(record.lastLoginTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '域', dataIndex: 'domain', render: (text, record) => (record.domain ? record.domain.id : '暂无') },
-  { title: '舞台调度', dataIndex: 'blocking', render: (text, record) => (record.blocking ? record.blocking.id : '暂无') },
+  { title: '域', dataIndex: 'domain', render: (text, record) => (record.domain ? record.domain.displayName : '暂无') },
+  { title: '舞台调度', dataIndex: 'blocking', render: (text, record) => (record.blocking ? record.blocking.displayName : '暂无') },
   { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '11', render: (text, record) => renderStringEdit('currentStatus',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]

@@ -9,8 +9,8 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/contract/${text}/dashboard`}>{text}</Link>) },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.id}</Link>) : '暂无') },
-  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? (<Link to={`/vehicleServiceCompany/${record.company.id}/dashboard`}>{record.company.id}</Link>) : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.displayName}</Link>) : '暂无') },
+  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? (<Link to={`/vehicleServiceCompany/${record.company.id}/dashboard`}>{record.company.displayName}</Link>) : '暂无') },
   { title: '开始日期', dataIndex: 'startDate', render: (text, record) => moment(record.startDate).format('YYYY-MM-DD') },
   { title: '结束日期', dataIndex: 'endDate', render: (text, record) => moment(record.endDate).format('YYYY-MM-DD') },
 

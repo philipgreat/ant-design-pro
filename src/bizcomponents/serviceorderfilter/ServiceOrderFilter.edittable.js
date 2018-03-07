@@ -195,7 +195,7 @@ class ServiceOrderFilterEditTable extends PureComponent {
   { title: '服务单数量', debugtype: 'int', dataIndex: 'orderCount', width: '6', render: (text, record) => renderStringEdit('orderCount',text, record)  },
   { title: '选中', dataIndex: 'selected', render: (text, record) => (record.selected ? '是' : '否') },
   { title: '服务单状态接口', debugtype: 'string', dataIndex: 'linkUrl', width: '56', render: (text, record) => renderStringEdit('linkUrl',text, record)  },
-  { title: '员工', dataIndex: 'employee', render: (text, record) => (record.employee ? record.employee.id : '暂无') },
+  { title: '员工', dataIndex: 'employee', render: (text, record) => (record.employee ? record.employee.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

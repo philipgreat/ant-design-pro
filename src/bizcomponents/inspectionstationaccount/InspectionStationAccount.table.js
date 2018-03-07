@@ -16,10 +16,10 @@ const columns = [
   { title: '检测日期', dataIndex: 'inspectionDatetime', render: (text, record) => moment(record.inspectionDatetime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '检测站', debugtype: 'string', dataIndex: 'inspectionStationName', width: '11' },
   { title: '年检订单ID', debugtype: 'string', dataIndex: 'mainOrderNumber', width: '28' },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.id}</Link>) : '暂无') },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.id}</Link>) : '暂无') },
-  { title: '检测站', dataIndex: 'inspectionStation', render: (text, record) => (record.inspectionStation ? (<Link to={`/inspectionStation/${record.inspectionStation.id}/dashboard`}>{record.inspectionStation.id}</Link>) : '暂无') },
-  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? (<Link to={`/account/${record.account.id}/dashboard`}>{record.account.id}</Link>) : '暂无') },
+  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? (<Link to={`/vehicleServiceCompany/${record.merchant.id}/dashboard`}>{record.merchant.displayName}</Link>) : '暂无') },
+  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? (<Link to={`/vehicleServiceCompanyEmployee/${record.responsibleWorker.id}/dashboard`}>{record.responsibleWorker.displayName}</Link>) : '暂无') },
+  { title: '检测站', dataIndex: 'inspectionStation', render: (text, record) => (record.inspectionStation ? (<Link to={`/inspectionStation/${record.inspectionStation.id}/dashboard`}>{record.inspectionStation.displayName}</Link>) : '暂无') },
+  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? (<Link to={`/account/${record.account.id}/dashboard`}>{record.account.displayName}</Link>) : '暂无') },
 
 ]
 

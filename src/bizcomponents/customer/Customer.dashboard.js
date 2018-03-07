@@ -34,8 +34,8 @@ const summaryOf = (customer) =>{
 <Description term="ID">{customer.id}</Description> 
 <Description term="客户昵称">{customer.nickName}</Description> 
 <Description term="头像">{customer.logoImage}</Description> 
-<Description term="WeixinOpenid">{customer.weixinOpenid}</Description> 
-<Description term="WeixinAppid">{customer.weixinAppid}</Description> 
+<Description term="微信ID">{customer.weixinOpenid}</Description> 
+<Description term="微信APP">{customer.weixinAppid}</Description> 
 	
         
       </DescriptionList>
@@ -49,7 +49,7 @@ const summaryOf = (customer) =>{
 export default class CustomerDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, vehicleInfoCount, vehicleInspectionOrderCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.customer
+    const { id, companyQrcodePromotionRecordCount, vehicleInfoCount, vehicleInspectionOrderCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.customer
     
     
     
@@ -62,6 +62,24 @@ export default class CustomerDashboard extends Component {
       >
         <div>
           <Row gutter={24}>
+
+          
+            <Col {...topColResponsiveProps}>
+              <ChartCard
+                bordered={false}
+                title="公司二维码推广记录"
+                action={<Tooltip title="公司二维码推广记录"><Icon type="info-circle-o" /></Tooltip>}
+                total={numeral(companyQrcodePromotionRecordCount).format('0,0')}
+                footer={<Field label="状态" value="良好" />}
+                contentHeight={46}
+              >
+                <Link to={`/customer/${id}/list/companyQrcodePromotionRecordList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/customer/${id}/list/companyQrcodePromotionRecordCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
+                &nbsp;
+                <Link to={`/customer/${id}/list/companyQrcodePromotionRecordList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
+              </ChartCard>
+            </Col>
 
           
             <Col {...topColResponsiveProps}>

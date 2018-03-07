@@ -199,7 +199,7 @@ const removeCustomerList = (targetObjectId, parameters) => {
 
 
 const addVehicleServiceCompany = (targetObjectId, parameters) => {
-  const url = `${PREFIX}carInspectionPlatformManager/addVehicleServiceCompany/platformId/companyName/operatingStatus/addressCityId/addressDetail/availableStoreService/availableHomeService/openingTime/longitude/latitude/contactPhone/companyImage1/companyImage2/companyImage3/companyImage4/companyImage5/orderContact/orderContactPhone/tokensExpr/`
+  const url = `${PREFIX}carInspectionPlatformManager/addVehicleServiceCompany/platformId/companyName/operatingStatus/addressCityId/addressDetail/availableStoreService/availableHomeService/openingTime/longitude/latitude/contactPhone/companyImage1/companyImage2/companyImage3/companyImage4/companyImage5/promoteQrcodeImage/orderContact/orderContactPhone/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -211,7 +211,7 @@ const addVehicleServiceCompany = (targetObjectId, parameters) => {
 }
 
 const updateVehicleServiceCompany = (targetObjectId, parameters) => {
-  const url = `${PREFIX}carInspectionPlatformManager/updateVehicleServiceCompanyProperties/carInspectionPlatformId/id/companyName/operatingStatus/addressDetail/availableStoreService/availableHomeService/openingTime/longitude/latitude/contactPhone/companyImage1/companyImage2/companyImage3/companyImage4/companyImage5/orderContact/orderContactPhone/tokensExpr/`
+  const url = `${PREFIX}carInspectionPlatformManager/updateVehicleServiceCompanyProperties/carInspectionPlatformId/id/companyName/operatingStatus/addressDetail/availableStoreService/availableHomeService/openingTime/longitude/latitude/contactPhone/companyImage1/companyImage2/companyImage3/companyImage4/companyImage5/promoteQrcodeImage/orderContact/orderContactPhone/tokensExpr/`
   const carInspectionPlatformId = targetObjectId
   const requestParameters = { ...parameters, carInspectionPlatformId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }

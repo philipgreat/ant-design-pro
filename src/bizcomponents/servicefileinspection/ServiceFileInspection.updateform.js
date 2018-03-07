@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover, Switch } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
-import OSSPictureEdit from '../../components/OSSPictureEdit'
+import ImageUpload from '../../components/ImageUpload'
+//import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
@@ -20,6 +21,11 @@ const fieldLabels = {
   serviceSummary: '服务概述',
   inspectionStation: '检测站',
   inspectionResult: '检测结果',
+  inspectionReportImage1: '年检报告1',
+  inspectionReportImage2: '年检报告2',
+  inspectionReportImage3: '年检报告3',
+  inspectionReportImage4: '年检报告4',
+  inspectionReportImage5: '年检报告5',
   startTime: '开始时间',
   longitude: '经度',
   latitude: '纬度',
@@ -33,6 +39,11 @@ const fieldLabels = {
 const imageURLPrefix = '//localhost:2090'
 
 const imageKeys = [
+  'inspectionReportImage1',
+  'inspectionReportImage2',
+  'inspectionReportImage3',
+  'inspectionReportImage4',
+  'inspectionReportImage5',
 ]
 
 
@@ -49,7 +60,7 @@ class ServiceFileInspectionUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow)
+      convertedImagesValues: mapFromImageValues(selectedRow,imageKeys)
     })
   }
 
@@ -100,51 +111,6 @@ class ServiceFileInspectionUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = (convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        if (value.response.indexOf('//') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('http://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('https://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-  
-  mapFromImageValues = (selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   handlePreview = (file) => {
     console.log('preview file', file)
@@ -170,7 +136,7 @@ class ServiceFileInspectionUpdateForm extends Component {
 
         const { owner } = this.props
         const serviceFileInspectionId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, serviceFileInspectionId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
@@ -197,7 +163,7 @@ class ServiceFileInspectionUpdateForm extends Component {
 
         const { owner } = this.props
         const serviceFileInspectionId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, serviceFileInspectionId, ...imagesValues }
 
         // TODO
@@ -392,7 +358,64 @@ class ServiceFileInspectionUpdateForm extends Component {
             </Row>
           </Form>  
         </Card>
+       
+        
+        
+        
 
+
+        <Card title="附件" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告1"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage1')}
+                  fileList={convertedImagesValues.inspectionReportImage1}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告2"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage2')}
+                  fileList={convertedImagesValues.inspectionReportImage2}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告3"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage3')}
+                  fileList={convertedImagesValues.inspectionReportImage3}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告4"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage4')}
+                  fileList={convertedImagesValues.inspectionReportImage4}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="年检报告5"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage5')}
+                  fileList={convertedImagesValues.inspectionReportImage5}
+                />
+              </Col>
+
+            </Row>
+          </Form>
+        </Card>
 
         <FooterToolbar>
           {getErrorInfo()}

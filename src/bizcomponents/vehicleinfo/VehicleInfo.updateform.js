@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover, Switch } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
-import OSSPictureEdit from '../../components/OSSPictureEdit'
+import ImageUpload from '../../components/ImageUpload'
+//import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
@@ -60,7 +61,7 @@ class VehicleInfoUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: this.mapFromImageValues(selectedRow)
+      convertedImagesValues: mapFromImageValues(selectedRow,imageKeys)
     })
   }
 
@@ -112,51 +113,6 @@ class VehicleInfoUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  mapBackToImageValues = (convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]) {
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        if (value.response.indexOf('//') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('http://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        if (value.response.indexOf('https://') === 0) {
-          targetImages[key] = value.response
-          return
-        }
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-  
-  mapFromImageValues = (selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   handlePreview = (file) => {
     console.log('preview file', file)
@@ -182,7 +138,7 @@ class VehicleInfoUpdateForm extends Component {
 
         const { owner } = this.props
         const vehicleInfoId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, vehicleInfoId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
@@ -209,7 +165,7 @@ class VehicleInfoUpdateForm extends Component {
 
         const { owner } = this.props
         const vehicleInfoId = values.id
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         const parameters = { ...values, vehicleInfoId, ...imagesValues }
 
         // TODO
@@ -444,6 +400,10 @@ class VehicleInfoUpdateForm extends Component {
             </Row>
           </Form>  
         </Card>
+       
+        
+        
+        
 
 
         <Card title="附件" className={styles.card} bordered={false}>
@@ -451,7 +411,7 @@ class VehicleInfoUpdateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="行驶证图1"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage1')}
@@ -460,7 +420,7 @@ class VehicleInfoUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="行驶证图2"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage2')}
@@ -469,7 +429,7 @@ class VehicleInfoUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="行驶证图3"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage3')}
@@ -478,7 +438,7 @@ class VehicleInfoUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="行驶证图4"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage4')}
@@ -487,7 +447,7 @@ class VehicleInfoUpdateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="行驶证图5"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'vehiclePermitImage5')}

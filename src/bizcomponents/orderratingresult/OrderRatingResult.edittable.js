@@ -193,7 +193,7 @@ class OrderRatingResultEditTable extends PureComponent {
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '评分项', debugtype: 'string', dataIndex: 'ratingName', width: '11', render: (text, record) => renderStringEdit('ratingName',text, record)  },
   { title: '评分结果', debugtype: 'double', dataIndex: 'ratingResult', width: '7', render: (text, record) => renderStringEdit('ratingResult',text, record)  },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
+  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

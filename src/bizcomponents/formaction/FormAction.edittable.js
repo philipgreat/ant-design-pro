@@ -192,10 +192,11 @@ class FormActionEditTable extends PureComponent {
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '标签', debugtype: 'string', dataIndex: 'label', width: '6', render: (text, record) => renderStringEdit('label',text, record)  },
-  { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey', width: '8', render: (text, record) => renderStringEdit('localeKey',text, record)  },
+  { title: '消息键值', debugtype: 'string', dataIndex: 'localeKey', width: '8', render: (text, record) => renderStringEdit('localeKey',text, record)  },
+  { title: '行动的关键', debugtype: 'string', dataIndex: 'actionKey', width: '10', render: (text, record) => renderStringEdit('actionKey',text, record)  },
   { title: '水平', debugtype: 'string', dataIndex: 'level', width: '11', render: (text, record) => renderStringEdit('level',text, record)  },
   { title: 'url', debugtype: 'string', dataIndex: 'url', width: '46', render: (text, record) => renderStringEdit('url',text, record)  },
-  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.id : '暂无') },
+  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    
@@ -204,6 +205,7 @@ class FormActionEditTable extends PureComponent {
       	'id':`+1`, 
 				'label':'',
 				'localeKey':'',
+				'actionKey':'',
 				'level':'',
 				'url':'',
 				'form':'',

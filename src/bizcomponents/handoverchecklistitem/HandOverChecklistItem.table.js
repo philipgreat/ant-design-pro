@@ -9,8 +9,8 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '检查问题', dataIndex: 'question', render: (text, record) => (record.question ? (<Link to={`/availableHandOverItem/${record.question.id}/dashboard`}>{record.question.id}</Link>) : '暂无') },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.id}</Link>) : '暂无') },
+  { title: '检查问题', dataIndex: 'question', render: (text, record) => (record.question ? (<Link to={`/availableHandOverItem/${record.question.id}/dashboard`}>{record.question.displayName}</Link>) : '暂无') },
+  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.displayName}</Link>) : '暂无') },
 
 ]
 

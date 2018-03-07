@@ -202,7 +202,7 @@ class ObjectAccessEditTable extends PureComponent {
   { title: '列表7', debugtype: 'string', dataIndex: 'list7', width: '24', render: (text, record) => renderStringEdit('list7',text, record)  },
   { title: '列表8', debugtype: 'string', dataIndex: 'list8', width: '24', render: (text, record) => renderStringEdit('list8',text, record)  },
   { title: '列表9', debugtype: 'string', dataIndex: 'list9', width: '24', render: (text, record) => renderStringEdit('list9',text, record)  },
-  { title: '应用程序', dataIndex: 'app', render: (text, record) => (record.app ? record.app.id : '暂无') },
+  { title: '应用程序', dataIndex: 'app', render: (text, record) => (record.app ? record.app.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

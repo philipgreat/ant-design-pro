@@ -17,6 +17,11 @@ const columns = [
   { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '11' },
   { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '检测日期', dataIndex: 'inspectionDatetime', render: (text, record) => moment(record.inspectionDatetime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '年检报告1', dataIndex: 'inspectionReportImage1', render: (text, record) => <ImagePreview imageLocation={record.inspectionReportImage1}/> },
+  { title: '年检报告2', dataIndex: 'inspectionReportImage2', render: (text, record) => <ImagePreview imageLocation={record.inspectionReportImage2}/> },
+  { title: '年检报告3', dataIndex: 'inspectionReportImage3', render: (text, record) => <ImagePreview imageLocation={record.inspectionReportImage3}/> },
+  { title: '年检报告4', dataIndex: 'inspectionReportImage4', render: (text, record) => <ImagePreview imageLocation={record.inspectionReportImage4}/> },
+  { title: '年检报告5', dataIndex: 'inspectionReportImage5', render: (text, record) => <ImagePreview imageLocation={record.inspectionReportImage5}/> },
   { title: '检测结果', debugtype: 'string', dataIndex: 'inspectionResult', width: '7' },
   { title: '是否要修理', debugtype: 'string', dataIndex: 'inspectionNeedRepair', width: '7' },
   { title: '商户',dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.id : '暂无') },
@@ -39,7 +44,7 @@ class ServiceVehicleInspectionViewTable extends PureComponent {
           columns={columns}
           size="small"
           pagination={false}
-          scroll={{ x: 1935 }}
+          scroll={{ x: 2835 }}
         />
         
       </div>

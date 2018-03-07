@@ -36,14 +36,15 @@ const topColResponsiveProps = {
 }))
 export default class CustomerEditDetail extends Component {
   render() {
+    const {CompanyQrcodePromotionRecordEditTable} = GlobalComponents;
     const {VehicleInfoEditTable} = GlobalComponents;
     const {VehicleInspectionOrderEditTable} = GlobalComponents;
     const {OrderDiscountCouponEditTable} = GlobalComponents;
     const {VehicleInspectionOrderCouponEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id, vehicleInfoCount, vehicleInspectionOrderCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.customer
-    const { vehicleInfoList, vehicleInspectionOrderList, orderDiscountCouponList, vehicleInspectionOrderCouponList } = this.props.customer
+    const { id, companyQrcodePromotionRecordCount, vehicleInfoCount, vehicleInspectionOrderCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.customer
+    const { companyQrcodePromotionRecordList, vehicleInfoList, vehicleInspectionOrderList, orderDiscountCouponList, vehicleInspectionOrderCouponList } = this.props.customer
     
     const owner = { type: '_customer', id }
     return (
@@ -54,6 +55,12 @@ export default class CustomerEditDetail extends Component {
         wrapperClassName={styles.advancedForm}
       >
 
+
+		<Card title="公司二维码推广记录列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <CompanyQrcodePromotionRecordEditTable data={companyQrcodePromotionRecordList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
 
 		<Card title="车辆信息列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>

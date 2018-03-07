@@ -32,7 +32,7 @@ const summaryOf = (companyEmployeeTermination) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{companyEmployeeTermination.id}</Description> 
-<Description term="谁">{companyEmployeeTermination.who}</Description> 
+<Description term="审批人">{companyEmployeeTermination.who}</Description> 
 <Description term="执行时间">{ moment(companyEmployeeTermination.eventTime).format('YYYY-MM-DD')}</Description> 
 <Description term="批注">{companyEmployeeTermination.comment}</Description> 
 	

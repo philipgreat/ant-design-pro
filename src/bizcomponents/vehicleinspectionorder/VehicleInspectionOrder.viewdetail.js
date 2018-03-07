@@ -86,6 +86,7 @@ export default class VehicleInspectionOrderViewDetail extends Component {
   }  
   render() {
     const {VehicleInspectionInsuranceOrderViewTable} = GlobalComponents;
+    const {VehicleInspectionOrderChargeViewTable} = GlobalComponents;
     const {VehicleInspectionOrderServiceLogViewTable} = GlobalComponents;
     const {VehicleInspectionOrderPaymentViewTable} = GlobalComponents;
     const {HandOverChecklistItemViewTable} = GlobalComponents;
@@ -98,10 +99,7 @@ export default class VehicleInspectionOrderViewDetail extends Component {
     const {ServiceInsuranceForInspectionViewTable} = GlobalComponents;
     const {ServiceVehicleInspectionViewTable} = GlobalComponents;
     const {ServiceFileInspectionViewTable} = GlobalComponents;
-    const {ReportVehicleInspectionReportViewTable} = GlobalComponents;
-    const {ReportFileInspectionReportViewTable} = GlobalComponents;
     const {ServiceVehicleRepairingViewTable} = GlobalComponents;
-    const {VehicleRepairingReportViewTable} = GlobalComponents;
     const {OrderReviewResultViewTable} = GlobalComponents;
     const {OrderRatingResultViewTable} = GlobalComponents;
     const {OrderDiscountCouponViewTable} = GlobalComponents;
@@ -110,14 +108,15 @@ export default class VehicleInspectionOrderViewDetail extends Component {
     // eslint-disable-next-line max-len
     
     const vehicleInspectionOrder = this.props.vehicleInspectionOrder
-    const { id, vehicleInspectionInsuranceOrderCount, vehicleInspectionOrderServiceLogCount, vehicleInspectionOrderPaymentCount, handOverChecklistItemCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, reportVehicleInspectionReportCount, reportFileInspectionReportCount, serviceVehicleRepairingCount, vehicleRepairingReportCount, orderReviewResultCount, orderRatingResultCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = vehicleInspectionOrder
-    const { vehicleInspectionInsuranceOrderList, vehicleInspectionOrderServiceLogList, vehicleInspectionOrderPaymentList, handOverChecklistItemList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mList, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, reportVehicleInspectionReportList, reportFileInspectionReportList, serviceVehicleRepairingList, vehicleRepairingReportList, orderReviewResultList, orderRatingResultList, orderDiscountCouponList, vehicleInspectionOrderCouponList } = vehicleInspectionOrder
+    const { id, vehicleInspectionInsuranceOrderCount, vehicleInspectionOrderChargeCount, vehicleInspectionOrderServiceLogCount, vehicleInspectionOrderPaymentCount, handOverChecklistItemCount, serviceVehicleMovementC2mCount, serviceVehicleMovementM2mCount, serviceVehicleMovementM2cCount, serviceFileMovementC2mCount, serviceFileMovementM2mCount, serviceFileMovementM2cCount, serviceInsuranceForInspectionCount, serviceVehicleInspectionCount, serviceFileInspectionCount, serviceVehicleRepairingCount, orderReviewResultCount, orderRatingResultCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = vehicleInspectionOrder
+    const { vehicleInspectionInsuranceOrderList, vehicleInspectionOrderChargeList, vehicleInspectionOrderServiceLogList, vehicleInspectionOrderPaymentList, handOverChecklistItemList, serviceVehicleMovementC2mList, serviceVehicleMovementM2mList, serviceVehicleMovementM2cList, serviceFileMovementC2mList, serviceFileMovementM2mList, serviceFileMovementM2cList, serviceInsuranceForInspectionList, serviceVehicleInspectionList, serviceFileInspectionList, serviceVehicleRepairingList, orderReviewResultList, orderRatingResultList, orderDiscountCouponList, vehicleInspectionOrderCouponList } = vehicleInspectionOrder
     
     const owner = { type: '_vehicleInspectionOrder', id }
     
     const tabList = [
 
       {key: 'vehicleInspectionInsuranceOrderList',tab: `车辆上线检测保险订单(${vehicleInspectionInsuranceOrderCount})`}, 
+      {key: 'vehicleInspectionOrderChargeList',tab: `车辆检验订单费用(${vehicleInspectionOrderChargeCount})`}, 
       {key: 'vehicleInspectionOrderServiceLogList',tab: `年检订单执行日志(${vehicleInspectionOrderServiceLogCount})`}, 
       {key: 'vehicleInspectionOrderPaymentList',tab: `年检订单支付(${vehicleInspectionOrderPaymentCount})`}, 
       {key: 'handOverChecklistItemList',tab: `交接检查项(${handOverChecklistItemCount})`}, 
@@ -130,10 +129,7 @@ export default class VehicleInspectionOrderViewDetail extends Component {
       {key: 'serviceInsuranceForInspectionList',tab: `保险服务(${serviceInsuranceForInspectionCount})`}, 
       {key: 'serviceVehicleInspectionList',tab: `车辆上线检测(${serviceVehicleInspectionCount})`}, 
       {key: 'serviceFileInspectionList',tab: `6年免检服务(${serviceFileInspectionCount})`}, 
-      {key: 'reportVehicleInspectionReportList',tab: `车辆上线年检报告(${reportVehicleInspectionReportCount})`}, 
-      {key: 'reportFileInspectionReportList',tab: `车辆6年免检报告(${reportFileInspectionReportCount})`}, 
       {key: 'serviceVehicleRepairingList',tab: `维修服务(${serviceVehicleRepairingCount})`}, 
-      {key: 'vehicleRepairingReportList',tab: `车辆维修报告(${vehicleRepairingReportCount})`}, 
       {key: 'orderReviewResultList',tab: `订单评论结果(${orderReviewResultCount})`}, 
       {key: 'orderRatingResultList',tab: `订单评分结果(${orderRatingResultCount})`}, 
       {key: 'orderDiscountCouponList',tab: `优惠券(${orderDiscountCouponCount})`}, 
@@ -146,6 +142,9 @@ export default class VehicleInspectionOrderViewDetail extends Component {
     const contentList = {
        vehicleInspectionInsuranceOrderList:  
         <VehicleInspectionInsuranceOrderViewTable data={vehicleInspectionInsuranceOrderList} owner={owner} {...this.props} />,
+ 
+      vehicleInspectionOrderChargeList:  
+        <VehicleInspectionOrderChargeViewTable data={vehicleInspectionOrderChargeList} owner={owner} {...this.props} />,
  
       vehicleInspectionOrderServiceLogList:  
         <VehicleInspectionOrderServiceLogViewTable data={vehicleInspectionOrderServiceLogList} owner={owner} {...this.props} />,
@@ -183,17 +182,8 @@ export default class VehicleInspectionOrderViewDetail extends Component {
       serviceFileInspectionList:  
         <ServiceFileInspectionViewTable data={serviceFileInspectionList} owner={owner} {...this.props} />,
  
-      reportVehicleInspectionReportList:  
-        <ReportVehicleInspectionReportViewTable data={reportVehicleInspectionReportList} owner={owner} {...this.props} />,
- 
-      reportFileInspectionReportList:  
-        <ReportFileInspectionReportViewTable data={reportFileInspectionReportList} owner={owner} {...this.props} />,
- 
       serviceVehicleRepairingList:  
         <ServiceVehicleRepairingViewTable data={serviceVehicleRepairingList} owner={owner} {...this.props} />,
- 
-      vehicleRepairingReportList:  
-        <VehicleRepairingReportViewTable data={vehicleRepairingReportList} owner={owner} {...this.props} />,
  
       orderReviewResultList:  
         <OrderReviewResultViewTable data={orderReviewResultList} owner={owner} {...this.props} />,

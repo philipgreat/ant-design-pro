@@ -193,7 +193,7 @@ class AvailableVehicleTypeEditTable extends PureComponent {
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '车辆类型', debugtype: 'string', dataIndex: 'vehicleType', width: '8', render: (text, record) => renderStringEdit('vehicleType',text, record)  },
   { title: '车辆类型别名', debugtype: 'string', dataIndex: 'vehicleTypeAlias', width: '18', render: (text, record) => renderStringEdit('vehicleTypeAlias',text, record)  },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

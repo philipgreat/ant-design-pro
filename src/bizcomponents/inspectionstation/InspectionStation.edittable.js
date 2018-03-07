@@ -193,7 +193,7 @@ class InspectionStationEditTable extends PureComponent {
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '12', render: (text, record) => renderStringEdit('name',text, record)  },
   { title: '服务状态', debugtype: 'string', dataIndex: 'operatingStatus', width: '6', render: (text, record) => renderStringEdit('operatingStatus',text, record)  },
-  { title: '所在城市', dataIndex: 'addressCity', render: (text, record) => (record.addressCity ? record.addressCity.id : '暂无') },
+  { title: '所在城市', dataIndex: 'addressCity', render: (text, record) => (record.addressCity ? record.addressCity.displayName : '暂无') },
   { title: '所在地址', debugtype: 'string', dataIndex: 'addressDetail', width: '17', render: (text, record) => renderStringEdit('addressDetail',text, record)  },
   { title: '经度', debugtype: 'double', dataIndex: 'longitude', width: '12', render: (text, record) => renderStringEdit('longitude',text, record)  },
   { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '11', render: (text, record) => renderStringEdit('latitude',text, record)  },

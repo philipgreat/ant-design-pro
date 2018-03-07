@@ -194,7 +194,7 @@ class RepairingAllowanceItemEditTable extends PureComponent {
   { title: '补贴项名称', debugtype: 'string', dataIndex: 'allowanceTitle', width: '9', render: (text, record) => renderStringEdit('allowanceTitle',text, record)  },
   { title: '补贴代码', debugtype: 'string', dataIndex: 'allowanceCode', width: '23', render: (text, record) => renderStringEdit('allowanceCode',text, record)  },
   { title: '补贴金额', dataIndex: 'allowanceAmount', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
-  { title: '服务', dataIndex: 'service', render: (text, record) => (record.service ? record.service.id : '暂无') },
+  { title: '服务', dataIndex: 'service', render: (text, record) => (record.service ? record.service.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    

@@ -27,6 +27,7 @@ import {ServiceCompanyAuthenticationInfoBizApp} from './custcomponents';
 import {VehicleInspectionPlateNumberPatternBizApp} from './custcomponents';
 import {FileInspectionPlateNumberPatternBizApp} from './custcomponents';
 import {VehicleServiceCompanyBusinessScopeBizApp} from './custcomponents';
+import {CompanyQrcodePromotionRecordBizApp} from './custcomponents';
 import {VehicleServiceCompanyDispatcherBizApp} from './custcomponents';
 import {VehicleServiceCompanyEmployeeBizApp} from './custcomponents';
 import {ServiceOrderFilterBizApp} from './custcomponents';
@@ -38,6 +39,7 @@ import {InspectionStationBizApp} from './custcomponents';
 import {VehicleInfoBizApp} from './custcomponents';
 import {VehicleInspectionOrderBizApp} from './custcomponents';
 import {VehicleInspectionInsuranceOrderBizApp} from './custcomponents';
+import {VehicleInspectionOrderChargeBizApp} from './custcomponents';
 import {VehicleInspectionOrderServiceLogBizApp} from './custcomponents';
 import {VehicleInspectionOrderPaymentBizApp} from './custcomponents';
 import {HandOverChecklistItemBizApp} from './custcomponents';
@@ -51,13 +53,9 @@ import {HandOverChecklistResultBizApp} from './custcomponents';
 import {ServiceInsuranceForInspectionBizApp} from './custcomponents';
 import {ServiceVehicleInspectionBizApp} from './custcomponents';
 import {ServiceFileInspectionBizApp} from './custcomponents';
-import {ReportVehicleInspectionReportBizApp} from './custcomponents';
-import {ReportFileInspectionReportBizApp} from './custcomponents';
 import {ServiceVehicleRepairingBizApp} from './custcomponents';
-import {RepairingQuotationBizApp} from './custcomponents';
 import {RepairingAllowanceItemBizApp} from './custcomponents';
 import {VehicleRepairingPaymentBizApp} from './custcomponents';
-import {VehicleRepairingReportBizApp} from './custcomponents';
 import {AvailableReviewItemBizApp} from './custcomponents';
 import {OrderReviewResultBizApp} from './custcomponents';
 import {AvailableRatingItemBizApp} from './custcomponents';
@@ -110,6 +108,7 @@ function RouterConfig({ history }) {
           <Route path="/vehicleInspectionPlateNumberPattern/" component={VehicleInspectionPlateNumberPatternBizApp} />
           <Route path="/fileInspectionPlateNumberPattern/" component={FileInspectionPlateNumberPatternBizApp} />
           <Route path="/vehicleServiceCompanyBusinessScope/" component={VehicleServiceCompanyBusinessScopeBizApp} />
+          <Route path="/companyQrcodePromotionRecord/" component={CompanyQrcodePromotionRecordBizApp} />
           <Route path="/vehicleServiceCompanyDispatcher/" component={VehicleServiceCompanyDispatcherBizApp} />
           <Route path="/vehicleServiceCompanyEmployee/" component={VehicleServiceCompanyEmployeeBizApp} />
           <Route path="/serviceOrderFilter/" component={ServiceOrderFilterBizApp} />
@@ -121,6 +120,7 @@ function RouterConfig({ history }) {
           <Route path="/vehicleInfo/" component={VehicleInfoBizApp} />
           <Route path="/vehicleInspectionOrder/" component={VehicleInspectionOrderBizApp} />
           <Route path="/vehicleInspectionInsuranceOrder/" component={VehicleInspectionInsuranceOrderBizApp} />
+          <Route path="/vehicleInspectionOrderCharge/" component={VehicleInspectionOrderChargeBizApp} />
           <Route path="/vehicleInspectionOrderServiceLog/" component={VehicleInspectionOrderServiceLogBizApp} />
           <Route path="/vehicleInspectionOrderPayment/" component={VehicleInspectionOrderPaymentBizApp} />
           <Route path="/handOverChecklistItem/" component={HandOverChecklistItemBizApp} />
@@ -134,13 +134,9 @@ function RouterConfig({ history }) {
           <Route path="/serviceInsuranceForInspection/" component={ServiceInsuranceForInspectionBizApp} />
           <Route path="/serviceVehicleInspection/" component={ServiceVehicleInspectionBizApp} />
           <Route path="/serviceFileInspection/" component={ServiceFileInspectionBizApp} />
-          <Route path="/reportVehicleInspectionReport/" component={ReportVehicleInspectionReportBizApp} />
-          <Route path="/reportFileInspectionReport/" component={ReportFileInspectionReportBizApp} />
           <Route path="/serviceVehicleRepairing/" component={ServiceVehicleRepairingBizApp} />
-          <Route path="/repairingQuotation/" component={RepairingQuotationBizApp} />
           <Route path="/repairingAllowanceItem/" component={RepairingAllowanceItemBizApp} />
           <Route path="/vehicleRepairingPayment/" component={VehicleRepairingPaymentBizApp} />
-          <Route path="/vehicleRepairingReport/" component={VehicleRepairingReportBizApp} />
           <Route path="/availableReviewItem/" component={AvailableReviewItemBizApp} />
           <Route path="/orderReviewResult/" component={OrderReviewResultBizApp} />
           <Route path="/availableRatingItem/" component={AvailableRatingItemBizApp} />

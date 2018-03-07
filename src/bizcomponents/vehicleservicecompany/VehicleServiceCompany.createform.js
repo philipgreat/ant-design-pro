@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import PictureEdit from '../../components/PictureEdit'
+//import PictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-
+import ImageUpload from '../../components/ImageUpload'
 import styles from './VehicleServiceCompany.createform.less'
-
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -28,6 +28,7 @@ const fieldLabels = {
   companyImage3: '公司照片3',
   companyImage4: '公司照片4',
   companyImage5: '公司照片5',
+  promoteQrcodeImage: '推广二维码',
   orderContact: '订单默认联系人',
   orderContactPhone: '订单默认联系人电话',
   platform: '平台',
@@ -41,8 +42,8 @@ const testValues = {
   availableStoreService: '1',
   availableHomeService: '1',
   openingTime: '早上8点到下午6点提供服务,周末24小时营业',
-  longitude: '104.51043747823113',
-  latitude: '31.708165166292858',
+  longitude: '103.25717835302308',
+  latitude: '30.26600102549537',
   contactPhone: '028-61554793',
   orderContact: '王城武',
   orderContactPhone: '13312345678',
@@ -59,6 +60,7 @@ const imageKeys = [
   'companyImage3',
   'companyImage4',
   'companyImage5',
+  'promoteQrcodeImage',
 ]
 
 
@@ -96,39 +98,6 @@ class VehicleServiceCompanyCreateForm extends Component {
     console.log('/get file list from change in update change:', source)
   }
 
-  mapBackToImageValues=(convertedImagesValues) => {
-    const targetImages = []
-    Object.keys(convertedImagesValues).map((key) => {
-      if (!convertedImagesValues || !convertedImagesValues[key] || !convertedImagesValues[key][0]){
-        return
-      }
-      const value = convertedImagesValues[key][0]
-      if (value.response) {
-        targetImages[key] = imageURLPrefix + value.response
-        return
-      }
-      if (value.url) {
-        targetImages[key] = value.url
-        return
-      }
-    })
-    return targetImages
-  }
-
-  mapFromImageValues=(selectedRow) => {
-    const targetImages = {}
-    const buildFileList = (key, value) => {
-      if (value) {
-        return [{ uid: key, url: value }]
-      }
-      return []
-    }
-    imageKeys.map((key) => {
-      targetImages[key] = buildFileList(key,selectedRow[key])
-    })
-    console.log(targetImages)
-    return targetImages
-  }
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -143,7 +112,7 @@ class VehicleServiceCompanyCreateForm extends Component {
         }
 
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
 
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -160,7 +129,7 @@ class VehicleServiceCompanyCreateForm extends Component {
         }
         
         const { owner } = this.props
-        const imagesValues = this.mapBackToImageValues(convertedImagesValues)
+        const imagesValues = mapBackToImageValues(convertedImagesValues)
         
         const parameters = { ...values, ...imagesValues }
         dispatch({
@@ -343,13 +312,52 @@ class VehicleServiceCompanyCreateForm extends Component {
 
 
 
+        
+        <Card title="设置" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <Row gutter={16}>
+            
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.availableStoreService}>
+                  {getFieldDecorator('availableStoreService', {
+                    rules: [{ required: true, message: '请输入是否提供门店收车(件)服务' }],
+                    valuePropName: 'checked'
+                  })(
+                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入是否提供门店收车(件)服务bool" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.availableHomeService}>
+                  {getFieldDecorator('availableHomeService', {
+                    rules: [{ required: true, message: '请输入是否提供上门取车(件)服务' }],
+                    valuePropName: 'checked'
+                  })(
+                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入是否提供上门取车(件)服务bool" />
+                  )}
+                </Form.Item>
+              </Col>
+
+            </Row>
+          </Form>  
+        </Card>        
+        
+        
+
+
+
+
+
+
 
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="公司照片1"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'companyImage1')}
@@ -358,7 +366,7 @@ class VehicleServiceCompanyCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="公司照片2"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'companyImage2')}
@@ -367,7 +375,7 @@ class VehicleServiceCompanyCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="公司照片3"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'companyImage3')}
@@ -376,7 +384,7 @@ class VehicleServiceCompanyCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="公司照片4"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'companyImage4')}
@@ -385,11 +393,20 @@ class VehicleServiceCompanyCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <PictureEdit
+                <ImageUpload
                   buttonTitle="公司照片5"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'companyImage5')}
                   fileList={convertedImagesValues.companyImage5}
+                />
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <ImageUpload
+                  buttonTitle="推广二维码"
+                  handlePreview={this.handlePreview}
+                  handleChange={event => this.handleChange(event, 'promoteQrcodeImage')}
+                  fileList={convertedImagesValues.promoteQrcodeImage}
                 />
               </Col>
 

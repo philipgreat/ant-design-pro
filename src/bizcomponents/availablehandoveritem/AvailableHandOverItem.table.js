@@ -11,7 +11,7 @@ const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/availableHandOverItem/${text}/dashboard`}>{text}</Link>) },
   { title: '检查项目名称', debugtype: 'string', dataIndex: 'checkItemName', width: '11' },
   { title: '检查项目描述', debugtype: 'string', dataIndex: 'checkItemDescription', width: '37' },
-  { title: '产品名称', dataIndex: 'product', render: (text, record) => (record.product ? (<Link to={`/availableProduct/${record.product.id}/dashboard`}>{record.product.id}</Link>) : '暂无') },
+  { title: '产品名称', dataIndex: 'product', render: (text, record) => (record.product ? (<Link to={`/availableProduct/${record.product.id}/dashboard`}>{record.product.displayName}</Link>) : '暂无') },
 
 ]
 
