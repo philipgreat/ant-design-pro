@@ -133,7 +133,7 @@ class UserDomainBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '代审车服务平台'
+    const title = '帮帮兔社区运营中心'
     return title
   }
  
@@ -195,12 +195,6 @@ class UserDomainBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/userDomain/${this.props.userDomain.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
              </Menu.Item>
-             <Menu.Item >
-               <Link to={`/userDomain/${this.props.userDomain.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
-             </Menu.Item>
-             <Menu.Item >
-               <Link to={`/userDomain/${this.props.userDomain.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
-             </Menu.Item>
              
 
              {this.getNavMenuItems(this.props.userDomain.id)}
@@ -212,9 +206,11 @@ class UserDomainBizApp extends React.PureComponent {
          <Layout>
            <Content style={{ margin: '24px 24px 0', height: '100%' }}>
              <Switch>
+             
                <Route path="/userDomain/:id/dashboard" component={UserDomainDashboard} />
+               
                <Route path="/userDomain/:id/editDetail" component={UserDomainEditDetail} />
-               <Route path="/userDomain/:id/viewDetail" component={UserDomainViewDetail} />
+               <Route path="/userDomain/:id/viewDetail" component={UserDomainViewDetail} /> 
                
 
                <Route path="/userDomain/:id/list/secUserList" component={this.getSecUserSearch()} />

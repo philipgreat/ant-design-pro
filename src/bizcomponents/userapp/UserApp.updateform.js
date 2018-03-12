@@ -4,8 +4,8 @@ import moment from 'moment'
 import { connect } from 'dva'
 import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import ImageUpload from '../../components/ImageUpload'
-//import OSSPictureEdit from '../../components/OSSPictureEdit'
+//import ImageUpload from '../../components/ImageUpload'
+import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
@@ -15,13 +15,13 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   title: '标题',
   secUser: 'SEC的用户',
   appIcon: '应用程序图标',
   fullAccess: '完全访问',
-  permission: '权限',
-  objectType: '访问对象类型',
+  permission: '许可',
+  objectType: '对象类型',
   objectId: '对象ID',
   location: '位置',
 
@@ -261,9 +261,9 @@ class UserAppUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
-                    rules: [{ required: true, message: '请输入ID' }],
+                    rules: [{ required: true, message: '请输入序号' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入请输入序号string" disabled />
                   )}
                 </Form.Item>
               </Col>
@@ -291,9 +291,9 @@ class UserAppUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.permission}>
                   {getFieldDecorator('permission', {
-                    rules: [{ required: true, message: '请输入权限' }],
+                    rules: [{ required: true, message: '请输入许可' }],
                   })(
-                    <Input placeholder="请输入请输入权限string" />
+                    <Input placeholder="请输入请输入许可string" />
                   )}
                 </Form.Item>
               </Col>
@@ -301,9 +301,9 @@ class UserAppUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.objectType}>
                   {getFieldDecorator('objectType', {
-                    rules: [{ required: true, message: '请输入访问对象类型' }],
+                    rules: [{ required: true, message: '请输入对象类型' }],
                   })(
-                    <Input placeholder="请输入请输入访问对象类型string" />
+                    <Input placeholder="请输入请输入对象类型string" />
                   )}
                 </Form.Item>
               </Col>

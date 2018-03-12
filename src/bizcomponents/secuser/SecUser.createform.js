@@ -4,24 +4,25 @@ import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Sele
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
+import OSSPictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-import ImageUpload from '../../components/ImageUpload'
+//import ImageUpload from '../../components/ImageUpload'
 import styles from './SecUser.createform.less'
 import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   login: '登录',
-  mobile: '手机号码',
+  mobile: '手机',
   email: '电子邮件',
-  pwd: '密码',
+  pwd: 'PWD',
   verificationCode: '验证码',
-  verificationCodeExpire: '验证码过期时间',
+  verificationCodeExpire: '验证码过期',
   lastLoginTime: '最后登录时间',
   domain: '域',
-  blocking: '舞台调度',
+  blocking: '屏蔽',
   currentStatus: '当前状态',
 }
 
@@ -32,8 +33,8 @@ const testValues = {
   email: 'suddy_chang@163.com',
   pwd: 'C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95',
   verificationCode: '9981727',
-  verificationCodeExpire: '2996-08-09 11:56:02',
-  lastLoginTime: '2994-04-03 09:25:14',
+  verificationCodeExpire: '2034-08-20 14:06:10',
+  lastLoginTime: '2036-01-04 12:38:23',
   domainId: 'UD000001',
 }
 
@@ -189,9 +190,9 @@ class SecUserCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.mobile}>
                   {getFieldDecorator('mobile', {
-                    rules: [{ required: true, message: '请输入手机号码' }],
+                    rules: [{ required: true, message: '请输入手机' }],
                   })(
-                    <Input placeholder="请输入请输入手机号码string_china_mobile_phone" />
+                    <Input placeholder="请输入请输入手机string_china_mobile_phone" />
                   )}
                 </Form.Item>
               </Col>
@@ -209,9 +210,9 @@ class SecUserCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.pwd}>
                   {getFieldDecorator('pwd', {
-                    rules: [{ required: true, message: '请输入密码' }],
+                    rules: [{ required: true, message: '请输入PWD' }],
                   })(
-                    <Input placeholder="请输入请输入密码string_password" />
+                    <Input placeholder="请输入请输入PWDstring_password" />
                   )}
                 </Form.Item>
               </Col>
@@ -229,9 +230,9 @@ class SecUserCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.verificationCodeExpire}>
                   {getFieldDecorator('verificationCodeExpire', {
-                    rules: [{ required: true, message: '请输入验证码过期时间' }],
+                    rules: [{ required: true, message: '请输入验证码过期' }],
                   })(
-                    <Input placeholder="请输入请输入验证码过期时间date_time" />
+                    <Input placeholder="请输入请输入验证码过期date_time" />
                   )}
                 </Form.Item>
               </Col>

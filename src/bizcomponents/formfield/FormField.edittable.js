@@ -190,9 +190,9 @@ class FormFieldEditTable extends PureComponent {
     
     
     const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '标签', debugtype: 'string', dataIndex: 'label', width: '7', render: (text, record) => renderStringEdit('label',text, record)  },
-  { title: '消息键值', debugtype: 'string', dataIndex: 'localeKey', width: '15', render: (text, record) => renderStringEdit('localeKey',text, record)  },
+  { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey', width: '15', render: (text, record) => renderStringEdit('localeKey',text, record)  },
   { title: '参数名称', debugtype: 'string', dataIndex: 'parameterName', width: '8', render: (text, record) => renderStringEdit('parameterName',text, record)  },
   { title: '类型', debugtype: 'string', dataIndex: 'type', width: '13', render: (text, record) => renderStringEdit('type',text, record)  },
   { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.displayName : '暂无') },

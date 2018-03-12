@@ -36,13 +36,13 @@ const summaryOf = (secUser) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{secUser.id}</Description> 
+<Description term="序号">{secUser.id}</Description> 
 <Description term="登录">{secUser.login}</Description> 
-<Description term="手机号码">{secUser.mobile}</Description> 
+<Description term="手机">{secUser.mobile}</Description> 
 <Description term="电子邮件">{secUser.email}</Description> 
-<Description term="密码">{secUser.pwd}</Description> 
+<Description term="PWD">{secUser.pwd}</Description> 
 <Description term="验证码">{secUser.verificationCode}</Description> 
-<Description term="验证码过期时间">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
+<Description term="验证码过期">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
 <Description term="最后登录时间">{ moment(secUser.lastLoginTime).format('YYYY-MM-DD')}</Description> 
 <Description term="当前状态">{secUser.currentStatus}</Description> 
 	
@@ -59,7 +59,7 @@ export default class SecUserViewDetail extends Component {
 
 
   state = {
-    tabKey: `customerList`,
+    tabKey: `userAppList`,
     stepDirection: 'horizontal',
   }
  
@@ -67,21 +67,19 @@ export default class SecUserViewDetail extends Component {
     this.setState({ tabKey: key });
   }  
   render() {
-    const {CustomerViewTable} = GlobalComponents;
     const {UserAppViewTable} = GlobalComponents;
     const {LoginHistoryViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const secUser = this.props.secUser
-    const { id, customerCount, userAppCount, loginHistoryCount } = secUser
-    const { customerList, userAppList, loginHistoryList } = secUser
+    const { id, userAppCount, loginHistoryCount } = secUser
+    const { userAppList, loginHistoryList } = secUser
     
     const owner = { type: '_secUser', id }
     
     const tabList = [
 
-      {key: 'customerList',tab: `客户(${customerCount})`}, 
       {key: 'userAppList',tab: `用户应用程序(${userAppCount})`}, 
       {key: 'loginHistoryList',tab: `登录历史(${loginHistoryCount})`}, 
    
@@ -90,10 +88,7 @@ export default class SecUserViewDetail extends Component {
    
    
     const contentList = {
-       customerList:  
-        <CustomerViewTable data={customerList} owner={owner} {...this.props} />,
- 
-      userAppList:  
+       userAppList:  
         <UserAppViewTable data={userAppList} owner={owner} {...this.props} />,
  
       loginHistoryList:  
@@ -117,9 +112,9 @@ export default class SecUserViewDetail extends Component {
 
     
       <DescriptionList className={styles.headerList} size="small" col="1">
-			<Description term="ID">{blocking.id}</Description> 
-			<Description term="审批人">{blocking.who}</Description> 
-			<Description term="块时间">{blocking.blockTime}</Description> 
+			<Description term="序号">{blocking.id}</Description> 
+			<Description term="谁">{blocking.who}</Description> 
+			<Description term="屏蔽时间">{blocking.blockTime}</Description> 
 			<Description term="评论">{blocking.comments}</Description> 
 			<Description term="版本">{blocking.version}</Description> 
 
@@ -130,7 +125,7 @@ export default class SecUserViewDetail extends Component {
 
     
 	const steps=(<Steps direction={'horizontal'} current={1}>
-			<Step title="舞台调度" description={actionDescForBlocking(secUser)} />
+			<Step title="屏蔽" description={actionDescForBlocking(secUser)} />
 		</Steps>)
     
     

@@ -83,17 +83,17 @@ export default class SecUserBlockingSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="ID">
+            <FormItem label="序号">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入ID" />
+                <Input placeholder="请输入序号" />
                )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="审批人">
+            <FormItem label="谁">
               {getFieldDecorator('who')(
-                <Input placeholder="请输入审批人" />
+                <Input placeholder="请输入谁" />
                )}
             </FormItem>
           </Col>
@@ -116,17 +116,17 @@ export default class SecUserBlockingSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="ID">
+            <FormItem label="序号">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入ID" />
+                <Input placeholder="请输入序号" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="审批人">
+            <FormItem label="谁">
               {getFieldDecorator('who')(
-                <Input placeholder="请输入审批人" />
+                <Input placeholder="请输入谁" />
               )}
             </FormItem>
           </Col>

@@ -4,8 +4,8 @@ import moment from 'moment'
 import { connect } from 'dva'
 import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import ImageUpload from '../../components/ImageUpload'
-//import OSSPictureEdit from '../../components/OSSPictureEdit'
+//import ImageUpload from '../../components/ImageUpload'
+import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
@@ -15,9 +15,9 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
-  who: '审批人',
-  blockTime: '块时间',
+  id: '序号',
+  who: '谁',
+  blockTime: '屏蔽时间',
   comments: '评论',
 
 }
@@ -257,9 +257,9 @@ class SecUserBlockingUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
-                    rules: [{ required: true, message: '请输入ID' }],
+                    rules: [{ required: true, message: '请输入序号' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入请输入序号string" disabled />
                   )}
                 </Form.Item>
               </Col>
@@ -267,9 +267,9 @@ class SecUserBlockingUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.who}>
                   {getFieldDecorator('who', {
-                    rules: [{ required: true, message: '请输入审批人' }],
+                    rules: [{ required: true, message: '请输入谁' }],
                   })(
-                    <Input placeholder="请输入请输入审批人string" />
+                    <Input placeholder="请输入请输入谁string" />
                   )}
                 </Form.Item>
               </Col>

@@ -10,68 +10,42 @@ import './index.less'
 
 import LauncherModel from './launcher/Launcher.model'
 
-import CarInspectionPlatformModel from './bizcomponents/carinspectionplatform/CarInspectionPlatform.model'
-import IdentityCardModel from './bizcomponents/identitycard/IdentityCard.model'
-import VehiclePermitModel from './bizcomponents/vehiclepermit/VehiclePermit.model'
-import ProvinceModel from './bizcomponents/province/Province.model'
-import CityModel from './bizcomponents/city/City.model'
-import AvailableProductModel from './bizcomponents/availableproduct/AvailableProduct.model'
-import AvailableVehicleTypeModel from './bizcomponents/availablevehicletype/AvailableVehicleType.model'
-import ContractModel from './bizcomponents/contract/Contract.model'
-import ServicePriceModel from './bizcomponents/serviceprice/ServicePrice.model'
-import AvailableServiceModel from './bizcomponents/availableservice/AvailableService.model'
-import ProductPriceModel from './bizcomponents/productprice/ProductPrice.model'
-import AvailableInsuranceModel from './bizcomponents/availableinsurance/AvailableInsurance.model'
-import VehicleRepairingAllowanceModel from './bizcomponents/vehiclerepairingallowance/VehicleRepairingAllowance.model'
-import AvailableHandOverItemModel from './bizcomponents/availablehandoveritem/AvailableHandOverItem.model'
-import CustomerModel from './bizcomponents/customer/Customer.model'
-import VehicleServiceCompanyModel from './bizcomponents/vehicleservicecompany/VehicleServiceCompany.model'
-import ServiceCompanyAuthenticationInfoModel from './bizcomponents/servicecompanyauthenticationinfo/ServiceCompanyAuthenticationInfo.model'
-import VehicleInspectionPlateNumberPatternModel from './bizcomponents/vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.model'
-import FileInspectionPlateNumberPatternModel from './bizcomponents/fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.model'
-import VehicleServiceCompanyBusinessScopeModel from './bizcomponents/vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.model'
-import CompanyQrcodePromotionRecordModel from './bizcomponents/companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.model'
-import VehicleServiceCompanyDispatcherModel from './bizcomponents/vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.model'
-import VehicleServiceCompanyEmployeeModel from './bizcomponents/vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.model'
-import ServiceOrderFilterModel from './bizcomponents/serviceorderfilter/ServiceOrderFilter.model'
-import CompanyEmployeeQualificationModel from './bizcomponents/companyemployeequalification/CompanyEmployeeQualification.model'
-import CompanyEmployeeServingModel from './bizcomponents/companyemployeeserving/CompanyEmployeeServing.model'
-import CompanyEmployeeTerminationModel from './bizcomponents/companyemployeetermination/CompanyEmployeeTermination.model'
-import EmployeeDrivingLicenseModel from './bizcomponents/employeedrivinglicense/EmployeeDrivingLicense.model'
-import InspectionStationModel from './bizcomponents/inspectionstation/InspectionStation.model'
-import VehicleInfoModel from './bizcomponents/vehicleinfo/VehicleInfo.model'
-import VehicleInspectionOrderModel from './bizcomponents/vehicleinspectionorder/VehicleInspectionOrder.model'
-import VehicleInspectionInsuranceOrderModel from './bizcomponents/vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.model'
-import VehicleInspectionOrderChargeModel from './bizcomponents/vehicleinspectionordercharge/VehicleInspectionOrderCharge.model'
-import VehicleInspectionOrderServiceLogModel from './bizcomponents/vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.model'
-import VehicleInspectionOrderPaymentModel from './bizcomponents/vehicleinspectionorderpayment/VehicleInspectionOrderPayment.model'
-import HandOverChecklistItemModel from './bizcomponents/handoverchecklistitem/HandOverChecklistItem.model'
-import ServiceVehicleMovementC2mModel from './bizcomponents/servicevehiclemovementc2m/ServiceVehicleMovementC2m.model'
-import ServiceVehicleMovementM2mModel from './bizcomponents/servicevehiclemovementm2m/ServiceVehicleMovementM2m.model'
-import ServiceVehicleMovementM2cModel from './bizcomponents/servicevehiclemovementm2c/ServiceVehicleMovementM2c.model'
-import ServiceFileMovementC2mModel from './bizcomponents/servicefilemovementc2m/ServiceFileMovementC2m.model'
-import ServiceFileMovementM2mModel from './bizcomponents/servicefilemovementm2m/ServiceFileMovementM2m.model'
-import ServiceFileMovementM2cModel from './bizcomponents/servicefilemovementm2c/ServiceFileMovementM2c.model'
-import HandOverChecklistResultModel from './bizcomponents/handoverchecklistresult/HandOverChecklistResult.model'
-import ServiceInsuranceForInspectionModel from './bizcomponents/serviceinsuranceforinspection/ServiceInsuranceForInspection.model'
-import ServiceVehicleInspectionModel from './bizcomponents/servicevehicleinspection/ServiceVehicleInspection.model'
-import ServiceFileInspectionModel from './bizcomponents/servicefileinspection/ServiceFileInspection.model'
-import ServiceVehicleRepairingModel from './bizcomponents/servicevehiclerepairing/ServiceVehicleRepairing.model'
-import RepairingAllowanceItemModel from './bizcomponents/repairingallowanceitem/RepairingAllowanceItem.model'
-import VehicleRepairingPaymentModel from './bizcomponents/vehiclerepairingpayment/VehicleRepairingPayment.model'
-import AvailableReviewItemModel from './bizcomponents/availablereviewitem/AvailableReviewItem.model'
-import OrderReviewResultModel from './bizcomponents/orderreviewresult/OrderReviewResult.model'
-import AvailableRatingItemModel from './bizcomponents/availableratingitem/AvailableRatingItem.model'
-import OrderRatingResultModel from './bizcomponents/orderratingresult/OrderRatingResult.model'
-import PreorderPromotionModel from './bizcomponents/preorderpromotion/PreorderPromotion.model'
-import OrderDiscountCouponModel from './bizcomponents/orderdiscountcoupon/OrderDiscountCoupon.model'
-import VehicleInspectionOrderCouponModel from './bizcomponents/vehicleinspectionordercoupon/VehicleInspectionOrderCoupon.model'
-import AccountModel from './bizcomponents/account/Account.model'
-import ServiceCompanyAccountModel from './bizcomponents/servicecompanyaccount/ServiceCompanyAccount.model'
-import RepairingCompanyAccountModel from './bizcomponents/repairingcompanyaccount/RepairingCompanyAccount.model'
-import InsuranceServiceAccountModel from './bizcomponents/insuranceserviceaccount/InsuranceServiceAccount.model'
-import MainOrderAccountModel from './bizcomponents/mainorderaccount/MainOrderAccount.model'
-import InspectionStationAccountModel from './bizcomponents/inspectionstationaccount/InspectionStationAccount.model'
+import CommunityModel from './bizcomponents/community/Community.model'
+import InvitationCodeModel from './bizcomponents/invitationcode/InvitationCode.model'
+import HomePageModel from './bizcomponents/homepage/HomePage.model'
+import SlideModel from './bizcomponents/slide/Slide.model'
+import EncyclopediaItemModel from './bizcomponents/encyclopediaitem/EncyclopediaItem.model'
+import TaskPageModel from './bizcomponents/taskpage/TaskPage.model'
+import TaskFilterModel from './bizcomponents/taskfilter/TaskFilter.model'
+import CommunityUserModel from './bizcomponents/communityuser/CommunityUser.model'
+import PatientInfoModel from './bizcomponents/patientinfo/PatientInfo.model'
+import UserSkillModel from './bizcomponents/userskill/UserSkill.model'
+import MessageFilterModel from './bizcomponents/messagefilter/MessageFilter.model'
+import UserMessageModel from './bizcomponents/usermessage/UserMessage.model'
+import TaskModel from './bizcomponents/task/Task.model'
+import TaskAssigmentModel from './bizcomponents/taskassigment/TaskAssigment.model'
+import TaskHidingModel from './bizcomponents/taskhiding/TaskHiding.model'
+import TaskResolvingModel from './bizcomponents/taskresolving/TaskResolving.model'
+import TaskRewardModel from './bizcomponents/taskreward/TaskReward.model'
+import TaskLikeModel from './bizcomponents/tasklike/TaskLike.model'
+import TaskReplyModel from './bizcomponents/taskreply/TaskReply.model'
+import TaskBestAnswerSettingModel from './bizcomponents/taskbestanswersetting/TaskBestAnswerSetting.model'
+import TaskReplyLikeModel from './bizcomponents/taskreplylike/TaskReplyLike.model'
+import GroupPageModel from './bizcomponents/grouppage/GroupPage.model'
+import GroupFilterModel from './bizcomponents/groupfilter/GroupFilter.model'
+import ThreadModel from './bizcomponents/thread/Thread.model'
+import ThreadHidingModel from './bizcomponents/threadhiding/ThreadHiding.model'
+import ThreadReplyModel from './bizcomponents/threadreply/ThreadReply.model'
+import ThreadApprovalModel from './bizcomponents/threadapproval/ThreadApproval.model'
+import ThreadCompletionModel from './bizcomponents/threadcompletion/ThreadCompletion.model'
+import ThreadCancelingModel from './bizcomponents/threadcanceling/ThreadCanceling.model'
+import ThreadRegistrationModel from './bizcomponents/threadregistration/ThreadRegistration.model'
+import ThreadLikeModel from './bizcomponents/threadlike/ThreadLike.model'
+import ThreadReplyLikeModel from './bizcomponents/threadreplylike/ThreadReplyLike.model'
+import FanModel from './bizcomponents/fan/Fan.model'
+import FollowModel from './bizcomponents/follow/Follow.model'
+import BonusPointModel from './bizcomponents/bonuspoint/BonusPoint.model'
+import ExperiencePointModel from './bizcomponents/experiencepoint/ExperiencePoint.model'
 import UserDomainModel from './bizcomponents/userdomain/UserDomain.model'
 import SecUserModel from './bizcomponents/secuser/SecUser.model'
 import SecUserBlockingModel from './bizcomponents/secuserblocking/SecUserBlocking.model'
@@ -97,68 +71,42 @@ const app = dva({
 app.model(LauncherModel)
 
 
-app.model(CarInspectionPlatformModel)
-app.model(IdentityCardModel)
-app.model(VehiclePermitModel)
-app.model(ProvinceModel)
-app.model(CityModel)
-app.model(AvailableProductModel)
-app.model(AvailableVehicleTypeModel)
-app.model(ContractModel)
-app.model(ServicePriceModel)
-app.model(AvailableServiceModel)
-app.model(ProductPriceModel)
-app.model(AvailableInsuranceModel)
-app.model(VehicleRepairingAllowanceModel)
-app.model(AvailableHandOverItemModel)
-app.model(CustomerModel)
-app.model(VehicleServiceCompanyModel)
-app.model(ServiceCompanyAuthenticationInfoModel)
-app.model(VehicleInspectionPlateNumberPatternModel)
-app.model(FileInspectionPlateNumberPatternModel)
-app.model(VehicleServiceCompanyBusinessScopeModel)
-app.model(CompanyQrcodePromotionRecordModel)
-app.model(VehicleServiceCompanyDispatcherModel)
-app.model(VehicleServiceCompanyEmployeeModel)
-app.model(ServiceOrderFilterModel)
-app.model(CompanyEmployeeQualificationModel)
-app.model(CompanyEmployeeServingModel)
-app.model(CompanyEmployeeTerminationModel)
-app.model(EmployeeDrivingLicenseModel)
-app.model(InspectionStationModel)
-app.model(VehicleInfoModel)
-app.model(VehicleInspectionOrderModel)
-app.model(VehicleInspectionInsuranceOrderModel)
-app.model(VehicleInspectionOrderChargeModel)
-app.model(VehicleInspectionOrderServiceLogModel)
-app.model(VehicleInspectionOrderPaymentModel)
-app.model(HandOverChecklistItemModel)
-app.model(ServiceVehicleMovementC2mModel)
-app.model(ServiceVehicleMovementM2mModel)
-app.model(ServiceVehicleMovementM2cModel)
-app.model(ServiceFileMovementC2mModel)
-app.model(ServiceFileMovementM2mModel)
-app.model(ServiceFileMovementM2cModel)
-app.model(HandOverChecklistResultModel)
-app.model(ServiceInsuranceForInspectionModel)
-app.model(ServiceVehicleInspectionModel)
-app.model(ServiceFileInspectionModel)
-app.model(ServiceVehicleRepairingModel)
-app.model(RepairingAllowanceItemModel)
-app.model(VehicleRepairingPaymentModel)
-app.model(AvailableReviewItemModel)
-app.model(OrderReviewResultModel)
-app.model(AvailableRatingItemModel)
-app.model(OrderRatingResultModel)
-app.model(PreorderPromotionModel)
-app.model(OrderDiscountCouponModel)
-app.model(VehicleInspectionOrderCouponModel)
-app.model(AccountModel)
-app.model(ServiceCompanyAccountModel)
-app.model(RepairingCompanyAccountModel)
-app.model(InsuranceServiceAccountModel)
-app.model(MainOrderAccountModel)
-app.model(InspectionStationAccountModel)
+app.model(CommunityModel)
+app.model(InvitationCodeModel)
+app.model(HomePageModel)
+app.model(SlideModel)
+app.model(EncyclopediaItemModel)
+app.model(TaskPageModel)
+app.model(TaskFilterModel)
+app.model(CommunityUserModel)
+app.model(PatientInfoModel)
+app.model(UserSkillModel)
+app.model(MessageFilterModel)
+app.model(UserMessageModel)
+app.model(TaskModel)
+app.model(TaskAssigmentModel)
+app.model(TaskHidingModel)
+app.model(TaskResolvingModel)
+app.model(TaskRewardModel)
+app.model(TaskLikeModel)
+app.model(TaskReplyModel)
+app.model(TaskBestAnswerSettingModel)
+app.model(TaskReplyLikeModel)
+app.model(GroupPageModel)
+app.model(GroupFilterModel)
+app.model(ThreadModel)
+app.model(ThreadHidingModel)
+app.model(ThreadReplyModel)
+app.model(ThreadApprovalModel)
+app.model(ThreadCompletionModel)
+app.model(ThreadCancelingModel)
+app.model(ThreadRegistrationModel)
+app.model(ThreadLikeModel)
+app.model(ThreadReplyLikeModel)
+app.model(FanModel)
+app.model(FollowModel)
+app.model(BonusPointModel)
+app.model(ExperiencePointModel)
 app.model(UserDomainModel)
 app.model(SecUserModel)
 app.model(SecUserBlockingModel)

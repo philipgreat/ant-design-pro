@@ -133,7 +133,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '代审车服务平台'
+    const title = '帮帮兔社区运营中心'
     return title
   }
  
@@ -195,12 +195,6 @@ class SecUserBlockingBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/secUserBlocking/${this.props.secUserBlocking.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
              </Menu.Item>
-             <Menu.Item >
-               <Link to={`/secUserBlocking/${this.props.secUserBlocking.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
-             </Menu.Item>
-             <Menu.Item >
-               <Link to={`/secUserBlocking/${this.props.secUserBlocking.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
-             </Menu.Item>
              
 
              {this.getNavMenuItems(this.props.secUserBlocking.id)}
@@ -212,9 +206,11 @@ class SecUserBlockingBizApp extends React.PureComponent {
          <Layout>
            <Content style={{ margin: '24px 24px 0', height: '100%' }}>
              <Switch>
+             
                <Route path="/secUserBlocking/:id/dashboard" component={SecUserBlockingDashboard} />
+               
                <Route path="/secUserBlocking/:id/editDetail" component={SecUserBlockingEditDetail} />
-               <Route path="/secUserBlocking/:id/viewDetail" component={SecUserBlockingViewDetail} />
+               <Route path="/secUserBlocking/:id/viewDetail" component={SecUserBlockingViewDetail} /> 
                
 
                <Route path="/secUserBlocking/:id/list/secUserList" component={this.getSecUserSearch()} />

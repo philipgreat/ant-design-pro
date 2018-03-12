@@ -36,7 +36,7 @@ const summaryOf = (formMessage) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{formMessage.id}</Description> 
+<Description term="序号">{formMessage.id}</Description> 
 <Description term="标题">{formMessage.title}</Description> 
 <Description term="水平">{formMessage.level}</Description> 
 	

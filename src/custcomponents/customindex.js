@@ -1,5 +1,6 @@
 import CarInspectionPlatformDashboard from './carinspectionplatform/CarInspectionPlatform.dashboard'
+import VehicleServiceCompanyEmployeeCreateForm from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.createform'
 
-const result = {CarInspectionPlatformDashboard};
+const result = {CarInspectionPlatformDashboard,VehicleServiceCompanyEmployeeCreateForm};
 
 export default result;

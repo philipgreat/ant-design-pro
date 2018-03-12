@@ -86,9 +86,9 @@ export default class SecUserSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="ID">
+            <FormItem label="序号">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入ID" />
+                <Input placeholder="请输入序号" />
                )}
             </FormItem>
           </Col>
@@ -119,9 +119,9 @@ export default class SecUserSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="ID">
+            <FormItem label="序号">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入ID" />
+                <Input placeholder="请输入序号" />
               )}
             </FormItem>
           </Col>
@@ -135,9 +135,9 @@ export default class SecUserSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="手机号码">
+            <FormItem label="手机">
               {getFieldDecorator('mobile')(
-                <Input placeholder="请输入手机号码" />
+                <Input placeholder="请输入手机" />
               )}
             </FormItem>
           </Col>
@@ -151,9 +151,9 @@ export default class SecUserSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="密码">
+            <FormItem label="PWD">
               {getFieldDecorator('pwd')(
-                <Input placeholder="请输入密码" />
+                <Input placeholder="请输入PWD" />
               )}
             </FormItem>
           </Col>

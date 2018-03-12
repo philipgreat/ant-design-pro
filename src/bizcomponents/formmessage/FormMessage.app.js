@@ -96,7 +96,7 @@ class FormMessageBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '代审车服务平台'
+    const title = '帮帮兔社区运营中心'
     return title
   }
  
@@ -158,12 +158,6 @@ class FormMessageBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/formMessage/${this.props.formMessage.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
              </Menu.Item>
-             <Menu.Item >
-               <Link to={`/formMessage/${this.props.formMessage.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
-             </Menu.Item>
-             <Menu.Item >
-               <Link to={`/formMessage/${this.props.formMessage.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
-             </Menu.Item>
              
 
              {this.getNavMenuItems(this.props.formMessage.id)}
@@ -175,9 +169,11 @@ class FormMessageBizApp extends React.PureComponent {
          <Layout>
            <Content style={{ margin: '24px 24px 0', height: '100%' }}>
              <Switch>
+             
                <Route path="/formMessage/:id/dashboard" component={FormMessageDashboard} />
+               
                <Route path="/formMessage/:id/editDetail" component={FormMessageEditDetail} />
-               <Route path="/formMessage/:id/viewDetail" component={FormMessageViewDetail} />
+               <Route path="/formMessage/:id/viewDetail" component={FormMessageViewDetail} /> 
                
               
              </Switch>

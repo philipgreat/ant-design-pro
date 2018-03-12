@@ -4,17 +4,18 @@ import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Sele
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
+import OSSPictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-import ImageUpload from '../../components/ImageUpload'
+//import ImageUpload from '../../components/ImageUpload'
 import styles from './FormAction.createform.less'
 import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   label: '标签',
-  localeKey: '消息键值',
+  localeKey: '语言环境的关键',
   actionKey: '行动的关键',
   level: '水平',
   url: 'url',
@@ -183,9 +184,9 @@ class FormActionCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.localeKey}>
                   {getFieldDecorator('localeKey', {
-                    rules: [{ required: true, message: '请输入消息键值' }],
+                    rules: [{ required: true, message: '请输入语言环境的关键' }],
                   })(
-                    <Input placeholder="请输入请输入消息键值string" />
+                    <Input placeholder="请输入请输入语言环境的关键string" />
                   )}
                 </Form.Item>
               </Col>

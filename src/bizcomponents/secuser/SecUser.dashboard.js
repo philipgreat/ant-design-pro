@@ -31,13 +31,13 @@ const summaryOf = (secUser) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{secUser.id}</Description> 
+<Description term="序号">{secUser.id}</Description> 
 <Description term="登录">{secUser.login}</Description> 
-<Description term="手机号码">{secUser.mobile}</Description> 
+<Description term="手机">{secUser.mobile}</Description> 
 <Description term="电子邮件">{secUser.email}</Description> 
-<Description term="密码">{secUser.pwd}</Description> 
+<Description term="PWD">{secUser.pwd}</Description> 
 <Description term="验证码">{secUser.verificationCode}</Description> 
-<Description term="验证码过期时间">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
+<Description term="验证码过期">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
 <Description term="最后登录时间">{ moment(secUser.lastLoginTime).format('YYYY-MM-DD')}</Description> 
 <Description term="当前状态">{secUser.currentStatus}</Description> 
 	
@@ -53,7 +53,7 @@ const summaryOf = (secUser) =>{
 export default class SecUserDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id, customerCount, userAppCount, loginHistoryCount } = this.props.secUser
+    const { id, userAppCount, loginHistoryCount } = this.props.secUser
     
     
     
@@ -66,24 +66,6 @@ export default class SecUserDashboard extends Component {
       >
         <div>
           <Row gutter={24}>
-
-          
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="客户"
-                action={<Tooltip title="客户"><Icon type="info-circle-o" /></Tooltip>}
-                total={numeral(customerCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/secUser/${id}/list/customerList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/secUser/${id}/list/customerCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
-                &nbsp;
-                <Link to={`/secUser/${id}/list/customerList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
-              </ChartCard>
-            </Col>
 
           
             <Col {...topColResponsiveProps}>

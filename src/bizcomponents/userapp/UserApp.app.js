@@ -133,7 +133,7 @@ class UserAppBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '代审车服务平台'
+    const title = '帮帮兔社区运营中心'
     return title
   }
  
@@ -195,12 +195,6 @@ class UserAppBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/userApp/${this.props.userApp.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
              </Menu.Item>
-             <Menu.Item >
-               <Link to={`/userApp/${this.props.userApp.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
-             </Menu.Item>
-             <Menu.Item >
-               <Link to={`/userApp/${this.props.userApp.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
-             </Menu.Item>
              
 
              {this.getNavMenuItems(this.props.userApp.id)}
@@ -212,9 +206,11 @@ class UserAppBizApp extends React.PureComponent {
          <Layout>
            <Content style={{ margin: '24px 24px 0', height: '100%' }}>
              <Switch>
+             
                <Route path="/userApp/:id/dashboard" component={UserAppDashboard} />
+               
                <Route path="/userApp/:id/editDetail" component={UserAppEditDetail} />
-               <Route path="/userApp/:id/viewDetail" component={UserAppViewDetail} />
+               <Route path="/userApp/:id/viewDetail" component={UserAppViewDetail} /> 
                
 
                <Route path="/userApp/:id/list/objectAccessList" component={this.getObjectAccessSearch()} />

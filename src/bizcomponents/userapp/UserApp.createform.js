@@ -4,33 +4,34 @@ import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Sele
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
+import OSSPictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-import ImageUpload from '../../components/ImageUpload'
+//import ImageUpload from '../../components/ImageUpload'
 import styles from './UserApp.createform.less'
 import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   title: '标题',
   secUser: 'SEC的用户',
   appIcon: '应用程序图标',
   fullAccess: '完全访问',
-  permission: '权限',
-  objectType: '访问对象类型',
+  permission: '许可',
+  objectType: '对象类型',
   objectId: '对象ID',
   location: '位置',
 }
 
 
 const testValues = {
-  title: '审车平台',
+  title: '用户中心',
   appIcon: 'users',
   fullAccess: '1',
   permission: 'MXWR',
-  objectType: 'CarInspectionPlatform',
-  objectId: 'CIP000001',
+  objectType: 'Community',
+  objectId: 'C000001',
   location: '/link/to/app',
   secUserId: 'SU000001',
 }
@@ -207,9 +208,9 @@ class UserAppCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.permission}>
                   {getFieldDecorator('permission', {
-                    rules: [{ required: true, message: '请输入权限' }],
+                    rules: [{ required: true, message: '请输入许可' }],
                   })(
-                    <Input placeholder="请输入请输入权限string" />
+                    <Input placeholder="请输入请输入许可string" />
                   )}
                 </Form.Item>
               </Col>
@@ -217,9 +218,9 @@ class UserAppCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.objectType}>
                   {getFieldDecorator('objectType', {
-                    rules: [{ required: true, message: '请输入访问对象类型' }],
+                    rules: [{ required: true, message: '请输入对象类型' }],
                   })(
-                    <Input placeholder="请输入请输入访问对象类型string" />
+                    <Input placeholder="请输入请输入对象类型string" />
                   )}
                 </Form.Item>
               </Col>

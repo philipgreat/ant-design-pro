@@ -4,8 +4,8 @@ import moment from 'moment'
 import { connect } from 'dva'
 import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import ImageUpload from '../../components/ImageUpload'
-//import OSSPictureEdit from '../../components/OSSPictureEdit'
+//import ImageUpload from '../../components/ImageUpload'
+import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
@@ -15,9 +15,9 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   label: '标签',
-  localeKey: '消息键值',
+  localeKey: '语言环境的关键',
   parameterName: '参数名称',
   type: '类型',
   form: '形式',
@@ -269,9 +269,9 @@ class FormFieldUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
-                    rules: [{ required: true, message: '请输入ID' }],
+                    rules: [{ required: true, message: '请输入序号' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入请输入序号string" disabled />
                   )}
                 </Form.Item>
               </Col>
@@ -289,9 +289,9 @@ class FormFieldUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.localeKey}>
                   {getFieldDecorator('localeKey', {
-                    rules: [{ required: true, message: '请输入消息键值' }],
+                    rules: [{ required: true, message: '请输入语言环境的关键' }],
                   })(
-                    <Input placeholder="请输入请输入消息键值string" />
+                    <Input placeholder="请输入请输入语言环境的关键string" />
                   )}
                 </Form.Item>
               </Col>

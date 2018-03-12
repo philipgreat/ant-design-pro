@@ -96,7 +96,7 @@ class FormActionBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '代审车服务平台'
+    const title = '帮帮兔社区运营中心'
     return title
   }
  
@@ -158,12 +158,6 @@ class FormActionBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/formAction/${this.props.formAction.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
              </Menu.Item>
-             <Menu.Item >
-               <Link to={`/formAction/${this.props.formAction.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
-             </Menu.Item>
-             <Menu.Item >
-               <Link to={`/formAction/${this.props.formAction.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
-             </Menu.Item>
              
 
              {this.getNavMenuItems(this.props.formAction.id)}
@@ -175,9 +169,11 @@ class FormActionBizApp extends React.PureComponent {
          <Layout>
            <Content style={{ margin: '24px 24px 0', height: '100%' }}>
              <Switch>
+             
                <Route path="/formAction/:id/dashboard" component={FormActionDashboard} />
+               
                <Route path="/formAction/:id/editDetail" component={FormActionEditDetail} />
-               <Route path="/formAction/:id/viewDetail" component={FormActionViewDetail} />
+               <Route path="/formAction/:id/viewDetail" component={FormActionViewDetail} /> 
                
               
              </Switch>

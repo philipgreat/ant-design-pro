@@ -96,7 +96,7 @@ class FormFieldBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '代审车服务平台'
+    const title = '帮帮兔社区运营中心'
     return title
   }
  
@@ -158,12 +158,6 @@ class FormFieldBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/formField/${this.props.formField.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
              </Menu.Item>
-             <Menu.Item >
-               <Link to={`/formField/${this.props.formField.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
-             </Menu.Item>
-             <Menu.Item >
-               <Link to={`/formField/${this.props.formField.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
-             </Menu.Item>
              
 
              {this.getNavMenuItems(this.props.formField.id)}
@@ -175,9 +169,11 @@ class FormFieldBizApp extends React.PureComponent {
          <Layout>
            <Content style={{ margin: '24px 24px 0', height: '100%' }}>
              <Switch>
+             
                <Route path="/formField/:id/dashboard" component={FormFieldDashboard} />
+               
                <Route path="/formField/:id/editDetail" component={FormFieldEditDetail} />
-               <Route path="/formField/:id/viewDetail" component={FormFieldViewDetail} />
+               <Route path="/formField/:id/viewDetail" component={FormFieldViewDetail} /> 
                
               
              </Switch>

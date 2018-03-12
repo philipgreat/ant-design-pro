@@ -89,9 +89,6 @@ class SecUserBizApp extends React.PureComponent {
       >
 
         <Menu.Item>
-          <Link to={`/secUser/${objectId}/list/customerList`}>客户</Link>
-        </Menu.Item>
-        <Menu.Item>
           <Link to={`/secUser/${objectId}/list/userAppList`}>用户应用程序</Link>
         </Menu.Item>
         <Menu.Item>
@@ -101,40 +98,6 @@ class SecUserBizApp extends React.PureComponent {
     )
   }
 
-
-  getCustomerSearch = () => {
-    const {CustomerSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._secUser.customerList,
-      count: state._secUser.customerCount,
-      currentPage: state._secUser.customerCurrentPageNumber,
-      searchFormParameters: state._secUser.customerSearchFormParameters,
-      loading: state._secUser.loading,
-      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList' }, // this is for model namespace and
-    }))(CustomerSearch)
-  }
-  getCustomerCreateForm = () => {
-   	const {CustomerCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._secUser.customerList,
-      count: state._secUser.customerCount,
-      currentPage: state._secUser.customerCurrentPageNumber,
-      searchFormParameters: state._secUser.customerSearchFormParameters,
-      loading: state._secUser.loading,
-      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList'}, // this is for model namespace and
-    }))(CustomerCreateForm)
-  }
-  
-  getCustomerUpdateForm = () => {
-  	const {CustomerUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._secUser.selectedRows,
-      currentUpdateIndex: state._secUser.currentUpdateIndex,
-      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList' }, // this is for model namespace and
-    }))(CustomerUpdateForm)
-  }
 
   getUserAppSearch = () => {
     const {UserAppSearch} = GlobalComponents;
@@ -207,7 +170,7 @@ class SecUserBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '代审车服务平台'
+    const title = '帮帮兔社区运营中心'
     return title
   }
  
@@ -269,12 +232,6 @@ class SecUserBizApp extends React.PureComponent {
              <Menu.Item >
                <Link to={`/secUser/${this.props.secUser.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
              </Menu.Item>
-             <Menu.Item >
-               <Link to={`/secUser/${this.props.secUser.id}/editDetail`}><Icon type="edit" /><span>详情编辑</span></Link>
-             </Menu.Item>
-             <Menu.Item >
-               <Link to={`/secUser/${this.props.secUser.id}/viewDetail`}><Icon type="eye-o" /><span>详情查看</span></Link>
-             </Menu.Item>
              
 
              {this.getNavMenuItems(this.props.secUser.id)}
@@ -286,14 +243,12 @@ class SecUserBizApp extends React.PureComponent {
          <Layout>
            <Content style={{ margin: '24px 24px 0', height: '100%' }}>
              <Switch>
+             
                <Route path="/secUser/:id/dashboard" component={SecUserDashboard} />
-               <Route path="/secUser/:id/editDetail" component={SecUserEditDetail} />
-               <Route path="/secUser/:id/viewDetail" component={SecUserViewDetail} />
                
-
-               <Route path="/secUser/:id/list/customerList" component={this.getCustomerSearch()} />
-               <Route path="/secUser/:id/list/customerCreateForm" component={this.getCustomerCreateForm()} />
-               <Route path="/secUser/:id/list/customerUpdateForm" component={this.getCustomerUpdateForm()} />
+               <Route path="/secUser/:id/editDetail" component={SecUserEditDetail} />
+               <Route path="/secUser/:id/viewDetail" component={SecUserViewDetail} /> 
+               
 
                <Route path="/secUser/:id/list/userAppList" component={this.getUserAppSearch()} />
                <Route path="/secUser/:id/list/userAppCreateForm" component={this.getUserAppCreateForm()} />

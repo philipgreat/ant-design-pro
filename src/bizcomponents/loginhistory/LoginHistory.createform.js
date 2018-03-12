@@ -4,17 +4,18 @@ import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Sele
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
+import OSSPictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-import ImageUpload from '../../components/ImageUpload'
+//import ImageUpload from '../../components/ImageUpload'
 import styles from './LoginHistory.createform.less'
 import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   loginTime: '登录时间',
-  fromIp: '来自IP',
+  fromIp: '从IP',
   description: '描述',
   secUser: 'SEC的用户',
 }
@@ -168,9 +169,9 @@ class LoginHistoryCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.fromIp}>
                   {getFieldDecorator('fromIp', {
-                    rules: [{ required: true, message: '请输入来自IP' }],
+                    rules: [{ required: true, message: '请输入从IP' }],
                   })(
-                    <Input placeholder="请输入请输入来自IPstring" />
+                    <Input placeholder="请输入请输入从IPstring" />
                   )}
                 </Form.Item>
               </Col>

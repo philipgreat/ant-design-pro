@@ -4,8 +4,8 @@ import moment from 'moment'
 import { connect } from 'dva'
 import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import ImageUpload from '../../components/ImageUpload'
-//import OSSPictureEdit from '../../components/OSSPictureEdit'
+//import ImageUpload from '../../components/ImageUpload'
+import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
@@ -15,9 +15,9 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   loginTime: '登录时间',
-  fromIp: '来自IP',
+  fromIp: '从IP',
   description: '描述',
   secUser: 'SEC的用户',
 
@@ -258,9 +258,9 @@ class LoginHistoryUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
-                    rules: [{ required: true, message: '请输入ID' }],
+                    rules: [{ required: true, message: '请输入序号' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入请输入序号string" disabled />
                   )}
                 </Form.Item>
               </Col>
@@ -268,9 +268,9 @@ class LoginHistoryUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.fromIp}>
                   {getFieldDecorator('fromIp', {
-                    rules: [{ required: true, message: '请输入来自IP' }],
+                    rules: [{ required: true, message: '请输入从IP' }],
                   })(
-                    <Input placeholder="请输入请输入来自IPstring" />
+                    <Input placeholder="请输入请输入从IPstring" />
                   )}
                 </Form.Item>
               </Col>

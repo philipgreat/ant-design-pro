@@ -41,18 +41,11 @@ class TopMenu extends React.Component {
         mode="horizontal"
         theme="dark"
       >
-        <Menu.Item key="mail">
-          <Icon type="mail" />账户
-        </Menu.Item>
+        
         <Menu.Item key="app1" >
         <Icon type="appstore"/>退出
         </Menu.Item>
-        <Menu.Item key="app2" >
-          <Icon type="appstore" />消息
-        </Menu.Item>
-        <Menu.Item key="app3" >
-          <Icon type="appstore" />待办事项
-        </Menu.Item>
+       
  
       </Menu>
     );

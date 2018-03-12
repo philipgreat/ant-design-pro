@@ -87,9 +87,9 @@ export default class UserAppSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="ID">
+            <FormItem label="序号">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入ID" />
+                <Input placeholder="请输入序号" />
                )}
             </FormItem>
           </Col>
@@ -120,9 +120,9 @@ export default class UserAppSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="ID">
+            <FormItem label="序号">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入ID" />
+                <Input placeholder="请输入序号" />
               )}
             </FormItem>
           </Col>
@@ -144,17 +144,17 @@ export default class UserAppSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="权限">
+            <FormItem label="许可">
               {getFieldDecorator('permission')(
-                <Input placeholder="请输入权限" />
+                <Input placeholder="请输入许可" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="访问对象类型">
+            <FormItem label="对象类型">
               {getFieldDecorator('objectType')(
-                <Input placeholder="请输入访问对象类型" />
+                <Input placeholder="请输入对象类型" />
               )}
             </FormItem>
           </Col>

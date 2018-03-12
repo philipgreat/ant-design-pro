@@ -7,68 +7,42 @@ import zhCN from 'antd/lib/locale-provider/zh_CN'
 // import enUS from 'antd/lib/locale-provider/en_US'
 import Launcher from './launcher/Launcher'
 
-import {CarInspectionPlatformBizApp} from './custcomponents';
-import {IdentityCardBizApp} from './custcomponents';
-import {VehiclePermitBizApp} from './custcomponents';
-import {ProvinceBizApp} from './custcomponents';
-import {CityBizApp} from './custcomponents';
-import {AvailableProductBizApp} from './custcomponents';
-import {AvailableVehicleTypeBizApp} from './custcomponents';
-import {ContractBizApp} from './custcomponents';
-import {ServicePriceBizApp} from './custcomponents';
-import {AvailableServiceBizApp} from './custcomponents';
-import {ProductPriceBizApp} from './custcomponents';
-import {AvailableInsuranceBizApp} from './custcomponents';
-import {VehicleRepairingAllowanceBizApp} from './custcomponents';
-import {AvailableHandOverItemBizApp} from './custcomponents';
-import {CustomerBizApp} from './custcomponents';
-import {VehicleServiceCompanyBizApp} from './custcomponents';
-import {ServiceCompanyAuthenticationInfoBizApp} from './custcomponents';
-import {VehicleInspectionPlateNumberPatternBizApp} from './custcomponents';
-import {FileInspectionPlateNumberPatternBizApp} from './custcomponents';
-import {VehicleServiceCompanyBusinessScopeBizApp} from './custcomponents';
-import {CompanyQrcodePromotionRecordBizApp} from './custcomponents';
-import {VehicleServiceCompanyDispatcherBizApp} from './custcomponents';
-import {VehicleServiceCompanyEmployeeBizApp} from './custcomponents';
-import {ServiceOrderFilterBizApp} from './custcomponents';
-import {CompanyEmployeeQualificationBizApp} from './custcomponents';
-import {CompanyEmployeeServingBizApp} from './custcomponents';
-import {CompanyEmployeeTerminationBizApp} from './custcomponents';
-import {EmployeeDrivingLicenseBizApp} from './custcomponents';
-import {InspectionStationBizApp} from './custcomponents';
-import {VehicleInfoBizApp} from './custcomponents';
-import {VehicleInspectionOrderBizApp} from './custcomponents';
-import {VehicleInspectionInsuranceOrderBizApp} from './custcomponents';
-import {VehicleInspectionOrderChargeBizApp} from './custcomponents';
-import {VehicleInspectionOrderServiceLogBizApp} from './custcomponents';
-import {VehicleInspectionOrderPaymentBizApp} from './custcomponents';
-import {HandOverChecklistItemBizApp} from './custcomponents';
-import {ServiceVehicleMovementC2mBizApp} from './custcomponents';
-import {ServiceVehicleMovementM2mBizApp} from './custcomponents';
-import {ServiceVehicleMovementM2cBizApp} from './custcomponents';
-import {ServiceFileMovementC2mBizApp} from './custcomponents';
-import {ServiceFileMovementM2mBizApp} from './custcomponents';
-import {ServiceFileMovementM2cBizApp} from './custcomponents';
-import {HandOverChecklistResultBizApp} from './custcomponents';
-import {ServiceInsuranceForInspectionBizApp} from './custcomponents';
-import {ServiceVehicleInspectionBizApp} from './custcomponents';
-import {ServiceFileInspectionBizApp} from './custcomponents';
-import {ServiceVehicleRepairingBizApp} from './custcomponents';
-import {RepairingAllowanceItemBizApp} from './custcomponents';
-import {VehicleRepairingPaymentBizApp} from './custcomponents';
-import {AvailableReviewItemBizApp} from './custcomponents';
-import {OrderReviewResultBizApp} from './custcomponents';
-import {AvailableRatingItemBizApp} from './custcomponents';
-import {OrderRatingResultBizApp} from './custcomponents';
-import {PreorderPromotionBizApp} from './custcomponents';
-import {OrderDiscountCouponBizApp} from './custcomponents';
-import {VehicleInspectionOrderCouponBizApp} from './custcomponents';
-import {AccountBizApp} from './custcomponents';
-import {ServiceCompanyAccountBizApp} from './custcomponents';
-import {RepairingCompanyAccountBizApp} from './custcomponents';
-import {InsuranceServiceAccountBizApp} from './custcomponents';
-import {MainOrderAccountBizApp} from './custcomponents';
-import {InspectionStationAccountBizApp} from './custcomponents';
+import {CommunityBizApp} from './custcomponents';
+import {InvitationCodeBizApp} from './custcomponents';
+import {HomePageBizApp} from './custcomponents';
+import {SlideBizApp} from './custcomponents';
+import {EncyclopediaItemBizApp} from './custcomponents';
+import {TaskPageBizApp} from './custcomponents';
+import {TaskFilterBizApp} from './custcomponents';
+import {CommunityUserBizApp} from './custcomponents';
+import {PatientInfoBizApp} from './custcomponents';
+import {UserSkillBizApp} from './custcomponents';
+import {MessageFilterBizApp} from './custcomponents';
+import {UserMessageBizApp} from './custcomponents';
+import {TaskBizApp} from './custcomponents';
+import {TaskAssigmentBizApp} from './custcomponents';
+import {TaskHidingBizApp} from './custcomponents';
+import {TaskResolvingBizApp} from './custcomponents';
+import {TaskRewardBizApp} from './custcomponents';
+import {TaskLikeBizApp} from './custcomponents';
+import {TaskReplyBizApp} from './custcomponents';
+import {TaskBestAnswerSettingBizApp} from './custcomponents';
+import {TaskReplyLikeBizApp} from './custcomponents';
+import {GroupPageBizApp} from './custcomponents';
+import {GroupFilterBizApp} from './custcomponents';
+import {ThreadBizApp} from './custcomponents';
+import {ThreadHidingBizApp} from './custcomponents';
+import {ThreadReplyBizApp} from './custcomponents';
+import {ThreadApprovalBizApp} from './custcomponents';
+import {ThreadCompletionBizApp} from './custcomponents';
+import {ThreadCancelingBizApp} from './custcomponents';
+import {ThreadRegistrationBizApp} from './custcomponents';
+import {ThreadLikeBizApp} from './custcomponents';
+import {ThreadReplyLikeBizApp} from './custcomponents';
+import {FanBizApp} from './custcomponents';
+import {FollowBizApp} from './custcomponents';
+import {BonusPointBizApp} from './custcomponents';
+import {ExperiencePointBizApp} from './custcomponents';
 import {UserDomainBizApp} from './custcomponents';
 import {SecUserBizApp} from './custcomponents';
 import {SecUserBlockingBizApp} from './custcomponents';
@@ -88,68 +62,42 @@ function RouterConfig({ history }) {
       <Router history={history}>
         <Switch>
          <Route path="/home" component={Launcher} />
-          <Route path="/carInspectionPlatform/" component={CarInspectionPlatformBizApp} />
-          <Route path="/identityCard/" component={IdentityCardBizApp} />
-          <Route path="/vehiclePermit/" component={VehiclePermitBizApp} />
-          <Route path="/province/" component={ProvinceBizApp} />
-          <Route path="/city/" component={CityBizApp} />
-          <Route path="/availableProduct/" component={AvailableProductBizApp} />
-          <Route path="/availableVehicleType/" component={AvailableVehicleTypeBizApp} />
-          <Route path="/contract/" component={ContractBizApp} />
-          <Route path="/servicePrice/" component={ServicePriceBizApp} />
-          <Route path="/availableService/" component={AvailableServiceBizApp} />
-          <Route path="/productPrice/" component={ProductPriceBizApp} />
-          <Route path="/availableInsurance/" component={AvailableInsuranceBizApp} />
-          <Route path="/vehicleRepairingAllowance/" component={VehicleRepairingAllowanceBizApp} />
-          <Route path="/availableHandOverItem/" component={AvailableHandOverItemBizApp} />
-          <Route path="/customer/" component={CustomerBizApp} />
-          <Route path="/vehicleServiceCompany/" component={VehicleServiceCompanyBizApp} />
-          <Route path="/serviceCompanyAuthenticationInfo/" component={ServiceCompanyAuthenticationInfoBizApp} />
-          <Route path="/vehicleInspectionPlateNumberPattern/" component={VehicleInspectionPlateNumberPatternBizApp} />
-          <Route path="/fileInspectionPlateNumberPattern/" component={FileInspectionPlateNumberPatternBizApp} />
-          <Route path="/vehicleServiceCompanyBusinessScope/" component={VehicleServiceCompanyBusinessScopeBizApp} />
-          <Route path="/companyQrcodePromotionRecord/" component={CompanyQrcodePromotionRecordBizApp} />
-          <Route path="/vehicleServiceCompanyDispatcher/" component={VehicleServiceCompanyDispatcherBizApp} />
-          <Route path="/vehicleServiceCompanyEmployee/" component={VehicleServiceCompanyEmployeeBizApp} />
-          <Route path="/serviceOrderFilter/" component={ServiceOrderFilterBizApp} />
-          <Route path="/companyEmployeeQualification/" component={CompanyEmployeeQualificationBizApp} />
-          <Route path="/companyEmployeeServing/" component={CompanyEmployeeServingBizApp} />
-          <Route path="/companyEmployeeTermination/" component={CompanyEmployeeTerminationBizApp} />
-          <Route path="/employeeDrivingLicense/" component={EmployeeDrivingLicenseBizApp} />
-          <Route path="/inspectionStation/" component={InspectionStationBizApp} />
-          <Route path="/vehicleInfo/" component={VehicleInfoBizApp} />
-          <Route path="/vehicleInspectionOrder/" component={VehicleInspectionOrderBizApp} />
-          <Route path="/vehicleInspectionInsuranceOrder/" component={VehicleInspectionInsuranceOrderBizApp} />
-          <Route path="/vehicleInspectionOrderCharge/" component={VehicleInspectionOrderChargeBizApp} />
-          <Route path="/vehicleInspectionOrderServiceLog/" component={VehicleInspectionOrderServiceLogBizApp} />
-          <Route path="/vehicleInspectionOrderPayment/" component={VehicleInspectionOrderPaymentBizApp} />
-          <Route path="/handOverChecklistItem/" component={HandOverChecklistItemBizApp} />
-          <Route path="/serviceVehicleMovementC2m/" component={ServiceVehicleMovementC2mBizApp} />
-          <Route path="/serviceVehicleMovementM2m/" component={ServiceVehicleMovementM2mBizApp} />
-          <Route path="/serviceVehicleMovementM2c/" component={ServiceVehicleMovementM2cBizApp} />
-          <Route path="/serviceFileMovementC2m/" component={ServiceFileMovementC2mBizApp} />
-          <Route path="/serviceFileMovementM2m/" component={ServiceFileMovementM2mBizApp} />
-          <Route path="/serviceFileMovementM2c/" component={ServiceFileMovementM2cBizApp} />
-          <Route path="/handOverChecklistResult/" component={HandOverChecklistResultBizApp} />
-          <Route path="/serviceInsuranceForInspection/" component={ServiceInsuranceForInspectionBizApp} />
-          <Route path="/serviceVehicleInspection/" component={ServiceVehicleInspectionBizApp} />
-          <Route path="/serviceFileInspection/" component={ServiceFileInspectionBizApp} />
-          <Route path="/serviceVehicleRepairing/" component={ServiceVehicleRepairingBizApp} />
-          <Route path="/repairingAllowanceItem/" component={RepairingAllowanceItemBizApp} />
-          <Route path="/vehicleRepairingPayment/" component={VehicleRepairingPaymentBizApp} />
-          <Route path="/availableReviewItem/" component={AvailableReviewItemBizApp} />
-          <Route path="/orderReviewResult/" component={OrderReviewResultBizApp} />
-          <Route path="/availableRatingItem/" component={AvailableRatingItemBizApp} />
-          <Route path="/orderRatingResult/" component={OrderRatingResultBizApp} />
-          <Route path="/preorderPromotion/" component={PreorderPromotionBizApp} />
-          <Route path="/orderDiscountCoupon/" component={OrderDiscountCouponBizApp} />
-          <Route path="/vehicleInspectionOrderCoupon/" component={VehicleInspectionOrderCouponBizApp} />
-          <Route path="/account/" component={AccountBizApp} />
-          <Route path="/serviceCompanyAccount/" component={ServiceCompanyAccountBizApp} />
-          <Route path="/repairingCompanyAccount/" component={RepairingCompanyAccountBizApp} />
-          <Route path="/insuranceServiceAccount/" component={InsuranceServiceAccountBizApp} />
-          <Route path="/mainOrderAccount/" component={MainOrderAccountBizApp} />
-          <Route path="/inspectionStationAccount/" component={InspectionStationAccountBizApp} />
+          <Route path="/community/" component={CommunityBizApp} />
+          <Route path="/invitationCode/" component={InvitationCodeBizApp} />
+          <Route path="/homePage/" component={HomePageBizApp} />
+          <Route path="/slide/" component={SlideBizApp} />
+          <Route path="/encyclopediaItem/" component={EncyclopediaItemBizApp} />
+          <Route path="/taskPage/" component={TaskPageBizApp} />
+          <Route path="/taskFilter/" component={TaskFilterBizApp} />
+          <Route path="/communityUser/" component={CommunityUserBizApp} />
+          <Route path="/patientInfo/" component={PatientInfoBizApp} />
+          <Route path="/userSkill/" component={UserSkillBizApp} />
+          <Route path="/messageFilter/" component={MessageFilterBizApp} />
+          <Route path="/userMessage/" component={UserMessageBizApp} />
+          <Route path="/task/" component={TaskBizApp} />
+          <Route path="/taskAssigment/" component={TaskAssigmentBizApp} />
+          <Route path="/taskHiding/" component={TaskHidingBizApp} />
+          <Route path="/taskResolving/" component={TaskResolvingBizApp} />
+          <Route path="/taskReward/" component={TaskRewardBizApp} />
+          <Route path="/taskLike/" component={TaskLikeBizApp} />
+          <Route path="/taskReply/" component={TaskReplyBizApp} />
+          <Route path="/taskBestAnswerSetting/" component={TaskBestAnswerSettingBizApp} />
+          <Route path="/taskReplyLike/" component={TaskReplyLikeBizApp} />
+          <Route path="/groupPage/" component={GroupPageBizApp} />
+          <Route path="/groupFilter/" component={GroupFilterBizApp} />
+          <Route path="/thread/" component={ThreadBizApp} />
+          <Route path="/threadHiding/" component={ThreadHidingBizApp} />
+          <Route path="/threadReply/" component={ThreadReplyBizApp} />
+          <Route path="/threadApproval/" component={ThreadApprovalBizApp} />
+          <Route path="/threadCompletion/" component={ThreadCompletionBizApp} />
+          <Route path="/threadCanceling/" component={ThreadCancelingBizApp} />
+          <Route path="/threadRegistration/" component={ThreadRegistrationBizApp} />
+          <Route path="/threadLike/" component={ThreadLikeBizApp} />
+          <Route path="/threadReplyLike/" component={ThreadReplyLikeBizApp} />
+          <Route path="/fan/" component={FanBizApp} />
+          <Route path="/follow/" component={FollowBizApp} />
+          <Route path="/bonusPoint/" component={BonusPointBizApp} />
+          <Route path="/experiencePoint/" component={ExperiencePointBizApp} />
           <Route path="/userDomain/" component={UserDomainBizApp} />
           <Route path="/secUser/" component={SecUserBizApp} />
           <Route path="/secUserBlocking/" component={SecUserBlockingBizApp} />

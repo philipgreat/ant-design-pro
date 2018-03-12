@@ -93,9 +93,9 @@ export default class FormFieldSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="ID">
+            <FormItem label="序号">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入ID" />
+                <Input placeholder="请输入序号" />
                )}
             </FormItem>
           </Col>
@@ -126,9 +126,9 @@ export default class FormFieldSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="ID">
+            <FormItem label="序号">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入ID" />
+                <Input placeholder="请输入序号" />
               )}
             </FormItem>
           </Col>
@@ -142,9 +142,9 @@ export default class FormFieldSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="消息键值">
+            <FormItem label="语言环境的关键">
               {getFieldDecorator('localeKey')(
-                <Input placeholder="请输入消息键值" />
+                <Input placeholder="请输入语言环境的关键" />
               )}
             </FormItem>
           </Col>

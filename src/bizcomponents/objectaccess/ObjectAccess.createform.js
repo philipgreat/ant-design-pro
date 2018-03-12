@@ -4,17 +4,18 @@ import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Sele
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
+import OSSPictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-import ImageUpload from '../../components/ImageUpload'
+//import ImageUpload from '../../components/ImageUpload'
 import styles from './ObjectAccess.createform.less'
 import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   displayName: '显示名称',
-  objectType: '访问对象类型',
+  objectType: '对象类型',
   list1: '列表1',
   list2: '列表2',
   list3: '列表3',
@@ -195,9 +196,9 @@ class ObjectAccessCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.objectType}>
                   {getFieldDecorator('objectType', {
-                    rules: [{ required: true, message: '请输入访问对象类型' }],
+                    rules: [{ required: true, message: '请输入对象类型' }],
                   })(
-                    <Input placeholder="请输入请输入访问对象类型string" />
+                    <Input placeholder="请输入请输入对象类型string" />
                   )}
                 </Form.Item>
               </Col>

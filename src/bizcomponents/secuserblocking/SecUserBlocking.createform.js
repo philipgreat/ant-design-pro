@@ -4,17 +4,18 @@ import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Sele
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
+import OSSPictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-import ImageUpload from '../../components/ImageUpload'
+//import ImageUpload from '../../components/ImageUpload'
 import styles from './SecUserBlocking.createform.less'
 import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
-  who: '审批人',
-  blockTime: '块时间',
+  id: '序号',
+  who: '谁',
+  blockTime: '屏蔽时间',
   comments: '评论',
 }
 
@@ -166,9 +167,9 @@ class SecUserBlockingCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.who}>
                   {getFieldDecorator('who', {
-                    rules: [{ required: true, message: '请输入审批人' }],
+                    rules: [{ required: true, message: '请输入谁' }],
                   })(
-                    <Input placeholder="请输入请输入审批人string" />
+                    <Input placeholder="请输入请输入谁string" />
                   )}
                 </Form.Item>
               </Col>
