@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}taskPageManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -15,8 +18,6 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}taskPageManager/loadTaskPage/${targetObjectId}/${parametersExpr}/`,
   })
 }
-
-
 
 const addTaskFilter = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskPageManager/addTaskFilter/taskPageId/name/filterKey/linkUrl/homePageId/tokensExpr/`
@@ -44,7 +45,11 @@ const updateTaskFilter = (targetObjectId, parameters) => {
 
 const removeTaskFilterList = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskPageManager/removeTaskFilterList/taskPageId/taskFilterIds/tokensExpr/`
-  const requestParameters = { ...parameters, taskPageId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    taskPageId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -52,7 +57,6 @@ const removeTaskFilterList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addTask = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskPageManager/addTask/taskPageId/title/selectedTask/content/creatorId/communityId/homePageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/`
@@ -80,7 +84,11 @@ const updateTask = (targetObjectId, parameters) => {
 
 const removeTaskList = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskPageManager/removeTaskList/taskPageId/taskIds/tokensExpr/`
-  const requestParameters = { ...parameters, taskPageId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    taskPageId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -89,14 +97,14 @@ const removeTaskList = (targetObjectId, parameters) => {
   })
 }
 
-
-const TaskPageService = { view,
+const TaskPageService = {
+  view,
   load,
   addTaskFilter,
   addTask,
   updateTaskFilter,
   updateTask,
   removeTaskFilterList,
-  removeTaskList }
+  removeTaskList,
+}
 export default TaskPageService
-

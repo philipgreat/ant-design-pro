@@ -1,18 +1,33 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './ThreadApproval.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/threadApproval/${text}/dashboard`}>{text}</Link>) },
-  { title: '谁', debugtype: 'string_current_user_name', dataIndex: 'who', width: '21' },
-  { title: '行动时间', dataIndex: 'actionTime', render: (text, record) => moment(record.actionTime).format('YYYY-MM-DD HH:mm:ss') },
+  {
+    title: '序号',
+    debugtype: 'string',
+    dataIndex: 'id',
+    width: '20',
+    render: (text, record) => (
+      <Link to={`/threadApproval/${text}/dashboard`}>{text}</Link>
+    ),
+  },
+  {
+    title: '谁',
+    debugtype: 'string_current_user_name',
+    dataIndex: 'who',
+    width: '21',
+  },
+  {
+    title: '行动时间',
+    dataIndex: 'actionTime',
+    render: (text, record) =>
+      moment(record.actionTime).format('YYYY-MM-DD HH:mm:ss'),
+  },
   { title: '评论', debugtype: 'string', dataIndex: 'comment', width: '8' },
-
 ]
 
 class ThreadApprovalTable extends PureComponent {
@@ -55,7 +70,6 @@ class ThreadApprovalTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -70,13 +84,15 @@ class ThreadApprovalTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -97,4 +113,3 @@ class ThreadApprovalTable extends PureComponent {
 }
 
 export default ThreadApprovalTable
-

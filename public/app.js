@@ -1,5 +1,5 @@
 var appServer = 'http://localhost:8080/naf/secUserManager/testoss/';
-var bucket = 'bbt-test';
+var bucket = 'bbt-img';
 var region = 'oss-cn-shanghai';
 var urllib = OSS.urllib;
 var OSS = OSS.Wrapper;

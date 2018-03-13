@@ -1,11 +1,9 @@
-
-
 import pathToRegexp from 'path-to-regexp'
 import { routerRedux } from 'dva/router'
 import { notification } from 'antd'
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
-const hasError = (data) => {
+const hasError = data => {
   if (!data.class) {
     return false
   }
@@ -18,7 +16,7 @@ const hasError = (data) => {
   return false
 }
 
-const handleServerError = (data) => {
+const handleServerError = data => {
   if (data.message) {
     notification.error({
       message: data.message,
@@ -36,15 +34,13 @@ const handleServerError = (data) => {
 }
 
 export default {
-
   namespace: '_task',
 
   state: {},
 
   subscriptions: {
-    
-    setup({ dispatch, history }) { 
-      history.listen((location) => {
+    setup({ dispatch, history }) {
+      history.listen(location => {
         const { pathname } = location
         if (!pathname.startsWith('/task')) {
           return
@@ -54,25 +50,31 @@ export default {
           dispatch({ type: 'updateState', payload: newstate })
           return
         }
-        const dashboardmatch = pathToRegexp('/task/:id/dashboard').exec(pathname)
+        const dashboardmatch = pathToRegexp('/task/:id/dashboard').exec(
+          pathname
+        )
         if (dashboardmatch) {
           const id = dashboardmatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const editDetailMatch = pathToRegexp('/task/:id/editDetail').exec(pathname)
+        const editDetailMatch = pathToRegexp('/task/:id/editDetail').exec(
+          pathname
+        )
         if (editDetailMatch) {
           const id = editDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const viewDetailMatch = pathToRegexp('/task/:id/viewDetail').exec(pathname)
+        const viewDetailMatch = pathToRegexp('/task/:id/viewDetail').exec(
+          pathname
+        )
         if (viewDetailMatch) {
           const id = viewDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        
+
         const match = pathToRegexp('/task/:id/list/:listName').exec(pathname)
         if (!match) {
           return
@@ -84,20 +86,20 @@ export default {
     },
   },
   effects: {
-    *view({ payload }, { call, put }) { 
-      const {TaskService} = GlobalComponents;
+    *view({ payload }, { call, put }) {
+      const { TaskService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
       const data = yield call(TaskService.view, payload.id)
       console.log('this is the data id:', data.id)
       yield put({ type: 'updateState', payload: data })
     },
-    *load({ payload }, { call, put }) { 
-      const {TaskService} = GlobalComponents;
+    *load({ payload }, { call, put }) {
+      const { TaskService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
       const data = yield call(TaskService.load, payload.id, payload.parameters)
-      
+
       const newPlayload = { ...payload, ...data }
-      
+
       console.log('this is the data id: ', data.id)
       yield put({ type: 'updateState', payload: newPlayload })
     },
@@ -117,7 +119,7 @@ export default {
     },
 
     *addTaskAssigment({ payload }, { call, put }) {
-      const {TaskService} = GlobalComponents;
+      const { TaskService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
@@ -140,37 +142,63 @@ export default {
       yield put(routerRedux.push(location))
     },
     *updateTaskAssigment({ payload }, { call, put }) {
-      const {TaskService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { TaskService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
       const data = yield call(TaskService.updateTaskAssigment, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/task/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/task/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
     *gotoNextTaskAssigmentUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeTaskAssigmentList({ payload }, { call, put }) {
-      const {TaskService} = GlobalComponents; 
+      const { TaskService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(TaskService.removeTaskAssigmentList, id, parameters)
+      const data = yield call(
+        TaskService.removeTaskAssigmentList,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -178,7 +206,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/task/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -189,7 +217,7 @@ export default {
     },
 
     *addTaskLike({ payload }, { call, put }) {
-      const {TaskService} = GlobalComponents;
+      const { TaskService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
@@ -212,34 +240,56 @@ export default {
       yield put(routerRedux.push(location))
     },
     *updateTaskLike({ payload }, { call, put }) {
-      const {TaskService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { TaskService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
       const data = yield call(TaskService.updateTaskLike, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/task/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/task/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
     *gotoNextTaskLikeUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeTaskLikeList({ payload }, { call, put }) {
-      const {TaskService} = GlobalComponents; 
+      const { TaskService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
       const data = yield call(TaskService.removeTaskLikeList, id, parameters)
@@ -250,7 +300,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/task/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -261,7 +311,7 @@ export default {
     },
 
     *addTaskReply({ payload }, { call, put }) {
-      const {TaskService} = GlobalComponents;
+      const { TaskService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
@@ -284,34 +334,56 @@ export default {
       yield put(routerRedux.push(location))
     },
     *updateTaskReply({ payload }, { call, put }) {
-      const {TaskService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { TaskService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
       const data = yield call(TaskService.updateTaskReply, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/task/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/task/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
     *gotoNextTaskReplyUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeTaskReplyList({ payload }, { call, put }) {
-      const {TaskService} = GlobalComponents; 
+      const { TaskService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
       const data = yield call(TaskService.removeTaskReplyList, id, parameters)
@@ -322,7 +394,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/task/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -331,9 +403,8 @@ export default {
       // const location = { pathname: `task/${id}/list/${type}List`, state: data}
       // yield put(routerRedux.push(location))
     },
-
   },
-  
+
   reducers: {
     updateState(state, action) {
       const payload = { ...action.payload, loading: false }
@@ -346,4 +417,3 @@ export default {
     },
   },
 }
-

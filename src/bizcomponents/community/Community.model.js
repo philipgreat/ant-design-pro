@@ -1,11 +1,9 @@
-
-
 import pathToRegexp from 'path-to-regexp'
 import { routerRedux } from 'dva/router'
 import { notification } from 'antd'
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
-const hasError = (data) => {
+const hasError = data => {
   if (!data.class) {
     return false
   }
@@ -18,7 +16,7 @@ const hasError = (data) => {
   return false
 }
 
-const handleServerError = (data) => {
+const handleServerError = data => {
   if (data.message) {
     notification.error({
       message: data.message,
@@ -36,15 +34,13 @@ const handleServerError = (data) => {
 }
 
 export default {
-
   namespace: '_community',
 
   state: {},
 
   subscriptions: {
-    
-    setup({ dispatch, history }) { 
-      history.listen((location) => {
+    setup({ dispatch, history }) {
+      history.listen(location => {
         const { pathname } = location
         if (!pathname.startsWith('/community')) {
           return
@@ -54,26 +50,34 @@ export default {
           dispatch({ type: 'updateState', payload: newstate })
           return
         }
-        const dashboardmatch = pathToRegexp('/community/:id/dashboard').exec(pathname)
+        const dashboardmatch = pathToRegexp('/community/:id/dashboard').exec(
+          pathname
+        )
         if (dashboardmatch) {
           const id = dashboardmatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const editDetailMatch = pathToRegexp('/community/:id/editDetail').exec(pathname)
+        const editDetailMatch = pathToRegexp('/community/:id/editDetail').exec(
+          pathname
+        )
         if (editDetailMatch) {
           const id = editDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const viewDetailMatch = pathToRegexp('/community/:id/viewDetail').exec(pathname)
+        const viewDetailMatch = pathToRegexp('/community/:id/viewDetail').exec(
+          pathname
+        )
         if (viewDetailMatch) {
           const id = viewDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        
-        const match = pathToRegexp('/community/:id/list/:listName').exec(pathname)
+
+        const match = pathToRegexp('/community/:id/list/:listName').exec(
+          pathname
+        )
         if (!match) {
           return
           //  dispatch action with userId
@@ -84,20 +88,24 @@ export default {
     },
   },
   effects: {
-    *view({ payload }, { call, put }) { 
-      const {CommunityService} = GlobalComponents;
+    *view({ payload }, { call, put }) {
+      const { CommunityService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
       const data = yield call(CommunityService.view, payload.id)
       console.log('this is the data id:', data.id)
       yield put({ type: 'updateState', payload: data })
     },
-    *load({ payload }, { call, put }) { 
-      const {CommunityService} = GlobalComponents;
+    *load({ payload }, { call, put }) {
+      const { CommunityService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
-      const data = yield call(CommunityService.load, payload.id, payload.parameters)
-      
+      const data = yield call(
+        CommunityService.load,
+        payload.id,
+        payload.parameters
+      )
+
       const newPlayload = { ...payload, ...data }
-      
+
       console.log('this is the data id: ', data.id)
       yield put({ type: 'updateState', payload: newPlayload })
     },
@@ -108,7 +116,10 @@ export default {
     *gotoUpdateForm({ payload }, { put }) {
       const { id, type, selectedRows, currentUpdateIndex } = payload
       const state = { id, type, selectedRows, currentUpdateIndex }
-      const location = { pathname: `/community/${id}/list/${type}UpdateForm`, state }
+      const location = {
+        pathname: `/community/${id}/list/${type}UpdateForm`,
+        state,
+      }
       yield put(routerRedux.push(location))
     },
     *goback({ payload }, { put }) {
@@ -117,11 +128,15 @@ export default {
     },
 
     *addInvitationCode({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;
+      const { CommunityService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CommunityService.addInvitationCode, id, parameters)
+      const data = yield call(
+        CommunityService.addInvitationCode,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -136,41 +151,74 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: data }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: data,
+      }
       yield put(routerRedux.push(location))
     },
     *updateInvitationCode({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { CommunityService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CommunityService.updateInvitationCode, id, parameters)
+      const data = yield call(
+        CommunityService.updateInvitationCode,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
     *gotoNextInvitationCodeUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeInvitationCodeList({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents; 
+      const { CommunityService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CommunityService.removeInvitationCodeList, id, parameters)
+      const data = yield call(
+        CommunityService.removeInvitationCodeList,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -178,7 +226,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/community/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -189,7 +237,7 @@ export default {
     },
 
     *addHomePage({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;
+      const { CommunityService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
@@ -208,41 +256,70 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: data }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: data,
+      }
       yield put(routerRedux.push(location))
     },
     *updateHomePage({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { CommunityService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
       const data = yield call(CommunityService.updateHomePage, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
     *gotoNextHomePageUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeHomePageList({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents; 
+      const { CommunityService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CommunityService.removeHomePageList, id, parameters)
+      const data = yield call(
+        CommunityService.removeHomePageList,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -250,7 +327,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/community/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -261,11 +338,15 @@ export default {
     },
 
     *addEncyclopediaItem({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;
+      const { CommunityService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CommunityService.addEncyclopediaItem, id, parameters)
+      const data = yield call(
+        CommunityService.addEncyclopediaItem,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -280,41 +361,74 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: data }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: data,
+      }
       yield put(routerRedux.push(location))
     },
     *updateEncyclopediaItem({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { CommunityService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CommunityService.updateEncyclopediaItem, id, parameters)
+      const data = yield call(
+        CommunityService.updateEncyclopediaItem,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
     *gotoNextEncyclopediaItemUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeEncyclopediaItemList({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents; 
+      const { CommunityService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CommunityService.removeEncyclopediaItemList, id, parameters)
+      const data = yield call(
+        CommunityService.removeEncyclopediaItemList,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -322,7 +436,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/community/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -333,7 +447,7 @@ export default {
     },
 
     *addTaskPage({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;
+      const { CommunityService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
@@ -352,41 +466,70 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: data }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: data,
+      }
       yield put(routerRedux.push(location))
     },
     *updateTaskPage({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { CommunityService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
       const data = yield call(CommunityService.updateTaskPage, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
     *gotoNextTaskPageUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeTaskPageList({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents; 
+      const { CommunityService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CommunityService.removeTaskPageList, id, parameters)
+      const data = yield call(
+        CommunityService.removeTaskPageList,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -394,7 +537,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/community/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -405,7 +548,7 @@ export default {
     },
 
     *addCommunityUser({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;
+      const { CommunityService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
@@ -424,41 +567,74 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: data }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: data,
+      }
       yield put(routerRedux.push(location))
     },
     *updateCommunityUser({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { CommunityService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CommunityService.updateCommunityUser, id, parameters)
+      const data = yield call(
+        CommunityService.updateCommunityUser,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
     *gotoNextCommunityUserUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeCommunityUserList({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents; 
+      const { CommunityService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CommunityService.removeCommunityUserList, id, parameters)
+      const data = yield call(
+        CommunityService.removeCommunityUserList,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -466,7 +642,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/community/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -477,7 +653,7 @@ export default {
     },
 
     *addTask({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;
+      const { CommunityService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
@@ -496,38 +672,63 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: data }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: data,
+      }
       yield put(routerRedux.push(location))
     },
     *updateTask({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { CommunityService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
       const data = yield call(CommunityService.updateTask, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
     *gotoNextTaskUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeTaskList({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents; 
+      const { CommunityService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
       const data = yield call(CommunityService.removeTaskList, id, parameters)
@@ -538,7 +739,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/community/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -549,7 +750,7 @@ export default {
     },
 
     *addGroupPage({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;
+      const { CommunityService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
@@ -568,41 +769,70 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: data }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: data,
+      }
       yield put(routerRedux.push(location))
     },
     *updateGroupPage({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { CommunityService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
       const data = yield call(CommunityService.updateGroupPage, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
     *gotoNextGroupPageUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeGroupPageList({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents; 
+      const { CommunityService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CommunityService.removeGroupPageList, id, parameters)
+      const data = yield call(
+        CommunityService.removeGroupPageList,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -610,7 +840,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/community/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -621,7 +851,7 @@ export default {
     },
 
     *addThread({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;
+      const { CommunityService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
@@ -640,38 +870,63 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: data }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: data,
+      }
       yield put(routerRedux.push(location))
     },
     *updateThread({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { CommunityService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
       const data = yield call(CommunityService.updateThread, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/community/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/community/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
     *gotoNextThreadUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeThreadList({ payload }, { call, put }) {
-      const {CommunityService} = GlobalComponents; 
+      const { CommunityService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
       const data = yield call(CommunityService.removeThreadList, id, parameters)
@@ -682,7 +937,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/community/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -691,9 +946,8 @@ export default {
       // const location = { pathname: `community/${id}/list/${type}List`, state: data}
       // yield put(routerRedux.push(location))
     },
-
   },
-  
+
   reducers: {
     updateState(state, action) {
       const payload = { ...action.payload, loading: false }
@@ -706,4 +960,3 @@ export default {
     },
   },
 }
-

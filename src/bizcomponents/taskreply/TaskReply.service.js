@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}taskReplyManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -15,8 +18,6 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}taskReplyManager/loadTaskReply/${targetObjectId}/${parametersExpr}/`,
   })
 }
-
-
 
 const addTaskReplyLike = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskReplyManager/addTaskReplyLike/taskReplyId/replierId/tokensExpr/`
@@ -44,7 +45,11 @@ const updateTaskReplyLike = (targetObjectId, parameters) => {
 
 const removeTaskReplyLikeList = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskReplyManager/removeTaskReplyLikeList/taskReplyId/taskReplyLikeIds/tokensExpr/`
-  const requestParameters = { ...parameters, taskReplyId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    taskReplyId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -53,11 +58,11 @@ const removeTaskReplyLikeList = (targetObjectId, parameters) => {
   })
 }
 
-
-const TaskReplyService = { view,
+const TaskReplyService = {
+  view,
   load,
   addTaskReplyLike,
   updateTaskReplyLike,
-  removeTaskReplyLikeList }
+  removeTaskReplyLikeList,
+}
 export default TaskReplyService
-

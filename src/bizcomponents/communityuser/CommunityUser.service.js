@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}communityUserManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -15,8 +18,6 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}communityUserManager/loadCommunityUser/${targetObjectId}/${parametersExpr}/`,
   })
 }
-
-
 
 const addPatientInfo = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addPatientInfo/userId/name/nickName/gender/birthday/wearDeviceType/wearStartTime/recoverPlan/recoverStartTime/tokensExpr/`
@@ -33,7 +34,11 @@ const addPatientInfo = (targetObjectId, parameters) => {
 const updatePatientInfo = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updatePatientInfoProperties/communityUserId/id/name/nickName/gender/birthday/wearDeviceType/wearStartTime/recoverPlan/recoverStartTime/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -44,7 +49,11 @@ const updatePatientInfo = (targetObjectId, parameters) => {
 
 const removePatientInfoList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removePatientInfoList/communityUserId/patientInfoIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -52,7 +61,6 @@ const removePatientInfoList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addUserSkill = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addUserSkill/userId/skillName/tokensExpr/`
@@ -69,7 +77,11 @@ const addUserSkill = (targetObjectId, parameters) => {
 const updateUserSkill = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateUserSkillProperties/communityUserId/id/skillName/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -80,7 +92,11 @@ const updateUserSkill = (targetObjectId, parameters) => {
 
 const removeUserSkillList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeUserSkillList/communityUserId/userSkillIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -88,7 +104,6 @@ const removeUserSkillList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addMessageFilter = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addMessageFilter/userId/name/messageCount/filterKey/linkUrl/tokensExpr/`
@@ -105,7 +120,11 @@ const addMessageFilter = (targetObjectId, parameters) => {
 const updateMessageFilter = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateMessageFilterProperties/communityUserId/id/name/messageCount/filterKey/linkUrl/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -116,7 +135,11 @@ const updateMessageFilter = (targetObjectId, parameters) => {
 
 const removeMessageFilterList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeMessageFilterList/communityUserId/messageFilterIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -124,7 +147,6 @@ const removeMessageFilterList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addUserMessage = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addUserMessage/receiverId/title/messageKey/content/linkUrl/tokensExpr/`
@@ -141,7 +163,11 @@ const addUserMessage = (targetObjectId, parameters) => {
 const updateUserMessage = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateUserMessageProperties/communityUserId/id/title/messageKey/content/linkUrl/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -152,7 +178,11 @@ const updateUserMessage = (targetObjectId, parameters) => {
 
 const removeUserMessageList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeUserMessageList/communityUserId/userMessageIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -160,7 +190,6 @@ const removeUserMessageList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addTask = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addTask/creatorId/title/selectedTask/content/communityId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/`
@@ -177,7 +206,11 @@ const addTask = (targetObjectId, parameters) => {
 const updateTask = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateTaskProperties/communityUserId/id/title/selectedTask/content/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -188,7 +221,11 @@ const updateTask = (targetObjectId, parameters) => {
 
 const removeTaskList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeTaskList/communityUserId/taskIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -196,7 +233,6 @@ const removeTaskList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addTaskAssigment = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addTaskAssigment/assigneeId/taskId/comments/tokensExpr/`
@@ -213,7 +249,11 @@ const addTaskAssigment = (targetObjectId, parameters) => {
 const updateTaskAssigment = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateTaskAssigmentProperties/communityUserId/id/comments/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -224,7 +264,11 @@ const updateTaskAssigment = (targetObjectId, parameters) => {
 
 const removeTaskAssigmentList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeTaskAssigmentList/communityUserId/taskAssigmentIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -232,7 +276,6 @@ const removeTaskAssigmentList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addTaskLike = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addTaskLike/replierId/taskId/tokensExpr/`
@@ -249,7 +292,11 @@ const addTaskLike = (targetObjectId, parameters) => {
 const updateTaskLike = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateTaskLikeProperties/communityUserId/id/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -260,7 +307,11 @@ const updateTaskLike = (targetObjectId, parameters) => {
 
 const removeTaskLikeList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeTaskLikeList/communityUserId/taskLikeIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -268,7 +319,6 @@ const removeTaskLikeList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addTaskReply = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addTaskReply/replierId/content/taskId/likeByCurrentUser/tokensExpr/`
@@ -285,7 +335,11 @@ const addTaskReply = (targetObjectId, parameters) => {
 const updateTaskReply = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateTaskReplyProperties/communityUserId/id/content/likeByCurrentUser/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -296,7 +350,11 @@ const updateTaskReply = (targetObjectId, parameters) => {
 
 const removeTaskReplyList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeTaskReplyList/communityUserId/taskReplyIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -304,7 +362,6 @@ const removeTaskReplyList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addTaskReplyLike = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addTaskReplyLike/replierId/taskReplyId/tokensExpr/`
@@ -321,7 +378,11 @@ const addTaskReplyLike = (targetObjectId, parameters) => {
 const updateTaskReplyLike = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateTaskReplyLikeProperties/communityUserId/id/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -332,7 +393,11 @@ const updateTaskReplyLike = (targetObjectId, parameters) => {
 
 const removeTaskReplyLikeList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeTaskReplyLikeList/communityUserId/taskReplyLikeIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -340,7 +405,6 @@ const removeTaskReplyLikeList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addThread = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addThread/creatorId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/communityId/homePageId/groupPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/`
@@ -357,7 +421,11 @@ const addThread = (targetObjectId, parameters) => {
 const updateThread = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateThreadProperties/communityUserId/id/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -368,7 +436,11 @@ const updateThread = (targetObjectId, parameters) => {
 
 const removeThreadList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeThreadList/communityUserId/threadIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -376,7 +448,6 @@ const removeThreadList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addThreadReply = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addThreadReply/replierId/content/threadId/likeByCurrentUser/tokensExpr/`
@@ -393,7 +464,11 @@ const addThreadReply = (targetObjectId, parameters) => {
 const updateThreadReply = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateThreadReplyProperties/communityUserId/id/content/likeByCurrentUser/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -404,7 +479,11 @@ const updateThreadReply = (targetObjectId, parameters) => {
 
 const removeThreadReplyList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeThreadReplyList/communityUserId/threadReplyIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -412,7 +491,6 @@ const removeThreadReplyList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addThreadRegistration = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addThreadRegistration/participantId/threadId/comments/tokensExpr/`
@@ -429,7 +507,11 @@ const addThreadRegistration = (targetObjectId, parameters) => {
 const updateThreadRegistration = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateThreadRegistrationProperties/communityUserId/id/comments/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -440,7 +522,11 @@ const updateThreadRegistration = (targetObjectId, parameters) => {
 
 const removeThreadRegistrationList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeThreadRegistrationList/communityUserId/threadRegistrationIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -448,7 +534,6 @@ const removeThreadRegistrationList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addThreadLike = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addThreadLike/replierId/threadId/tokensExpr/`
@@ -465,7 +550,11 @@ const addThreadLike = (targetObjectId, parameters) => {
 const updateThreadLike = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateThreadLikeProperties/communityUserId/id/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -476,7 +565,11 @@ const updateThreadLike = (targetObjectId, parameters) => {
 
 const removeThreadLikeList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeThreadLikeList/communityUserId/threadLikeIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -484,7 +577,6 @@ const removeThreadLikeList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addThreadReplyLike = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addThreadReplyLike/replierId/threadReplyId/tokensExpr/`
@@ -501,7 +593,11 @@ const addThreadReplyLike = (targetObjectId, parameters) => {
 const updateThreadReplyLike = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateThreadReplyLikeProperties/communityUserId/id/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -512,7 +608,11 @@ const updateThreadReplyLike = (targetObjectId, parameters) => {
 
 const removeThreadReplyLikeList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeThreadReplyLikeList/communityUserId/threadReplyLikeIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -520,7 +620,6 @@ const removeThreadReplyLikeList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addFan = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addFan/userId/fanId/tokensExpr/`
@@ -537,7 +636,11 @@ const addFan = (targetObjectId, parameters) => {
 const updateFan = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateFanProperties/communityUserId/id/fanId/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -548,7 +651,11 @@ const updateFan = (targetObjectId, parameters) => {
 
 const removeFanList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeFanList/communityUserId/fanIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -556,7 +663,6 @@ const removeFanList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addFollow = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addFollow/userId/followId/tokensExpr/`
@@ -573,7 +679,11 @@ const addFollow = (targetObjectId, parameters) => {
 const updateFollow = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateFollowProperties/communityUserId/id/followId/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -584,7 +694,11 @@ const updateFollow = (targetObjectId, parameters) => {
 
 const removeFollowList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeFollowList/communityUserId/followIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -592,7 +706,6 @@ const removeFollowList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addBonusPoint = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addBonusPoint/userId/name/points/tokensExpr/`
@@ -609,7 +722,11 @@ const addBonusPoint = (targetObjectId, parameters) => {
 const updateBonusPoint = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateBonusPointProperties/communityUserId/id/name/points/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -620,7 +737,11 @@ const updateBonusPoint = (targetObjectId, parameters) => {
 
 const removeBonusPointList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeBonusPointList/communityUserId/bonusPointIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -628,7 +749,6 @@ const removeBonusPointList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addExperiencePoint = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/addExperiencePoint/userId/name/points/tokensExpr/`
@@ -645,7 +765,11 @@ const addExperiencePoint = (targetObjectId, parameters) => {
 const updateExperiencePoint = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/updateExperiencePointProperties/communityUserId/id/name/points/tokensExpr/`
   const communityUserId = targetObjectId
-  const requestParameters = { ...parameters, communityUserId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -656,7 +780,11 @@ const updateExperiencePoint = (targetObjectId, parameters) => {
 
 const removeExperiencePointList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityUserManager/removeExperiencePointList/communityUserId/experiencePointIds/tokensExpr/`
-  const requestParameters = { ...parameters, communityUserId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    communityUserId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -665,8 +793,8 @@ const removeExperiencePointList = (targetObjectId, parameters) => {
   })
 }
 
-
-const CommunityUserService = { view,
+const CommunityUserService = {
+  view,
   load,
   addPatientInfo,
   addUserSkill,
@@ -721,6 +849,6 @@ const CommunityUserService = { view,
   removeFanList,
   removeFollowList,
   removeBonusPointList,
-  removeExperiencePointList }
+  removeExperiencePointList,
+}
 export default CommunityUserService
-

@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}taskManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -15,8 +18,6 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}taskManager/loadTask/${targetObjectId}/${parametersExpr}/`,
   })
 }
-
-
 
 const addTaskAssigment = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskManager/addTaskAssigment/taskId/assigneeId/comments/tokensExpr/`
@@ -44,7 +45,11 @@ const updateTaskAssigment = (targetObjectId, parameters) => {
 
 const removeTaskAssigmentList = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskManager/removeTaskAssigmentList/taskId/taskAssigmentIds/tokensExpr/`
-  const requestParameters = { ...parameters, taskId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    taskId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -52,7 +57,6 @@ const removeTaskAssigmentList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addTaskLike = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskManager/addTaskLike/taskId/replierId/tokensExpr/`
@@ -80,7 +84,11 @@ const updateTaskLike = (targetObjectId, parameters) => {
 
 const removeTaskLikeList = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskManager/removeTaskLikeList/taskId/taskLikeIds/tokensExpr/`
-  const requestParameters = { ...parameters, taskId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    taskId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -88,7 +96,6 @@ const removeTaskLikeList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addTaskReply = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskManager/addTaskReply/taskId/content/replierId/likeByCurrentUser/tokensExpr/`
@@ -116,7 +123,11 @@ const updateTaskReply = (targetObjectId, parameters) => {
 
 const removeTaskReplyList = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskManager/removeTaskReplyList/taskId/taskReplyIds/tokensExpr/`
-  const requestParameters = { ...parameters, taskId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    taskId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -125,8 +136,8 @@ const removeTaskReplyList = (targetObjectId, parameters) => {
   })
 }
 
-
-const TaskService = { view,
+const TaskService = {
+  view,
   load,
   addTaskAssigment,
   addTaskLike,
@@ -136,6 +147,6 @@ const TaskService = { view,
   updateTaskReply,
   removeTaskAssigmentList,
   removeTaskLikeList,
-  removeTaskReplyList }
+  removeTaskReplyList,
+}
 export default TaskService
-

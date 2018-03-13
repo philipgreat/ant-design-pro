@@ -1,19 +1,43 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './ThreadRegistration.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '主贴', dataIndex: 'thread', render: (text, record) => (record.thread ? (<Link to={`/thread/${record.thread.id}/dashboard`}>{record.thread.displayName}</Link>) : '暂无') },
-  { title: '参与者', dataIndex: 'participant', render: (text, record) => (record.participant ? (<Link to={`/communityUser/${record.participant.id}/dashboard`}>{record.participant.displayName}</Link>) : '暂无') },
-  { title: '登记时间', dataIndex: 'registerTime', render: (text, record) => moment(record.registerTime).format('YYYY-MM-DD HH:mm:ss') },
+  {
+    title: '主贴',
+    dataIndex: 'thread',
+    render: (text, record) =>
+      record.thread ? (
+        <Link to={`/thread/${record.thread.id}/dashboard`}>
+          {record.thread.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '参与者',
+    dataIndex: 'participant',
+    render: (text, record) =>
+      record.participant ? (
+        <Link to={`/communityUser/${record.participant.id}/dashboard`}>
+          {record.participant.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '登记时间',
+    dataIndex: 'registerTime',
+    render: (text, record) =>
+      moment(record.registerTime).format('YYYY-MM-DD HH:mm:ss'),
+  },
   { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '14' },
-
 ]
 
 class ThreadRegistrationTable extends PureComponent {
@@ -56,7 +80,6 @@ class ThreadRegistrationTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -71,13 +94,15 @@ class ThreadRegistrationTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -98,4 +123,3 @@ class ThreadRegistrationTable extends PureComponent {
 }
 
 export default ThreadRegistrationTable
-

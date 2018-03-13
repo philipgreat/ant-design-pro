@@ -1,21 +1,39 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './FormAction.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '标签', debugtype: 'string', dataIndex: 'label', width: '6' },
-  { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey', width: '8' },
-  { title: '行动的关键', debugtype: 'string', dataIndex: 'actionKey', width: '10' },
+  {
+    title: '语言环境的关键',
+    debugtype: 'string',
+    dataIndex: 'localeKey',
+    width: '8',
+  },
+  {
+    title: '行动的关键',
+    debugtype: 'string',
+    dataIndex: 'actionKey',
+    width: '10',
+  },
   { title: '水平', debugtype: 'string', dataIndex: 'level', width: '11' },
   { title: 'url', debugtype: 'string', dataIndex: 'url', width: '46' },
-  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? (<Link to={`/genericForm/${record.form.id}/dashboard`}>{record.form.displayName}</Link>) : '暂无') },
-
+  {
+    title: '形式',
+    dataIndex: 'form',
+    render: (text, record) =>
+      record.form ? (
+        <Link to={`/genericForm/${record.form.id}/dashboard`}>
+          {record.form.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
 ]
 
 class FormActionTable extends PureComponent {
@@ -58,7 +76,6 @@ class FormActionTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -73,13 +90,15 @@ class FormActionTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -100,4 +119,3 @@ class FormActionTable extends PureComponent {
 }
 
 export default FormActionTable
-

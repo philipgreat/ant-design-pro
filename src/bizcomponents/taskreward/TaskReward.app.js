@@ -10,13 +10,11 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './TaskReward.app.less'
 
+import HeaderSearch from '../../components/HeaderSearch'
+import NoticeIcon from '../../components/NoticeIcon'
+import GlobalFooter from '../../components/GlobalFooter'
 
-import HeaderSearch from '../../components/HeaderSearch';
-import NoticeIcon from '../../components/NoticeIcon';
-import GlobalFooter from '../../components/GlobalFooter';
-
-
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -56,14 +54,14 @@ class TaskRewardBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = (collapsed) => {
+  onCollapse = collapsed => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = (props) => {
+  getDefaultCollapsedSubMenus = props => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -71,7 +69,7 @@ class TaskRewardBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = (props) => {
+  getCurrentMenuSelectedKeys = props => {
     const { location: { pathname } } = props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
@@ -79,15 +77,16 @@ class TaskRewardBizApp extends React.PureComponent {
     }
     return keys
   }
-  getNavMenuItems = (objectId) => {
+  getNavMenuItems = objectId => {
     return (
-      <SubMenu title={
-        <span>
-          <Icon type="profile" />
-          <span>任务悬赏</span>
-        </span>}
+      <SubMenu
+        title={
+          <span>
+            <Icon type="profile" />
+            <span>任务悬赏</span>
+          </span>
+        }
       >
-
         <Menu.Item>
           <Link to={`/taskReward/${objectId}/list/taskList`}>任务</Link>
         </Menu.Item>
@@ -95,9 +94,8 @@ class TaskRewardBizApp extends React.PureComponent {
     )
   }
 
-
   getTaskSearch = () => {
-    const {TaskSearch} = GlobalComponents;
+    const { TaskSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._taskReward.taskList,
@@ -105,11 +103,15 @@ class TaskRewardBizApp extends React.PureComponent {
       currentPage: state._taskReward.taskCurrentPageNumber,
       searchFormParameters: state._taskReward.taskSearchFormParameters,
       loading: state._taskReward.loading,
-      owner: { type: '_taskReward', id: state._taskReward.id, listName: 'taskList' }, // this is for model namespace and
+      owner: {
+        type: '_taskReward',
+        id: state._taskReward.id,
+        listName: 'taskList',
+      }, // this is for model namespace and
     }))(TaskSearch)
   }
   getTaskCreateForm = () => {
-   	const {TaskCreateForm} = GlobalComponents;
+    const { TaskCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._taskReward.taskList,
@@ -117,16 +119,24 @@ class TaskRewardBizApp extends React.PureComponent {
       currentPage: state._taskReward.taskCurrentPageNumber,
       searchFormParameters: state._taskReward.taskSearchFormParameters,
       loading: state._taskReward.loading,
-      owner: { type: '_taskReward', id: state._taskReward.id, listName: 'taskList'}, // this is for model namespace and
+      owner: {
+        type: '_taskReward',
+        id: state._taskReward.id,
+        listName: 'taskList',
+      }, // this is for model namespace and
     }))(TaskCreateForm)
   }
-  
+
   getTaskUpdateForm = () => {
-  	const {TaskUpdateForm} = GlobalComponents;
+    const { TaskUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._taskReward.selectedRows,
       currentUpdateIndex: state._taskReward.currentUpdateIndex,
-      owner: { type: '_taskReward', id: state._taskReward.id, listName: 'taskList' }, // this is for model namespace and
+      owner: {
+        type: '_taskReward',
+        id: state._taskReward.id,
+        listName: 'taskList',
+      }, // this is for model namespace and
     }))(TaskUpdateForm)
   }
 
@@ -136,100 +146,122 @@ class TaskRewardBizApp extends React.PureComponent {
     const title = '帮帮兔社区运营中心'
     return title
   }
- 
-  handleOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
+
+  handleOpenChange = openKeys => {
+    const latestOpenKey = openKeys.find(
+      key => this.state.openKeys.indexOf(key) === -1
+    )
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-   toggle = () => {
-     const { collapsed } = this.props
-     this.props.dispatch({
-       type: 'global/changeLayoutCollapsed',
-       payload: !collapsed,
-     })
-   }
+  toggle = () => {
+    const { collapsed } = this.props
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: !collapsed,
+    })
+  }
 
-   render() {
-     // const { collapsed, fetchingNotices,loading } = this.props
-     const { collapsed } = this.props
-    
-     const {TaskRewardDashboard} = GlobalComponents
-     const {TaskRewardEditDetail} = GlobalComponents
-     const {TaskRewardViewDetail} = GlobalComponents
-     
-     
-     
-     
-     // Don't show popup menu when it is been collapsed
-     const menuProps = collapsed ? {} : {
-       openKeys: this.state.openKeys,
-     }
-     const layout = (
-       <Layout>
-         <Sider
-           trigger={null}
-           collapsible
-           collapsed={collapsed}
-           breakpoint="md"
-           onCollapse={()=>this.onCollapse(collapsed)}
-           width={256}
-           className={styles.sider}
-         >
-           <div className={styles.logo}>
-             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>任务悬赏</h1></Link>
-           </div>
+  render() {
+    // const { collapsed, fetchingNotices,loading } = this.props
+    const { collapsed } = this.props
 
-           <Menu
-             theme="dark"
-             mode="inline"
-             {...menuProps}
-             onOpenChange={this.handleOpenChange}
-             selectedKeys={this.getCurrentMenuSelectedKeys()}
-             style={{ margin: '16px 0', width: '100%' }}
-           >
-           
+    const { TaskRewardDashboard } = GlobalComponents
+    const { TaskRewardEditDetail } = GlobalComponents
+    const { TaskRewardViewDetail } = GlobalComponents
 
-             <Menu.Item >
-               <Link to={`/taskReward/${this.props.taskReward.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
-             </Menu.Item>
-             
+    // Don't show popup menu when it is been collapsed
+    const menuProps = collapsed
+      ? {}
+      : {
+          openKeys: this.state.openKeys,
+        }
+    const layout = (
+      <Layout>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          breakpoint="md"
+          onCollapse={() => this.onCollapse(collapsed)}
+          width={256}
+          className={styles.sider}
+        >
+          <div className={styles.logo}>
+            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+            <Link to="/home">
+              {' '}
+              <h1>任务悬赏</h1>
+            </Link>
+          </div>
 
-             {this.getNavMenuItems(this.props.taskReward.id)}
-             <Menu.Item >
-               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
-             </Menu.Item>
-           </Menu>
-         </Sider>
-         <Layout>
-           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-             <Switch>
-             
-               <Route path="/taskReward/:id/dashboard" component={TaskRewardDashboard} />
-               
-               <Route path="/taskReward/:id/editDetail" component={TaskRewardEditDetail} />
-               <Route path="/taskReward/:id/viewDetail" component={TaskRewardViewDetail} /> 
-               
+          <Menu
+            theme="dark"
+            mode="inline"
+            {...menuProps}
+            onOpenChange={this.handleOpenChange}
+            selectedKeys={this.getCurrentMenuSelectedKeys()}
+            style={{ margin: '16px 0', width: '100%' }}
+          >
+            <Menu.Item>
+              <Link to={`/taskReward/${this.props.taskReward.id}/dashboard`}>
+                <Icon type="dashboard" />
+                <span>仪表板</span>
+              </Link>
+            </Menu.Item>
 
-               <Route path="/taskReward/:id/list/taskList" component={this.getTaskSearch()} />
-               <Route path="/taskReward/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
-               <Route path="/taskReward/:id/list/taskUpdateForm" component={this.getTaskUpdateForm()} />
-              
-             </Switch>
-           </Content>
-         </Layout>
-       </Layout>
-     )
-     return (
-       <DocumentTitle title={this.getPageTitle()}>
-         <ContainerQuery query={query}>
-           {params => <div className={classNames(params)}>{layout}</div>}
-         </ContainerQuery>
-       </DocumentTitle>
-     )
-   }
+            {this.getNavMenuItems(this.props.taskReward.id)}
+            <Menu.Item>
+              <Link to={'/home'}>
+                <Icon type="home" />
+                <span>回到主页</span>
+              </Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+            <Switch>
+              <Route
+                path="/taskReward/:id/dashboard"
+                component={TaskRewardDashboard}
+              />
+
+              <Route
+                path="/taskReward/:id/editDetail"
+                component={TaskRewardEditDetail}
+              />
+              <Route
+                path="/taskReward/:id/viewDetail"
+                component={TaskRewardViewDetail}
+              />
+
+              <Route
+                path="/taskReward/:id/list/taskList"
+                component={this.getTaskSearch()}
+              />
+              <Route
+                path="/taskReward/:id/list/taskCreateForm"
+                component={this.getTaskCreateForm()}
+              />
+              <Route
+                path="/taskReward/:id/list/taskUpdateForm"
+                component={this.getTaskUpdateForm()}
+              />
+            </Switch>
+          </Content>
+        </Layout>
+      </Layout>
+    )
+    return (
+      <DocumentTitle title={this.getPageTitle()}>
+        <ContainerQuery query={query}>
+          {params => <div className={classNames(params)}>{layout}</div>}
+        </ContainerQuery>
+      </DocumentTitle>
+    )
+  }
 }
 
 export default connect(state => ({
@@ -239,6 +271,3 @@ export default connect(state => ({
   taskReward: state._taskReward,
   ...state,
 }))(TaskRewardBizApp)
-
-
-

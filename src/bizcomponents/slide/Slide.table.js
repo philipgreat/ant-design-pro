@@ -1,19 +1,33 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './Slide.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8' },
-  { title: '图像网址', dataIndex: 'imageUrl', render: (text, record) => <ImagePreview imageTitle="图像网址" imageLocation={record.imageUrl} /> },
+  {
+    title: '图像网址',
+    dataIndex: 'imageUrl',
+    render: (text, record) => (
+      <ImagePreview imageTitle="图像网址" imageLocation={record.imageUrl} />
+    ),
+  },
   { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '40' },
-  { title: '主页', dataIndex: 'homePage', render: (text, record) => (record.homePage ? (<Link to={`/homePage/${record.homePage.id}/dashboard`}>{record.homePage.displayName}</Link>) : '暂无') },
-
+  {
+    title: '主页',
+    dataIndex: 'homePage',
+    render: (text, record) =>
+      record.homePage ? (
+        <Link to={`/homePage/${record.homePage.id}/dashboard`}>
+          {record.homePage.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
 ]
 
 class SlideTable extends PureComponent {
@@ -56,7 +70,6 @@ class SlideTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -71,13 +84,15 @@ class SlideTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -98,4 +113,3 @@ class SlideTable extends PureComponent {
 }
 
 export default SlideTable
-

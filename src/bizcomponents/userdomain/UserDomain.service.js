@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}userDomainManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -15,8 +18,6 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}userDomainManager/loadUserDomain/${targetObjectId}/${parametersExpr}/`,
   })
 }
-
-
 
 const addSecUser = (targetObjectId, parameters) => {
   const url = `${PREFIX}userDomainManager/addSecUser/domainId/login/mobile/email/pwd/verificationCode/verificationCodeExpire/lastLoginTime/tokensExpr/`
@@ -44,7 +45,11 @@ const updateSecUser = (targetObjectId, parameters) => {
 
 const removeSecUserList = (targetObjectId, parameters) => {
   const url = `${PREFIX}userDomainManager/removeSecUserList/userDomainId/secUserIds/tokensExpr/`
-  const requestParameters = { ...parameters, userDomainId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    userDomainId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -53,11 +58,11 @@ const removeSecUserList = (targetObjectId, parameters) => {
   })
 }
 
-
-const UserDomainService = { view,
+const UserDomainService = {
+  view,
   load,
   addSecUser,
   updateSecUser,
-  removeSecUserList }
+  removeSecUserList,
+}
 export default UserDomainService
-

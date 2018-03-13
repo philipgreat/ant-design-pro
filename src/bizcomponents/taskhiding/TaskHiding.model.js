@@ -1,11 +1,9 @@
-
-
 import pathToRegexp from 'path-to-regexp'
 import { routerRedux } from 'dva/router'
 import { notification } from 'antd'
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
-const hasError = (data) => {
+const hasError = data => {
   if (!data.class) {
     return false
   }
@@ -18,7 +16,7 @@ const hasError = (data) => {
   return false
 }
 
-const handleServerError = (data) => {
+const handleServerError = data => {
   if (data.message) {
     notification.error({
       message: data.message,
@@ -36,15 +34,13 @@ const handleServerError = (data) => {
 }
 
 export default {
-
   namespace: '_taskHiding',
 
   state: {},
 
   subscriptions: {
-    
-    setup({ dispatch, history }) { 
-      history.listen((location) => {
+    setup({ dispatch, history }) {
+      history.listen(location => {
         const { pathname } = location
         if (!pathname.startsWith('/taskHiding')) {
           return
@@ -54,26 +50,34 @@ export default {
           dispatch({ type: 'updateState', payload: newstate })
           return
         }
-        const dashboardmatch = pathToRegexp('/taskHiding/:id/dashboard').exec(pathname)
+        const dashboardmatch = pathToRegexp('/taskHiding/:id/dashboard').exec(
+          pathname
+        )
         if (dashboardmatch) {
           const id = dashboardmatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const editDetailMatch = pathToRegexp('/taskHiding/:id/editDetail').exec(pathname)
+        const editDetailMatch = pathToRegexp('/taskHiding/:id/editDetail').exec(
+          pathname
+        )
         if (editDetailMatch) {
           const id = editDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const viewDetailMatch = pathToRegexp('/taskHiding/:id/viewDetail').exec(pathname)
+        const viewDetailMatch = pathToRegexp('/taskHiding/:id/viewDetail').exec(
+          pathname
+        )
         if (viewDetailMatch) {
           const id = viewDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        
-        const match = pathToRegexp('/taskHiding/:id/list/:listName').exec(pathname)
+
+        const match = pathToRegexp('/taskHiding/:id/list/:listName').exec(
+          pathname
+        )
         if (!match) {
           return
           //  dispatch action with userId
@@ -84,20 +88,24 @@ export default {
     },
   },
   effects: {
-    *view({ payload }, { call, put }) { 
-      const {TaskHidingService} = GlobalComponents;
+    *view({ payload }, { call, put }) {
+      const { TaskHidingService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
       const data = yield call(TaskHidingService.view, payload.id)
       console.log('this is the data id:', data.id)
       yield put({ type: 'updateState', payload: data })
     },
-    *load({ payload }, { call, put }) { 
-      const {TaskHidingService} = GlobalComponents;
+    *load({ payload }, { call, put }) {
+      const { TaskHidingService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
-      const data = yield call(TaskHidingService.load, payload.id, payload.parameters)
-      
+      const data = yield call(
+        TaskHidingService.load,
+        payload.id,
+        payload.parameters
+      )
+
       const newPlayload = { ...payload, ...data }
-      
+
       console.log('this is the data id: ', data.id)
       yield put({ type: 'updateState', payload: newPlayload })
     },
@@ -108,7 +116,10 @@ export default {
     *gotoUpdateForm({ payload }, { put }) {
       const { id, type, selectedRows, currentUpdateIndex } = payload
       const state = { id, type, selectedRows, currentUpdateIndex }
-      const location = { pathname: `/taskHiding/${id}/list/${type}UpdateForm`, state }
+      const location = {
+        pathname: `/taskHiding/${id}/list/${type}UpdateForm`,
+        state,
+      }
       yield put(routerRedux.push(location))
     },
     *goback({ payload }, { put }) {
@@ -117,7 +128,7 @@ export default {
     },
 
     *addTask({ payload }, { call, put }) {
-      const {TaskHidingService} = GlobalComponents;
+      const { TaskHidingService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
@@ -136,38 +147,63 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/taskHiding/${id}/list/${type}List`, state: data }
+      const location = {
+        pathname: `/taskHiding/${id}/list/${type}List`,
+        state: data,
+      }
       yield put(routerRedux.push(location))
     },
     *updateTask({ payload }, { call, put }) {
-      const {TaskHidingService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { TaskHidingService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
       const data = yield call(TaskHidingService.updateTask, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/taskHiding/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/taskHiding/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
     *gotoNextTaskUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeTaskList({ payload }, { call, put }) {
-      const {TaskHidingService} = GlobalComponents; 
+      const { TaskHidingService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
       const data = yield call(TaskHidingService.removeTaskList, id, parameters)
@@ -178,7 +214,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/taskHiding/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -187,9 +223,8 @@ export default {
       // const location = { pathname: `taskHiding/${id}/list/${type}List`, state: data}
       // yield put(routerRedux.push(location))
     },
-
   },
-  
+
   reducers: {
     updateState(state, action) {
       const payload = { ...action.payload, loading: false }
@@ -202,4 +237,3 @@ export default {
     },
   },
 }
-

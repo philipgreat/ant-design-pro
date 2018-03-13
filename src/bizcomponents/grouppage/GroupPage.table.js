@@ -1,18 +1,39 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './GroupPage.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/groupPage/${text}/dashboard`}>{text}</Link>) },
+  {
+    title: '序号',
+    debugtype: 'string',
+    dataIndex: 'id',
+    width: '20',
+    render: (text, record) => (
+      <Link to={`/groupPage/${text}/dashboard`}>{text}</Link>
+    ),
+  },
   { title: '标题', debugtype: 'string', dataIndex: 'title', width: '7' },
-  { title: '目前的组名', debugtype: 'string', dataIndex: 'currentGroupName', width: '9' },
-  { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? (<Link to={`/community/${record.community.id}/dashboard`}>{record.community.displayName}</Link>) : '暂无') },
-
+  {
+    title: '目前的组名',
+    debugtype: 'string',
+    dataIndex: 'currentGroupName',
+    width: '9',
+  },
+  {
+    title: '社区',
+    dataIndex: 'community',
+    render: (text, record) =>
+      record.community ? (
+        <Link to={`/community/${record.community.id}/dashboard`}>
+          {record.community.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
 ]
 
 class GroupPageTable extends PureComponent {
@@ -55,7 +76,6 @@ class GroupPageTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -70,13 +90,15 @@ class GroupPageTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -97,4 +119,3 @@ class GroupPageTable extends PureComponent {
 }
 
 export default GroupPageTable
-

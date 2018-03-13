@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}taskHidingManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -15,8 +18,6 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}taskHidingManager/loadTaskHiding/${targetObjectId}/${parametersExpr}/`,
   })
 }
-
-
 
 const addTask = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskHidingManager/addTask/hidingId/title/selectedTask/content/creatorId/communityId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/`
@@ -44,7 +45,11 @@ const updateTask = (targetObjectId, parameters) => {
 
 const removeTaskList = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskHidingManager/removeTaskList/taskHidingId/taskIds/tokensExpr/`
-  const requestParameters = { ...parameters, taskHidingId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    taskHidingId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -53,11 +58,11 @@ const removeTaskList = (targetObjectId, parameters) => {
   })
 }
 
-
-const TaskHidingService = { view,
+const TaskHidingService = {
+  view,
   load,
   addTask,
   updateTask,
-  removeTaskList }
+  removeTaskList,
+}
 export default TaskHidingService
-

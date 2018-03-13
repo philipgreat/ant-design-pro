@@ -1,18 +1,42 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './ThreadLike.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '点赞时间', dataIndex: 'likeTime', render: (text, record) => moment(record.likeTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '应答者', dataIndex: 'replier', render: (text, record) => (record.replier ? (<Link to={`/communityUser/${record.replier.id}/dashboard`}>{record.replier.displayName}</Link>) : '暂无') },
-  { title: '主贴', dataIndex: 'thread', render: (text, record) => (record.thread ? (<Link to={`/thread/${record.thread.id}/dashboard`}>{record.thread.displayName}</Link>) : '暂无') },
-
+  {
+    title: '点赞时间',
+    dataIndex: 'likeTime',
+    render: (text, record) =>
+      moment(record.likeTime).format('YYYY-MM-DD HH:mm:ss'),
+  },
+  {
+    title: '应答者',
+    dataIndex: 'replier',
+    render: (text, record) =>
+      record.replier ? (
+        <Link to={`/communityUser/${record.replier.id}/dashboard`}>
+          {record.replier.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '主贴',
+    dataIndex: 'thread',
+    render: (text, record) =>
+      record.thread ? (
+        <Link to={`/thread/${record.thread.id}/dashboard`}>
+          {record.thread.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
 ]
 
 class ThreadLikeTable extends PureComponent {
@@ -55,7 +79,6 @@ class ThreadLikeTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -70,13 +93,15 @@ class ThreadLikeTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -97,4 +122,3 @@ class ThreadLikeTable extends PureComponent {
 }
 
 export default ThreadLikeTable
-

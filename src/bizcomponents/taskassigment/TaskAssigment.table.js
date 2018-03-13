@@ -1,19 +1,43 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './TaskAssigment.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '任务', dataIndex: 'task', render: (text, record) => (record.task ? (<Link to={`/task/${record.task.id}/dashboard`}>{record.task.displayName}</Link>) : '暂无') },
-  { title: '受让人', dataIndex: 'assignee', render: (text, record) => (record.assignee ? (<Link to={`/communityUser/${record.assignee.id}/dashboard`}>{record.assignee.displayName}</Link>) : '暂无') },
-  { title: '分配时间', dataIndex: 'assignTime', render: (text, record) => moment(record.assignTime).format('YYYY-MM-DD HH:mm:ss') },
+  {
+    title: '任务',
+    dataIndex: 'task',
+    render: (text, record) =>
+      record.task ? (
+        <Link to={`/task/${record.task.id}/dashboard`}>
+          {record.task.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '受让人',
+    dataIndex: 'assignee',
+    render: (text, record) =>
+      record.assignee ? (
+        <Link to={`/communityUser/${record.assignee.id}/dashboard`}>
+          {record.assignee.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '分配时间',
+    dataIndex: 'assignTime',
+    render: (text, record) =>
+      moment(record.assignTime).format('YYYY-MM-DD HH:mm:ss'),
+  },
   { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '17' },
-
 ]
 
 class TaskAssigmentTable extends PureComponent {
@@ -56,7 +80,6 @@ class TaskAssigmentTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -71,13 +94,15 @@ class TaskAssigmentTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -98,4 +123,3 @@ class TaskAssigmentTable extends PureComponent {
 }
 
 export default TaskAssigmentTable
-

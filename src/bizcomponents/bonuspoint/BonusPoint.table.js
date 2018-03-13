@@ -1,19 +1,32 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './BonusPoint.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '10' },
-  { title: '获得时间', dataIndex: 'obtainTime', render: (text, record) => moment(record.obtainTime).format('YYYY-MM-DD HH:mm:ss') },
+  {
+    title: '获得时间',
+    dataIndex: 'obtainTime',
+    render: (text, record) =>
+      moment(record.obtainTime).format('YYYY-MM-DD HH:mm:ss'),
+  },
   { title: '点', debugtype: 'int', dataIndex: 'points', width: '8' },
-  { title: '用户', dataIndex: 'user', render: (text, record) => (record.user ? (<Link to={`/communityUser/${record.user.id}/dashboard`}>{record.user.displayName}</Link>) : '暂无') },
-
+  {
+    title: '用户',
+    dataIndex: 'user',
+    render: (text, record) =>
+      record.user ? (
+        <Link to={`/communityUser/${record.user.id}/dashboard`}>
+          {record.user.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
 ]
 
 class BonusPointTable extends PureComponent {
@@ -56,7 +69,6 @@ class BonusPointTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -71,13 +83,15 @@ class BonusPointTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -98,4 +112,3 @@ class BonusPointTable extends PureComponent {
 }
 
 export default BonusPointTable
-

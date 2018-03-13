@@ -1,14 +1,30 @@
-
-
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
-import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd'
+import {
+  Row,
+  Col,
+  Card,
+  Form,
+  Input,
+  Select,
+  Icon,
+  Button,
+  Dropdown,
+  Menu,
+  InputNumber,
+  DatePicker,
+  Modal,
+  message,
+} from 'antd'
 
 import styles from './CommunityUser.search.less'
 
 const FormItem = Form.Item
 const { Option } = Select
-const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',')
+const getValue = obj =>
+  Object.keys(obj)
+    .map(key => obj[key])
+    .join(',')
 
 @Form.create()
 export default class CommunityUserSearchForm extends PureComponent {
@@ -57,7 +73,7 @@ export default class CommunityUserSearchForm extends PureComponent {
       'communityUserList.searchValue': fieldValue,
     }
   }
-  handleSearch = (e) => {
+  handleSearch = e => {
     e.preventDefault()
     const { dispatch, form } = this.props
     form.validateFields((err, fieldsValue) => {
@@ -70,43 +86,48 @@ export default class CommunityUserSearchForm extends PureComponent {
         ...this.buildStringSearchParameters(fieldsValue, 'userType'),
         ...this.buildStringSearchParameters(fieldsValue, 'city'),
         ...this.buildStringSearchParameters(fieldsValue, 'status'),
-
       }
       const { owner } = this.props
       dispatch({
         type: `${owner.type}/load`,
-        payload: { id: owner.id, parameters: params, communityUserSearchFormParameters: fieldsValue },
+        payload: {
+          id: owner.id,
+          parameters: params,
+          communityUserSearchFormParameters: fieldsValue,
+        },
       })
     })
   }
-      
+
   renderSimpleForm() {
     const { getFieldDecorator } = this.props.form
     return (
       <Form onSubmit={this.handleSearch} layout="inline">
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
-
           <Col md={8} sm={24}>
             <FormItem label="序号">
-              {getFieldDecorator('id')(
-                <Input placeholder="请输入序号" />
-               )}
+              {getFieldDecorator('id')(<Input placeholder="请输入序号" />)}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
             <FormItem label="手机">
-              {getFieldDecorator('mobile')(
-                <Input placeholder="请输入手机" />
-               )}
+              {getFieldDecorator('mobile')(<Input placeholder="请输入手机" />)}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
             <span className={styles.submitButtons}>
-              <Button type="primary" htmlType="submit">查询</Button>
-              <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>重置</Button>
-              <a style={{ marginLeft: 8 }} onClick={this.toggleForm}> 展开 <Icon type="down" /> </a>
+              <Button type="primary" htmlType="submit">
+                查询
+              </Button>
+              <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>
+                重置
+              </Button>
+              <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
+                {' '}
+                展开 <Icon type="down" />{' '}
+              </a>
             </span>
           </Col>
         </Row>
@@ -118,20 +139,15 @@ export default class CommunityUserSearchForm extends PureComponent {
     return (
       <Form onSubmit={this.handleSearch} layout="inline">
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
-
           <Col md={8} sm={24}>
             <FormItem label="序号">
-              {getFieldDecorator('id')(
-                <Input placeholder="请输入序号" />
-              )}
+              {getFieldDecorator('id')(<Input placeholder="请输入序号" />)}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
             <FormItem label="手机">
-              {getFieldDecorator('mobile')(
-                <Input placeholder="请输入手机" />
-              )}
+              {getFieldDecorator('mobile')(<Input placeholder="请输入手机" />)}
             </FormItem>
           </Col>
 
@@ -145,9 +161,7 @@ export default class CommunityUserSearchForm extends PureComponent {
 
           <Col md={8} sm={24}>
             <FormItem label="性别">
-              {getFieldDecorator('gender')(
-                <Input placeholder="请输入性别" />
-              )}
+              {getFieldDecorator('gender')(<Input placeholder="请输入性别" />)}
             </FormItem>
           </Col>
 
@@ -161,26 +175,27 @@ export default class CommunityUserSearchForm extends PureComponent {
 
           <Col md={8} sm={24}>
             <FormItem label="城市">
-              {getFieldDecorator('city')(
-                <Input placeholder="请输入城市" />
-              )}
+              {getFieldDecorator('city')(<Input placeholder="请输入城市" />)}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
             <FormItem label="状态">
-              {getFieldDecorator('status')(
-                <Input placeholder="请输入状态" />
-              )}
+              {getFieldDecorator('status')(<Input placeholder="请输入状态" />)}
             </FormItem>
           </Col>
-
         </Row>
         <div style={{ overflow: 'hidden' }}>
           <span style={{ float: 'right', marginBottom: 24 }}>
-            <Button type="primary" htmlType="submit">查询</Button>
-            <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>重置</Button>
-            <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>收起 <Icon type="up" /></a>
+            <Button type="primary" htmlType="submit">
+              查询
+            </Button>
+            <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>
+              重置
+            </Button>
+            <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
+              收起 <Icon type="up" />
+            </a>
           </span>
         </div>
       </Form>
@@ -188,7 +203,8 @@ export default class CommunityUserSearchForm extends PureComponent {
   }
 
   render() {
-    return this.state.expandForm ? this.renderAdvancedForm() : this.renderSimpleForm()
+    return this.state.expandForm
+      ? this.renderAdvancedForm()
+      : this.renderSimpleForm()
   }
 }
-

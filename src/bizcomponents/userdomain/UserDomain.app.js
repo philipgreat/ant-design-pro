@@ -10,13 +10,11 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './UserDomain.app.less'
 
+import HeaderSearch from '../../components/HeaderSearch'
+import NoticeIcon from '../../components/NoticeIcon'
+import GlobalFooter from '../../components/GlobalFooter'
 
-import HeaderSearch from '../../components/HeaderSearch';
-import NoticeIcon from '../../components/NoticeIcon';
-import GlobalFooter from '../../components/GlobalFooter';
-
-
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -56,14 +54,14 @@ class UserDomainBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = (collapsed) => {
+  onCollapse = collapsed => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = (props) => {
+  getDefaultCollapsedSubMenus = props => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -71,7 +69,7 @@ class UserDomainBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = (props) => {
+  getCurrentMenuSelectedKeys = props => {
     const { location: { pathname } } = props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
@@ -79,15 +77,16 @@ class UserDomainBizApp extends React.PureComponent {
     }
     return keys
   }
-  getNavMenuItems = (objectId) => {
+  getNavMenuItems = objectId => {
     return (
-      <SubMenu title={
-        <span>
-          <Icon type="profile" />
-          <span>用户域</span>
-        </span>}
+      <SubMenu
+        title={
+          <span>
+            <Icon type="profile" />
+            <span>用户域</span>
+          </span>
+        }
       >
-
         <Menu.Item>
           <Link to={`/userDomain/${objectId}/list/secUserList`}>SEC的用户</Link>
         </Menu.Item>
@@ -95,9 +94,8 @@ class UserDomainBizApp extends React.PureComponent {
     )
   }
 
-
   getSecUserSearch = () => {
-    const {SecUserSearch} = GlobalComponents;
+    const { SecUserSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._userDomain.secUserList,
@@ -105,11 +103,15 @@ class UserDomainBizApp extends React.PureComponent {
       currentPage: state._userDomain.secUserCurrentPageNumber,
       searchFormParameters: state._userDomain.secUserSearchFormParameters,
       loading: state._userDomain.loading,
-      owner: { type: '_userDomain', id: state._userDomain.id, listName: 'secUserList' }, // this is for model namespace and
+      owner: {
+        type: '_userDomain',
+        id: state._userDomain.id,
+        listName: 'secUserList',
+      }, // this is for model namespace and
     }))(SecUserSearch)
   }
   getSecUserCreateForm = () => {
-   	const {SecUserCreateForm} = GlobalComponents;
+    const { SecUserCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._userDomain.secUserList,
@@ -117,16 +119,24 @@ class UserDomainBizApp extends React.PureComponent {
       currentPage: state._userDomain.secUserCurrentPageNumber,
       searchFormParameters: state._userDomain.secUserSearchFormParameters,
       loading: state._userDomain.loading,
-      owner: { type: '_userDomain', id: state._userDomain.id, listName: 'secUserList'}, // this is for model namespace and
+      owner: {
+        type: '_userDomain',
+        id: state._userDomain.id,
+        listName: 'secUserList',
+      }, // this is for model namespace and
     }))(SecUserCreateForm)
   }
-  
+
   getSecUserUpdateForm = () => {
-  	const {SecUserUpdateForm} = GlobalComponents;
+    const { SecUserUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._userDomain.selectedRows,
       currentUpdateIndex: state._userDomain.currentUpdateIndex,
-      owner: { type: '_userDomain', id: state._userDomain.id, listName: 'secUserList' }, // this is for model namespace and
+      owner: {
+        type: '_userDomain',
+        id: state._userDomain.id,
+        listName: 'secUserList',
+      }, // this is for model namespace and
     }))(SecUserUpdateForm)
   }
 
@@ -136,100 +146,122 @@ class UserDomainBizApp extends React.PureComponent {
     const title = '帮帮兔社区运营中心'
     return title
   }
- 
-  handleOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
+
+  handleOpenChange = openKeys => {
+    const latestOpenKey = openKeys.find(
+      key => this.state.openKeys.indexOf(key) === -1
+    )
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-   toggle = () => {
-     const { collapsed } = this.props
-     this.props.dispatch({
-       type: 'global/changeLayoutCollapsed',
-       payload: !collapsed,
-     })
-   }
+  toggle = () => {
+    const { collapsed } = this.props
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: !collapsed,
+    })
+  }
 
-   render() {
-     // const { collapsed, fetchingNotices,loading } = this.props
-     const { collapsed } = this.props
-    
-     const {UserDomainDashboard} = GlobalComponents
-     const {UserDomainEditDetail} = GlobalComponents
-     const {UserDomainViewDetail} = GlobalComponents
-     
-     
-     
-     
-     // Don't show popup menu when it is been collapsed
-     const menuProps = collapsed ? {} : {
-       openKeys: this.state.openKeys,
-     }
-     const layout = (
-       <Layout>
-         <Sider
-           trigger={null}
-           collapsible
-           collapsed={collapsed}
-           breakpoint="md"
-           onCollapse={()=>this.onCollapse(collapsed)}
-           width={256}
-           className={styles.sider}
-         >
-           <div className={styles.logo}>
-             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>用户域</h1></Link>
-           </div>
+  render() {
+    // const { collapsed, fetchingNotices,loading } = this.props
+    const { collapsed } = this.props
 
-           <Menu
-             theme="dark"
-             mode="inline"
-             {...menuProps}
-             onOpenChange={this.handleOpenChange}
-             selectedKeys={this.getCurrentMenuSelectedKeys()}
-             style={{ margin: '16px 0', width: '100%' }}
-           >
-           
+    const { UserDomainDashboard } = GlobalComponents
+    const { UserDomainEditDetail } = GlobalComponents
+    const { UserDomainViewDetail } = GlobalComponents
 
-             <Menu.Item >
-               <Link to={`/userDomain/${this.props.userDomain.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
-             </Menu.Item>
-             
+    // Don't show popup menu when it is been collapsed
+    const menuProps = collapsed
+      ? {}
+      : {
+          openKeys: this.state.openKeys,
+        }
+    const layout = (
+      <Layout>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          breakpoint="md"
+          onCollapse={() => this.onCollapse(collapsed)}
+          width={256}
+          className={styles.sider}
+        >
+          <div className={styles.logo}>
+            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+            <Link to="/home">
+              {' '}
+              <h1>用户域</h1>
+            </Link>
+          </div>
 
-             {this.getNavMenuItems(this.props.userDomain.id)}
-             <Menu.Item >
-               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
-             </Menu.Item>
-           </Menu>
-         </Sider>
-         <Layout>
-           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-             <Switch>
-             
-               <Route path="/userDomain/:id/dashboard" component={UserDomainDashboard} />
-               
-               <Route path="/userDomain/:id/editDetail" component={UserDomainEditDetail} />
-               <Route path="/userDomain/:id/viewDetail" component={UserDomainViewDetail} /> 
-               
+          <Menu
+            theme="dark"
+            mode="inline"
+            {...menuProps}
+            onOpenChange={this.handleOpenChange}
+            selectedKeys={this.getCurrentMenuSelectedKeys()}
+            style={{ margin: '16px 0', width: '100%' }}
+          >
+            <Menu.Item>
+              <Link to={`/userDomain/${this.props.userDomain.id}/dashboard`}>
+                <Icon type="dashboard" />
+                <span>仪表板</span>
+              </Link>
+            </Menu.Item>
 
-               <Route path="/userDomain/:id/list/secUserList" component={this.getSecUserSearch()} />
-               <Route path="/userDomain/:id/list/secUserCreateForm" component={this.getSecUserCreateForm()} />
-               <Route path="/userDomain/:id/list/secUserUpdateForm" component={this.getSecUserUpdateForm()} />
-              
-             </Switch>
-           </Content>
-         </Layout>
-       </Layout>
-     )
-     return (
-       <DocumentTitle title={this.getPageTitle()}>
-         <ContainerQuery query={query}>
-           {params => <div className={classNames(params)}>{layout}</div>}
-         </ContainerQuery>
-       </DocumentTitle>
-     )
-   }
+            {this.getNavMenuItems(this.props.userDomain.id)}
+            <Menu.Item>
+              <Link to={'/home'}>
+                <Icon type="home" />
+                <span>回到主页</span>
+              </Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+            <Switch>
+              <Route
+                path="/userDomain/:id/dashboard"
+                component={UserDomainDashboard}
+              />
+
+              <Route
+                path="/userDomain/:id/editDetail"
+                component={UserDomainEditDetail}
+              />
+              <Route
+                path="/userDomain/:id/viewDetail"
+                component={UserDomainViewDetail}
+              />
+
+              <Route
+                path="/userDomain/:id/list/secUserList"
+                component={this.getSecUserSearch()}
+              />
+              <Route
+                path="/userDomain/:id/list/secUserCreateForm"
+                component={this.getSecUserCreateForm()}
+              />
+              <Route
+                path="/userDomain/:id/list/secUserUpdateForm"
+                component={this.getSecUserUpdateForm()}
+              />
+            </Switch>
+          </Content>
+        </Layout>
+      </Layout>
+    )
+    return (
+      <DocumentTitle title={this.getPageTitle()}>
+        <ContainerQuery query={query}>
+          {params => <div className={classNames(params)}>{layout}</div>}
+        </ContainerQuery>
+      </DocumentTitle>
+    )
+  }
 }
 
 export default connect(state => ({
@@ -239,6 +271,3 @@ export default connect(state => ({
   userDomain: state._userDomain,
   ...state,
 }))(UserDomainBizApp)
-
-
-

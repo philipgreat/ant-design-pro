@@ -1,22 +1,76 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './TaskReply.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/taskReply/${text}/dashboard`}>{text}</Link>) },
-  { title: '回复时间', dataIndex: 'replyTime', render: (text, record) => moment(record.replyTime).format('YYYY-MM-DD HH:mm:ss') },
+  {
+    title: '序号',
+    debugtype: 'string',
+    dataIndex: 'id',
+    width: '20',
+    render: (text, record) => (
+      <Link to={`/taskReply/${text}/dashboard`}>{text}</Link>
+    ),
+  },
+  {
+    title: '回复时间',
+    dataIndex: 'replyTime',
+    render: (text, record) =>
+      moment(record.replyTime).format('YYYY-MM-DD HH:mm:ss'),
+  },
   { title: '内容', debugtype: 'string', dataIndex: 'content', width: '22' },
-  { title: '应答者', dataIndex: 'replier', render: (text, record) => (record.replier ? (<Link to={`/communityUser/${record.replier.id}/dashboard`}>{record.replier.displayName}</Link>) : '暂无') },
-  { title: '任务', dataIndex: 'task', render: (text, record) => (record.task ? (<Link to={`/task/${record.task.id}/dashboard`}>{record.task.displayName}</Link>) : '暂无') },
-  { title: '最佳答案设置', dataIndex: 'bestAnswerSetting', render: (text, record) => (record.bestAnswerSetting ? (<Link to={`/taskBestAnswerSetting/${record.bestAnswerSetting.id}/dashboard`}>{record.bestAnswerSetting.displayName}</Link>) : '暂无') },
-  { title: '当前用户已点赞', dataIndex: 'likeByCurrentUser', render: (text, record) => (record.likeByCurrentUser ? '是' : '否') },
-  { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '19' },
-
+  {
+    title: '应答者',
+    dataIndex: 'replier',
+    render: (text, record) =>
+      record.replier ? (
+        <Link to={`/communityUser/${record.replier.id}/dashboard`}>
+          {record.replier.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '任务',
+    dataIndex: 'task',
+    render: (text, record) =>
+      record.task ? (
+        <Link to={`/task/${record.task.id}/dashboard`}>
+          {record.task.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '最佳答案设置',
+    dataIndex: 'bestAnswerSetting',
+    render: (text, record) =>
+      record.bestAnswerSetting ? (
+        <Link
+          to={`/taskBestAnswerSetting/${record.bestAnswerSetting.id}/dashboard`}
+        >
+          {record.bestAnswerSetting.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '当前用户已点赞',
+    dataIndex: 'likeByCurrentUser',
+    render: (text, record) => (record.likeByCurrentUser ? '是' : '否'),
+  },
+  {
+    title: '当前状态',
+    debugtype: 'string',
+    dataIndex: 'currentStatus',
+    width: '19',
+  },
 ]
 
 class TaskReplyTable extends PureComponent {
@@ -59,7 +113,6 @@ class TaskReplyTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -74,13 +127,15 @@ class TaskReplyTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -101,4 +156,3 @@ class TaskReplyTable extends PureComponent {
 }
 
 export default TaskReplyTable
-
