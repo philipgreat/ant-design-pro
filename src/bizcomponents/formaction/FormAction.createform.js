@@ -1,40 +1,29 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-  Switch,
-} from 'antd'
+import { AutoComplete, Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
-import OSSPictureEdit from '../../components/PictureEdit'
+//import OSSPictureEdit from '../../components/PictureEdit'
 import FooterToolbar from '../../components/FooterToolbar'
-//import ImageUpload from '../../components/ImageUpload'
+import ImageUpload from '../../components/ImageUpload'
 import styles from './FormAction.createform.less'
-import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
+import GlobalComponents from '../../custcomponents';
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   label: '标签',
-  localeKey: '语言环境的关键',
+  localeKey: '消息键值',
   actionKey: '行动的关键',
   level: '水平',
   url: 'url',
   form: '形式',
 }
-
+const testValues = {};
+/*
 const testValues = {
   label: '功能',
   localeKey: 'name',
@@ -43,10 +32,13 @@ const testValues = {
   url: 'genericFormManager/name/name0002/name0003/',
   formId: 'GF000001',
 }
-
+*/
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+
+const imageKeys = [
+]
+
 
 class FormActionCreateForm extends Component {
   state = {
@@ -58,18 +50,51 @@ class FormActionCreateForm extends Component {
   componentDidMount() {
     // const { getFieldDecorator,setFieldsValue } = this.props.form
     const { setFieldsValue } = this.props.form
-    setFieldsValue(testValues)
+    //setFieldsValue(testValues)
+      
+    this.executeCandidateFormSearch("")
+    
+ 
+    
+    
+    
   }
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
     })
   }
+
+  
+  executeCandidateFormSearch = (filterKey) =>{
+
+    const {FormActionService} = GlobalComponents;
+    
+    const id = "";//not used for now
+    const pageNo = 1;
+    const future = FormActionService.requestCandidateForm("genericForm", id, filterKey, pageNo);
+    console.log(future);
+    
+
+    future.then(candidateFormList=>{
+      this.setState({
+        candidateFormList
+      })
+
+    })
+
+  }	 
+  handleCandidateFormSearch = (value) => {
+    this.executeCandidateFormSearch(value)
+  }
+ 
+
+
 
   handleChange = (event, source) => {
     console.log('get file list from change in update change:', source)
@@ -81,6 +106,7 @@ class FormActionCreateForm extends Component {
     this.setState({ convertedImagesValues })
     console.log('/get file list from change in update change:', source)
   }
+
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -110,23 +136,18 @@ class FormActionCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addFormAction`,
-          payload: {
-            id: owner.id,
-            type: 'formAction',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'formAction', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -141,22 +162,18 @@ class FormActionCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -178,6 +195,18 @@ class FormActionCreateForm extends Component {
         </span>
       )
     }
+    
+
+    
+    const {candidateFormList} = this.state
+    if(!candidateFormList){
+      return (<div>等等</div>)
+    }
+    if(!candidateFormList.candidates){
+      return (<div>等等</div>)
+    }   
+    
+    
     return (
       <PageHeaderLayout
         title="新建一个表单动作"
@@ -187,21 +216,24 @@ class FormActionCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.label}>
                   {getFieldDecorator('label', {
                     rules: [{ required: true, message: '请输入标签' }],
-                  })(<Input placeholder="请输入请输入标签string" />)}
+                  })(
+                    <Input placeholder="请输入请输入标签string" />
+                  )}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.localeKey}>
                   {getFieldDecorator('localeKey', {
-                    rules: [
-                      { required: true, message: '请输入语言环境的关键' },
-                    ],
-                  })(<Input placeholder="请输入请输入语言环境的关键string" />)}
+                    rules: [{ required: true, message: '请输入消息键值' }],
+                  })(
+                    <Input placeholder="请输入请输入消息键值string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -209,7 +241,9 @@ class FormActionCreateForm extends Component {
                 <Form.Item label={fieldLabels.actionKey}>
                   {getFieldDecorator('actionKey', {
                     rules: [{ required: true, message: '请输入行动的关键' }],
-                  })(<Input placeholder="请输入请输入行动的关键string" />)}
+                  })(
+                    <Input placeholder="请输入请输入行动的关键string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -217,7 +251,9 @@ class FormActionCreateForm extends Component {
                 <Form.Item label={fieldLabels.level}>
                   {getFieldDecorator('level', {
                     rules: [{ required: true, message: '请输入水平' }],
-                  })(<Input placeholder="请输入请输入水平string" />)}
+                  })(
+                    <Input placeholder="请输入请输入水平string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -225,42 +261,65 @@ class FormActionCreateForm extends Component {
                 <Form.Item label={fieldLabels.url}>
                   {getFieldDecorator('url', {
                     rules: [{ required: true, message: '请输入url' }],
-                  })(<Input placeholder="请输入请输入urlstring" />)}
+                  })(
+                    <Input placeholder="请输入请输入urlstring" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
           </Form>
         </Card>
+
+
+
+       
+        
+
+
+
+
+
+
+
+
 
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.form}>
                   {getFieldDecorator('formId', {
                     rules: [{ required: true, message: '请输入形式' }],
-                  })(<Input placeholder="请输入请输入形式" />)}
+                  })(
+                                
+                  <AutoComplete
+                    dataSource={candidateFormList.candidates}
+                    style={{ width: 200 }}
+                    
+                    onSearch={this.handleCandidateFormSearch}
+                    placeholder="请输入形式"
+                  >
+                  {candidateFormList.candidates.map(item=>{
+                return (<Option key={item.id}>{`${item.title}(${item.id})`}</Option>);
+            })}
+                  
+                  </AutoComplete>
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -275,3 +334,7 @@ class FormActionCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(FormActionCreateForm))
+
+
+
+

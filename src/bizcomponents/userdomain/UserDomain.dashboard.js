@@ -1,39 +1,21 @@
+
+
 import React, { Component } from 'react'
 import { connect } from 'dva'
 import moment from 'moment'
-import {
-  Row,
-  Col,
-  Icon,
-  Card,
-  Tabs,
-  Table,
-  Radio,
-  DatePicker,
-  Tooltip,
-  Menu,
-  Dropdown,
-} from 'antd'
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
-  ChartCard,
-  yuan,
-  MiniArea,
-  MiniBar,
-  MiniProgress,
-  Field,
-  Bar,
-  Pie,
-  TimelineChart,
+  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
 import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './UserDomain.dashboard.less'
-import DescriptionList from '../../components/DescriptionList'
-const { Description } = DescriptionList
+import DescriptionList from '../../components/DescriptionList';
+const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
 
@@ -45,13 +27,17 @@ const topColResponsiveProps = {
   xl: 6,
   style: { marginBottom: 24 },
 }
-const summaryOf = userDomain => {
-  return (
-    <DescriptionList className={styles.headerList} size="small" col="4">
-      <Description term="序号">{userDomain.id}</Description>
-      <Description term="名称">{userDomain.name}</Description>
-    </DescriptionList>
-  )
+const summaryOf = (userDomain) =>{
+
+	return (
+	<DescriptionList className={styles.headerList} size="small" col="4">
+<Description term="ID">{userDomain.id}</Description> 
+<Description term="名称">{userDomain.name}</Description> 
+	
+        
+      </DescriptionList>
+	)
+
 }
 
 @connect(state => ({
@@ -61,8 +47,11 @@ export default class UserDomainDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id, secUserCount } = this.props.userDomain
-
+    
+    
+    
     return (
+
       <PageHeaderLayout
         title="用户域总览"
         content={summaryOf(this.props.userDomain)}
@@ -70,44 +59,31 @@ export default class UserDomainDashboard extends Component {
       >
         <div>
           <Row gutter={24}>
+
+          
             <Col {...topColResponsiveProps}>
               <ChartCard
                 bordered={false}
                 title="SEC的用户"
-                action={
-                  <Tooltip title="SEC的用户">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
+                action={<Tooltip title="SEC的用户"><Icon type="info-circle-o" /></Tooltip>}
                 total={numeral(secUserCount).format('0,0')}
                 footer={<Field label="状态" value="良好" />}
                 contentHeight={46}
               >
-                <Link to={`/userDomain/${id}/list/secUserList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
+                <Link to={`/userDomain/${id}/list/secUserList`}><Icon type="profile" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
-                <Link to={`/userDomain/${id}/list/secUserCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
+                <Link to={`/userDomain/${id}/list/secUserCreateForm`}><Icon type="plus-circle-o" style={{ fontSize: 20, color: '#08c' }} /></Link>
                 &nbsp;
-                <Link to={`/userDomain/${id}/list/secUserList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
+                <Link to={`/userDomain/${id}/list/secUserList`}><Icon type="line-chart" style={{ fontSize: 20, color: '#08c' }} /></Link>
               </ChartCard>
             </Col>
+
           </Row>
         </div>
       </PageHeaderLayout>
     )
   }
 }
+
+
+

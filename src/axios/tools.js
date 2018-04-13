@@ -63,7 +63,8 @@ export const getURLPrefix = () => {
         return `http://${url.hostname}:8080/naf/`
     }
     if (url.hostname === "localhost") {
-        return `http://${url.hostname}:8080/naf/`
+        return `http://xm.jl51.com.cn/cis/`
+        //return `http://${url.hostname}:8080/naf/`
     }
     return `${url.origin}/${SYSTEM_SHORT_NAME}/`
     //return `${url.origin}/${SYSTEM_SHORT_NAME}/`
@@ -177,7 +178,7 @@ export  const mapBackToImageValuesSkynetMediaServer = (convertedImagesValues) =>
           }
           const uri=value.response.resourceUris[0];
           //{"status":"success","resourceUris":["public/example/product/shores/girls/pid456/skuid456/235/19/144/172/p456s456main.picture.png"]}
-          targetImages[key] = "https://www.doublechaintech.com/mss/"+uri;
+          targetImages[key] = "//xm.jl51.com.cn/mss/"+uri;
 
         })
         return targetImages

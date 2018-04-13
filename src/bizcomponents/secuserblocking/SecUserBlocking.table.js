@@ -1,28 +1,18 @@
+
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge } from 'antd'
+import { Table, Alert, Badge} from 'antd'
 import { Link } from 'dva/router'
 import styles from './SecUserBlocking.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
+
 const columns = [
-  {
-    title: '序号',
-    debugtype: 'string',
-    dataIndex: 'id',
-    width: '20',
-    render: (text, record) => (
-      <Link to={`/secUserBlocking/${text}/dashboard`}>{text}</Link>
-    ),
-  },
-  { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17' },
-  {
-    title: '屏蔽时间',
-    dataIndex: 'blockTime',
-    render: (text, record) =>
-      moment(record.blockTime).format('YYYY-MM-DD HH:mm:ss'),
-  },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/secUserBlocking/${text}/dashboard`}>{text}</Link>) },
+  { title: '审批人', debugtype: 'string', dataIndex: 'who', width: '17' },
+  { title: '块时间', dataIndex: 'blockTime', render: (text, record) => moment(record.blockTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '28' },
+
 ]
 
 class SecUserBlockingTable extends PureComponent {
@@ -65,6 +55,7 @@ class SecUserBlockingTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
+      
     }
 
     const rowSelection = {
@@ -79,15 +70,13 @@ class SecUserBlockingTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={
+            message={(
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
-                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  清空
-                </a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
+                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
-            }
+            )}
             type="info"
             showIcon
           />
@@ -108,3 +97,4 @@ class SecUserBlockingTable extends PureComponent {
 }
 
 export default SecUserBlockingTable
+
