@@ -3,9 +3,9 @@ English | [简体中文](./README.zh-CN.md)
 
 # 部署
 
-git clone https://github.com/philipgreat/ant-design-pro.git
-yarn install
-npm run build（打包）/npm start(开始调试），修改代码可以自动更新
+- git clone https://github.com/philipgreat/ant-design-pro.git
+- yarn install
+- npm run build（打包）/npm start(开始调试），修改代码可以自动更新
 
 # 图片处理
 目前图片支持OSS和SkynetMediaServer
