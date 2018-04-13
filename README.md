@@ -10,8 +10,13 @@ English | [简体中文](./README.zh-CN.md)
 # 图片处理
 目前图片支持OSS和SkynetMediaServer
 
+# 解决问题
 
+使用ReactTask（Java Task），的时候， 如果切换项目，调试状态，可能会遇到组件找不到的情况（之前坑了好久），这个时候
 
+- ctrl+c停止node
+- 删除 node_models/.cache
+- npm start, 等待较长长时间约三分钟，启动
 
 
 # Ant Design Pro
