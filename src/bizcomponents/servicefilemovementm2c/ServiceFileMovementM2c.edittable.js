@@ -1,99 +1,90 @@
-
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import {Form,Button, Table, Alert, Badge,Input,Divider,Popconfirm } from 'antd'
+import {
+  Form,
+  Button,
+  Table,
+  Alert,
+  Badge,
+  Input,
+  Divider,
+  Popconfirm,
+} from 'antd'
 import styles from './ServiceFileMovementM2c.edittable.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
-
-
-
-
-const getRowById = (data,id) => {
-  return data.filter(item => item.id === id)[0];
+const getRowById = (data, id) => {
+  return data.filter(item => item.id === id)[0]
 }
 
-const toggleEdit = (e,data,id) =>{
-  const row =  data.filter(item => item.id === id)[0];
+const toggleEdit = (e, data, id) => {
+  const row = data.filter(item => item.id === id)[0]
   row[editable] = true
 }
 
-
-
-
 class ServiceFileMovementM2cEditTable extends PureComponent {
-
   constructor(props) {
-    super(props);
+    super(props)
     console.log(props)
     this.state = {
       data: props.data,
-      
-
-    };
+    }
   }
-
 
   componentWillReceiveProps(nextProps) {
-
-    const {data}=nextProps;
+    const { data } = nextProps
     this.setState({
-        data: data,
-    });
-    
+      data: data,
+    })
   }
-
 
   render() {
     // const { data,count,current, owner } = this.props
     const { data } = this.state
-    const {appendInProcess} =  this.state;
+    const { appendInProcess } = this.state
 
-    const changeText =(e, fieldName, record)=>{
-      const newData = [...this.state.data];
-      
-      const row = getRowById(newData,record.id);
-      console.log("text is changed row", row)
-      if(row){
+    const changeText = (e, fieldName, record) => {
+      const newData = [...this.state.data]
+
+      const row = getRowById(newData, record.id)
+      console.log('text is changed row', row)
+      if (row) {
         row[fieldName] = e.target.value
-        this.setState({ data: newData });
+        this.setState({ data: newData })
       }
-
     }
 
-    const toggleEdit = (e,record) =>{
-      const newData = [...this.state.data];
-      const row =  newData.filter(item => item.id === record.id)[0];
-      row.editable = !row.editable 
-      this.setState({ data: newData });
+    const toggleEdit = (e, record) => {
+      const newData = [...this.state.data]
+      const row = newData.filter(item => item.id === record.id)[0]
+      row.editable = !row.editable
+      this.setState({ data: newData })
     }
     const removeFromArray = (array, element) => {
-      const index = array.indexOf(element);
-      console.log("remove from array")
+      const index = array.indexOf(element)
+      console.log('remove from array')
       if (index !== -1) {
-        console.log("-------------remove from array")
-          array.splice(index, 1);
+        console.log('-------------remove from array')
+        array.splice(index, 1)
       }
-  }
-    const cancelAppend = (e,record) =>{
-      const newData = [...this.state.data];
-      removeFromArray(newData,record);
-      this.setState({ data: newData, appendInProcess:false });
     }
-    const remapReference = (record) => {
-			const responsibleWorkerId = record.responsibleWorker.id
-			const mainOrderId = record.mainOrder.id
-			const merchantId = record.merchant.id
+    const cancelAppend = (e, record) => {
+      const newData = [...this.state.data]
+      removeFromArray(newData, record)
+      this.setState({ data: newData, appendInProcess: false })
+    }
+    const remapReference = record => {
+      const responsibleWorkerId = record.responsibleWorker.id
+      const mainOrderId = record.mainOrder.id
+      const merchantId = record.merchant.id
 
       //const communityId = record.community.id;
-      return {responsibleWorkerId,mainOrderId,merchantId,};
+      return { responsibleWorkerId, mainOrderId, merchantId }
     }
-    const deleteRecord = (e,record) =>{
-      const {dispatch, owner} = this.props
-      const {data} = this.state
-      const serviceFileMovementM2cIds = [record.id];
+    const deleteRecord = (e, record) => {
+      const { dispatch, owner } = this.props
+      const { data } = this.state
+      const serviceFileMovementM2cIds = [record.id]
       const parameters = { serviceFileMovementM2cIds }
       dispatch({
         type: `${owner.type}/removeServiceFileMovementM2cList`,
@@ -101,14 +92,12 @@ class ServiceFileMovementM2cEditTable extends PureComponent {
       })
     }
 
-
-    const addRecord = (e,record) =>{
-      const {dispatch, owner} = this.props
-      const {data} = this.state
-      const communityId = record.community.id;
-      const parameters = { ...record, ...remapReference(record)}
-      const newData = [...data];
-      
+    const addRecord = (e, record) => {
+      const { dispatch, owner } = this.props
+      const { data } = this.state
+      const communityId = record.community.id
+      const parameters = { ...record, ...remapReference(record) }
+      const newData = [...data]
 
       dispatch({
         type: `${owner.type}/addServiceFileMovementM2c`,
@@ -116,23 +105,22 @@ class ServiceFileMovementM2cEditTable extends PureComponent {
           id: owner.id,
           type: 'serviceFileMovementM2c',
           parameters,
-          selectedRows:newData,
+          selectedRows: newData,
           currentUpdateIndex: 0,
           continueNext: true,
         },
       })
-      this.setState({ appendInProcess: false });
-
+      this.setState({ appendInProcess: false })
     }
 
-    const updateRecord = (e,record) =>{
-      const {dispatch, owner} = this.props
-      const {data} = this.state
-      const {serviceFileMovementM2cId} = record.id
+    const updateRecord = (e, record) => {
+      const { dispatch, owner } = this.props
+      const { data } = this.state
+      const { serviceFileMovementM2cId } = record.id
       const parameters = { ...record, serviceFileMovementM2cId }
-      const newData = [...data];
-      const row =  newData.filter(item => item.id === record.id)[0];
-      row.editable = !row.editable 
+      const newData = [...data]
+      const row = newData.filter(item => item.id === record.id)[0]
+      row.editable = !row.editable
 
       dispatch({
         type: `${owner.type}/updateServiceFileMovementM2c`,
@@ -140,117 +128,244 @@ class ServiceFileMovementM2cEditTable extends PureComponent {
           id: owner.id,
           type: 'serviceFileMovementM2c',
           parameters,
-          selectedRows:newData,
+          selectedRows: newData,
           currentUpdateIndex: 0,
           continueNext: true,
         },
       })
-     
-
     }
 
-    const isAppendingRow =(record)=>{
-
-      return appendInProcess&&record.id.indexOf("+")===0;
+    const isAppendingRow = record => {
+      return appendInProcess && record.id.indexOf('+') === 0
     }
 
-    const renderStringEdit = (name, text, record)=>{
- 
-      if(isAppendingRow(record)){
-        return (<Input size={"small"} style={{width:'80%'}} value={text} onChange={(e)=>changeText(e, name, record)} placeholder={"NO"}/>) 
+    const renderStringEdit = (name, text, record) => {
+      if (isAppendingRow(record)) {
+        return (
+          <Input
+            size={'small'}
+            style={{ width: '80%' }}
+            value={text}
+            onChange={e => changeText(e, name, record)}
+            placeholder={'NO'}
+          />
+        )
       }
-      if(record.editable){
-        return (<Input size={"small"} style={{width:'80%'}} value={text} onChange={(e)=>changeText(e, name, record)} placeholder={"NO"}/>) 
+      if (record.editable) {
+        return (
+          <Input
+            size={'small'}
+            style={{ width: '80%' }}
+            value={text}
+            onChange={e => changeText(e, name, record)}
+            placeholder={'NO'}
+          />
+        )
       }
-      return text;
+      return text
     }
 
-    const renderActions = (text,record)=>{
-    
-      if(isAppendingRow(record)){
-        return (<div><a onClick={(e)=>addRecord(e,record)}>增加</a>
-         <Divider type="vertical" />
-         <a onClick={(e)=>cancelAppend(e,record)}>取消</a></div>) 
-    
+    const renderActions = (text, record) => {
+      if (isAppendingRow(record)) {
+        return (
+          <div>
+            <a onClick={e => addRecord(e, record)}>增加</a>
+            <Divider type="vertical" />
+            <a onClick={e => cancelAppend(e, record)}>取消</a>
+          </div>
+        )
       }
-      if(record.editable){
-        return (<div><a onClick={(e)=>updateRecord(e,record)}>保存</a> 
-         <Divider type="vertical" />
-        <a onClick={(e)=>toggleEdit(e,record)}>取消</a></div>) 
+      if (record.editable) {
+        return (
+          <div>
+            <a onClick={e => updateRecord(e, record)}>保存</a>
+            <Divider type="vertical" />
+            <a onClick={e => toggleEdit(e, record)}>取消</a>
+          </div>
+        )
       }
-      return (<div><a onClick={(e)=>toggleEdit(e,record)}>编辑</a> 
-        <Divider type="vertical" />
-        
-        <Popconfirm title="是否要删除此行？" onConfirm={(e)=>deleteRecord(e,record)}>
-          <a>删除</a>
-        </Popconfirm>  </div>
-    
-    );
-
+      return (
+        <div>
+          <a onClick={e => toggleEdit(e, record)}>编辑</a>
+          <Divider type="vertical" />
+          <Popconfirm
+            title="是否要删除此行？"
+            onConfirm={e => deleteRecord(e, record)}
+          >
+            <a>删除</a>
+          </Popconfirm>{' '}
+        </div>
+      )
     }
-    
-    
-    
+
     const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '服务状态', debugtype: 'string', dataIndex: 'serviceStatus', width: '7', render: (text, record) => renderStringEdit('serviceStatus',text, record)  },
-  { title: '服务人员', dataIndex: 'responsibleWorker', render: (text, record) => (record.responsibleWorker ? record.responsibleWorker.displayName : '暂无') },
-  { title: '服务概述', debugtype: 'string', dataIndex: 'serviceSummary', width: '42', render: (text, record) => renderStringEdit('serviceSummary',text, record)  },
-  { title: '开始时间', dataIndex: 'startTime', render: (text, record) => moment(record.startTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '经度', debugtype: 'double', dataIndex: 'longitude', width: '12', render: (text, record) => renderStringEdit('longitude',text, record)  },
-  { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '11', render: (text, record) => renderStringEdit('latitude',text, record)  },
-  { title: '最后更新时间', dataIndex: 'lastUpdateTime', render: (text, record) => moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '交接检查码', debugtype: 'string', dataIndex: 'transferVerifyCode', width: '10', render: (text, record) => renderStringEdit('transferVerifyCode',text, record)  },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.displayName : '暂无') },
-  { title: '服务类型', debugtype: 'string', dataIndex: 'movementPurpose', width: '32', render: (text, record) => renderStringEdit('movementPurpose',text, record)  },
-  { title: '联系人姓名', debugtype: 'string', dataIndex: 'contactName', width: '7', render: (text, record) => renderStringEdit('contactName',text, record)  },
-  { title: '联系人手机', debugtype: 'string_china_mobile_phone', dataIndex: 'contactMobileNumber', width: '15', render: (text, record) => renderStringEdit('contactMobileNumber',text, record)  },
-  { title: '通知日期时间', dataIndex: 'notifyDatetime', render: (text, record) => moment(record.notifyDatetime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '通知地址', debugtype: 'string', dataIndex: 'notifyAddress', width: '18', render: (text, record) => renderStringEdit('notifyAddress',text, record)  },
-  { title: '备注', debugtype: 'string', dataIndex: 'notifyComment', width: '95', render: (text, record) => renderStringEdit('notifyComment',text, record)  },
-  { title: '交接检查结果', debugtype: 'string', dataIndex: 'handoverResult', width: '6', render: (text, record) => renderStringEdit('handoverResult',text, record)  },
-  { title: '交接检查备注', debugtype: 'string_longtext', dataIndex: 'handoverResultComment', width: '10', render: (text, record) => renderStringEdit('handoverResultComment',text, record)  },
-  { title: '商户', dataIndex: 'merchant', render: (text, record) => (record.merchant ? record.merchant.displayName : '暂无') },
-{ title: '操作',
-   render: (text, record) => renderActions(text, record)}]
-   
-    const newRecord =()=>{
-      const newServiceFileMovementM2cToAppend  = {
-      	'id':`+1`, 
-				'serviceStatus':'',
-				'responsibleWorker':'',
-				'serviceSummary':'',
-				'startTime':'',
-				'longitude':'',
-				'latitude':'',
-				'lastUpdateTime':'',
-				'transferVerifyCode':'',
-				'mainOrder':'',
-				'movementPurpose':'',
-				'contactName':'',
-				'contactMobileNumber':'',
-				'notifyDatetime':'',
-				'notifyAddress':'',
-				'notifyComment':'',
-				'handoverResult':'',
-				'handoverResultComment':'',
-				'merchant':'',
+      { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
+      {
+        title: '服务状态',
+        debugtype: 'string',
+        dataIndex: 'serviceStatus',
+        width: '7',
+        render: (text, record) =>
+          renderStringEdit('serviceStatus', text, record),
+      },
+      {
+        title: '服务人员',
+        dataIndex: 'responsibleWorker',
+        render: (text, record) =>
+          record.responsibleWorker
+            ? record.responsibleWorker.displayName
+            : '暂无',
+      },
+      {
+        title: '服务概述',
+        debugtype: 'string',
+        dataIndex: 'serviceSummary',
+        width: '42',
+        render: (text, record) =>
+          renderStringEdit('serviceSummary', text, record),
+      },
+      {
+        title: '开始时间',
+        dataIndex: 'startTime',
+        render: (text, record) =>
+          moment(record.startTime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        title: '经度',
+        debugtype: 'double',
+        dataIndex: 'longitude',
+        width: '12',
+        render: (text, record) => renderStringEdit('longitude', text, record),
+      },
+      {
+        title: '纬度',
+        debugtype: 'double',
+        dataIndex: 'latitude',
+        width: '11',
+        render: (text, record) => renderStringEdit('latitude', text, record),
+      },
+      {
+        title: '最后更新时间',
+        dataIndex: 'lastUpdateTime',
+        render: (text, record) =>
+          moment(record.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        title: '交接检查码',
+        debugtype: 'string',
+        dataIndex: 'transferVerifyCode',
+        width: '10',
+        render: (text, record) =>
+          renderStringEdit('transferVerifyCode', text, record),
+      },
+      {
+        title: '年检订单',
+        dataIndex: 'mainOrder',
+        render: (text, record) =>
+          record.mainOrder ? record.mainOrder.displayName : '暂无',
+      },
+      {
+        title: '服务类型',
+        debugtype: 'string',
+        dataIndex: 'movementPurpose',
+        width: '32',
+        render: (text, record) =>
+          renderStringEdit('movementPurpose', text, record),
+      },
+      {
+        title: '联系人姓名',
+        debugtype: 'string',
+        dataIndex: 'contactName',
+        width: '7',
+        render: (text, record) => renderStringEdit('contactName', text, record),
+      },
+      {
+        title: '联系人手机',
+        debugtype: 'string_china_mobile_phone',
+        dataIndex: 'contactMobileNumber',
+        width: '15',
+        render: (text, record) =>
+          renderStringEdit('contactMobileNumber', text, record),
+      },
+      {
+        title: '通知日期时间',
+        dataIndex: 'notifyDatetime',
+        render: (text, record) =>
+          moment(record.notifyDatetime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        title: '通知地址',
+        debugtype: 'string',
+        dataIndex: 'notifyAddress',
+        width: '18',
+        render: (text, record) =>
+          renderStringEdit('notifyAddress', text, record),
+      },
+      {
+        title: '备注',
+        debugtype: 'string',
+        dataIndex: 'notifyComment',
+        width: '95',
+        render: (text, record) =>
+          renderStringEdit('notifyComment', text, record),
+      },
+      {
+        title: '交接检查结果',
+        debugtype: 'string',
+        dataIndex: 'handoverResult',
+        width: '6',
+        render: (text, record) =>
+          renderStringEdit('handoverResult', text, record),
+      },
+      {
+        title: '交接检查备注',
+        debugtype: 'string_longtext',
+        dataIndex: 'handoverResultComment',
+        width: '10',
+        render: (text, record) =>
+          renderStringEdit('handoverResultComment', text, record),
+      },
+      {
+        title: '商户',
+        dataIndex: 'merchant',
+        render: (text, record) =>
+          record.merchant ? record.merchant.displayName : '暂无',
+      },
+      {
+        title: '操作',
+        render: (text, record) => renderActions(text, record),
+      },
+    ]
 
-
-      };
-      const newData = data ? [...data]:[];
-      newData.push(newServiceFileMovementM2cToAppend);
-      this.setState({ data: newData, appendInProcess: true });
-
-
+    const newRecord = () => {
+      const newServiceFileMovementM2cToAppend = {
+        id: `+1`,
+        serviceStatus: '',
+        responsibleWorker: '',
+        serviceSummary: '',
+        startTime: '',
+        longitude: '',
+        latitude: '',
+        lastUpdateTime: '',
+        transferVerifyCode: '',
+        mainOrder: '',
+        movementPurpose: '',
+        contactName: '',
+        contactMobileNumber: '',
+        notifyDatetime: '',
+        notifyAddress: '',
+        notifyComment: '',
+        handoverResult: '',
+        handoverResultComment: '',
+        merchant: '',
+      }
+      const newData = data ? [...data] : []
+      newData.push(newServiceFileMovementM2cToAppend)
+      this.setState({ data: newData, appendInProcess: true })
     }
-    
 
-   
-    
     return (
       <div className={styles.standardTable}>
-        
         <Table
           rowKey={record => record.id}
           dataSource={data}
@@ -260,21 +375,19 @@ class ServiceFileMovementM2cEditTable extends PureComponent {
           scroll={{ x: 800 }}
         />
 
-       {
-        !appendInProcess&&(<Button
-          style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
-          type="dashed"
-          onClick={newRecord}
-          icon="plus"
-        >
-          新增
-        </Button>)}
+        {!appendInProcess && (
+          <Button
+            style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
+            type="dashed"
+            onClick={newRecord}
+            icon="plus"
+          >
+            新增
+          </Button>
+        )}
       </div>
     )
   }
 }
 
 export default Form.create()(ServiceFileMovementM2cEditTable)
-
-
-

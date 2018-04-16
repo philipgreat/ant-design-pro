@@ -1,11 +1,9 @@
-
-
 import pathToRegexp from 'path-to-regexp'
 import { routerRedux } from 'dva/router'
 import { notification } from 'antd'
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
-const hasError = (data) => {
+const hasError = data => {
   if (!data.class) {
     return false
   }
@@ -18,7 +16,7 @@ const hasError = (data) => {
   return false
 }
 
-const handleServerError = (data) => {
+const handleServerError = data => {
   if (data.message) {
     notification.error({
       message: data.message,
@@ -36,15 +34,13 @@ const handleServerError = (data) => {
 }
 
 export default {
-
   namespace: '_repairingAllowanceItem',
 
   state: {},
 
   subscriptions: {
-    
-    setup({ dispatch, history }) { 
-      history.listen((location) => {
+    setup({ dispatch, history }) {
+      history.listen(location => {
         const { pathname } = location
         if (!pathname.startsWith('/repairingAllowanceItem')) {
           return
@@ -54,26 +50,34 @@ export default {
           dispatch({ type: 'updateState', payload: newstate })
           return
         }
-        const dashboardmatch = pathToRegexp('/repairingAllowanceItem/:id/dashboard').exec(pathname)
+        const dashboardmatch = pathToRegexp(
+          '/repairingAllowanceItem/:id/dashboard'
+        ).exec(pathname)
         if (dashboardmatch) {
           const id = dashboardmatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const editDetailMatch = pathToRegexp('/repairingAllowanceItem/:id/editDetail').exec(pathname)
+        const editDetailMatch = pathToRegexp(
+          '/repairingAllowanceItem/:id/editDetail'
+        ).exec(pathname)
         if (editDetailMatch) {
           const id = editDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const viewDetailMatch = pathToRegexp('/repairingAllowanceItem/:id/viewDetail').exec(pathname)
+        const viewDetailMatch = pathToRegexp(
+          '/repairingAllowanceItem/:id/viewDetail'
+        ).exec(pathname)
         if (viewDetailMatch) {
           const id = viewDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        
-        const match = pathToRegexp('/repairingAllowanceItem/:id/list/:listName').exec(pathname)
+
+        const match = pathToRegexp(
+          '/repairingAllowanceItem/:id/list/:listName'
+        ).exec(pathname)
         if (!match) {
           return
           //  dispatch action with userId
@@ -84,43 +88,51 @@ export default {
     },
   },
   effects: {
-    *view({ payload }, { call, put }) { 
-      const {RepairingAllowanceItemService} = GlobalComponents;
+    *view({ payload }, { call, put }) {
+      const { RepairingAllowanceItemService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
       const data = yield call(RepairingAllowanceItemService.view, payload.id)
       console.log('this is the data id:', data.id)
       yield put({ type: 'updateState', payload: data })
     },
-    *load({ payload }, { call, put }) { 
-      const {RepairingAllowanceItemService} = GlobalComponents;
+    *load({ payload }, { call, put }) {
+      const { RepairingAllowanceItemService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
-      const data = yield call(RepairingAllowanceItemService.load, payload.id, payload.parameters)
-      
+      const data = yield call(
+        RepairingAllowanceItemService.load,
+        payload.id,
+        payload.parameters
+      )
+
       const newPlayload = { ...payload, ...data }
-      
+
       console.log('this is the data id: ', data.id)
       yield put({ type: 'updateState', payload: newPlayload })
     },
-       
-    
-    
+
     *gotoCreateForm({ payload }, { put }) {
       const { id, type } = payload
-      yield put(routerRedux.push(`/repairingAllowanceItem/${id}/list/${type}CreateForm`))
+      yield put(
+        routerRedux.push(`/repairingAllowanceItem/${id}/list/${type}CreateForm`)
+      )
     },
     *gotoUpdateForm({ payload }, { put }) {
       const { id, type, selectedRows, currentUpdateIndex } = payload
       const state = { id, type, selectedRows, currentUpdateIndex }
-      const location = { pathname: `/repairingAllowanceItem/${id}/list/${type}UpdateForm`, state }
+      const location = {
+        pathname: `/repairingAllowanceItem/${id}/list/${type}UpdateForm`,
+        state,
+      }
       yield put(routerRedux.push(location))
     },
     *goback({ payload }, { put }) {
       const { id, type } = payload
-      yield put(routerRedux.push(`/repairingAllowanceItem/${id}/list/${type}List`))
+      yield put(
+        routerRedux.push(`/repairingAllowanceItem/${id}/list/${type}List`)
+      )
     },
-
   },
-  
+
   reducers: {
     updateState(state, action) {
       const payload = { ...action.payload, loading: false }
@@ -133,4 +145,3 @@ export default {
     },
   },
 }
-

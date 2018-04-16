@@ -1,5 +1,19 @@
 import React, { Component } from 'react'
-import { AutoComplete, Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
+import {
+  AutoComplete,
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+  Switch,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -8,8 +22,8 @@ import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import FooterToolbar from '../../components/FooterToolbar'
 import ImageUpload from '../../components/ImageUpload'
 import styles from './VehicleInspectionOrder.createform.less'
-import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
-import GlobalComponents from '../../custcomponents';
+import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
+import GlobalComponents from '../../custcomponents'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -49,7 +63,7 @@ const fieldLabels = {
   vehiclePermitImage5: '行驶证图5',
   platform: '平台',
 }
-const testValues = {};
+const testValues = {}
 /*
 const testValues = {
   orderStatus: '未支付',
@@ -87,7 +101,6 @@ const testValues = {
 */
 const imageURLPrefix = '//localhost:2090'
 
-
 const imageKeys = [
   'vehiclePermitImage1',
   'vehiclePermitImage2',
@@ -95,7 +108,6 @@ const imageKeys = [
   'vehiclePermitImage4',
   'vehiclePermitImage5',
 ]
-
 
 class VehicleInspectionOrderCreateForm extends Component {
   state = {
@@ -108,27 +120,19 @@ class VehicleInspectionOrderCreateForm extends Component {
     // const { getFieldDecorator,setFieldsValue } = this.props.form
     const { setFieldsValue } = this.props.form
     //setFieldsValue(testValues)
-      
-    this.executeCandidateServiceCompanySearch("")
-    
-    
-    this.executeCandidateContactAddressCitySearch("")
-    
-    
-    this.executeCandidateCustomerSearch("")
-    
-    
-    this.executeCandidatePlatformSearch("")
-    
- 
-    
-    
-    
+
+    this.executeCandidateServiceCompanySearch('')
+
+    this.executeCandidateContactAddressCitySearch('')
+
+    this.executeCandidateCustomerSearch('')
+
+    this.executeCandidatePlatformSearch('')
   }
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -136,97 +140,97 @@ class VehicleInspectionOrderCreateForm extends Component {
     })
   }
 
-  
-  executeCandidateServiceCompanySearch = (filterKey) =>{
+  executeCandidateServiceCompanySearch = filterKey => {
+    const { VehicleInspectionOrderService } = GlobalComponents
 
-    const {VehicleInspectionOrderService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = VehicleInspectionOrderService.requestCandidateServiceCompany("vehicleServiceCompany", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = VehicleInspectionOrderService.requestCandidateServiceCompany(
+      'vehicleServiceCompany',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateServiceCompanyList=>{
+    future.then(candidateServiceCompanyList => {
       this.setState({
-        candidateServiceCompanyList
+        candidateServiceCompanyList,
       })
-
     })
-
-  }	 
-  handleCandidateServiceCompanySearch = (value) => {
+  }
+  handleCandidateServiceCompanySearch = value => {
     this.executeCandidateServiceCompanySearch(value)
   }
 
-  executeCandidateContactAddressCitySearch = (filterKey) =>{
+  executeCandidateContactAddressCitySearch = filterKey => {
+    const { VehicleInspectionOrderService } = GlobalComponents
 
-    const {VehicleInspectionOrderService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = VehicleInspectionOrderService.requestCandidateContactAddressCity("city", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = VehicleInspectionOrderService.requestCandidateContactAddressCity(
+      'city',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateContactAddressCityList=>{
+    future.then(candidateContactAddressCityList => {
       this.setState({
-        candidateContactAddressCityList
+        candidateContactAddressCityList,
       })
-
     })
-
-  }	 
-  handleCandidateContactAddressCitySearch = (value) => {
+  }
+  handleCandidateContactAddressCitySearch = value => {
     this.executeCandidateContactAddressCitySearch(value)
   }
 
-  executeCandidateCustomerSearch = (filterKey) =>{
+  executeCandidateCustomerSearch = filterKey => {
+    const { VehicleInspectionOrderService } = GlobalComponents
 
-    const {VehicleInspectionOrderService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = VehicleInspectionOrderService.requestCandidateCustomer("customer", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = VehicleInspectionOrderService.requestCandidateCustomer(
+      'customer',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateCustomerList=>{
+    future.then(candidateCustomerList => {
       this.setState({
-        candidateCustomerList
+        candidateCustomerList,
       })
-
     })
-
-  }	 
-  handleCandidateCustomerSearch = (value) => {
+  }
+  handleCandidateCustomerSearch = value => {
     this.executeCandidateCustomerSearch(value)
   }
 
-  executeCandidatePlatformSearch = (filterKey) =>{
+  executeCandidatePlatformSearch = filterKey => {
+    const { VehicleInspectionOrderService } = GlobalComponents
 
-    const {VehicleInspectionOrderService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = VehicleInspectionOrderService.requestCandidatePlatform("carInspectionPlatform", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = VehicleInspectionOrderService.requestCandidatePlatform(
+      'carInspectionPlatform',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidatePlatformList=>{
+    future.then(candidatePlatformList => {
       this.setState({
-        candidatePlatformList
+        candidatePlatformList,
       })
-
     })
-
-  }	 
-  handleCandidatePlatformSearch = (value) => {
+  }
+  handleCandidatePlatformSearch = value => {
     this.executeCandidatePlatformSearch(value)
   }
- 
-
-
 
   handleChange = (event, source) => {
     console.log('get file list from change in update change:', source)
@@ -238,7 +242,6 @@ class VehicleInspectionOrderCreateForm extends Component {
     this.setState({ convertedImagesValues })
     console.log('/get file list from change in update change:', source)
   }
-
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -268,18 +271,23 @@ class VehicleInspectionOrderCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleInspectionOrder`,
-          payload: { id: owner.id, type: 'vehicleInspectionOrder', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'vehicleInspectionOrder',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -294,18 +302,22 @@ class VehicleInspectionOrderCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -327,45 +339,39 @@ class VehicleInspectionOrderCreateForm extends Component {
         </span>
       )
     }
-    
 
-    
-    const {candidateServiceCompanyList} = this.state
-    if(!candidateServiceCompanyList){
-      return (<div>等等</div>)
+    const { candidateServiceCompanyList } = this.state
+    if (!candidateServiceCompanyList) {
+      return <div>等等</div>
     }
-    if(!candidateServiceCompanyList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
-    const {candidateContactAddressCityList} = this.state
-    if(!candidateContactAddressCityList){
-      return (<div>等等</div>)
+    if (!candidateServiceCompanyList.candidates) {
+      return <div>等等</div>
     }
-    if(!candidateContactAddressCityList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
-    const {candidateCustomerList} = this.state
-    if(!candidateCustomerList){
-      return (<div>等等</div>)
+
+    const { candidateContactAddressCityList } = this.state
+    if (!candidateContactAddressCityList) {
+      return <div>等等</div>
     }
-    if(!candidateCustomerList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
-    const {candidatePlatformList} = this.state
-    if(!candidatePlatformList){
-      return (<div>等等</div>)
+    if (!candidateContactAddressCityList.candidates) {
+      return <div>等等</div>
     }
-    if(!candidatePlatformList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
+
+    const { candidateCustomerList } = this.state
+    if (!candidateCustomerList) {
+      return <div>等等</div>
+    }
+    if (!candidateCustomerList.candidates) {
+      return <div>等等</div>
+    }
+
+    const { candidatePlatformList } = this.state
+    if (!candidatePlatformList) {
+      return <div>等等</div>
+    }
+    if (!candidatePlatformList.candidates) {
+      return <div>等等</div>
+    }
+
     return (
       <PageHeaderLayout
         title="新建一个年检订单"
@@ -375,14 +381,11 @@ class VehicleInspectionOrderCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.orderStatus}>
                   {getFieldDecorator('orderStatus', {
                     rules: [{ required: true, message: '请输入订单状态' }],
-                  })(
-                    <Input placeholder="请输入请输入订单状态string" />
-                  )}
+                  })(<Input placeholder="请输入请输入订单状态string" />)}
                 </Form.Item>
               </Col>
 
@@ -390,9 +393,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehicleLicensePlateNumber}>
                   {getFieldDecorator('vehicleLicensePlateNumber', {
                     rules: [{ required: true, message: '请输入车牌号码' }],
-                  })(
-                    <Input placeholder="请输入请输入车牌号码string" />
-                  )}
+                  })(<Input placeholder="请输入请输入车牌号码string" />)}
                 </Form.Item>
               </Col>
 
@@ -400,9 +401,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.createTime}>
                   {getFieldDecorator('createTime', {
                     rules: [{ required: true, message: '请输入创建时间' }],
-                  })(
-                    <Input placeholder="请输入请输入创建时间date_time" />
-                  )}
+                  })(<Input placeholder="请输入请输入创建时间date_time" />)}
                 </Form.Item>
               </Col>
 
@@ -410,9 +409,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.contactName}>
                   {getFieldDecorator('contactName', {
                     rules: [{ required: true, message: '请输入联系人姓名' }],
-                  })(
-                    <Input placeholder="请输入请输入联系人姓名string" />
-                  )}
+                  })(<Input placeholder="请输入请输入联系人姓名string" />)}
                 </Form.Item>
               </Col>
 
@@ -430,9 +427,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.productType}>
                   {getFieldDecorator('productType', {
                     rules: [{ required: true, message: '请输入产品类型' }],
-                  })(
-                    <Input placeholder="请输入请输入产品类型string" />
-                  )}
+                  })(<Input placeholder="请输入请输入产品类型string" />)}
                 </Form.Item>
               </Col>
 
@@ -450,9 +445,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.contactAddressDetail}>
                   {getFieldDecorator('contactAddressDetail', {
                     rules: [{ required: true, message: '请输入地址' }],
-                  })(
-                    <Input placeholder="请输入请输入地址string" />
-                  )}
+                  })(<Input placeholder="请输入请输入地址string" />)}
                 </Form.Item>
               </Col>
 
@@ -460,9 +453,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.exemptProxyFee}>
                   {getFieldDecorator('exemptProxyFee', {
                     rules: [{ required: true, message: '请输入免除代理费用' }],
-                  })(
-                    <Input placeholder="请输入请输入免除代理费用bool" />
-                  )}
+                  })(<Input placeholder="请输入请输入免除代理费用bool" />)}
                 </Form.Item>
               </Col>
 
@@ -470,19 +461,17 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.planInspectionDate}>
                   {getFieldDecorator('planInspectionDate', {
                     rules: [{ required: true, message: '请输入计划年检日期' }],
-                  })(
-                    <Input placeholder="请输入请输入计划年检日期date" />
-                  )}
+                  })(<Input placeholder="请输入请输入计划年检日期date" />)}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.trafficAccidentAnnouncement}>
                   {getFieldDecorator('trafficAccidentAnnouncement', {
-                    rules: [{ required: true, message: '请输入无伤人交通事故' }],
-                  })(
-                    <Input placeholder="请输入请输入无伤人交通事故bool" />
-                  )}
+                    rules: [
+                      { required: true, message: '请输入无伤人交通事故' },
+                    ],
+                  })(<Input placeholder="请输入请输入无伤人交通事故bool" />)}
                 </Form.Item>
               </Col>
 
@@ -490,9 +479,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.engagementLetterProvided}>
                   {getFieldDecorator('engagementLetterProvided', {
                     rules: [{ required: true, message: '请输入提供委托书' }],
-                  })(
-                    <Input placeholder="请输入请输入提供委托书bool" />
-                  )}
+                  })(<Input placeholder="请输入请输入提供委托书bool" />)}
                 </Form.Item>
               </Col>
 
@@ -500,9 +487,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.homePickUp}>
                   {getFieldDecorator('homePickUp', {
                     rules: [{ required: true, message: '请输入上门取车' }],
-                  })(
-                    <Input placeholder="请输入请输入上门取车bool" />
-                  )}
+                  })(<Input placeholder="请输入请输入上门取车bool" />)}
                 </Form.Item>
               </Col>
 
@@ -510,9 +495,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehicleType}>
                   {getFieldDecorator('vehicleType', {
                     rules: [{ required: true, message: '请输入车辆类型' }],
-                  })(
-                    <Input placeholder="请输入请输入车辆类型string" />
-                  )}
+                  })(<Input placeholder="请输入请输入车辆类型string" />)}
                 </Form.Item>
               </Col>
 
@@ -520,9 +503,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehicleUseCharacter}>
                   {getFieldDecorator('vehicleUseCharacter', {
                     rules: [{ required: true, message: '请输入使用性质' }],
-                  })(
-                    <Input placeholder="请输入请输入使用性质string" />
-                  )}
+                  })(<Input placeholder="请输入请输入使用性质string" />)}
                 </Form.Item>
               </Col>
 
@@ -530,9 +511,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehicleSeatsQuantity}>
                   {getFieldDecorator('vehicleSeatsQuantity', {
                     rules: [{ required: true, message: '请输入核准座位数' }],
-                  })(
-                    <Input placeholder="请输入请输入核准座位数int" />
-                  )}
+                  })(<Input placeholder="请输入请输入核准座位数int" />)}
                 </Form.Item>
               </Col>
 
@@ -540,9 +519,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehicleRegistrationDate}>
                   {getFieldDecorator('vehicleRegistrationDate', {
                     rules: [{ required: true, message: '请输入注册日期' }],
-                  })(
-                    <Input placeholder="请输入请输入注册日期date_past" />
-                  )}
+                  })(<Input placeholder="请输入请输入注册日期date_past" />)}
                 </Form.Item>
               </Col>
 
@@ -550,9 +527,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.inspectionValidationDate}>
                   {getFieldDecorator('inspectionValidationDate', {
                     rules: [{ required: true, message: '请输入检测有效期' }],
-                  })(
-                    <Input placeholder="请输入请输入检测有效期date" />
-                  )}
+                  })(<Input placeholder="请输入请输入检测有效期date" />)}
                 </Form.Item>
               </Col>
 
@@ -560,9 +535,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.insuranceValidationDate}>
                   {getFieldDecorator('insuranceValidationDate', {
                     rules: [{ required: true, message: '请输入保险有效期' }],
-                  })(
-                    <Input placeholder="请输入请输入保险有效期date" />
-                  )}
+                  })(<Input placeholder="请输入请输入保险有效期date" />)}
                 </Form.Item>
               </Col>
 
@@ -570,9 +543,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.engineNumber}>
                   {getFieldDecorator('engineNumber', {
                     rules: [{ required: true, message: '请输入发动机号' }],
-                  })(
-                    <Input placeholder="请输入请输入发动机号string" />
-                  )}
+                  })(<Input placeholder="请输入请输入发动机号string" />)}
                 </Form.Item>
               </Col>
 
@@ -580,9 +551,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehicleIdentificationNumber}>
                   {getFieldDecorator('vehicleIdentificationNumber', {
                     rules: [{ required: true, message: '请输入车架号' }],
-                  })(
-                    <Input placeholder="请输入请输入车架号string" />
-                  )}
+                  })(<Input placeholder="请输入请输入车架号string" />)}
                 </Form.Item>
               </Col>
 
@@ -590,9 +559,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehiclePermitIssueDate}>
                   {getFieldDecorator('vehiclePermitIssueDate', {
                     rules: [{ required: true, message: '请输入发证日期' }],
-                  })(
-                    <Input placeholder="请输入请输入发证日期date_past" />
-                  )}
+                  })(<Input placeholder="请输入请输入发证日期date_past" />)}
                 </Form.Item>
               </Col>
 
@@ -600,31 +567,27 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.vehiclePermitHolderName}>
                   {getFieldDecorator('vehiclePermitHolderName', {
                     rules: [{ required: true, message: '请输入所有人' }],
-                  })(
-                    <Input placeholder="请输入请输入所有人string" />
-                  )}
+                  })(<Input placeholder="请输入请输入所有人string" />)}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
-        
         <Card title="设置" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-            
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.exemptProxyFee}>
                   {getFieldDecorator('exemptProxyFee', {
                     rules: [{ required: true, message: '请输入免除代理费用' }],
-                    valuePropName: 'checked'
+                    valuePropName: 'checked',
                   })(
-                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入免除代理费用bool" />
+                    <Switch
+                      checkedChildren="是"
+                      unCheckedChildren="否"
+                      placeholder="请输入免除代理费用bool"
+                    />
                   )}
                 </Form.Item>
               </Col>
@@ -632,10 +595,16 @@ class VehicleInspectionOrderCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.trafficAccidentAnnouncement}>
                   {getFieldDecorator('trafficAccidentAnnouncement', {
-                    rules: [{ required: true, message: '请输入无伤人交通事故' }],
-                    valuePropName: 'checked'
+                    rules: [
+                      { required: true, message: '请输入无伤人交通事故' },
+                    ],
+                    valuePropName: 'checked',
                   })(
-                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入无伤人交通事故bool" />
+                    <Switch
+                      checkedChildren="是"
+                      unCheckedChildren="否"
+                      placeholder="请输入无伤人交通事故bool"
+                    />
                   )}
                 </Form.Item>
               </Col>
@@ -644,9 +613,13 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.engagementLetterProvided}>
                   {getFieldDecorator('engagementLetterProvided', {
                     rules: [{ required: true, message: '请输入提供委托书' }],
-                    valuePropName: 'checked'
+                    valuePropName: 'checked',
                   })(
-                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入提供委托书bool" />
+                    <Switch
+                      checkedChildren="是"
+                      unCheckedChildren="否"
+                      placeholder="请输入提供委托书bool"
+                    />
                   )}
                 </Form.Item>
               </Col>
@@ -655,34 +628,30 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <Form.Item label={fieldLabels.homePickUp}>
                   {getFieldDecorator('homePickUp', {
                     rules: [{ required: true, message: '请输入上门取车' }],
-                    valuePropName: 'checked'
+                    valuePropName: 'checked',
                   })(
-                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入上门取车bool" />
+                    <Switch
+                      checkedChildren="是"
+                      unCheckedChildren="否"
+                      placeholder="请输入上门取车bool"
+                    />
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
-        </Card>        
-        
-        
-
-
-
-
-
-
+          </Form>
+        </Card>
 
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <ImageUpload
                   buttonTitle="行驶证图1"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'vehiclePermitImage1')}
+                  handleChange={event =>
+                    this.handleChange(event, 'vehiclePermitImage1')
+                  }
                   fileList={convertedImagesValues.vehiclePermitImage1}
                 />
               </Col>
@@ -691,7 +660,9 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <ImageUpload
                   buttonTitle="行驶证图2"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'vehiclePermitImage2')}
+                  handleChange={event =>
+                    this.handleChange(event, 'vehiclePermitImage2')
+                  }
                   fileList={convertedImagesValues.vehiclePermitImage2}
                 />
               </Col>
@@ -700,7 +671,9 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <ImageUpload
                   buttonTitle="行驶证图3"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'vehiclePermitImage3')}
+                  handleChange={event =>
+                    this.handleChange(event, 'vehiclePermitImage3')
+                  }
                   fileList={convertedImagesValues.vehiclePermitImage3}
                 />
               </Col>
@@ -709,7 +682,9 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <ImageUpload
                   buttonTitle="行驶证图4"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'vehiclePermitImage4')}
+                  handleChange={event =>
+                    this.handleChange(event, 'vehiclePermitImage4')
+                  }
                   fileList={convertedImagesValues.vehiclePermitImage4}
                 />
               </Col>
@@ -718,39 +693,38 @@ class VehicleInspectionOrderCreateForm extends Component {
                 <ImageUpload
                   buttonTitle="行驶证图5"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'vehiclePermitImage5')}
+                  handleChange={event =>
+                    this.handleChange(event, 'vehiclePermitImage5')
+                  }
                   fileList={convertedImagesValues.vehiclePermitImage5}
                 />
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceCompany}>
                   {getFieldDecorator('serviceCompanyId', {
                     rules: [{ required: true, message: '请输入商户' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateServiceCompanyList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateServiceCompanySearch}
-                    placeholder="请输入商户"
-                  >
-                  {candidateServiceCompanyList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.companyName}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateServiceCompanyList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateServiceCompanySearch}
+                      placeholder="请输入商户"
+                    >
+                      {candidateServiceCompanyList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.companyName}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -760,19 +734,20 @@ class VehicleInspectionOrderCreateForm extends Component {
                   {getFieldDecorator('contactAddressCityId', {
                     rules: [{ required: true, message: '请输入城市' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateContactAddressCityList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateContactAddressCitySearch}
-                    placeholder="请输入城市"
-                  >
-                  {candidateContactAddressCityList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateContactAddressCityList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateContactAddressCitySearch}
+                      placeholder="请输入城市"
+                    >
+                      {candidateContactAddressCityList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.name}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -782,19 +757,20 @@ class VehicleInspectionOrderCreateForm extends Component {
                   {getFieldDecorator('customerId', {
                     rules: [{ required: true, message: '请输入客户' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateCustomerList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateCustomerSearch}
-                    placeholder="请输入客户"
-                  >
-                  {candidateCustomerList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.nickName}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateCustomerList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateCustomerSearch}
+                      placeholder="请输入客户"
+                    >
+                      {candidateCustomerList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.nickName}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -804,33 +780,42 @@ class VehicleInspectionOrderCreateForm extends Component {
                   {getFieldDecorator('platformId', {
                     rules: [{ required: true, message: '请输入平台' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidatePlatformList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidatePlatformSearch}
-                    placeholder="请输入平台"
-                  >
-                  {candidatePlatformList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidatePlatformList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidatePlatformSearch}
+                      placeholder="请输入平台"
+                    >
+                      {candidatePlatformList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.name}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -845,7 +830,3 @@ class VehicleInspectionOrderCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(VehicleInspectionOrderCreateForm))
-
-
-
-

@@ -1,97 +1,88 @@
-
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import {Form,Button, Table, Alert, Badge,Input,Divider,Popconfirm } from 'antd'
+import {
+  Form,
+  Button,
+  Table,
+  Alert,
+  Badge,
+  Input,
+  Divider,
+  Popconfirm,
+} from 'antd'
 import styles from './MainOrderAccount.edittable.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
-
-
-
-
-const getRowById = (data,id) => {
-  return data.filter(item => item.id === id)[0];
+const getRowById = (data, id) => {
+  return data.filter(item => item.id === id)[0]
 }
 
-const toggleEdit = (e,data,id) =>{
-  const row =  data.filter(item => item.id === id)[0];
+const toggleEdit = (e, data, id) => {
+  const row = data.filter(item => item.id === id)[0]
   row[editable] = true
 }
 
-
-
-
 class MainOrderAccountEditTable extends PureComponent {
-
   constructor(props) {
-    super(props);
+    super(props)
     console.log(props)
     this.state = {
       data: props.data,
-      
-
-    };
+    }
   }
-
 
   componentWillReceiveProps(nextProps) {
-
-    const {data}=nextProps;
+    const { data } = nextProps
     this.setState({
-        data: data,
-    });
-    
+      data: data,
+    })
   }
-
 
   render() {
     // const { data,count,current, owner } = this.props
     const { data } = this.state
-    const {appendInProcess} =  this.state;
+    const { appendInProcess } = this.state
 
-    const changeText =(e, fieldName, record)=>{
-      const newData = [...this.state.data];
-      
-      const row = getRowById(newData,record.id);
-      console.log("text is changed row", row)
-      if(row){
+    const changeText = (e, fieldName, record) => {
+      const newData = [...this.state.data]
+
+      const row = getRowById(newData, record.id)
+      console.log('text is changed row', row)
+      if (row) {
         row[fieldName] = e.target.value
-        this.setState({ data: newData });
+        this.setState({ data: newData })
       }
-
     }
 
-    const toggleEdit = (e,record) =>{
-      const newData = [...this.state.data];
-      const row =  newData.filter(item => item.id === record.id)[0];
-      row.editable = !row.editable 
-      this.setState({ data: newData });
+    const toggleEdit = (e, record) => {
+      const newData = [...this.state.data]
+      const row = newData.filter(item => item.id === record.id)[0]
+      row.editable = !row.editable
+      this.setState({ data: newData })
     }
     const removeFromArray = (array, element) => {
-      const index = array.indexOf(element);
-      console.log("remove from array")
+      const index = array.indexOf(element)
+      console.log('remove from array')
       if (index !== -1) {
-        console.log("-------------remove from array")
-          array.splice(index, 1);
+        console.log('-------------remove from array')
+        array.splice(index, 1)
       }
-  }
-    const cancelAppend = (e,record) =>{
-      const newData = [...this.state.data];
-      removeFromArray(newData,record);
-      this.setState({ data: newData, appendInProcess:false });
     }
-    const remapReference = (record) => {
-			const accountId = record.account.id
+    const cancelAppend = (e, record) => {
+      const newData = [...this.state.data]
+      removeFromArray(newData, record)
+      this.setState({ data: newData, appendInProcess: false })
+    }
+    const remapReference = record => {
+      const accountId = record.account.id
 
       //const communityId = record.community.id;
-      return {accountId,};
+      return { accountId }
     }
-    const deleteRecord = (e,record) =>{
-      const {dispatch, owner} = this.props
-      const {data} = this.state
-      const mainOrderAccountIds = [record.id];
+    const deleteRecord = (e, record) => {
+      const { dispatch, owner } = this.props
+      const { data } = this.state
+      const mainOrderAccountIds = [record.id]
       const parameters = { mainOrderAccountIds }
       dispatch({
         type: `${owner.type}/removeMainOrderAccountList`,
@@ -99,14 +90,12 @@ class MainOrderAccountEditTable extends PureComponent {
       })
     }
 
-
-    const addRecord = (e,record) =>{
-      const {dispatch, owner} = this.props
-      const {data} = this.state
-      const communityId = record.community.id;
-      const parameters = { ...record, ...remapReference(record)}
-      const newData = [...data];
-      
+    const addRecord = (e, record) => {
+      const { dispatch, owner } = this.props
+      const { data } = this.state
+      const communityId = record.community.id
+      const parameters = { ...record, ...remapReference(record) }
+      const newData = [...data]
 
       dispatch({
         type: `${owner.type}/addMainOrderAccount`,
@@ -114,23 +103,22 @@ class MainOrderAccountEditTable extends PureComponent {
           id: owner.id,
           type: 'mainOrderAccount',
           parameters,
-          selectedRows:newData,
+          selectedRows: newData,
           currentUpdateIndex: 0,
           continueNext: true,
         },
       })
-      this.setState({ appendInProcess: false });
-
+      this.setState({ appendInProcess: false })
     }
 
-    const updateRecord = (e,record) =>{
-      const {dispatch, owner} = this.props
-      const {data} = this.state
-      const {mainOrderAccountId} = record.id
+    const updateRecord = (e, record) => {
+      const { dispatch, owner } = this.props
+      const { data } = this.state
+      const { mainOrderAccountId } = record.id
       const parameters = { ...record, mainOrderAccountId }
-      const newData = [...data];
-      const row =  newData.filter(item => item.id === record.id)[0];
-      row.editable = !row.editable 
+      const newData = [...data]
+      const row = newData.filter(item => item.id === record.id)[0]
+      row.editable = !row.editable
 
       dispatch({
         type: `${owner.type}/updateMainOrderAccount`,
@@ -138,121 +126,245 @@ class MainOrderAccountEditTable extends PureComponent {
           id: owner.id,
           type: 'mainOrderAccount',
           parameters,
-          selectedRows:newData,
+          selectedRows: newData,
           currentUpdateIndex: 0,
           continueNext: true,
         },
       })
-     
-
     }
 
-    const isAppendingRow =(record)=>{
-
-      return appendInProcess&&record.id.indexOf("+")===0;
+    const isAppendingRow = record => {
+      return appendInProcess && record.id.indexOf('+') === 0
     }
 
-    const renderStringEdit = (name, text, record)=>{
- 
-      if(isAppendingRow(record)){
-        return (<Input size={"small"} style={{width:'80%'}} value={text} onChange={(e)=>changeText(e, name, record)} placeholder={"NO"}/>) 
+    const renderStringEdit = (name, text, record) => {
+      if (isAppendingRow(record)) {
+        return (
+          <Input
+            size={'small'}
+            style={{ width: '80%' }}
+            value={text}
+            onChange={e => changeText(e, name, record)}
+            placeholder={'NO'}
+          />
+        )
       }
-      if(record.editable){
-        return (<Input size={"small"} style={{width:'80%'}} value={text} onChange={(e)=>changeText(e, name, record)} placeholder={"NO"}/>) 
+      if (record.editable) {
+        return (
+          <Input
+            size={'small'}
+            style={{ width: '80%' }}
+            value={text}
+            onChange={e => changeText(e, name, record)}
+            placeholder={'NO'}
+          />
+        )
       }
-      return text;
+      return text
     }
 
-    const renderActions = (text,record)=>{
-    
-      if(isAppendingRow(record)){
-        return (<div><a onClick={(e)=>addRecord(e,record)}>增加</a>
-         <Divider type="vertical" />
-         <a onClick={(e)=>cancelAppend(e,record)}>取消</a></div>) 
-    
+    const renderActions = (text, record) => {
+      if (isAppendingRow(record)) {
+        return (
+          <div>
+            <a onClick={e => addRecord(e, record)}>增加</a>
+            <Divider type="vertical" />
+            <a onClick={e => cancelAppend(e, record)}>取消</a>
+          </div>
+        )
       }
-      if(record.editable){
-        return (<div><a onClick={(e)=>updateRecord(e,record)}>保存</a> 
-         <Divider type="vertical" />
-        <a onClick={(e)=>toggleEdit(e,record)}>取消</a></div>) 
+      if (record.editable) {
+        return (
+          <div>
+            <a onClick={e => updateRecord(e, record)}>保存</a>
+            <Divider type="vertical" />
+            <a onClick={e => toggleEdit(e, record)}>取消</a>
+          </div>
+        )
       }
-      return (<div><a onClick={(e)=>toggleEdit(e,record)}>编辑</a> 
-        <Divider type="vertical" />
-        
-        <Popconfirm title="是否要删除此行？" onConfirm={(e)=>deleteRecord(e,record)}>
-          <a>删除</a>
-        </Popconfirm>  </div>
-    
-    );
-
+      return (
+        <div>
+          <a onClick={e => toggleEdit(e, record)}>编辑</a>
+          <Divider type="vertical" />
+          <Popconfirm
+            title="是否要删除此行？"
+            onConfirm={e => deleteRecord(e, record)}
+          >
+            <a>删除</a>
+          </Popconfirm>{' '}
+        </div>
+      )
     }
-    
-    
-    
+
     const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '车牌号码', debugtype: 'string', dataIndex: 'vehicleLicensePlateNumber', width: '11', render: (text, record) => renderStringEdit('vehicleLicensePlateNumber',text, record)  },
-  { title: '产品名称', debugtype: 'string', dataIndex: 'productName', width: '8', render: (text, record) => renderStringEdit('productName',text, record)  },
-  { title: '年检费用', dataIndex: 'inspectionPrice', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
-  { title: '代办服务费用', dataIndex: 'agentServicePrice', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
-  { title: '城市', debugtype: 'string', dataIndex: 'city', width: '6', render: (text, record) => renderStringEdit('city',text, record)  },
-  { title: '车辆类型', debugtype: 'string', dataIndex: 'vehicleType', width: '7', render: (text, record) => renderStringEdit('vehicleType',text, record)  },
-  { title: '订单总金额', dataIndex: 'orderTotalAmount', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
-  { title: '优惠折扣', dataIndex: 'orderPromotionDiscount', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
-  { title: '优惠券折扣', dataIndex: 'orderCouponDiscount', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
-  { title: '保单费用', dataIndex: 'orderInsuranceAmount', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
-  { title: '客户付款总金额', dataIndex: 'orderCustomerPaymentAmount', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
-  { title: '商户服务费总金额', dataIndex: 'orderServiceAmount', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
-  { title: '平台结余总金额', dataIndex: 'orderPlatformBalance', className:'money', render: (text, record) => ('￥'+text.toFixed(2)) },
-  { title: '下单时间', dataIndex: 'orderPlacedDatetime', render: (text, record) => moment(record.orderPlacedDatetime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '付款时间', dataIndex: 'orderPaymentDatetime', render: (text, record) => moment(record.orderPaymentDatetime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '订单完成时间', dataIndex: 'orderFinishedDatetime', render: (text, record) => moment(record.orderFinishedDatetime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '年检订单ID', debugtype: 'string', dataIndex: 'mainOrderId', width: '15', render: (text, record) => renderStringEdit('mainOrderId',text, record)  },
-  { title: '微信订单ID', debugtype: 'string', dataIndex: 'wechatOrderId', width: '36', render: (text, record) => renderStringEdit('wechatOrderId',text, record)  },
-  { title: '微信预付订单ID', debugtype: 'string', dataIndex: 'wechatPrepayId', width: '25', render: (text, record) => renderStringEdit('wechatPrepayId',text, record)  },
-  { title: '对账单', dataIndex: 'account', render: (text, record) => (record.account ? record.account.displayName : '暂无') },
-{ title: '操作',
-   render: (text, record) => renderActions(text, record)}]
-   
-    const newRecord =()=>{
-      const newMainOrderAccountToAppend  = {
-      	'id':`+1`, 
-				'vehicleLicensePlateNumber':'',
-				'productName':'',
-				'inspectionPrice':'',
-				'agentServicePrice':'',
-				'city':'',
-				'vehicleType':'',
-				'orderTotalAmount':'',
-				'orderPromotionDiscount':'',
-				'orderCouponDiscount':'',
-				'orderInsuranceAmount':'',
-				'orderCustomerPaymentAmount':'',
-				'orderServiceAmount':'',
-				'orderPlatformBalance':'',
-				'orderPlacedDatetime':'',
-				'orderPaymentDatetime':'',
-				'orderFinishedDatetime':'',
-				'mainOrderId':'',
-				'wechatOrderId':'',
-				'wechatPrepayId':'',
-				'account':'',
+      { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
+      {
+        title: '车牌号码',
+        debugtype: 'string',
+        dataIndex: 'vehicleLicensePlateNumber',
+        width: '11',
+        render: (text, record) =>
+          renderStringEdit('vehicleLicensePlateNumber', text, record),
+      },
+      {
+        title: '产品名称',
+        debugtype: 'string',
+        dataIndex: 'productName',
+        width: '8',
+        render: (text, record) => renderStringEdit('productName', text, record),
+      },
+      {
+        title: '年检费用',
+        dataIndex: 'inspectionPrice',
+        className: 'money',
+        render: (text, record) => '￥' + text.toFixed(2),
+      },
+      {
+        title: '代办服务费用',
+        dataIndex: 'agentServicePrice',
+        className: 'money',
+        render: (text, record) => '￥' + text.toFixed(2),
+      },
+      {
+        title: '城市',
+        debugtype: 'string',
+        dataIndex: 'city',
+        width: '6',
+        render: (text, record) => renderStringEdit('city', text, record),
+      },
+      {
+        title: '车辆类型',
+        debugtype: 'string',
+        dataIndex: 'vehicleType',
+        width: '7',
+        render: (text, record) => renderStringEdit('vehicleType', text, record),
+      },
+      {
+        title: '订单总金额',
+        dataIndex: 'orderTotalAmount',
+        className: 'money',
+        render: (text, record) => '￥' + text.toFixed(2),
+      },
+      {
+        title: '优惠折扣',
+        dataIndex: 'orderPromotionDiscount',
+        className: 'money',
+        render: (text, record) => '￥' + text.toFixed(2),
+      },
+      {
+        title: '优惠券折扣',
+        dataIndex: 'orderCouponDiscount',
+        className: 'money',
+        render: (text, record) => '￥' + text.toFixed(2),
+      },
+      {
+        title: '保单费用',
+        dataIndex: 'orderInsuranceAmount',
+        className: 'money',
+        render: (text, record) => '￥' + text.toFixed(2),
+      },
+      {
+        title: '客户付款总金额',
+        dataIndex: 'orderCustomerPaymentAmount',
+        className: 'money',
+        render: (text, record) => '￥' + text.toFixed(2),
+      },
+      {
+        title: '商户服务费总金额',
+        dataIndex: 'orderServiceAmount',
+        className: 'money',
+        render: (text, record) => '￥' + text.toFixed(2),
+      },
+      {
+        title: '平台结余总金额',
+        dataIndex: 'orderPlatformBalance',
+        className: 'money',
+        render: (text, record) => '￥' + text.toFixed(2),
+      },
+      {
+        title: '下单时间',
+        dataIndex: 'orderPlacedDatetime',
+        render: (text, record) =>
+          moment(record.orderPlacedDatetime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        title: '付款时间',
+        dataIndex: 'orderPaymentDatetime',
+        render: (text, record) =>
+          moment(record.orderPaymentDatetime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        title: '订单完成时间',
+        dataIndex: 'orderFinishedDatetime',
+        render: (text, record) =>
+          moment(record.orderFinishedDatetime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        title: '年检订单ID',
+        debugtype: 'string',
+        dataIndex: 'mainOrderId',
+        width: '15',
+        render: (text, record) => renderStringEdit('mainOrderId', text, record),
+      },
+      {
+        title: '微信订单ID',
+        debugtype: 'string',
+        dataIndex: 'wechatOrderId',
+        width: '36',
+        render: (text, record) =>
+          renderStringEdit('wechatOrderId', text, record),
+      },
+      {
+        title: '微信预付订单ID',
+        debugtype: 'string',
+        dataIndex: 'wechatPrepayId',
+        width: '25',
+        render: (text, record) =>
+          renderStringEdit('wechatPrepayId', text, record),
+      },
+      {
+        title: '对账单',
+        dataIndex: 'account',
+        render: (text, record) =>
+          record.account ? record.account.displayName : '暂无',
+      },
+      {
+        title: '操作',
+        render: (text, record) => renderActions(text, record),
+      },
+    ]
 
-
-      };
-      const newData = data ? [...data]:[];
-      newData.push(newMainOrderAccountToAppend);
-      this.setState({ data: newData, appendInProcess: true });
-
-
+    const newRecord = () => {
+      const newMainOrderAccountToAppend = {
+        id: `+1`,
+        vehicleLicensePlateNumber: '',
+        productName: '',
+        inspectionPrice: '',
+        agentServicePrice: '',
+        city: '',
+        vehicleType: '',
+        orderTotalAmount: '',
+        orderPromotionDiscount: '',
+        orderCouponDiscount: '',
+        orderInsuranceAmount: '',
+        orderCustomerPaymentAmount: '',
+        orderServiceAmount: '',
+        orderPlatformBalance: '',
+        orderPlacedDatetime: '',
+        orderPaymentDatetime: '',
+        orderFinishedDatetime: '',
+        mainOrderId: '',
+        wechatOrderId: '',
+        wechatPrepayId: '',
+        account: '',
+      }
+      const newData = data ? [...data] : []
+      newData.push(newMainOrderAccountToAppend)
+      this.setState({ data: newData, appendInProcess: true })
     }
-    
 
-   
-    
     return (
       <div className={styles.standardTable}>
-        
         <Table
           rowKey={record => record.id}
           dataSource={data}
@@ -262,21 +374,19 @@ class MainOrderAccountEditTable extends PureComponent {
           scroll={{ x: 800 }}
         />
 
-       {
-        !appendInProcess&&(<Button
-          style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
-          type="dashed"
-          onClick={newRecord}
-          icon="plus"
-        >
-          新增
-        </Button>)}
+        {!appendInProcess && (
+          <Button
+            style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
+            type="dashed"
+            onClick={newRecord}
+            icon="plus"
+          >
+            新增
+          </Button>
+        )}
       </div>
     )
   }
 }
 
 export default Form.create()(MainOrderAccountEditTable)
-
-
-

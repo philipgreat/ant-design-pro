@@ -10,13 +10,11 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './AvailableHandOverItem.app.less'
 
+import HeaderSearch from '../../components/HeaderSearch'
+import NoticeIcon from '../../components/NoticeIcon'
+import GlobalFooter from '../../components/GlobalFooter'
 
-import HeaderSearch from '../../components/HeaderSearch';
-import NoticeIcon from '../../components/NoticeIcon';
-import GlobalFooter from '../../components/GlobalFooter';
-
-
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -56,14 +54,14 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = (collapsed) => {
+  onCollapse = collapsed => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = (props) => {
+  getDefaultCollapsedSubMenus = props => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -71,7 +69,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = (props) => {
+  getCurrentMenuSelectedKeys = props => {
     const { location: { pathname } } = props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
@@ -79,91 +77,133 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
     }
     return keys
   }
-  getNavMenuItems = (objectId) => {
+  getNavMenuItems = objectId => {
     return (
-      <SubMenu title={
-        <span>
-          <Icon type="profile" />
-          <span>交接检查项</span>
-        </span>}
+      <SubMenu
+        title={
+          <span>
+            <Icon type="profile" />
+            <span>交接检查项</span>
+          </span>
+        }
       >
-
         <Menu.Item>
-          <Link to={`/availableHandOverItem/${objectId}/list/handOverChecklistItemList`}>交接检查项</Link>
+          <Link
+            to={`/availableHandOverItem/${objectId}/list/handOverChecklistItemList`}
+          >
+            交接检查项
+          </Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/availableHandOverItem/${objectId}/list/handOverChecklistResultList`}>交接检查结果</Link>
+          <Link
+            to={`/availableHandOverItem/${objectId}/list/handOverChecklistResultList`}
+          >
+            交接检查结果
+          </Link>
         </Menu.Item>
       </SubMenu>
     )
   }
 
-
   getHandOverChecklistItemSearch = () => {
-    const {HandOverChecklistItemSearch} = GlobalComponents;
+    const { HandOverChecklistItemSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._availableHandOverItem.handOverChecklistItemList,
       count: state._availableHandOverItem.handOverChecklistItemCount,
-      currentPage: state._availableHandOverItem.handOverChecklistItemCurrentPageNumber,
-      searchFormParameters: state._availableHandOverItem.handOverChecklistItemSearchFormParameters,
+      currentPage:
+        state._availableHandOverItem.handOverChecklistItemCurrentPageNumber,
+      searchFormParameters:
+        state._availableHandOverItem.handOverChecklistItemSearchFormParameters,
       loading: state._availableHandOverItem.loading,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistItemList' }, // this is for model namespace and
+      owner: {
+        type: '_availableHandOverItem',
+        id: state._availableHandOverItem.id,
+        listName: 'handOverChecklistItemList',
+      }, // this is for model namespace and
     }))(HandOverChecklistItemSearch)
   }
   getHandOverChecklistItemCreateForm = () => {
-   	const {HandOverChecklistItemCreateForm} = GlobalComponents;
+    const { HandOverChecklistItemCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._availableHandOverItem.handOverChecklistItemList,
       count: state._availableHandOverItem.handOverChecklistItemCount,
-      currentPage: state._availableHandOverItem.handOverChecklistItemCurrentPageNumber,
-      searchFormParameters: state._availableHandOverItem.handOverChecklistItemSearchFormParameters,
+      currentPage:
+        state._availableHandOverItem.handOverChecklistItemCurrentPageNumber,
+      searchFormParameters:
+        state._availableHandOverItem.handOverChecklistItemSearchFormParameters,
       loading: state._availableHandOverItem.loading,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistItemList'}, // this is for model namespace and
+      owner: {
+        type: '_availableHandOverItem',
+        id: state._availableHandOverItem.id,
+        listName: 'handOverChecklistItemList',
+      }, // this is for model namespace and
     }))(HandOverChecklistItemCreateForm)
   }
-  
+
   getHandOverChecklistItemUpdateForm = () => {
-  	const {HandOverChecklistItemUpdateForm} = GlobalComponents;
+    const { HandOverChecklistItemUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._availableHandOverItem.selectedRows,
       currentUpdateIndex: state._availableHandOverItem.currentUpdateIndex,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistItemList' }, // this is for model namespace and
+      owner: {
+        type: '_availableHandOverItem',
+        id: state._availableHandOverItem.id,
+        listName: 'handOverChecklistItemList',
+      }, // this is for model namespace and
     }))(HandOverChecklistItemUpdateForm)
   }
 
   getHandOverChecklistResultSearch = () => {
-    const {HandOverChecklistResultSearch} = GlobalComponents;
+    const { HandOverChecklistResultSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._availableHandOverItem.handOverChecklistResultList,
       count: state._availableHandOverItem.handOverChecklistResultCount,
-      currentPage: state._availableHandOverItem.handOverChecklistResultCurrentPageNumber,
-      searchFormParameters: state._availableHandOverItem.handOverChecklistResultSearchFormParameters,
+      currentPage:
+        state._availableHandOverItem.handOverChecklistResultCurrentPageNumber,
+      searchFormParameters:
+        state._availableHandOverItem
+          .handOverChecklistResultSearchFormParameters,
       loading: state._availableHandOverItem.loading,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistResultList' }, // this is for model namespace and
+      owner: {
+        type: '_availableHandOverItem',
+        id: state._availableHandOverItem.id,
+        listName: 'handOverChecklistResultList',
+      }, // this is for model namespace and
     }))(HandOverChecklistResultSearch)
   }
   getHandOverChecklistResultCreateForm = () => {
-   	const {HandOverChecklistResultCreateForm} = GlobalComponents;
+    const { HandOverChecklistResultCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._availableHandOverItem.handOverChecklistResultList,
       count: state._availableHandOverItem.handOverChecklistResultCount,
-      currentPage: state._availableHandOverItem.handOverChecklistResultCurrentPageNumber,
-      searchFormParameters: state._availableHandOverItem.handOverChecklistResultSearchFormParameters,
+      currentPage:
+        state._availableHandOverItem.handOverChecklistResultCurrentPageNumber,
+      searchFormParameters:
+        state._availableHandOverItem
+          .handOverChecklistResultSearchFormParameters,
       loading: state._availableHandOverItem.loading,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistResultList'}, // this is for model namespace and
+      owner: {
+        type: '_availableHandOverItem',
+        id: state._availableHandOverItem.id,
+        listName: 'handOverChecklistResultList',
+      }, // this is for model namespace and
     }))(HandOverChecklistResultCreateForm)
   }
-  
+
   getHandOverChecklistResultUpdateForm = () => {
-  	const {HandOverChecklistResultUpdateForm} = GlobalComponents;
+    const { HandOverChecklistResultUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._availableHandOverItem.selectedRows,
       currentUpdateIndex: state._availableHandOverItem.currentUpdateIndex,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistResultList' }, // this is for model namespace and
+      owner: {
+        type: '_availableHandOverItem',
+        id: state._availableHandOverItem.id,
+        listName: 'handOverChecklistResultList',
+      }, // this is for model namespace and
     }))(HandOverChecklistResultUpdateForm)
   }
 
@@ -173,104 +213,139 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
     const title = '代审车服务平台'
     return title
   }
- 
-  handleOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
+
+  handleOpenChange = openKeys => {
+    const latestOpenKey = openKeys.find(
+      key => this.state.openKeys.indexOf(key) === -1
+    )
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-   toggle = () => {
-     const { collapsed } = this.props
-     this.props.dispatch({
-       type: 'global/changeLayoutCollapsed',
-       payload: !collapsed,
-     })
-   }
+  toggle = () => {
+    const { collapsed } = this.props
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: !collapsed,
+    })
+  }
 
-   render() {
-     // const { collapsed, fetchingNotices,loading } = this.props
-     const { collapsed } = this.props
-    
-     const {AvailableHandOverItemDashboard} = GlobalComponents
-     const {AvailableHandOverItemEditDetail} = GlobalComponents
-     const {AvailableHandOverItemViewDetail} = GlobalComponents
-     
-     
-     
-     
-     // Don't show popup menu when it is been collapsed
-     const menuProps = collapsed ? {} : {
-       openKeys: this.state.openKeys,
-     }
-     const layout = (
-       <Layout>
-         <Sider
-           trigger={null}
-           collapsible
-           collapsed={collapsed}
-           breakpoint="md"
-           onCollapse={()=>this.onCollapse(collapsed)}
-           width={256}
-           className={styles.sider}
-         >
-           <div className={styles.logo}>
-             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>交接检查项</h1></Link>
-           </div>
+  render() {
+    // const { collapsed, fetchingNotices,loading } = this.props
+    const { collapsed } = this.props
 
-           <Menu
-             theme="dark"
-             mode="inline"
-             {...menuProps}
-             onOpenChange={this.handleOpenChange}
-             selectedKeys={this.getCurrentMenuSelectedKeys()}
-             style={{ margin: '16px 0', width: '100%' }}
-           >
-           
+    const { AvailableHandOverItemDashboard } = GlobalComponents
+    const { AvailableHandOverItemEditDetail } = GlobalComponents
+    const { AvailableHandOverItemViewDetail } = GlobalComponents
 
-             <Menu.Item >
-               <Link to={`/availableHandOverItem/${this.props.availableHandOverItem.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
-             </Menu.Item>
-             
+    // Don't show popup menu when it is been collapsed
+    const menuProps = collapsed
+      ? {}
+      : {
+          openKeys: this.state.openKeys,
+        }
+    const layout = (
+      <Layout>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          breakpoint="md"
+          onCollapse={() => this.onCollapse(collapsed)}
+          width={256}
+          className={styles.sider}
+        >
+          <div className={styles.logo}>
+            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+            <Link to="/home">
+              {' '}
+              <h1>交接检查项</h1>
+            </Link>
+          </div>
 
-             {this.getNavMenuItems(this.props.availableHandOverItem.id)}
-             <Menu.Item >
-               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
-             </Menu.Item>
-           </Menu>
-         </Sider>
-         <Layout>
-           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-             <Switch>
-             
-               <Route path="/availableHandOverItem/:id/dashboard" component={AvailableHandOverItemDashboard} />
-               
-               <Route path="/availableHandOverItem/:id/editDetail" component={AvailableHandOverItemEditDetail} />
-               <Route path="/availableHandOverItem/:id/viewDetail" component={AvailableHandOverItemViewDetail} /> 
-               
+          <Menu
+            theme="dark"
+            mode="inline"
+            {...menuProps}
+            onOpenChange={this.handleOpenChange}
+            selectedKeys={this.getCurrentMenuSelectedKeys()}
+            style={{ margin: '16px 0', width: '100%' }}
+          >
+            <Menu.Item>
+              <Link
+                to={`/availableHandOverItem/${
+                  this.props.availableHandOverItem.id
+                }/dashboard`}
+              >
+                <Icon type="dashboard" />
+                <span>仪表板</span>
+              </Link>
+            </Menu.Item>
 
-               <Route path="/availableHandOverItem/:id/list/handOverChecklistItemList" component={this.getHandOverChecklistItemSearch()} />
-               <Route path="/availableHandOverItem/:id/list/handOverChecklistItemCreateForm" component={this.getHandOverChecklistItemCreateForm()} />
-               <Route path="/availableHandOverItem/:id/list/handOverChecklistItemUpdateForm" component={this.getHandOverChecklistItemUpdateForm()} />
+            {this.getNavMenuItems(this.props.availableHandOverItem.id)}
+            <Menu.Item>
+              <Link to={'/home'}>
+                <Icon type="home" />
+                <span>回到主页</span>
+              </Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+            <Switch>
+              <Route
+                path="/availableHandOverItem/:id/dashboard"
+                component={AvailableHandOverItemDashboard}
+              />
 
-               <Route path="/availableHandOverItem/:id/list/handOverChecklistResultList" component={this.getHandOverChecklistResultSearch()} />
-               <Route path="/availableHandOverItem/:id/list/handOverChecklistResultCreateForm" component={this.getHandOverChecklistResultCreateForm()} />
-               <Route path="/availableHandOverItem/:id/list/handOverChecklistResultUpdateForm" component={this.getHandOverChecklistResultUpdateForm()} />
-              
-             </Switch>
-           </Content>
-         </Layout>
-       </Layout>
-     )
-     return (
-       <DocumentTitle title={this.getPageTitle()}>
-         <ContainerQuery query={query}>
-           {params => <div className={classNames(params)}>{layout}</div>}
-         </ContainerQuery>
-       </DocumentTitle>
-     )
-   }
+              <Route
+                path="/availableHandOverItem/:id/editDetail"
+                component={AvailableHandOverItemEditDetail}
+              />
+              <Route
+                path="/availableHandOverItem/:id/viewDetail"
+                component={AvailableHandOverItemViewDetail}
+              />
+
+              <Route
+                path="/availableHandOverItem/:id/list/handOverChecklistItemList"
+                component={this.getHandOverChecklistItemSearch()}
+              />
+              <Route
+                path="/availableHandOverItem/:id/list/handOverChecklistItemCreateForm"
+                component={this.getHandOverChecklistItemCreateForm()}
+              />
+              <Route
+                path="/availableHandOverItem/:id/list/handOverChecklistItemUpdateForm"
+                component={this.getHandOverChecklistItemUpdateForm()}
+              />
+
+              <Route
+                path="/availableHandOverItem/:id/list/handOverChecklistResultList"
+                component={this.getHandOverChecklistResultSearch()}
+              />
+              <Route
+                path="/availableHandOverItem/:id/list/handOverChecklistResultCreateForm"
+                component={this.getHandOverChecklistResultCreateForm()}
+              />
+              <Route
+                path="/availableHandOverItem/:id/list/handOverChecklistResultUpdateForm"
+                component={this.getHandOverChecklistResultUpdateForm()}
+              />
+            </Switch>
+          </Content>
+        </Layout>
+      </Layout>
+    )
+    return (
+      <DocumentTitle title={this.getPageTitle()}>
+        <ContainerQuery query={query}>
+          {params => <div className={classNames(params)}>{layout}</div>}
+        </ContainerQuery>
+      </DocumentTitle>
+    )
+  }
 }
 
 export default connect(state => ({
@@ -280,6 +355,3 @@ export default connect(state => ({
   availableHandOverItem: state._availableHandOverItem,
   ...state,
 }))(AvailableHandOverItemBizApp)
-
-
-

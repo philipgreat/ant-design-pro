@@ -5,6 +5,15 @@
 import axios from 'axios';
 import { message } from 'antd';
 import {SYSTEM_SHORT_NAME} from './config'
+
+
+import  PictureEdit from '../components/PictureEdit'
+import  ImageUpload from '../components/ImageUpload'
+import  OssPictureEdit from '../components/OSSPictureEdit'
+
+export const ImageUpload = ImageUpload
+
+
 /**
  * 公用get请求
  * @param url       接口地址

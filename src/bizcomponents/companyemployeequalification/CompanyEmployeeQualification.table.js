@@ -1,18 +1,28 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './CompanyEmployeeQualification.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/companyEmployeeQualification/${text}/dashboard`}>{text}</Link>) },
-  { title: '执行时间', dataIndex: 'eventTime', render: (text, record) => moment(record.eventTime).format('YYYY-MM-DD HH:mm:ss') },
+  {
+    title: 'ID',
+    debugtype: 'string',
+    dataIndex: 'id',
+    width: '20',
+    render: (text, record) => (
+      <Link to={`/companyEmployeeQualification/${text}/dashboard`}>{text}</Link>
+    ),
+  },
+  {
+    title: '执行时间',
+    dataIndex: 'eventTime',
+    render: (text, record) =>
+      moment(record.eventTime).format('YYYY-MM-DD HH:mm:ss'),
+  },
   { title: '审批人', debugtype: 'string', dataIndex: 'who', width: '17' },
   { title: '批注', debugtype: 'string', dataIndex: 'comment', width: '13' },
-
 ]
 
 class CompanyEmployeeQualificationTable extends PureComponent {
@@ -55,7 +65,6 @@ class CompanyEmployeeQualificationTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -70,13 +79,15 @@ class CompanyEmployeeQualificationTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -97,4 +108,3 @@ class CompanyEmployeeQualificationTable extends PureComponent {
 }
 
 export default CompanyEmployeeQualificationTable
-

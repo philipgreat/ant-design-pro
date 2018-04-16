@@ -1,13 +1,25 @@
-
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import Result from '../../components/Result'
 
-
-import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
+import {
+  Row,
+  Col,
+  Card,
+  Form,
+  Input,
+  Select,
+  Icon,
+  Button,
+  Dropdown,
+  Menu,
+  InputNumber,
+  DatePicker,
+  Modal,
+  message,
+} from 'antd'
 
 import GlobalComponents from '../../custcomponents'
-
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 
@@ -15,8 +27,10 @@ import styles from './VehicleServiceCompanyBusinessScope.search.less'
 
 const FormItem = Form.Item
 const { Option } = Select
-const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',')
-
+const getValue = obj =>
+  Object.keys(obj)
+    .map(key => obj[key])
+    .join(',')
 
 @Form.create()
 export default class VehicleServiceCompanyBusinessScopeSearch extends PureComponent {
@@ -42,13 +56,13 @@ export default class VehicleServiceCompanyBusinessScopeSearch extends PureCompon
       newObj[key] = getValue(filtersArg[key])
       return newObj
     }, {})
-	const { owner } = this.props
-	const {listName} = owner;
-	let listParameters = {};
-    listParameters[listName]=1;
-    listParameters[`${listName}CurrentPage`]=pagination.current;
-    listParameters[`${listName}RowsPerPage`]=pagination.pageSize;
-    
+    const { owner } = this.props
+    const { listName } = owner
+    let listParameters = {}
+    listParameters[listName] = 1
+    listParameters[`${listName}CurrentPage`] = pagination.current
+    listParameters[`${listName}RowsPerPage`] = pagination.pageSize
+
     const params = {
       ...listParameters,
       ...formValues,
@@ -57,14 +71,14 @@ export default class VehicleServiceCompanyBusinessScopeSearch extends PureCompon
     if (sorter.field) {
       params.sorter = '_'
     }
-    
+
     dispatch({
       type: `${owner.type}/load`,
       payload: { id: owner.id, parameters: params },
     })
   }
 
-  handleMenuClick = (e) => {
+  handleMenuClick = e => {
     const { dispatch } = this.props
     const { selectedRows } = this.state
     if (!selectedRows) return
@@ -87,13 +101,13 @@ export default class VehicleServiceCompanyBusinessScopeSearch extends PureCompon
     }
   }
 
-  handleSelectRows = (rows) => {
+  handleSelectRows = rows => {
     this.setState({
       selectedRows: rows,
     })
   }
 
-  handleModalVisible = (flag) => {
+  handleModalVisible = flag => {
     this.setState({
       modalVisible: !!flag,
       showDeleteResult: false,
@@ -108,16 +122,25 @@ export default class VehicleServiceCompanyBusinessScopeSearch extends PureCompon
       modalVisible: true,
       showDeleteResult: true,
     })
-    
-    const vehicleServiceCompanyBusinessScopeIds = selectedRows.map((item) => { return item.id })
-    console.log('vehicleServiceCompanyBusinessScopeIds', vehicleServiceCompanyBusinessScopeIds)
+
+    const vehicleServiceCompanyBusinessScopeIds = selectedRows.map(item => {
+      return item.id
+    })
+    console.log(
+      'vehicleServiceCompanyBusinessScopeIds',
+      vehicleServiceCompanyBusinessScopeIds
+    )
     const parameters = { vehicleServiceCompanyBusinessScopeIds }
     dispatch({
       type: `${owner.type}/removeVehicleServiceCompanyBusinessScopeList`,
-      payload: { id: owner.id, type: 'vehicleServiceCompanyBusinessScope', parameters },
+      payload: {
+        id: owner.id,
+        type: 'vehicleServiceCompanyBusinessScope',
+        parameters,
+      },
     })
   }
-  
+
   showModal = () => {
     // const { selectedRows } = this.state
     // const { dispatch, owner } = this.props
@@ -151,11 +174,16 @@ export default class VehicleServiceCompanyBusinessScopeSearch extends PureCompon
     const currentUpdateIndex = 0
     dispatch({
       type: `${owner.type}/gotoUpdateForm`,
-      payload: { id: owner.id, type: 'vehicleServiceCompanyBusinessScope', selectedRows, currentUpdateIndex },
+      payload: {
+        id: owner.id,
+        type: 'vehicleServiceCompanyBusinessScope',
+        selectedRows,
+        currentUpdateIndex,
+      },
     })
   }
-  
-  handleAddInput = (e) => {
+
+  handleAddInput = e => {
     this.setState({
       addInputValue: e.target.value,
     })
@@ -175,21 +203,18 @@ export default class VehicleServiceCompanyBusinessScopeSearch extends PureCompon
   }
 
   render() {
-    const { data, loading, count, currentPage, owner } = this.props;
-    const { showDeleteResult, selectedRows, modalVisible } = this.state;
-    const {VehicleServiceCompanyBusinessScopeTable} = GlobalComponents;
-    const {VehicleServiceCompanyBusinessScopeConfirmationTable} = GlobalComponents;
-    const {VehicleServiceCompanyBusinessScopeSearchForm} = GlobalComponents;
-    
- 
+    const { data, loading, count, currentPage, owner } = this.props
+    const { showDeleteResult, selectedRows, modalVisible } = this.state
+    const { VehicleServiceCompanyBusinessScopeTable } = GlobalComponents
+    const {
+      VehicleServiceCompanyBusinessScopeConfirmationTable,
+    } = GlobalComponents
+    const { VehicleServiceCompanyBusinessScopeSearchForm } = GlobalComponents
+
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
-
-
-<Menu.Item key="company">关联商户</Menu.Item>
-<Menu.Item key="availableService">关联服务范围</Menu.Item>
-      
-
+        <Menu.Item key="company">关联商户</Menu.Item>
+        <Menu.Item key="availableService">关联服务范围</Menu.Item>
       </Menu>
     )
 
@@ -197,16 +222,22 @@ export default class VehicleServiceCompanyBusinessScopeSearch extends PureCompon
     const modalContent = (data, owner) => {
       if (showDeleteResult) {
         return (
-        <Modal
-          title="成功删除"
-          visible={modalVisible}
-          onOk={() => this.confirmAfterDelete()}
-          onCancel={() => this.confirmAfterDelete()}
-          width={920}
-          style={{ top: 40 }}
-        >
-          <Result type="success" title="删除成功，干得漂亮" description="" style={{ marginTop: 48, marginBottom: 16 }} />
-        </Modal>)
+          <Modal
+            title="成功删除"
+            visible={modalVisible}
+            onOk={() => this.confirmAfterDelete()}
+            onCancel={() => this.confirmAfterDelete()}
+            width={920}
+            style={{ top: 40 }}
+          >
+            <Result
+              type="success"
+              title="删除成功，干得漂亮"
+              description=""
+              style={{ marginTop: 48, marginBottom: 16 }}
+            />
+          </Modal>
+        )
       }
 
       return (
@@ -218,10 +249,14 @@ export default class VehicleServiceCompanyBusinessScopeSearch extends PureCompon
           width={920}
           style={{ top: 40 }}
         >
-          <VehicleServiceCompanyBusinessScopeConfirmationTable data={selectedRows} owner={owner} />
-        </Modal>)
+          <VehicleServiceCompanyBusinessScopeConfirmationTable
+            data={selectedRows}
+            owner={owner}
+          />
+        </Modal>
+      )
     }
-    
+
     return (
       <PageHeaderLayout title="商户服务范围列表">
         <Card bordered={false}>
@@ -230,16 +265,31 @@ export default class VehicleServiceCompanyBusinessScopeSearch extends PureCompon
               <VehicleServiceCompanyBusinessScopeSearchForm {...this.props} />
             </div>
             <div className={styles.tableListOperator}>
-              <Button icon="plus" type="primary" onClick={() => this.handleCreate()}>新建</Button>
-              {
-                selectedRows.length > 0 && (
-                  <span>
-                    <Button onClick={this.handleModalVisible} type="danger" icon="delete">批量删除</Button>
-                    <Button onClick={this.handleUpdate} type="primary" icon="update">批量更新</Button>
-                    
-                  </span>
-                )
-              }
+              <Button
+                icon="plus"
+                type="primary"
+                onClick={() => this.handleCreate()}
+              >
+                新建
+              </Button>
+              {selectedRows.length > 0 && (
+                <span>
+                  <Button
+                    onClick={this.handleModalVisible}
+                    type="danger"
+                    icon="delete"
+                  >
+                    批量删除
+                  </Button>
+                  <Button
+                    onClick={this.handleUpdate}
+                    type="primary"
+                    icon="update"
+                  >
+                    批量更新
+                  </Button>
+                </span>
+              )}
             </div>
             <VehicleServiceCompanyBusinessScopeTable
               selectedRows={selectedRows}
@@ -258,5 +308,3 @@ export default class VehicleServiceCompanyBusinessScopeSearch extends PureCompon
     )
   }
 }
-
-

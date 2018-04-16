@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}productPriceManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -16,30 +19,24 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
 const requestCandidateProduct = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}productPriceManager/requestCandidateProduct/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}	 
- 
+}
 
 const requestCandidateCity = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}productPriceManager/requestCandidateCity/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}	 
- 
+}
 
-
-
-
-const ProductPriceService = { view,
+const ProductPriceService = {
+  view,
   load,
   requestCandidateProduct,
-  requestCandidateCity }
+  requestCandidateCity,
+}
 export default ProductPriceService
-

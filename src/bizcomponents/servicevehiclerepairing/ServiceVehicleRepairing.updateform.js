@@ -1,8 +1,21 @@
 import React, { Component } from 'react'
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover, Switch } from 'antd'
+import {
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+  Switch,
+} from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
-import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
+import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import ImageUpload from '../../components/ImageUpload'
 //import OSSPictureEdit from '../../components/OSSPictureEdit'
@@ -44,7 +57,6 @@ const fieldLabels = {
   serviceVehicleInspection: '车辆上线检测',
   merchant: '商户',
   mainOrder: '年检订单',
-
 }
 
 const imageURLPrefix = '//localhost:2090'
@@ -67,7 +79,6 @@ const imageKeys = [
   'repairingPartImg5',
 ]
 
-
 class ServiceVehicleRepairingUpdateForm extends Component {
   state = {
     previewVisible: false,
@@ -81,7 +92,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: mapFromImageValues(selectedRow,imageKeys)
+      convertedImagesValues: mapFromImageValues(selectedRow, imageKeys),
     })
   }
 
@@ -110,13 +121,14 @@ class ServiceVehicleRepairingUpdateForm extends Component {
     if (currentUpdateIndex >= selectedRows.length) {
       return
     }
-    const convertiedValues = selectedRows.map((item) => {
+    const convertiedValues = selectedRows.map(item => {
       return {
         ...item,
         startTime: moment(item.startTime).format('YYYY-MM-DD'),
         lastUpdateTime: moment(item.lastUpdateTime).format('YYYY-MM-DD'),
-        repairingFinishedDatetime: moment(item.repairingFinishedDatetime).format('YYYY-MM-DD'),
-
+        repairingFinishedDatetime: moment(
+          item.repairingFinishedDatetime
+        ).format('YYYY-MM-DD'),
       }
     })
     const selectedRow = convertiedValues[currentUpdateIndex]
@@ -132,8 +144,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -142,12 +153,17 @@ class ServiceVehicleRepairingUpdateForm extends Component {
   }
 
   render() {
-    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
+    const {
+      form,
+      dispatch,
+      submitting,
+      selectedRows,
+      currentUpdateIndex,
+    } = this.props
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const { convertedImagesValues } = this.state
     const { setFieldsValue } = this.props.form
-    
-    
+
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -158,7 +174,11 @@ class ServiceVehicleRepairingUpdateForm extends Component {
         const { owner } = this.props
         const serviceVehicleRepairingId = values.id
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-        const parameters = { ...values, serviceVehicleRepairingId, ...imagesValues }
+        const parameters = {
+          ...values,
+          serviceVehicleRepairingId,
+          ...imagesValues,
+        }
 
         // const newIndex= currentUpdateIndex + 1
         dispatch({
@@ -174,7 +194,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
         })
       })
     }
-    
+
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -185,11 +205,15 @@ class ServiceVehicleRepairingUpdateForm extends Component {
         const { owner } = this.props
         const serviceVehicleRepairingId = values.id
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-        const parameters = { ...values, serviceVehicleRepairingId, ...imagesValues }
+        const parameters = {
+          ...values,
+          serviceVehicleRepairingId,
+          ...imagesValues,
+        }
 
         // TODO
         const { currentUpdateIndex } = this.props
-        
+
         if (currentUpdateIndex >= selectedRows.length - 1) {
           return
         }
@@ -211,11 +235,11 @@ class ServiceVehicleRepairingUpdateForm extends Component {
         })
       })
     }
-    
+
     const skipToNext = () => {
       const { currentUpdateIndex } = this.props
       const { owner } = this.props
-        
+
       const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextServiceVehicleRepairingUpdateRow`,
@@ -229,7 +253,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
         },
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -246,18 +270,22 @@ class ServiceVehicleRepairingUpdateForm extends Component {
       if (!errors || errorCount === 0) {
         return null
       }
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -279,30 +307,28 @@ class ServiceVehicleRepairingUpdateForm extends Component {
         </span>
       )
     }
-    
+
     if (!selectedRows) {
-      return (<div>缺少被更新的对象</div>)
+      return <div>缺少被更新的对象</div>
     }
 
     // TODO
     return (
       <PageHeaderLayout
-        title={"更新维修服务"+(currentUpdateIndex+1)+"/"+selectedRows.length}
+        title={
+          '更新维修服务' + (currentUpdateIndex + 1) + '/' + selectedRows.length
+        }
         content="更新维修服务"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-            
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
                     rules: [{ required: true, message: '请输入ID' }],
-                  })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
-                  )}
+                  })(<Input placeholder="请输入请输入IDstring" disabled />)}
                 </Form.Item>
               </Col>
 
@@ -310,9 +336,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <Form.Item label={fieldLabels.serviceStatus}>
                   {getFieldDecorator('serviceStatus', {
                     rules: [{ required: true, message: '请输入服务状态' }],
-                  })(
-                    <Input placeholder="请输入请输入服务状态string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务状态string" />)}
                 </Form.Item>
               </Col>
 
@@ -320,9 +344,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <Form.Item label={fieldLabels.serviceSummary}>
                   {getFieldDecorator('serviceSummary', {
                     rules: [{ required: true, message: '请输入服务概述' }],
-                  })(
-                    <Input placeholder="请输入请输入服务概述string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务概述string" />)}
                 </Form.Item>
               </Col>
 
@@ -330,9 +352,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <Form.Item label={fieldLabels.startTime}>
                   {getFieldDecorator('startTime', {
                     rules: [{ required: true, message: '请输入开始时间' }],
-                  })(
-                    <Input placeholder="请输入请输入开始时间date_time" />
-                  )}
+                  })(<Input placeholder="请输入请输入开始时间date_time" />)}
                 </Form.Item>
               </Col>
 
@@ -340,9 +360,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <Form.Item label={fieldLabels.longitude}>
                   {getFieldDecorator('longitude', {
                     rules: [{ required: true, message: '请输入经度' }],
-                  })(
-                    <Input placeholder="请输入请输入经度double" />
-                  )}
+                  })(<Input placeholder="请输入请输入经度double" />)}
                 </Form.Item>
               </Col>
 
@@ -350,16 +368,16 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <Form.Item label={fieldLabels.latitude}>
                   {getFieldDecorator('latitude', {
                     rules: [{ required: true, message: '请输入纬度' }],
-                  })(
-                    <Input placeholder="请输入请输入纬度double" />
-                  )}
+                  })(<Input placeholder="请输入请输入纬度double" />)}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.repairingQuotationTotalAmount}>
                   {getFieldDecorator('repairingQuotationTotalAmount', {
-                    rules: [{ required: true, message: '请输入车辆维修报价总金额' }],
+                    rules: [
+                      { required: true, message: '请输入车辆维修报价总金额' },
+                    ],
                   })(
                     <Input placeholder="请输入请输入车辆维修报价总金额money" />
                   )}
@@ -369,20 +387,17 @@ class ServiceVehicleRepairingUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.repairingFinishedDatetime}>
                   {getFieldDecorator('repairingFinishedDatetime', {
-                    rules: [{ required: true, message: '请输入维修完成日期时间' }],
+                    rules: [
+                      { required: true, message: '请输入维修完成日期时间' },
+                    ],
                   })(
                     <Input placeholder="请输入请输入维修完成日期时间date_time" />
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
-       
-        
-        
-        
 
         <Card title="车辆维修备注" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
@@ -400,16 +415,16 @@ class ServiceVehicleRepairingUpdateForm extends Component {
           </Form>
         </Card>
 
-
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <ImageUpload
                   buttonTitle="年检报告1"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'inspectionReportImage1')}
+                  handleChange={event =>
+                    this.handleChange(event, 'inspectionReportImage1')
+                  }
                   fileList={convertedImagesValues.inspectionReportImage1}
                 />
               </Col>
@@ -418,7 +433,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="年检报告2"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'inspectionReportImage2')}
+                  handleChange={event =>
+                    this.handleChange(event, 'inspectionReportImage2')
+                  }
                   fileList={convertedImagesValues.inspectionReportImage2}
                 />
               </Col>
@@ -427,7 +444,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="年检报告3"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'inspectionReportImage3')}
+                  handleChange={event =>
+                    this.handleChange(event, 'inspectionReportImage3')
+                  }
                   fileList={convertedImagesValues.inspectionReportImage3}
                 />
               </Col>
@@ -436,7 +455,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="年检报告4"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'inspectionReportImage4')}
+                  handleChange={event =>
+                    this.handleChange(event, 'inspectionReportImage4')
+                  }
                   fileList={convertedImagesValues.inspectionReportImage4}
                 />
               </Col>
@@ -445,7 +466,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="年检报告5"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'inspectionReportImage5')}
+                  handleChange={event =>
+                    this.handleChange(event, 'inspectionReportImage5')
+                  }
                   fileList={convertedImagesValues.inspectionReportImage5}
                 />
               </Col>
@@ -454,7 +477,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="车辆维修报价单1"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'repairingQuotationImage1')}
+                  handleChange={event =>
+                    this.handleChange(event, 'repairingQuotationImage1')
+                  }
                   fileList={convertedImagesValues.repairingQuotationImage1}
                 />
               </Col>
@@ -463,7 +488,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="车辆维修报价单2"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'repairingQuotationImage2')}
+                  handleChange={event =>
+                    this.handleChange(event, 'repairingQuotationImage2')
+                  }
                   fileList={convertedImagesValues.repairingQuotationImage2}
                 />
               </Col>
@@ -472,7 +499,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="车辆维修报价单3"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'repairingQuotationImage3')}
+                  handleChange={event =>
+                    this.handleChange(event, 'repairingQuotationImage3')
+                  }
                   fileList={convertedImagesValues.repairingQuotationImage3}
                 />
               </Col>
@@ -481,7 +510,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="车辆维修报价单4"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'repairingQuotationImage4')}
+                  handleChange={event =>
+                    this.handleChange(event, 'repairingQuotationImage4')
+                  }
                   fileList={convertedImagesValues.repairingQuotationImage4}
                 />
               </Col>
@@ -490,7 +521,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="车辆维修报价单5"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'repairingQuotationImage5')}
+                  handleChange={event =>
+                    this.handleChange(event, 'repairingQuotationImage5')
+                  }
                   fileList={convertedImagesValues.repairingQuotationImage5}
                 />
               </Col>
@@ -499,7 +532,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="车辆维修部分图片1"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'repairingPartImg1')}
+                  handleChange={event =>
+                    this.handleChange(event, 'repairingPartImg1')
+                  }
                   fileList={convertedImagesValues.repairingPartImg1}
                 />
               </Col>
@@ -508,7 +543,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="车辆维修部分图片2"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'repairingPartImg2')}
+                  handleChange={event =>
+                    this.handleChange(event, 'repairingPartImg2')
+                  }
                   fileList={convertedImagesValues.repairingPartImg2}
                 />
               </Col>
@@ -517,7 +554,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="车辆维修部分图片3"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'repairingPartImg3')}
+                  handleChange={event =>
+                    this.handleChange(event, 'repairingPartImg3')
+                  }
                   fileList={convertedImagesValues.repairingPartImg3}
                 />
               </Col>
@@ -526,7 +565,9 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="车辆维修部分图片4"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'repairingPartImg4')}
+                  handleChange={event =>
+                    this.handleChange(event, 'repairingPartImg4')
+                  }
                   fileList={convertedImagesValues.repairingPartImg4}
                 />
               </Col>
@@ -535,24 +576,40 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="车辆维修部分图片5"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'repairingPartImg5')}
+                  handleChange={event =>
+                    this.handleChange(event, 'repairingPartImg5')
+                  }
                   fileList={convertedImagesValues.repairingPartImg5}
                 />
               </Col>
-
             </Row>
           </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitUpdateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             更新
           </Button>
-          <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
+          <Button
+            type="primary"
+            onClick={submitUpdateFormAndContinue}
+            loading={submitting}
+            disabled={currentUpdateIndex + 1 >= selectedRows.length}
+          >
             更新并装载下一个
           </Button>
-          <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
+          <Button
+            type="info"
+            onClick={skipToNext}
+            loading={submitting}
+            disabled={currentUpdateIndex + 1 >= selectedRows.length}
+          >
             略过
           </Button>
           <Button type="info" onClick={goback} loading={submitting}>
@@ -567,6 +624,3 @@ class ServiceVehicleRepairingUpdateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ServiceVehicleRepairingUpdateForm))
-
-
-

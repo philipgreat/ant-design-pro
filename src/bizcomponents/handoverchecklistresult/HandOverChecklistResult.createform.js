@@ -1,5 +1,19 @@
 import React, { Component } from 'react'
-import { AutoComplete, Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
+import {
+  AutoComplete,
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+  Switch,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -8,8 +22,8 @@ import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import FooterToolbar from '../../components/FooterToolbar'
 import ImageUpload from '../../components/ImageUpload'
 import styles from './HandOverChecklistResult.createform.less'
-import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
-import GlobalComponents from '../../custcomponents';
+import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
+import GlobalComponents from '../../custcomponents'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -32,7 +46,7 @@ const fieldLabels = {
   serviceTypeFileM2m: '移件服务',
   serviceTypeFileM2c: '还件服务',
 }
-const testValues = {};
+const testValues = {}
 /*
 const testValues = {
   handOverCheckItemName: '刹车是否完好?',
@@ -58,7 +72,6 @@ const testValues = {
 */
 const imageURLPrefix = '//localhost:2090'
 
-
 const imageKeys = [
   'handOverCheckEvidenceImage1',
   'handOverCheckEvidenceImage2',
@@ -66,7 +79,6 @@ const imageKeys = [
   'handOverCheckEvidenceImage4',
   'handOverCheckEvidenceImage5',
 ]
-
 
 class HandOverChecklistResultCreateForm extends Component {
   state = {
@@ -79,36 +91,25 @@ class HandOverChecklistResultCreateForm extends Component {
     // const { getFieldDecorator,setFieldsValue } = this.props.form
     const { setFieldsValue } = this.props.form
     //setFieldsValue(testValues)
-      
-    this.executeCandidateAvailableHandOverItemSearch("")
-    
-    
-    this.executeCandidateServiceTypeVehicleC2mSearch("")
-    
-    
-    this.executeCandidateServiceTypeVehicleM2mSearch("")
-    
-    
-    this.executeCandidateServiceTypeVehicleM2cSearch("")
-    
-    
-    this.executeCandidateServiceTypeFileC2mSearch("")
-    
-    
-    this.executeCandidateServiceTypeFileM2mSearch("")
-    
-    
-    this.executeCandidateServiceTypeFileM2cSearch("")
-    
- 
-    
-    
-    
+
+    this.executeCandidateAvailableHandOverItemSearch('')
+
+    this.executeCandidateServiceTypeVehicleC2mSearch('')
+
+    this.executeCandidateServiceTypeVehicleM2mSearch('')
+
+    this.executeCandidateServiceTypeVehicleM2cSearch('')
+
+    this.executeCandidateServiceTypeFileC2mSearch('')
+
+    this.executeCandidateServiceTypeFileM2mSearch('')
+
+    this.executeCandidateServiceTypeFileM2cSearch('')
   }
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -116,163 +117,166 @@ class HandOverChecklistResultCreateForm extends Component {
     })
   }
 
-  
-  executeCandidateAvailableHandOverItemSearch = (filterKey) =>{
+  executeCandidateAvailableHandOverItemSearch = filterKey => {
+    const { HandOverChecklistResultService } = GlobalComponents
 
-    const {HandOverChecklistResultService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = HandOverChecklistResultService.requestCandidateAvailableHandOverItem("availableHandOverItem", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = HandOverChecklistResultService.requestCandidateAvailableHandOverItem(
+      'availableHandOverItem',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateAvailableHandOverItemList=>{
+    future.then(candidateAvailableHandOverItemList => {
       this.setState({
-        candidateAvailableHandOverItemList
+        candidateAvailableHandOverItemList,
       })
-
     })
-
-  }	 
-  handleCandidateAvailableHandOverItemSearch = (value) => {
+  }
+  handleCandidateAvailableHandOverItemSearch = value => {
     this.executeCandidateAvailableHandOverItemSearch(value)
   }
 
-  executeCandidateServiceTypeVehicleC2mSearch = (filterKey) =>{
+  executeCandidateServiceTypeVehicleC2mSearch = filterKey => {
+    const { HandOverChecklistResultService } = GlobalComponents
 
-    const {HandOverChecklistResultService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = HandOverChecklistResultService.requestCandidateServiceTypeVehicleC2m("serviceVehicleMovementC2m", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = HandOverChecklistResultService.requestCandidateServiceTypeVehicleC2m(
+      'serviceVehicleMovementC2m',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateServiceTypeVehicleC2mList=>{
+    future.then(candidateServiceTypeVehicleC2mList => {
       this.setState({
-        candidateServiceTypeVehicleC2mList
+        candidateServiceTypeVehicleC2mList,
       })
-
     })
-
-  }	 
-  handleCandidateServiceTypeVehicleC2mSearch = (value) => {
+  }
+  handleCandidateServiceTypeVehicleC2mSearch = value => {
     this.executeCandidateServiceTypeVehicleC2mSearch(value)
   }
 
-  executeCandidateServiceTypeVehicleM2mSearch = (filterKey) =>{
+  executeCandidateServiceTypeVehicleM2mSearch = filterKey => {
+    const { HandOverChecklistResultService } = GlobalComponents
 
-    const {HandOverChecklistResultService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = HandOverChecklistResultService.requestCandidateServiceTypeVehicleM2m("serviceVehicleMovementM2m", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = HandOverChecklistResultService.requestCandidateServiceTypeVehicleM2m(
+      'serviceVehicleMovementM2m',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateServiceTypeVehicleM2mList=>{
+    future.then(candidateServiceTypeVehicleM2mList => {
       this.setState({
-        candidateServiceTypeVehicleM2mList
+        candidateServiceTypeVehicleM2mList,
       })
-
     })
-
-  }	 
-  handleCandidateServiceTypeVehicleM2mSearch = (value) => {
+  }
+  handleCandidateServiceTypeVehicleM2mSearch = value => {
     this.executeCandidateServiceTypeVehicleM2mSearch(value)
   }
 
-  executeCandidateServiceTypeVehicleM2cSearch = (filterKey) =>{
+  executeCandidateServiceTypeVehicleM2cSearch = filterKey => {
+    const { HandOverChecklistResultService } = GlobalComponents
 
-    const {HandOverChecklistResultService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = HandOverChecklistResultService.requestCandidateServiceTypeVehicleM2c("serviceVehicleMovementM2c", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = HandOverChecklistResultService.requestCandidateServiceTypeVehicleM2c(
+      'serviceVehicleMovementM2c',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateServiceTypeVehicleM2cList=>{
+    future.then(candidateServiceTypeVehicleM2cList => {
       this.setState({
-        candidateServiceTypeVehicleM2cList
+        candidateServiceTypeVehicleM2cList,
       })
-
     })
-
-  }	 
-  handleCandidateServiceTypeVehicleM2cSearch = (value) => {
+  }
+  handleCandidateServiceTypeVehicleM2cSearch = value => {
     this.executeCandidateServiceTypeVehicleM2cSearch(value)
   }
 
-  executeCandidateServiceTypeFileC2mSearch = (filterKey) =>{
+  executeCandidateServiceTypeFileC2mSearch = filterKey => {
+    const { HandOverChecklistResultService } = GlobalComponents
 
-    const {HandOverChecklistResultService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = HandOverChecklistResultService.requestCandidateServiceTypeFileC2m("serviceFileMovementC2m", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = HandOverChecklistResultService.requestCandidateServiceTypeFileC2m(
+      'serviceFileMovementC2m',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateServiceTypeFileC2mList=>{
+    future.then(candidateServiceTypeFileC2mList => {
       this.setState({
-        candidateServiceTypeFileC2mList
+        candidateServiceTypeFileC2mList,
       })
-
     })
-
-  }	 
-  handleCandidateServiceTypeFileC2mSearch = (value) => {
+  }
+  handleCandidateServiceTypeFileC2mSearch = value => {
     this.executeCandidateServiceTypeFileC2mSearch(value)
   }
 
-  executeCandidateServiceTypeFileM2mSearch = (filterKey) =>{
+  executeCandidateServiceTypeFileM2mSearch = filterKey => {
+    const { HandOverChecklistResultService } = GlobalComponents
 
-    const {HandOverChecklistResultService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = HandOverChecklistResultService.requestCandidateServiceTypeFileM2m("serviceFileMovementM2m", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = HandOverChecklistResultService.requestCandidateServiceTypeFileM2m(
+      'serviceFileMovementM2m',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateServiceTypeFileM2mList=>{
+    future.then(candidateServiceTypeFileM2mList => {
       this.setState({
-        candidateServiceTypeFileM2mList
+        candidateServiceTypeFileM2mList,
       })
-
     })
-
-  }	 
-  handleCandidateServiceTypeFileM2mSearch = (value) => {
+  }
+  handleCandidateServiceTypeFileM2mSearch = value => {
     this.executeCandidateServiceTypeFileM2mSearch(value)
   }
 
-  executeCandidateServiceTypeFileM2cSearch = (filterKey) =>{
+  executeCandidateServiceTypeFileM2cSearch = filterKey => {
+    const { HandOverChecklistResultService } = GlobalComponents
 
-    const {HandOverChecklistResultService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = HandOverChecklistResultService.requestCandidateServiceTypeFileM2c("serviceFileMovementM2c", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = HandOverChecklistResultService.requestCandidateServiceTypeFileM2c(
+      'serviceFileMovementM2c',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateServiceTypeFileM2cList=>{
+    future.then(candidateServiceTypeFileM2cList => {
       this.setState({
-        candidateServiceTypeFileM2cList
+        candidateServiceTypeFileM2cList,
       })
-
     })
-
-  }	 
-  handleCandidateServiceTypeFileM2cSearch = (value) => {
+  }
+  handleCandidateServiceTypeFileM2cSearch = value => {
     this.executeCandidateServiceTypeFileM2cSearch(value)
   }
- 
-
-
 
   handleChange = (event, source) => {
     console.log('get file list from change in update change:', source)
@@ -284,7 +288,6 @@ class HandOverChecklistResultCreateForm extends Component {
     this.setState({ convertedImagesValues })
     console.log('/get file list from change in update change:', source)
   }
-
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -304,7 +307,11 @@ class HandOverChecklistResultCreateForm extends Component {
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addHandOverChecklistResult`,
-          payload: { id: owner.id, type: 'handOverChecklistResult', parameters },
+          payload: {
+            id: owner.id,
+            type: 'handOverChecklistResult',
+            parameters,
+          },
         })
       })
     }
@@ -314,18 +321,23 @@ class HandOverChecklistResultCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addHandOverChecklistResult`,
-          payload: { id: owner.id, type: 'handOverChecklistResult', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'handOverChecklistResult',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -340,18 +352,22 @@ class HandOverChecklistResultCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -373,72 +389,63 @@ class HandOverChecklistResultCreateForm extends Component {
         </span>
       )
     }
-    
 
-    
-    const {candidateAvailableHandOverItemList} = this.state
-    if(!candidateAvailableHandOverItemList){
-      return (<div>等等</div>)
+    const { candidateAvailableHandOverItemList } = this.state
+    if (!candidateAvailableHandOverItemList) {
+      return <div>等等</div>
     }
-    if(!candidateAvailableHandOverItemList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
-    const {candidateServiceTypeVehicleC2mList} = this.state
-    if(!candidateServiceTypeVehicleC2mList){
-      return (<div>等等</div>)
+    if (!candidateAvailableHandOverItemList.candidates) {
+      return <div>等等</div>
     }
-    if(!candidateServiceTypeVehicleC2mList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
-    const {candidateServiceTypeVehicleM2mList} = this.state
-    if(!candidateServiceTypeVehicleM2mList){
-      return (<div>等等</div>)
+
+    const { candidateServiceTypeVehicleC2mList } = this.state
+    if (!candidateServiceTypeVehicleC2mList) {
+      return <div>等等</div>
     }
-    if(!candidateServiceTypeVehicleM2mList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
-    const {candidateServiceTypeVehicleM2cList} = this.state
-    if(!candidateServiceTypeVehicleM2cList){
-      return (<div>等等</div>)
+    if (!candidateServiceTypeVehicleC2mList.candidates) {
+      return <div>等等</div>
     }
-    if(!candidateServiceTypeVehicleM2cList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
-    const {candidateServiceTypeFileC2mList} = this.state
-    if(!candidateServiceTypeFileC2mList){
-      return (<div>等等</div>)
+
+    const { candidateServiceTypeVehicleM2mList } = this.state
+    if (!candidateServiceTypeVehicleM2mList) {
+      return <div>等等</div>
     }
-    if(!candidateServiceTypeFileC2mList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
-    const {candidateServiceTypeFileM2mList} = this.state
-    if(!candidateServiceTypeFileM2mList){
-      return (<div>等等</div>)
+    if (!candidateServiceTypeVehicleM2mList.candidates) {
+      return <div>等等</div>
     }
-    if(!candidateServiceTypeFileM2mList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
-    const {candidateServiceTypeFileM2cList} = this.state
-    if(!candidateServiceTypeFileM2cList){
-      return (<div>等等</div>)
+
+    const { candidateServiceTypeVehicleM2cList } = this.state
+    if (!candidateServiceTypeVehicleM2cList) {
+      return <div>等等</div>
     }
-    if(!candidateServiceTypeFileM2cList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
+    if (!candidateServiceTypeVehicleM2cList.candidates) {
+      return <div>等等</div>
+    }
+
+    const { candidateServiceTypeFileC2mList } = this.state
+    if (!candidateServiceTypeFileC2mList) {
+      return <div>等等</div>
+    }
+    if (!candidateServiceTypeFileC2mList.candidates) {
+      return <div>等等</div>
+    }
+
+    const { candidateServiceTypeFileM2mList } = this.state
+    if (!candidateServiceTypeFileM2mList) {
+      return <div>等等</div>
+    }
+    if (!candidateServiceTypeFileM2mList.candidates) {
+      return <div>等等</div>
+    }
+
+    const { candidateServiceTypeFileM2cList } = this.state
+    if (!candidateServiceTypeFileM2cList) {
+      return <div>等等</div>
+    }
+    if (!candidateServiceTypeFileM2cList.candidates) {
+      return <div>等等</div>
+    }
+
     return (
       <PageHeaderLayout
         title="新建一个交接检查结果"
@@ -448,14 +455,11 @@ class HandOverChecklistResultCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.handOverCheckItemName}>
                   {getFieldDecorator('handOverCheckItemName', {
                     rules: [{ required: true, message: '请输入检查项名称' }],
-                  })(
-                    <Input placeholder="请输入请输入检查项名称string" />
-                  )}
+                  })(<Input placeholder="请输入请输入检查项名称string" />)}
                 </Form.Item>
               </Col>
 
@@ -473,9 +477,7 @@ class HandOverChecklistResultCreateForm extends Component {
                 <Form.Item label={fieldLabels.handOverCheckResult}>
                   {getFieldDecorator('handOverCheckResult', {
                     rules: [{ required: true, message: '请输入检车项结果' }],
-                  })(
-                    <Input placeholder="请输入请输入检车项结果string" />
-                  )}
+                  })(<Input placeholder="请输入请输入检车项结果string" />)}
                 </Form.Item>
               </Col>
 
@@ -488,31 +490,20 @@ class HandOverChecklistResultCreateForm extends Component {
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
-       
-        
-
-
-
-
-
-
-
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <ImageUpload
                   buttonTitle="凭证图片1"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage1')}
+                  handleChange={event =>
+                    this.handleChange(event, 'handOverCheckEvidenceImage1')
+                  }
                   fileList={convertedImagesValues.handOverCheckEvidenceImage1}
                 />
               </Col>
@@ -521,7 +512,9 @@ class HandOverChecklistResultCreateForm extends Component {
                 <ImageUpload
                   buttonTitle="凭证图片2"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage2')}
+                  handleChange={event =>
+                    this.handleChange(event, 'handOverCheckEvidenceImage2')
+                  }
                   fileList={convertedImagesValues.handOverCheckEvidenceImage2}
                 />
               </Col>
@@ -530,7 +523,9 @@ class HandOverChecklistResultCreateForm extends Component {
                 <ImageUpload
                   buttonTitle="凭证图片3"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage3')}
+                  handleChange={event =>
+                    this.handleChange(event, 'handOverCheckEvidenceImage3')
+                  }
                   fileList={convertedImagesValues.handOverCheckEvidenceImage3}
                 />
               </Col>
@@ -539,7 +534,9 @@ class HandOverChecklistResultCreateForm extends Component {
                 <ImageUpload
                   buttonTitle="凭证图片4"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage4')}
+                  handleChange={event =>
+                    this.handleChange(event, 'handOverCheckEvidenceImage4')
+                  }
                   fileList={convertedImagesValues.handOverCheckEvidenceImage4}
                 />
               </Col>
@@ -548,39 +545,40 @@ class HandOverChecklistResultCreateForm extends Component {
                 <ImageUpload
                   buttonTitle="凭证图片5"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'handOverCheckEvidenceImage5')}
+                  handleChange={event =>
+                    this.handleChange(event, 'handOverCheckEvidenceImage5')
+                  }
                   fileList={convertedImagesValues.handOverCheckEvidenceImage5}
                 />
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.availableHandOverItem}>
                   {getFieldDecorator('availableHandOverItemId', {
                     rules: [{ required: true, message: '请输入交接检查项' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateAvailableHandOverItemList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateAvailableHandOverItemSearch}
-                    placeholder="请输入交接检查项"
-                  >
-                  {candidateAvailableHandOverItemList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.checkItemName}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateAvailableHandOverItemList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateAvailableHandOverItemSearch}
+                      placeholder="请输入交接检查项"
+                    >
+                      {candidateAvailableHandOverItemList.candidates.map(
+                        item => {
+                          return (
+                            <Option key={item.id}>{`${item.checkItemName}(${
+                              item.id
+                            })`}</Option>
+                          )
+                        }
+                      )}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -590,19 +588,22 @@ class HandOverChecklistResultCreateForm extends Component {
                   {getFieldDecorator('serviceTypeVehicleC2mId', {
                     rules: [{ required: true, message: '请输入收车服务' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateServiceTypeVehicleC2mList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateServiceTypeVehicleC2mSearch}
-                    placeholder="请输入收车服务"
-                  >
-                  {candidateServiceTypeVehicleC2mList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateServiceTypeVehicleC2mList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateServiceTypeVehicleC2mSearch}
+                      placeholder="请输入收车服务"
+                    >
+                      {candidateServiceTypeVehicleC2mList.candidates.map(
+                        item => {
+                          return (
+                            <Option key={item.id}>{`${item.serviceStatus}(${
+                              item.id
+                            })`}</Option>
+                          )
+                        }
+                      )}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -612,19 +613,22 @@ class HandOverChecklistResultCreateForm extends Component {
                   {getFieldDecorator('serviceTypeVehicleM2mId', {
                     rules: [{ required: true, message: '请输入移车服务' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateServiceTypeVehicleM2mList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateServiceTypeVehicleM2mSearch}
-                    placeholder="请输入移车服务"
-                  >
-                  {candidateServiceTypeVehicleM2mList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateServiceTypeVehicleM2mList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateServiceTypeVehicleM2mSearch}
+                      placeholder="请输入移车服务"
+                    >
+                      {candidateServiceTypeVehicleM2mList.candidates.map(
+                        item => {
+                          return (
+                            <Option key={item.id}>{`${item.serviceStatus}(${
+                              item.id
+                            })`}</Option>
+                          )
+                        }
+                      )}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -634,19 +638,22 @@ class HandOverChecklistResultCreateForm extends Component {
                   {getFieldDecorator('serviceTypeVehicleM2cId', {
                     rules: [{ required: true, message: '请输入还车服务' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateServiceTypeVehicleM2cList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateServiceTypeVehicleM2cSearch}
-                    placeholder="请输入还车服务"
-                  >
-                  {candidateServiceTypeVehicleM2cList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateServiceTypeVehicleM2cList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateServiceTypeVehicleM2cSearch}
+                      placeholder="请输入还车服务"
+                    >
+                      {candidateServiceTypeVehicleM2cList.candidates.map(
+                        item => {
+                          return (
+                            <Option key={item.id}>{`${item.serviceStatus}(${
+                              item.id
+                            })`}</Option>
+                          )
+                        }
+                      )}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -656,19 +663,20 @@ class HandOverChecklistResultCreateForm extends Component {
                   {getFieldDecorator('serviceTypeFileC2mId', {
                     rules: [{ required: true, message: '请输入收件服务' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateServiceTypeFileC2mList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateServiceTypeFileC2mSearch}
-                    placeholder="请输入收件服务"
-                  >
-                  {candidateServiceTypeFileC2mList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateServiceTypeFileC2mList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateServiceTypeFileC2mSearch}
+                      placeholder="请输入收件服务"
+                    >
+                      {candidateServiceTypeFileC2mList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.serviceStatus}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -678,19 +686,20 @@ class HandOverChecklistResultCreateForm extends Component {
                   {getFieldDecorator('serviceTypeFileM2mId', {
                     rules: [{ required: true, message: '请输入移件服务' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateServiceTypeFileM2mList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateServiceTypeFileM2mSearch}
-                    placeholder="请输入移件服务"
-                  >
-                  {candidateServiceTypeFileM2mList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateServiceTypeFileM2mList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateServiceTypeFileM2mSearch}
+                      placeholder="请输入移件服务"
+                    >
+                      {candidateServiceTypeFileM2mList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.serviceStatus}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -700,33 +709,42 @@ class HandOverChecklistResultCreateForm extends Component {
                   {getFieldDecorator('serviceTypeFileM2cId', {
                     rules: [{ required: true, message: '请输入还件服务' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateServiceTypeFileM2cList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateServiceTypeFileM2cSearch}
-                    placeholder="请输入还件服务"
-                  >
-                  {candidateServiceTypeFileM2cList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateServiceTypeFileM2cList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateServiceTypeFileM2cSearch}
+                      placeholder="请输入还件服务"
+                    >
+                      {candidateServiceTypeFileM2cList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.serviceStatus}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -741,7 +759,3 @@ class HandOverChecklistResultCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(HandOverChecklistResultCreateForm))
-
-
-
-

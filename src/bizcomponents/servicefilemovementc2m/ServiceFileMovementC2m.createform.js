@@ -1,5 +1,19 @@
 import React, { Component } from 'react'
-import { AutoComplete, Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
+import {
+  AutoComplete,
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+  Switch,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
@@ -8,8 +22,8 @@ import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import FooterToolbar from '../../components/FooterToolbar'
 import ImageUpload from '../../components/ImageUpload'
 import styles from './ServiceFileMovementC2m.createform.less'
-import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
-import GlobalComponents from '../../custcomponents';
+import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
+import GlobalComponents from '../../custcomponents'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -34,7 +48,7 @@ const fieldLabels = {
   handoverResultComment: '交接检查备注',
   merchant: '商户',
 }
-const testValues = {};
+const testValues = {}
 /*
 const testValues = {
   serviceStatus: '待验收',
@@ -62,10 +76,7 @@ const testValues = {
 */
 const imageURLPrefix = '//localhost:2090'
 
-
-const imageKeys = [
-]
-
+const imageKeys = []
 
 class ServiceFileMovementC2mCreateForm extends Component {
   state = {
@@ -78,24 +89,17 @@ class ServiceFileMovementC2mCreateForm extends Component {
     // const { getFieldDecorator,setFieldsValue } = this.props.form
     const { setFieldsValue } = this.props.form
     //setFieldsValue(testValues)
-      
-    this.executeCandidateResponsibleWorkerSearch("")
-    
-    
-    this.executeCandidateMainOrderSearch("")
-    
-    
-    this.executeCandidateMerchantSearch("")
-    
- 
-    
-    
-    
+
+    this.executeCandidateResponsibleWorkerSearch('')
+
+    this.executeCandidateMainOrderSearch('')
+
+    this.executeCandidateMerchantSearch('')
   }
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -103,75 +107,74 @@ class ServiceFileMovementC2mCreateForm extends Component {
     })
   }
 
-  
-  executeCandidateResponsibleWorkerSearch = (filterKey) =>{
+  executeCandidateResponsibleWorkerSearch = filterKey => {
+    const { ServiceFileMovementC2mService } = GlobalComponents
 
-    const {ServiceFileMovementC2mService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = ServiceFileMovementC2mService.requestCandidateResponsibleWorker("vehicleServiceCompanyEmployee", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = ServiceFileMovementC2mService.requestCandidateResponsibleWorker(
+      'vehicleServiceCompanyEmployee',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateResponsibleWorkerList=>{
+    future.then(candidateResponsibleWorkerList => {
       this.setState({
-        candidateResponsibleWorkerList
+        candidateResponsibleWorkerList,
       })
-
     })
-
-  }	 
-  handleCandidateResponsibleWorkerSearch = (value) => {
+  }
+  handleCandidateResponsibleWorkerSearch = value => {
     this.executeCandidateResponsibleWorkerSearch(value)
   }
 
-  executeCandidateMainOrderSearch = (filterKey) =>{
+  executeCandidateMainOrderSearch = filterKey => {
+    const { ServiceFileMovementC2mService } = GlobalComponents
 
-    const {ServiceFileMovementC2mService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = ServiceFileMovementC2mService.requestCandidateMainOrder("vehicleInspectionOrder", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = ServiceFileMovementC2mService.requestCandidateMainOrder(
+      'vehicleInspectionOrder',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateMainOrderList=>{
+    future.then(candidateMainOrderList => {
       this.setState({
-        candidateMainOrderList
+        candidateMainOrderList,
       })
-
     })
-
-  }	 
-  handleCandidateMainOrderSearch = (value) => {
+  }
+  handleCandidateMainOrderSearch = value => {
     this.executeCandidateMainOrderSearch(value)
   }
 
-  executeCandidateMerchantSearch = (filterKey) =>{
+  executeCandidateMerchantSearch = filterKey => {
+    const { ServiceFileMovementC2mService } = GlobalComponents
 
-    const {ServiceFileMovementC2mService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = ServiceFileMovementC2mService.requestCandidateMerchant("vehicleServiceCompany", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = ServiceFileMovementC2mService.requestCandidateMerchant(
+      'vehicleServiceCompany',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateMerchantList=>{
+    future.then(candidateMerchantList => {
       this.setState({
-        candidateMerchantList
+        candidateMerchantList,
       })
-
     })
-
-  }	 
-  handleCandidateMerchantSearch = (value) => {
+  }
+  handleCandidateMerchantSearch = value => {
     this.executeCandidateMerchantSearch(value)
   }
- 
-
-
 
   handleChange = (event, source) => {
     console.log('get file list from change in update change:', source)
@@ -183,7 +186,6 @@ class ServiceFileMovementC2mCreateForm extends Component {
     this.setState({ convertedImagesValues })
     console.log('/get file list from change in update change:', source)
   }
-
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -213,18 +215,23 @@ class ServiceFileMovementC2mCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addServiceFileMovementC2m`,
-          payload: { id: owner.id, type: 'serviceFileMovementC2m', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'serviceFileMovementC2m',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -239,18 +246,22 @@ class ServiceFileMovementC2mCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -272,36 +283,31 @@ class ServiceFileMovementC2mCreateForm extends Component {
         </span>
       )
     }
-    
 
-    
-    const {candidateResponsibleWorkerList} = this.state
-    if(!candidateResponsibleWorkerList){
-      return (<div>等等</div>)
+    const { candidateResponsibleWorkerList } = this.state
+    if (!candidateResponsibleWorkerList) {
+      return <div>等等</div>
     }
-    if(!candidateResponsibleWorkerList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
-    const {candidateMainOrderList} = this.state
-    if(!candidateMainOrderList){
-      return (<div>等等</div>)
+    if (!candidateResponsibleWorkerList.candidates) {
+      return <div>等等</div>
     }
-    if(!candidateMainOrderList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
-    const {candidateMerchantList} = this.state
-    if(!candidateMerchantList){
-      return (<div>等等</div>)
+
+    const { candidateMainOrderList } = this.state
+    if (!candidateMainOrderList) {
+      return <div>等等</div>
     }
-    if(!candidateMerchantList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
+    if (!candidateMainOrderList.candidates) {
+      return <div>等等</div>
+    }
+
+    const { candidateMerchantList } = this.state
+    if (!candidateMerchantList) {
+      return <div>等等</div>
+    }
+    if (!candidateMerchantList.candidates) {
+      return <div>等等</div>
+    }
+
     return (
       <PageHeaderLayout
         title="新建一个收件服务"
@@ -311,14 +317,11 @@ class ServiceFileMovementC2mCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceStatus}>
                   {getFieldDecorator('serviceStatus', {
                     rules: [{ required: true, message: '请输入服务状态' }],
-                  })(
-                    <Input placeholder="请输入请输入服务状态string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务状态string" />)}
                 </Form.Item>
               </Col>
 
@@ -326,9 +329,7 @@ class ServiceFileMovementC2mCreateForm extends Component {
                 <Form.Item label={fieldLabels.serviceSummary}>
                   {getFieldDecorator('serviceSummary', {
                     rules: [{ required: true, message: '请输入服务概述' }],
-                  })(
-                    <Input placeholder="请输入请输入服务概述string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务概述string" />)}
                 </Form.Item>
               </Col>
 
@@ -336,9 +337,7 @@ class ServiceFileMovementC2mCreateForm extends Component {
                 <Form.Item label={fieldLabels.startTime}>
                   {getFieldDecorator('startTime', {
                     rules: [{ required: true, message: '请输入开始时间' }],
-                  })(
-                    <Input placeholder="请输入请输入开始时间date_time" />
-                  )}
+                  })(<Input placeholder="请输入请输入开始时间date_time" />)}
                 </Form.Item>
               </Col>
 
@@ -346,9 +345,7 @@ class ServiceFileMovementC2mCreateForm extends Component {
                 <Form.Item label={fieldLabels.longitude}>
                   {getFieldDecorator('longitude', {
                     rules: [{ required: true, message: '请输入经度' }],
-                  })(
-                    <Input placeholder="请输入请输入经度double" />
-                  )}
+                  })(<Input placeholder="请输入请输入经度double" />)}
                 </Form.Item>
               </Col>
 
@@ -356,9 +353,7 @@ class ServiceFileMovementC2mCreateForm extends Component {
                 <Form.Item label={fieldLabels.latitude}>
                   {getFieldDecorator('latitude', {
                     rules: [{ required: true, message: '请输入纬度' }],
-                  })(
-                    <Input placeholder="请输入请输入纬度double" />
-                  )}
+                  })(<Input placeholder="请输入请输入纬度double" />)}
                 </Form.Item>
               </Col>
 
@@ -366,9 +361,7 @@ class ServiceFileMovementC2mCreateForm extends Component {
                 <Form.Item label={fieldLabels.transferVerifyCode}>
                   {getFieldDecorator('transferVerifyCode', {
                     rules: [{ required: true, message: '请输入交接检查码' }],
-                  })(
-                    <Input placeholder="请输入请输入交接检查码string" />
-                  )}
+                  })(<Input placeholder="请输入请输入交接检查码string" />)}
                 </Form.Item>
               </Col>
 
@@ -376,9 +369,7 @@ class ServiceFileMovementC2mCreateForm extends Component {
                 <Form.Item label={fieldLabels.movementPurpose}>
                   {getFieldDecorator('movementPurpose', {
                     rules: [{ required: true, message: '请输入服务类型' }],
-                  })(
-                    <Input placeholder="请输入请输入服务类型string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务类型string" />)}
                 </Form.Item>
               </Col>
 
@@ -386,9 +377,7 @@ class ServiceFileMovementC2mCreateForm extends Component {
                 <Form.Item label={fieldLabels.contactName}>
                   {getFieldDecorator('contactName', {
                     rules: [{ required: true, message: '请输入联系人姓名' }],
-                  })(
-                    <Input placeholder="请输入请输入联系人姓名string" />
-                  )}
+                  })(<Input placeholder="请输入请输入联系人姓名string" />)}
                 </Form.Item>
               </Col>
 
@@ -406,9 +395,7 @@ class ServiceFileMovementC2mCreateForm extends Component {
                 <Form.Item label={fieldLabels.notifyDatetime}>
                   {getFieldDecorator('notifyDatetime', {
                     rules: [{ required: true, message: '请输入通知日期时间' }],
-                  })(
-                    <Input placeholder="请输入请输入通知日期时间date_time" />
-                  )}
+                  })(<Input placeholder="请输入请输入通知日期时间date_time" />)}
                 </Form.Item>
               </Col>
 
@@ -416,9 +403,7 @@ class ServiceFileMovementC2mCreateForm extends Component {
                 <Form.Item label={fieldLabels.notifyAddress}>
                   {getFieldDecorator('notifyAddress', {
                     rules: [{ required: true, message: '请输入通知地址' }],
-                  })(
-                    <Input placeholder="请输入请输入通知地址string" />
-                  )}
+                  })(<Input placeholder="请输入请输入通知地址string" />)}
                 </Form.Item>
               </Col>
 
@@ -426,9 +411,7 @@ class ServiceFileMovementC2mCreateForm extends Component {
                 <Form.Item label={fieldLabels.handoverResult}>
                   {getFieldDecorator('handoverResult', {
                     rules: [{ required: true, message: '请输入交接检查结果' }],
-                  })(
-                    <Input placeholder="请输入请输入交接检查结果string" />
-                  )}
+                  })(<Input placeholder="请输入请输入交接检查结果string" />)}
                 </Form.Item>
               </Col>
 
@@ -441,19 +424,9 @@ class ServiceFileMovementC2mCreateForm extends Component {
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
-
-
-
-       
-        
-
-
-
-
 
         <Card title="备注" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
@@ -462,41 +435,35 @@ class ServiceFileMovementC2mCreateForm extends Component {
                 <Form.Item>
                   {getFieldDecorator('notifyComment', {
                     rules: [{ required: true, message: '请输入备注' }],
-                  })(
-                    <TextArea rows={4} placeholder="请输入请输入备注" />
-                  )}
+                  })(<TextArea rows={4} placeholder="请输入请输入备注" />)}
                 </Form.Item>
               </Col>
-      </Row>
-          </Form>  
+            </Row>
+          </Form>
         </Card>
-
-
-
-
 
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.responsibleWorker}>
                   {getFieldDecorator('responsibleWorkerId', {
                     rules: [{ required: true, message: '请输入服务人员' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateResponsibleWorkerList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateResponsibleWorkerSearch}
-                    placeholder="请输入服务人员"
-                  >
-                  {candidateResponsibleWorkerList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.employeeName}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateResponsibleWorkerList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateResponsibleWorkerSearch}
+                      placeholder="请输入服务人员"
+                    >
+                      {candidateResponsibleWorkerList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.employeeName}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -506,19 +473,20 @@ class ServiceFileMovementC2mCreateForm extends Component {
                   {getFieldDecorator('mainOrderId', {
                     rules: [{ required: true, message: '请输入年检订单' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateMainOrderList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateMainOrderSearch}
-                    placeholder="请输入年检订单"
-                  >
-                  {candidateMainOrderList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.orderStatus}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateMainOrderList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateMainOrderSearch}
+                      placeholder="请输入年检订单"
+                    >
+                      {candidateMainOrderList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.orderStatus}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -528,33 +496,42 @@ class ServiceFileMovementC2mCreateForm extends Component {
                   {getFieldDecorator('merchantId', {
                     rules: [{ required: true, message: '请输入商户' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateMerchantList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateMerchantSearch}
-                    placeholder="请输入商户"
-                  >
-                  {candidateMerchantList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.companyName}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateMerchantList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateMerchantSearch}
+                      placeholder="请输入商户"
+                    >
+                      {candidateMerchantList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.companyName}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -569,7 +546,3 @@ class ServiceFileMovementC2mCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ServiceFileMovementC2mCreateForm))
-
-
-
-
