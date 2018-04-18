@@ -10,13 +10,11 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './GenericForm.app.less'
 
+import HeaderSearch from '../../components/HeaderSearch'
+import NoticeIcon from '../../components/NoticeIcon'
+import GlobalFooter from '../../components/GlobalFooter'
 
-import HeaderSearch from '../../components/HeaderSearch';
-import NoticeIcon from '../../components/NoticeIcon';
-import GlobalFooter from '../../components/GlobalFooter';
-
-
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -56,14 +54,14 @@ class GenericFormBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = (collapsed) => {
+  onCollapse = collapsed => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = (props) => {
+  getDefaultCollapsedSubMenus = props => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -71,42 +69,53 @@ class GenericFormBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = (props) => {
-    const { location: { pathname } } = props || this.props
+  getCurrentMenuSelectedKeys = props => {
+    const {
+      location: { pathname },
+    } =
+      props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
       return [this.menus[0].key]
     }
     return keys
   }
-  getNavMenuItems = (objectId) => {
+  getNavMenuItems = objectId => {
     return (
-      <SubMenu title={
-        <span>
-          <Icon type="profile" />
-          <span>通用的形式</span>
-        </span>}
+      <SubMenu
+        title={
+          <span>
+            <Icon type="profile" />
+            <span>通用的形式</span>
+          </span>
+        }
       >
-
         <Menu.Item>
-          <Link to={`/genericForm/${objectId}/list/formMessageList`}>表单信息</Link>
+          <Link to={`/genericForm/${objectId}/list/formMessageList`}>
+            表单信息
+          </Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/genericForm/${objectId}/list/formFieldMessageList`}>表单字段的信息</Link>
+          <Link to={`/genericForm/${objectId}/list/formFieldMessageList`}>
+            表单字段的信息
+          </Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/genericForm/${objectId}/list/formFieldList`}>表单字段</Link>
+          <Link to={`/genericForm/${objectId}/list/formFieldList`}>
+            表单字段
+          </Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to={`/genericForm/${objectId}/list/formActionList`}>表单动作</Link>
+          <Link to={`/genericForm/${objectId}/list/formActionList`}>
+            表单动作
+          </Link>
         </Menu.Item>
       </SubMenu>
     )
   }
 
-
   getFormMessageSearch = () => {
-    const {FormMessageSearch} = GlobalComponents;
+    const { FormMessageSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._genericForm.formMessageList,
@@ -114,11 +123,15 @@ class GenericFormBizApp extends React.PureComponent {
       currentPage: state._genericForm.formMessageCurrentPageNumber,
       searchFormParameters: state._genericForm.formMessageSearchFormParameters,
       loading: state._genericForm.loading,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formMessageList' }, // this is for model namespace and
+      owner: {
+        type: '_genericForm',
+        id: state._genericForm.id,
+        listName: 'formMessageList',
+      }, // this is for model namespace and
     }))(FormMessageSearch)
   }
   getFormMessageCreateForm = () => {
-   	const {FormMessageCreateForm} = GlobalComponents;
+    const { FormMessageCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._genericForm.formMessageList,
@@ -126,55 +139,77 @@ class GenericFormBizApp extends React.PureComponent {
       currentPage: state._genericForm.formMessageCurrentPageNumber,
       searchFormParameters: state._genericForm.formMessageSearchFormParameters,
       loading: state._genericForm.loading,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formMessageList'}, // this is for model namespace and
+      owner: {
+        type: '_genericForm',
+        id: state._genericForm.id,
+        listName: 'formMessageList',
+      }, // this is for model namespace and
     }))(FormMessageCreateForm)
   }
-  
+
   getFormMessageUpdateForm = () => {
-  	const {FormMessageUpdateForm} = GlobalComponents;
+    const { FormMessageUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._genericForm.selectedRows,
       currentUpdateIndex: state._genericForm.currentUpdateIndex,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formMessageList' }, // this is for model namespace and
+      owner: {
+        type: '_genericForm',
+        id: state._genericForm.id,
+        listName: 'formMessageList',
+      }, // this is for model namespace and
     }))(FormMessageUpdateForm)
   }
 
   getFormFieldMessageSearch = () => {
-    const {FormFieldMessageSearch} = GlobalComponents;
+    const { FormFieldMessageSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._genericForm.formFieldMessageList,
       count: state._genericForm.formFieldMessageCount,
       currentPage: state._genericForm.formFieldMessageCurrentPageNumber,
-      searchFormParameters: state._genericForm.formFieldMessageSearchFormParameters,
+      searchFormParameters:
+        state._genericForm.formFieldMessageSearchFormParameters,
       loading: state._genericForm.loading,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formFieldMessageList' }, // this is for model namespace and
+      owner: {
+        type: '_genericForm',
+        id: state._genericForm.id,
+        listName: 'formFieldMessageList',
+      }, // this is for model namespace and
     }))(FormFieldMessageSearch)
   }
   getFormFieldMessageCreateForm = () => {
-   	const {FormFieldMessageCreateForm} = GlobalComponents;
+    const { FormFieldMessageCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._genericForm.formFieldMessageList,
       count: state._genericForm.formFieldMessageCount,
       currentPage: state._genericForm.formFieldMessageCurrentPageNumber,
-      searchFormParameters: state._genericForm.formFieldMessageSearchFormParameters,
+      searchFormParameters:
+        state._genericForm.formFieldMessageSearchFormParameters,
       loading: state._genericForm.loading,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formFieldMessageList'}, // this is for model namespace and
+      owner: {
+        type: '_genericForm',
+        id: state._genericForm.id,
+        listName: 'formFieldMessageList',
+      }, // this is for model namespace and
     }))(FormFieldMessageCreateForm)
   }
-  
+
   getFormFieldMessageUpdateForm = () => {
-  	const {FormFieldMessageUpdateForm} = GlobalComponents;
+    const { FormFieldMessageUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._genericForm.selectedRows,
       currentUpdateIndex: state._genericForm.currentUpdateIndex,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formFieldMessageList' }, // this is for model namespace and
+      owner: {
+        type: '_genericForm',
+        id: state._genericForm.id,
+        listName: 'formFieldMessageList',
+      }, // this is for model namespace and
     }))(FormFieldMessageUpdateForm)
   }
 
   getFormFieldSearch = () => {
-    const {FormFieldSearch} = GlobalComponents;
+    const { FormFieldSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._genericForm.formFieldList,
@@ -182,11 +217,15 @@ class GenericFormBizApp extends React.PureComponent {
       currentPage: state._genericForm.formFieldCurrentPageNumber,
       searchFormParameters: state._genericForm.formFieldSearchFormParameters,
       loading: state._genericForm.loading,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formFieldList' }, // this is for model namespace and
+      owner: {
+        type: '_genericForm',
+        id: state._genericForm.id,
+        listName: 'formFieldList',
+      }, // this is for model namespace and
     }))(FormFieldSearch)
   }
   getFormFieldCreateForm = () => {
-   	const {FormFieldCreateForm} = GlobalComponents;
+    const { FormFieldCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._genericForm.formFieldList,
@@ -194,21 +233,29 @@ class GenericFormBizApp extends React.PureComponent {
       currentPage: state._genericForm.formFieldCurrentPageNumber,
       searchFormParameters: state._genericForm.formFieldSearchFormParameters,
       loading: state._genericForm.loading,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formFieldList'}, // this is for model namespace and
+      owner: {
+        type: '_genericForm',
+        id: state._genericForm.id,
+        listName: 'formFieldList',
+      }, // this is for model namespace and
     }))(FormFieldCreateForm)
   }
-  
+
   getFormFieldUpdateForm = () => {
-  	const {FormFieldUpdateForm} = GlobalComponents;
+    const { FormFieldUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._genericForm.selectedRows,
       currentUpdateIndex: state._genericForm.currentUpdateIndex,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formFieldList' }, // this is for model namespace and
+      owner: {
+        type: '_genericForm',
+        id: state._genericForm.id,
+        listName: 'formFieldList',
+      }, // this is for model namespace and
     }))(FormFieldUpdateForm)
   }
 
   getFormActionSearch = () => {
-    const {FormActionSearch} = GlobalComponents;
+    const { FormActionSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._genericForm.formActionList,
@@ -216,11 +263,15 @@ class GenericFormBizApp extends React.PureComponent {
       currentPage: state._genericForm.formActionCurrentPageNumber,
       searchFormParameters: state._genericForm.formActionSearchFormParameters,
       loading: state._genericForm.loading,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formActionList' }, // this is for model namespace and
+      owner: {
+        type: '_genericForm',
+        id: state._genericForm.id,
+        listName: 'formActionList',
+      }, // this is for model namespace and
     }))(FormActionSearch)
   }
   getFormActionCreateForm = () => {
-   	const {FormActionCreateForm} = GlobalComponents;
+    const { FormActionCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._genericForm.formActionList,
@@ -228,16 +279,24 @@ class GenericFormBizApp extends React.PureComponent {
       currentPage: state._genericForm.formActionCurrentPageNumber,
       searchFormParameters: state._genericForm.formActionSearchFormParameters,
       loading: state._genericForm.loading,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formActionList'}, // this is for model namespace and
+      owner: {
+        type: '_genericForm',
+        id: state._genericForm.id,
+        listName: 'formActionList',
+      }, // this is for model namespace and
     }))(FormActionCreateForm)
   }
-  
+
   getFormActionUpdateForm = () => {
-  	const {FormActionUpdateForm} = GlobalComponents;
+    const { FormActionUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._genericForm.selectedRows,
       currentUpdateIndex: state._genericForm.currentUpdateIndex,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formActionList' }, // this is for model namespace and
+      owner: {
+        type: '_genericForm',
+        id: state._genericForm.id,
+        listName: 'formActionList',
+      }, // this is for model namespace and
     }))(FormActionUpdateForm)
   }
 
@@ -247,112 +306,161 @@ class GenericFormBizApp extends React.PureComponent {
     const title = '代审车服务平台'
     return title
   }
- 
-  handleOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
+
+  handleOpenChange = openKeys => {
+    const latestOpenKey = openKeys.find(
+      key => this.state.openKeys.indexOf(key) === -1
+    )
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-   toggle = () => {
-     const { collapsed } = this.props
-     this.props.dispatch({
-       type: 'global/changeLayoutCollapsed',
-       payload: !collapsed,
-     })
-   }
+  toggle = () => {
+    const { collapsed } = this.props
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: !collapsed,
+    })
+  }
 
-   render() {
-     // const { collapsed, fetchingNotices,loading } = this.props
-     const { collapsed } = this.props
-    
-     const {GenericFormDashboard} = GlobalComponents
-     const {GenericFormEditDetail} = GlobalComponents
-     const {GenericFormViewDetail} = GlobalComponents
-     
-     
-     
-     
-     // Don't show popup menu when it is been collapsed
-     const menuProps = collapsed ? {} : {
-       openKeys: this.state.openKeys,
-     }
-     const layout = (
-       <Layout>
-         <Sider
-           trigger={null}
-           collapsible
-           collapsed={collapsed}
-           breakpoint="md"
-           onCollapse={()=>this.onCollapse(collapsed)}
-           width={256}
-           className={styles.sider}
-         >
-           <div className={styles.logo}>
-             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>通用的形式</h1></Link>
-           </div>
+  render() {
+    // const { collapsed, fetchingNotices,loading } = this.props
+    const { collapsed } = this.props
 
-           <Menu
-             theme="dark"
-             mode="inline"
-             {...menuProps}
-             onOpenChange={this.handleOpenChange}
-             selectedKeys={this.getCurrentMenuSelectedKeys()}
-             style={{ margin: '16px 0', width: '100%' }}
-           >
-           
+    const { GenericFormDashboard } = GlobalComponents
+    const { GenericFormEditDetail } = GlobalComponents
+    const { GenericFormViewDetail } = GlobalComponents
 
-             <Menu.Item >
-               <Link to={`/genericForm/${this.props.genericForm.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
-             </Menu.Item>
-             
+    // Don't show popup menu when it is been collapsed
+    const menuProps = collapsed
+      ? {}
+      : {
+          openKeys: this.state.openKeys,
+        }
+    const layout = (
+      <Layout>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          breakpoint="md"
+          onCollapse={() => this.onCollapse(collapsed)}
+          width={256}
+          className={styles.sider}
+        >
+          <div className={styles.logo}>
+            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+            <Link to="/home">
+              {' '}
+              <h1>通用的形式</h1>
+            </Link>
+          </div>
 
-             {this.getNavMenuItems(this.props.genericForm.id)}
-             <Menu.Item >
-               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
-             </Menu.Item>
-           </Menu>
-         </Sider>
-         <Layout>
-           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-             <Switch>
-             
-               <Route path="/genericForm/:id/dashboard" component={GenericFormDashboard} />
-               
-               <Route path="/genericForm/:id/editDetail" component={GenericFormEditDetail} />
-               <Route path="/genericForm/:id/viewDetail" component={GenericFormViewDetail} /> 
-               
+          <Menu
+            theme="dark"
+            mode="inline"
+            {...menuProps}
+            onOpenChange={this.handleOpenChange}
+            selectedKeys={this.getCurrentMenuSelectedKeys()}
+            style={{ margin: '16px 0', width: '100%' }}
+          >
+            <Menu.Item>
+              <Link to={`/genericForm/${this.props.genericForm.id}/dashboard`}>
+                <Icon type="dashboard" />
+                <span>仪表板</span>
+              </Link>
+            </Menu.Item>
 
-               <Route path="/genericForm/:id/list/formMessageList" component={this.getFormMessageSearch()} />
-               <Route path="/genericForm/:id/list/formMessageCreateForm" component={this.getFormMessageCreateForm()} />
-               <Route path="/genericForm/:id/list/formMessageUpdateForm" component={this.getFormMessageUpdateForm()} />
+            {this.getNavMenuItems(this.props.genericForm.id)}
+            <Menu.Item>
+              <Link to={'/home'}>
+                <Icon type="home" />
+                <span>回到主页</span>
+              </Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+            <Switch>
+              <Route
+                path="/genericForm/:id/dashboard"
+                component={GenericFormDashboard}
+              />
 
-               <Route path="/genericForm/:id/list/formFieldMessageList" component={this.getFormFieldMessageSearch()} />
-               <Route path="/genericForm/:id/list/formFieldMessageCreateForm" component={this.getFormFieldMessageCreateForm()} />
-               <Route path="/genericForm/:id/list/formFieldMessageUpdateForm" component={this.getFormFieldMessageUpdateForm()} />
+              <Route
+                path="/genericForm/:id/editDetail"
+                component={GenericFormEditDetail}
+              />
+              <Route
+                path="/genericForm/:id/viewDetail"
+                component={GenericFormViewDetail}
+              />
 
-               <Route path="/genericForm/:id/list/formFieldList" component={this.getFormFieldSearch()} />
-               <Route path="/genericForm/:id/list/formFieldCreateForm" component={this.getFormFieldCreateForm()} />
-               <Route path="/genericForm/:id/list/formFieldUpdateForm" component={this.getFormFieldUpdateForm()} />
+              <Route
+                path="/genericForm/:id/list/formMessageList"
+                component={this.getFormMessageSearch()}
+              />
+              <Route
+                path="/genericForm/:id/list/formMessageCreateForm"
+                component={this.getFormMessageCreateForm()}
+              />
+              <Route
+                path="/genericForm/:id/list/formMessageUpdateForm"
+                component={this.getFormMessageUpdateForm()}
+              />
 
-               <Route path="/genericForm/:id/list/formActionList" component={this.getFormActionSearch()} />
-               <Route path="/genericForm/:id/list/formActionCreateForm" component={this.getFormActionCreateForm()} />
-               <Route path="/genericForm/:id/list/formActionUpdateForm" component={this.getFormActionUpdateForm()} />
-              
-             </Switch>
-           </Content>
-         </Layout>
-       </Layout>
-     )
-     return (
-       <DocumentTitle title={this.getPageTitle()}>
-         <ContainerQuery query={query}>
-           {params => <div className={classNames(params)}>{layout}</div>}
-         </ContainerQuery>
-       </DocumentTitle>
-     )
-   }
+              <Route
+                path="/genericForm/:id/list/formFieldMessageList"
+                component={this.getFormFieldMessageSearch()}
+              />
+              <Route
+                path="/genericForm/:id/list/formFieldMessageCreateForm"
+                component={this.getFormFieldMessageCreateForm()}
+              />
+              <Route
+                path="/genericForm/:id/list/formFieldMessageUpdateForm"
+                component={this.getFormFieldMessageUpdateForm()}
+              />
+
+              <Route
+                path="/genericForm/:id/list/formFieldList"
+                component={this.getFormFieldSearch()}
+              />
+              <Route
+                path="/genericForm/:id/list/formFieldCreateForm"
+                component={this.getFormFieldCreateForm()}
+              />
+              <Route
+                path="/genericForm/:id/list/formFieldUpdateForm"
+                component={this.getFormFieldUpdateForm()}
+              />
+
+              <Route
+                path="/genericForm/:id/list/formActionList"
+                component={this.getFormActionSearch()}
+              />
+              <Route
+                path="/genericForm/:id/list/formActionCreateForm"
+                component={this.getFormActionCreateForm()}
+              />
+              <Route
+                path="/genericForm/:id/list/formActionUpdateForm"
+                component={this.getFormActionUpdateForm()}
+              />
+            </Switch>
+          </Content>
+        </Layout>
+      </Layout>
+    )
+    return (
+      <DocumentTitle title={this.getPageTitle()}>
+        <ContainerQuery query={query}>
+          {params => <div className={classNames(params)}>{layout}</div>}
+        </ContainerQuery>
+      </DocumentTitle>
+    )
+  }
 }
 
 export default connect(state => ({
@@ -362,6 +470,3 @@ export default connect(state => ({
   genericForm: state._genericForm,
   ...state,
 }))(GenericFormBizApp)
-
-
-

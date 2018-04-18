@@ -1,11 +1,9 @@
-
-
 import pathToRegexp from 'path-to-regexp'
 import { routerRedux } from 'dva/router'
 import { notification } from 'antd'
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
-const hasError = (data) => {
+const hasError = data => {
   if (!data.class) {
     return false
   }
@@ -18,7 +16,7 @@ const hasError = (data) => {
   return false
 }
 
-const handleServerError = (data) => {
+const handleServerError = data => {
   if (data.message) {
     notification.error({
       message: data.message,
@@ -36,15 +34,13 @@ const handleServerError = (data) => {
 }
 
 export default {
-
   namespace: '_companyEmployeeServing',
 
   state: {},
 
   subscriptions: {
-    
-    setup({ dispatch, history }) { 
-      history.listen((location) => {
+    setup({ dispatch, history }) {
+      history.listen(location => {
         const { pathname } = location
         if (!pathname.startsWith('/companyEmployeeServing')) {
           return
@@ -54,26 +50,34 @@ export default {
           dispatch({ type: 'updateState', payload: newstate })
           return
         }
-        const dashboardmatch = pathToRegexp('/companyEmployeeServing/:id/dashboard').exec(pathname)
+        const dashboardmatch = pathToRegexp(
+          '/companyEmployeeServing/:id/dashboard'
+        ).exec(pathname)
         if (dashboardmatch) {
           const id = dashboardmatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const editDetailMatch = pathToRegexp('/companyEmployeeServing/:id/editDetail').exec(pathname)
+        const editDetailMatch = pathToRegexp(
+          '/companyEmployeeServing/:id/editDetail'
+        ).exec(pathname)
         if (editDetailMatch) {
           const id = editDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        const viewDetailMatch = pathToRegexp('/companyEmployeeServing/:id/viewDetail').exec(pathname)
+        const viewDetailMatch = pathToRegexp(
+          '/companyEmployeeServing/:id/viewDetail'
+        ).exec(pathname)
         if (viewDetailMatch) {
           const id = viewDetailMatch[1]
           dispatch({ type: 'view', payload: { id } })
           return
         }
-        
-        const match = pathToRegexp('/companyEmployeeServing/:id/list/:listName').exec(pathname)
+
+        const match = pathToRegexp(
+          '/companyEmployeeServing/:id/list/:listName'
+        ).exec(pathname)
         if (!match) {
           return
           //  dispatch action with userId
@@ -84,47 +88,60 @@ export default {
     },
   },
   effects: {
-    *view({ payload }, { call, put }) { 
-      const {CompanyEmployeeServingService} = GlobalComponents;
+    *view({ payload }, { call, put }) {
+      const { CompanyEmployeeServingService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
       const data = yield call(CompanyEmployeeServingService.view, payload.id)
       console.log('this is the data id:', data.id)
       yield put({ type: 'updateState', payload: data })
     },
-    *load({ payload }, { call, put }) { 
-      const {CompanyEmployeeServingService} = GlobalComponents;
+    *load({ payload }, { call, put }) {
+      const { CompanyEmployeeServingService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
-      const data = yield call(CompanyEmployeeServingService.load, payload.id, payload.parameters)
-      
+      const data = yield call(
+        CompanyEmployeeServingService.load,
+        payload.id,
+        payload.parameters
+      )
+
       const newPlayload = { ...payload, ...data }
-      
+
       console.log('this is the data id: ', data.id)
       yield put({ type: 'updateState', payload: newPlayload })
     },
-       
-    
-    
+
     *gotoCreateForm({ payload }, { put }) {
       const { id, type } = payload
-      yield put(routerRedux.push(`/companyEmployeeServing/${id}/list/${type}CreateForm`))
+      yield put(
+        routerRedux.push(`/companyEmployeeServing/${id}/list/${type}CreateForm`)
+      )
     },
     *gotoUpdateForm({ payload }, { put }) {
       const { id, type, selectedRows, currentUpdateIndex } = payload
       const state = { id, type, selectedRows, currentUpdateIndex }
-      const location = { pathname: `/companyEmployeeServing/${id}/list/${type}UpdateForm`, state }
+      const location = {
+        pathname: `/companyEmployeeServing/${id}/list/${type}UpdateForm`,
+        state,
+      }
       yield put(routerRedux.push(location))
     },
     *goback({ payload }, { put }) {
       const { id, type } = payload
-      yield put(routerRedux.push(`/companyEmployeeServing/${id}/list/${type}List`))
+      yield put(
+        routerRedux.push(`/companyEmployeeServing/${id}/list/${type}List`)
+      )
     },
 
     *addVehicleServiceCompanyEmployee({ payload }, { call, put }) {
-      const {CompanyEmployeeServingService} = GlobalComponents;
+      const { CompanyEmployeeServingService } = GlobalComponents
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CompanyEmployeeServingService.addVehicleServiceCompanyEmployee, id, parameters)
+      const data = yield call(
+        CompanyEmployeeServingService.addVehicleServiceCompanyEmployee,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -139,41 +156,77 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/companyEmployeeServing/${id}/list/${type}List`, state: data }
+      const location = {
+        pathname: `/companyEmployeeServing/${id}/list/${type}List`,
+        state: data,
+      }
       yield put(routerRedux.push(location))
     },
     *updateVehicleServiceCompanyEmployee({ payload }, { call, put }) {
-      const {CompanyEmployeeServingService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+      const { CompanyEmployeeServingService } = GlobalComponents
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CompanyEmployeeServingService.updateVehicleServiceCompanyEmployee, id, parameters)
+      const data = yield call(
+        CompanyEmployeeServingService.updateVehicleServiceCompanyEmployee,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex }
+      const newPlayload = {
+        ...payload,
+        ...data,
+        selectedRows,
+        currentUpdateIndex,
+      }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-        
+
       if (continueNext) {
         return
       }
-      const location = { pathname: `/companyEmployeeServing/${id}/list/${type}List`, state: newPlayload }
+      const location = {
+        pathname: `/companyEmployeeServing/${id}/list/${type}List`,
+        state: newPlayload,
+      }
       yield put(routerRedux.push(location))
     },
-    *gotoNextVehicleServiceCompanyEmployeeUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
+    *gotoNextVehicleServiceCompanyEmployeeUpdateRow(
+      { payload },
+      { call, put }
+    ) {
+      const {
+        id,
+        type,
+        parameters,
+        continueNext,
+        selectedRows,
+        currentUpdateIndex,
+      } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeVehicleServiceCompanyEmployeeList({ payload }, { call, put }) {
-      const {CompanyEmployeeServingService} = GlobalComponents; 
+      const { CompanyEmployeeServingService } = GlobalComponents
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CompanyEmployeeServingService.removeVehicleServiceCompanyEmployeeList, id, parameters)
+      const data = yield call(
+        CompanyEmployeeServingService.removeVehicleServiceCompanyEmployeeList,
+        id,
+        parameters
+      )
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -181,7 +234,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-        
+
       // yield put(routerRedux.push(`/companyEmployeeServing/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -190,9 +243,8 @@ export default {
       // const location = { pathname: `companyEmployeeServing/${id}/list/${type}List`, state: data}
       // yield put(routerRedux.push(location))
     },
-
   },
-  
+
   reducers: {
     updateState(state, action) {
       const payload = { ...action.payload, loading: false }
@@ -205,4 +257,3 @@ export default {
     },
   },
 }
-

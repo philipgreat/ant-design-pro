@@ -1,19 +1,54 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './Contract.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/contract/${text}/dashboard`}>{text}</Link>) },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.displayName}</Link>) : '暂无') },
-  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? (<Link to={`/vehicleServiceCompany/${record.company.id}/dashboard`}>{record.company.displayName}</Link>) : '暂无') },
-  { title: '开始日期', dataIndex: 'startDate', render: (text, record) => moment(record.startDate).format('YYYY-MM-DD') },
-  { title: '结束日期', dataIndex: 'endDate', render: (text, record) => moment(record.endDate).format('YYYY-MM-DD') },
-
+  {
+    title: 'ID',
+    debugtype: 'string',
+    dataIndex: 'id',
+    width: '20',
+    render: (text, record) => (
+      <Link to={`/contract/${text}/dashboard`}>{text}</Link>
+    ),
+  },
+  {
+    title: '平台',
+    dataIndex: 'platform',
+    render: (text, record) =>
+      record.platform ? (
+        <Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>
+          {record.platform.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '商户',
+    dataIndex: 'company',
+    render: (text, record) =>
+      record.company ? (
+        <Link to={`/vehicleServiceCompany/${record.company.id}/dashboard`}>
+          {record.company.displayName}
+        </Link>
+      ) : (
+        '暂无'
+      ),
+  },
+  {
+    title: '开始日期',
+    dataIndex: 'startDate',
+    render: (text, record) => moment(record.startDate).format('YYYY-MM-DD'),
+  },
+  {
+    title: '结束日期',
+    dataIndex: 'endDate',
+    render: (text, record) => moment(record.endDate).format('YYYY-MM-DD'),
+  },
 ]
 
 class ContractTable extends PureComponent {
@@ -56,7 +91,6 @@ class ContractTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -71,13 +105,15 @@ class ContractTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -98,4 +134,3 @@ class ContractTable extends PureComponent {
 }
 
 export default ContractTable
-

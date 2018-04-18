@@ -10,13 +10,11 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceFileMovementC2m.app.less'
 
+import HeaderSearch from '../../components/HeaderSearch'
+import NoticeIcon from '../../components/NoticeIcon'
+import GlobalFooter from '../../components/GlobalFooter'
 
-import HeaderSearch from '../../components/HeaderSearch';
-import NoticeIcon from '../../components/NoticeIcon';
-import GlobalFooter from '../../components/GlobalFooter';
-
-
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -56,14 +54,14 @@ class ServiceFileMovementC2mBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = (collapsed) => {
+  onCollapse = collapsed => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = (props) => {
+  getDefaultCollapsedSubMenus = props => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -71,62 +69,87 @@ class ServiceFileMovementC2mBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = (props) => {
-    const { location: { pathname } } = props || this.props
+  getCurrentMenuSelectedKeys = props => {
+    const {
+      location: { pathname },
+    } =
+      props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
       return [this.menus[0].key]
     }
     return keys
   }
-  getNavMenuItems = (objectId) => {
+  getNavMenuItems = objectId => {
     return (
-      <SubMenu title={
-        <span>
-          <Icon type="profile" />
-          <span>收件服务</span>
-        </span>}
+      <SubMenu
+        title={
+          <span>
+            <Icon type="profile" />
+            <span>收件服务</span>
+          </span>
+        }
       >
-
         <Menu.Item>
-          <Link to={`/serviceFileMovementC2m/${objectId}/list/handOverChecklistResultList`}>交接检查结果</Link>
+          <Link
+            to={`/serviceFileMovementC2m/${objectId}/list/handOverChecklistResultList`}
+          >
+            交接检查结果
+          </Link>
         </Menu.Item>
       </SubMenu>
     )
   }
 
-
   getHandOverChecklistResultSearch = () => {
-    const {HandOverChecklistResultSearch} = GlobalComponents;
+    const { HandOverChecklistResultSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._serviceFileMovementC2m.handOverChecklistResultList,
       count: state._serviceFileMovementC2m.handOverChecklistResultCount,
-      currentPage: state._serviceFileMovementC2m.handOverChecklistResultCurrentPageNumber,
-      searchFormParameters: state._serviceFileMovementC2m.handOverChecklistResultSearchFormParameters,
+      currentPage:
+        state._serviceFileMovementC2m.handOverChecklistResultCurrentPageNumber,
+      searchFormParameters:
+        state._serviceFileMovementC2m
+          .handOverChecklistResultSearchFormParameters,
       loading: state._serviceFileMovementC2m.loading,
-      owner: { type: '_serviceFileMovementC2m', id: state._serviceFileMovementC2m.id, listName: 'handOverChecklistResultList' }, // this is for model namespace and
+      owner: {
+        type: '_serviceFileMovementC2m',
+        id: state._serviceFileMovementC2m.id,
+        listName: 'handOverChecklistResultList',
+      }, // this is for model namespace and
     }))(HandOverChecklistResultSearch)
   }
   getHandOverChecklistResultCreateForm = () => {
-   	const {HandOverChecklistResultCreateForm} = GlobalComponents;
+    const { HandOverChecklistResultCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._serviceFileMovementC2m.handOverChecklistResultList,
       count: state._serviceFileMovementC2m.handOverChecklistResultCount,
-      currentPage: state._serviceFileMovementC2m.handOverChecklistResultCurrentPageNumber,
-      searchFormParameters: state._serviceFileMovementC2m.handOverChecklistResultSearchFormParameters,
+      currentPage:
+        state._serviceFileMovementC2m.handOverChecklistResultCurrentPageNumber,
+      searchFormParameters:
+        state._serviceFileMovementC2m
+          .handOverChecklistResultSearchFormParameters,
       loading: state._serviceFileMovementC2m.loading,
-      owner: { type: '_serviceFileMovementC2m', id: state._serviceFileMovementC2m.id, listName: 'handOverChecklistResultList'}, // this is for model namespace and
+      owner: {
+        type: '_serviceFileMovementC2m',
+        id: state._serviceFileMovementC2m.id,
+        listName: 'handOverChecklistResultList',
+      }, // this is for model namespace and
     }))(HandOverChecklistResultCreateForm)
   }
-  
+
   getHandOverChecklistResultUpdateForm = () => {
-  	const {HandOverChecklistResultUpdateForm} = GlobalComponents;
+    const { HandOverChecklistResultUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._serviceFileMovementC2m.selectedRows,
       currentUpdateIndex: state._serviceFileMovementC2m.currentUpdateIndex,
-      owner: { type: '_serviceFileMovementC2m', id: state._serviceFileMovementC2m.id, listName: 'handOverChecklistResultList' }, // this is for model namespace and
+      owner: {
+        type: '_serviceFileMovementC2m',
+        id: state._serviceFileMovementC2m.id,
+        listName: 'handOverChecklistResultList',
+      }, // this is for model namespace and
     }))(HandOverChecklistResultUpdateForm)
   }
 
@@ -136,100 +159,126 @@ class ServiceFileMovementC2mBizApp extends React.PureComponent {
     const title = '代审车服务平台'
     return title
   }
- 
-  handleOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
+
+  handleOpenChange = openKeys => {
+    const latestOpenKey = openKeys.find(
+      key => this.state.openKeys.indexOf(key) === -1
+    )
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-   toggle = () => {
-     const { collapsed } = this.props
-     this.props.dispatch({
-       type: 'global/changeLayoutCollapsed',
-       payload: !collapsed,
-     })
-   }
+  toggle = () => {
+    const { collapsed } = this.props
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: !collapsed,
+    })
+  }
 
-   render() {
-     // const { collapsed, fetchingNotices,loading } = this.props
-     const { collapsed } = this.props
-    
-     const {ServiceFileMovementC2mDashboard} = GlobalComponents
-     const {ServiceFileMovementC2mEditDetail} = GlobalComponents
-     const {ServiceFileMovementC2mViewDetail} = GlobalComponents
-     
-     
-     
-     
-     // Don't show popup menu when it is been collapsed
-     const menuProps = collapsed ? {} : {
-       openKeys: this.state.openKeys,
-     }
-     const layout = (
-       <Layout>
-         <Sider
-           trigger={null}
-           collapsible
-           collapsed={collapsed}
-           breakpoint="md"
-           onCollapse={()=>this.onCollapse(collapsed)}
-           width={256}
-           className={styles.sider}
-         >
-           <div className={styles.logo}>
-             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>收件服务</h1></Link>
-           </div>
+  render() {
+    // const { collapsed, fetchingNotices,loading } = this.props
+    const { collapsed } = this.props
 
-           <Menu
-             theme="dark"
-             mode="inline"
-             {...menuProps}
-             onOpenChange={this.handleOpenChange}
-             selectedKeys={this.getCurrentMenuSelectedKeys()}
-             style={{ margin: '16px 0', width: '100%' }}
-           >
-           
+    const { ServiceFileMovementC2mDashboard } = GlobalComponents
+    const { ServiceFileMovementC2mEditDetail } = GlobalComponents
+    const { ServiceFileMovementC2mViewDetail } = GlobalComponents
 
-             <Menu.Item >
-               <Link to={`/serviceFileMovementC2m/${this.props.serviceFileMovementC2m.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
-             </Menu.Item>
-             
+    // Don't show popup menu when it is been collapsed
+    const menuProps = collapsed
+      ? {}
+      : {
+          openKeys: this.state.openKeys,
+        }
+    const layout = (
+      <Layout>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          breakpoint="md"
+          onCollapse={() => this.onCollapse(collapsed)}
+          width={256}
+          className={styles.sider}
+        >
+          <div className={styles.logo}>
+            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+            <Link to="/home">
+              {' '}
+              <h1>收件服务</h1>
+            </Link>
+          </div>
 
-             {this.getNavMenuItems(this.props.serviceFileMovementC2m.id)}
-             <Menu.Item >
-               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
-             </Menu.Item>
-           </Menu>
-         </Sider>
-         <Layout>
-           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-             <Switch>
-             
-               <Route path="/serviceFileMovementC2m/:id/dashboard" component={ServiceFileMovementC2mDashboard} />
-               
-               <Route path="/serviceFileMovementC2m/:id/editDetail" component={ServiceFileMovementC2mEditDetail} />
-               <Route path="/serviceFileMovementC2m/:id/viewDetail" component={ServiceFileMovementC2mViewDetail} /> 
-               
+          <Menu
+            theme="dark"
+            mode="inline"
+            {...menuProps}
+            onOpenChange={this.handleOpenChange}
+            selectedKeys={this.getCurrentMenuSelectedKeys()}
+            style={{ margin: '16px 0', width: '100%' }}
+          >
+            <Menu.Item>
+              <Link
+                to={`/serviceFileMovementC2m/${
+                  this.props.serviceFileMovementC2m.id
+                }/dashboard`}
+              >
+                <Icon type="dashboard" />
+                <span>仪表板</span>
+              </Link>
+            </Menu.Item>
 
-               <Route path="/serviceFileMovementC2m/:id/list/handOverChecklistResultList" component={this.getHandOverChecklistResultSearch()} />
-               <Route path="/serviceFileMovementC2m/:id/list/handOverChecklistResultCreateForm" component={this.getHandOverChecklistResultCreateForm()} />
-               <Route path="/serviceFileMovementC2m/:id/list/handOverChecklistResultUpdateForm" component={this.getHandOverChecklistResultUpdateForm()} />
-              
-             </Switch>
-           </Content>
-         </Layout>
-       </Layout>
-     )
-     return (
-       <DocumentTitle title={this.getPageTitle()}>
-         <ContainerQuery query={query}>
-           {params => <div className={classNames(params)}>{layout}</div>}
-         </ContainerQuery>
-       </DocumentTitle>
-     )
-   }
+            {this.getNavMenuItems(this.props.serviceFileMovementC2m.id)}
+            <Menu.Item>
+              <Link to={'/home'}>
+                <Icon type="home" />
+                <span>回到主页</span>
+              </Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+            <Switch>
+              <Route
+                path="/serviceFileMovementC2m/:id/dashboard"
+                component={ServiceFileMovementC2mDashboard}
+              />
+
+              <Route
+                path="/serviceFileMovementC2m/:id/editDetail"
+                component={ServiceFileMovementC2mEditDetail}
+              />
+              <Route
+                path="/serviceFileMovementC2m/:id/viewDetail"
+                component={ServiceFileMovementC2mViewDetail}
+              />
+
+              <Route
+                path="/serviceFileMovementC2m/:id/list/handOverChecklistResultList"
+                component={this.getHandOverChecklistResultSearch()}
+              />
+              <Route
+                path="/serviceFileMovementC2m/:id/list/handOverChecklistResultCreateForm"
+                component={this.getHandOverChecklistResultCreateForm()}
+              />
+              <Route
+                path="/serviceFileMovementC2m/:id/list/handOverChecklistResultUpdateForm"
+                component={this.getHandOverChecklistResultUpdateForm()}
+              />
+            </Switch>
+          </Content>
+        </Layout>
+      </Layout>
+    )
+    return (
+      <DocumentTitle title={this.getPageTitle()}>
+        <ContainerQuery query={query}>
+          {params => <div className={classNames(params)}>{layout}</div>}
+        </ContainerQuery>
+      </DocumentTitle>
+    )
+  }
 }
 
 export default connect(state => ({
@@ -239,6 +288,3 @@ export default connect(state => ({
   serviceFileMovementC2m: state._serviceFileMovementC2m,
   ...state,
 }))(ServiceFileMovementC2mBizApp)
-
-
-

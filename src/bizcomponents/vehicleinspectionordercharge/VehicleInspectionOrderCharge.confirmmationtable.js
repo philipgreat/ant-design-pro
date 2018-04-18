@@ -1,17 +1,19 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
 import { Table, Alert, Badge } from 'antd'
 import styles from './VehicleInspectionOrderCharge.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '标题', debugtype: 'string', dataIndex: 'title', width: '11' },
   { title: '代码', debugtype: 'string', dataIndex: 'code', width: '14' },
   { title: '量', debugtype: 'money', dataIndex: 'amount', width: '14' },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无') },
+  {
+    title: '年检订单',
+    dataIndex: 'mainOrder',
+    render: (text, record) => (record.mainOrder ? record.mainOrder.id : '暂无'),
+  },
 ]
 
 class VehicleInspectionOrderChargeConfirmationTable extends PureComponent {
@@ -19,16 +21,15 @@ class VehicleInspectionOrderChargeConfirmationTable extends PureComponent {
     // const { data,count,current, owner } = this.props
     const { data } = this.props
 
-
     return (
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{data.length}</a> 项 
+                一共 <a style={{ fontWeight: 600 }}>{data.length}</a> 项
               </p>
-            )}
+            }
             type="warning"
             showIcon
           />
@@ -46,4 +47,3 @@ class VehicleInspectionOrderChargeConfirmationTable extends PureComponent {
 }
 
 export default VehicleInspectionOrderChargeConfirmationTable
-

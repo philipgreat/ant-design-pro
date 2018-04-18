@@ -1,13 +1,32 @@
-
-
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Icon,
+  Card,
+  Tabs,
+  Table,
+  Radio,
+  DatePicker,
+  Tooltip,
+  Menu,
+  Dropdown,
+} from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
-  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
-
+  ChartCard,
+  yuan,
+  MiniArea,
+  MiniBar,
+  MiniProgress,
+  Field,
+  Bar,
+  Pie,
+  TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
@@ -15,8 +34,6 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './Customer.editdetail.less'
 import GlobalComponents from '../../custcomponents'
-
-
 
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -30,67 +47,99 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 }
 
-
 @connect(state => ({
   customer: state._customer,
 }))
 export default class CustomerEditDetail extends Component {
   render() {
-    const {CompanyQrcodePromotionRecordEditTable} = GlobalComponents;
-    const {VehicleInfoEditTable} = GlobalComponents;
-    const {VehicleInspectionOrderEditTable} = GlobalComponents;
-    const {OrderDiscountCouponEditTable} = GlobalComponents;
-    const {VehicleInspectionOrderCouponEditTable} = GlobalComponents;
-  
+    const { CompanyQrcodePromotionRecordEditTable } = GlobalComponents
+    const { VehicleInfoEditTable } = GlobalComponents
+    const { VehicleInspectionOrderEditTable } = GlobalComponents
+    const { OrderDiscountCouponEditTable } = GlobalComponents
+    const { VehicleInspectionOrderCouponEditTable } = GlobalComponents
+
     // eslint-disable-next-line max-len
-    const { id, companyQrcodePromotionRecordCount, vehicleInfoCount, vehicleInspectionOrderCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.customer
-    const { companyQrcodePromotionRecordList, vehicleInfoList, vehicleInspectionOrderList, orderDiscountCouponList, vehicleInspectionOrderCouponList } = this.props.customer
-    
+    const {
+      id,
+      companyQrcodePromotionRecordCount,
+      vehicleInfoCount,
+      vehicleInspectionOrderCount,
+      orderDiscountCouponCount,
+      vehicleInspectionOrderCouponCount,
+    } = this.props.customer
+    const {
+      companyQrcodePromotionRecordList,
+      vehicleInfoList,
+      vehicleInspectionOrderList,
+      orderDiscountCouponList,
+      vehicleInspectionOrderCouponList,
+    } = this.props.customer
+
     const owner = { type: '_customer', id }
     return (
-
       <PageHeaderLayout
         title="客户总览"
         content="客户总览"
         wrapperClassName={styles.advancedForm}
       >
-
-
-		<Card title="公司二维码推广记录列表" className={styles.card} bordered={false}>
+        <Card
+          title="公司二维码推广记录列表"
+          className={styles.card}
+          bordered={false}
+        >
           <Form layout="vertical" hideRequiredMark>
-            <CompanyQrcodePromotionRecordEditTable data={companyQrcodePromotionRecordList} owner={owner} {...this.props} />
+            <CompanyQrcodePromotionRecordEditTable
+              data={companyQrcodePromotionRecordList}
+              owner={owner}
+              {...this.props}
+            />
           </Form>
         </Card>
 
-		<Card title="车辆信息列表" className={styles.card} bordered={false}>
+        <Card title="车辆信息列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
-            <VehicleInfoEditTable data={vehicleInfoList} owner={owner} {...this.props} />
+            <VehicleInfoEditTable
+              data={vehicleInfoList}
+              owner={owner}
+              {...this.props}
+            />
           </Form>
         </Card>
 
-		<Card title="年检订单列表" className={styles.card} bordered={false}>
+        <Card title="年检订单列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
-            <VehicleInspectionOrderEditTable data={vehicleInspectionOrderList} owner={owner} {...this.props} />
+            <VehicleInspectionOrderEditTable
+              data={vehicleInspectionOrderList}
+              owner={owner}
+              {...this.props}
+            />
           </Form>
         </Card>
 
-		<Card title="优惠券列表" className={styles.card} bordered={false}>
+        <Card title="优惠券列表" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
-            <OrderDiscountCouponEditTable data={orderDiscountCouponList} owner={owner} {...this.props} />
+            <OrderDiscountCouponEditTable
+              data={orderDiscountCouponList}
+              owner={owner}
+              {...this.props}
+            />
           </Form>
         </Card>
 
-		<Card title="优惠券使用记录列表" className={styles.card} bordered={false}>
+        <Card
+          title="优惠券使用记录列表"
+          className={styles.card}
+          bordered={false}
+        >
           <Form layout="vertical" hideRequiredMark>
-            <VehicleInspectionOrderCouponEditTable data={vehicleInspectionOrderCouponList} owner={owner} {...this.props} />
+            <VehicleInspectionOrderCouponEditTable
+              data={vehicleInspectionOrderCouponList}
+              owner={owner}
+              {...this.props}
+            />
           </Form>
         </Card>
-
- 
       </PageHeaderLayout>
     )
   }
 }
-
-
-

@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}userAppManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -16,18 +19,12 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
 const requestCandidateSecUser = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}userAppManager/requestCandidateSecUser/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}	 
- 
-
-
-
+}
 
 const addObjectAccess = (targetObjectId, parameters) => {
   const url = `${PREFIX}userAppManager/addObjectAccess/appId/displayName/objectType/list1/list2/list3/list4/list5/list6/list7/list8/list9/tokensExpr/`
@@ -55,7 +52,11 @@ const updateObjectAccess = (targetObjectId, parameters) => {
 
 const removeObjectAccessList = (targetObjectId, parameters) => {
   const url = `${PREFIX}userAppManager/removeObjectAccessList/userAppId/objectAccessIds/tokensExpr/`
-  const requestParameters = { ...parameters, userAppId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    userAppId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -64,12 +65,12 @@ const removeObjectAccessList = (targetObjectId, parameters) => {
   })
 }
 
-
-const UserAppService = { view,
+const UserAppService = {
+  view,
   load,
   addObjectAccess,
   updateObjectAccess,
   removeObjectAccessList,
-  requestCandidateSecUser }
+  requestCandidateSecUser,
+}
 export default UserAppService
-

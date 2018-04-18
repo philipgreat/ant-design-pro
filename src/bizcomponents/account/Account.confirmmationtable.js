@@ -1,14 +1,16 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
 import { Table, Alert, Badge } from 'antd'
 import styles from './Account.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
+  {
+    title: '平台',
+    dataIndex: 'platform',
+    render: (text, record) => (record.platform ? record.platform.id : '暂无'),
+  },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '22' },
 ]
 
@@ -17,16 +19,15 @@ class AccountConfirmationTable extends PureComponent {
     // const { data,count,current, owner } = this.props
     const { data } = this.props
 
-
     return (
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{data.length}</a> 项 
+                一共 <a style={{ fontWeight: 600 }}>{data.length}</a> 项
               </p>
-            )}
+            }
             type="warning"
             showIcon
           />
@@ -44,4 +45,3 @@ class AccountConfirmationTable extends PureComponent {
 }
 
 export default AccountConfirmationTable
-

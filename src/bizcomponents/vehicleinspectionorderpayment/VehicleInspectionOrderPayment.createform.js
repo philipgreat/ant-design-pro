@@ -1,16 +1,30 @@
 import React, { Component } from 'react'
-import { AutoComplete, Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
+import {
+  AutoComplete,
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+  Switch,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
 //import OSSPictureEdit from '../../components/PictureEdit'
-import {ImageUpload} from '../../axios/tools'
+import { ImageUpload } from '../../axios/tools'
 import FooterToolbar from '../../components/FooterToolbar'
 //import ImageUpload from '../../components/ImageUpload'
 import styles from './VehicleInspectionOrderPayment.createform.less'
-import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
-import GlobalComponents from '../../custcomponents';
+import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
+import GlobalComponents from '../../custcomponents'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -26,7 +40,7 @@ const fieldLabels = {
   createTime: '创建时间',
   lastUpdateTime: '最后更新时间',
 }
-const testValues = {};
+const testValues = {}
 /*
 const testValues = {
   paymentMethod: '微信',
@@ -41,10 +55,7 @@ const testValues = {
 */
 const imageURLPrefix = '//localhost:2090'
 
-
-const imageKeys = [
-]
-
+const imageKeys = []
 
 class VehicleInspectionOrderPaymentCreateForm extends Component {
   state = {
@@ -57,18 +68,13 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
     // const { getFieldDecorator,setFieldsValue } = this.props.form
     const { setFieldsValue } = this.props.form
     //setFieldsValue(testValues)
-      
-    this.executeCandidateMainOrderSearch("")
-    
- 
-    
-    
-    
+
+    this.executeCandidateMainOrderSearch('')
   }
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -76,31 +82,28 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
     })
   }
 
-  
-  executeCandidateMainOrderSearch = (filterKey) =>{
+  executeCandidateMainOrderSearch = filterKey => {
+    const { VehicleInspectionOrderPaymentService } = GlobalComponents
 
-    const {VehicleInspectionOrderPaymentService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = VehicleInspectionOrderPaymentService.requestCandidateMainOrder("vehicleInspectionOrder", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = VehicleInspectionOrderPaymentService.requestCandidateMainOrder(
+      'vehicleInspectionOrder',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateMainOrderList=>{
+    future.then(candidateMainOrderList => {
       this.setState({
-        candidateMainOrderList
+        candidateMainOrderList,
       })
-
     })
-
-  }	 
-  handleCandidateMainOrderSearch = (value) => {
+  }
+  handleCandidateMainOrderSearch = value => {
     this.executeCandidateMainOrderSearch(value)
   }
- 
-
-
 
   handleChange = (event, source) => {
     console.log('get file list from change in update change:', source)
@@ -112,7 +115,6 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
     this.setState({ convertedImagesValues })
     console.log('/get file list from change in update change:', source)
   }
-
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -132,7 +134,11 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleInspectionOrderPayment`,
-          payload: { id: owner.id, type: 'vehicleInspectionOrderPayment', parameters },
+          payload: {
+            id: owner.id,
+            type: 'vehicleInspectionOrderPayment',
+            parameters,
+          },
         })
       })
     }
@@ -142,18 +148,23 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleInspectionOrderPayment`,
-          payload: { id: owner.id, type: 'vehicleInspectionOrderPayment', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'vehicleInspectionOrderPayment',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -168,18 +179,22 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -201,18 +216,15 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
         </span>
       )
     }
-    
 
-    
-    const {candidateMainOrderList} = this.state
-    if(!candidateMainOrderList){
-      return (<div>等等</div>)
+    const { candidateMainOrderList } = this.state
+    if (!candidateMainOrderList) {
+      return <div>等等</div>
     }
-    if(!candidateMainOrderList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
+    if (!candidateMainOrderList.candidates) {
+      return <div>等等</div>
+    }
+
     return (
       <PageHeaderLayout
         title="新建一个年检订单支付"
@@ -222,14 +234,11 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.paymentMethod}>
                   {getFieldDecorator('paymentMethod', {
                     rules: [{ required: true, message: '请输入支付方式' }],
-                  })(
-                    <Input placeholder="请输入请输入支付方式string" />
-                  )}
+                  })(<Input placeholder="请输入请输入支付方式string" />)}
                 </Form.Item>
               </Col>
 
@@ -237,9 +246,7 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
                 <Form.Item label={fieldLabels.originalAmount}>
                   {getFieldDecorator('originalAmount', {
                     rules: [{ required: true, message: '请输入订单合计' }],
-                  })(
-                    <Input placeholder="请输入请输入订单合计money" />
-                  )}
+                  })(<Input placeholder="请输入请输入订单合计money" />)}
                 </Form.Item>
               </Col>
 
@@ -247,9 +254,7 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
                 <Form.Item label={fieldLabels.actualAmount}>
                   {getFieldDecorator('actualAmount', {
                     rules: [{ required: true, message: '请输入应付金额' }],
-                  })(
-                    <Input placeholder="请输入请输入应付金额money" />
-                  )}
+                  })(<Input placeholder="请输入请输入应付金额money" />)}
                 </Form.Item>
               </Col>
 
@@ -257,9 +262,7 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
                 <Form.Item label={fieldLabels.status}>
                   {getFieldDecorator('status', {
                     rules: [{ required: true, message: '请输入状态' }],
-                  })(
-                    <Input placeholder="请输入请输入状态string" />
-                  )}
+                  })(<Input placeholder="请输入请输入状态string" />)}
                 </Form.Item>
               </Col>
 
@@ -267,19 +270,17 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
                 <Form.Item label={fieldLabels.wechatOrderId}>
                   {getFieldDecorator('wechatOrderId', {
                     rules: [{ required: true, message: '请输入微信订单ID' }],
-                  })(
-                    <Input placeholder="请输入请输入微信订单IDstring" />
-                  )}
+                  })(<Input placeholder="请输入请输入微信订单IDstring" />)}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.wechatPrepayId}>
                   {getFieldDecorator('wechatPrepayId', {
-                    rules: [{ required: true, message: '请输入微信预付订单ID' }],
-                  })(
-                    <Input placeholder="请输入请输入微信预付订单IDstring" />
-                  )}
+                    rules: [
+                      { required: true, message: '请输入微信预付订单ID' },
+                    ],
+                  })(<Input placeholder="请输入请输入微信预付订单IDstring" />)}
                 </Form.Item>
               </Col>
 
@@ -287,65 +288,57 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
                 <Form.Item label={fieldLabels.createTime}>
                   {getFieldDecorator('createTime', {
                     rules: [{ required: true, message: '请输入创建时间' }],
-                  })(
-                    <Input placeholder="请输入请输入创建时间date_time" />
-                  )}
+                  })(<Input placeholder="请输入请输入创建时间date_time" />)}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
-       
-        
-
-
-
-
-
-
-
-
-
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.mainOrder}>
                   {getFieldDecorator('mainOrderId', {
                     rules: [{ required: true, message: '请输入年检订单' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateMainOrderList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateMainOrderSearch}
-                    placeholder="请输入年检订单"
-                  >
-                  {candidateMainOrderList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.orderStatus}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateMainOrderList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateMainOrderSearch}
+                      placeholder="请输入年检订单"
+                    >
+                      {candidateMainOrderList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.orderStatus}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -360,7 +353,3 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(VehicleInspectionOrderPaymentCreateForm))
-
-
-
-

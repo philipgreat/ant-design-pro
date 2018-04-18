@@ -10,13 +10,11 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceVehicleInspection.app.less'
 
+import HeaderSearch from '../../components/HeaderSearch'
+import NoticeIcon from '../../components/NoticeIcon'
+import GlobalFooter from '../../components/GlobalFooter'
 
-import HeaderSearch from '../../components/HeaderSearch';
-import NoticeIcon from '../../components/NoticeIcon';
-import GlobalFooter from '../../components/GlobalFooter';
-
-
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -56,14 +54,14 @@ class ServiceVehicleInspectionBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = (collapsed) => {
+  onCollapse = collapsed => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = (props) => {
+  getDefaultCollapsedSubMenus = props => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -71,62 +69,89 @@ class ServiceVehicleInspectionBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = (props) => {
-    const { location: { pathname } } = props || this.props
+  getCurrentMenuSelectedKeys = props => {
+    const {
+      location: { pathname },
+    } =
+      props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
       return [this.menus[0].key]
     }
     return keys
   }
-  getNavMenuItems = (objectId) => {
+  getNavMenuItems = objectId => {
     return (
-      <SubMenu title={
-        <span>
-          <Icon type="profile" />
-          <span>车辆上线检测</span>
-        </span>}
+      <SubMenu
+        title={
+          <span>
+            <Icon type="profile" />
+            <span>车辆上线检测</span>
+          </span>
+        }
       >
-
         <Menu.Item>
-          <Link to={`/serviceVehicleInspection/${objectId}/list/serviceVehicleRepairingList`}>维修服务</Link>
+          <Link
+            to={`/serviceVehicleInspection/${objectId}/list/serviceVehicleRepairingList`}
+          >
+            维修服务
+          </Link>
         </Menu.Item>
       </SubMenu>
     )
   }
 
-
   getServiceVehicleRepairingSearch = () => {
-    const {ServiceVehicleRepairingSearch} = GlobalComponents;
+    const { ServiceVehicleRepairingSearch } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._serviceVehicleInspection.serviceVehicleRepairingList,
       count: state._serviceVehicleInspection.serviceVehicleRepairingCount,
-      currentPage: state._serviceVehicleInspection.serviceVehicleRepairingCurrentPageNumber,
-      searchFormParameters: state._serviceVehicleInspection.serviceVehicleRepairingSearchFormParameters,
+      currentPage:
+        state._serviceVehicleInspection
+          .serviceVehicleRepairingCurrentPageNumber,
+      searchFormParameters:
+        state._serviceVehicleInspection
+          .serviceVehicleRepairingSearchFormParameters,
       loading: state._serviceVehicleInspection.loading,
-      owner: { type: '_serviceVehicleInspection', id: state._serviceVehicleInspection.id, listName: 'serviceVehicleRepairingList' }, // this is for model namespace and
+      owner: {
+        type: '_serviceVehicleInspection',
+        id: state._serviceVehicleInspection.id,
+        listName: 'serviceVehicleRepairingList',
+      }, // this is for model namespace and
     }))(ServiceVehicleRepairingSearch)
   }
   getServiceVehicleRepairingCreateForm = () => {
-   	const {ServiceVehicleRepairingCreateForm} = GlobalComponents;
+    const { ServiceVehicleRepairingCreateForm } = GlobalComponents
     return connect(state => ({
       rule: state.rule,
       data: state._serviceVehicleInspection.serviceVehicleRepairingList,
       count: state._serviceVehicleInspection.serviceVehicleRepairingCount,
-      currentPage: state._serviceVehicleInspection.serviceVehicleRepairingCurrentPageNumber,
-      searchFormParameters: state._serviceVehicleInspection.serviceVehicleRepairingSearchFormParameters,
+      currentPage:
+        state._serviceVehicleInspection
+          .serviceVehicleRepairingCurrentPageNumber,
+      searchFormParameters:
+        state._serviceVehicleInspection
+          .serviceVehicleRepairingSearchFormParameters,
       loading: state._serviceVehicleInspection.loading,
-      owner: { type: '_serviceVehicleInspection', id: state._serviceVehicleInspection.id, listName: 'serviceVehicleRepairingList'}, // this is for model namespace and
+      owner: {
+        type: '_serviceVehicleInspection',
+        id: state._serviceVehicleInspection.id,
+        listName: 'serviceVehicleRepairingList',
+      }, // this is for model namespace and
     }))(ServiceVehicleRepairingCreateForm)
   }
-  
+
   getServiceVehicleRepairingUpdateForm = () => {
-  	const {ServiceVehicleRepairingUpdateForm} = GlobalComponents;
+    const { ServiceVehicleRepairingUpdateForm } = GlobalComponents
     return connect(state => ({
       selectedRows: state._serviceVehicleInspection.selectedRows,
       currentUpdateIndex: state._serviceVehicleInspection.currentUpdateIndex,
-      owner: { type: '_serviceVehicleInspection', id: state._serviceVehicleInspection.id, listName: 'serviceVehicleRepairingList' }, // this is for model namespace and
+      owner: {
+        type: '_serviceVehicleInspection',
+        id: state._serviceVehicleInspection.id,
+        listName: 'serviceVehicleRepairingList',
+      }, // this is for model namespace and
     }))(ServiceVehicleRepairingUpdateForm)
   }
 
@@ -136,100 +161,126 @@ class ServiceVehicleInspectionBizApp extends React.PureComponent {
     const title = '代审车服务平台'
     return title
   }
- 
-  handleOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
+
+  handleOpenChange = openKeys => {
+    const latestOpenKey = openKeys.find(
+      key => this.state.openKeys.indexOf(key) === -1
+    )
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-   toggle = () => {
-     const { collapsed } = this.props
-     this.props.dispatch({
-       type: 'global/changeLayoutCollapsed',
-       payload: !collapsed,
-     })
-   }
+  toggle = () => {
+    const { collapsed } = this.props
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: !collapsed,
+    })
+  }
 
-   render() {
-     // const { collapsed, fetchingNotices,loading } = this.props
-     const { collapsed } = this.props
-    
-     const {ServiceVehicleInspectionDashboard} = GlobalComponents
-     const {ServiceVehicleInspectionEditDetail} = GlobalComponents
-     const {ServiceVehicleInspectionViewDetail} = GlobalComponents
-     
-     
-     
-     
-     // Don't show popup menu when it is been collapsed
-     const menuProps = collapsed ? {} : {
-       openKeys: this.state.openKeys,
-     }
-     const layout = (
-       <Layout>
-         <Sider
-           trigger={null}
-           collapsible
-           collapsed={collapsed}
-           breakpoint="md"
-           onCollapse={()=>this.onCollapse(collapsed)}
-           width={256}
-           className={styles.sider}
-         >
-           <div className={styles.logo}>
-             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-             <Link to="/home"> <h1>车辆上线检测</h1></Link>
-           </div>
+  render() {
+    // const { collapsed, fetchingNotices,loading } = this.props
+    const { collapsed } = this.props
 
-           <Menu
-             theme="dark"
-             mode="inline"
-             {...menuProps}
-             onOpenChange={this.handleOpenChange}
-             selectedKeys={this.getCurrentMenuSelectedKeys()}
-             style={{ margin: '16px 0', width: '100%' }}
-           >
-           
+    const { ServiceVehicleInspectionDashboard } = GlobalComponents
+    const { ServiceVehicleInspectionEditDetail } = GlobalComponents
+    const { ServiceVehicleInspectionViewDetail } = GlobalComponents
 
-             <Menu.Item >
-               <Link to={`/serviceVehicleInspection/${this.props.serviceVehicleInspection.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
-             </Menu.Item>
-             
+    // Don't show popup menu when it is been collapsed
+    const menuProps = collapsed
+      ? {}
+      : {
+          openKeys: this.state.openKeys,
+        }
+    const layout = (
+      <Layout>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          breakpoint="md"
+          onCollapse={() => this.onCollapse(collapsed)}
+          width={256}
+          className={styles.sider}
+        >
+          <div className={styles.logo}>
+            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+            <Link to="/home">
+              {' '}
+              <h1>车辆上线检测</h1>
+            </Link>
+          </div>
 
-             {this.getNavMenuItems(this.props.serviceVehicleInspection.id)}
-             <Menu.Item >
-               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
-             </Menu.Item>
-           </Menu>
-         </Sider>
-         <Layout>
-           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-             <Switch>
-             
-               <Route path="/serviceVehicleInspection/:id/dashboard" component={ServiceVehicleInspectionDashboard} />
-               
-               <Route path="/serviceVehicleInspection/:id/editDetail" component={ServiceVehicleInspectionEditDetail} />
-               <Route path="/serviceVehicleInspection/:id/viewDetail" component={ServiceVehicleInspectionViewDetail} /> 
-               
+          <Menu
+            theme="dark"
+            mode="inline"
+            {...menuProps}
+            onOpenChange={this.handleOpenChange}
+            selectedKeys={this.getCurrentMenuSelectedKeys()}
+            style={{ margin: '16px 0', width: '100%' }}
+          >
+            <Menu.Item>
+              <Link
+                to={`/serviceVehicleInspection/${
+                  this.props.serviceVehicleInspection.id
+                }/dashboard`}
+              >
+                <Icon type="dashboard" />
+                <span>仪表板</span>
+              </Link>
+            </Menu.Item>
 
-               <Route path="/serviceVehicleInspection/:id/list/serviceVehicleRepairingList" component={this.getServiceVehicleRepairingSearch()} />
-               <Route path="/serviceVehicleInspection/:id/list/serviceVehicleRepairingCreateForm" component={this.getServiceVehicleRepairingCreateForm()} />
-               <Route path="/serviceVehicleInspection/:id/list/serviceVehicleRepairingUpdateForm" component={this.getServiceVehicleRepairingUpdateForm()} />
-              
-             </Switch>
-           </Content>
-         </Layout>
-       </Layout>
-     )
-     return (
-       <DocumentTitle title={this.getPageTitle()}>
-         <ContainerQuery query={query}>
-           {params => <div className={classNames(params)}>{layout}</div>}
-         </ContainerQuery>
-       </DocumentTitle>
-     )
-   }
+            {this.getNavMenuItems(this.props.serviceVehicleInspection.id)}
+            <Menu.Item>
+              <Link to={'/home'}>
+                <Icon type="home" />
+                <span>回到主页</span>
+              </Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+            <Switch>
+              <Route
+                path="/serviceVehicleInspection/:id/dashboard"
+                component={ServiceVehicleInspectionDashboard}
+              />
+
+              <Route
+                path="/serviceVehicleInspection/:id/editDetail"
+                component={ServiceVehicleInspectionEditDetail}
+              />
+              <Route
+                path="/serviceVehicleInspection/:id/viewDetail"
+                component={ServiceVehicleInspectionViewDetail}
+              />
+
+              <Route
+                path="/serviceVehicleInspection/:id/list/serviceVehicleRepairingList"
+                component={this.getServiceVehicleRepairingSearch()}
+              />
+              <Route
+                path="/serviceVehicleInspection/:id/list/serviceVehicleRepairingCreateForm"
+                component={this.getServiceVehicleRepairingCreateForm()}
+              />
+              <Route
+                path="/serviceVehicleInspection/:id/list/serviceVehicleRepairingUpdateForm"
+                component={this.getServiceVehicleRepairingUpdateForm()}
+              />
+            </Switch>
+          </Content>
+        </Layout>
+      </Layout>
+    )
+    return (
+      <DocumentTitle title={this.getPageTitle()}>
+        <ContainerQuery query={query}>
+          {params => <div className={classNames(params)}>{layout}</div>}
+        </ContainerQuery>
+      </DocumentTitle>
+    )
+  }
 }
 
 export default connect(state => ({
@@ -239,6 +290,3 @@ export default connect(state => ({
   serviceVehicleInspection: state._serviceVehicleInspection,
   ...state,
 }))(ServiceVehicleInspectionBizApp)
-
-
-

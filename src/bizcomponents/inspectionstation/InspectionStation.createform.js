@@ -1,16 +1,30 @@
 import React, { Component } from 'react'
-import { AutoComplete, Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
+import {
+  AutoComplete,
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+  Switch,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
 //import OSSPictureEdit from '../../components/PictureEdit'
-import {ImageUpload} from '../../axios/tools'
+import { ImageUpload } from '../../axios/tools'
 import FooterToolbar from '../../components/FooterToolbar'
 //import ImageUpload from '../../components/ImageUpload'
 import styles from './InspectionStation.createform.less'
-import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
-import GlobalComponents from '../../custcomponents';
+import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
+import GlobalComponents from '../../custcomponents'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -26,7 +40,7 @@ const fieldLabels = {
   contactMobile: '联系人手机',
   metrologyAccreditationImage: '计量资格认证',
 }
-const testValues = {};
+const testValues = {}
 /*
 const testValues = {
   name: '西浦机动车检测站',
@@ -41,11 +55,7 @@ const testValues = {
 */
 const imageURLPrefix = '//localhost:2090'
 
-
-const imageKeys = [
-  'metrologyAccreditationImage',
-]
-
+const imageKeys = ['metrologyAccreditationImage']
 
 class InspectionStationCreateForm extends Component {
   state = {
@@ -58,18 +68,13 @@ class InspectionStationCreateForm extends Component {
     // const { getFieldDecorator,setFieldsValue } = this.props.form
     const { setFieldsValue } = this.props.form
     //setFieldsValue(testValues)
-      
-    this.executeCandidateAddressCitySearch("")
-    
- 
-    
-    
-    
+
+    this.executeCandidateAddressCitySearch('')
   }
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -77,31 +82,28 @@ class InspectionStationCreateForm extends Component {
     })
   }
 
-  
-  executeCandidateAddressCitySearch = (filterKey) =>{
+  executeCandidateAddressCitySearch = filterKey => {
+    const { InspectionStationService } = GlobalComponents
 
-    const {InspectionStationService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = InspectionStationService.requestCandidateAddressCity("city", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = InspectionStationService.requestCandidateAddressCity(
+      'city',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateAddressCityList=>{
+    future.then(candidateAddressCityList => {
       this.setState({
-        candidateAddressCityList
+        candidateAddressCityList,
       })
-
     })
-
-  }	 
-  handleCandidateAddressCitySearch = (value) => {
+  }
+  handleCandidateAddressCitySearch = value => {
     this.executeCandidateAddressCitySearch(value)
   }
- 
-
-
 
   handleChange = (event, source) => {
     console.log('get file list from change in update change:', source)
@@ -113,7 +115,6 @@ class InspectionStationCreateForm extends Component {
     this.setState({ convertedImagesValues })
     console.log('/get file list from change in update change:', source)
   }
-
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -143,18 +144,23 @@ class InspectionStationCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addInspectionStation`,
-          payload: { id: owner.id, type: 'inspectionStation', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'inspectionStation',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -169,18 +175,22 @@ class InspectionStationCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -202,18 +212,15 @@ class InspectionStationCreateForm extends Component {
         </span>
       )
     }
-    
 
-    
-    const {candidateAddressCityList} = this.state
-    if(!candidateAddressCityList){
-      return (<div>等等</div>)
+    const { candidateAddressCityList } = this.state
+    if (!candidateAddressCityList) {
+      return <div>等等</div>
     }
-    if(!candidateAddressCityList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
+    if (!candidateAddressCityList.candidates) {
+      return <div>等等</div>
+    }
+
     return (
       <PageHeaderLayout
         title="新建一个检测站"
@@ -223,14 +230,11 @@ class InspectionStationCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.name}>
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: '请输入名称' }],
-                  })(
-                    <Input placeholder="请输入请输入名称string" />
-                  )}
+                  })(<Input placeholder="请输入请输入名称string" />)}
                 </Form.Item>
               </Col>
 
@@ -238,9 +242,7 @@ class InspectionStationCreateForm extends Component {
                 <Form.Item label={fieldLabels.operatingStatus}>
                   {getFieldDecorator('operatingStatus', {
                     rules: [{ required: true, message: '请输入服务状态' }],
-                  })(
-                    <Input placeholder="请输入请输入服务状态string" />
-                  )}
+                  })(<Input placeholder="请输入请输入服务状态string" />)}
                 </Form.Item>
               </Col>
 
@@ -248,9 +250,7 @@ class InspectionStationCreateForm extends Component {
                 <Form.Item label={fieldLabels.addressDetail}>
                   {getFieldDecorator('addressDetail', {
                     rules: [{ required: true, message: '请输入所在地址' }],
-                  })(
-                    <Input placeholder="请输入请输入所在地址string" />
-                  )}
+                  })(<Input placeholder="请输入请输入所在地址string" />)}
                 </Form.Item>
               </Col>
 
@@ -258,9 +258,7 @@ class InspectionStationCreateForm extends Component {
                 <Form.Item label={fieldLabels.longitude}>
                   {getFieldDecorator('longitude', {
                     rules: [{ required: true, message: '请输入经度' }],
-                  })(
-                    <Input placeholder="请输入请输入经度double" />
-                  )}
+                  })(<Input placeholder="请输入请输入经度double" />)}
                 </Form.Item>
               </Col>
 
@@ -268,9 +266,7 @@ class InspectionStationCreateForm extends Component {
                 <Form.Item label={fieldLabels.latitude}>
                   {getFieldDecorator('latitude', {
                     rules: [{ required: true, message: '请输入纬度' }],
-                  })(
-                    <Input placeholder="请输入请输入纬度double" />
-                  )}
+                  })(<Input placeholder="请输入请输入纬度double" />)}
                 </Form.Item>
               </Col>
 
@@ -278,9 +274,7 @@ class InspectionStationCreateForm extends Component {
                 <Form.Item label={fieldLabels.contactName}>
                   {getFieldDecorator('contactName', {
                     rules: [{ required: true, message: '请输入联系人姓名' }],
-                  })(
-                    <Input placeholder="请输入请输入联系人姓名string" />
-                  )}
+                  })(<Input placeholder="请输入请输入联系人姓名string" />)}
                 </Form.Item>
               </Col>
 
@@ -293,77 +287,71 @@ class InspectionStationCreateForm extends Component {
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
-
-
-
-       
-        
-
-
-
-
-
-
 
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <ImageUpload
                   buttonTitle="计量资格认证"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'metrologyAccreditationImage')}
+                  handleChange={event =>
+                    this.handleChange(event, 'metrologyAccreditationImage')
+                  }
                   fileList={convertedImagesValues.metrologyAccreditationImage}
                 />
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.addressCity}>
                   {getFieldDecorator('addressCityId', {
                     rules: [{ required: true, message: '请输入所在城市' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateAddressCityList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateAddressCitySearch}
-                    placeholder="请输入所在城市"
-                  >
-                  {candidateAddressCityList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateAddressCityList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateAddressCitySearch}
+                      placeholder="请输入所在城市"
+                    >
+                      {candidateAddressCityList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.name}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -378,7 +366,3 @@ class InspectionStationCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(InspectionStationCreateForm))
-
-
-
-
