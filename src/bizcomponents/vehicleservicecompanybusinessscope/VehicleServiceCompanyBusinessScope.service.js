@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}vehicleServiceCompanyBusinessScopeManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -19,29 +16,30 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
+
+
 const requestCandidateCompany = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}vehicleServiceCompanyBusinessScopeManager/requestCandidateCompany/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}
+}	 
+ 
 
-const requestCandidateAvailableService = (
-  ownerClass,
-  id,
-  filterKey,
-  pageNo
-) => {
+const requestCandidateAvailableService = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}vehicleServiceCompanyBusinessScopeManager/requestCandidateAvailableService/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}
+}	 
+ 
 
-const VehicleServiceCompanyBusinessScopeService = {
-  view,
+
+
+
+const VehicleServiceCompanyBusinessScopeService = { view,
   load,
   requestCandidateCompany,
-  requestCandidateAvailableService,
-}
+  requestCandidateAvailableService }
 export default VehicleServiceCompanyBusinessScopeService
+

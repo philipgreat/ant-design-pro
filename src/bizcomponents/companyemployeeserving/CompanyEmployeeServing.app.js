@@ -10,11 +10,13 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './CompanyEmployeeServing.app.less'
 
-import HeaderSearch from '../../components/HeaderSearch'
-import NoticeIcon from '../../components/NoticeIcon'
-import GlobalFooter from '../../components/GlobalFooter'
 
-import GlobalComponents from '../../custcomponents'
+import HeaderSearch from '../../components/HeaderSearch';
+import NoticeIcon from '../../components/NoticeIcon';
+import GlobalFooter from '../../components/GlobalFooter';
+
+
+import GlobalComponents from '../../custcomponents';
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -54,14 +56,14 @@ class CompanyEmployeeServingBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = collapsed => {
+  onCollapse = (collapsed) => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = props => {
+  getDefaultCollapsedSubMenus = (props) => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -69,7 +71,7 @@ class CompanyEmployeeServingBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = props => {
+  getCurrentMenuSelectedKeys = (props) => {
     const { location: { pathname } } = props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
@@ -77,78 +79,54 @@ class CompanyEmployeeServingBizApp extends React.PureComponent {
     }
     return keys
   }
-  getNavMenuItems = objectId => {
+  getNavMenuItems = (objectId) => {
     return (
-      <SubMenu
-        title={
-          <span>
-            <Icon type="profile" />
-            <span>商户员工服务状态变更</span>
-          </span>
-        }
+      <SubMenu title={
+        <span>
+          <Icon type="profile" />
+          <span>商户员工服务状态变更</span>
+        </span>}
       >
+
         <Menu.Item>
-          <Link
-            to={`/companyEmployeeServing/${objectId}/list/vehicleServiceCompanyEmployeeList`}
-          >
-            商户员工
-          </Link>
+          <Link to={`/companyEmployeeServing/${objectId}/list/vehicleServiceCompanyEmployeeList`}>商户员工</Link>
         </Menu.Item>
       </SubMenu>
     )
   }
 
+
   getVehicleServiceCompanyEmployeeSearch = () => {
-    const { VehicleServiceCompanyEmployeeSearch } = GlobalComponents
+    const {VehicleServiceCompanyEmployeeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._companyEmployeeServing.vehicleServiceCompanyEmployeeList,
       count: state._companyEmployeeServing.vehicleServiceCompanyEmployeeCount,
-      currentPage:
-        state._companyEmployeeServing
-          .vehicleServiceCompanyEmployeeCurrentPageNumber,
-      searchFormParameters:
-        state._companyEmployeeServing
-          .vehicleServiceCompanyEmployeeSearchFormParameters,
+      currentPage: state._companyEmployeeServing.vehicleServiceCompanyEmployeeCurrentPageNumber,
+      searchFormParameters: state._companyEmployeeServing.vehicleServiceCompanyEmployeeSearchFormParameters,
       loading: state._companyEmployeeServing.loading,
-      owner: {
-        type: '_companyEmployeeServing',
-        id: state._companyEmployeeServing.id,
-        listName: 'vehicleServiceCompanyEmployeeList',
-      }, // this is for model namespace and
+      owner: { type: '_companyEmployeeServing', id: state._companyEmployeeServing.id, listName: 'vehicleServiceCompanyEmployeeList' }, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeSearch)
   }
   getVehicleServiceCompanyEmployeeCreateForm = () => {
-    const { VehicleServiceCompanyEmployeeCreateForm } = GlobalComponents
+   	const {VehicleServiceCompanyEmployeeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._companyEmployeeServing.vehicleServiceCompanyEmployeeList,
       count: state._companyEmployeeServing.vehicleServiceCompanyEmployeeCount,
-      currentPage:
-        state._companyEmployeeServing
-          .vehicleServiceCompanyEmployeeCurrentPageNumber,
-      searchFormParameters:
-        state._companyEmployeeServing
-          .vehicleServiceCompanyEmployeeSearchFormParameters,
+      currentPage: state._companyEmployeeServing.vehicleServiceCompanyEmployeeCurrentPageNumber,
+      searchFormParameters: state._companyEmployeeServing.vehicleServiceCompanyEmployeeSearchFormParameters,
       loading: state._companyEmployeeServing.loading,
-      owner: {
-        type: '_companyEmployeeServing',
-        id: state._companyEmployeeServing.id,
-        listName: 'vehicleServiceCompanyEmployeeList',
-      }, // this is for model namespace and
+      owner: { type: '_companyEmployeeServing', id: state._companyEmployeeServing.id, listName: 'vehicleServiceCompanyEmployeeList'}, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeCreateForm)
   }
-
+  
   getVehicleServiceCompanyEmployeeUpdateForm = () => {
-    const { VehicleServiceCompanyEmployeeUpdateForm } = GlobalComponents
+  	const {VehicleServiceCompanyEmployeeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._companyEmployeeServing.selectedRows,
       currentUpdateIndex: state._companyEmployeeServing.currentUpdateIndex,
-      owner: {
-        type: '_companyEmployeeServing',
-        id: state._companyEmployeeServing.id,
-        listName: 'vehicleServiceCompanyEmployeeList',
-      }, // this is for model namespace and
+      owner: { type: '_companyEmployeeServing', id: state._companyEmployeeServing.id, listName: 'vehicleServiceCompanyEmployeeList' }, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeUpdateForm)
   }
 
@@ -158,126 +136,100 @@ class CompanyEmployeeServingBizApp extends React.PureComponent {
     const title = '代审车服务平台'
     return title
   }
-
-  handleOpenChange = openKeys => {
-    const latestOpenKey = openKeys.find(
-      key => this.state.openKeys.indexOf(key) === -1
-    )
+ 
+  handleOpenChange = (openKeys) => {
+    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-  toggle = () => {
-    const { collapsed } = this.props
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: !collapsed,
-    })
-  }
+   toggle = () => {
+     const { collapsed } = this.props
+     this.props.dispatch({
+       type: 'global/changeLayoutCollapsed',
+       payload: !collapsed,
+     })
+   }
 
-  render() {
-    // const { collapsed, fetchingNotices,loading } = this.props
-    const { collapsed } = this.props
+   render() {
+     // const { collapsed, fetchingNotices,loading } = this.props
+     const { collapsed } = this.props
+    
+     const {CompanyEmployeeServingDashboard} = GlobalComponents
+     const {CompanyEmployeeServingEditDetail} = GlobalComponents
+     const {CompanyEmployeeServingViewDetail} = GlobalComponents
+     
+     
+     
+     
+     // Don't show popup menu when it is been collapsed
+     const menuProps = collapsed ? {} : {
+       openKeys: this.state.openKeys,
+     }
+     const layout = (
+       <Layout>
+         <Sider
+           trigger={null}
+           collapsible
+           collapsed={collapsed}
+           breakpoint="md"
+           onCollapse={()=>this.onCollapse(collapsed)}
+           width={256}
+           className={styles.sider}
+         >
+           <div className={styles.logo}>
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+             <Link to="/home"> <h1>商户员工服务状态变更</h1></Link>
+           </div>
 
-    const { CompanyEmployeeServingDashboard } = GlobalComponents
-    const { CompanyEmployeeServingEditDetail } = GlobalComponents
-    const { CompanyEmployeeServingViewDetail } = GlobalComponents
+           <Menu
+             theme="dark"
+             mode="inline"
+             {...menuProps}
+             onOpenChange={this.handleOpenChange}
+             selectedKeys={this.getCurrentMenuSelectedKeys()}
+             style={{ margin: '16px 0', width: '100%' }}
+           >
+           
 
-    // Don't show popup menu when it is been collapsed
-    const menuProps = collapsed
-      ? {}
-      : {
-          openKeys: this.state.openKeys,
-        }
-    const layout = (
-      <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          breakpoint="md"
-          onCollapse={() => this.onCollapse(collapsed)}
-          width={256}
-          className={styles.sider}
-        >
-          <div className={styles.logo}>
-            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-            <Link to="/home">
-              {' '}
-              <h1>商户员工服务状态变更</h1>
-            </Link>
-          </div>
+             <Menu.Item >
+               <Link to={`/companyEmployeeServing/${this.props.companyEmployeeServing.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
+             </Menu.Item>
+             
 
-          <Menu
-            theme="dark"
-            mode="inline"
-            {...menuProps}
-            onOpenChange={this.handleOpenChange}
-            selectedKeys={this.getCurrentMenuSelectedKeys()}
-            style={{ margin: '16px 0', width: '100%' }}
-          >
-            <Menu.Item>
-              <Link
-                to={`/companyEmployeeServing/${
-                  this.props.companyEmployeeServing.id
-                }/dashboard`}
-              >
-                <Icon type="dashboard" />
-                <span>仪表板</span>
-              </Link>
-            </Menu.Item>
+             {this.getNavMenuItems(this.props.companyEmployeeServing.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
+           </Menu>
+         </Sider>
+         <Layout>
+           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+             <Switch>
+             
+               <Route path="/companyEmployeeServing/:id/dashboard" component={CompanyEmployeeServingDashboard} />
+               
+               <Route path="/companyEmployeeServing/:id/editDetail" component={CompanyEmployeeServingEditDetail} />
+               <Route path="/companyEmployeeServing/:id/viewDetail" component={CompanyEmployeeServingViewDetail} /> 
+               
 
-            {this.getNavMenuItems(this.props.companyEmployeeServing.id)}
-            <Menu.Item>
-              <Link to={'/home'}>
-                <Icon type="home" />
-                <span>回到主页</span>
-              </Link>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout>
-          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <Switch>
-              <Route
-                path="/companyEmployeeServing/:id/dashboard"
-                component={CompanyEmployeeServingDashboard}
-              />
-
-              <Route
-                path="/companyEmployeeServing/:id/editDetail"
-                component={CompanyEmployeeServingEditDetail}
-              />
-              <Route
-                path="/companyEmployeeServing/:id/viewDetail"
-                component={CompanyEmployeeServingViewDetail}
-              />
-
-              <Route
-                path="/companyEmployeeServing/:id/list/vehicleServiceCompanyEmployeeList"
-                component={this.getVehicleServiceCompanyEmployeeSearch()}
-              />
-              <Route
-                path="/companyEmployeeServing/:id/list/vehicleServiceCompanyEmployeeCreateForm"
-                component={this.getVehicleServiceCompanyEmployeeCreateForm()}
-              />
-              <Route
-                path="/companyEmployeeServing/:id/list/vehicleServiceCompanyEmployeeUpdateForm"
-                component={this.getVehicleServiceCompanyEmployeeUpdateForm()}
-              />
-            </Switch>
-          </Content>
-        </Layout>
-      </Layout>
-    )
-    return (
-      <DocumentTitle title={this.getPageTitle()}>
-        <ContainerQuery query={query}>
-          {params => <div className={classNames(params)}>{layout}</div>}
-        </ContainerQuery>
-      </DocumentTitle>
-    )
-  }
+               <Route path="/companyEmployeeServing/:id/list/vehicleServiceCompanyEmployeeList" component={this.getVehicleServiceCompanyEmployeeSearch()} />
+               <Route path="/companyEmployeeServing/:id/list/vehicleServiceCompanyEmployeeCreateForm" component={this.getVehicleServiceCompanyEmployeeCreateForm()} />
+               <Route path="/companyEmployeeServing/:id/list/vehicleServiceCompanyEmployeeUpdateForm" component={this.getVehicleServiceCompanyEmployeeUpdateForm()} />
+              
+             </Switch>
+           </Content>
+         </Layout>
+       </Layout>
+     )
+     return (
+       <DocumentTitle title={this.getPageTitle()}>
+         <ContainerQuery query={query}>
+           {params => <div className={classNames(params)}>{layout}</div>}
+         </ContainerQuery>
+       </DocumentTitle>
+     )
+   }
 }
 
 export default connect(state => ({
@@ -287,3 +239,6 @@ export default connect(state => ({
   companyEmployeeServing: state._companyEmployeeServing,
   ...state,
 }))(CompanyEmployeeServingBizApp)
+
+
+

@@ -1,29 +1,16 @@
 import React, { Component } from 'react'
-import {
-  AutoComplete,
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-  Switch,
-} from 'antd'
+import { AutoComplete, Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
 //import OSSPictureEdit from '../../components/PictureEdit'
+import {ImageUpload} from '../../axios/tools'
 import FooterToolbar from '../../components/FooterToolbar'
-import ImageUpload from '../../components/ImageUpload'
+//import ImageUpload from '../../components/ImageUpload'
 import styles from './HandOverChecklistItem.createform.less'
-import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
-import GlobalComponents from '../../custcomponents'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
+import GlobalComponents from '../../custcomponents';
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -32,7 +19,7 @@ const fieldLabels = {
   question: '检查问题',
   mainOrder: '年检订单',
 }
-const testValues = {}
+const testValues = {};
 /*
 const testValues = {
   questionId: 'AHOI000001',
@@ -41,7 +28,10 @@ const testValues = {
 */
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+
+const imageKeys = [
+]
+
 
 class HandOverChecklistItemCreateForm extends Component {
   state = {
@@ -54,15 +44,21 @@ class HandOverChecklistItemCreateForm extends Component {
     // const { getFieldDecorator,setFieldsValue } = this.props.form
     const { setFieldsValue } = this.props.form
     //setFieldsValue(testValues)
-
-    this.executeCandidateQuestionSearch('')
-
-    this.executeCandidateMainOrderSearch('')
+      
+    this.executeCandidateQuestionSearch("")
+    
+    
+    this.executeCandidateMainOrderSearch("")
+    
+ 
+    
+    
+    
   }
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -70,51 +66,53 @@ class HandOverChecklistItemCreateForm extends Component {
     })
   }
 
-  executeCandidateQuestionSearch = filterKey => {
-    const { HandOverChecklistItemService } = GlobalComponents
+  
+  executeCandidateQuestionSearch = (filterKey) =>{
 
-    const id = '' //not used for now
-    const pageNo = 1
-    const future = HandOverChecklistItemService.requestCandidateQuestion(
-      'availableHandOverItem',
-      id,
-      filterKey,
-      pageNo
-    )
-    console.log(future)
+    const {HandOverChecklistItemService} = GlobalComponents;
+    
+    const id = "";//not used for now
+    const pageNo = 1;
+    const future = HandOverChecklistItemService.requestCandidateQuestion("availableHandOverItem", id, filterKey, pageNo);
+    console.log(future);
+    
 
-    future.then(candidateQuestionList => {
+    future.then(candidateQuestionList=>{
       this.setState({
-        candidateQuestionList,
+        candidateQuestionList
       })
+
     })
-  }
-  handleCandidateQuestionSearch = value => {
+
+  }	 
+  handleCandidateQuestionSearch = (value) => {
     this.executeCandidateQuestionSearch(value)
   }
 
-  executeCandidateMainOrderSearch = filterKey => {
-    const { HandOverChecklistItemService } = GlobalComponents
+  executeCandidateMainOrderSearch = (filterKey) =>{
 
-    const id = '' //not used for now
-    const pageNo = 1
-    const future = HandOverChecklistItemService.requestCandidateMainOrder(
-      'vehicleInspectionOrder',
-      id,
-      filterKey,
-      pageNo
-    )
-    console.log(future)
+    const {HandOverChecklistItemService} = GlobalComponents;
+    
+    const id = "";//not used for now
+    const pageNo = 1;
+    const future = HandOverChecklistItemService.requestCandidateMainOrder("vehicleInspectionOrder", id, filterKey, pageNo);
+    console.log(future);
+    
 
-    future.then(candidateMainOrderList => {
+    future.then(candidateMainOrderList=>{
       this.setState({
-        candidateMainOrderList,
+        candidateMainOrderList
       })
+
     })
-  }
-  handleCandidateMainOrderSearch = value => {
+
+  }	 
+  handleCandidateMainOrderSearch = (value) => {
     this.executeCandidateMainOrderSearch(value)
   }
+ 
+
+
 
   handleChange = (event, source) => {
     console.log('get file list from change in update change:', source)
@@ -126,6 +124,7 @@ class HandOverChecklistItemCreateForm extends Component {
     this.setState({ convertedImagesValues })
     console.log('/get file list from change in update change:', source)
   }
+
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -155,23 +154,18 @@ class HandOverChecklistItemCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addHandOverChecklistItem`,
-          payload: {
-            id: owner.id,
-            type: 'handOverChecklistItem',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'handOverChecklistItem', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -186,22 +180,18 @@ class HandOverChecklistItemCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -223,23 +213,27 @@ class HandOverChecklistItemCreateForm extends Component {
         </span>
       )
     }
+    
 
-    const { candidateQuestionList } = this.state
-    if (!candidateQuestionList) {
-      return <div>等等</div>
+    
+    const {candidateQuestionList} = this.state
+    if(!candidateQuestionList){
+      return (<div>等等</div>)
     }
-    if (!candidateQuestionList.candidates) {
-      return <div>等等</div>
+    if(!candidateQuestionList.candidates){
+      return (<div>等等</div>)
+    }   
+    
+    
+    const {candidateMainOrderList} = this.state
+    if(!candidateMainOrderList){
+      return (<div>等等</div>)
     }
-
-    const { candidateMainOrderList } = this.state
-    if (!candidateMainOrderList) {
-      return <div>等等</div>
-    }
-    if (!candidateMainOrderList.candidates) {
-      return <div>等等</div>
-    }
-
+    if(!candidateMainOrderList.candidates){
+      return (<div>等等</div>)
+    }   
+    
+    
     return (
       <PageHeaderLayout
         title="新建一个交接检查项"
@@ -248,32 +242,47 @@ class HandOverChecklistItemCreateForm extends Component {
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
-            <Row gutter={16} />
+            <Row gutter={16}>
+
+            </Row>
           </Form>
         </Card>
+
+
+
+       
+        
+
+
+
+
+
+
+
+
 
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.question}>
                   {getFieldDecorator('questionId', {
                     rules: [{ required: true, message: '请输入检查问题' }],
                   })(
-                    <AutoComplete
-                      dataSource={candidateQuestionList.candidates}
-                      style={{ width: 200 }}
-                      onSearch={this.handleCandidateQuestionSearch}
-                      placeholder="请输入检查问题"
-                    >
-                      {candidateQuestionList.candidates.map(item => {
-                        return (
-                          <Option key={item.id}>{`${item.checkItemName}(${
-                            item.id
-                          })`}</Option>
-                        )
-                      })}
-                    </AutoComplete>
+                                
+                  <AutoComplete
+                    dataSource={candidateQuestionList.candidates}
+                    style={{ width: 200 }}
+                    
+                    onSearch={this.handleCandidateQuestionSearch}
+                    placeholder="请输入检查问题"
+                  >
+                  {candidateQuestionList.candidates.map(item=>{
+                return (<Option key={item.id}>{`${item.checkItemName}(${item.id})`}</Option>);
+            })}
+                  
+                  </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -283,42 +292,33 @@ class HandOverChecklistItemCreateForm extends Component {
                   {getFieldDecorator('mainOrderId', {
                     rules: [{ required: true, message: '请输入年检订单' }],
                   })(
-                    <AutoComplete
-                      dataSource={candidateMainOrderList.candidates}
-                      style={{ width: 200 }}
-                      onSearch={this.handleCandidateMainOrderSearch}
-                      placeholder="请输入年检订单"
-                    >
-                      {candidateMainOrderList.candidates.map(item => {
-                        return (
-                          <Option key={item.id}>{`${item.orderStatus}(${
-                            item.id
-                          })`}</Option>
-                        )
-                      })}
-                    </AutoComplete>
+                                
+                  <AutoComplete
+                    dataSource={candidateMainOrderList.candidates}
+                    style={{ width: 200 }}
+                    
+                    onSearch={this.handleCandidateMainOrderSearch}
+                    placeholder="请输入年检订单"
+                  >
+                  {candidateMainOrderList.candidates.map(item=>{
+                return (<Option key={item.id}>{`${item.orderStatus}(${item.id})`}</Option>);
+            })}
+                  
+                  </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -333,3 +333,7 @@ class HandOverChecklistItemCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(HandOverChecklistItemCreateForm))
+
+
+
+

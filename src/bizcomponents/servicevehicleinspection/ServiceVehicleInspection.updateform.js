@@ -1,23 +1,10 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-  Switch,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover, Switch } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
-import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-import ImageUpload from '../../components/ImageUpload'
+import {ImageUpload} from '../../axios/tools'
 //import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
@@ -47,6 +34,7 @@ const fieldLabels = {
   inspectionNeedRepair: '是否要修理',
   merchant: '商户',
   mainOrder: '年检订单',
+
 }
 
 const imageURLPrefix = '//localhost:2090'
@@ -58,6 +46,7 @@ const imageKeys = [
   'inspectionReportImage4',
   'inspectionReportImage5',
 ]
+
 
 class ServiceVehicleInspectionUpdateForm extends Component {
   state = {
@@ -72,7 +61,7 @@ class ServiceVehicleInspectionUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: mapFromImageValues(selectedRow, imageKeys),
+      convertedImagesValues: mapFromImageValues(selectedRow,imageKeys)
     })
   }
 
@@ -101,14 +90,13 @@ class ServiceVehicleInspectionUpdateForm extends Component {
     if (currentUpdateIndex >= selectedRows.length) {
       return
     }
-    const convertiedValues = selectedRows.map(item => {
+    const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
         startTime: moment(item.startTime).format('YYYY-MM-DD'),
         lastUpdateTime: moment(item.lastUpdateTime).format('YYYY-MM-DD'),
-        inspectionDatetime: moment(item.inspectionDatetime).format(
-          'YYYY-MM-DD'
-        ),
+        inspectionDatetime: moment(item.inspectionDatetime).format('YYYY-MM-DD'),
+
       }
     })
     const selectedRow = convertiedValues[currentUpdateIndex]
@@ -124,7 +112,8 @@ class ServiceVehicleInspectionUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  handlePreview = file => {
+
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -133,17 +122,12 @@ class ServiceVehicleInspectionUpdateForm extends Component {
   }
 
   render() {
-    const {
-      form,
-      dispatch,
-      submitting,
-      selectedRows,
-      currentUpdateIndex,
-    } = this.props
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const { convertedImagesValues } = this.state
     const { setFieldsValue } = this.props.form
-
+    
+    
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -154,11 +138,7 @@ class ServiceVehicleInspectionUpdateForm extends Component {
         const { owner } = this.props
         const serviceVehicleInspectionId = values.id
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-        const parameters = {
-          ...values,
-          serviceVehicleInspectionId,
-          ...imagesValues,
-        }
+        const parameters = { ...values, serviceVehicleInspectionId, ...imagesValues }
 
         // const newIndex= currentUpdateIndex + 1
         dispatch({
@@ -174,7 +154,7 @@ class ServiceVehicleInspectionUpdateForm extends Component {
         })
       })
     }
-
+    
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -185,15 +165,11 @@ class ServiceVehicleInspectionUpdateForm extends Component {
         const { owner } = this.props
         const serviceVehicleInspectionId = values.id
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-        const parameters = {
-          ...values,
-          serviceVehicleInspectionId,
-          ...imagesValues,
-        }
+        const parameters = { ...values, serviceVehicleInspectionId, ...imagesValues }
 
         // TODO
         const { currentUpdateIndex } = this.props
-
+        
         if (currentUpdateIndex >= selectedRows.length - 1) {
           return
         }
@@ -215,11 +191,11 @@ class ServiceVehicleInspectionUpdateForm extends Component {
         })
       })
     }
-
+    
     const skipToNext = () => {
       const { currentUpdateIndex } = this.props
       const { owner } = this.props
-
+        
       const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextServiceVehicleInspectionUpdateRow`,
@@ -233,7 +209,7 @@ class ServiceVehicleInspectionUpdateForm extends Component {
         },
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -250,22 +226,18 @@ class ServiceVehicleInspectionUpdateForm extends Component {
       if (!errors || errorCount === 0) {
         return null
       }
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -287,31 +259,30 @@ class ServiceVehicleInspectionUpdateForm extends Component {
         </span>
       )
     }
-
+    
     if (!selectedRows) {
-      return <div>缺少被更新的对象</div>
+      return (<div>缺少被更新的对象</div>)
     }
 
     // TODO
     return (
       <PageHeaderLayout
-        title={
-          '更新车辆上线检测' +
-          (currentUpdateIndex + 1) +
-          '/' +
-          selectedRows.length
-        }
+        title={"更新车辆上线检测"+(currentUpdateIndex+1)+"/"+selectedRows.length}
         content="更新车辆上线检测"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+            
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
                     rules: [{ required: true, message: '请输入ID' }],
-                  })(<Input placeholder="请输入请输入IDstring" disabled />)}
+                  })(
+                    <Input placeholder="请输入请输入IDstring" disabled />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -319,7 +290,9 @@ class ServiceVehicleInspectionUpdateForm extends Component {
                 <Form.Item label={fieldLabels.serviceStatus}>
                   {getFieldDecorator('serviceStatus', {
                     rules: [{ required: true, message: '请输入服务状态' }],
-                  })(<Input placeholder="请输入请输入服务状态string" />)}
+                  })(
+                    <Input placeholder="请输入请输入服务状态string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -327,7 +300,9 @@ class ServiceVehicleInspectionUpdateForm extends Component {
                 <Form.Item label={fieldLabels.serviceSummary}>
                   {getFieldDecorator('serviceSummary', {
                     rules: [{ required: true, message: '请输入服务概述' }],
-                  })(<Input placeholder="请输入请输入服务概述string" />)}
+                  })(
+                    <Input placeholder="请输入请输入服务概述string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -335,7 +310,9 @@ class ServiceVehicleInspectionUpdateForm extends Component {
                 <Form.Item label={fieldLabels.startTime}>
                   {getFieldDecorator('startTime', {
                     rules: [{ required: true, message: '请输入开始时间' }],
-                  })(<Input placeholder="请输入请输入开始时间date_time" />)}
+                  })(
+                    <Input placeholder="请输入请输入开始时间date_time" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -343,7 +320,9 @@ class ServiceVehicleInspectionUpdateForm extends Component {
                 <Form.Item label={fieldLabels.longitude}>
                   {getFieldDecorator('longitude', {
                     rules: [{ required: true, message: '请输入经度' }],
-                  })(<Input placeholder="请输入请输入经度double" />)}
+                  })(
+                    <Input placeholder="请输入请输入经度double" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -351,7 +330,9 @@ class ServiceVehicleInspectionUpdateForm extends Component {
                 <Form.Item label={fieldLabels.latitude}>
                   {getFieldDecorator('latitude', {
                     rules: [{ required: true, message: '请输入纬度' }],
-                  })(<Input placeholder="请输入请输入纬度double" />)}
+                  })(
+                    <Input placeholder="请输入请输入纬度double" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -359,7 +340,9 @@ class ServiceVehicleInspectionUpdateForm extends Component {
                 <Form.Item label={fieldLabels.inspectionDatetime}>
                   {getFieldDecorator('inspectionDatetime', {
                     rules: [{ required: true, message: '请输入检测日期' }],
-                  })(<Input placeholder="请输入请输入检测日期date_time" />)}
+                  })(
+                    <Input placeholder="请输入请输入检测日期date_time" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -367,7 +350,9 @@ class ServiceVehicleInspectionUpdateForm extends Component {
                 <Form.Item label={fieldLabels.inspectionResult}>
                   {getFieldDecorator('inspectionResult', {
                     rules: [{ required: true, message: '请输入检测结果' }],
-                  })(<Input placeholder="请输入请输入检测结果string" />)}
+                  })(
+                    <Input placeholder="请输入请输入检测结果string" />
+                  )}
                 </Form.Item>
               </Col>
 
@@ -375,23 +360,30 @@ class ServiceVehicleInspectionUpdateForm extends Component {
                 <Form.Item label={fieldLabels.inspectionNeedRepair}>
                   {getFieldDecorator('inspectionNeedRepair', {
                     rules: [{ required: true, message: '请输入是否要修理' }],
-                  })(<Input placeholder="请输入请输入是否要修理string" />)}
+                  })(
+                    <Input placeholder="请输入请输入是否要修理string" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
+       
+        
+        
+        
+
 
         <Card title="附件" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <ImageUpload
                   buttonTitle="年检报告1"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'inspectionReportImage1')
-                  }
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage1')}
                   fileList={convertedImagesValues.inspectionReportImage1}
                 />
               </Col>
@@ -400,9 +392,7 @@ class ServiceVehicleInspectionUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="年检报告2"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'inspectionReportImage2')
-                  }
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage2')}
                   fileList={convertedImagesValues.inspectionReportImage2}
                 />
               </Col>
@@ -411,9 +401,7 @@ class ServiceVehicleInspectionUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="年检报告3"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'inspectionReportImage3')
-                  }
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage3')}
                   fileList={convertedImagesValues.inspectionReportImage3}
                 />
               </Col>
@@ -422,9 +410,7 @@ class ServiceVehicleInspectionUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="年检报告4"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'inspectionReportImage4')
-                  }
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage4')}
                   fileList={convertedImagesValues.inspectionReportImage4}
                 />
               </Col>
@@ -433,40 +419,24 @@ class ServiceVehicleInspectionUpdateForm extends Component {
                 <ImageUpload
                   buttonTitle="年检报告5"
                   handlePreview={this.handlePreview}
-                  handleChange={event =>
-                    this.handleChange(event, 'inspectionReportImage5')
-                  }
+                  handleChange={event => this.handleChange(event, 'inspectionReportImage5')}
                   fileList={convertedImagesValues.inspectionReportImage5}
                 />
               </Col>
+
             </Row>
           </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitUpdateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
             更新
           </Button>
-          <Button
-            type="primary"
-            onClick={submitUpdateFormAndContinue}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             更新并装载下一个
           </Button>
-          <Button
-            type="info"
-            onClick={skipToNext}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             略过
           </Button>
           <Button type="info" onClick={goback} loading={submitting}>
@@ -481,3 +451,6 @@ class ServiceVehicleInspectionUpdateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ServiceVehicleInspectionUpdateForm))
+
+
+

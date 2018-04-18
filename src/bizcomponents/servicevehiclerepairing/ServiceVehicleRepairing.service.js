@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}serviceVehicleRepairingManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -19,43 +16,42 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-const requestCandidateResponsibleWorker = (
-  ownerClass,
-  id,
-  filterKey,
-  pageNo
-) => {
+
+
+const requestCandidateResponsibleWorker = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}serviceVehicleRepairingManager/requestCandidateResponsibleWorker/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}
+}	 
+ 
 
-const requestCandidateServiceVehicleInspection = (
-  ownerClass,
-  id,
-  filterKey,
-  pageNo
-) => {
+const requestCandidateServiceVehicleInspection = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}serviceVehicleRepairingManager/requestCandidateServiceVehicleInspection/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}
+}	 
+ 
 
 const requestCandidateMerchant = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}serviceVehicleRepairingManager/requestCandidateMerchant/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}
+}	 
+ 
 
 const requestCandidateMainOrder = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}serviceVehicleRepairingManager/requestCandidateMainOrder/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}
+}	 
+ 
+
+
+
 
 const addRepairingAllowanceItem = (targetObjectId, parameters) => {
   const url = `${PREFIX}serviceVehicleRepairingManager/addRepairingAllowanceItem/serviceId/allowanceTitle/allowanceCode/allowanceAmount/tokensExpr/`
@@ -72,11 +68,7 @@ const addRepairingAllowanceItem = (targetObjectId, parameters) => {
 const updateRepairingAllowanceItem = (targetObjectId, parameters) => {
   const url = `${PREFIX}serviceVehicleRepairingManager/updateRepairingAllowanceItemProperties/serviceVehicleRepairingId/id/allowanceTitle/allowanceCode/allowanceAmount/tokensExpr/`
   const serviceVehicleRepairingId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    serviceVehicleRepairingId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, serviceVehicleRepairingId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -87,11 +79,7 @@ const updateRepairingAllowanceItem = (targetObjectId, parameters) => {
 
 const removeRepairingAllowanceItemList = (targetObjectId, parameters) => {
   const url = `${PREFIX}serviceVehicleRepairingManager/removeRepairingAllowanceItemList/serviceVehicleRepairingId/repairingAllowanceItemIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    serviceVehicleRepairingId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, serviceVehicleRepairingId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -99,6 +87,7 @@ const removeRepairingAllowanceItemList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addVehicleRepairingPayment = (targetObjectId, parameters) => {
   const url = `${PREFIX}serviceVehicleRepairingManager/addVehicleRepairingPayment/serviceVehicleRepairingId/originalAmount/actualAmount/status/wechatOrderId/wechatPrepayId/createTime/tokensExpr/`
@@ -115,11 +104,7 @@ const addVehicleRepairingPayment = (targetObjectId, parameters) => {
 const updateVehicleRepairingPayment = (targetObjectId, parameters) => {
   const url = `${PREFIX}serviceVehicleRepairingManager/updateVehicleRepairingPaymentProperties/serviceVehicleRepairingId/id/originalAmount/actualAmount/status/wechatOrderId/wechatPrepayId/createTime/tokensExpr/`
   const serviceVehicleRepairingId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    serviceVehicleRepairingId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, serviceVehicleRepairingId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -130,11 +115,7 @@ const updateVehicleRepairingPayment = (targetObjectId, parameters) => {
 
 const removeVehicleRepairingPaymentList = (targetObjectId, parameters) => {
   const url = `${PREFIX}serviceVehicleRepairingManager/removeVehicleRepairingPaymentList/serviceVehicleRepairingId/vehicleRepairingPaymentIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    serviceVehicleRepairingId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, serviceVehicleRepairingId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -143,8 +124,8 @@ const removeVehicleRepairingPaymentList = (targetObjectId, parameters) => {
   })
 }
 
-const ServiceVehicleRepairingService = {
-  view,
+
+const ServiceVehicleRepairingService = { view,
   load,
   addRepairingAllowanceItem,
   addVehicleRepairingPayment,
@@ -155,6 +136,6 @@ const ServiceVehicleRepairingService = {
   requestCandidateResponsibleWorker,
   requestCandidateServiceVehicleInspection,
   requestCandidateMerchant,
-  requestCandidateMainOrder,
-}
+  requestCandidateMainOrder }
 export default ServiceVehicleRepairingService
+

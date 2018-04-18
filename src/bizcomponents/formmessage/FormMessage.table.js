@@ -1,26 +1,18 @@
+
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge } from 'antd'
+import { Table, Alert, Badge} from 'antd'
 import { Link } from 'dva/router'
 import styles from './FormMessage.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
+
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '标题', debugtype: 'string', dataIndex: 'title', width: '10' },
-  {
-    title: '形式',
-    dataIndex: 'form',
-    render: (text, record) =>
-      record.form ? (
-        <Link to={`/genericForm/${record.form.id}/dashboard`}>
-          {record.form.displayName}
-        </Link>
-      ) : (
-        '暂无'
-      ),
-  },
+  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? (<Link to={`/genericForm/${record.form.id}/dashboard`}>{record.form.displayName}</Link>) : '暂无') },
   { title: '水平', debugtype: 'string', dataIndex: 'level', width: '11' },
+
 ]
 
 class FormMessageTable extends PureComponent {
@@ -63,6 +55,7 @@ class FormMessageTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
+      
     }
 
     const rowSelection = {
@@ -77,15 +70,13 @@ class FormMessageTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={
+            message={(
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
-                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  清空
-                </a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
+                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
-            }
+            )}
             type="info"
             showIcon
           />
@@ -106,3 +97,4 @@ class FormMessageTable extends PureComponent {
 }
 
 export default FormMessageTable
+

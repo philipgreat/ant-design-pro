@@ -1,39 +1,21 @@
+
+
 import React, { Component } from 'react'
 import { connect } from 'dva'
 import moment from 'moment'
-import {
-  Row,
-  Col,
-  Icon,
-  Card,
-  Tabs,
-  Table,
-  Radio,
-  DatePicker,
-  Tooltip,
-  Menu,
-  Dropdown,
-} from 'antd'
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
-  ChartCard,
-  yuan,
-  MiniArea,
-  MiniBar,
-  MiniProgress,
-  Field,
-  Bar,
-  Pie,
-  TimelineChart,
+  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
 import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './VehicleInspectionOrderCharge.dashboard.less'
-import DescriptionList from '../../components/DescriptionList'
-const { Description } = DescriptionList
+import DescriptionList from '../../components/DescriptionList';
+const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
 
@@ -45,17 +27,19 @@ const topColResponsiveProps = {
   xl: 6,
   style: { marginBottom: 24 },
 }
-const summaryOf = vehicleInspectionOrderCharge => {
-  return (
-    <DescriptionList className={styles.headerList} size="small" col="4">
-      <Description term="ID">{vehicleInspectionOrderCharge.id}</Description>
-      <Description term="标题">
-        {vehicleInspectionOrderCharge.title}
-      </Description>
-      <Description term="代码">{vehicleInspectionOrderCharge.code}</Description>
-      <Description term="量">{vehicleInspectionOrderCharge.amount}</Description>
-    </DescriptionList>
-  )
+const summaryOf = (vehicleInspectionOrderCharge) =>{
+
+	return (
+	<DescriptionList className={styles.headerList} size="small" col="4">
+<Description term="ID">{vehicleInspectionOrderCharge.id}</Description> 
+<Description term="标题">{vehicleInspectionOrderCharge.title}</Description> 
+<Description term="代码">{vehicleInspectionOrderCharge.code}</Description> 
+<Description term="量">{vehicleInspectionOrderCharge.amount}</Description> 
+	
+        
+      </DescriptionList>
+	)
+
 }
 
 @connect(state => ({
@@ -64,18 +48,26 @@ const summaryOf = vehicleInspectionOrderCharge => {
 export default class VehicleInspectionOrderChargeDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
-    const { id } = this.props.vehicleInspectionOrderCharge
-
+    const { id,  } = this.props.vehicleInspectionOrderCharge
+    
+    
+    
     return (
+
       <PageHeaderLayout
         title="车辆检验订单费用总览"
         content={summaryOf(this.props.vehicleInspectionOrderCharge)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
-          <Row gutter={24} />
+          <Row gutter={24}>
+
+          </Row>
         </div>
       </PageHeaderLayout>
     )
   }
 }
+
+
+

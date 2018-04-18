@@ -1,5 +1,24 @@
 English | [简体中文](./README.zh-CN.md)
 
+
+# 部署
+
+- git clone https://github.com/philipgreat/ant-design-pro.git
+- yarn install
+- npm run build（打包）/npm start(开始调试），修改代码可以自动更新
+
+# 图片处理
+目前图片支持OSS和SkynetMediaServer
+
+# 解决问题
+
+使用ReactTask（Java Task），的时候， 如果切换项目，调试状态，可能会遇到组件找不到的情况（之前坑了好久），这个时候
+
+- ctrl+c停止node
+- 删除 node_models/.cache
+- npm start, 等待较长长时间约三分钟，启动
+
+
 # Ant Design Pro
 
 [![](https://img.shields.io/travis/ant-design/ant-design-pro.svg?style=flat-square)](https://travis-ci.org/ant-design/ant-design-pro) [![Build status](https://ci.appveyor.com/api/projects/status/67fxu2by3ibvqtat/branch/master?svg=true)](https://ci.appveyor.com/project/afc163/ant-design-pro/branch/master)  [![Gitter](https://badges.gitter.im/ant-design/ant-design-pro.svg)](https://gitter.im/ant-design/ant-design-pro?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)

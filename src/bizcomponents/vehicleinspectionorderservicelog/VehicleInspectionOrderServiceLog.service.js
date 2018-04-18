@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}vehicleInspectionOrderServiceLogManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -19,29 +16,30 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-const requestCandidateResponsibleWorker = (
-  ownerClass,
-  id,
-  filterKey,
-  pageNo
-) => {
+
+
+const requestCandidateResponsibleWorker = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}vehicleInspectionOrderServiceLogManager/requestCandidateResponsibleWorker/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}
+}	 
+ 
 
 const requestCandidateMainOrder = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}vehicleInspectionOrderServiceLogManager/requestCandidateMainOrder/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}
+}	 
+ 
 
-const VehicleInspectionOrderServiceLogService = {
-  view,
+
+
+
+const VehicleInspectionOrderServiceLogService = { view,
   load,
   requestCandidateResponsibleWorker,
-  requestCandidateMainOrder,
-}
+  requestCandidateMainOrder }
 export default VehicleInspectionOrderServiceLogService
+

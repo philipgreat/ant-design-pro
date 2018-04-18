@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}customerManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -19,19 +16,26 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
+
+
 const requestCandidateSecUser = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}customerManager/requestCandidateSecUser/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}
+}	 
+ 
 
 const requestCandidatePlatform = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}customerManager/requestCandidatePlatform/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}
+}	 
+ 
+
+
+
 
 const addCompanyQrcodePromotionRecord = (targetObjectId, parameters) => {
   const url = `${PREFIX}customerManager/addCompanyQrcodePromotionRecord/customerId/companyId/tokensExpr/`
@@ -59,11 +63,7 @@ const updateCompanyQrcodePromotionRecord = (targetObjectId, parameters) => {
 
 const removeCompanyQrcodePromotionRecordList = (targetObjectId, parameters) => {
   const url = `${PREFIX}customerManager/removeCompanyQrcodePromotionRecordList/customerId/companyQrcodePromotionRecordIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    customerId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -71,6 +71,7 @@ const removeCompanyQrcodePromotionRecordList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addVehicleInfo = (targetObjectId, parameters) => {
   const url = `${PREFIX}customerManager/addVehicleInfo/customerId/licensePlateNumber/vehicleType/useCharacter/seatsQuantity/registrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/platformId/tokensExpr/`
@@ -98,11 +99,7 @@ const updateVehicleInfo = (targetObjectId, parameters) => {
 
 const removeVehicleInfoList = (targetObjectId, parameters) => {
   const url = `${PREFIX}customerManager/removeVehicleInfoList/customerId/vehicleInfoIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    customerId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -110,6 +107,7 @@ const removeVehicleInfoList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addVehicleInspectionOrder = (targetObjectId, parameters) => {
   const url = `${PREFIX}customerManager/addVehicleInspectionOrder/customerId/orderStatus/vehicleLicensePlateNumber/createTime/contactName/contactMobileNumber/productType/serviceCompanyId/serviceCompanyInfo/contactAddressDetail/contactAddressCityId/exemptProxyFee/planInspectionDate/trafficAccidentAnnouncement/engagementLetterProvided/homePickUp/vehicleType/vehicleUseCharacter/vehicleSeatsQuantity/vehicleRegistrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/platformId/tokensExpr/`
@@ -137,11 +135,7 @@ const updateVehicleInspectionOrder = (targetObjectId, parameters) => {
 
 const removeVehicleInspectionOrderList = (targetObjectId, parameters) => {
   const url = `${PREFIX}customerManager/removeVehicleInspectionOrderList/customerId/vehicleInspectionOrderIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    customerId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -149,6 +143,7 @@ const removeVehicleInspectionOrderList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addOrderDiscountCoupon = (targetObjectId, parameters) => {
   const url = `${PREFIX}customerManager/addOrderDiscountCoupon/customerId/couponTitle/discountAmount/endDate/couponStatus/shareCode/mainOrderId/platformId/tokensExpr/`
@@ -176,11 +171,7 @@ const updateOrderDiscountCoupon = (targetObjectId, parameters) => {
 
 const removeOrderDiscountCouponList = (targetObjectId, parameters) => {
   const url = `${PREFIX}customerManager/removeOrderDiscountCouponList/customerId/orderDiscountCouponIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    customerId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -188,6 +179,7 @@ const removeOrderDiscountCouponList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addVehicleInspectionOrderCoupon = (targetObjectId, parameters) => {
   const url = `${PREFIX}customerManager/addVehicleInspectionOrderCoupon/customerId/couponTitle/discountAmount/endDate/appliedDate/couponStatus/mainOrderId/tokensExpr/`
@@ -215,11 +207,7 @@ const updateVehicleInspectionOrderCoupon = (targetObjectId, parameters) => {
 
 const removeVehicleInspectionOrderCouponList = (targetObjectId, parameters) => {
   const url = `${PREFIX}customerManager/removeVehicleInspectionOrderCouponList/customerId/vehicleInspectionOrderCouponIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    customerId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -228,8 +216,8 @@ const removeVehicleInspectionOrderCouponList = (targetObjectId, parameters) => {
   })
 }
 
-const CustomerService = {
-  view,
+
+const CustomerService = { view,
   load,
   addCompanyQrcodePromotionRecord,
   addVehicleInfo,
@@ -247,6 +235,6 @@ const CustomerService = {
   removeOrderDiscountCouponList,
   removeVehicleInspectionOrderCouponList,
   requestCandidateSecUser,
-  requestCandidatePlatform,
-}
+  requestCandidatePlatform }
 export default CustomerService
+

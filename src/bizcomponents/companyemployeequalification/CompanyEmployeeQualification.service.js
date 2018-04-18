@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}companyEmployeeQualificationManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -18,6 +15,11 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}companyEmployeeQualificationManager/loadCompanyEmployeeQualification/${targetObjectId}/${parametersExpr}/`,
   })
 }
+
+
+
+
+
 
 const addVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
   const url = `${PREFIX}companyEmployeeQualificationManager/addVehicleServiceCompanyEmployee/qualificationId/employeeName/profileImage/companyName/mobileNumber/gender/availableState/innocentEvidenceImage/identityCardNumber/companyId/inspectionStationId/availableMoveCar/availableInspectionCar/availableRepairCar/tokensExpr/`
@@ -34,11 +36,7 @@ const addVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
 const updateVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
   const url = `${PREFIX}companyEmployeeQualificationManager/updateVehicleServiceCompanyEmployeeProperties/companyEmployeeQualificationId/id/employeeName/profileImage/companyName/mobileNumber/gender/availableState/innocentEvidenceImage/identityCardNumber/availableMoveCar/availableInspectionCar/availableRepairCar/tokensExpr/`
   const companyEmployeeQualificationId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    companyEmployeeQualificationId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, companyEmployeeQualificationId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -47,16 +45,9 @@ const updateVehicleServiceCompanyEmployee = (targetObjectId, parameters) => {
   })
 }
 
-const removeVehicleServiceCompanyEmployeeList = (
-  targetObjectId,
-  parameters
-) => {
+const removeVehicleServiceCompanyEmployeeList = (targetObjectId, parameters) => {
   const url = `${PREFIX}companyEmployeeQualificationManager/removeVehicleServiceCompanyEmployeeList/companyEmployeeQualificationId/vehicleServiceCompanyEmployeeIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    companyEmployeeQualificationId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, companyEmployeeQualificationId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -65,11 +56,11 @@ const removeVehicleServiceCompanyEmployeeList = (
   })
 }
 
-const CompanyEmployeeQualificationService = {
-  view,
+
+const CompanyEmployeeQualificationService = { view,
   load,
   addVehicleServiceCompanyEmployee,
   updateVehicleServiceCompanyEmployee,
-  removeVehicleServiceCompanyEmployeeList,
-}
+  removeVehicleServiceCompanyEmployeeList }
 export default CompanyEmployeeQualificationService
+

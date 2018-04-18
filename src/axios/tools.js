@@ -8,10 +8,10 @@ import {SYSTEM_SHORT_NAME} from './config'
 
 
 import  PictureEdit from '../components/PictureEdit'
-import  ImageUpload from '../components/ImageUpload'
+import  SkyImageUpload from '../components/ImageUpload'
 import  OssPictureEdit from '../components/OSSPictureEdit'
 
-export const ImageUpload = ImageUpload
+export const ImageUpload = SkyImageUpload
 
 
 /**

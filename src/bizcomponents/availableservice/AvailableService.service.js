@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}availableServiceManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -19,17 +16,18 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-const requestCandidateAvailableProduct = (
-  ownerClass,
-  id,
-  filterKey,
-  pageNo
-) => {
+
+
+const requestCandidateAvailableProduct = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}availableServiceManager/requestCandidateAvailableProduct/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}
+}	 
+ 
+
+
+
 
 const addServicePrice = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableServiceManager/addServicePrice/availableServiceId/contractId/productId/serviceKey/serviceDescription/servicePriceType/basePriceValue/otherPriceValue/serviceEnabled/tokensExpr/`
@@ -46,11 +44,7 @@ const addServicePrice = (targetObjectId, parameters) => {
 const updateServicePrice = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableServiceManager/updateServicePriceProperties/availableServiceId/id/serviceKey/serviceDescription/servicePriceType/basePriceValue/otherPriceValue/serviceEnabled/tokensExpr/`
   const availableServiceId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    availableServiceId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, availableServiceId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -61,11 +55,7 @@ const updateServicePrice = (targetObjectId, parameters) => {
 
 const removeServicePriceList = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableServiceManager/removeServicePriceList/availableServiceId/servicePriceIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    availableServiceId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, availableServiceId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -73,6 +63,7 @@ const removeServicePriceList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addVehicleRepairingAllowance = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableServiceManager/addVehicleRepairingAllowance/serviceId/allowanceTitle/allowanceCode/allowanceAmount/tokensExpr/`
@@ -89,11 +80,7 @@ const addVehicleRepairingAllowance = (targetObjectId, parameters) => {
 const updateVehicleRepairingAllowance = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableServiceManager/updateVehicleRepairingAllowanceProperties/availableServiceId/id/allowanceTitle/allowanceCode/allowanceAmount/tokensExpr/`
   const availableServiceId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    availableServiceId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, availableServiceId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -104,11 +91,7 @@ const updateVehicleRepairingAllowance = (targetObjectId, parameters) => {
 
 const removeVehicleRepairingAllowanceList = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableServiceManager/removeVehicleRepairingAllowanceList/availableServiceId/vehicleRepairingAllowanceIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    availableServiceId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, availableServiceId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -116,6 +99,7 @@ const removeVehicleRepairingAllowanceList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addVehicleServiceCompanyBusinessScope = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableServiceManager/addVehicleServiceCompanyBusinessScope/availableServiceId/companyId/serviceAvaliability/tokensExpr/`
@@ -129,17 +113,10 @@ const addVehicleServiceCompanyBusinessScope = (targetObjectId, parameters) => {
   })
 }
 
-const updateVehicleServiceCompanyBusinessScope = (
-  targetObjectId,
-  parameters
-) => {
+const updateVehicleServiceCompanyBusinessScope = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableServiceManager/updateVehicleServiceCompanyBusinessScopeProperties/availableServiceId/id/serviceAvaliability/tokensExpr/`
   const availableServiceId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    availableServiceId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, availableServiceId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -148,16 +125,9 @@ const updateVehicleServiceCompanyBusinessScope = (
   })
 }
 
-const removeVehicleServiceCompanyBusinessScopeList = (
-  targetObjectId,
-  parameters
-) => {
+const removeVehicleServiceCompanyBusinessScopeList = (targetObjectId, parameters) => {
   const url = `${PREFIX}availableServiceManager/removeVehicleServiceCompanyBusinessScopeList/availableServiceId/vehicleServiceCompanyBusinessScopeIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    availableServiceId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, availableServiceId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -166,8 +136,8 @@ const removeVehicleServiceCompanyBusinessScopeList = (
   })
 }
 
-const AvailableServiceService = {
-  view,
+
+const AvailableServiceService = { view,
   load,
   addServicePrice,
   addVehicleRepairingAllowance,
@@ -178,6 +148,6 @@ const AvailableServiceService = {
   removeServicePriceList,
   removeVehicleRepairingAllowanceList,
   removeVehicleServiceCompanyBusinessScopeList,
-  requestCandidateAvailableProduct,
-}
+  requestCandidateAvailableProduct }
 export default AvailableServiceService
+

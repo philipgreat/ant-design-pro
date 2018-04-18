@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}provinceManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -19,12 +16,18 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
+
+
 const requestCandidatePlatform = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}provinceManager/requestCandidatePlatform/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}
+}	 
+ 
+
+
+
 
 const addCity = (targetObjectId, parameters) => {
   const url = `${PREFIX}provinceManager/addCity/provinceId/name/tokensExpr/`
@@ -52,11 +55,7 @@ const updateCity = (targetObjectId, parameters) => {
 
 const removeCityList = (targetObjectId, parameters) => {
   const url = `${PREFIX}provinceManager/removeCityList/provinceId/cityIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    provinceId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, provinceId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -65,12 +64,12 @@ const removeCityList = (targetObjectId, parameters) => {
   })
 }
 
-const ProvinceService = {
-  view,
+
+const ProvinceService = { view,
   load,
   addCity,
   updateCity,
   removeCityList,
-  requestCandidatePlatform,
-}
+  requestCandidatePlatform }
 export default ProvinceService
+

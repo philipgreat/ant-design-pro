@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}genericFormManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -18,6 +15,11 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}genericFormManager/loadGenericForm/${targetObjectId}/${parametersExpr}/`,
   })
 }
+
+
+
+
+
 
 const addFormMessage = (targetObjectId, parameters) => {
   const url = `${PREFIX}genericFormManager/addFormMessage/formId/title/level/tokensExpr/`
@@ -45,11 +47,7 @@ const updateFormMessage = (targetObjectId, parameters) => {
 
 const removeFormMessageList = (targetObjectId, parameters) => {
   const url = `${PREFIX}genericFormManager/removeFormMessageList/genericFormId/formMessageIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    genericFormId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, genericFormId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -57,6 +55,7 @@ const removeFormMessageList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addFormFieldMessage = (targetObjectId, parameters) => {
   const url = `${PREFIX}genericFormManager/addFormFieldMessage/formId/title/parameterName/level/tokensExpr/`
@@ -84,11 +83,7 @@ const updateFormFieldMessage = (targetObjectId, parameters) => {
 
 const removeFormFieldMessageList = (targetObjectId, parameters) => {
   const url = `${PREFIX}genericFormManager/removeFormFieldMessageList/genericFormId/formFieldMessageIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    genericFormId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, genericFormId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -96,6 +91,7 @@ const removeFormFieldMessageList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addFormField = (targetObjectId, parameters) => {
   const url = `${PREFIX}genericFormManager/addFormField/formId/label/localeKey/parameterName/type/placeholder/defaultValue/description/fieldGroup/minValue/maxValue/required/disabled/customRendering/candidateValues/suggestValues/tokensExpr/`
@@ -123,11 +119,7 @@ const updateFormField = (targetObjectId, parameters) => {
 
 const removeFormFieldList = (targetObjectId, parameters) => {
   const url = `${PREFIX}genericFormManager/removeFormFieldList/genericFormId/formFieldIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    genericFormId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, genericFormId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -135,6 +127,7 @@ const removeFormFieldList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addFormAction = (targetObjectId, parameters) => {
   const url = `${PREFIX}genericFormManager/addFormAction/formId/label/localeKey/actionKey/level/url/tokensExpr/`
@@ -162,11 +155,7 @@ const updateFormAction = (targetObjectId, parameters) => {
 
 const removeFormActionList = (targetObjectId, parameters) => {
   const url = `${PREFIX}genericFormManager/removeFormActionList/genericFormId/formActionIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    genericFormId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, genericFormId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -175,8 +164,8 @@ const removeFormActionList = (targetObjectId, parameters) => {
   })
 }
 
-const GenericFormService = {
-  view,
+
+const GenericFormService = { view,
   load,
   addFormMessage,
   addFormFieldMessage,
@@ -189,6 +178,6 @@ const GenericFormService = {
   removeFormMessageList,
   removeFormFieldMessageList,
   removeFormFieldList,
-  removeFormActionList,
-}
+  removeFormActionList }
 export default GenericFormService
+

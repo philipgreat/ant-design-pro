@@ -1,29 +1,16 @@
 import React, { Component } from 'react'
-import {
-  AutoComplete,
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-  Switch,
-} from 'antd'
+import { AutoComplete, Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
 //import OSSPictureEdit from '../../components/PictureEdit'
+import {ImageUpload} from '../../axios/tools'
 import FooterToolbar from '../../components/FooterToolbar'
-import ImageUpload from '../../components/ImageUpload'
+//import ImageUpload from '../../components/ImageUpload'
 import styles from './VehicleServiceCompanyBusinessScope.createform.less'
-import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
-import GlobalComponents from '../../custcomponents'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
+import GlobalComponents from '../../custcomponents';
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -33,7 +20,7 @@ const fieldLabels = {
   availableService: '服务范围',
   serviceAvaliability: '可用状态',
 }
-const testValues = {}
+const testValues = {};
 /*
 const testValues = {
   serviceAvaliability: 'true',
@@ -43,7 +30,10 @@ const testValues = {
 */
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+
+const imageKeys = [
+]
+
 
 class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
   state = {
@@ -56,15 +46,21 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
     // const { getFieldDecorator,setFieldsValue } = this.props.form
     const { setFieldsValue } = this.props.form
     //setFieldsValue(testValues)
-
-    this.executeCandidateCompanySearch('')
-
-    this.executeCandidateAvailableServiceSearch('')
+      
+    this.executeCandidateCompanySearch("")
+    
+    
+    this.executeCandidateAvailableServiceSearch("")
+    
+ 
+    
+    
+    
   }
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -72,51 +68,53 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
     })
   }
 
-  executeCandidateCompanySearch = filterKey => {
-    const { VehicleServiceCompanyBusinessScopeService } = GlobalComponents
+  
+  executeCandidateCompanySearch = (filterKey) =>{
 
-    const id = '' //not used for now
-    const pageNo = 1
-    const future = VehicleServiceCompanyBusinessScopeService.requestCandidateCompany(
-      'vehicleServiceCompany',
-      id,
-      filterKey,
-      pageNo
-    )
-    console.log(future)
+    const {VehicleServiceCompanyBusinessScopeService} = GlobalComponents;
+    
+    const id = "";//not used for now
+    const pageNo = 1;
+    const future = VehicleServiceCompanyBusinessScopeService.requestCandidateCompany("vehicleServiceCompany", id, filterKey, pageNo);
+    console.log(future);
+    
 
-    future.then(candidateCompanyList => {
+    future.then(candidateCompanyList=>{
       this.setState({
-        candidateCompanyList,
+        candidateCompanyList
       })
+
     })
-  }
-  handleCandidateCompanySearch = value => {
+
+  }	 
+  handleCandidateCompanySearch = (value) => {
     this.executeCandidateCompanySearch(value)
   }
 
-  executeCandidateAvailableServiceSearch = filterKey => {
-    const { VehicleServiceCompanyBusinessScopeService } = GlobalComponents
+  executeCandidateAvailableServiceSearch = (filterKey) =>{
 
-    const id = '' //not used for now
-    const pageNo = 1
-    const future = VehicleServiceCompanyBusinessScopeService.requestCandidateAvailableService(
-      'availableService',
-      id,
-      filterKey,
-      pageNo
-    )
-    console.log(future)
+    const {VehicleServiceCompanyBusinessScopeService} = GlobalComponents;
+    
+    const id = "";//not used for now
+    const pageNo = 1;
+    const future = VehicleServiceCompanyBusinessScopeService.requestCandidateAvailableService("availableService", id, filterKey, pageNo);
+    console.log(future);
+    
 
-    future.then(candidateAvailableServiceList => {
+    future.then(candidateAvailableServiceList=>{
       this.setState({
-        candidateAvailableServiceList,
+        candidateAvailableServiceList
       })
+
     })
-  }
-  handleCandidateAvailableServiceSearch = value => {
+
+  }	 
+  handleCandidateAvailableServiceSearch = (value) => {
     this.executeCandidateAvailableServiceSearch(value)
   }
+ 
+
+
 
   handleChange = (event, source) => {
     console.log('get file list from change in update change:', source)
@@ -128,6 +126,7 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
     this.setState({ convertedImagesValues })
     console.log('/get file list from change in update change:', source)
   }
+
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -147,11 +146,7 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleServiceCompanyBusinessScope`,
-          payload: {
-            id: owner.id,
-            type: 'vehicleServiceCompanyBusinessScope',
-            parameters,
-          },
+          payload: { id: owner.id, type: 'vehicleServiceCompanyBusinessScope', parameters },
         })
       })
     }
@@ -161,23 +156,18 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addVehicleServiceCompanyBusinessScope`,
-          payload: {
-            id: owner.id,
-            type: 'vehicleServiceCompanyBusinessScope',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'vehicleServiceCompanyBusinessScope', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -192,22 +182,18 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -229,23 +215,27 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
         </span>
       )
     }
+    
 
-    const { candidateCompanyList } = this.state
-    if (!candidateCompanyList) {
-      return <div>等等</div>
+    
+    const {candidateCompanyList} = this.state
+    if(!candidateCompanyList){
+      return (<div>等等</div>)
     }
-    if (!candidateCompanyList.candidates) {
-      return <div>等等</div>
+    if(!candidateCompanyList.candidates){
+      return (<div>等等</div>)
+    }   
+    
+    
+    const {candidateAvailableServiceList} = this.state
+    if(!candidateAvailableServiceList){
+      return (<div>等等</div>)
     }
-
-    const { candidateAvailableServiceList } = this.state
-    if (!candidateAvailableServiceList) {
-      return <div>等等</div>
-    }
-    if (!candidateAvailableServiceList.candidates) {
-      return <div>等等</div>
-    }
-
+    if(!candidateAvailableServiceList.candidates){
+      return (<div>等等</div>)
+    }   
+    
+    
     return (
       <PageHeaderLayout
         title="新建一个商户服务范围"
@@ -255,60 +245,76 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceAvaliability}>
                   {getFieldDecorator('serviceAvaliability', {
                     rules: [{ required: true, message: '请输入可用状态' }],
-                  })(<Input placeholder="请输入请输入可用状态bool" />)}
+                  })(
+                    <Input placeholder="请输入请输入可用状态bool" />
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
           </Form>
         </Card>
 
+
+
+        
         <Card title="设置" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+            
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.serviceAvaliability}>
                   {getFieldDecorator('serviceAvaliability', {
                     rules: [{ required: true, message: '请输入可用状态' }],
-                    valuePropName: 'checked',
+                    valuePropName: 'checked'
                   })(
-                    <Switch
-                      checkedChildren="是"
-                      unCheckedChildren="否"
-                      placeholder="请输入可用状态bool"
-                    />
+                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入可用状态bool" />
                   )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
-        </Card>
+          </Form>  
+        </Card>        
+        
+        
+
+
+
+
+
+
+
+
 
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
+
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.company}>
                   {getFieldDecorator('companyId', {
                     rules: [{ required: true, message: '请输入商户' }],
                   })(
-                    <AutoComplete
-                      dataSource={candidateCompanyList.candidates}
-                      style={{ width: 200 }}
-                      onSearch={this.handleCandidateCompanySearch}
-                      placeholder="请输入商户"
-                    >
-                      {candidateCompanyList.candidates.map(item => {
-                        return (
-                          <Option key={item.id}>{`${item.companyName}(${
-                            item.id
-                          })`}</Option>
-                        )
-                      })}
-                    </AutoComplete>
+                                
+                  <AutoComplete
+                    dataSource={candidateCompanyList.candidates}
+                    style={{ width: 200 }}
+                    
+                    onSearch={this.handleCandidateCompanySearch}
+                    placeholder="请输入商户"
+                  >
+                  {candidateCompanyList.candidates.map(item=>{
+                return (<Option key={item.id}>{`${item.companyName}(${item.id})`}</Option>);
+            })}
+                  
+                  </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
@@ -318,42 +324,33 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
                   {getFieldDecorator('availableServiceId', {
                     rules: [{ required: true, message: '请输入服务范围' }],
                   })(
-                    <AutoComplete
-                      dataSource={candidateAvailableServiceList.candidates}
-                      style={{ width: 200 }}
-                      onSearch={this.handleCandidateAvailableServiceSearch}
-                      placeholder="请输入服务范围"
-                    >
-                      {candidateAvailableServiceList.candidates.map(item => {
-                        return (
-                          <Option key={item.id}>{`${item.serviceName}(${
-                            item.id
-                          })`}</Option>
-                        )
-                      })}
-                    </AutoComplete>
+                                
+                  <AutoComplete
+                    dataSource={candidateAvailableServiceList.candidates}
+                    style={{ width: 200 }}
+                    
+                    onSearch={this.handleCandidateAvailableServiceSearch}
+                    placeholder="请输入服务范围"
+                  >
+                  {candidateAvailableServiceList.candidates.map(item=>{
+                return (<Option key={item.id}>{`${item.serviceName}(${item.id})`}</Option>);
+            })}
+                  
+                  </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -368,3 +365,7 @@ class VehicleServiceCompanyBusinessScopeCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(VehicleServiceCompanyBusinessScopeCreateForm))
+
+
+
+

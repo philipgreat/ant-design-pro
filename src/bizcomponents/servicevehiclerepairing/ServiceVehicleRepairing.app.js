@@ -10,11 +10,13 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceVehicleRepairing.app.less'
 
-import HeaderSearch from '../../components/HeaderSearch'
-import NoticeIcon from '../../components/NoticeIcon'
-import GlobalFooter from '../../components/GlobalFooter'
 
-import GlobalComponents from '../../custcomponents'
+import HeaderSearch from '../../components/HeaderSearch';
+import NoticeIcon from '../../components/NoticeIcon';
+import GlobalFooter from '../../components/GlobalFooter';
+
+
+import GlobalComponents from '../../custcomponents';
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -54,14 +56,14 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = collapsed => {
+  onCollapse = (collapsed) => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = props => {
+  getDefaultCollapsedSubMenus = (props) => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -69,7 +71,7 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = props => {
+  getCurrentMenuSelectedKeys = (props) => {
     const { location: { pathname } } = props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
@@ -77,135 +79,91 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
     }
     return keys
   }
-  getNavMenuItems = objectId => {
+  getNavMenuItems = (objectId) => {
     return (
-      <SubMenu
-        title={
-          <span>
-            <Icon type="profile" />
-            <span>维修服务</span>
-          </span>
-        }
+      <SubMenu title={
+        <span>
+          <Icon type="profile" />
+          <span>维修服务</span>
+        </span>}
       >
+
         <Menu.Item>
-          <Link
-            to={`/serviceVehicleRepairing/${objectId}/list/repairingAllowanceItemList`}
-          >
-            车辆维修补贴项
-          </Link>
+          <Link to={`/serviceVehicleRepairing/${objectId}/list/repairingAllowanceItemList`}>车辆维修补贴项</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link
-            to={`/serviceVehicleRepairing/${objectId}/list/vehicleRepairingPaymentList`}
-          >
-            支付维修订单
-          </Link>
+          <Link to={`/serviceVehicleRepairing/${objectId}/list/vehicleRepairingPaymentList`}>支付维修订单</Link>
         </Menu.Item>
       </SubMenu>
     )
   }
 
+
   getRepairingAllowanceItemSearch = () => {
-    const { RepairingAllowanceItemSearch } = GlobalComponents
+    const {RepairingAllowanceItemSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._serviceVehicleRepairing.repairingAllowanceItemList,
       count: state._serviceVehicleRepairing.repairingAllowanceItemCount,
-      currentPage:
-        state._serviceVehicleRepairing.repairingAllowanceItemCurrentPageNumber,
-      searchFormParameters:
-        state._serviceVehicleRepairing
-          .repairingAllowanceItemSearchFormParameters,
+      currentPage: state._serviceVehicleRepairing.repairingAllowanceItemCurrentPageNumber,
+      searchFormParameters: state._serviceVehicleRepairing.repairingAllowanceItemSearchFormParameters,
       loading: state._serviceVehicleRepairing.loading,
-      owner: {
-        type: '_serviceVehicleRepairing',
-        id: state._serviceVehicleRepairing.id,
-        listName: 'repairingAllowanceItemList',
-      }, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'repairingAllowanceItemList' }, // this is for model namespace and
     }))(RepairingAllowanceItemSearch)
   }
   getRepairingAllowanceItemCreateForm = () => {
-    const { RepairingAllowanceItemCreateForm } = GlobalComponents
+   	const {RepairingAllowanceItemCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._serviceVehicleRepairing.repairingAllowanceItemList,
       count: state._serviceVehicleRepairing.repairingAllowanceItemCount,
-      currentPage:
-        state._serviceVehicleRepairing.repairingAllowanceItemCurrentPageNumber,
-      searchFormParameters:
-        state._serviceVehicleRepairing
-          .repairingAllowanceItemSearchFormParameters,
+      currentPage: state._serviceVehicleRepairing.repairingAllowanceItemCurrentPageNumber,
+      searchFormParameters: state._serviceVehicleRepairing.repairingAllowanceItemSearchFormParameters,
       loading: state._serviceVehicleRepairing.loading,
-      owner: {
-        type: '_serviceVehicleRepairing',
-        id: state._serviceVehicleRepairing.id,
-        listName: 'repairingAllowanceItemList',
-      }, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'repairingAllowanceItemList'}, // this is for model namespace and
     }))(RepairingAllowanceItemCreateForm)
   }
-
+  
   getRepairingAllowanceItemUpdateForm = () => {
-    const { RepairingAllowanceItemUpdateForm } = GlobalComponents
+  	const {RepairingAllowanceItemUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._serviceVehicleRepairing.selectedRows,
       currentUpdateIndex: state._serviceVehicleRepairing.currentUpdateIndex,
-      owner: {
-        type: '_serviceVehicleRepairing',
-        id: state._serviceVehicleRepairing.id,
-        listName: 'repairingAllowanceItemList',
-      }, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'repairingAllowanceItemList' }, // this is for model namespace and
     }))(RepairingAllowanceItemUpdateForm)
   }
 
   getVehicleRepairingPaymentSearch = () => {
-    const { VehicleRepairingPaymentSearch } = GlobalComponents
+    const {VehicleRepairingPaymentSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._serviceVehicleRepairing.vehicleRepairingPaymentList,
       count: state._serviceVehicleRepairing.vehicleRepairingPaymentCount,
-      currentPage:
-        state._serviceVehicleRepairing.vehicleRepairingPaymentCurrentPageNumber,
-      searchFormParameters:
-        state._serviceVehicleRepairing
-          .vehicleRepairingPaymentSearchFormParameters,
+      currentPage: state._serviceVehicleRepairing.vehicleRepairingPaymentCurrentPageNumber,
+      searchFormParameters: state._serviceVehicleRepairing.vehicleRepairingPaymentSearchFormParameters,
       loading: state._serviceVehicleRepairing.loading,
-      owner: {
-        type: '_serviceVehicleRepairing',
-        id: state._serviceVehicleRepairing.id,
-        listName: 'vehicleRepairingPaymentList',
-      }, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'vehicleRepairingPaymentList' }, // this is for model namespace and
     }))(VehicleRepairingPaymentSearch)
   }
   getVehicleRepairingPaymentCreateForm = () => {
-    const { VehicleRepairingPaymentCreateForm } = GlobalComponents
+   	const {VehicleRepairingPaymentCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._serviceVehicleRepairing.vehicleRepairingPaymentList,
       count: state._serviceVehicleRepairing.vehicleRepairingPaymentCount,
-      currentPage:
-        state._serviceVehicleRepairing.vehicleRepairingPaymentCurrentPageNumber,
-      searchFormParameters:
-        state._serviceVehicleRepairing
-          .vehicleRepairingPaymentSearchFormParameters,
+      currentPage: state._serviceVehicleRepairing.vehicleRepairingPaymentCurrentPageNumber,
+      searchFormParameters: state._serviceVehicleRepairing.vehicleRepairingPaymentSearchFormParameters,
       loading: state._serviceVehicleRepairing.loading,
-      owner: {
-        type: '_serviceVehicleRepairing',
-        id: state._serviceVehicleRepairing.id,
-        listName: 'vehicleRepairingPaymentList',
-      }, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'vehicleRepairingPaymentList'}, // this is for model namespace and
     }))(VehicleRepairingPaymentCreateForm)
   }
-
+  
   getVehicleRepairingPaymentUpdateForm = () => {
-    const { VehicleRepairingPaymentUpdateForm } = GlobalComponents
+  	const {VehicleRepairingPaymentUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._serviceVehicleRepairing.selectedRows,
       currentUpdateIndex: state._serviceVehicleRepairing.currentUpdateIndex,
-      owner: {
-        type: '_serviceVehicleRepairing',
-        id: state._serviceVehicleRepairing.id,
-        listName: 'vehicleRepairingPaymentList',
-      }, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'vehicleRepairingPaymentList' }, // this is for model namespace and
     }))(VehicleRepairingPaymentUpdateForm)
   }
 
@@ -215,139 +173,104 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
     const title = '代审车服务平台'
     return title
   }
-
-  handleOpenChange = openKeys => {
-    const latestOpenKey = openKeys.find(
-      key => this.state.openKeys.indexOf(key) === -1
-    )
+ 
+  handleOpenChange = (openKeys) => {
+    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-  toggle = () => {
-    const { collapsed } = this.props
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: !collapsed,
-    })
-  }
+   toggle = () => {
+     const { collapsed } = this.props
+     this.props.dispatch({
+       type: 'global/changeLayoutCollapsed',
+       payload: !collapsed,
+     })
+   }
 
-  render() {
-    // const { collapsed, fetchingNotices,loading } = this.props
-    const { collapsed } = this.props
+   render() {
+     // const { collapsed, fetchingNotices,loading } = this.props
+     const { collapsed } = this.props
+    
+     const {ServiceVehicleRepairingDashboard} = GlobalComponents
+     const {ServiceVehicleRepairingEditDetail} = GlobalComponents
+     const {ServiceVehicleRepairingViewDetail} = GlobalComponents
+     
+     
+     
+     
+     // Don't show popup menu when it is been collapsed
+     const menuProps = collapsed ? {} : {
+       openKeys: this.state.openKeys,
+     }
+     const layout = (
+       <Layout>
+         <Sider
+           trigger={null}
+           collapsible
+           collapsed={collapsed}
+           breakpoint="md"
+           onCollapse={()=>this.onCollapse(collapsed)}
+           width={256}
+           className={styles.sider}
+         >
+           <div className={styles.logo}>
+             <img src="./scm.svg" alt="logo" onClick={this.toggle} />
+             <Link to="/home"> <h1>维修服务</h1></Link>
+           </div>
 
-    const { ServiceVehicleRepairingDashboard } = GlobalComponents
-    const { ServiceVehicleRepairingEditDetail } = GlobalComponents
-    const { ServiceVehicleRepairingViewDetail } = GlobalComponents
+           <Menu
+             theme="dark"
+             mode="inline"
+             {...menuProps}
+             onOpenChange={this.handleOpenChange}
+             selectedKeys={this.getCurrentMenuSelectedKeys()}
+             style={{ margin: '16px 0', width: '100%' }}
+           >
+           
 
-    // Don't show popup menu when it is been collapsed
-    const menuProps = collapsed
-      ? {}
-      : {
-          openKeys: this.state.openKeys,
-        }
-    const layout = (
-      <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          breakpoint="md"
-          onCollapse={() => this.onCollapse(collapsed)}
-          width={256}
-          className={styles.sider}
-        >
-          <div className={styles.logo}>
-            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-            <Link to="/home">
-              {' '}
-              <h1>维修服务</h1>
-            </Link>
-          </div>
+             <Menu.Item >
+               <Link to={`/serviceVehicleRepairing/${this.props.serviceVehicleRepairing.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
+             </Menu.Item>
+             
 
-          <Menu
-            theme="dark"
-            mode="inline"
-            {...menuProps}
-            onOpenChange={this.handleOpenChange}
-            selectedKeys={this.getCurrentMenuSelectedKeys()}
-            style={{ margin: '16px 0', width: '100%' }}
-          >
-            <Menu.Item>
-              <Link
-                to={`/serviceVehicleRepairing/${
-                  this.props.serviceVehicleRepairing.id
-                }/dashboard`}
-              >
-                <Icon type="dashboard" />
-                <span>仪表板</span>
-              </Link>
-            </Menu.Item>
+             {this.getNavMenuItems(this.props.serviceVehicleRepairing.id)}
+             <Menu.Item >
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
+           </Menu>
+         </Sider>
+         <Layout>
+           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+             <Switch>
+             
+               <Route path="/serviceVehicleRepairing/:id/dashboard" component={ServiceVehicleRepairingDashboard} />
+               
+               <Route path="/serviceVehicleRepairing/:id/editDetail" component={ServiceVehicleRepairingEditDetail} />
+               <Route path="/serviceVehicleRepairing/:id/viewDetail" component={ServiceVehicleRepairingViewDetail} /> 
+               
 
-            {this.getNavMenuItems(this.props.serviceVehicleRepairing.id)}
-            <Menu.Item>
-              <Link to={'/home'}>
-                <Icon type="home" />
-                <span>回到主页</span>
-              </Link>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout>
-          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <Switch>
-              <Route
-                path="/serviceVehicleRepairing/:id/dashboard"
-                component={ServiceVehicleRepairingDashboard}
-              />
+               <Route path="/serviceVehicleRepairing/:id/list/repairingAllowanceItemList" component={this.getRepairingAllowanceItemSearch()} />
+               <Route path="/serviceVehicleRepairing/:id/list/repairingAllowanceItemCreateForm" component={this.getRepairingAllowanceItemCreateForm()} />
+               <Route path="/serviceVehicleRepairing/:id/list/repairingAllowanceItemUpdateForm" component={this.getRepairingAllowanceItemUpdateForm()} />
 
-              <Route
-                path="/serviceVehicleRepairing/:id/editDetail"
-                component={ServiceVehicleRepairingEditDetail}
-              />
-              <Route
-                path="/serviceVehicleRepairing/:id/viewDetail"
-                component={ServiceVehicleRepairingViewDetail}
-              />
-
-              <Route
-                path="/serviceVehicleRepairing/:id/list/repairingAllowanceItemList"
-                component={this.getRepairingAllowanceItemSearch()}
-              />
-              <Route
-                path="/serviceVehicleRepairing/:id/list/repairingAllowanceItemCreateForm"
-                component={this.getRepairingAllowanceItemCreateForm()}
-              />
-              <Route
-                path="/serviceVehicleRepairing/:id/list/repairingAllowanceItemUpdateForm"
-                component={this.getRepairingAllowanceItemUpdateForm()}
-              />
-
-              <Route
-                path="/serviceVehicleRepairing/:id/list/vehicleRepairingPaymentList"
-                component={this.getVehicleRepairingPaymentSearch()}
-              />
-              <Route
-                path="/serviceVehicleRepairing/:id/list/vehicleRepairingPaymentCreateForm"
-                component={this.getVehicleRepairingPaymentCreateForm()}
-              />
-              <Route
-                path="/serviceVehicleRepairing/:id/list/vehicleRepairingPaymentUpdateForm"
-                component={this.getVehicleRepairingPaymentUpdateForm()}
-              />
-            </Switch>
-          </Content>
-        </Layout>
-      </Layout>
-    )
-    return (
-      <DocumentTitle title={this.getPageTitle()}>
-        <ContainerQuery query={query}>
-          {params => <div className={classNames(params)}>{layout}</div>}
-        </ContainerQuery>
-      </DocumentTitle>
-    )
-  }
+               <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingPaymentList" component={this.getVehicleRepairingPaymentSearch()} />
+               <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingPaymentCreateForm" component={this.getVehicleRepairingPaymentCreateForm()} />
+               <Route path="/serviceVehicleRepairing/:id/list/vehicleRepairingPaymentUpdateForm" component={this.getVehicleRepairingPaymentUpdateForm()} />
+              
+             </Switch>
+           </Content>
+         </Layout>
+       </Layout>
+     )
+     return (
+       <DocumentTitle title={this.getPageTitle()}>
+         <ContainerQuery query={query}>
+           {params => <div className={classNames(params)}>{layout}</div>}
+         </ContainerQuery>
+       </DocumentTitle>
+     )
+   }
 }
 
 export default connect(state => ({
@@ -357,3 +280,6 @@ export default connect(state => ({
   serviceVehicleRepairing: state._serviceVehicleRepairing,
   ...state,
 }))(ServiceVehicleRepairingBizApp)
+
+
+

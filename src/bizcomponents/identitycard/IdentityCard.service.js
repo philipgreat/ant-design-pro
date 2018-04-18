@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}identityCardManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -19,8 +16,12 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-const IdentityCardService = {
-  view,
-  load,
-}
+
+
+
+
+
+const IdentityCardService = { view,
+  load }
 export default IdentityCardService
+
