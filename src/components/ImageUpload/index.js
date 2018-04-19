@@ -48,7 +48,7 @@ export default class ImageUpload extends React.Component {
     return (
       <div className="clearfix">
         <Upload
-          action="https://www.doublechaintech.com/mss/upload.html"
+          action="//xm.jl51.com.cn/mss/upload.html"
           listType="picture-card"
           fileList={internalFileList}
           onPreview={this.handlePreview}
