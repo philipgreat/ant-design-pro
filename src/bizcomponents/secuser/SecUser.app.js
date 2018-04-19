@@ -70,7 +70,10 @@ class SecUserBizApp extends React.PureComponent {
     return currentMenuSelectedKeys
   }
   getCurrentMenuSelectedKeys = props => {
-    const { location: { pathname } } = props || this.props
+    const {
+      location: { pathname },
+    } =
+      props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
       return [this.menus[0].key]
