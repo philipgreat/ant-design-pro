@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Layout, Menu, Icon, Avatar, Dropdown, Tag, message, Spin } from 'antd'
+import { Layout, Menu, Icon, Avatar, Dropdown, Tag, message, Spin,Breadcrumb,AutoComplete,Input } from 'antd'
 import DocumentTitle from 'react-document-title'
 import { connect } from 'dva'
 import { Link, Route, Redirect, Switch } from 'dva/router'
@@ -911,23 +911,37 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
           openKeys: this.state.openKeys,
         }
     const layout = (
+      <Layout> 
+     <Header>
+    
+            <img src="./scm.svg" alt="logo" onClick={this.toggle} className={styles.logo}/>
+            
+          
+     <AutoComplete
+        className="certain-category-search"
+        
+        placeholder="请输入名称"
+        optionLabelProp="value"
+      >
+        <Input suffix={<Icon type="search" className="certain-category-icon" />} />
+      </AutoComplete>   
+      </Header>
+     
       <Layout>
-        <Sider
+ 
+    
+
+
+ <Sider
           trigger={null}
           collapsible
           collapsed={collapsed}
           breakpoint="md"
           onCollapse={() => this.onCollapse(collapsed)}
-          width={256}
+          collapsedWidth={56}
           className={styles.sider}
         >
-          <div className={styles.logo}>
-            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-            <Link to="/home">
-              {' '}
-              <h1>驾乐乐车辆代审服务平台</h1>
-            </Link>
-          </div>
+         
 
           <Menu
             theme="dark"
@@ -957,7 +971,10 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout>
+
+
+    
+       <Layout>
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
             <Switch>
               <Route
@@ -1157,8 +1174,8 @@ class CarInspectionPlatformBizApp extends React.PureComponent {
               />
             </Switch>
           </Content>
-        </Layout>
-      </Layout>
+          </Layout>
+        </Layout> </Layout>
     )
     return (
       <DocumentTitle title={this.getPageTitle()}>

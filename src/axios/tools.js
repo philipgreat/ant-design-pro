@@ -11,7 +11,7 @@ import  PictureEdit from '../components/PictureEdit'
 import  ImageUpload from '../components/ImageUpload'
 import  OssPictureEdit from '../components/OSSPictureEdit'
 
-export const ImageUpload = ImageUpload
+export const ImageComponent = ImageUpload
 
 
 /**
