@@ -1,0 +1,110 @@
+
+
+import React, { Component } from 'react'
+import { connect } from 'dva'
+import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
+import { Link, Route, Redirect, Switch } from 'dva/router'
+import numeral from 'numeral'
+import moment from 'moment'
+import {
+  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
+
+} from '../../components/Charts'
+import Trend from '../../components/Trend'
+import NumberInfo from '../../components/NumberInfo'
+import { getTimeDistance } from '../../utils/utils'
+import PageHeaderLayout from '../../layouts/PageHeaderLayout'
+import styles from './EmployeeEducation.viewdetail.less'
+import GlobalComponents from '../../custcomponents'
+import DescriptionList from '../../components/DescriptionList';
+const { Description } = DescriptionList;
+const { Step } = Steps
+
+const { TabPane } = Tabs
+const { RangePicker } = DatePicker
+
+const topColResponsiveProps = {
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+  style: { marginBottom: 24 },
+}
+
+const summaryOf = (employeeEducation) =>{
+
+	return (
+	<DescriptionList className={styles.headerList} size="small" col="4">
+<Description term="序号">{employeeEducation.id}</Description> 
+<Description term="完成时间">{ moment(employeeEducation.completeTime).format('YYYY-MM-DD')}</Description> 
+<Description term="类型">{employeeEducation.type}</Description> 
+<Description term="备注">{employeeEducation.remark}</Description> 
+	
+        
+      </DescriptionList>
+	)
+
+}
+
+@connect(state => ({
+  employeeEducation: state._employeeEducation,
+}))
+export default class EmployeeEducationViewDetail extends Component {
+
+ 
+  onTabChange = (key) => {
+    this.setState({ tabKey: key });
+  }  
+  render() {
+  
+    // eslint-disable-next-line max-len
+    
+    const employeeEducation = this.props.employeeEducation
+    const { id,  } = employeeEducation
+    const {  } = employeeEducation
+    
+    const owner = { type: '_employeeEducation', id }
+    
+    const tabList = [
+
+   
+
+   ];
+   
+   
+    const contentList = {
+     
+    };
+    
+
+
+    
+    
+    
+    return (
+
+      <PageHeaderLayout
+        title="员工教育总览"
+        content={summaryOf(this.props.employeeEducation)}
+        wrapperClassName={styles.advancedForm}
+      >
+
+      
+      
+	<Card 
+  		className={styles.card} 
+  		bordered={false}
+  		tabList={tabList}
+  		onTabChange={this.onTabChange}>
+            {contentList[this.state.tabKey]}
+        </Card>
+
+ 
+      </PageHeaderLayout>
+    )
+  }
+}
+
+
+
