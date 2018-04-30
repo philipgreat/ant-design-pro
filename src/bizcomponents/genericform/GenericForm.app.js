@@ -54,6 +54,19 @@ const query = {
   },
 }
 
+
+  
+const menuData = {menuName:"通用的形式", menuFor: "genericForm",
+  		subItems: [
+  {name: 'formMessageList', displayName:'表单信息'},
+  {name: 'formFieldMessageList', displayName:'表单字段的信息'},
+  {name: 'formFieldList', displayName:'表单字段'},
+  {name: 'formActionList', displayName:'表单动作'},
+  		
+  		
+  		],
+};
+
 class GenericFormBizApp extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -92,26 +105,20 @@ class GenericFormBizApp extends React.PureComponent {
     return keys
   }
   getNavMenuItems = (objectId) => {
+  
+
+  
     return (
       <SubMenu title={
         <span>
           <Icon type="profile" />
-          <span>通用的形式</span>
+          <span>{menuData.menuName}</span>
         </span>}
       >
-
-        <Menu.Item>
-          <Link to={`/genericForm/${objectId}/list/formMessageList`}>表单信息</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/genericForm/${objectId}/list/formFieldMessageList`}>表单字段的信息</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/genericForm/${objectId}/list/formFieldList`}>表单字段</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/genericForm/${objectId}/list/formActionList`}>表单动作</Link>
-        </Menu.Item>
+        {menuData.subItems.map((item)=>(<Menu.Item>
+          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
+        </Menu.Item>))}
+       
       </SubMenu>
     )
   }
@@ -256,7 +263,7 @@ class GenericFormBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '全国装修加速器运营系统'
+    const title = '物料管理系统'
     return title
   }
  

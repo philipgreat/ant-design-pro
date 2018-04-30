@@ -16,6 +16,7 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './GenericForm.dashboard.less'
 import DescriptionList from '../../components/DescriptionList';
+import ImagePreview from '../../components/ImagePreview';
 const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -32,8 +33,8 @@ const summaryOf = (genericForm) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{genericForm.id}</Description> 
-<Description term="头衔">{genericForm.title}</Description> 
+<Description term="ID">{genericForm.id}</Description> 
+<Description term="标题">{genericForm.title}</Description> 
 <Description term="描述">{genericForm.description}</Description> 
 	
         
@@ -71,78 +72,32 @@ export default class GenericFormDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id,displayName, formMessageCount, formFieldMessageCount, formFieldCount, formActionCount } = this.props.genericForm
+    const cardsData = {cardsName:"通用的形式",cardsFor: "genericForm",cardsSource: this.props.genericForm,
+  		subItems: [
+{name: 'formMessageList', displayName:'表单信息',type:'formMessage',count:formMessageCount},
+{name: 'formFieldMessageList', displayName:'表单字段的信息',type:'formFieldMessage',count:formFieldMessageCount},
+{name: 'formFieldList', displayName:'表单字段',type:'formField',count:formFieldCount},
+{name: 'formActionList', displayName:'表单动作',type:'formAction',count:formActionCount},
     
-    
+      	],
+  	};
     
     return (
 
       <PageHeaderLayout
-        title={`通用的形式: ${displayName}`}
-        content={summaryOf(this.props.genericForm)}
+        title={`${cardsData.cardsName}: ${displayName}`}
+        content={summaryOf(cardsData.cardsSource)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
           <Row gutter={24}>
 
-          
-            <Col {...topColResponsiveProps}>
-            
-            <Card title={`表单信息(${numeral(formMessageCount).format('表单信息0,0')})`}  style={{ width: 180 }}>
-              
-              <p><Link to={`/genericForm/${id}/list/formMessageList/表单信息列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
-              <p><Link to={`/genericForm/${id}/list/formMessageCreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>
-              
-              
-          </Card>
-            
-            
-             
-            </Col>
-
-          
-            <Col {...topColResponsiveProps}>
-            
-            <Card title={`表单字段的信息(${numeral(formFieldMessageCount).format('表单字段的信息0,0')})`}  style={{ width: 180 }}>
-              
-              <p><Link to={`/genericForm/${id}/list/formFieldMessageList/表单字段的信息列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
-              <p><Link to={`/genericForm/${id}/list/formFieldMessageCreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>
-              
-              
-          </Card>
-            
-            
-             
-            </Col>
-
-          
-            <Col {...topColResponsiveProps}>
-            
-            <Card title={`表单字段(${numeral(formFieldCount).format('表单字段0,0')})`}  style={{ width: 180 }}>
-              
-              <p><Link to={`/genericForm/${id}/list/formFieldList/表单字段列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
-              <p><Link to={`/genericForm/${id}/list/formFieldCreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>
-              
-              
-          </Card>
-            
-            
-             
-            </Col>
-
-          
-            <Col {...topColResponsiveProps}>
-            
-            <Card title={`表单动作(${numeral(formActionCount).format('表单动作0,0')})`}  style={{ width: 180 }}>
-              
-              <p><Link to={`/genericForm/${id}/list/formActionList/表单动作列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
-              <p><Link to={`/genericForm/${id}/list/formActionCreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>
-              
-              
-          </Card>
-            
-            
-             
-            </Col>
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps}>           
+            <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
+          </Card> 
+            </Col>))}
 
           </Row>
         </div>

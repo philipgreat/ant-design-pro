@@ -16,6 +16,7 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './ObjectAccess.dashboard.less'
 import DescriptionList from '../../components/DescriptionList';
+import ImagePreview from '../../components/ImagePreview';
 const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -32,18 +33,18 @@ const summaryOf = (objectAccess) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{objectAccess.id}</Description> 
-<Description term="显示名称">{objectAccess.displayName}</Description> 
-<Description term="对象类型">{objectAccess.objectType}</Description> 
-<Description term="表">{objectAccess.list1}</Description> 
-<Description term="清单">{objectAccess.list2}</Description> 
-<Description term="目录3">{objectAccess.list3}</Description> 
-<Description term="清单">{objectAccess.list4}</Description> 
-<Description term="列表6">{objectAccess.list5}</Description> 
-<Description term="list6">{objectAccess.list6}</Description> 
-<Description term="list7">{objectAccess.list7}</Description> 
-<Description term="list8">{objectAccess.list8}</Description> 
-<Description term="list9">{objectAccess.list9}</Description> 
+<Description term="ID">{objectAccess.id}</Description> 
+<Description term="名称">{objectAccess.name}</Description> 
+<Description term="访问对象类型">{objectAccess.objectType}</Description> 
+<Description term="列表1">{objectAccess.list1}</Description> 
+<Description term="列表2">{objectAccess.list2}</Description> 
+<Description term="列表3">{objectAccess.list3}</Description> 
+<Description term="列表4">{objectAccess.list4}</Description> 
+<Description term="列表5">{objectAccess.list5}</Description> 
+<Description term="列表6">{objectAccess.list6}</Description> 
+<Description term="列表7">{objectAccess.list7}</Description> 
+<Description term="列表8">{objectAccess.list8}</Description> 
+<Description term="列表9">{objectAccess.list9}</Description> 
 	
         
       </DescriptionList>
@@ -80,18 +81,28 @@ export default class ObjectAccessDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id,displayName,  } = this.props.objectAccess
+    const cardsData = {cardsName:"对象访问",cardsFor: "objectAccess",cardsSource: this.props.objectAccess,
+  		subItems: [
     
-    
+      	],
+  	};
     
     return (
 
       <PageHeaderLayout
-        title={`对象访问: ${displayName}`}
-        content={summaryOf(this.props.objectAccess)}
+        title={`${cardsData.cardsName}: ${displayName}`}
+        content={summaryOf(cardsData.cardsSource)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
           <Row gutter={24}>
+
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps}>           
+            <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
+          </Card> 
+            </Col>))}
 
           </Row>
         </div>

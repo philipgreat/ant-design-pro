@@ -7,8 +7,8 @@ import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '头衔', debugtype: 'string', dataIndex: 'title', width: '9' },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '9' },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '16' },
 ];
 

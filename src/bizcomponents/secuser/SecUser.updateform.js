@@ -15,11 +15,11 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   login: '登录',
-  mobile: '手机',
+  mobile: '手机号码',
   email: '电子邮件',
-  pwd: 'PWD',
+  pwd: '密码',
   verificationCode: '验证码',
   verificationCodeExpire: '验证码过期',
   lastLoginTime: '最后登录时间',
@@ -265,9 +265,9 @@ class SecUserUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.id}>
                   {getFieldDecorator('id', {
-                    rules: [{ required: true, message: '请输入序号' }],
+                    rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入序号string" disabled />
+                    <Input placeholder="请输入请输入IDstring" disabled />
                   )}
                 </Form.Item>
               </Col>
@@ -285,9 +285,9 @@ class SecUserUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.mobile}>
                   {getFieldDecorator('mobile', {
-                    rules: [{ required: true, message: '请输入手机' }],
+                    rules: [{ required: true, message: '请输入手机号码' }],
                   })(
-                    <Input placeholder="请输入请输入手机string_china_mobile_phone" />
+                    <Input placeholder="请输入请输入手机号码string_china_mobile_phone" />
                   )}
                 </Form.Item>
               </Col>
@@ -305,9 +305,9 @@ class SecUserUpdateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.pwd}>
                   {getFieldDecorator('pwd', {
-                    rules: [{ required: true, message: '请输入PWD' }],
+                    rules: [{ required: true, message: '请输入密码' }],
                   })(
-                    <Input placeholder="请输入请输入PWDstring_password" />
+                    <Input placeholder="请输入请输入密码string_password" />
                   )}
                 </Form.Item>
               </Col>

@@ -16,6 +16,7 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './UserApp.dashboard.less'
 import DescriptionList from '../../components/DescriptionList';
+import ImagePreview from '../../components/ImagePreview';
 const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -32,12 +33,12 @@ const summaryOf = (userApp) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{userApp.id}</Description> 
-<Description term="头衔">{userApp.title}</Description> 
+<Description term="ID">{userApp.id}</Description> 
+<Description term="标题">{userApp.title}</Description> 
 <Description term="应用程序图标">{userApp.appIcon}</Description> 
 <Description term="完全访问">{userApp.fullAccess?'是':'否'}</Description> 
 <Description term="许可">{userApp.permission}</Description> 
-<Description term="对象类型">{userApp.objectType}</Description> 
+<Description term="访问对象类型">{userApp.objectType}</Description> 
 <Description term="对象ID">{userApp.objectId}</Description> 
 <Description term="位置">{userApp.location}</Description> 
 	
@@ -76,33 +77,29 @@ export default class UserAppDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id,displayName, objectAccessCount } = this.props.userApp
+    const cardsData = {cardsName:"用户应用程序",cardsFor: "userApp",cardsSource: this.props.userApp,
+  		subItems: [
+{name: 'objectAccessList', displayName:'对象访问',type:'objectAccess',count:objectAccessCount},
     
-    
+      	],
+  	};
     
     return (
 
       <PageHeaderLayout
-        title={`用户应用程序: ${displayName}`}
-        content={summaryOf(this.props.userApp)}
+        title={`${cardsData.cardsName}: ${displayName}`}
+        content={summaryOf(cardsData.cardsSource)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
           <Row gutter={24}>
 
-          
-            <Col {...topColResponsiveProps}>
-            
-            <Card title={`对象访问(${numeral(objectAccessCount).format('对象访问0,0')})`}  style={{ width: 180 }}>
-              
-              <p><Link to={`/userApp/${id}/list/objectAccessList/对象访问列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
-              <p><Link to={`/userApp/${id}/list/objectAccessCreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>
-              
-              
-          </Card>
-            
-            
-             
-            </Col>
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps}>           
+            <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
+          </Card> 
+            </Col>))}
 
           </Row>
         </div>

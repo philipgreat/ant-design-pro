@@ -3,59 +3,28 @@ import { routerRedux } from 'dva/router'
 import key from 'keymaster'
 
 import LauncherService from './Launcher.service'
+import GlobalComponents from '../custcomponents'
 
 const apps = {
 
 
-  'com.terapico.dssc.decorationcountrycenter.DecorationCountryCenter': 'decorationCountryCenter',
-  'com.terapico.dssc.levelonedepartment.LevelOneDepartment': 'levelOneDepartment',
-  'com.terapico.dssc.leveltwodepartment.LevelTwoDepartment': 'levelTwoDepartment',
-  'com.terapico.dssc.levelthreedepartment.LevelThreeDepartment': 'levelThreeDepartment',
-  'com.terapico.dssc.skilltype.SkillType': 'skillType',
-  'com.terapico.dssc.responsibilitytype.ResponsibilityType': 'responsibilityType',
-  'com.terapico.dssc.terminationreason.TerminationReason': 'terminationReason',
-  'com.terapico.dssc.terminationtype.TerminationType': 'terminationType',
-  'com.terapico.dssc.occupationtype.OccupationType': 'occupationType',
-  'com.terapico.dssc.leavetype.LeaveType': 'leaveType',
-  'com.terapico.dssc.salarygrade.SalaryGrade': 'salaryGrade',
-  'com.terapico.dssc.interviewtype.InterviewType': 'interviewType',
-  'com.terapico.dssc.trainingcoursetype.TrainingCourseType': 'trainingCourseType',
-  'com.terapico.dssc.publicholiday.PublicHoliday': 'publicHoliday',
-  'com.terapico.dssc.termination.Termination': 'termination',
-  'com.terapico.dssc.view.View': 'view',
-  'com.terapico.dssc.employee.Employee': 'employee',
-  'com.terapico.dssc.jobapplication.JobApplication': 'jobApplication',
-  'com.terapico.dssc.professioninterview.ProfessionInterview': 'professionInterview',
-  'com.terapico.dssc.hrinterview.HrInterview': 'hrInterview',
-  'com.terapico.dssc.offerapproval.OfferApproval': 'offerApproval',
-  'com.terapico.dssc.offeracceptance.OfferAcceptance': 'offerAcceptance',
-  'com.terapico.dssc.employeeboarding.EmployeeBoarding': 'employeeBoarding',
-  'com.terapico.dssc.instructor.Instructor': 'instructor',
-  'com.terapico.dssc.companytraining.CompanyTraining': 'companyTraining',
-  'com.terapico.dssc.scoring.Scoring': 'scoring',
-  'com.terapico.dssc.employeecompanytraining.EmployeeCompanyTraining': 'employeeCompanyTraining',
-  'com.terapico.dssc.employeeskill.EmployeeSkill': 'employeeSkill',
-  'com.terapico.dssc.employeeperformance.EmployeePerformance': 'employeePerformance',
-  'com.terapico.dssc.employeeworkexperience.EmployeeWorkExperience': 'employeeWorkExperience',
-  'com.terapico.dssc.employeeleave.EmployeeLeave': 'employeeLeave',
-  'com.terapico.dssc.employeeinterview.EmployeeInterview': 'employeeInterview',
-  'com.terapico.dssc.employeeattendance.EmployeeAttendance': 'employeeAttendance',
-  'com.terapico.dssc.employeequalifier.EmployeeQualifier': 'employeeQualifier',
-  'com.terapico.dssc.employeeeducation.EmployeeEducation': 'employeeEducation',
-  'com.terapico.dssc.employeeaward.EmployeeAward': 'employeeAward',
-  'com.terapico.dssc.employeesalarysheet.EmployeeSalarySheet': 'employeeSalarySheet',
-  'com.terapico.dssc.payingoff.PayingOff': 'payingOff',
-  'com.terapico.dssc.userdomain.UserDomain': 'userDomain',
-  'com.terapico.dssc.secuser.SecUser': 'secUser',
-  'com.terapico.dssc.secuserblocking.SecUserBlocking': 'secUserBlocking',
-  'com.terapico.dssc.userapp.UserApp': 'userApp',
-  'com.terapico.dssc.objectaccess.ObjectAccess': 'objectAccess',
-  'com.terapico.dssc.loginhistory.LoginHistory': 'loginHistory',
-  'com.terapico.dssc.genericform.GenericForm': 'genericForm',
-  'com.terapico.dssc.formmessage.FormMessage': 'formMessage',
-  'com.terapico.dssc.formfieldmessage.FormFieldMessage': 'formFieldMessage',
-  'com.terapico.dssc.formfield.FormField': 'formField',
-  'com.terapico.dssc.formaction.FormAction': 'formAction',
+  'com.terapico.mrp.productplatform.ProductPlatform': {name:'productPlatform'},
+  'com.terapico.mrp.product.Product': {name:'product'},
+  'com.terapico.mrp.productcomponent.ProductComponent': {name:'productComponent'},
+  'com.terapico.mrp.productpart.ProductPart': {name:'productPart'},
+  'com.terapico.mrp.material.Material': {name:'material'},
+  'com.terapico.mrp.materialapplication.MaterialApplication': {name:'materialApplication'},
+  'com.terapico.mrp.userdomain.UserDomain': {name:'userDomain'},
+  'com.terapico.mrp.secuser.SecUser': {name:'secUser'},
+  'com.terapico.mrp.secuserblocking.SecUserBlocking': {name:'secUserBlocking'},
+  'com.terapico.mrp.userapp.UserApp': {name:'userApp'},
+  'com.terapico.mrp.objectaccess.ObjectAccess': {name:'objectAccess'},
+  'com.terapico.mrp.loginhistory.LoginHistory': {name:'loginHistory'},
+  'com.terapico.mrp.genericform.GenericForm': {name:'genericForm'},
+  'com.terapico.mrp.formmessage.FormMessage': {name:'formMessage'},
+  'com.terapico.mrp.formfieldmessage.FormFieldMessage': {name:'formFieldMessage'},
+  'com.terapico.mrp.formfield.FormField': {name:'formField'},
+  'com.terapico.mrp.formaction.FormAction': {name:'formAction'},
 
 }
 
@@ -82,13 +51,20 @@ const presentApp = (clazz, data) => {
 
 const calcLocationPath = (clazz,id,subLocation) => {
 
-  const locationPath = apps[clazz]
-  if (locationPath) {
-    return `${locationPath}/${id}/${subLocation}`
+  const location = apps[clazz]
+  const {name} = location;
+  if (name) {
+    return `${name}/${id}/${subLocation}`
   }
   return '/home'
 }
 
+const calcMenuData=(clazz) => {
+  const location = apps[clazz]
+  const {name} = location;
+  const { menuDataOf } = GlobalComponents
+  return menuDataOf(name)
+}
 // console.log("element", )
 
 let currentLocation = ''
@@ -97,7 +73,7 @@ export default {
 
   namespace: 'launcher',
 
-  state: { loggedIn: false, name: 'Philip', systemName: '全国装修加速器运营系统' },
+  state: { loggedIn: false, name: 'Philip', systemName: '物料管理系统' },
 
 
   subscriptions: {
@@ -157,7 +133,10 @@ export default {
       const location = { pathname: `/${locationPath}`, state: data }
       const targetApp=payload.app;
       console.log('location', location)
-      yield put({ type: 'breadcrumb/selectApp', payload: { targetApp,location } })
+      
+      const menuData = calcMenuData(data.class);
+
+      yield put({ type: 'breadcrumb/selectApp', payload: { targetApp,location, menuData} })
       yield put(routerRedux.push(location))
       // yield put({type:"showApp",payload:{data}})
     },

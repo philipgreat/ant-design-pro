@@ -54,6 +54,16 @@ const query = {
   },
 }
 
+
+  
+const menuData = {menuName:"用户应用程序", menuFor: "userApp",
+  		subItems: [
+  {name: 'objectAccessList', displayName:'对象访问'},
+  		
+  		
+  		],
+};
+
 class UserAppBizApp extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -92,17 +102,20 @@ class UserAppBizApp extends React.PureComponent {
     return keys
   }
   getNavMenuItems = (objectId) => {
+  
+
+  
     return (
       <SubMenu title={
         <span>
           <Icon type="profile" />
-          <span>用户应用程序</span>
+          <span>{menuData.menuName}</span>
         </span>}
       >
-
-        <Menu.Item>
-          <Link to={`/userApp/${objectId}/list/objectAccessList`}>对象访问</Link>
-        </Menu.Item>
+        {menuData.subItems.map((item)=>(<Menu.Item>
+          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
+        </Menu.Item>))}
+       
       </SubMenu>
     )
   }
@@ -145,7 +158,7 @@ class UserAppBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '全国装修加速器运营系统'
+    const title = '物料管理系统'
     return title
   }
  

@@ -16,6 +16,7 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './FormFieldMessage.dashboard.less'
 import DescriptionList from '../../components/DescriptionList';
+import ImagePreview from '../../components/ImagePreview';
 const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -32,8 +33,8 @@ const summaryOf = (formFieldMessage) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{formFieldMessage.id}</Description> 
-<Description term="头衔">{formFieldMessage.title}</Description> 
+<Description term="ID">{formFieldMessage.id}</Description> 
+<Description term="标题">{formFieldMessage.title}</Description> 
 <Description term="参数名称">{formFieldMessage.parameterName}</Description> 
 <Description term="水平">{formFieldMessage.level}</Description> 
 	
@@ -72,18 +73,28 @@ export default class FormFieldMessageDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id,displayName,  } = this.props.formFieldMessage
+    const cardsData = {cardsName:"表单字段的信息",cardsFor: "formFieldMessage",cardsSource: this.props.formFieldMessage,
+  		subItems: [
     
-    
+      	],
+  	};
     
     return (
 
       <PageHeaderLayout
-        title={`表单字段的信息: ${displayName}`}
-        content={summaryOf(this.props.formFieldMessage)}
+        title={`${cardsData.cardsName}: ${displayName}`}
+        content={summaryOf(cardsData.cardsSource)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
           <Row gutter={24}>
+
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps}>           
+            <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
+          </Card> 
+            </Col>))}
 
           </Row>
         </div>

@@ -16,6 +16,7 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './UserDomain.dashboard.less'
 import DescriptionList from '../../components/DescriptionList';
+import ImagePreview from '../../components/ImagePreview';
 const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -32,7 +33,7 @@ const summaryOf = (userDomain) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{userDomain.id}</Description> 
+<Description term="ID">{userDomain.id}</Description> 
 <Description term="名称">{userDomain.name}</Description> 
 	
         
@@ -70,33 +71,29 @@ export default class UserDomainDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id,displayName, secUserCount } = this.props.userDomain
+    const cardsData = {cardsName:"用户域",cardsFor: "userDomain",cardsSource: this.props.userDomain,
+  		subItems: [
+{name: 'secUserList', displayName:'SEC的用户',type:'secUser',count:secUserCount},
     
-    
+      	],
+  	};
     
     return (
 
       <PageHeaderLayout
-        title={`用户域: ${displayName}`}
-        content={summaryOf(this.props.userDomain)}
+        title={`${cardsData.cardsName}: ${displayName}`}
+        content={summaryOf(cardsData.cardsSource)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
           <Row gutter={24}>
 
-          
-            <Col {...topColResponsiveProps}>
-            
-            <Card title={`SEC的用户(${numeral(secUserCount).format('SEC的用户0,0')})`}  style={{ width: 180 }}>
-              
-              <p><Link to={`/userDomain/${id}/list/secUserList/SEC的用户列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
-              <p><Link to={`/userDomain/${id}/list/secUserCreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>
-              
-              
-          </Card>
-            
-            
-             
-            </Col>
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps}>           
+            <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
+          </Card> 
+            </Col>))}
 
           </Row>
         </div>

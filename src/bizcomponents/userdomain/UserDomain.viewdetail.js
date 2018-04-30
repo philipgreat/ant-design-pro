@@ -36,7 +36,7 @@ const summaryOf = (userDomain) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{userDomain.id}</Description> 
+<Description term="ID">{userDomain.id}</Description> 
 <Description term="名称">{userDomain.name}</Description> 
 	
         

@@ -15,7 +15,7 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   label: '标签',
   localeKey: '语言环境的关键',
   parameterName: '参数名称',
@@ -39,7 +39,7 @@ const testValues = {
   label: '姓名',
   localeKey: 'name',
   parameterName: 'name',
-  type: 'barcode',
+  type: 'text',
   placeholder: '姓名就是你身份证上的名字',
   defaultValue: '李亚青',
   description: '姓名就是你身份证上的名字',

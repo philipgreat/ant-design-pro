@@ -8,7 +8,7 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/userDomain/${text}/dashboard`}>{text}</Link>) },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/userDomain/${text}/dashboard`}>{text}</Link>) },
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8' },
 
 ]

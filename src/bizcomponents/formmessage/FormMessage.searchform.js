@@ -83,17 +83,17 @@ export default class FormMessageSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="序号">
+            <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入序号" />
+                <Input placeholder="请输入ID" />
                )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="头衔">
+            <FormItem label="标题">
               {getFieldDecorator('title')(
-                <Input placeholder="请输入头衔" />
+                <Input placeholder="请输入标题" />
                )}
             </FormItem>
           </Col>
@@ -116,17 +116,17 @@ export default class FormMessageSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="序号">
+            <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入序号" />
+                <Input placeholder="请输入ID" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="头衔">
+            <FormItem label="标题">
               {getFieldDecorator('title')(
-                <Input placeholder="请输入头衔" />
+                <Input placeholder="请输入标题" />
               )}
             </FormItem>
           </Col>

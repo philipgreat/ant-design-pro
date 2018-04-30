@@ -15,13 +15,13 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
-  title: '头衔',
+  id: 'ID',
+  title: '标题',
   secUser: 'SEC的用户',
   appIcon: '应用程序图标',
   fullAccess: '完全访问',
   permission: '许可',
-  objectType: '对象类型',
+  objectType: '访问对象类型',
   objectId: '对象ID',
   location: '位置',
 }
@@ -224,9 +224,9 @@ class UserAppCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.title}>
                   {getFieldDecorator('title', {
-                    rules: [{ required: true, message: '请输入头衔' }],
+                    rules: [{ required: true, message: '请输入标题' }],
                   })(
-                    <Input placeholder="请输入请输入头衔string" />
+                    <Input placeholder="请输入请输入标题string" />
                   )}
                 </Form.Item>
               </Col>
@@ -254,9 +254,9 @@ class UserAppCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.objectType}>
                   {getFieldDecorator('objectType', {
-                    rules: [{ required: true, message: '请输入对象类型' }],
+                    rules: [{ required: true, message: '请输入访问对象类型' }],
                   })(
-                    <Input placeholder="请输入请输入对象类型string" />
+                    <Input placeholder="请输入请输入访问对象类型string" />
                   )}
                 </Form.Item>
               </Col>

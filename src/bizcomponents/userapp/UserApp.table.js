@@ -8,13 +8,13 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/userApp/${text}/dashboard`}>{text}</Link>) },
-  { title: '头衔', debugtype: 'string', dataIndex: 'title', width: '8' },
-  { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? (<Link to={`/secUser/${record.secUser.id}/dashboard`}>{record.secUser.displayName}</Link>) : '暂无') },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/userApp/${text}/dashboard`}>{text}</Link>) },
+  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8' },
+  { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.displayName : '暂无') },
   { title: '应用程序图标', debugtype: 'string', dataIndex: 'appIcon', width: '13' },
   { title: '完全访问', dataIndex: 'fullAccess', render: (text, record) => (record.fullAccess ? '是' : '否') },
   { title: '许可', debugtype: 'string', dataIndex: 'permission', width: '8' },
-  { title: '对象类型', debugtype: 'string', dataIndex: 'objectType', width: '31' },
+  { title: '访问对象类型', debugtype: 'string', dataIndex: 'objectType', width: '31' },
   { title: '对象ID', debugtype: 'string', dataIndex: 'objectId', width: '14' },
   { title: '位置', debugtype: 'string', dataIndex: 'location', width: '16' },
 

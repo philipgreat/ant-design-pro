@@ -73,8 +73,8 @@ export const getURLPrefix = () => {
     }
     if (url.hostname === "localhost") {
         //return `http://xm.jl51.com.cn/cis/`
-        return `http://www.yourongzhixing.com/dssc/`
-        //return `http://${url.hostname}:8080/naf/`
+        //return `http://www.yourongzhixing.com/dssc/`
+        return `http://${url.hostname}:8080/naf/`
     }
     return `${url.origin}/${SYSTEM_SHORT_NAME}/`
     //return `${url.origin}/${SYSTEM_SHORT_NAME}/`

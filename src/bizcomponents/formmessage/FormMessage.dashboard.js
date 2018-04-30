@@ -16,6 +16,7 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './FormMessage.dashboard.less'
 import DescriptionList from '../../components/DescriptionList';
+import ImagePreview from '../../components/ImagePreview';
 const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
@@ -32,8 +33,8 @@ const summaryOf = (formMessage) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{formMessage.id}</Description> 
-<Description term="头衔">{formMessage.title}</Description> 
+<Description term="ID">{formMessage.id}</Description> 
+<Description term="标题">{formMessage.title}</Description> 
 <Description term="水平">{formMessage.level}</Description> 
 	
         
@@ -71,18 +72,28 @@ export default class FormMessageDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id,displayName,  } = this.props.formMessage
+    const cardsData = {cardsName:"表单信息",cardsFor: "formMessage",cardsSource: this.props.formMessage,
+  		subItems: [
     
-    
+      	],
+  	};
     
     return (
 
       <PageHeaderLayout
-        title={`表单信息: ${displayName}`}
-        content={summaryOf(this.props.formMessage)}
+        title={`${cardsData.cardsName}: ${displayName}`}
+        content={summaryOf(cardsData.cardsSource)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
           <Row gutter={24}>
+
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps}>           
+            <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
+          </Card> 
+            </Col>))}
 
           </Row>
         </div>

@@ -15,8 +15,8 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
-  title: '头衔',
+  id: 'ID',
+  title: '标题',
   description: '描述',
 }
 const testValues = {};
@@ -179,9 +179,9 @@ class GenericFormCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.title}>
                   {getFieldDecorator('title', {
-                    rules: [{ required: true, message: '请输入头衔' }],
+                    rules: [{ required: true, message: '请输入标题' }],
                   })(
-                    <Input placeholder="请输入请输入头衔string" />
+                    <Input placeholder="请输入请输入标题string" />
                   )}
                 </Form.Item>
               </Col>

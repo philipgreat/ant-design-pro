@@ -15,24 +15,24 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
-  displayName: '显示名称',
-  objectType: '对象类型',
-  list1: '表',
-  list2: '清单',
-  list3: '目录3',
-  list4: '清单',
-  list5: '列表6',
-  list6: 'list6',
-  list7: 'list7',
-  list8: 'list8',
-  list9: 'list9',
+  id: 'ID',
+  name: '名称',
+  objectType: '访问对象类型',
+  list1: '列表1',
+  list2: '列表2',
+  list3: '列表3',
+  list4: '列表4',
+  list5: '列表5',
+  list6: '列表6',
+  list7: '列表7',
+  list8: '列表8',
+  list9: '列表9',
   app: '应用程序',
 }
 const testValues = {};
 /*
 const testValues = {
-  displayName: '控制访问列表1',
+  name: '控制访问列表1',
   objectType: 'FranchiseeStoreCountryCenter',
   list1: 'catalogList',
   list2: 'catalogList',
@@ -231,11 +231,11 @@ class ObjectAccessCreateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.displayName}>
-                  {getFieldDecorator('displayName', {
-                    rules: [{ required: true, message: '请输入显示名称' }],
+                <Form.Item label={fieldLabels.name}>
+                  {getFieldDecorator('name', {
+                    rules: [{ required: true, message: '请输入名称' }],
                   })(
-                    <Input placeholder="请输入请输入显示名称string" />
+                    <Input placeholder="请输入请输入名称string" />
                   )}
                 </Form.Item>
               </Col>
@@ -243,9 +243,9 @@ class ObjectAccessCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.objectType}>
                   {getFieldDecorator('objectType', {
-                    rules: [{ required: true, message: '请输入对象类型' }],
+                    rules: [{ required: true, message: '请输入访问对象类型' }],
                   })(
-                    <Input placeholder="请输入请输入对象类型string" />
+                    <Input placeholder="请输入请输入访问对象类型string" />
                   )}
                 </Form.Item>
               </Col>
@@ -253,9 +253,9 @@ class ObjectAccessCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.list1}>
                   {getFieldDecorator('list1', {
-                    rules: [{ required: true, message: '请输入表' }],
+                    rules: [{ required: true, message: '请输入列表1' }],
                   })(
-                    <Input placeholder="请输入请输入表string" />
+                    <Input placeholder="请输入请输入列表1string" />
                   )}
                 </Form.Item>
               </Col>
@@ -263,9 +263,9 @@ class ObjectAccessCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.list2}>
                   {getFieldDecorator('list2', {
-                    rules: [{ required: true, message: '请输入清单' }],
+                    rules: [{ required: true, message: '请输入列表2' }],
                   })(
-                    <Input placeholder="请输入请输入清单string" />
+                    <Input placeholder="请输入请输入列表2string" />
                   )}
                 </Form.Item>
               </Col>
@@ -273,9 +273,9 @@ class ObjectAccessCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.list3}>
                   {getFieldDecorator('list3', {
-                    rules: [{ required: true, message: '请输入目录3' }],
+                    rules: [{ required: true, message: '请输入列表3' }],
                   })(
-                    <Input placeholder="请输入请输入目录3string" />
+                    <Input placeholder="请输入请输入列表3string" />
                   )}
                 </Form.Item>
               </Col>
@@ -283,9 +283,9 @@ class ObjectAccessCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.list4}>
                   {getFieldDecorator('list4', {
-                    rules: [{ required: true, message: '请输入清单' }],
+                    rules: [{ required: true, message: '请输入列表4' }],
                   })(
-                    <Input placeholder="请输入请输入清单string" />
+                    <Input placeholder="请输入请输入列表4string" />
                   )}
                 </Form.Item>
               </Col>
@@ -293,6 +293,16 @@ class ObjectAccessCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.list5}>
                   {getFieldDecorator('list5', {
+                    rules: [{ required: true, message: '请输入列表5' }],
+                  })(
+                    <Input placeholder="请输入请输入列表5string" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={6} md={12} sm={24}>
+                <Form.Item label={fieldLabels.list6}>
+                  {getFieldDecorator('list6', {
                     rules: [{ required: true, message: '请输入列表6' }],
                   })(
                     <Input placeholder="请输入请输入列表6string" />
@@ -301,21 +311,11 @@ class ObjectAccessCreateForm extends Component {
               </Col>
 
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.list6}>
-                  {getFieldDecorator('list6', {
-                    rules: [{ required: true, message: '请输入list6' }],
-                  })(
-                    <Input placeholder="请输入请输入list6string" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.list7}>
                   {getFieldDecorator('list7', {
-                    rules: [{ required: true, message: '请输入list7' }],
+                    rules: [{ required: true, message: '请输入列表7' }],
                   })(
-                    <Input placeholder="请输入请输入list7string" />
+                    <Input placeholder="请输入请输入列表7string" />
                   )}
                 </Form.Item>
               </Col>
@@ -323,9 +323,9 @@ class ObjectAccessCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.list8}>
                   {getFieldDecorator('list8', {
-                    rules: [{ required: true, message: '请输入list8' }],
+                    rules: [{ required: true, message: '请输入列表8' }],
                   })(
-                    <Input placeholder="请输入请输入list8string" />
+                    <Input placeholder="请输入请输入列表8string" />
                   )}
                 </Form.Item>
               </Col>
@@ -333,9 +333,9 @@ class ObjectAccessCreateForm extends Component {
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.list9}>
                   {getFieldDecorator('list9', {
-                    rules: [{ required: true, message: '请输入list9' }],
+                    rules: [{ required: true, message: '请输入列表9' }],
                   })(
-                    <Input placeholder="请输入请输入list9string" />
+                    <Input placeholder="请输入请输入列表9string" />
                   )}
                 </Form.Item>
               </Col>

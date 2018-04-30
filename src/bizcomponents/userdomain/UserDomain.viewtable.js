@@ -7,7 +7,7 @@ import ImagePreview from '../../components/ImagePreview';
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8' },
 ];
 

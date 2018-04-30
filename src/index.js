@@ -10,44 +10,12 @@ import './index.less'
 
 import LauncherModel from './launcher/Launcher.model'
 import BreadcrumbModel from './launcher/Breadcrumb.model'
-import DecorationCountryCenterModel from './bizcomponents/decorationcountrycenter/DecorationCountryCenter.model'
-import LevelOneDepartmentModel from './bizcomponents/levelonedepartment/LevelOneDepartment.model'
-import LevelTwoDepartmentModel from './bizcomponents/leveltwodepartment/LevelTwoDepartment.model'
-import LevelThreeDepartmentModel from './bizcomponents/levelthreedepartment/LevelThreeDepartment.model'
-import SkillTypeModel from './bizcomponents/skilltype/SkillType.model'
-import ResponsibilityTypeModel from './bizcomponents/responsibilitytype/ResponsibilityType.model'
-import TerminationReasonModel from './bizcomponents/terminationreason/TerminationReason.model'
-import TerminationTypeModel from './bizcomponents/terminationtype/TerminationType.model'
-import OccupationTypeModel from './bizcomponents/occupationtype/OccupationType.model'
-import LeaveTypeModel from './bizcomponents/leavetype/LeaveType.model'
-import SalaryGradeModel from './bizcomponents/salarygrade/SalaryGrade.model'
-import InterviewTypeModel from './bizcomponents/interviewtype/InterviewType.model'
-import TrainingCourseTypeModel from './bizcomponents/trainingcoursetype/TrainingCourseType.model'
-import PublicHolidayModel from './bizcomponents/publicholiday/PublicHoliday.model'
-import TerminationModel from './bizcomponents/termination/Termination.model'
-import ViewModel from './bizcomponents/view/View.model'
-import EmployeeModel from './bizcomponents/employee/Employee.model'
-import JobApplicationModel from './bizcomponents/jobapplication/JobApplication.model'
-import ProfessionInterviewModel from './bizcomponents/professioninterview/ProfessionInterview.model'
-import HrInterviewModel from './bizcomponents/hrinterview/HrInterview.model'
-import OfferApprovalModel from './bizcomponents/offerapproval/OfferApproval.model'
-import OfferAcceptanceModel from './bizcomponents/offeracceptance/OfferAcceptance.model'
-import EmployeeBoardingModel from './bizcomponents/employeeboarding/EmployeeBoarding.model'
-import InstructorModel from './bizcomponents/instructor/Instructor.model'
-import CompanyTrainingModel from './bizcomponents/companytraining/CompanyTraining.model'
-import ScoringModel from './bizcomponents/scoring/Scoring.model'
-import EmployeeCompanyTrainingModel from './bizcomponents/employeecompanytraining/EmployeeCompanyTraining.model'
-import EmployeeSkillModel from './bizcomponents/employeeskill/EmployeeSkill.model'
-import EmployeePerformanceModel from './bizcomponents/employeeperformance/EmployeePerformance.model'
-import EmployeeWorkExperienceModel from './bizcomponents/employeeworkexperience/EmployeeWorkExperience.model'
-import EmployeeLeaveModel from './bizcomponents/employeeleave/EmployeeLeave.model'
-import EmployeeInterviewModel from './bizcomponents/employeeinterview/EmployeeInterview.model'
-import EmployeeAttendanceModel from './bizcomponents/employeeattendance/EmployeeAttendance.model'
-import EmployeeQualifierModel from './bizcomponents/employeequalifier/EmployeeQualifier.model'
-import EmployeeEducationModel from './bizcomponents/employeeeducation/EmployeeEducation.model'
-import EmployeeAwardModel from './bizcomponents/employeeaward/EmployeeAward.model'
-import EmployeeSalarySheetModel from './bizcomponents/employeesalarysheet/EmployeeSalarySheet.model'
-import PayingOffModel from './bizcomponents/payingoff/PayingOff.model'
+import ProductPlatformModel from './bizcomponents/productplatform/ProductPlatform.model'
+import ProductModel from './bizcomponents/product/Product.model'
+import ProductComponentModel from './bizcomponents/productcomponent/ProductComponent.model'
+import ProductPartModel from './bizcomponents/productpart/ProductPart.model'
+import MaterialModel from './bizcomponents/material/Material.model'
+import MaterialApplicationModel from './bizcomponents/materialapplication/MaterialApplication.model'
 import UserDomainModel from './bizcomponents/userdomain/UserDomain.model'
 import SecUserModel from './bizcomponents/secuser/SecUser.model'
 import SecUserBlockingModel from './bizcomponents/secuserblocking/SecUserBlocking.model'
@@ -73,44 +41,12 @@ const app = dva({
 app.model(LauncherModel)
 app.model(BreadcrumbModel)
 
-app.model(DecorationCountryCenterModel)
-app.model(LevelOneDepartmentModel)
-app.model(LevelTwoDepartmentModel)
-app.model(LevelThreeDepartmentModel)
-app.model(SkillTypeModel)
-app.model(ResponsibilityTypeModel)
-app.model(TerminationReasonModel)
-app.model(TerminationTypeModel)
-app.model(OccupationTypeModel)
-app.model(LeaveTypeModel)
-app.model(SalaryGradeModel)
-app.model(InterviewTypeModel)
-app.model(TrainingCourseTypeModel)
-app.model(PublicHolidayModel)
-app.model(TerminationModel)
-app.model(ViewModel)
-app.model(EmployeeModel)
-app.model(JobApplicationModel)
-app.model(ProfessionInterviewModel)
-app.model(HrInterviewModel)
-app.model(OfferApprovalModel)
-app.model(OfferAcceptanceModel)
-app.model(EmployeeBoardingModel)
-app.model(InstructorModel)
-app.model(CompanyTrainingModel)
-app.model(ScoringModel)
-app.model(EmployeeCompanyTrainingModel)
-app.model(EmployeeSkillModel)
-app.model(EmployeePerformanceModel)
-app.model(EmployeeWorkExperienceModel)
-app.model(EmployeeLeaveModel)
-app.model(EmployeeInterviewModel)
-app.model(EmployeeAttendanceModel)
-app.model(EmployeeQualifierModel)
-app.model(EmployeeEducationModel)
-app.model(EmployeeAwardModel)
-app.model(EmployeeSalarySheetModel)
-app.model(PayingOffModel)
+app.model(ProductPlatformModel)
+app.model(ProductModel)
+app.model(ProductComponentModel)
+app.model(ProductPartModel)
+app.model(MaterialModel)
+app.model(MaterialApplicationModel)
 app.model(UserDomainModel)
 app.model(SecUserModel)
 app.model(SecUserBlockingModel)

@@ -54,6 +54,15 @@ const query = {
   },
 }
 
+
+  
+const menuData = {menuName:"表单信息", menuFor: "formMessage",
+  		subItems: [
+  		
+  		
+  		],
+};
+
 class FormMessageBizApp extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -92,14 +101,20 @@ class FormMessageBizApp extends React.PureComponent {
     return keys
   }
   getNavMenuItems = (objectId) => {
+  
+
+  
     return (
       <SubMenu title={
         <span>
           <Icon type="profile" />
-          <span>表单信息</span>
+          <span>{menuData.menuName}</span>
         </span>}
       >
-
+        {menuData.subItems.map((item)=>(<Menu.Item>
+          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
+        </Menu.Item>))}
+       
       </SubMenu>
     )
   }
@@ -108,7 +123,7 @@ class FormMessageBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '全国装修加速器运营系统'
+    const title = '物料管理系统'
     return title
   }
  

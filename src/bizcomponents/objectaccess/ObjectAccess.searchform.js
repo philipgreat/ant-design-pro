@@ -64,7 +64,7 @@ export default class ObjectAccessSearchForm extends PureComponent {
       if (err) return
       const params = {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
-        ...this.buildStringSearchParameters(fieldsValue, 'displayName'),
+        ...this.buildStringSearchParameters(fieldsValue, 'name'),
         ...this.buildStringSearchParameters(fieldsValue, 'objectType'),
         ...this.buildStringSearchParameters(fieldsValue, 'list1'),
         ...this.buildStringSearchParameters(fieldsValue, 'list2'),
@@ -92,17 +92,17 @@ export default class ObjectAccessSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="序号">
+            <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入序号" />
+                <Input placeholder="请输入ID" />
                )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="显示名称">
-              {getFieldDecorator('displayName')(
-                <Input placeholder="请输入显示名称" />
+            <FormItem label="名称">
+              {getFieldDecorator('name')(
+                <Input placeholder="请输入名称" />
                )}
             </FormItem>
           </Col>
@@ -125,97 +125,97 @@ export default class ObjectAccessSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="序号">
+            <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入序号" />
+                <Input placeholder="请输入ID" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="显示名称">
-              {getFieldDecorator('displayName')(
-                <Input placeholder="请输入显示名称" />
+            <FormItem label="名称">
+              {getFieldDecorator('name')(
+                <Input placeholder="请输入名称" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="对象类型">
+            <FormItem label="访问对象类型">
               {getFieldDecorator('objectType')(
-                <Input placeholder="请输入对象类型" />
+                <Input placeholder="请输入访问对象类型" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="表">
+            <FormItem label="列表1">
               {getFieldDecorator('list1')(
-                <Input placeholder="请输入表" />
+                <Input placeholder="请输入列表1" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="清单">
+            <FormItem label="列表2">
               {getFieldDecorator('list2')(
-                <Input placeholder="请输入清单" />
+                <Input placeholder="请输入列表2" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="目录3">
+            <FormItem label="列表3">
               {getFieldDecorator('list3')(
-                <Input placeholder="请输入目录3" />
+                <Input placeholder="请输入列表3" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="清单">
+            <FormItem label="列表4">
               {getFieldDecorator('list4')(
-                <Input placeholder="请输入清单" />
+                <Input placeholder="请输入列表4" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="列表5">
+              {getFieldDecorator('list5')(
+                <Input placeholder="请输入列表5" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
             <FormItem label="列表6">
-              {getFieldDecorator('list5')(
+              {getFieldDecorator('list6')(
                 <Input placeholder="请输入列表6" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="list6">
-              {getFieldDecorator('list6')(
-                <Input placeholder="请输入list6" />
-              )}
-            </FormItem>
-          </Col>
-
-          <Col md={8} sm={24}>
-            <FormItem label="list7">
+            <FormItem label="列表7">
               {getFieldDecorator('list7')(
-                <Input placeholder="请输入list7" />
+                <Input placeholder="请输入列表7" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="list8">
+            <FormItem label="列表8">
               {getFieldDecorator('list8')(
-                <Input placeholder="请输入list8" />
+                <Input placeholder="请输入列表8" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="list9">
+            <FormItem label="列表9">
               {getFieldDecorator('list9')(
-                <Input placeholder="请输入list9" />
+                <Input placeholder="请输入列表9" />
               )}
             </FormItem>
           </Col>

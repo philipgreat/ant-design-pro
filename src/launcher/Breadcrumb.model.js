@@ -19,7 +19,7 @@ export default {
 
   namespace: 'breadcrumb',
 
-  state: {currentApp:'app1','app1':[{name:'平台', link:'url'},{name:'平台2', link:'url2'}]},
+  state: {currentApp:'app1','app1':[{name:'平台', link:'/'}],menuData:{}},
 
 
   subscriptions: {
@@ -60,18 +60,19 @@ export default {
       const targetApp = action.payload.targetApp
       const currentApp = targetApp.id
       const appdata=state[currentApp];
+      const menuData = action.payload.menuData;
       if(appdata){
         const name = targetApp.title
         const link = location;
         appdata.push({name,link});
-        return {...state,currentApp};
+        return {...state,currentApp,menuData};
       }
       const newAppData = [];
       const name = targetApp.title
       const link = location;
       newAppData.push({name,link});
       state[currentApp] = newAppData;
-      return { ...state, currentApp}
+      return { ...state, currentApp,targetApp,menuData}
     }
     
   },
