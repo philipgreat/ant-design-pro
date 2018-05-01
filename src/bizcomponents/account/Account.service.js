@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}accountManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -16,18 +19,12 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
 const requestCandidatePlatform = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}accountManager/requestCandidatePlatform/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}	 
- 
-
-
-
+}
 
 const addServiceCompanyAccount = (targetObjectId, parameters) => {
   const url = `${PREFIX}accountManager/addServiceCompanyAccount/accountId/serviceOrderNumber/serviceOrderCode/serviceOrderName/serviceFulfilledDatetime/contractId/contractPriceValue/contractPriceType/serviceWorkerName/serviceCompanyName/mainOrderId/merchantDiscount/merchantId/responsibleWorkerId/tokensExpr/`
@@ -55,7 +52,11 @@ const updateServiceCompanyAccount = (targetObjectId, parameters) => {
 
 const removeServiceCompanyAccountList = (targetObjectId, parameters) => {
   const url = `${PREFIX}accountManager/removeServiceCompanyAccountList/accountId/serviceCompanyAccountIds/tokensExpr/`
-  const requestParameters = { ...parameters, accountId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    accountId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -63,7 +64,6 @@ const removeServiceCompanyAccountList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addRepairingCompanyAccount = (targetObjectId, parameters) => {
   const url = `${PREFIX}accountManager/addRepairingCompanyAccount/accountId/repairingWorkerName/repairingCompanyName/vehicleLicensePlateNumber/vehicleRepairingOrderNumber/originalAmount/allowanceAmount/actualAmount/mainOrderId/paymentDatetime/wechatOrderId/wechatPrepayId/merchantId/responsibleWorkerId/tokensExpr/`
@@ -91,7 +91,11 @@ const updateRepairingCompanyAccount = (targetObjectId, parameters) => {
 
 const removeRepairingCompanyAccountList = (targetObjectId, parameters) => {
   const url = `${PREFIX}accountManager/removeRepairingCompanyAccountList/accountId/repairingCompanyAccountIds/tokensExpr/`
-  const requestParameters = { ...parameters, accountId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    accountId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -99,7 +103,6 @@ const removeRepairingCompanyAccountList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addInsuranceServiceAccount = (targetObjectId, parameters) => {
   const url = `${PREFIX}accountManager/addInsuranceServiceAccount/accountId/vehicleLicensePlateNumber/insuranceOrderNumber/employeeName/insuranceName/insuranceVendor/insurancePrice/insuranceNumber/insuranceOrderDatetime/mainOrderId/merchantId/responsibleWorkerId/tokensExpr/`
@@ -127,7 +130,11 @@ const updateInsuranceServiceAccount = (targetObjectId, parameters) => {
 
 const removeInsuranceServiceAccountList = (targetObjectId, parameters) => {
   const url = `${PREFIX}accountManager/removeInsuranceServiceAccountList/accountId/insuranceServiceAccountIds/tokensExpr/`
-  const requestParameters = { ...parameters, accountId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    accountId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -135,7 +142,6 @@ const removeInsuranceServiceAccountList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addMainOrderAccount = (targetObjectId, parameters) => {
   const url = `${PREFIX}accountManager/addMainOrderAccount/accountId/vehicleLicensePlateNumber/productName/inspectionPrice/agentServicePrice/city/vehicleType/orderTotalAmount/orderPromotionDiscount/orderCouponDiscount/orderInsuranceAmount/orderMerchantDiscount/orderCustomerPaymentAmount/orderServiceAmount/orderPlatformBalance/orderPlacedDatetime/orderPaymentDatetime/orderFinishedDatetime/mainOrderId/wechatOrderId/wechatPrepayId/tokensExpr/`
@@ -163,7 +169,11 @@ const updateMainOrderAccount = (targetObjectId, parameters) => {
 
 const removeMainOrderAccountList = (targetObjectId, parameters) => {
   const url = `${PREFIX}accountManager/removeMainOrderAccountList/accountId/mainOrderAccountIds/tokensExpr/`
-  const requestParameters = { ...parameters, accountId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    accountId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -171,7 +181,6 @@ const removeMainOrderAccountList = (targetObjectId, parameters) => {
     headers,
   })
 }
-
 
 const addInspectionStationAccount = (targetObjectId, parameters) => {
   const url = `${PREFIX}accountManager/addInspectionStationAccount/accountId/serviceOrderNumber/inspectionType/inspectionVehicleInfo/inspectionFinalResult/inspectionDatetime/inspectionStationName/mainOrderNumber/merchantId/responsibleWorkerId/inspectionStationId/tokensExpr/`
@@ -199,7 +208,11 @@ const updateInspectionStationAccount = (targetObjectId, parameters) => {
 
 const removeInspectionStationAccountList = (targetObjectId, parameters) => {
   const url = `${PREFIX}accountManager/removeInspectionStationAccountList/accountId/inspectionStationAccountIds/tokensExpr/`
-  const requestParameters = { ...parameters, accountId: targetObjectId, tokensExpr: 'none' }
+  const requestParameters = {
+    ...parameters,
+    accountId: targetObjectId,
+    tokensExpr: 'none',
+  }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -208,8 +221,8 @@ const removeInspectionStationAccountList = (targetObjectId, parameters) => {
   })
 }
 
-
-const AccountService = { view,
+const AccountService = {
+  view,
   load,
   addServiceCompanyAccount,
   addRepairingCompanyAccount,
@@ -226,6 +239,6 @@ const AccountService = { view,
   removeInsuranceServiceAccountList,
   removeMainOrderAccountList,
   removeInspectionStationAccountList,
-  requestCandidatePlatform }
+  requestCandidatePlatform,
+}
 export default AccountService
-

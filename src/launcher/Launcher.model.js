@@ -4,7 +4,7 @@ import key from 'keymaster'
 
 import LauncherService from './Launcher.service'
 import GlobalComponents from '../custcomponents'
-
+import {message} from 'antd'
 const apps = {
 
 
@@ -175,6 +175,7 @@ export default {
         return
       }
       if (data.class.indexOf('LoginForm') > 0) {
+        message.warn(data.errorMessage);
         yield put({ type: 'showlogin', payload: { data } })
         return
       }
@@ -204,14 +205,18 @@ export default {
     updateState(state, action) {
       return { ...state, ...action.payload }
     },
-    showlogin(state) {
-      return { ...state, loggedIn: false }
+    showlogin(state, action) {
+      if(!action.payload){
+        return { ...state, loggedIn: false}
+      }
+      const { data } = action.payload
+      return { ...state, loggedIn: false, data}
     },
     showhome(state, action) {
       const { data } = action.payload
       return { ...state, loggedIn: true, data }
     },
-    logout(state) {
+    logout(state, action) {
       return { ...state, loggedIn: false }
     },
     showApp(state, action) {

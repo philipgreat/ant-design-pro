@@ -1,16 +1,30 @@
 import React, { Component } from 'react'
-import { AutoComplete, Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
+import {
+  AutoComplete,
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+  Switch,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
 //import OSSPictureEdit from '../../components/PictureEdit'
-import {ImageComponent} from '../../axios/tools'
+import { ImageComponent } from '../../axios/tools'
 import FooterToolbar from '../../components/FooterToolbar'
 //import ImageUpload from '../../components/ImageUpload'
 import styles from './FormMessage.createform.less'
-import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
-import GlobalComponents from '../../custcomponents';
+import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
+import GlobalComponents from '../../custcomponents'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -20,7 +34,7 @@ const fieldLabels = {
   form: '形式',
   level: '水平',
 }
-const testValues = {};
+const testValues = {}
 /*
 const testValues = {
   title: '字段组合错误',
@@ -30,10 +44,7 @@ const testValues = {
 */
 const imageURLPrefix = '//localhost:2090'
 
-
-const imageKeys = [
-]
-
+const imageKeys = []
 
 class FormMessageCreateForm extends Component {
   state = {
@@ -46,18 +57,13 @@ class FormMessageCreateForm extends Component {
     // const { getFieldDecorator,setFieldsValue } = this.props.form
     const { setFieldsValue } = this.props.form
     //setFieldsValue(testValues)
-      
-    this.executeCandidateFormSearch("")
-    
- 
-    
-    
-    
+
+    this.executeCandidateFormSearch('')
   }
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -65,31 +71,28 @@ class FormMessageCreateForm extends Component {
     })
   }
 
-  
-  executeCandidateFormSearch = (filterKey) =>{
+  executeCandidateFormSearch = filterKey => {
+    const { FormMessageService } = GlobalComponents
 
-    const {FormMessageService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = FormMessageService.requestCandidateForm("genericForm", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = FormMessageService.requestCandidateForm(
+      'genericForm',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateFormList=>{
+    future.then(candidateFormList => {
       this.setState({
-        candidateFormList
+        candidateFormList,
       })
-
     })
-
-  }	 
-  handleCandidateFormSearch = (value) => {
+  }
+  handleCandidateFormSearch = value => {
     this.executeCandidateFormSearch(value)
   }
- 
-
-
 
   handleChange = (event, source) => {
     console.log('get file list from change in update change:', source)
@@ -101,7 +104,6 @@ class FormMessageCreateForm extends Component {
     this.setState({ convertedImagesValues })
     console.log('/get file list from change in update change:', source)
   }
-
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -131,18 +133,23 @@ class FormMessageCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addFormMessage`,
-          payload: { id: owner.id, type: 'formMessage', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'formMessage',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -157,18 +164,22 @@ class FormMessageCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -190,18 +201,15 @@ class FormMessageCreateForm extends Component {
         </span>
       )
     }
-    
 
-    
-    const {candidateFormList} = this.state
-    if(!candidateFormList){
-      return (<div>等等</div>)
+    const { candidateFormList } = this.state
+    if (!candidateFormList) {
+      return <div>等等</div>
     }
-    if(!candidateFormList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
+    if (!candidateFormList.candidates) {
+      return <div>等等</div>
+    }
+
     return (
       <PageHeaderLayout
         title="新建一个表单信息"
@@ -211,14 +219,11 @@ class FormMessageCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.title}>
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: '请输入标题' }],
-                  })(
-                    <Input placeholder="请输入请输入标题string" />
-                  )}
+                  })(<Input placeholder="请输入请输入标题string" />)}
                 </Form.Item>
               </Col>
 
@@ -226,65 +231,57 @@ class FormMessageCreateForm extends Component {
                 <Form.Item label={fieldLabels.level}>
                   {getFieldDecorator('level', {
                     rules: [{ required: true, message: '请输入水平' }],
-                  })(
-                    <Input placeholder="请输入请输入水平string" />
-                  )}
+                  })(<Input placeholder="请输入请输入水平string" />)}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
-       
-        
-
-
-
-
-
-
-
-
-
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.form}>
                   {getFieldDecorator('formId', {
                     rules: [{ required: true, message: '请输入形式' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateFormList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateFormSearch}
-                    placeholder="请输入形式"
-                  >
-                  {candidateFormList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.title}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateFormList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateFormSearch}
+                      placeholder="请输入形式"
+                    >
+                      {candidateFormList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.title}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -299,7 +296,3 @@ class FormMessageCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(FormMessageCreateForm))
-
-
-
-

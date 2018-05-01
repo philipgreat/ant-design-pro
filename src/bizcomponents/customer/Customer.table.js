@@ -1,23 +1,59 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './Customer.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/customer/${text}/dashboard`}>{text}</Link>) },
-  { title: '客户昵称', debugtype: 'string', dataIndex: 'nickName', width: '24' },
-  { title: '头像', dataIndex: 'logoImage', render: (text, record) => <ImagePreview imageTitle="头像" imageLocation={record.logoImage} /> },
-  { title: '微信ID', debugtype: 'string', dataIndex: 'weixinOpenid', width: '29' },
-  { title: '微信APP', debugtype: 'string', dataIndex: 'weixinAppid', width: '23' },
+  {
+    title: 'ID',
+    debugtype: 'string',
+    dataIndex: 'id',
+    width: '20',
+    render: (text, record) => (
+      <Link to={`/customer/${text}/dashboard`}>{text}</Link>
+    ),
+  },
+  {
+    title: '客户昵称',
+    debugtype: 'string',
+    dataIndex: 'nickName',
+    width: '24',
+  },
+  {
+    title: '头像',
+    dataIndex: 'logoImage',
+    render: (text, record) => (
+      <ImagePreview imageTitle="头像" imageLocation={record.logoImage} />
+    ),
+  },
+  {
+    title: '微信ID',
+    debugtype: 'string',
+    dataIndex: 'weixinOpenid',
+    width: '29',
+  },
+  {
+    title: '微信APP',
+    debugtype: 'string',
+    dataIndex: 'weixinAppid',
+    width: '23',
+  },
   { title: '经度', debugtype: 'double', dataIndex: 'longitude', width: '12' },
   { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '11' },
-  { title: 'SecUser', dataIndex: 'secUser', render: (text, record) => (record.secUser ? (<Link to={`/secUser/${record.secUser.id}/dashboard`}>{record.secUser.displayName}</Link>) : '暂无') },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? (<Link to={`/carInspectionPlatform/${record.platform.id}/dashboard`}>{record.platform.displayName}</Link>) : '暂无') },
-
+  {
+    title: 'SecUser',
+    dataIndex: 'secUser',
+    render: (text, record) =>
+      record.secUser ? record.secUser.displayName : '暂无',
+  },
+  {
+    title: '平台',
+    dataIndex: 'platform',
+    render: (text, record) =>
+      record.platform ? record.platform.displayName : '暂无',
+  },
 ]
 
 class CustomerTable extends PureComponent {
@@ -60,7 +96,6 @@ class CustomerTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -75,13 +110,15 @@ class CustomerTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -102,4 +139,3 @@ class CustomerTable extends PureComponent {
 }
 
 export default CustomerTable
-

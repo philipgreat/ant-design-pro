@@ -1,13 +1,16 @@
-import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
+import {
+  get,
+  post,
+  PREFIX,
+  joinParameters,
+  joinPostParameters,
+} from '../../axios/tools'
 
-
-const view = (targetObjectId) => {
+const view = targetObjectId => {
   return get({
     url: `${PREFIX}inspectionStationAccountManager/view/${targetObjectId}/`,
   })
 }
-
-
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -16,48 +19,50 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-
-
 const requestCandidateMerchant = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}inspectionStationAccountManager/requestCandidateMerchant/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}	 
- 
+}
 
-const requestCandidateResponsibleWorker = (ownerClass, id, filterKey, pageNo) => {
+const requestCandidateResponsibleWorker = (
+  ownerClass,
+  id,
+  filterKey,
+  pageNo
+) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}inspectionStationAccountManager/requestCandidateResponsibleWorker/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}	 
- 
+}
 
-const requestCandidateInspectionStation = (ownerClass, id, filterKey, pageNo) => {
+const requestCandidateInspectionStation = (
+  ownerClass,
+  id,
+  filterKey,
+  pageNo
+) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}inspectionStationAccountManager/requestCandidateInspectionStation/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}	 
- 
+}
 
 const requestCandidateAccount = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
     url: `${PREFIX}inspectionStationAccountManager/requestCandidateAccount/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
-}	 
- 
+}
 
-
-
-
-const InspectionStationAccountService = { view,
+const InspectionStationAccountService = {
+  view,
   load,
   requestCandidateMerchant,
   requestCandidateResponsibleWorker,
   requestCandidateInspectionStation,
-  requestCandidateAccount }
+  requestCandidateAccount,
+}
 export default InspectionStationAccountService
-

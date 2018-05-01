@@ -1,14 +1,35 @@
-
-
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Form,Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Steps,Badge } from 'antd'
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Icon,
+  Card,
+  Tabs,
+  Table,
+  Radio,
+  DatePicker,
+  Tooltip,
+  Menu,
+  Dropdown,
+  Steps,
+  Badge,
+} from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import moment from 'moment'
 import {
-  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
-
+  ChartCard,
+  yuan,
+  MiniArea,
+  MiniBar,
+  MiniProgress,
+  Field,
+  Bar,
+  Pie,
+  TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
@@ -16,8 +37,8 @@ import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './CompanyEmployeeTermination.viewdetail.less'
 import GlobalComponents from '../../custcomponents'
-import DescriptionList from '../../components/DescriptionList';
-const { Description } = DescriptionList;
+import DescriptionList from '../../components/DescriptionList'
+const { Description } = DescriptionList
 const { Step } = Steps
 
 const { TabPane } = Tabs
@@ -32,89 +53,79 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 }
 
-const summaryOf = (companyEmployeeTermination) =>{
-
-	return (
-	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{companyEmployeeTermination.id}</Description> 
-<Description term="审批人">{companyEmployeeTermination.who}</Description> 
-<Description term="执行时间">{ moment(companyEmployeeTermination.eventTime).format('YYYY-MM-DD')}</Description> 
-<Description term="批注">{companyEmployeeTermination.comment}</Description> 
-	
-        
-      </DescriptionList>
-	)
-
+const summaryOf = companyEmployeeTermination => {
+  return (
+    <DescriptionList className={styles.headerList} size="small" col="4">
+      <Description term="ID">{companyEmployeeTermination.id}</Description>
+      <Description term="审批人">{companyEmployeeTermination.who}</Description>
+      <Description term="执行时间">
+        {moment(companyEmployeeTermination.eventTime).format('YYYY-MM-DD')}
+      </Description>
+      <Description term="批注">
+        {companyEmployeeTermination.comment}
+      </Description>
+    </DescriptionList>
+  )
 }
 
 @connect(state => ({
   companyEmployeeTermination: state._companyEmployeeTermination,
 }))
 export default class CompanyEmployeeTerminationViewDetail extends Component {
-
-
   state = {
     tabKey: `vehicleServiceCompanyEmployeeList`,
     stepDirection: 'horizontal',
   }
- 
-  onTabChange = (key) => {
-    this.setState({ tabKey: key });
-  }  
+
+  onTabChange = key => {
+    this.setState({ tabKey: key })
+  }
   render() {
-    const {VehicleServiceCompanyEmployeeViewTable} = GlobalComponents;
-  
+    const { VehicleServiceCompanyEmployeeViewTable } = GlobalComponents
+
     // eslint-disable-next-line max-len
-    
+
     const companyEmployeeTermination = this.props.companyEmployeeTermination
-    const { id, vehicleServiceCompanyEmployeeCount } = companyEmployeeTermination
+    const {
+      id,
+      vehicleServiceCompanyEmployeeCount,
+    } = companyEmployeeTermination
     const { vehicleServiceCompanyEmployeeList } = companyEmployeeTermination
-    
+
     const owner = { type: '_companyEmployeeTermination', id }
-    
+
     const tabList = [
+      {
+        key: 'vehicleServiceCompanyEmployeeList',
+        tab: `商户员工(${vehicleServiceCompanyEmployeeCount})`,
+      },
+    ]
 
-      {key: 'vehicleServiceCompanyEmployeeList',tab: `商户员工(${vehicleServiceCompanyEmployeeCount})`}, 
-   
-
-   ];
-   
-   
     const contentList = {
-       vehicleServiceCompanyEmployeeList:  
-        <VehicleServiceCompanyEmployeeViewTable data={vehicleServiceCompanyEmployeeList} owner={owner} {...this.props} />,
- 
-    
-    };
-    
+      vehicleServiceCompanyEmployeeList: (
+        <VehicleServiceCompanyEmployeeViewTable
+          data={vehicleServiceCompanyEmployeeList}
+          owner={owner}
+          {...this.props}
+        />
+      ),
+    }
 
-
-    
-    
-    
     return (
-
       <PageHeaderLayout
         title="商户员工合同结束状态变更总览"
         content={summaryOf(this.props.companyEmployeeTermination)}
         wrapperClassName={styles.advancedForm}
       >
-
-      
-      
-	<Card 
-  		className={styles.card} 
-  		bordered={false}
-  		tabList={tabList}
-  		onTabChange={this.onTabChange}>
-            {contentList[this.state.tabKey]}
+        <Card
+          className={styles.card}
+          bordered={false}
+          tabList={tabList}
+          onTabChange={this.onTabChange}
+        >
+          {contentList[this.state.tabKey]}
         </Card>
-
- 
       </PageHeaderLayout>
     )
   }
 }
-
-
-

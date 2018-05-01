@@ -1,20 +1,45 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './IdentityCard.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '姓名', debugtype: 'string', dataIndex: 'holderName', width: '57' },
-  { title: '身份证号码', debugtype: 'string', dataIndex: 'cardNumber', width: '22' },
-  { title: '身份证正面照片', dataIndex: 'frontImage', render: (text, record) => <ImagePreview imageTitle="身份证正面照片" imageLocation={record.frontImage} /> },
-  { title: '身份证背面照片', dataIndex: 'backImage', render: (text, record) => <ImagePreview imageTitle="身份证背面照片" imageLocation={record.backImage} /> },
-  { title: '有效期至', dataIndex: 'expirationDate', render: (text, record) => moment(record.expirationDate).format('YYYY-MM-DD') },
-
+  {
+    title: '身份证号码',
+    debugtype: 'string',
+    dataIndex: 'cardNumber',
+    width: '22',
+  },
+  {
+    title: '身份证正面照片',
+    dataIndex: 'frontImage',
+    render: (text, record) => (
+      <ImagePreview
+        imageTitle="身份证正面照片"
+        imageLocation={record.frontImage}
+      />
+    ),
+  },
+  {
+    title: '身份证背面照片',
+    dataIndex: 'backImage',
+    render: (text, record) => (
+      <ImagePreview
+        imageTitle="身份证背面照片"
+        imageLocation={record.backImage}
+      />
+    ),
+  },
+  {
+    title: '有效期至',
+    dataIndex: 'expirationDate',
+    render: (text, record) =>
+      moment(record.expirationDate).format('YYYY-MM-DD'),
+  },
 ]
 
 class IdentityCardTable extends PureComponent {
@@ -57,7 +82,6 @@ class IdentityCardTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -72,13 +96,15 @@ class IdentityCardTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -99,4 +125,3 @@ class IdentityCardTable extends PureComponent {
 }
 
 export default IdentityCardTable
-

@@ -1,18 +1,30 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './CompanyQrcodePromotionRecord.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
-
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '客户', dataIndex: 'customer', render: (text, record) => (record.customer ? (<Link to={`/customer/${record.customer.id}/dashboard`}>{record.customer.displayName}</Link>) : '暂无') },
-  { title: '商户', dataIndex: 'company', render: (text, record) => (record.company ? (<Link to={`/vehicleServiceCompany/${record.company.id}/dashboard`}>{record.company.displayName}</Link>) : '暂无') },
-  { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD HH:mm:ss') },
-
+  {
+    title: '客户',
+    dataIndex: 'customer',
+    render: (text, record) =>
+      record.customer ? record.customer.displayName : '暂无',
+  },
+  {
+    title: '商户',
+    dataIndex: 'company',
+    render: (text, record) =>
+      record.company ? record.company.displayName : '暂无',
+  },
+  {
+    title: '创建时间',
+    dataIndex: 'createTime',
+    render: (text, record) =>
+      moment(record.createTime).format('YYYY-MM-DD HH:mm:ss'),
+  },
 ]
 
 class CompanyQrcodePromotionRecordTable extends PureComponent {
@@ -55,7 +67,6 @@ class CompanyQrcodePromotionRecordTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -70,13 +81,15 @@ class CompanyQrcodePromotionRecordTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -97,4 +110,3 @@ class CompanyQrcodePromotionRecordTable extends PureComponent {
 }
 
 export default CompanyQrcodePromotionRecordTable
-

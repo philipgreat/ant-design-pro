@@ -1,13 +1,25 @@
-
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import Result from '../../components/Result'
 
-
-import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
+import {
+  Row,
+  Col,
+  Card,
+  Form,
+  Input,
+  Select,
+  Icon,
+  Button,
+  Dropdown,
+  Menu,
+  InputNumber,
+  DatePicker,
+  Modal,
+  message,
+} from 'antd'
 
 import GlobalComponents from '../../custcomponents'
-
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 
@@ -15,8 +27,10 @@ import styles from './GenericForm.search.less'
 
 const FormItem = Form.Item
 const { Option } = Select
-const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',')
-
+const getValue = obj =>
+  Object.keys(obj)
+    .map(key => obj[key])
+    .join(',')
 
 @Form.create()
 export default class GenericFormSearch extends PureComponent {
@@ -42,13 +56,13 @@ export default class GenericFormSearch extends PureComponent {
       newObj[key] = getValue(filtersArg[key])
       return newObj
     }, {})
-	const { owner } = this.props
-	const {listName} = owner;
-	let listParameters = {};
-    listParameters[listName]=1;
-    listParameters[`${listName}CurrentPage`]=pagination.current;
-    listParameters[`${listName}RowsPerPage`]=pagination.pageSize;
-    
+    const { owner } = this.props
+    const { listName } = owner
+    let listParameters = {}
+    listParameters[listName] = 1
+    listParameters[`${listName}CurrentPage`] = pagination.current
+    listParameters[`${listName}RowsPerPage`] = pagination.pageSize
+
     const params = {
       ...listParameters,
       ...formValues,
@@ -57,14 +71,14 @@ export default class GenericFormSearch extends PureComponent {
     if (sorter.field) {
       params.sorter = '_'
     }
-    
+
     dispatch({
       type: `${owner.type}/load`,
       payload: { id: owner.id, parameters: params },
     })
   }
 
-  handleMenuClick = (e) => {
+  handleMenuClick = e => {
     const { dispatch } = this.props
     const { selectedRows } = this.state
     if (!selectedRows) return
@@ -87,13 +101,13 @@ export default class GenericFormSearch extends PureComponent {
     }
   }
 
-  handleSelectRows = (rows) => {
+  handleSelectRows = rows => {
     this.setState({
       selectedRows: rows,
     })
   }
 
-  handleModalVisible = (flag) => {
+  handleModalVisible = flag => {
     this.setState({
       modalVisible: !!flag,
       showDeleteResult: false,
@@ -108,8 +122,10 @@ export default class GenericFormSearch extends PureComponent {
       modalVisible: true,
       showDeleteResult: true,
     })
-    
-    const genericFormIds = selectedRows.map((item) => { return item.id })
+
+    const genericFormIds = selectedRows.map(item => {
+      return item.id
+    })
     console.log('genericFormIds', genericFormIds)
     const parameters = { genericFormIds }
     dispatch({
@@ -117,7 +133,7 @@ export default class GenericFormSearch extends PureComponent {
       payload: { id: owner.id, type: 'genericForm', parameters },
     })
   }
-  
+
   showModal = () => {
     // const { selectedRows } = this.state
     // const { dispatch, owner } = this.props
@@ -151,11 +167,16 @@ export default class GenericFormSearch extends PureComponent {
     const currentUpdateIndex = 0
     dispatch({
       type: `${owner.type}/gotoUpdateForm`,
-      payload: { id: owner.id, type: 'genericForm', selectedRows, currentUpdateIndex },
+      payload: {
+        id: owner.id,
+        type: 'genericForm',
+        selectedRows,
+        currentUpdateIndex,
+      },
     })
   }
-  
-  handleAddInput = (e) => {
+
+  handleAddInput = e => {
     this.setState({
       addInputValue: e.target.value,
     })
@@ -175,37 +196,35 @@ export default class GenericFormSearch extends PureComponent {
   }
 
   render() {
-    const { data, loading, count, currentPage, owner } = this.props;
-    const {displayName} = owner.ref
-    const { showDeleteResult, selectedRows, modalVisible } = this.state;
-    const {GenericFormTable} = GlobalComponents;
-    const {GenericFormConfirmationTable} = GlobalComponents;
-    const {GenericFormSearchForm} = GlobalComponents;
-    
- 
-    const menu = (
-      <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
+    const { data, loading, count, currentPage, owner } = this.props
+    const { displayName } = owner.ref
+    const { showDeleteResult, selectedRows, modalVisible } = this.state
+    const { GenericFormTable } = GlobalComponents
+    const { GenericFormConfirmationTable } = GlobalComponents
+    const { GenericFormSearchForm } = GlobalComponents
 
-
-      
-
-      </Menu>
-    )
+    const menu = <Menu onClick={this.handleMenuClick} selectedKeys={[]} />
 
     // TODO some issue here
     const modalContent = (data, owner) => {
       if (showDeleteResult) {
         return (
-        <Modal
-          title="成功删除"
-          visible={modalVisible}
-          onOk={() => this.confirmAfterDelete()}
-          onCancel={() => this.confirmAfterDelete()}
-          width={920}
-          style={{ top: 40 }}
-        >
-          <Result type="success" title="删除成功，干得漂亮" description="" style={{ marginTop: 48, marginBottom: 16 }} />
-        </Modal>)
+          <Modal
+            title="成功删除"
+            visible={modalVisible}
+            onOk={() => this.confirmAfterDelete()}
+            onCancel={() => this.confirmAfterDelete()}
+            width={920}
+            style={{ top: 40 }}
+          >
+            <Result
+              type="success"
+              title="删除成功，干得漂亮"
+              description=""
+              style={{ marginTop: 48, marginBottom: 16 }}
+            />
+          </Modal>
+        )
       }
 
       return (
@@ -218,9 +237,10 @@ export default class GenericFormSearch extends PureComponent {
           style={{ top: 40 }}
         >
           <GenericFormConfirmationTable data={selectedRows} owner={owner} />
-        </Modal>)
+        </Modal>
+      )
     }
-    
+
     return (
       <PageHeaderLayout title={`${displayName}: 通用的形式列表`}>
         <Card bordered={false}>
@@ -229,16 +249,31 @@ export default class GenericFormSearch extends PureComponent {
               <GenericFormSearchForm {...this.props} />
             </div>
             <div className={styles.tableListOperator}>
-              <Button icon="plus" type="primary" onClick={() => this.handleCreate()}>新建</Button>
-              {
-                selectedRows.length > 0 && (
-                  <span>
-                    <Button onClick={this.handleModalVisible} type="danger" icon="delete">批量删除</Button>
-                    <Button onClick={this.handleUpdate} type="primary" icon="update">批量更新</Button>
-                    
-                  </span>
-                )
-              }
+              <Button
+                icon="plus"
+                type="primary"
+                onClick={() => this.handleCreate()}
+              >
+                新建
+              </Button>
+              {selectedRows.length > 0 && (
+                <span>
+                  <Button
+                    onClick={this.handleModalVisible}
+                    type="danger"
+                    icon="delete"
+                  >
+                    批量删除
+                  </Button>
+                  <Button
+                    onClick={this.handleUpdate}
+                    type="primary"
+                    icon="update"
+                  >
+                    批量更新
+                  </Button>
+                </span>
+              )}
             </div>
             <GenericFormTable
               selectedRows={selectedRows}
@@ -257,5 +292,3 @@ export default class GenericFormSearch extends PureComponent {
     )
   }
 }
-
-

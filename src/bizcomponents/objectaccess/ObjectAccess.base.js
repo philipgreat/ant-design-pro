@@ -1,19 +1,26 @@
-
 import ImagePreview from '../../components/ImagePreview'
 import { Link } from 'dva/router'
 
-const menuData = {menuName:"对象访问", menuFor: "objectAccess",
-  		subItems: [
-  
-  		],
+const menuData = {
+  menuName: '对象访问',
+  menuFor: 'objectAccess',
+  subItems: [],
 }
-
-
 
 const displayColumns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '11' },
-  { title: '访问对象类型', debugtype: 'string', dataIndex: 'objectType', width: '32' },
+  {
+    title: '显示名称',
+    debugtype: 'string',
+    dataIndex: 'displayName',
+    width: '11',
+  },
+  {
+    title: '访问对象类型',
+    debugtype: 'string',
+    dataIndex: 'objectType',
+    width: '32',
+  },
   { title: '列表1', debugtype: 'string', dataIndex: 'list1', width: '24' },
   { title: '列表2', debugtype: 'string', dataIndex: 'list2', width: '24' },
   { title: '列表3', debugtype: 'string', dataIndex: 'list3', width: '24' },
@@ -23,13 +30,16 @@ const displayColumns = [
   { title: '列表7', debugtype: 'string', dataIndex: 'list7', width: '24' },
   { title: '列表8', debugtype: 'string', dataIndex: 'list8', width: '24' },
   { title: '列表9', debugtype: 'string', dataIndex: 'list9', width: '24' },
-  { title: '应用程序', dataIndex: 'app', render: (text, record) => (record.app ? record.app.displayName : '暂无') },
-
+  {
+    title: '应用程序',
+    dataIndex: 'app',
+    render: (text, record) => (record.app ? record.app.displayName : '暂无'),
+  },
 ]
 
 const fieldLabels = {
   id: 'ID',
-  name: '名称',
+  displayName: '显示名称',
   objectType: '访问对象类型',
   list1: '列表1',
   list2: '列表2',
@@ -41,12 +51,7 @@ const fieldLabels = {
   list8: '列表8',
   list9: '列表9',
   app: '应用程序',
-
 }
 
-
-const ObjectAccessBase={menuData,displayColumns,fieldLabels}
+const ObjectAccessBase = { menuData, displayColumns, fieldLabels }
 export default ObjectAccessBase
-
-
-

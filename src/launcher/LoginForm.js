@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox,Alert,message } from 'antd';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -33,6 +33,7 @@ class NormalLoginForm extends Component {
     render() {
         const { getFieldDecorator } = this.props.form;
         const { systemName }=this.props.launcher;
+        const {data} = this.props.launcher
         //console.log("what the type",getFieldDecorator );
         return (
            
@@ -41,6 +42,7 @@ class NormalLoginForm extends Component {
                     <div className={styles.loginLogo}>
                         <span>{systemName}</span>
                     </div>
+                   
             <Form onSubmit={this.handleSubmit} >
                 <FormItem>
                     {getFieldDecorator('username', {

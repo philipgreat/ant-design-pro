@@ -1,11 +1,9 @@
-
-
 import pathToRegexp from 'path-to-regexp'
 import { routerRedux } from 'dva/router'
 import { notification } from 'antd'
-import GlobalComponents from '../../custcomponents';
+import GlobalComponents from '../../custcomponents'
 
-const hasError = (data) => {
+const hasError = data => {
   if (!data.class) {
     return false
   }
@@ -18,7 +16,7 @@ const hasError = (data) => {
   return false
 }
 
-const handleServerError = (data) => {
+const handleServerError = data => {
   if (data.message) {
     notification.error({
       message: data.message,
@@ -36,15 +34,13 @@ const handleServerError = (data) => {
 }
 
 export default {
-
   namespace: '_availableVehicleType',
 
   state: {},
 
   subscriptions: {
-    
-    setup({ dispatch, history }) { 
-      history.listen((location) => {
+    setup({ dispatch, history }) {
+      history.listen(location => {
         const { pathname } = location
         if (!pathname.startsWith('/availableVehicleType')) {
           return
@@ -54,80 +50,95 @@ export default {
           dispatch({ type: 'updateState', payload: newstate })
           return
         }
-        const dashboardmatch = pathToRegexp('/availableVehicleType/:id/dashboard').exec(pathname)
+        const dashboardmatch = pathToRegexp(
+          '/availableVehicleType/:id/dashboard'
+        ).exec(pathname)
         if (dashboardmatch) {
           const id = dashboardmatch[1]
-          dispatch({ type: 'view', payload: { id,pathname } })
+          dispatch({ type: 'view', payload: { id, pathname } })
           return
         }
-        const editDetailMatch = pathToRegexp('/availableVehicleType/:id/editDetail').exec(pathname)
+        const editDetailMatch = pathToRegexp(
+          '/availableVehicleType/:id/editDetail'
+        ).exec(pathname)
         if (editDetailMatch) {
           const id = editDetailMatch[1]
-          dispatch({ type: 'view', payload: { id,pathname } })
+          dispatch({ type: 'view', payload: { id, pathname } })
           return
         }
-        const viewDetailMatch = pathToRegexp('/availableVehicleType/:id/viewDetail').exec(pathname)
+        const viewDetailMatch = pathToRegexp(
+          '/availableVehicleType/:id/viewDetail'
+        ).exec(pathname)
         if (viewDetailMatch) {
           const id = viewDetailMatch[1]
-          dispatch({ type: 'view', payload: { id,pathname } })
+          dispatch({ type: 'view', payload: { id, pathname } })
           return
         }
-        
-        const match = pathToRegexp('/availableVehicleType/:id/list/:listName/:listDisplayName').exec(pathname)
+
+        const match = pathToRegexp(
+          '/availableVehicleType/:id/list/:listName/:listDisplayName'
+        ).exec(pathname)
         if (!match) {
           return
           //  dispatch action with userId
         }
         const id = match[1]
         const displayName = match[3]
-        dispatch({ type: 'view', payload: { id,pathname,displayName } })
+        dispatch({ type: 'view', payload: { id, pathname, displayName } })
       })
     },
   },
   effects: {
-    *view({ payload }, { call, put }) { 
-      const {AvailableVehicleTypeService} = GlobalComponents;
+    *view({ payload }, { call, put }) {
+      const { AvailableVehicleTypeService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
       const data = yield call(AvailableVehicleTypeService.view, payload.id)
-      
-      const displayName = payload.displayName||data.displayName
+
+      const displayName = payload.displayName || data.displayName
       const link = payload.pathname
-      yield put({ type: 'breadcrumb/gotoLink', payload: { displayName,link }} )
-      
-      
+      yield put({ type: 'breadcrumb/gotoLink', payload: { displayName, link } })
+
       console.log('this is the data id:', data.id)
       yield put({ type: 'updateState', payload: data })
     },
-    *load({ payload }, { call, put }) { 
-      const {AvailableVehicleTypeService} = GlobalComponents;
+    *load({ payload }, { call, put }) {
+      const { AvailableVehicleTypeService } = GlobalComponents
       yield put({ type: 'showLoading', payload })
-      const data = yield call(AvailableVehicleTypeService.load, payload.id, payload.parameters)
-      
+      const data = yield call(
+        AvailableVehicleTypeService.load,
+        payload.id,
+        payload.parameters
+      )
+
       const newPlayload = { ...payload, ...data }
-      
+
       console.log('this is the data id: ', data.id)
       yield put({ type: 'updateState', payload: newPlayload })
     },
-       
-    
-    
+
     *gotoCreateForm({ payload }, { put }) {
       const { id, type } = payload
-      yield put(routerRedux.push(`/availableVehicleType/${id}/list/${type}CreateForm`))
+      yield put(
+        routerRedux.push(`/availableVehicleType/${id}/list/${type}CreateForm`)
+      )
     },
     *gotoUpdateForm({ payload }, { put }) {
       const { id, type, selectedRows, currentUpdateIndex } = payload
       const state = { id, type, selectedRows, currentUpdateIndex }
-      const location = { pathname: `/availableVehicleType/${id}/list/${type}UpdateForm`, state }
+      const location = {
+        pathname: `/availableVehicleType/${id}/list/${type}UpdateForm`,
+        state,
+      }
       yield put(routerRedux.push(location))
     },
     *goback({ payload }, { put }) {
       const { id, type } = payload
-      yield put(routerRedux.push(`/availableVehicleType/${id}/list/${type}List`))
+      yield put(
+        routerRedux.push(`/availableVehicleType/${id}/list/${type}List`)
+      )
     },
-
   },
-  
+
   reducers: {
     updateState(state, action) {
       const payload = { ...action.payload, loading: false }
@@ -140,4 +151,3 @@ export default {
     },
   },
 }
-

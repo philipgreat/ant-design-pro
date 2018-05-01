@@ -1,23 +1,37 @@
 import React, { Component } from 'react'
-import { AutoComplete, Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
+import {
+  AutoComplete,
+  Card,
+  Button,
+  Form,
+  Icon,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+  Switch,
+} from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
 //import OSSPictureEdit from '../../components/PictureEdit'
-import {ImageComponent} from '../../axios/tools'
+import { ImageComponent } from '../../axios/tools'
 import FooterToolbar from '../../components/FooterToolbar'
 //import ImageUpload from '../../components/ImageUpload'
 import styles from './FormField.createform.less'
-import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
-import GlobalComponents from '../../custcomponents';
+import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
+import GlobalComponents from '../../custcomponents'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
   label: '标签',
-  localeKey: '语言环境的关键',
+  localeKey: '消息键值',
   parameterName: '参数名称',
   type: '类型',
   form: '形式',
@@ -33,7 +47,7 @@ const fieldLabels = {
   candidateValues: '候选人的价值观',
   suggestValues: '建议值',
 }
-const testValues = {};
+const testValues = {}
 /*
 const testValues = {
   label: '姓名',
@@ -53,10 +67,7 @@ const testValues = {
 */
 const imageURLPrefix = '//localhost:2090'
 
-
-const imageKeys = [
-]
-
+const imageKeys = []
 
 class FormFieldCreateForm extends Component {
   state = {
@@ -69,18 +80,13 @@ class FormFieldCreateForm extends Component {
     // const { getFieldDecorator,setFieldsValue } = this.props.form
     const { setFieldsValue } = this.props.form
     //setFieldsValue(testValues)
-      
-    this.executeCandidateFormSearch("")
-    
- 
-    
-    
-    
+
+    this.executeCandidateFormSearch('')
   }
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = (file) => {
+  handlePreview = file => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -88,31 +94,28 @@ class FormFieldCreateForm extends Component {
     })
   }
 
-  
-  executeCandidateFormSearch = (filterKey) =>{
+  executeCandidateFormSearch = filterKey => {
+    const { FormFieldService } = GlobalComponents
 
-    const {FormFieldService} = GlobalComponents;
-    
-    const id = "";//not used for now
-    const pageNo = 1;
-    const future = FormFieldService.requestCandidateForm("genericForm", id, filterKey, pageNo);
-    console.log(future);
-    
+    const id = '' //not used for now
+    const pageNo = 1
+    const future = FormFieldService.requestCandidateForm(
+      'genericForm',
+      id,
+      filterKey,
+      pageNo
+    )
+    console.log(future)
 
-    future.then(candidateFormList=>{
+    future.then(candidateFormList => {
       this.setState({
-        candidateFormList
+        candidateFormList,
       })
-
     })
-
-  }	 
-  handleCandidateFormSearch = (value) => {
+  }
+  handleCandidateFormSearch = value => {
     this.executeCandidateFormSearch(value)
   }
- 
-
-
 
   handleChange = (event, source) => {
     console.log('get file list from change in update change:', source)
@@ -124,7 +127,6 @@ class FormFieldCreateForm extends Component {
     this.setState({ convertedImagesValues })
     console.log('/get file list from change in update change:', source)
   }
-
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -154,18 +156,23 @@ class FormFieldCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-        
+
         const { owner } = this.props
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-        
+
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addFormField`,
-          payload: { id: owner.id, type: 'formField', parameters, continueNext: true },
+          payload: {
+            id: owner.id,
+            type: 'formField',
+            parameters,
+            continueNext: true,
+          },
         })
       })
     }
-    
+
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -180,18 +187,22 @@ class FormFieldCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = (fieldKey) => {
+      const scrollToField = fieldKey => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map((key) => {
+      const errorList = Object.keys(errors).map(key => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
+          <li
+            key={key}
+            className={styles.errorListItem}
+            onClick={() => scrollToField(key)}
+          >
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -213,18 +224,15 @@ class FormFieldCreateForm extends Component {
         </span>
       )
     }
-    
 
-    
-    const {candidateFormList} = this.state
-    if(!candidateFormList){
-      return (<div>等等</div>)
+    const { candidateFormList } = this.state
+    if (!candidateFormList) {
+      return <div>等等</div>
     }
-    if(!candidateFormList.candidates){
-      return (<div>等等</div>)
-    }   
-    
-    
+    if (!candidateFormList.candidates) {
+      return <div>等等</div>
+    }
+
     return (
       <PageHeaderLayout
         title="新建一个表单字段"
@@ -234,24 +242,19 @@ class FormFieldCreateForm extends Component {
         <Card title="基础信息" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.label}>
                   {getFieldDecorator('label', {
                     rules: [{ required: true, message: '请输入标签' }],
-                  })(
-                    <Input placeholder="请输入请输入标签string" />
-                  )}
+                  })(<Input placeholder="请输入请输入标签string" />)}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.localeKey}>
                   {getFieldDecorator('localeKey', {
-                    rules: [{ required: true, message: '请输入语言环境的关键' }],
-                  })(
-                    <Input placeholder="请输入请输入语言环境的关键string" />
-                  )}
+                    rules: [{ required: true, message: '请输入消息键值' }],
+                  })(<Input placeholder="请输入请输入消息键值string" />)}
                 </Form.Item>
               </Col>
 
@@ -259,9 +262,7 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.parameterName}>
                   {getFieldDecorator('parameterName', {
                     rules: [{ required: true, message: '请输入参数名称' }],
-                  })(
-                    <Input placeholder="请输入请输入参数名称string" />
-                  )}
+                  })(<Input placeholder="请输入请输入参数名称string" />)}
                 </Form.Item>
               </Col>
 
@@ -269,9 +270,7 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.type}>
                   {getFieldDecorator('type', {
                     rules: [{ required: true, message: '请输入类型' }],
-                  })(
-                    <Input placeholder="请输入请输入类型string" />
-                  )}
+                  })(<Input placeholder="请输入请输入类型string" />)}
                 </Form.Item>
               </Col>
 
@@ -279,9 +278,7 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.placeholder}>
                   {getFieldDecorator('placeholder', {
                     rules: [{ required: true, message: '请输入占位符' }],
-                  })(
-                    <Input placeholder="请输入请输入占位符string" />
-                  )}
+                  })(<Input placeholder="请输入请输入占位符string" />)}
                 </Form.Item>
               </Col>
 
@@ -289,9 +286,7 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.defaultValue}>
                   {getFieldDecorator('defaultValue', {
                     rules: [{ required: true, message: '请输入默认值' }],
-                  })(
-                    <Input placeholder="请输入请输入默认值string" />
-                  )}
+                  })(<Input placeholder="请输入请输入默认值string" />)}
                 </Form.Item>
               </Col>
 
@@ -299,9 +294,7 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.description}>
                   {getFieldDecorator('description', {
                     rules: [{ required: true, message: '请输入描述' }],
-                  })(
-                    <Input placeholder="请输入请输入描述string" />
-                  )}
+                  })(<Input placeholder="请输入请输入描述string" />)}
                 </Form.Item>
               </Col>
 
@@ -309,9 +302,7 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.fieldGroup}>
                   {getFieldDecorator('fieldGroup', {
                     rules: [{ required: true, message: '请输入字段组' }],
-                  })(
-                    <Input placeholder="请输入请输入字段组string" />
-                  )}
+                  })(<Input placeholder="请输入请输入字段组string" />)}
                 </Form.Item>
               </Col>
 
@@ -319,9 +310,7 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.minValue}>
                   {getFieldDecorator('minValue', {
                     rules: [{ required: true, message: '请输入最小值' }],
-                  })(
-                    <Input placeholder="请输入请输入最小值string" />
-                  )}
+                  })(<Input placeholder="请输入请输入最小值string" />)}
                 </Form.Item>
               </Col>
 
@@ -329,19 +318,17 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.maxValue}>
                   {getFieldDecorator('maxValue', {
                     rules: [{ required: true, message: '请输入最大的价值' }],
-                  })(
-                    <Input placeholder="请输入请输入最大的价值string" />
-                  )}
+                  })(<Input placeholder="请输入请输入最大的价值string" />)}
                 </Form.Item>
               </Col>
 
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.candidateValues}>
                   {getFieldDecorator('candidateValues', {
-                    rules: [{ required: true, message: '请输入候选人的价值观' }],
-                  })(
-                    <Input placeholder="请输入请输入候选人的价值观string" />
-                  )}
+                    rules: [
+                      { required: true, message: '请输入候选人的价值观' },
+                    ],
+                  })(<Input placeholder="请输入请输入候选人的价值观string" />)}
                 </Form.Item>
               </Col>
 
@@ -349,31 +336,27 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.suggestValues}>
                   {getFieldDecorator('suggestValues', {
                     rules: [{ required: true, message: '请输入建议值' }],
-                  })(
-                    <Input placeholder="请输入请输入建议值string" />
-                  )}
+                  })(<Input placeholder="请输入请输入建议值string" />)}
                 </Form.Item>
               </Col>
-
             </Row>
           </Form>
         </Card>
 
-
-
-        
         <Card title="设置" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-            
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.required}>
                   {getFieldDecorator('required', {
                     rules: [{ required: true, message: '请输入要求' }],
-                    valuePropName: 'checked'
+                    valuePropName: 'checked',
                   })(
-                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入要求bool" />
+                    <Switch
+                      checkedChildren="是"
+                      unCheckedChildren="否"
+                      placeholder="请输入要求bool"
+                    />
                   )}
                 </Form.Item>
               </Col>
@@ -382,9 +365,13 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.disabled}>
                   {getFieldDecorator('disabled', {
                     rules: [{ required: true, message: '请输入禁用' }],
-                    valuePropName: 'checked'
+                    valuePropName: 'checked',
                   })(
-                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入禁用bool" />
+                    <Switch
+                      checkedChildren="是"
+                      unCheckedChildren="否"
+                      placeholder="请输入禁用bool"
+                    />
                   )}
                 </Form.Item>
               </Col>
@@ -393,63 +380,64 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.customRendering}>
                   {getFieldDecorator('customRendering', {
                     rules: [{ required: true, message: '请输入自定义渲染' }],
-                    valuePropName: 'checked'
+                    valuePropName: 'checked',
                   })(
-                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入自定义渲染bool" />
+                    <Switch
+                      checkedChildren="是"
+                      unCheckedChildren="否"
+                      placeholder="请输入自定义渲染bool"
+                    />
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
-        </Card>        
-        
-        
-
-
-
-
-
-
-
-
+          </Form>
+        </Card>
 
         <Card title="关联" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
-
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label={fieldLabels.form}>
                   {getFieldDecorator('formId', {
                     rules: [{ required: true, message: '请输入形式' }],
                   })(
-                                
-                  <AutoComplete
-                    dataSource={candidateFormList.candidates}
-                    style={{ width: 200 }}
-                    
-                    onSearch={this.handleCandidateFormSearch}
-                    placeholder="请输入形式"
-                  >
-                  {candidateFormList.candidates.map(item=>{
-                return (<Option key={item.id}>{`${item.title}(${item.id})`}</Option>);
-            })}
-                  
-                  </AutoComplete>
+                    <AutoComplete
+                      dataSource={candidateFormList.candidates}
+                      style={{ width: 200 }}
+                      onSearch={this.handleCandidateFormSearch}
+                      placeholder="请输入形式"
+                    >
+                      {candidateFormList.candidates.map(item => {
+                        return (
+                          <Option key={item.id}>{`${item.title}(${
+                            item.id
+                          })`}</Option>
+                        )
+                      })}
+                    </AutoComplete>
                   )}
                 </Form.Item>
               </Col>
-
             </Row>
-          </Form>  
+          </Form>
         </Card>
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
+          <Button
+            type="primary"
+            onClick={submitCreateForm}
+            loading={submitting}
+            htmlType="submit"
+          >
             提交
           </Button>
-          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={submitCreateFormAndContinue}
+            loading={submitting}
+          >
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -464,7 +452,3 @@ class FormFieldCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(FormFieldCreateForm))
-
-
-
-

@@ -1,19 +1,26 @@
-
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge} from 'antd'
+import { Table, Alert, Badge } from 'antd'
 import { Link } from 'dva/router'
 import styles from './VehicleInspectionOrderCharge.table.less'
 import ImagePreview from '../../components/ImagePreview'
-
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '标题', debugtype: 'string', dataIndex: 'title', width: '11' },
   { title: '代码', debugtype: 'string', dataIndex: 'code', width: '14' },
-  { title: '量', dataIndex: 'amount', className:'money', render: (text, record) => (`￥${text.toFixed(2)}`) },
-  { title: '年检订单', dataIndex: 'mainOrder', render: (text, record) => (record.mainOrder ? (<Link to={`/vehicleInspectionOrder/${record.mainOrder.id}/dashboard`}>{record.mainOrder.displayName}</Link>) : '暂无') },
-
+  {
+    title: '量',
+    dataIndex: 'amount',
+    className: 'money',
+    render: (text, record) => `￥${text.toFixed(2)}`,
+  },
+  {
+    title: '年检订单',
+    dataIndex: 'mainOrder',
+    render: (text, record) =>
+      record.mainOrder ? record.mainOrder.displayName : '暂无',
+  },
 ]
 
 class VehicleInspectionOrderChargeTable extends PureComponent {
@@ -56,7 +63,6 @@ class VehicleInspectionOrderChargeTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
-      
     }
 
     const rowSelection = {
@@ -71,13 +77,15 @@ class VehicleInspectionOrderChargeTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={(
+            message={
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
+                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                  清空
+                </a>
               </p>
-            )}
+            }
             type="info"
             showIcon
           />
@@ -98,4 +106,3 @@ class VehicleInspectionOrderChargeTable extends PureComponent {
 }
 
 export default VehicleInspectionOrderChargeTable
-
