@@ -1,36 +1,19 @@
+
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge } from 'antd'
+import { Table, Alert, Badge} from 'antd'
 import { Link } from 'dva/router'
 import styles from './RepairingAllowanceItem.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
+
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  {
-    title: '补贴项名称',
-    debugtype: 'string',
-    dataIndex: 'allowanceTitle',
-    width: '9',
-  },
-  {
-    title: '补贴代码',
-    debugtype: 'string',
-    dataIndex: 'allowanceCode',
-    width: '23',
-  },
-  {
-    title: '补贴金额',
-    dataIndex: 'allowanceAmount',
-    className: 'money',
-    render: (text, record) => `￥${text.toFixed(2)}`,
-  },
-  {
-    title: '服务',
-    dataIndex: 'service',
-    render: (text, record) =>
-      record.service ? record.service.displayName : '暂无',
-  },
+  { title: '补贴项名称', debugtype: 'string', dataIndex: 'allowanceTitle', width: '9' },
+  { title: '补贴代码', debugtype: 'string', dataIndex: 'allowanceCode', width: '23' },
+  { title: '补贴金额', dataIndex: 'allowanceAmount', className:'money', render: (text, record) => (`￥${text.toFixed(2)}`) },
+  { title: '服务', dataIndex: 'service', render: (text, record) => (record.service ? record.service.displayName : '暂无') },
+
 ]
 
 class RepairingAllowanceItemTable extends PureComponent {
@@ -73,6 +56,7 @@ class RepairingAllowanceItemTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
+      
     }
 
     const rowSelection = {
@@ -87,15 +71,13 @@ class RepairingAllowanceItemTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={
+            message={(
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
-                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  清空
-                </a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
+                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
-            }
+            )}
             type="info"
             showIcon
           />
@@ -116,3 +98,4 @@ class RepairingAllowanceItemTable extends PureComponent {
 }
 
 export default RepairingAllowanceItemTable
+

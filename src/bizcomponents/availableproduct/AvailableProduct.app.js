@@ -22,11 +22,13 @@ import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './AvailableProduct.app.less'
 
-import HeaderSearch from '../../components/HeaderSearch'
-import NoticeIcon from '../../components/NoticeIcon'
-import GlobalFooter from '../../components/GlobalFooter'
 
-import GlobalComponents from '../../custcomponents'
+import HeaderSearch from '../../components/HeaderSearch';
+import NoticeIcon from '../../components/NoticeIcon';
+import GlobalFooter from '../../components/GlobalFooter';
+
+
+import GlobalComponents from '../../custcomponents';
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -52,18 +54,20 @@ const query = {
   },
 }
 
-const menuData = {
-  menuName: '产品类型',
-  menuFor: 'availableProduct',
-  subItems: [
-    { name: 'servicePriceList', displayName: '合同价格' },
-    { name: 'availableServiceList', displayName: '服务范围' },
-    { name: 'productPriceList', displayName: '产品价格' },
-    { name: 'availableInsuranceList', displayName: '车辆代办保险' },
-    { name: 'availableHandOverItemList', displayName: '交接检查项' },
-    { name: 'preorderPromotionList', displayName: '提前下单优惠' },
-  ],
-}
+
+  
+const menuData = {menuName:"产品类型", menuFor: "availableProduct",
+  		subItems: [
+  {name: 'servicePriceList', displayName:'合同价格'},
+  {name: 'availableServiceList', displayName:'服务范围'},
+  {name: 'productPriceList', displayName:'产品价格'},
+  {name: 'availableInsuranceList', displayName:'车辆代办保险'},
+  {name: 'availableHandOverItemList', displayName:'交接检查项'},
+  {name: 'preorderPromotionList', displayName:'提前下单优惠'},
+  		
+  		
+  		],
+};
 
 class AvailableProductBizApp extends React.PureComponent {
   constructor(props) {
@@ -79,14 +83,14 @@ class AvailableProductBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = collapsed => {
+  onCollapse = (collapsed) => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = props => {
+  getDefaultCollapsedSubMenus = (props) => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -94,391 +98,266 @@ class AvailableProductBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = props => {
-    const {
-      location: { pathname },
-    } =
-      props || this.props
+  getCurrentMenuSelectedKeys = (props) => {
+    const { location: { pathname } } = props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
       return [this.menus[0].key]
     }
     return keys
   }
-
-  getNavMenuItems = objectId => {
-    const { menuData, targetApp } = this.props.breadcrumb
-
-    const { appId } = targetApp
-
+  
+  getNavMenuItems = () => {
+  
+ 	const menuDataExpr = sessionStorage.getItem('menuData');
+    const targetAppExpr = sessionStorage.getItem('targetApp');
+    const menuData = JSON.parse(menuDataExpr)
+    const targetApp = JSON.parse(targetAppExpr)
+	const {objectId}=targetApp;
+  
     return (
-      <SubMenu
-        key="firstOne"
-        title={
-          <span>
-            <Icon type="profile" />
-            <span>{menuData.menuName}</span>
-          </span>
-        }
+      <SubMenu key="firstOne" title={
+        <span>
+          <Icon type="profile" />
+          <span>{menuData.menuName}</span>
+        </span>}
       >
-        {menuData.subItems.map(item => (
-          <Menu.Item key={item.name}>
-            <Link to={`/${menuData.menuFor}/${appId}/list/${item.name}`}>
-              {item.displayName}
-            </Link>
-          </Menu.Item>
-        ))}
+        {menuData.subItems.map((item)=>(<Menu.Item key={item.name}>
+          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}/${item.displayName}列表`}>{item.displayName}</Link>
+        </Menu.Item>))}
+       
+      </SubMenu>
+    )
+  }
+  
+  getNavMenuItems2 = (objectId) => {
+  
+    const {menuData,targetApp} = this.props.breadcrumb;
+
+  
+    return (
+      <SubMenu key="firstOne" title={
+        <span>
+          <Icon type="profile" />
+          <span>{menuData.menuName}</span>
+        </span>}
+      >
+        {menuData.subItems.map((item)=>(<Menu.Item>
+          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
+        </Menu.Item>))}
+       
       </SubMenu>
     )
   }
 
-  getNavMenuItems2 = objectId => {
-    const { menuData, targetApp } = this.props.breadcrumb
-
-    return (
-      <SubMenu
-        key="firstOne"
-        title={
-          <span>
-            <Icon type="profile" />
-            <span>{menuData.menuName}</span>
-          </span>
-        }
-      >
-        {menuData.subItems.map(item => (
-          <Menu.Item>
-            <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>
-              {item.displayName}
-            </Link>
-          </Menu.Item>
-        ))}
-      </SubMenu>
-    )
-  }
 
   getServicePriceSearch = () => {
-    const { ServicePriceSearch } = GlobalComponents
+    const {ServicePriceSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._availableProduct.servicePriceList,
       count: state._availableProduct.servicePriceCount,
       currentPage: state._availableProduct.servicePriceCurrentPageNumber,
-      searchFormParameters:
-        state._availableProduct.servicePriceSearchFormParameters,
+      searchFormParameters: state._availableProduct.servicePriceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'servicePriceList',
-        ref: state._availableProduct,
-        listDisplayName: '合同价格列表',
-      }, // this is for model namespace and
+      partialList: state._availableProduct.partialList,
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'servicePriceList', ref:state._availableProduct, listDisplayName: '合同价格列表' }, // this is for model namespace and
     }))(ServicePriceSearch)
   }
   getServicePriceCreateForm = () => {
-    const { ServicePriceCreateForm } = GlobalComponents
+   	const {ServicePriceCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._availableProduct.servicePriceList,
       count: state._availableProduct.servicePriceCount,
       currentPage: state._availableProduct.servicePriceCurrentPageNumber,
-      searchFormParameters:
-        state._availableProduct.servicePriceSearchFormParameters,
+      searchFormParameters: state._availableProduct.servicePriceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'servicePriceList',
-        ref: state._availableProduct,
-        listDisplayName: '合同价格列表',
-      }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'servicePriceList', ref:state._availableProduct, listDisplayName: '合同价格列表'}, // this is for model namespace and
     }))(ServicePriceCreateForm)
   }
-
+  
   getServicePriceUpdateForm = () => {
-    const { ServicePriceUpdateForm } = GlobalComponents
+  	const {ServicePriceUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._availableProduct.selectedRows,
       currentUpdateIndex: state._availableProduct.currentUpdateIndex,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'servicePriceList',
-        ref: state._availableProduct,
-        listDisplayName: '合同价格列表',
-      }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'servicePriceList', ref:state._availableProduct, listDisplayName: '合同价格列表' }, // this is for model namespace and
     }))(ServicePriceUpdateForm)
   }
 
   getAvailableServiceSearch = () => {
-    const { AvailableServiceSearch } = GlobalComponents
+    const {AvailableServiceSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._availableProduct.availableServiceList,
       count: state._availableProduct.availableServiceCount,
       currentPage: state._availableProduct.availableServiceCurrentPageNumber,
-      searchFormParameters:
-        state._availableProduct.availableServiceSearchFormParameters,
+      searchFormParameters: state._availableProduct.availableServiceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'availableServiceList',
-        ref: state._availableProduct,
-        listDisplayName: '服务范围列表',
-      }, // this is for model namespace and
+      partialList: state._availableProduct.partialList,
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableServiceList', ref:state._availableProduct, listDisplayName: '服务范围列表' }, // this is for model namespace and
     }))(AvailableServiceSearch)
   }
   getAvailableServiceCreateForm = () => {
-    const { AvailableServiceCreateForm } = GlobalComponents
+   	const {AvailableServiceCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._availableProduct.availableServiceList,
       count: state._availableProduct.availableServiceCount,
       currentPage: state._availableProduct.availableServiceCurrentPageNumber,
-      searchFormParameters:
-        state._availableProduct.availableServiceSearchFormParameters,
+      searchFormParameters: state._availableProduct.availableServiceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'availableServiceList',
-        ref: state._availableProduct,
-        listDisplayName: '服务范围列表',
-      }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableServiceList', ref:state._availableProduct, listDisplayName: '服务范围列表'}, // this is for model namespace and
     }))(AvailableServiceCreateForm)
   }
-
+  
   getAvailableServiceUpdateForm = () => {
-    const { AvailableServiceUpdateForm } = GlobalComponents
+  	const {AvailableServiceUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._availableProduct.selectedRows,
       currentUpdateIndex: state._availableProduct.currentUpdateIndex,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'availableServiceList',
-        ref: state._availableProduct,
-        listDisplayName: '服务范围列表',
-      }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableServiceList', ref:state._availableProduct, listDisplayName: '服务范围列表' }, // this is for model namespace and
     }))(AvailableServiceUpdateForm)
   }
 
   getProductPriceSearch = () => {
-    const { ProductPriceSearch } = GlobalComponents
+    const {ProductPriceSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._availableProduct.productPriceList,
       count: state._availableProduct.productPriceCount,
       currentPage: state._availableProduct.productPriceCurrentPageNumber,
-      searchFormParameters:
-        state._availableProduct.productPriceSearchFormParameters,
+      searchFormParameters: state._availableProduct.productPriceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'productPriceList',
-        ref: state._availableProduct,
-        listDisplayName: '产品价格列表',
-      }, // this is for model namespace and
+      partialList: state._availableProduct.partialList,
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'productPriceList', ref:state._availableProduct, listDisplayName: '产品价格列表' }, // this is for model namespace and
     }))(ProductPriceSearch)
   }
   getProductPriceCreateForm = () => {
-    const { ProductPriceCreateForm } = GlobalComponents
+   	const {ProductPriceCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._availableProduct.productPriceList,
       count: state._availableProduct.productPriceCount,
       currentPage: state._availableProduct.productPriceCurrentPageNumber,
-      searchFormParameters:
-        state._availableProduct.productPriceSearchFormParameters,
+      searchFormParameters: state._availableProduct.productPriceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'productPriceList',
-        ref: state._availableProduct,
-        listDisplayName: '产品价格列表',
-      }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'productPriceList', ref:state._availableProduct, listDisplayName: '产品价格列表'}, // this is for model namespace and
     }))(ProductPriceCreateForm)
   }
-
+  
   getProductPriceUpdateForm = () => {
-    const { ProductPriceUpdateForm } = GlobalComponents
+  	const {ProductPriceUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._availableProduct.selectedRows,
       currentUpdateIndex: state._availableProduct.currentUpdateIndex,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'productPriceList',
-        ref: state._availableProduct,
-        listDisplayName: '产品价格列表',
-      }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'productPriceList', ref:state._availableProduct, listDisplayName: '产品价格列表' }, // this is for model namespace and
     }))(ProductPriceUpdateForm)
   }
 
   getAvailableInsuranceSearch = () => {
-    const { AvailableInsuranceSearch } = GlobalComponents
+    const {AvailableInsuranceSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._availableProduct.availableInsuranceList,
       count: state._availableProduct.availableInsuranceCount,
       currentPage: state._availableProduct.availableInsuranceCurrentPageNumber,
-      searchFormParameters:
-        state._availableProduct.availableInsuranceSearchFormParameters,
+      searchFormParameters: state._availableProduct.availableInsuranceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'availableInsuranceList',
-        ref: state._availableProduct,
-        listDisplayName: '车辆代办保险列表',
-      }, // this is for model namespace and
+      partialList: state._availableProduct.partialList,
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableInsuranceList', ref:state._availableProduct, listDisplayName: '车辆代办保险列表' }, // this is for model namespace and
     }))(AvailableInsuranceSearch)
   }
   getAvailableInsuranceCreateForm = () => {
-    const { AvailableInsuranceCreateForm } = GlobalComponents
+   	const {AvailableInsuranceCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._availableProduct.availableInsuranceList,
       count: state._availableProduct.availableInsuranceCount,
       currentPage: state._availableProduct.availableInsuranceCurrentPageNumber,
-      searchFormParameters:
-        state._availableProduct.availableInsuranceSearchFormParameters,
+      searchFormParameters: state._availableProduct.availableInsuranceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'availableInsuranceList',
-        ref: state._availableProduct,
-        listDisplayName: '车辆代办保险列表',
-      }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableInsuranceList', ref:state._availableProduct, listDisplayName: '车辆代办保险列表'}, // this is for model namespace and
     }))(AvailableInsuranceCreateForm)
   }
-
+  
   getAvailableInsuranceUpdateForm = () => {
-    const { AvailableInsuranceUpdateForm } = GlobalComponents
+  	const {AvailableInsuranceUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._availableProduct.selectedRows,
       currentUpdateIndex: state._availableProduct.currentUpdateIndex,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'availableInsuranceList',
-        ref: state._availableProduct,
-        listDisplayName: '车辆代办保险列表',
-      }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableInsuranceList', ref:state._availableProduct, listDisplayName: '车辆代办保险列表' }, // this is for model namespace and
     }))(AvailableInsuranceUpdateForm)
   }
 
   getAvailableHandOverItemSearch = () => {
-    const { AvailableHandOverItemSearch } = GlobalComponents
+    const {AvailableHandOverItemSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._availableProduct.availableHandOverItemList,
       count: state._availableProduct.availableHandOverItemCount,
-      currentPage:
-        state._availableProduct.availableHandOverItemCurrentPageNumber,
-      searchFormParameters:
-        state._availableProduct.availableHandOverItemSearchFormParameters,
+      currentPage: state._availableProduct.availableHandOverItemCurrentPageNumber,
+      searchFormParameters: state._availableProduct.availableHandOverItemSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'availableHandOverItemList',
-        ref: state._availableProduct,
-        listDisplayName: '交接检查项列表',
-      }, // this is for model namespace and
+      partialList: state._availableProduct.partialList,
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableHandOverItemList', ref:state._availableProduct, listDisplayName: '交接检查项列表' }, // this is for model namespace and
     }))(AvailableHandOverItemSearch)
   }
   getAvailableHandOverItemCreateForm = () => {
-    const { AvailableHandOverItemCreateForm } = GlobalComponents
+   	const {AvailableHandOverItemCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._availableProduct.availableHandOverItemList,
       count: state._availableProduct.availableHandOverItemCount,
-      currentPage:
-        state._availableProduct.availableHandOverItemCurrentPageNumber,
-      searchFormParameters:
-        state._availableProduct.availableHandOverItemSearchFormParameters,
+      currentPage: state._availableProduct.availableHandOverItemCurrentPageNumber,
+      searchFormParameters: state._availableProduct.availableHandOverItemSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'availableHandOverItemList',
-        ref: state._availableProduct,
-        listDisplayName: '交接检查项列表',
-      }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableHandOverItemList', ref:state._availableProduct, listDisplayName: '交接检查项列表'}, // this is for model namespace and
     }))(AvailableHandOverItemCreateForm)
   }
-
+  
   getAvailableHandOverItemUpdateForm = () => {
-    const { AvailableHandOverItemUpdateForm } = GlobalComponents
+  	const {AvailableHandOverItemUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._availableProduct.selectedRows,
       currentUpdateIndex: state._availableProduct.currentUpdateIndex,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'availableHandOverItemList',
-        ref: state._availableProduct,
-        listDisplayName: '交接检查项列表',
-      }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableHandOverItemList', ref:state._availableProduct, listDisplayName: '交接检查项列表' }, // this is for model namespace and
     }))(AvailableHandOverItemUpdateForm)
   }
 
   getPreorderPromotionSearch = () => {
-    const { PreorderPromotionSearch } = GlobalComponents
+    const {PreorderPromotionSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._availableProduct.preorderPromotionList,
       count: state._availableProduct.preorderPromotionCount,
       currentPage: state._availableProduct.preorderPromotionCurrentPageNumber,
-      searchFormParameters:
-        state._availableProduct.preorderPromotionSearchFormParameters,
+      searchFormParameters: state._availableProduct.preorderPromotionSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'preorderPromotionList',
-        ref: state._availableProduct,
-        listDisplayName: '提前下单优惠列表',
-      }, // this is for model namespace and
+      partialList: state._availableProduct.partialList,
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'preorderPromotionList', ref:state._availableProduct, listDisplayName: '提前下单优惠列表' }, // this is for model namespace and
     }))(PreorderPromotionSearch)
   }
   getPreorderPromotionCreateForm = () => {
-    const { PreorderPromotionCreateForm } = GlobalComponents
+   	const {PreorderPromotionCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._availableProduct.preorderPromotionList,
       count: state._availableProduct.preorderPromotionCount,
       currentPage: state._availableProduct.preorderPromotionCurrentPageNumber,
-      searchFormParameters:
-        state._availableProduct.preorderPromotionSearchFormParameters,
+      searchFormParameters: state._availableProduct.preorderPromotionSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'preorderPromotionList',
-        ref: state._availableProduct,
-        listDisplayName: '提前下单优惠列表',
-      }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'preorderPromotionList', ref:state._availableProduct, listDisplayName: '提前下单优惠列表'}, // this is for model namespace and
     }))(PreorderPromotionCreateForm)
   }
-
+  
   getPreorderPromotionUpdateForm = () => {
-    const { PreorderPromotionUpdateForm } = GlobalComponents
+  	const {PreorderPromotionUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._availableProduct.selectedRows,
       currentUpdateIndex: state._availableProduct.currentUpdateIndex,
-      owner: {
-        type: '_availableProduct',
-        id: state._availableProduct.id,
-        listName: 'preorderPromotionList',
-        ref: state._availableProduct,
-        listDisplayName: '提前下单优惠列表',
-      }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'preorderPromotionList', ref:state._availableProduct, listDisplayName: '提前下单优惠列表' }, // this is for model namespace and
     }))(PreorderPromotionUpdateForm)
   }
 
@@ -488,221 +367,148 @@ class AvailableProductBizApp extends React.PureComponent {
     const title = '代审车服务平台'
     return title
   }
-
-  handleOpenChange = openKeys => {
-    const latestOpenKey = openKeys.find(
-      key => this.state.openKeys.indexOf(key) === -1
-    )
+ 
+  handleOpenChange = (openKeys) => {
+    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-  toggle = () => {
-    const { collapsed } = this.props
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: !collapsed,
-    })
-  }
+   toggle = () => {
+     const { collapsed } = this.props
+     this.props.dispatch({
+       type: 'global/changeLayoutCollapsed',
+       payload: !collapsed,
+     })
+   }
 
-  render() {
-    // const { collapsed, fetchingNotices,loading } = this.props
-    const { collapsed } = this.props
-    const { breadcrumb } = this.props
-    const { AvailableProductDashboard } = GlobalComponents
-    const { AvailableProductEditDetail } = GlobalComponents
-    const { AvailableProductViewDetail } = GlobalComponents
-
-    const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
-
-    // Don't show popup menu when it is been collapsed
-    const menuProps = collapsed
-      ? {}
-      : {
-          openKeys: this.state.openKeys,
-        }
-    const layout = (
-      <Layout>
+   render() {
+     // const { collapsed, fetchingNotices,loading } = this.props
+     const { collapsed } = this.props
+     const { breadcrumb }  = this.props
+     const {AvailableProductDashboard} = GlobalComponents
+     const {AvailableProductEditDetail} = GlobalComponents
+     const {AvailableProductViewDetail} = GlobalComponents
+     
+     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     
+     // Don't show popup menu when it is been collapsed
+     const menuProps = collapsed ? {} : {
+       openKeys: this.state.openKeys,
+     }
+     const layout = (
+     <Layout>
         <Header>
+          
           <div className={styles.left}>
-            <img
-              src="./scm.svg"
-              alt="logo"
-              onClick={this.toggle}
-              className={styles.logo}
-            />
-            {currentBreadcrumb.map(item => {
-              return (
-                <Link
-                  key={item.link}
-                  to={`${item.link}`}
-                  className={styles.breadcrumbLink}
-                >
-                  {' '}
-                  &gt;{item.name}
-                </Link>
-              )
-            })}
-          </div>
+          <img
+            src="./scm.svg"
+            alt="logo"
+            onClick={this.toggle}
+            className={styles.logo}
+          />
+          {currentBreadcrumb.map((item)=>{
+            return (<Link  key={item.link} to={`${item.link}`} className={styles.breadcrumbLink}> &gt;{item.name}</Link>)
+
+          })}
+         </div>
           <div className={styles.right}>
-            <AutoComplete
-              className="certain-category-search"
-              placeholder="请输入名称"
-              optionLabelProp="value"
-            >
-              <Input
-                suffix={
-                  <Icon type="search" className="certain-category-icon" />
-                }
-              />
-            </AutoComplete>{' '}
-          </div>
-        </Header>
-        <Layout>
-          <Sider
-            trigger={null}
-            collapsible
-            collapsed={collapsed}
-            breakpoint="md"
-            onCollapse={() => this.onCollapse(collapsed)}
-            collapsedWidth={56}
-            className={styles.sider}
+          
+          <AutoComplete
+            className="certain-category-search"
+            placeholder="请输入名称"
+            optionLabelProp="value"
+            
           >
-            <Menu
-              theme="dark"
-              mode="inline"
-              onOpenChange={this.handleOpenChange}
-              defaultOpenKeys={['firstOne']}
-              style={{ margin: '16px 0', width: '100%' }}
-            >
-              <Menu.Item key="dashboard">
-                <Link
-                  to={`/availableProduct/${
-                    this.props.availableProduct.id
-                  }/dashboard`}
-                >
-                  <Icon type="dashboard" />
-                  <span>仪表板</span>
-                </Link>
-              </Menu.Item>
+            <Input
+              suffix={<Icon type="search" className="certain-category-icon" />}
+            />
+          </AutoComplete> </div>
+        </Header>
+       <Layout>
+         <Sider
+           trigger={null}
+           collapsible
+           collapsed={collapsed}
+           breakpoint="md"
+           onCollapse={()=>this.onCollapse(collapsed)}
+           collapsedWidth={56}
+           className={styles.sider}
+         >
+           
 
-              {this.getNavMenuItems(this.props.availableProduct.id)}
-              <Menu.Item key="homepage">
-                <Link to={'/home'}>
-                  <Icon type="home" />
-                  <span>回到主页</span>
-                </Link>
-              </Menu.Item>
-            </Menu>
-          </Sider>
-          <Layout>
-            <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-              <Switch>
-                <Route
-                  path="/availableProduct/:id/dashboard"
-                  component={AvailableProductDashboard}
-                />
+           <Menu
+             theme="dark"
+             mode="inline"
+            
+             
+             onOpenChange={this.handleOpenChange}
+            
+             defaultOpenKeys={['firstOne']}
+             style={{ margin: '16px 0', width: '100%' }}
+           >
+           
 
-                <Route
-                  path="/availableProduct/:id/editDetail"
-                  component={AvailableProductEditDetail}
-                />
-                <Route
-                  path="/availableProduct/:id/viewDetail"
-                  component={AvailableProductViewDetail}
-                />
+             <Menu.Item key="dashboard">
+               <Link to={`/availableProduct/${this.props.availableProduct.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
+             </Menu.Item>
 
-                <Route
-                  path="/availableProduct/:id/list/servicePriceList"
-                  component={this.getServicePriceSearch()}
-                />
-                <Route
-                  path="/availableProduct/:id/list/servicePriceCreateForm"
-                  component={this.getServicePriceCreateForm()}
-                />
-                <Route
-                  path="/availableProduct/:id/list/servicePriceUpdateForm"
-                  component={this.getServicePriceUpdateForm()}
-                />
 
-                <Route
-                  path="/availableProduct/:id/list/availableServiceList"
-                  component={this.getAvailableServiceSearch()}
-                />
-                <Route
-                  path="/availableProduct/:id/list/availableServiceCreateForm"
-                  component={this.getAvailableServiceCreateForm()}
-                />
-                <Route
-                  path="/availableProduct/:id/list/availableServiceUpdateForm"
-                  component={this.getAvailableServiceUpdateForm()}
-                />
+             {this.getNavMenuItems(this.props.availableProduct.id)}
+             <Menu.Item key="homepage">
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
+           </Menu>
+         </Sider>
+         <Layout>
+           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+             <Switch>
+             
+               <Route path="/availableProduct/:id/dashboard" component={AvailableProductDashboard} />
+               
+               <Route path="/availableProduct/:id/editDetail" component={AvailableProductEditDetail} />
+               <Route path="/availableProduct/:id/viewDetail" component={AvailableProductViewDetail} /> 
+               
 
-                <Route
-                  path="/availableProduct/:id/list/productPriceList"
-                  component={this.getProductPriceSearch()}
-                />
-                <Route
-                  path="/availableProduct/:id/list/productPriceCreateForm"
-                  component={this.getProductPriceCreateForm()}
-                />
-                <Route
-                  path="/availableProduct/:id/list/productPriceUpdateForm"
-                  component={this.getProductPriceUpdateForm()}
-                />
+               <Route path="/availableProduct/:id/list/servicePriceList" component={this.getServicePriceSearch()} />
+               <Route path="/availableProduct/:id/list/servicePriceCreateForm" component={this.getServicePriceCreateForm()} />
+               <Route path="/availableProduct/:id/list/servicePriceUpdateForm" component={this.getServicePriceUpdateForm()} />
 
-                <Route
-                  path="/availableProduct/:id/list/availableInsuranceList"
-                  component={this.getAvailableInsuranceSearch()}
-                />
-                <Route
-                  path="/availableProduct/:id/list/availableInsuranceCreateForm"
-                  component={this.getAvailableInsuranceCreateForm()}
-                />
-                <Route
-                  path="/availableProduct/:id/list/availableInsuranceUpdateForm"
-                  component={this.getAvailableInsuranceUpdateForm()}
-                />
+               <Route path="/availableProduct/:id/list/availableServiceList" component={this.getAvailableServiceSearch()} />
+               <Route path="/availableProduct/:id/list/availableServiceCreateForm" component={this.getAvailableServiceCreateForm()} />
+               <Route path="/availableProduct/:id/list/availableServiceUpdateForm" component={this.getAvailableServiceUpdateForm()} />
 
-                <Route
-                  path="/availableProduct/:id/list/availableHandOverItemList"
-                  component={this.getAvailableHandOverItemSearch()}
-                />
-                <Route
-                  path="/availableProduct/:id/list/availableHandOverItemCreateForm"
-                  component={this.getAvailableHandOverItemCreateForm()}
-                />
-                <Route
-                  path="/availableProduct/:id/list/availableHandOverItemUpdateForm"
-                  component={this.getAvailableHandOverItemUpdateForm()}
-                />
+               <Route path="/availableProduct/:id/list/productPriceList" component={this.getProductPriceSearch()} />
+               <Route path="/availableProduct/:id/list/productPriceCreateForm" component={this.getProductPriceCreateForm()} />
+               <Route path="/availableProduct/:id/list/productPriceUpdateForm" component={this.getProductPriceUpdateForm()} />
 
-                <Route
-                  path="/availableProduct/:id/list/preorderPromotionList"
-                  component={this.getPreorderPromotionSearch()}
-                />
-                <Route
-                  path="/availableProduct/:id/list/preorderPromotionCreateForm"
-                  component={this.getPreorderPromotionCreateForm()}
-                />
-                <Route
-                  path="/availableProduct/:id/list/preorderPromotionUpdateForm"
-                  component={this.getPreorderPromotionUpdateForm()}
-                />
-              </Switch>
-            </Content>
+               <Route path="/availableProduct/:id/list/availableInsuranceList" component={this.getAvailableInsuranceSearch()} />
+               <Route path="/availableProduct/:id/list/availableInsuranceCreateForm" component={this.getAvailableInsuranceCreateForm()} />
+               <Route path="/availableProduct/:id/list/availableInsuranceUpdateForm" component={this.getAvailableInsuranceUpdateForm()} />
+
+               <Route path="/availableProduct/:id/list/availableHandOverItemList" component={this.getAvailableHandOverItemSearch()} />
+               <Route path="/availableProduct/:id/list/availableHandOverItemCreateForm" component={this.getAvailableHandOverItemCreateForm()} />
+               <Route path="/availableProduct/:id/list/availableHandOverItemUpdateForm" component={this.getAvailableHandOverItemUpdateForm()} />
+
+               <Route path="/availableProduct/:id/list/preorderPromotionList" component={this.getPreorderPromotionSearch()} />
+               <Route path="/availableProduct/:id/list/preorderPromotionCreateForm" component={this.getPreorderPromotionCreateForm()} />
+               <Route path="/availableProduct/:id/list/preorderPromotionUpdateForm" component={this.getPreorderPromotionUpdateForm()} />
+              
+             </Switch>
+           </Content>
           </Layout>
         </Layout>
       </Layout>
-    )
-    return (
-      <DocumentTitle title={this.getPageTitle()}>
-        <ContainerQuery query={query}>
-          {params => <div className={classNames(params)}>{layout}</div>}
-        </ContainerQuery>
-      </DocumentTitle>
-    )
-  }
+     )
+     return (
+       <DocumentTitle title={this.getPageTitle()}>
+         <ContainerQuery query={query}>
+           {params => <div className={classNames(params)}>{layout}</div>}
+         </ContainerQuery>
+       </DocumentTitle>
+     )
+   }
 }
 
 export default connect(state => ({
@@ -712,3 +518,6 @@ export default connect(state => ({
   availableProduct: state._availableProduct,
   ...state,
 }))(AvailableProductBizApp)
+
+
+

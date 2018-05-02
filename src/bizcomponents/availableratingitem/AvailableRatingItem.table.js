@@ -1,24 +1,17 @@
+
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge } from 'antd'
+import { Table, Alert, Badge} from 'antd'
 import { Link } from 'dva/router'
 import styles from './AvailableRatingItem.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
+
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  {
-    title: '评分项',
-    debugtype: 'string',
-    dataIndex: 'ratingName',
-    width: '11',
-  },
-  {
-    title: '平台',
-    dataIndex: 'platform',
-    render: (text, record) =>
-      record.platform ? record.platform.displayName : '暂无',
-  },
+  { title: '评分项', debugtype: 'string', dataIndex: 'ratingName', width: '11' },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
+
 ]
 
 class AvailableRatingItemTable extends PureComponent {
@@ -61,6 +54,7 @@ class AvailableRatingItemTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
+      
     }
 
     const rowSelection = {
@@ -75,15 +69,13 @@ class AvailableRatingItemTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={
+            message={(
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
-                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  清空
-                </a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
+                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
-            }
+            )}
             type="info"
             showIcon
           />
@@ -104,3 +96,4 @@ class AvailableRatingItemTable extends PureComponent {
 }
 
 export default AvailableRatingItemTable
+

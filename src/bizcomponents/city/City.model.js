@@ -1,9 +1,11 @@
+
+
 import pathToRegexp from 'path-to-regexp'
 import { routerRedux } from 'dva/router'
 import { notification } from 'antd'
-import GlobalComponents from '../../custcomponents'
+import GlobalComponents from '../../custcomponents';
 
-const hasError = data => {
+const hasError = (data) => {
   if (!data.class) {
     return false
   }
@@ -16,7 +18,7 @@ const hasError = data => {
   return false
 }
 
-const handleServerError = data => {
+const handleServerError = (data) => {
   if (data.message) {
     notification.error({
       message: data.message,
@@ -34,13 +36,15 @@ const handleServerError = data => {
 }
 
 export default {
+
   namespace: '_city',
 
   state: {},
 
   subscriptions: {
-    setup({ dispatch, history }) {
-      history.listen(location => {
+    
+    setup({ dispatch, history }) { 
+      history.listen((location) => {
         const { pathname } = location
         if (!pathname.startsWith('/city')) {
           return
@@ -50,68 +54,63 @@ export default {
           dispatch({ type: 'updateState', payload: newstate })
           return
         }
-        const dashboardmatch = pathToRegexp('/city/:id/dashboard').exec(
-          pathname
-        )
+        const dashboardmatch = pathToRegexp('/city/:id/dashboard').exec(pathname)
         if (dashboardmatch) {
           const id = dashboardmatch[1]
-          dispatch({ type: 'view', payload: { id, pathname } })
+          dispatch({ type: 'view', payload: { id,pathname } })
           return
         }
-        const editDetailMatch = pathToRegexp('/city/:id/editDetail').exec(
-          pathname
-        )
+        const editDetailMatch = pathToRegexp('/city/:id/editDetail').exec(pathname)
         if (editDetailMatch) {
           const id = editDetailMatch[1]
-          dispatch({ type: 'view', payload: { id, pathname } })
+          dispatch({ type: 'view', payload: { id,pathname } })
           return
         }
-        const viewDetailMatch = pathToRegexp('/city/:id/viewDetail').exec(
-          pathname
-        )
+        const viewDetailMatch = pathToRegexp('/city/:id/viewDetail').exec(pathname)
         if (viewDetailMatch) {
           const id = viewDetailMatch[1]
-          dispatch({ type: 'view', payload: { id, pathname } })
+          dispatch({ type: 'view', payload: { id,pathname } })
           return
         }
-
-        const match = pathToRegexp(
-          '/city/:id/list/:listName/:listDisplayName'
-        ).exec(pathname)
+        
+        const match = pathToRegexp('/city/:id/list/:listName/:listDisplayName').exec(pathname)
         if (!match) {
           return
           //  dispatch action with userId
         }
         const id = match[1]
         const displayName = match[3]
-        dispatch({ type: 'view', payload: { id, pathname, displayName } })
+        dispatch({ type: 'view', payload: { id,pathname,displayName } })
       })
     },
   },
   effects: {
-    *view({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
+    *view({ payload }, { call, put }) { 
+      const {CityService} = GlobalComponents;
       yield put({ type: 'showLoading', payload })
       const data = yield call(CityService.view, payload.id)
-
-      const displayName = payload.displayName || data.displayName
+      
+      const displayName = payload.displayName||data.displayName
       const link = payload.pathname
-      yield put({ type: 'breadcrumb/gotoLink', payload: { displayName, link } })
-
+      yield put({ type: 'breadcrumb/gotoLink', payload: { displayName,link }} )
+      
+      
       console.log('this is the data id:', data.id)
       yield put({ type: 'updateState', payload: data })
     },
-    *load({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
+    *load({ payload }, { call, put }) { 
+      const {CityService} = GlobalComponents;
       yield put({ type: 'showLoading', payload })
       const data = yield call(CityService.load, payload.id, payload.parameters)
-
+      
       const newPlayload = { ...payload, ...data }
-
+      
       console.log('this is the data id: ', data.id)
       yield put({ type: 'updateState', payload: newPlayload })
     },
-
+       
+    
+    
     *gotoCreateForm({ payload }, { put }) {
       const { id, type } = payload
       yield put(routerRedux.push(`/city/${id}/list/${type}CreateForm`))
@@ -123,12 +122,12 @@ export default {
       yield put(routerRedux.push(location))
     },
     *goback({ payload }, { put }) {
-      const { id, type } = payload
-      yield put(routerRedux.push(`/city/${id}/list/${type}List`))
+      const { id, type,listName } = payload
+      yield put(routerRedux.push(`/city/${id}/list/${type}List/${listName}`))
     },
 
     *addProductPrice({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
+      const {CityService} = GlobalComponents;
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
@@ -147,67 +146,45 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/city/${id}/list/${type}List`, state: data }
+      const partialList = true
+      const newState = {...data, partialList}
+      const location = { pathname: `/city/${id}/list/${type}List/产品价格列表`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateProductPrice({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
-      const {
-        id,
-        type,
-        parameters,
-        continueNext,
-        selectedRows,
-        currentUpdateIndex,
-      } = payload
+      const {CityService} = GlobalComponents;      
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       console.log('get form parameters', parameters)
       const data = yield call(CityService.updateProductPrice, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = {
-        ...payload,
-        ...data,
-        selectedRows,
-        currentUpdateIndex,
-      }
+      const partialList = true
+      
+      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex,partialList }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-
+      
       if (continueNext) {
         return
       }
-      const location = {
-        pathname: `/city/${id}/list/${type}List`,
-        state: newPlayload,
-      }
+      const location = { pathname: `/city/${id}/list/${type}List/产品价格列表`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextProductPriceUpdateRow({ payload }, { call, put }) {
-      const {
-        id,
-        type,
-        parameters,
-        continueNext,
-        selectedRows,
-        currentUpdateIndex,
-      } = payload
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeProductPriceList({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
+      const {CityService} = GlobalComponents; 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        CityService.removeProductPriceList,
-        id,
-        parameters
-      )
+      const data = yield call(CityService.removeProductPriceList, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -215,7 +192,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-
+        
       // yield put(routerRedux.push(`/city/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -226,15 +203,11 @@ export default {
     },
 
     *addVehicleServiceCompany({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
+      const {CityService} = GlobalComponents;
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        CityService.addVehicleServiceCompany,
-        id,
-        parameters
-      )
+      const data = yield call(CityService.addVehicleServiceCompany, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -249,71 +222,45 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/city/${id}/list/${type}List`, state: data }
+      const partialList = true
+      const newState = {...data, partialList}
+      const location = { pathname: `/city/${id}/list/${type}List/商户列表`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateVehicleServiceCompany({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
-      const {
-        id,
-        type,
-        parameters,
-        continueNext,
-        selectedRows,
-        currentUpdateIndex,
-      } = payload
+      const {CityService} = GlobalComponents;      
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        CityService.updateVehicleServiceCompany,
-        id,
-        parameters
-      )
+      const data = yield call(CityService.updateVehicleServiceCompany, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = {
-        ...payload,
-        ...data,
-        selectedRows,
-        currentUpdateIndex,
-      }
+      const partialList = true
+      
+      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex,partialList }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-
+      
       if (continueNext) {
         return
       }
-      const location = {
-        pathname: `/city/${id}/list/${type}List`,
-        state: newPlayload,
-      }
+      const location = { pathname: `/city/${id}/list/${type}List/商户列表`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextVehicleServiceCompanyUpdateRow({ payload }, { call, put }) {
-      const {
-        id,
-        type,
-        parameters,
-        continueNext,
-        selectedRows,
-        currentUpdateIndex,
-      } = payload
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeVehicleServiceCompanyList({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
+      const {CityService} = GlobalComponents; 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        CityService.removeVehicleServiceCompanyList,
-        id,
-        parameters
-      )
+      const data = yield call(CityService.removeVehicleServiceCompanyList, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -321,7 +268,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-
+        
       // yield put(routerRedux.push(`/city/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -332,7 +279,7 @@ export default {
     },
 
     *addInspectionStation({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
+      const {CityService} = GlobalComponents;
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
@@ -351,71 +298,45 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/city/${id}/list/${type}List`, state: data }
+      const partialList = true
+      const newState = {...data, partialList}
+      const location = { pathname: `/city/${id}/list/${type}List/检测站列表`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateInspectionStation({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
-      const {
-        id,
-        type,
-        parameters,
-        continueNext,
-        selectedRows,
-        currentUpdateIndex,
-      } = payload
+      const {CityService} = GlobalComponents;      
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        CityService.updateInspectionStation,
-        id,
-        parameters
-      )
+      const data = yield call(CityService.updateInspectionStation, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = {
-        ...payload,
-        ...data,
-        selectedRows,
-        currentUpdateIndex,
-      }
+      const partialList = true
+      
+      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex,partialList }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-
+      
       if (continueNext) {
         return
       }
-      const location = {
-        pathname: `/city/${id}/list/${type}List`,
-        state: newPlayload,
-      }
+      const location = { pathname: `/city/${id}/list/${type}List/检测站列表`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextInspectionStationUpdateRow({ payload }, { call, put }) {
-      const {
-        id,
-        type,
-        parameters,
-        continueNext,
-        selectedRows,
-        currentUpdateIndex,
-      } = payload
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeInspectionStationList({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
+      const {CityService} = GlobalComponents; 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        CityService.removeInspectionStationList,
-        id,
-        parameters
-      )
+      const data = yield call(CityService.removeInspectionStationList, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -423,7 +344,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-
+        
       // yield put(routerRedux.push(`/city/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -434,15 +355,11 @@ export default {
     },
 
     *addVehicleInspectionOrder({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
+      const {CityService} = GlobalComponents;
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        CityService.addVehicleInspectionOrder,
-        id,
-        parameters
-      )
+      const data = yield call(CityService.addVehicleInspectionOrder, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -457,71 +374,45 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/city/${id}/list/${type}List`, state: data }
+      const partialList = true
+      const newState = {...data, partialList}
+      const location = { pathname: `/city/${id}/list/${type}List/年检订单列表`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateVehicleInspectionOrder({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
-      const {
-        id,
-        type,
-        parameters,
-        continueNext,
-        selectedRows,
-        currentUpdateIndex,
-      } = payload
+      const {CityService} = GlobalComponents;      
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        CityService.updateVehicleInspectionOrder,
-        id,
-        parameters
-      )
+      const data = yield call(CityService.updateVehicleInspectionOrder, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = {
-        ...payload,
-        ...data,
-        selectedRows,
-        currentUpdateIndex,
-      }
+      const partialList = true
+      
+      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex,partialList }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-
+      
       if (continueNext) {
         return
       }
-      const location = {
-        pathname: `/city/${id}/list/${type}List`,
-        state: newPlayload,
-      }
+      const location = { pathname: `/city/${id}/list/${type}List/年检订单列表`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextVehicleInspectionOrderUpdateRow({ payload }, { call, put }) {
-      const {
-        id,
-        type,
-        parameters,
-        continueNext,
-        selectedRows,
-        currentUpdateIndex,
-      } = payload
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeVehicleInspectionOrderList({ payload }, { call, put }) {
-      const { CityService } = GlobalComponents
+      const {CityService} = GlobalComponents; 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        CityService.removeVehicleInspectionOrderList,
-        id,
-        parameters
-      )
+      const data = yield call(CityService.removeVehicleInspectionOrderList, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -529,7 +420,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-
+        
       // yield put(routerRedux.push(`/city/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -538,8 +429,9 @@ export default {
       // const location = { pathname: `city/${id}/list/${type}List`, state: data}
       // yield put(routerRedux.push(location))
     },
-  },
 
+  },
+  
   reducers: {
     updateState(state, action) {
       const payload = { ...action.payload, loading: false }
@@ -552,3 +444,4 @@ export default {
     },
   },
 }
+

@@ -195,6 +195,10 @@ export default {
       const targetApp=payload.app;
       console.log('location', location)
       const menuData = calcMenuData(data.class);
+
+      sessionStorage.setItem('targetApp',JSON.stringify(targetApp))
+      sessionStorage.setItem('menuData',JSON.stringify(menuData))
+
       yield put({ type: 'breadcrumb/selectApp', payload: { targetApp,location, menuData} })
       
       yield put(routerRedux.push(location))

@@ -1,9 +1,11 @@
+
+
 import pathToRegexp from 'path-to-regexp'
 import { routerRedux } from 'dva/router'
 import { notification } from 'antd'
-import GlobalComponents from '../../custcomponents'
+import GlobalComponents from '../../custcomponents';
 
-const hasError = data => {
+const hasError = (data) => {
   if (!data.class) {
     return false
   }
@@ -16,7 +18,7 @@ const hasError = data => {
   return false
 }
 
-const handleServerError = data => {
+const handleServerError = (data) => {
   if (data.message) {
     notification.error({
       message: data.message,
@@ -34,13 +36,15 @@ const handleServerError = data => {
 }
 
 export default {
+
   namespace: '_availableInsurance',
 
   state: {},
 
   subscriptions: {
-    setup({ dispatch, history }) {
-      history.listen(location => {
+    
+    setup({ dispatch, history }) { 
+      history.listen((location) => {
         const { pathname } = location
         if (!pathname.startsWith('/availableInsurance')) {
           return
@@ -50,102 +54,84 @@ export default {
           dispatch({ type: 'updateState', payload: newstate })
           return
         }
-        const dashboardmatch = pathToRegexp(
-          '/availableInsurance/:id/dashboard'
-        ).exec(pathname)
+        const dashboardmatch = pathToRegexp('/availableInsurance/:id/dashboard').exec(pathname)
         if (dashboardmatch) {
           const id = dashboardmatch[1]
-          dispatch({ type: 'view', payload: { id, pathname } })
+          dispatch({ type: 'view', payload: { id,pathname } })
           return
         }
-        const editDetailMatch = pathToRegexp(
-          '/availableInsurance/:id/editDetail'
-        ).exec(pathname)
+        const editDetailMatch = pathToRegexp('/availableInsurance/:id/editDetail').exec(pathname)
         if (editDetailMatch) {
           const id = editDetailMatch[1]
-          dispatch({ type: 'view', payload: { id, pathname } })
+          dispatch({ type: 'view', payload: { id,pathname } })
           return
         }
-        const viewDetailMatch = pathToRegexp(
-          '/availableInsurance/:id/viewDetail'
-        ).exec(pathname)
+        const viewDetailMatch = pathToRegexp('/availableInsurance/:id/viewDetail').exec(pathname)
         if (viewDetailMatch) {
           const id = viewDetailMatch[1]
-          dispatch({ type: 'view', payload: { id, pathname } })
+          dispatch({ type: 'view', payload: { id,pathname } })
           return
         }
-
-        const match = pathToRegexp(
-          '/availableInsurance/:id/list/:listName/:listDisplayName'
-        ).exec(pathname)
+        
+        const match = pathToRegexp('/availableInsurance/:id/list/:listName/:listDisplayName').exec(pathname)
         if (!match) {
           return
           //  dispatch action with userId
         }
         const id = match[1]
         const displayName = match[3]
-        dispatch({ type: 'view', payload: { id, pathname, displayName } })
+        dispatch({ type: 'view', payload: { id,pathname,displayName } })
       })
     },
   },
   effects: {
-    *view({ payload }, { call, put }) {
-      const { AvailableInsuranceService } = GlobalComponents
+    *view({ payload }, { call, put }) { 
+      const {AvailableInsuranceService} = GlobalComponents;
       yield put({ type: 'showLoading', payload })
       const data = yield call(AvailableInsuranceService.view, payload.id)
-
-      const displayName = payload.displayName || data.displayName
+      
+      const displayName = payload.displayName||data.displayName
       const link = payload.pathname
-      yield put({ type: 'breadcrumb/gotoLink', payload: { displayName, link } })
-
+      yield put({ type: 'breadcrumb/gotoLink', payload: { displayName,link }} )
+      
+      
       console.log('this is the data id:', data.id)
       yield put({ type: 'updateState', payload: data })
     },
-    *load({ payload }, { call, put }) {
-      const { AvailableInsuranceService } = GlobalComponents
+    *load({ payload }, { call, put }) { 
+      const {AvailableInsuranceService} = GlobalComponents;
       yield put({ type: 'showLoading', payload })
-      const data = yield call(
-        AvailableInsuranceService.load,
-        payload.id,
-        payload.parameters
-      )
-
+      const data = yield call(AvailableInsuranceService.load, payload.id, payload.parameters)
+      
       const newPlayload = { ...payload, ...data }
-
+      
       console.log('this is the data id: ', data.id)
       yield put({ type: 'updateState', payload: newPlayload })
     },
-
+       
+    
+    
     *gotoCreateForm({ payload }, { put }) {
       const { id, type } = payload
-      yield put(
-        routerRedux.push(`/availableInsurance/${id}/list/${type}CreateForm`)
-      )
+      yield put(routerRedux.push(`/availableInsurance/${id}/list/${type}CreateForm`))
     },
     *gotoUpdateForm({ payload }, { put }) {
       const { id, type, selectedRows, currentUpdateIndex } = payload
       const state = { id, type, selectedRows, currentUpdateIndex }
-      const location = {
-        pathname: `/availableInsurance/${id}/list/${type}UpdateForm`,
-        state,
-      }
+      const location = { pathname: `/availableInsurance/${id}/list/${type}UpdateForm`, state }
       yield put(routerRedux.push(location))
     },
     *goback({ payload }, { put }) {
-      const { id, type } = payload
-      yield put(routerRedux.push(`/availableInsurance/${id}/list/${type}List`))
+      const { id, type,listName } = payload
+      yield put(routerRedux.push(`/availableInsurance/${id}/list/${type}List/${listName}`))
     },
 
     *addVehicleInspectionInsuranceOrder({ payload }, { call, put }) {
-      const { AvailableInsuranceService } = GlobalComponents
+      const {AvailableInsuranceService} = GlobalComponents;
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        AvailableInsuranceService.addVehicleInspectionInsuranceOrder,
-        id,
-        parameters
-      )
+      const data = yield call(AvailableInsuranceService.addVehicleInspectionInsuranceOrder, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -160,77 +146,45 @@ export default {
       if (continueNext) {
         return
       }
-      const location = {
-        pathname: `/availableInsurance/${id}/list/${type}List`,
-        state: data,
-      }
+      const partialList = true
+      const newState = {...data, partialList}
+      const location = { pathname: `/availableInsurance/${id}/list/${type}List/车辆上线检测保险订单列表`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateVehicleInspectionInsuranceOrder({ payload }, { call, put }) {
-      const { AvailableInsuranceService } = GlobalComponents
-      const {
-        id,
-        type,
-        parameters,
-        continueNext,
-        selectedRows,
-        currentUpdateIndex,
-      } = payload
+      const {AvailableInsuranceService} = GlobalComponents;      
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        AvailableInsuranceService.updateVehicleInspectionInsuranceOrder,
-        id,
-        parameters
-      )
+      const data = yield call(AvailableInsuranceService.updateVehicleInspectionInsuranceOrder, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = {
-        ...payload,
-        ...data,
-        selectedRows,
-        currentUpdateIndex,
-      }
+      const partialList = true
+      
+      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex,partialList }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-
+      
       if (continueNext) {
         return
       }
-      const location = {
-        pathname: `/availableInsurance/${id}/list/${type}List`,
-        state: newPlayload,
-      }
+      const location = { pathname: `/availableInsurance/${id}/list/${type}List/车辆上线检测保险订单列表`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
-    *gotoNextVehicleInspectionInsuranceOrderUpdateRow(
-      { payload },
-      { call, put }
-    ) {
-      const {
-        id,
-        type,
-        parameters,
-        continueNext,
-        selectedRows,
-        currentUpdateIndex,
-      } = payload
+    *gotoNextVehicleInspectionInsuranceOrderUpdateRow({ payload }, { call, put }) {
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeVehicleInspectionInsuranceOrderList({ payload }, { call, put }) {
-      const { AvailableInsuranceService } = GlobalComponents
+      const {AvailableInsuranceService} = GlobalComponents; 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        AvailableInsuranceService.removeVehicleInspectionInsuranceOrderList,
-        id,
-        parameters
-      )
+      const data = yield call(AvailableInsuranceService.removeVehicleInspectionInsuranceOrderList, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -238,7 +192,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-
+        
       // yield put(routerRedux.push(`/availableInsurance/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -249,15 +203,11 @@ export default {
     },
 
     *addServiceInsuranceForInspection({ payload }, { call, put }) {
-      const { AvailableInsuranceService } = GlobalComponents
+      const {AvailableInsuranceService} = GlobalComponents;
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        AvailableInsuranceService.addServiceInsuranceForInspection,
-        id,
-        parameters
-      )
+      const data = yield call(AvailableInsuranceService.addServiceInsuranceForInspection, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -272,77 +222,45 @@ export default {
       if (continueNext) {
         return
       }
-      const location = {
-        pathname: `/availableInsurance/${id}/list/${type}List`,
-        state: data,
-      }
+      const partialList = true
+      const newState = {...data, partialList}
+      const location = { pathname: `/availableInsurance/${id}/list/${type}List/保险服务列表`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateServiceInsuranceForInspection({ payload }, { call, put }) {
-      const { AvailableInsuranceService } = GlobalComponents
-      const {
-        id,
-        type,
-        parameters,
-        continueNext,
-        selectedRows,
-        currentUpdateIndex,
-      } = payload
+      const {AvailableInsuranceService} = GlobalComponents;      
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        AvailableInsuranceService.updateServiceInsuranceForInspection,
-        id,
-        parameters
-      )
+      const data = yield call(AvailableInsuranceService.updateServiceInsuranceForInspection, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
       }
-      const newPlayload = {
-        ...payload,
-        ...data,
-        selectedRows,
-        currentUpdateIndex,
-      }
+      const partialList = true
+      
+      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex,partialList }
       yield put({ type: 'updateState', payload: newPlayload })
       notification.success({
         message: '执行成功',
         description: '执行成功',
       })
-
+      
       if (continueNext) {
         return
       }
-      const location = {
-        pathname: `/availableInsurance/${id}/list/${type}List`,
-        state: newPlayload,
-      }
+      const location = { pathname: `/availableInsurance/${id}/list/${type}List/保险服务列表`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
-    *gotoNextServiceInsuranceForInspectionUpdateRow(
-      { payload },
-      { call, put }
-    ) {
-      const {
-        id,
-        type,
-        parameters,
-        continueNext,
-        selectedRows,
-        currentUpdateIndex,
-      } = payload
+    *gotoNextServiceInsuranceForInspectionUpdateRow({ payload }, { call, put }) {
+      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
     *removeServiceInsuranceForInspectionList({ payload }, { call, put }) {
-      const { AvailableInsuranceService } = GlobalComponents
+      const {AvailableInsuranceService} = GlobalComponents; 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(
-        AvailableInsuranceService.removeServiceInsuranceForInspectionList,
-        id,
-        parameters
-      )
+      const data = yield call(AvailableInsuranceService.removeServiceInsuranceForInspectionList, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -350,7 +268,7 @@ export default {
       const newPlayload = { ...payload, ...data }
 
       yield put({ type: 'updateState', payload: newPlayload })
-
+        
       // yield put(routerRedux.push(`/availableInsurance/${id}/list/${type}CreateForm`))
       notification.success({
         message: '执行成功',
@@ -359,8 +277,9 @@ export default {
       // const location = { pathname: `availableInsurance/${id}/list/${type}List`, state: data}
       // yield put(routerRedux.push(location))
     },
-  },
 
+  },
+  
   reducers: {
     updateState(state, action) {
       const payload = { ...action.payload, loading: false }
@@ -373,3 +292,4 @@ export default {
     },
   },
 }
+

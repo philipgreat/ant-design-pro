@@ -1,30 +1,20 @@
+
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge } from 'antd'
+import { Table, Alert, Badge} from 'antd'
 import { Link } from 'dva/router'
 import styles from './AvailableVehicleUseCharacter.table.less'
 import ImagePreview from '../../components/ImagePreview'
+
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7' },
   { title: '别名', debugtype: 'string', dataIndex: 'aliasName', width: '38' },
-  {
-    title: '可6年免检',
-    dataIndex: 'canDoExempt',
-    render: (text, record) => (record.canDoExempt ? '是' : '否'),
-  },
-  {
-    title: '商用车辆',
-    dataIndex: 'commercialVehicle',
-    render: (text, record) => (record.commercialVehicle ? '是' : '否'),
-  },
-  {
-    title: '平台',
-    dataIndex: 'platform',
-    render: (text, record) =>
-      record.platform ? record.platform.displayName : '暂无',
-  },
+  { title: '可6年免检', dataIndex: 'canDoExempt', render: (text, record) => (record.canDoExempt ? '是' : '否') },
+  { title: '商用车辆', dataIndex: 'commercialVehicle', render: (text, record) => (record.commercialVehicle ? '是' : '否') },
+  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
+
 ]
 
 class AvailableVehicleUseCharacterTable extends PureComponent {
@@ -67,6 +57,7 @@ class AvailableVehicleUseCharacterTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
+      
     }
 
     const rowSelection = {
@@ -81,15 +72,13 @@ class AvailableVehicleUseCharacterTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={
+            message={(
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
-                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  清空
-                </a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
+                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
-            }
+            )}
             type="info"
             showIcon
           />
@@ -110,3 +99,4 @@ class AvailableVehicleUseCharacterTable extends PureComponent {
 }
 
 export default AvailableVehicleUseCharacterTable
+
