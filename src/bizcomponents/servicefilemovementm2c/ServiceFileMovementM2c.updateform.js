@@ -61,15 +61,7 @@ class ServiceFileMovementM2cUpdateForm extends Component {
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
-    // const { getFieldDecorator, setFieldsValue } = this.props.form
-    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow()
-    if (!selectedRow) {
-      return
-    }
-    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
@@ -88,9 +80,9 @@ class ServiceFileMovementM2cUpdateForm extends Component {
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
-        startTime: moment(item.startTime).format('YYYY-MM-DD'),
-        lastUpdateTime: moment(item.lastUpdateTime).format('YYYY-MM-DD'),
-        notifyDatetime: moment(item.notifyDatetime).format('YYYY-MM-DD'),
+        startTime: moment(item.startTime),
+        lastUpdateTime: moment(item.lastUpdateTime),
+        notifyDatetime: moment(item.notifyDatetime),
 
       }
     })
@@ -171,7 +163,7 @@ class ServiceFileMovementM2cUpdateForm extends Component {
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
         })
-        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        //setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateServiceFileMovementM2c`,
@@ -259,8 +251,17 @@ class ServiceFileMovementM2cUpdateForm extends Component {
     if (!selectedRows) {
       return (<div>缺少被更新的对象</div>)
     }
+	const selectedRow = this.getSelectedRow()
 
-    // TODO
+	const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
+
     return (
       <PageHeaderLayout
         title={"更新还件服务"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -268,146 +269,162 @@ class ServiceFileMovementM2cUpdateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.id}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
+                    initialValue: selectedRow.id,
                     rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入ID" disabled/>
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceStatus}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceStatus} {...formItemLayout}>
                   {getFieldDecorator('serviceStatus', {
+                    initialValue: selectedRow.serviceStatus,
                     rules: [{ required: true, message: '请输入服务状态' }],
                   })(
-                    <Input placeholder="请输入请输入服务状态string" />
+                    <Input placeholder="请输入服务状态" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceSummary}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceSummary} {...formItemLayout}>
                   {getFieldDecorator('serviceSummary', {
+                    initialValue: selectedRow.serviceSummary,
                     rules: [{ required: true, message: '请输入服务概述' }],
                   })(
-                    <Input placeholder="请输入请输入服务概述string" />
+                    <Input placeholder="请输入服务概述" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.startTime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.startTime} {...formItemLayout}>
                   {getFieldDecorator('startTime', {
+                    initialValue: selectedRow.startTime,
                     rules: [{ required: true, message: '请输入开始时间' }],
                   })(
-                    <Input placeholder="请输入请输入开始时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入开始时间" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.longitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.longitude} {...formItemLayout}>
                   {getFieldDecorator('longitude', {
+                    initialValue: selectedRow.longitude,
                     rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入经度double" />
+                    <Input placeholder="请输入经度" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.latitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude} {...formItemLayout}>
                   {getFieldDecorator('latitude', {
+                    initialValue: selectedRow.latitude,
                     rules: [{ required: true, message: '请输入纬度' }],
                   })(
-                    <Input placeholder="请输入请输入纬度double" />
+                    <Input placeholder="请输入纬度" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.transferVerifyCode}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.transferVerifyCode} {...formItemLayout}>
                   {getFieldDecorator('transferVerifyCode', {
+                    initialValue: selectedRow.transferVerifyCode,
                     rules: [{ required: true, message: '请输入交接检查码' }],
                   })(
-                    <Input placeholder="请输入请输入交接检查码string" />
+                    <Input placeholder="请输入交接检查码" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.movementPurpose}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.movementPurpose} {...formItemLayout}>
                   {getFieldDecorator('movementPurpose', {
+                    initialValue: selectedRow.movementPurpose,
                     rules: [{ required: true, message: '请输入服务类型' }],
                   })(
-                    <Input placeholder="请输入请输入服务类型string" />
+                    <Input placeholder="请输入服务类型" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.contactName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.contactName} {...formItemLayout}>
                   {getFieldDecorator('contactName', {
+                    initialValue: selectedRow.contactName,
                     rules: [{ required: true, message: '请输入联系人姓名' }],
                   })(
-                    <Input placeholder="请输入请输入联系人姓名string" />
+                    <Input placeholder="请输入联系人姓名" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.contactMobileNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.contactMobileNumber} {...formItemLayout}>
                   {getFieldDecorator('contactMobileNumber', {
+                    initialValue: selectedRow.contactMobileNumber,
                     rules: [{ required: true, message: '请输入联系人手机' }],
                   })(
-                    <Input placeholder="请输入请输入联系人手机string_china_mobile_phone" />
+                    <Input placeholder="请输入联系人手机" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.notifyDatetime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.notifyDatetime} {...formItemLayout}>
                   {getFieldDecorator('notifyDatetime', {
+                    initialValue: selectedRow.notifyDatetime,
                     rules: [{ required: true, message: '请输入通知日期时间' }],
                   })(
-                    <Input placeholder="请输入请输入通知日期时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入通知日期时间" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.notifyAddress}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.notifyAddress} {...formItemLayout}>
                   {getFieldDecorator('notifyAddress', {
+                    initialValue: selectedRow.notifyAddress,
                     rules: [{ required: true, message: '请输入通知地址' }],
                   })(
-                    <Input placeholder="请输入请输入通知地址string" />
+                    <Input placeholder="请输入通知地址" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.handoverResult}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.handoverResult} {...formItemLayout}>
                   {getFieldDecorator('handoverResult', {
+                    initialValue: selectedRow.handoverResult,
                     rules: [{ required: true, message: '请输入交接检查结果' }],
                   })(
-                    <Input placeholder="请输入请输入交接检查结果string" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.handoverResultComment}>
-                  {getFieldDecorator('handoverResultComment', {
-                    rules: [{ required: true, message: '请输入交接检查备注' }],
-                  })(
-                    <Input placeholder="请输入请输入交接检查备注string_longtext" />
+                    <Input placeholder="请输入交接检查结果" />
+                    
                   )}
                 </Form.Item>
               </Col>
@@ -421,14 +438,32 @@ class ServiceFileMovementM2cUpdateForm extends Component {
         
 
         <Card title="备注" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
               <Col lg={24} md={24} sm={24}>
                 <Form.Item>
                   {getFieldDecorator('notifyComment', {
+                  	initialValue: selectedRow.notifyComment,
                     rules: [{ required: true, message: '请输入备注' }],
                   })(
                     <TextArea rows={4} placeholder="请输入请输入备注" />
+                  )}
+                </Form.Item>
+              </Col>
+            </Row>
+          </Form>
+        </Card>
+
+        <Card title="交接检查备注" className={styles.card} bordered={false}>
+          <Form >
+            <Row gutter={16}>
+              <Col lg={24} md={24} sm={24}>
+                <Form.Item>
+                  {getFieldDecorator('handoverResultComment', {
+                  	initialValue: selectedRow.handoverResultComment,
+                    rules: [{ required: true, message: '请输入交接检查备注' }],
+                  })(
+                    <TextArea rows={4} placeholder="请输入请输入交接检查备注" />
                   )}
                 </Form.Item>
               </Col>

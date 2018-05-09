@@ -200,6 +200,33 @@ class VehicleInspectionPlateNumberPatternCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个上线检测支持的车牌号码类别"
@@ -207,15 +234,15 @@ class VehicleInspectionPlateNumberPatternCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.plateNumberPattern}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.plateNumberPattern} {...formItemLayout}>
                   {getFieldDecorator('plateNumberPattern', {
                     rules: [{ required: true, message: '请输入车牌号类别' }],
                   })(
-                    <Input placeholder="请输入请输入车牌号类别string" />
+                    <Input placeholder="请输入车牌号类别" />
                   )}
                 </Form.Item>
               </Col>
@@ -238,21 +265,24 @@ class VehicleInspectionPlateNumberPatternCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.company}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.company} {...formItemLayout}>
                   {getFieldDecorator('companyId', {
+                  	initialValue: tryinit('company'),
                     rules: [{ required: true, message: '请输入商户' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateCompanyList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateCompanySearch}
                     placeholder="请输入商户"
+                    
+                    disabled={!availableForEdit('company')}
                   >
                   {candidateCompanyList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.companyName}(${item.id})`}</Option>);

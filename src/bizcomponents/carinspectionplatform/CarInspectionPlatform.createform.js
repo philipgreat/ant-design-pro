@@ -170,6 +170,33 @@ class CarInspectionPlatformCreateForm extends Component {
     
 
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个驾乐乐车辆代审服务平台"
@@ -177,45 +204,45 @@ class CarInspectionPlatformCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.name}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.name} {...formItemLayout}>
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: '请输入名称' }],
                   })(
-                    <Input placeholder="请输入请输入名称string" />
+                    <Input placeholder="请输入名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.description}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.description} {...formItemLayout}>
                   {getFieldDecorator('description', {
                     rules: [{ required: true, message: '请输入描述' }],
                   })(
-                    <Input placeholder="请输入请输入描述string" />
+                    <Input placeholder="请输入描述" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceContactName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceContactName} {...formItemLayout}>
                   {getFieldDecorator('insuranceContactName', {
                     rules: [{ required: true, message: '请输入保险联系人姓名' }],
                   })(
-                    <Input placeholder="请输入请输入保险联系人姓名string" />
+                    <Input placeholder="请输入保险联系人姓名" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceContactMobile}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceContactMobile} {...formItemLayout}>
                   {getFieldDecorator('insuranceContactMobile', {
                     rules: [{ required: true, message: '请输入保险联系人手机' }],
                   })(
-                    <Input placeholder="请输入请输入保险联系人手机string_china_mobile_phone" />
+                    <Input placeholder="请输入保险联系人手机" />
                   )}
                 </Form.Item>
               </Col>

@@ -24,12 +24,12 @@ const testValues = {};
 /*
 const testValues = {
   checkItemName: '刹车是否完好?',
+  productId: 'AP000001',
   checkItemDescription: '这是一个测试文本，目前只包括普通的字符，等会儿测试下特殊字符。\
 第一个要测试的是冒号：就是 :\
 第二个是逗号：就是 ,\
 第三个是单引号：就是 \'\
 第四个是双引号：就是 \"',
-  productId: 'AP000001',
 }
 */
 const imageURLPrefix = '//localhost:2090'
@@ -206,6 +206,33 @@ class AvailableHandOverItemCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个交接检查项"
@@ -213,25 +240,15 @@ class AvailableHandOverItemCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.checkItemName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.checkItemName} {...formItemLayout}>
                   {getFieldDecorator('checkItemName', {
                     rules: [{ required: true, message: '请输入检查项目名称' }],
                   })(
-                    <Input placeholder="请输入请输入检查项目名称string" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.checkItemDescription}>
-                  {getFieldDecorator('checkItemDescription', {
-                    rules: [{ required: true, message: '请输入检查项目描述' }],
-                  })(
-                    <Input placeholder="请输入请输入检查项目描述string_longtext" />
+                    <Input placeholder="请输入检查项目名称" />
                   )}
                 </Form.Item>
               </Col>
@@ -249,26 +266,45 @@ class AvailableHandOverItemCreateForm extends Component {
 
 
 
+        <Card title="检查项目描述" className={styles.card} bordered={false}>
+          <Form >
+            <Row gutter={16}>
+              <Col lg={24} md={24} sm={24}>
+                <Form.Item>
+                  {getFieldDecorator('checkItemDescription', {
+                    rules: [{ required: true, message: '请输入检查项目描述' }],
+                  })(
+                    <TextArea rows={4} placeholder="请输入请输入检查项目描述" />
+                  )}
+                </Form.Item>
+              </Col>
+      </Row>
+          </Form>  
+        </Card>
+
 
 
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.product}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.product} {...formItemLayout}>
                   {getFieldDecorator('productId', {
+                  	initialValue: tryinit('product'),
                     rules: [{ required: true, message: '请输入产品名称' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateProductList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateProductSearch}
                     placeholder="请输入产品名称"
+                    
+                    disabled={!availableForEdit('product')}
                   >
                   {candidateProductList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.productName}(${item.id})`}</Option>);

@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './InsuranceServiceAccount.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -103,10 +103,9 @@ class InsuranceServiceAccountBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -174,7 +173,9 @@ class InsuranceServiceAccountBizApp extends React.PureComponent {
      const {InsuranceServiceAccountEditDetail} = GlobalComponents
      const {InsuranceServiceAccountViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

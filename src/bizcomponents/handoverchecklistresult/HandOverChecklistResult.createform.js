@@ -37,17 +37,7 @@ const testValues = {};
 /*
 const testValues = {
   handOverCheckItemName: '刹车是否完好?',
-  checkItemDescription: '这是一个测试文本，目前只包括普通的字符，等会儿测试下特殊字符。\
-第一个要测试的是冒号：就是 :\
-第二个是逗号：就是 ,\
-第三个是单引号：就是 \'\
-第四个是双引号：就是 \"',
   handOverCheckResult: '通过',
-  handOverCheckComment: '这是一个测试文本，目前只包括普通的字符，等会儿测试下特殊字符。\
-第一个要测试的是冒号：就是 :\
-第二个是逗号：就是 ,\
-第三个是单引号：就是 \'\
-第四个是双引号：就是 \"',
   availableHandOverItemId: 'AHOI000001',
   serviceTypeVehicleC2mId: 'SVMC000001',
   serviceTypeVehicleM2mId: 'SVMM000001',
@@ -55,6 +45,16 @@ const testValues = {
   serviceTypeFileC2mId: 'SFMC000001',
   serviceTypeFileM2mId: 'SFMM000001',
   serviceTypeFileM2cId: 'SFMM000001',
+  checkItemDescription: '这是一个测试文本，目前只包括普通的字符，等会儿测试下特殊字符。\
+第一个要测试的是冒号：就是 :\
+第二个是逗号：就是 ,\
+第三个是单引号：就是 \'\
+第四个是双引号：就是 \"',
+  handOverCheckComment: '这是一个测试文本，目前只包括普通的字符，等会儿测试下特殊字符。\
+第一个要测试的是冒号：就是 :\
+第二个是逗号：就是 ,\
+第三个是单引号：就是 \'\
+第四个是双引号：就是 \"',
 }
 */
 const imageURLPrefix = '//localhost:2090'
@@ -440,6 +440,33 @@ class HandOverChecklistResultCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个交接检查结果"
@@ -447,45 +474,25 @@ class HandOverChecklistResultCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.handOverCheckItemName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.handOverCheckItemName} {...formItemLayout}>
                   {getFieldDecorator('handOverCheckItemName', {
                     rules: [{ required: true, message: '请输入检查项名称' }],
                   })(
-                    <Input placeholder="请输入请输入检查项名称string" />
+                    <Input placeholder="请输入检查项名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.checkItemDescription}>
-                  {getFieldDecorator('checkItemDescription', {
-                    rules: [{ required: true, message: '请输入检查项目描述' }],
-                  })(
-                    <Input placeholder="请输入请输入检查项目描述string_longtext" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.handOverCheckResult}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.handOverCheckResult} {...formItemLayout}>
                   {getFieldDecorator('handOverCheckResult', {
                     rules: [{ required: true, message: '请输入检车项结果' }],
                   })(
-                    <Input placeholder="请输入请输入检车项结果string" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.handOverCheckComment}>
-                  {getFieldDecorator('handOverCheckComment', {
-                    rules: [{ required: true, message: '请输入检查项意见' }],
-                  })(
-                    <Input placeholder="请输入请输入检查项意见string_longtext" />
+                    <Input placeholder="请输入检车项结果" />
                   )}
                 </Form.Item>
               </Col>
@@ -503,10 +510,42 @@ class HandOverChecklistResultCreateForm extends Component {
 
 
 
+        <Card title="检查项目描述" className={styles.card} bordered={false}>
+          <Form >
+            <Row gutter={16}>
+              <Col lg={24} md={24} sm={24}>
+                <Form.Item>
+                  {getFieldDecorator('checkItemDescription', {
+                    rules: [{ required: true, message: '请输入检查项目描述' }],
+                  })(
+                    <TextArea rows={4} placeholder="请输入请输入检查项目描述" />
+                  )}
+                </Form.Item>
+              </Col>
+      </Row>
+          </Form>  
+        </Card>
+
+        <Card title="检查项意见" className={styles.card} bordered={false}>
+          <Form >
+            <Row gutter={16}>
+              <Col lg={24} md={24} sm={24}>
+                <Form.Item>
+                  {getFieldDecorator('handOverCheckComment', {
+                    rules: [{ required: true, message: '请输入检查项意见' }],
+                  })(
+                    <TextArea rows={4} placeholder="请输入请输入检查项意见" />
+                  )}
+                </Form.Item>
+              </Col>
+      </Row>
+          </Form>  
+        </Card>
+
 
 
         <Card title="附件" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
@@ -561,21 +600,24 @@ class HandOverChecklistResultCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.availableHandOverItem}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.availableHandOverItem} {...formItemLayout}>
                   {getFieldDecorator('availableHandOverItemId', {
+                  	initialValue: tryinit('availableHandOverItem'),
                     rules: [{ required: true, message: '请输入交接检查项' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateAvailableHandOverItemList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateAvailableHandOverItemSearch}
                     placeholder="请输入交接检查项"
+                    
+                    disabled={!availableForEdit('availableHandOverItem')}
                   >
                   {candidateAvailableHandOverItemList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.checkItemName}(${item.id})`}</Option>);
@@ -586,18 +628,21 @@ class HandOverChecklistResultCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceTypeVehicleC2m}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTypeVehicleC2m} {...formItemLayout}>
                   {getFieldDecorator('serviceTypeVehicleC2mId', {
+                  	initialValue: tryinit('serviceTypeVehicleC2m'),
                     rules: [{ required: true, message: '请输入收车服务' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateServiceTypeVehicleC2mList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateServiceTypeVehicleC2mSearch}
                     placeholder="请输入收车服务"
+                    
+                    disabled={!availableForEdit('serviceTypeVehicleC2m')}
                   >
                   {candidateServiceTypeVehicleC2mList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);
@@ -608,18 +653,21 @@ class HandOverChecklistResultCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceTypeVehicleM2m}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTypeVehicleM2m} {...formItemLayout}>
                   {getFieldDecorator('serviceTypeVehicleM2mId', {
+                  	initialValue: tryinit('serviceTypeVehicleM2m'),
                     rules: [{ required: true, message: '请输入移车服务' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateServiceTypeVehicleM2mList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateServiceTypeVehicleM2mSearch}
                     placeholder="请输入移车服务"
+                    
+                    disabled={!availableForEdit('serviceTypeVehicleM2m')}
                   >
                   {candidateServiceTypeVehicleM2mList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);
@@ -630,18 +678,21 @@ class HandOverChecklistResultCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceTypeVehicleM2c}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTypeVehicleM2c} {...formItemLayout}>
                   {getFieldDecorator('serviceTypeVehicleM2cId', {
+                  	initialValue: tryinit('serviceTypeVehicleM2c'),
                     rules: [{ required: true, message: '请输入还车服务' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateServiceTypeVehicleM2cList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateServiceTypeVehicleM2cSearch}
                     placeholder="请输入还车服务"
+                    
+                    disabled={!availableForEdit('serviceTypeVehicleM2c')}
                   >
                   {candidateServiceTypeVehicleM2cList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);
@@ -652,18 +703,21 @@ class HandOverChecklistResultCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceTypeFileC2m}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTypeFileC2m} {...formItemLayout}>
                   {getFieldDecorator('serviceTypeFileC2mId', {
+                  	initialValue: tryinit('serviceTypeFileC2m'),
                     rules: [{ required: true, message: '请输入收件服务' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateServiceTypeFileC2mList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateServiceTypeFileC2mSearch}
                     placeholder="请输入收件服务"
+                    
+                    disabled={!availableForEdit('serviceTypeFileC2m')}
                   >
                   {candidateServiceTypeFileC2mList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);
@@ -674,18 +728,21 @@ class HandOverChecklistResultCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceTypeFileM2m}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTypeFileM2m} {...formItemLayout}>
                   {getFieldDecorator('serviceTypeFileM2mId', {
+                  	initialValue: tryinit('serviceTypeFileM2m'),
                     rules: [{ required: true, message: '请输入移件服务' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateServiceTypeFileM2mList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateServiceTypeFileM2mSearch}
                     placeholder="请输入移件服务"
+                    
+                    disabled={!availableForEdit('serviceTypeFileM2m')}
                   >
                   {candidateServiceTypeFileM2mList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);
@@ -696,18 +753,21 @@ class HandOverChecklistResultCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceTypeFileM2c}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTypeFileM2c} {...formItemLayout}>
                   {getFieldDecorator('serviceTypeFileM2cId', {
+                  	initialValue: tryinit('serviceTypeFileM2c'),
                     rules: [{ required: true, message: '请输入还件服务' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateServiceTypeFileM2cList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateServiceTypeFileM2cSearch}
                     placeholder="请输入还件服务"
+                    
+                    disabled={!availableForEdit('serviceTypeFileM2c')}
                   >
                   {candidateServiceTypeFileM2cList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);

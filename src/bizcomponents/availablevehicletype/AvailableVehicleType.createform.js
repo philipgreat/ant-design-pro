@@ -204,6 +204,33 @@ class AvailableVehicleTypeCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个车辆类型"
@@ -211,25 +238,25 @@ class AvailableVehicleTypeCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehicleType}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.vehicleType} {...formItemLayout}>
                   {getFieldDecorator('vehicleType', {
                     rules: [{ required: true, message: '请输入车辆类型' }],
                   })(
-                    <Input placeholder="请输入请输入车辆类型string" />
+                    <Input placeholder="请输入车辆类型" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehicleTypeAlias}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.vehicleTypeAlias} {...formItemLayout}>
                   {getFieldDecorator('vehicleTypeAlias', {
                     rules: [{ required: true, message: '请输入车辆类型别名' }],
                   })(
-                    <Input placeholder="请输入请输入车辆类型别名string" />
+                    <Input placeholder="请输入车辆类型别名" />
                   )}
                 </Form.Item>
               </Col>
@@ -242,13 +269,14 @@ class AvailableVehicleTypeCreateForm extends Component {
 
         
         <Card title="设置" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.canPlaceOrder}>
+              <Col lg={8} md={12} sm={24}>
+                <Form.Item label={fieldLabels.canPlaceOrder}  {...switchFormItemLayout}>
                   {getFieldDecorator('canPlaceOrder', {
+                    initialValue: false,
                     rules: [{ required: true, message: '请输入可下单' }],
                     valuePropName: 'checked'
                   })(
@@ -257,9 +285,10 @@ class AvailableVehicleTypeCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.canDoExempt}>
+              <Col lg={8} md={12} sm={24}>
+                <Form.Item label={fieldLabels.canDoExempt}  {...switchFormItemLayout}>
                   {getFieldDecorator('canDoExempt', {
+                    initialValue: false,
                     rules: [{ required: true, message: '请输入可6年免检' }],
                     valuePropName: 'checked'
                   })(
@@ -283,21 +312,24 @@ class AvailableVehicleTypeCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.platform}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.platform} {...formItemLayout}>
                   {getFieldDecorator('platformId', {
+                  	initialValue: tryinit('platform'),
                     rules: [{ required: true, message: '请输入平台' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidatePlatformList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidatePlatformSearch}
                     placeholder="请输入平台"
+                    
+                    disabled={!availableForEdit('platform')}
                   >
                   {candidatePlatformList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);

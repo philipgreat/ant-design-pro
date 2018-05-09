@@ -48,15 +48,7 @@ class ServiceOrderFilterUpdateForm extends Component {
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
-    // const { getFieldDecorator, setFieldsValue } = this.props.form
-    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow()
-    if (!selectedRow) {
-      return
-    }
-    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
@@ -155,7 +147,7 @@ class ServiceOrderFilterUpdateForm extends Component {
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
         })
-        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        //setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateServiceOrderFilter`,
@@ -243,8 +235,17 @@ class ServiceOrderFilterUpdateForm extends Component {
     if (!selectedRows) {
       return (<div>缺少被更新的对象</div>)
     }
+	const selectedRow = this.getSelectedRow()
 
-    // TODO
+	const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
+
     return (
       <PageHeaderLayout
         title={"更新服务单状态类型"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -252,46 +253,54 @@ class ServiceOrderFilterUpdateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.id}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
+                    initialValue: selectedRow.id,
                     rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入ID" disabled/>
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.filterName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.filterName} {...formItemLayout}>
                   {getFieldDecorator('filterName', {
+                    initialValue: selectedRow.filterName,
                     rules: [{ required: true, message: '请输入服务单状态名称' }],
                   })(
-                    <Input placeholder="请输入请输入服务单状态名称string" />
+                    <Input placeholder="请输入服务单状态名称" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.orderCount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderCount} {...formItemLayout}>
                   {getFieldDecorator('orderCount', {
+                    initialValue: selectedRow.orderCount,
                     rules: [{ required: true, message: '请输入服务单数量' }],
                   })(
-                    <Input placeholder="请输入请输入服务单数量int" />
+                    <Input placeholder="请输入服务单数量" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.linkUrl}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.linkUrl} {...formItemLayout}>
                   {getFieldDecorator('linkUrl', {
+                    initialValue: selectedRow.linkUrl,
                     rules: [{ required: true, message: '请输入服务单状态接口' }],
                   })(
-                    <Input placeholder="请输入请输入服务单状态接口string" />
+                    <Input placeholder="请输入服务单状态接口" />
+                    
                   )}
                 </Form.Item>
               </Col>
@@ -301,13 +310,14 @@ class ServiceOrderFilterUpdateForm extends Component {
         </Card>
         
         <Card title="设置" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.selected}>
+              <Col lg={8} md={12} sm={24}>
+                <Form.Item label={fieldLabels.selected} {...switchFormItemLayout}>
                   {getFieldDecorator('selected', {
+                    initialValue: selectedRow.selected,
                     rules: [{ required: true, message: '请输入选中' }],
                     valuePropName: 'checked'
                   })(

@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './GenericForm.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -107,10 +107,9 @@ class GenericFormBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -159,7 +158,7 @@ class GenericFormBizApp extends React.PureComponent {
       searchFormParameters: state._genericForm.formMessageSearchFormParameters,
       loading: state._genericForm.loading,
       partialList: state._genericForm.partialList,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formMessageList', ref:state._genericForm, listDisplayName: '表单信息列表' }, // this is for model namespace and
+      owner: { type: '_genericForm', id: state._genericForm.id, referenceName: 'form', listName: 'formMessageList', ref:state._genericForm, listDisplayName: '表单信息列表' }, // this is for model namespace and
     }))(FormMessageSearch)
   }
   getFormMessageCreateForm = () => {
@@ -171,7 +170,7 @@ class GenericFormBizApp extends React.PureComponent {
       currentPage: state._genericForm.formMessageCurrentPageNumber,
       searchFormParameters: state._genericForm.formMessageSearchFormParameters,
       loading: state._genericForm.loading,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formMessageList', ref:state._genericForm, listDisplayName: '表单信息列表'}, // this is for model namespace and
+      owner: { type: '_genericForm', id: state._genericForm.id, referenceName: 'form', listName: 'formMessageList', ref:state._genericForm, listDisplayName: '表单信息列表'}, // this is for model namespace and
     }))(FormMessageCreateForm)
   }
   
@@ -194,7 +193,7 @@ class GenericFormBizApp extends React.PureComponent {
       searchFormParameters: state._genericForm.formFieldMessageSearchFormParameters,
       loading: state._genericForm.loading,
       partialList: state._genericForm.partialList,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formFieldMessageList', ref:state._genericForm, listDisplayName: '表单字段的信息列表' }, // this is for model namespace and
+      owner: { type: '_genericForm', id: state._genericForm.id, referenceName: 'form', listName: 'formFieldMessageList', ref:state._genericForm, listDisplayName: '表单字段的信息列表' }, // this is for model namespace and
     }))(FormFieldMessageSearch)
   }
   getFormFieldMessageCreateForm = () => {
@@ -206,7 +205,7 @@ class GenericFormBizApp extends React.PureComponent {
       currentPage: state._genericForm.formFieldMessageCurrentPageNumber,
       searchFormParameters: state._genericForm.formFieldMessageSearchFormParameters,
       loading: state._genericForm.loading,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formFieldMessageList', ref:state._genericForm, listDisplayName: '表单字段的信息列表'}, // this is for model namespace and
+      owner: { type: '_genericForm', id: state._genericForm.id, referenceName: 'form', listName: 'formFieldMessageList', ref:state._genericForm, listDisplayName: '表单字段的信息列表'}, // this is for model namespace and
     }))(FormFieldMessageCreateForm)
   }
   
@@ -229,7 +228,7 @@ class GenericFormBizApp extends React.PureComponent {
       searchFormParameters: state._genericForm.formFieldSearchFormParameters,
       loading: state._genericForm.loading,
       partialList: state._genericForm.partialList,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formFieldList', ref:state._genericForm, listDisplayName: '表单字段列表' }, // this is for model namespace and
+      owner: { type: '_genericForm', id: state._genericForm.id, referenceName: 'form', listName: 'formFieldList', ref:state._genericForm, listDisplayName: '表单字段列表' }, // this is for model namespace and
     }))(FormFieldSearch)
   }
   getFormFieldCreateForm = () => {
@@ -241,7 +240,7 @@ class GenericFormBizApp extends React.PureComponent {
       currentPage: state._genericForm.formFieldCurrentPageNumber,
       searchFormParameters: state._genericForm.formFieldSearchFormParameters,
       loading: state._genericForm.loading,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formFieldList', ref:state._genericForm, listDisplayName: '表单字段列表'}, // this is for model namespace and
+      owner: { type: '_genericForm', id: state._genericForm.id, referenceName: 'form', listName: 'formFieldList', ref:state._genericForm, listDisplayName: '表单字段列表'}, // this is for model namespace and
     }))(FormFieldCreateForm)
   }
   
@@ -264,7 +263,7 @@ class GenericFormBizApp extends React.PureComponent {
       searchFormParameters: state._genericForm.formActionSearchFormParameters,
       loading: state._genericForm.loading,
       partialList: state._genericForm.partialList,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formActionList', ref:state._genericForm, listDisplayName: '表单动作列表' }, // this is for model namespace and
+      owner: { type: '_genericForm', id: state._genericForm.id, referenceName: 'form', listName: 'formActionList', ref:state._genericForm, listDisplayName: '表单动作列表' }, // this is for model namespace and
     }))(FormActionSearch)
   }
   getFormActionCreateForm = () => {
@@ -276,7 +275,7 @@ class GenericFormBizApp extends React.PureComponent {
       currentPage: state._genericForm.formActionCurrentPageNumber,
       searchFormParameters: state._genericForm.formActionSearchFormParameters,
       loading: state._genericForm.loading,
-      owner: { type: '_genericForm', id: state._genericForm.id, listName: 'formActionList', ref:state._genericForm, listDisplayName: '表单动作列表'}, // this is for model namespace and
+      owner: { type: '_genericForm', id: state._genericForm.id, referenceName: 'form', listName: 'formActionList', ref:state._genericForm, listDisplayName: '表单动作列表'}, // this is for model namespace and
     }))(FormActionCreateForm)
   }
   
@@ -318,7 +317,9 @@ class GenericFormBizApp extends React.PureComponent {
      const {GenericFormEditDetail} = GlobalComponents
      const {GenericFormViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

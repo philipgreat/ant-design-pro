@@ -16,7 +16,7 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  displayName: '显示名称',
+  name: '名称',
   objectType: '访问对象类型',
   list1: '列表1',
   list2: '列表2',
@@ -32,7 +32,7 @@ const fieldLabels = {
 const testValues = {};
 /*
 const testValues = {
-  displayName: '控制访问列表1',
+  name: '控制访问列表1',
   objectType: 'FranchiseeStoreCountryCenter',
   list1: 'catalogList',
   list2: 'catalogList',
@@ -220,6 +220,33 @@ class ObjectAccessCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个对象访问"
@@ -227,115 +254,115 @@ class ObjectAccessCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.displayName}>
-                  {getFieldDecorator('displayName', {
-                    rules: [{ required: true, message: '请输入显示名称' }],
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.name} {...formItemLayout}>
+                  {getFieldDecorator('name', {
+                    rules: [{ required: true, message: '请输入名称' }],
                   })(
-                    <Input placeholder="请输入请输入显示名称string" />
+                    <Input placeholder="请输入名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.objectType}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.objectType} {...formItemLayout}>
                   {getFieldDecorator('objectType', {
                     rules: [{ required: true, message: '请输入访问对象类型' }],
                   })(
-                    <Input placeholder="请输入请输入访问对象类型string" />
+                    <Input placeholder="请输入访问对象类型" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.list1}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.list1} {...formItemLayout}>
                   {getFieldDecorator('list1', {
                     rules: [{ required: true, message: '请输入列表1' }],
                   })(
-                    <Input placeholder="请输入请输入列表1string" />
+                    <Input placeholder="请输入列表1" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.list2}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.list2} {...formItemLayout}>
                   {getFieldDecorator('list2', {
                     rules: [{ required: true, message: '请输入列表2' }],
                   })(
-                    <Input placeholder="请输入请输入列表2string" />
+                    <Input placeholder="请输入列表2" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.list3}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.list3} {...formItemLayout}>
                   {getFieldDecorator('list3', {
                     rules: [{ required: true, message: '请输入列表3' }],
                   })(
-                    <Input placeholder="请输入请输入列表3string" />
+                    <Input placeholder="请输入列表3" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.list4}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.list4} {...formItemLayout}>
                   {getFieldDecorator('list4', {
                     rules: [{ required: true, message: '请输入列表4' }],
                   })(
-                    <Input placeholder="请输入请输入列表4string" />
+                    <Input placeholder="请输入列表4" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.list5}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.list5} {...formItemLayout}>
                   {getFieldDecorator('list5', {
                     rules: [{ required: true, message: '请输入列表5' }],
                   })(
-                    <Input placeholder="请输入请输入列表5string" />
+                    <Input placeholder="请输入列表5" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.list6}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.list6} {...formItemLayout}>
                   {getFieldDecorator('list6', {
                     rules: [{ required: true, message: '请输入列表6' }],
                   })(
-                    <Input placeholder="请输入请输入列表6string" />
+                    <Input placeholder="请输入列表6" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.list7}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.list7} {...formItemLayout}>
                   {getFieldDecorator('list7', {
                     rules: [{ required: true, message: '请输入列表7' }],
                   })(
-                    <Input placeholder="请输入请输入列表7string" />
+                    <Input placeholder="请输入列表7" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.list8}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.list8} {...formItemLayout}>
                   {getFieldDecorator('list8', {
                     rules: [{ required: true, message: '请输入列表8' }],
                   })(
-                    <Input placeholder="请输入请输入列表8string" />
+                    <Input placeholder="请输入列表8" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.list9}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.list9} {...formItemLayout}>
                   {getFieldDecorator('list9', {
                     rules: [{ required: true, message: '请输入列表9' }],
                   })(
-                    <Input placeholder="请输入请输入列表9string" />
+                    <Input placeholder="请输入列表9" />
                   )}
                 </Form.Item>
               </Col>
@@ -358,21 +385,24 @@ class ObjectAccessCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.app}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.app} {...formItemLayout}>
                   {getFieldDecorator('appId', {
+                  	initialValue: tryinit('app'),
                     rules: [{ required: true, message: '请输入应用程序' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateAppList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateAppSearch}
                     placeholder="请输入应用程序"
+                    
+                    disabled={!availableForEdit('app')}
                   >
                   {candidateAppList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.title}(${item.id})`}</Option>);

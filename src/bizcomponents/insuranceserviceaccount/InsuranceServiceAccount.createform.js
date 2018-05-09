@@ -37,9 +37,9 @@ const testValues = {
   employeeName: '张三',
   insuranceName: '5元赔10万',
   insuranceVendor: '太平洋财产保险',
-  insurancePrice: '4.67',
+  insurancePrice: '4.14',
   insuranceNumber: 'ADK123123087KMN',
-  insuranceOrderDatetime: '2995-12-26 01:17:56',
+  insuranceOrderDatetime: '2996-11-28 19:25:00',
   mainOrderId: 'vehicle_inspection_order',
   merchantId: 'VSC000001',
   responsibleWorkerId: 'VSCE000001',
@@ -288,6 +288,33 @@ class InsuranceServiceAccountCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个保险服务对账单"
@@ -295,95 +322,95 @@ class InsuranceServiceAccountCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehicleLicensePlateNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.vehicleLicensePlateNumber} {...formItemLayout}>
                   {getFieldDecorator('vehicleLicensePlateNumber', {
                     rules: [{ required: true, message: '请输入车牌号码' }],
                   })(
-                    <Input placeholder="请输入请输入车牌号码string" />
+                    <Input placeholder="请输入车牌号码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceOrderNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceOrderNumber} {...formItemLayout}>
                   {getFieldDecorator('insuranceOrderNumber', {
                     rules: [{ required: true, message: '请输入保险服务单号' }],
                   })(
-                    <Input placeholder="请输入请输入保险服务单号string" />
+                    <Input placeholder="请输入保险服务单号" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.employeeName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.employeeName} {...formItemLayout}>
                   {getFieldDecorator('employeeName', {
                     rules: [{ required: true, message: '请输入员工姓名' }],
                   })(
-                    <Input placeholder="请输入请输入员工姓名string" />
+                    <Input placeholder="请输入员工姓名" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceName} {...formItemLayout}>
                   {getFieldDecorator('insuranceName', {
                     rules: [{ required: true, message: '请输入保险名称' }],
                   })(
-                    <Input placeholder="请输入请输入保险名称string" />
+                    <Input placeholder="请输入保险名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceVendor}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceVendor} {...formItemLayout}>
                   {getFieldDecorator('insuranceVendor', {
                     rules: [{ required: true, message: '请输入承保方' }],
                   })(
-                    <Input placeholder="请输入请输入承保方string" />
+                    <Input placeholder="请输入承保方" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insurancePrice}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insurancePrice} {...formItemLayout}>
                   {getFieldDecorator('insurancePrice', {
                     rules: [{ required: true, message: '请输入保费' }],
                   })(
-                    <Input placeholder="请输入请输入保费money" />
+                    <Input placeholder="请输入保费" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceNumber} {...formItemLayout}>
                   {getFieldDecorator('insuranceNumber', {
                     rules: [{ required: true, message: '请输入保单号码' }],
                   })(
-                    <Input placeholder="请输入请输入保单号码string" />
+                    <Input placeholder="请输入保单号码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceOrderDatetime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceOrderDatetime} {...formItemLayout}>
                   {getFieldDecorator('insuranceOrderDatetime', {
                     rules: [{ required: true, message: '请输入保险购买日期' }],
                   })(
-                    <Input placeholder="请输入请输入保险购买日期date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入保险购买日期" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mainOrderId}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mainOrderId} {...formItemLayout}>
                   {getFieldDecorator('mainOrderId', {
                     rules: [{ required: true, message: '请输入年检订单ID' }],
                   })(
-                    <Input placeholder="请输入请输入年检订单IDstring" />
+                    <Input placeholder="请输入年检订单ID" />
                   )}
                 </Form.Item>
               </Col>
@@ -406,21 +433,24 @@ class InsuranceServiceAccountCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.merchant}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.merchant} {...formItemLayout}>
                   {getFieldDecorator('merchantId', {
+                  	initialValue: tryinit('merchant'),
                     rules: [{ required: true, message: '请输入商户' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateMerchantList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateMerchantSearch}
                     placeholder="请输入商户"
+                    
+                    disabled={!availableForEdit('merchant')}
                   >
                   {candidateMerchantList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.companyName}(${item.id})`}</Option>);
@@ -431,18 +461,21 @@ class InsuranceServiceAccountCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.responsibleWorker}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.responsibleWorker} {...formItemLayout}>
                   {getFieldDecorator('responsibleWorkerId', {
+                  	initialValue: tryinit('responsibleWorker'),
                     rules: [{ required: true, message: '请输入服务人员' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateResponsibleWorkerList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateResponsibleWorkerSearch}
                     placeholder="请输入服务人员"
+                    
+                    disabled={!availableForEdit('responsibleWorker')}
                   >
                   {candidateResponsibleWorkerList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.employeeName}(${item.id})`}</Option>);
@@ -453,18 +486,21 @@ class InsuranceServiceAccountCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.account}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.account} {...formItemLayout}>
                   {getFieldDecorator('accountId', {
+                  	initialValue: tryinit('account'),
                     rules: [{ required: true, message: '请输入对账单' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateAccountList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateAccountSearch}
                     placeholder="请输入对账单"
+                    
+                    disabled={!availableForEdit('account')}
                   >
                   {candidateAccountList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.description}(${item.id})`}</Option>);

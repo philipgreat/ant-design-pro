@@ -28,12 +28,12 @@ const fieldLabels = {
 const testValues = {};
 /*
 const testValues = {
-  originalAmount: '444.43',
-  actualAmount: '444.93',
+  originalAmount: '382.45',
+  actualAmount: '380.03',
   status: '未支付',
   wechatOrderId: '',
   wechatPrepayId: '',
-  createTime: '2997-10-05 16:51:23',
+  createTime: '2996-01-07 10:12:45',
   serviceVehicleRepairingId: 'SVR000001',
 }
 */
@@ -211,6 +211,33 @@ class VehicleRepairingPaymentCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个支付维修订单"
@@ -218,65 +245,65 @@ class VehicleRepairingPaymentCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.originalAmount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.originalAmount} {...formItemLayout}>
                   {getFieldDecorator('originalAmount', {
                     rules: [{ required: true, message: '请输入订单合计' }],
                   })(
-                    <Input placeholder="请输入请输入订单合计money" />
+                    <Input placeholder="请输入订单合计" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.actualAmount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.actualAmount} {...formItemLayout}>
                   {getFieldDecorator('actualAmount', {
                     rules: [{ required: true, message: '请输入应付金额' }],
                   })(
-                    <Input placeholder="请输入请输入应付金额money" />
+                    <Input placeholder="请输入应付金额" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.status}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.status} {...formItemLayout}>
                   {getFieldDecorator('status', {
                     rules: [{ required: true, message: '请输入状态' }],
                   })(
-                    <Input placeholder="请输入请输入状态string" />
+                    <Input placeholder="请输入状态" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.wechatOrderId}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.wechatOrderId} {...formItemLayout}>
                   {getFieldDecorator('wechatOrderId', {
                     rules: [{ required: true, message: '请输入微信订单ID' }],
                   })(
-                    <Input placeholder="请输入请输入微信订单IDstring" />
+                    <Input placeholder="请输入微信订单ID" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.wechatPrepayId}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.wechatPrepayId} {...formItemLayout}>
                   {getFieldDecorator('wechatPrepayId', {
                     rules: [{ required: true, message: '请输入微信预付订单ID' }],
                   })(
-                    <Input placeholder="请输入请输入微信预付订单IDstring" />
+                    <Input placeholder="请输入微信预付订单ID" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.createTime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.createTime} {...formItemLayout}>
                   {getFieldDecorator('createTime', {
                     rules: [{ required: true, message: '请输入创建时间' }],
                   })(
-                    <Input placeholder="请输入请输入创建时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入创建时间" />
                   )}
                 </Form.Item>
               </Col>
@@ -299,21 +326,24 @@ class VehicleRepairingPaymentCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceVehicleRepairing}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceVehicleRepairing} {...formItemLayout}>
                   {getFieldDecorator('serviceVehicleRepairingId', {
+                  	initialValue: tryinit('serviceVehicleRepairing'),
                     rules: [{ required: true, message: '请输入维修服务' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateServiceVehicleRepairingList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateServiceVehicleRepairingSearch}
                     placeholder="请输入维修服务"
+                    
+                    disabled={!availableForEdit('serviceVehicleRepairing')}
                   >
                   {candidateServiceVehicleRepairingList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);

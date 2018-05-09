@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceVehicleInspection.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -104,10 +104,9 @@ class ServiceVehicleInspectionBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -156,7 +155,7 @@ class ServiceVehicleInspectionBizApp extends React.PureComponent {
       searchFormParameters: state._serviceVehicleInspection.serviceVehicleRepairingSearchFormParameters,
       loading: state._serviceVehicleInspection.loading,
       partialList: state._serviceVehicleInspection.partialList,
-      owner: { type: '_serviceVehicleInspection', id: state._serviceVehicleInspection.id, listName: 'serviceVehicleRepairingList', ref:state._serviceVehicleInspection, listDisplayName: '维修服务列表' }, // this is for model namespace and
+      owner: { type: '_serviceVehicleInspection', id: state._serviceVehicleInspection.id, referenceName: 'serviceVehicleInspection', listName: 'serviceVehicleRepairingList', ref:state._serviceVehicleInspection, listDisplayName: '维修服务列表' }, // this is for model namespace and
     }))(ServiceVehicleRepairingSearch)
   }
   getServiceVehicleRepairingCreateForm = () => {
@@ -168,7 +167,7 @@ class ServiceVehicleInspectionBizApp extends React.PureComponent {
       currentPage: state._serviceVehicleInspection.serviceVehicleRepairingCurrentPageNumber,
       searchFormParameters: state._serviceVehicleInspection.serviceVehicleRepairingSearchFormParameters,
       loading: state._serviceVehicleInspection.loading,
-      owner: { type: '_serviceVehicleInspection', id: state._serviceVehicleInspection.id, listName: 'serviceVehicleRepairingList', ref:state._serviceVehicleInspection, listDisplayName: '维修服务列表'}, // this is for model namespace and
+      owner: { type: '_serviceVehicleInspection', id: state._serviceVehicleInspection.id, referenceName: 'serviceVehicleInspection', listName: 'serviceVehicleRepairingList', ref:state._serviceVehicleInspection, listDisplayName: '维修服务列表'}, // this is for model namespace and
     }))(ServiceVehicleRepairingCreateForm)
   }
   
@@ -210,7 +209,9 @@ class ServiceVehicleInspectionBizApp extends React.PureComponent {
      const {ServiceVehicleInspectionEditDetail} = GlobalComponents
      const {ServiceVehicleInspectionViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

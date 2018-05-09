@@ -95,3 +95,17 @@ export function digitUppercase(n) {
 
   return s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整');
 }
+
+export function sessionObject(key, value){
+  const isKeyString = (typeof(key)==="string")
+  if(!isKeyString){
+    console.error("sessionObject(key, value): key should be a string")
+    return null;
+  }
+  if(!value){
+    return JSON.parse(sessionStorage.getItem(key))
+  }
+  const isValueObject = (typeof(key)==="object")
+  sessionStorage.setItem(key,JSON.stringify(value))
+  return value
+}

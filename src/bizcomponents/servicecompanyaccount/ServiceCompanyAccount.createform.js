@@ -37,14 +37,14 @@ const testValues = {
   serviceOrderNumber: 'SID11234',
   serviceOrderCode: 'VEHICLE_C2M_RECEIVE_IN_STORE',
   serviceOrderName: '门店收车',
-  serviceFulfilledDatetime: '2996-11-21 20:21:35',
+  serviceFulfilledDatetime: '2998-02-06 22:18:53',
   contractId: 'CTA00001',
   contractPriceValue: '20.00',
   contractPriceType: '二次送修',
   serviceWorkerName: '周杰伦',
   serviceCompanyName: 'vehicle_service_company',
   mainOrderId: 'vehicle_inspection_order',
-  merchantDiscount: '34.21',
+  merchantDiscount: '32.31',
   merchantId: 'VSC000001',
   responsibleWorkerId: 'VSCE000001',
   accountId: 'A000001',
@@ -292,6 +292,33 @@ class ServiceCompanyAccountCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个服务商户对账单"
@@ -299,115 +326,115 @@ class ServiceCompanyAccountCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceOrderNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceOrderNumber} {...formItemLayout}>
                   {getFieldDecorator('serviceOrderNumber', {
                     rules: [{ required: true, message: '请输入服务单号' }],
                   })(
-                    <Input placeholder="请输入请输入服务单号string" />
+                    <Input placeholder="请输入服务单号" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceOrderCode}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceOrderCode} {...formItemLayout}>
                   {getFieldDecorator('serviceOrderCode', {
                     rules: [{ required: true, message: '请输入服务单代码' }],
                   })(
-                    <Input placeholder="请输入请输入服务单代码string" />
+                    <Input placeholder="请输入服务单代码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceOrderName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceOrderName} {...formItemLayout}>
                   {getFieldDecorator('serviceOrderName', {
                     rules: [{ required: true, message: '请输入服务单名称' }],
                   })(
-                    <Input placeholder="请输入请输入服务单名称string" />
+                    <Input placeholder="请输入服务单名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceFulfilledDatetime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceFulfilledDatetime} {...formItemLayout}>
                   {getFieldDecorator('serviceFulfilledDatetime', {
                     rules: [{ required: true, message: '请输入服务完成时间' }],
                   })(
-                    <Input placeholder="请输入请输入服务完成时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入服务完成时间" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.contractId}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.contractId} {...formItemLayout}>
                   {getFieldDecorator('contractId', {
                     rules: [{ required: true, message: '请输入合同编号' }],
                   })(
-                    <Input placeholder="请输入请输入合同编号string" />
+                    <Input placeholder="请输入合同编号" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.contractPriceValue}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.contractPriceValue} {...formItemLayout}>
                   {getFieldDecorator('contractPriceValue', {
                     rules: [{ required: true, message: '请输入服务价格' }],
                   })(
-                    <Input placeholder="请输入请输入服务价格money" />
+                    <Input placeholder="请输入服务价格" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.contractPriceType}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.contractPriceType} {...formItemLayout}>
                   {getFieldDecorator('contractPriceType', {
                     rules: [{ required: true, message: '请输入服务类型' }],
                   })(
-                    <Input placeholder="请输入请输入服务类型string" />
+                    <Input placeholder="请输入服务类型" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceWorkerName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceWorkerName} {...formItemLayout}>
                   {getFieldDecorator('serviceWorkerName', {
                     rules: [{ required: true, message: '请输入服务人员' }],
                   })(
-                    <Input placeholder="请输入请输入服务人员string" />
+                    <Input placeholder="请输入服务人员" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceCompanyName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceCompanyName} {...formItemLayout}>
                   {getFieldDecorator('serviceCompanyName', {
                     rules: [{ required: true, message: '请输入商户名称' }],
                   })(
-                    <Input placeholder="请输入请输入商户名称string" />
+                    <Input placeholder="请输入商户名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mainOrderId}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mainOrderId} {...formItemLayout}>
                   {getFieldDecorator('mainOrderId', {
                     rules: [{ required: true, message: '请输入年检订单ID' }],
                   })(
-                    <Input placeholder="请输入请输入年检订单IDstring" />
+                    <Input placeholder="请输入年检订单ID" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.merchantDiscount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.merchantDiscount} {...formItemLayout}>
                   {getFieldDecorator('merchantDiscount', {
                     rules: [{ required: true, message: '请输入商户优惠' }],
                   })(
-                    <Input placeholder="请输入请输入商户优惠money" />
+                    <Input placeholder="请输入商户优惠" />
                   )}
                 </Form.Item>
               </Col>
@@ -430,21 +457,24 @@ class ServiceCompanyAccountCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.merchant}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.merchant} {...formItemLayout}>
                   {getFieldDecorator('merchantId', {
+                  	initialValue: tryinit('merchant'),
                     rules: [{ required: true, message: '请输入商户' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateMerchantList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateMerchantSearch}
                     placeholder="请输入商户"
+                    
+                    disabled={!availableForEdit('merchant')}
                   >
                   {candidateMerchantList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.companyName}(${item.id})`}</Option>);
@@ -455,18 +485,21 @@ class ServiceCompanyAccountCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.responsibleWorker}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.responsibleWorker} {...formItemLayout}>
                   {getFieldDecorator('responsibleWorkerId', {
+                  	initialValue: tryinit('responsibleWorker'),
                     rules: [{ required: true, message: '请输入服务人员' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateResponsibleWorkerList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateResponsibleWorkerSearch}
                     placeholder="请输入服务人员"
+                    
+                    disabled={!availableForEdit('responsibleWorker')}
                   >
                   {candidateResponsibleWorkerList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.employeeName}(${item.id})`}</Option>);
@@ -477,18 +510,21 @@ class ServiceCompanyAccountCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.account}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.account} {...formItemLayout}>
                   {getFieldDecorator('accountId', {
+                  	initialValue: tryinit('account'),
                     rules: [{ required: true, message: '请输入对账单' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateAccountList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateAccountSearch}
                     placeholder="请输入对账单"
+                    
+                    disabled={!availableForEdit('account')}
                   >
                   {candidateAccountList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.description}(${item.id})`}</Option>);

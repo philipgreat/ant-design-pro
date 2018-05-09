@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './AvailableService.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -106,10 +106,9 @@ class AvailableServiceBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -158,7 +157,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       searchFormParameters: state._availableService.servicePriceSearchFormParameters,
       loading: state._availableService.loading,
       partialList: state._availableService.partialList,
-      owner: { type: '_availableService', id: state._availableService.id, listName: 'servicePriceList', ref:state._availableService, listDisplayName: '合同价格列表' }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, referenceName: 'availableService', listName: 'servicePriceList', ref:state._availableService, listDisplayName: '合同价格列表' }, // this is for model namespace and
     }))(ServicePriceSearch)
   }
   getServicePriceCreateForm = () => {
@@ -170,7 +169,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       currentPage: state._availableService.servicePriceCurrentPageNumber,
       searchFormParameters: state._availableService.servicePriceSearchFormParameters,
       loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id, listName: 'servicePriceList', ref:state._availableService, listDisplayName: '合同价格列表'}, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, referenceName: 'availableService', listName: 'servicePriceList', ref:state._availableService, listDisplayName: '合同价格列表'}, // this is for model namespace and
     }))(ServicePriceCreateForm)
   }
   
@@ -193,7 +192,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       searchFormParameters: state._availableService.vehicleRepairingAllowanceSearchFormParameters,
       loading: state._availableService.loading,
       partialList: state._availableService.partialList,
-      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleRepairingAllowanceList', ref:state._availableService, listDisplayName: '汽车修理平台补贴列表' }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, referenceName: 'service', listName: 'vehicleRepairingAllowanceList', ref:state._availableService, listDisplayName: '汽车修理平台补贴列表' }, // this is for model namespace and
     }))(VehicleRepairingAllowanceSearch)
   }
   getVehicleRepairingAllowanceCreateForm = () => {
@@ -205,7 +204,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       currentPage: state._availableService.vehicleRepairingAllowanceCurrentPageNumber,
       searchFormParameters: state._availableService.vehicleRepairingAllowanceSearchFormParameters,
       loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleRepairingAllowanceList', ref:state._availableService, listDisplayName: '汽车修理平台补贴列表'}, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, referenceName: 'service', listName: 'vehicleRepairingAllowanceList', ref:state._availableService, listDisplayName: '汽车修理平台补贴列表'}, // this is for model namespace and
     }))(VehicleRepairingAllowanceCreateForm)
   }
   
@@ -228,7 +227,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       searchFormParameters: state._availableService.vehicleServiceCompanyBusinessScopeSearchFormParameters,
       loading: state._availableService.loading,
       partialList: state._availableService.partialList,
-      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleServiceCompanyBusinessScopeList', ref:state._availableService, listDisplayName: '商户服务范围列表' }, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, referenceName: 'availableService', listName: 'vehicleServiceCompanyBusinessScopeList', ref:state._availableService, listDisplayName: '商户服务范围列表' }, // this is for model namespace and
     }))(VehicleServiceCompanyBusinessScopeSearch)
   }
   getVehicleServiceCompanyBusinessScopeCreateForm = () => {
@@ -240,7 +239,7 @@ class AvailableServiceBizApp extends React.PureComponent {
       currentPage: state._availableService.vehicleServiceCompanyBusinessScopeCurrentPageNumber,
       searchFormParameters: state._availableService.vehicleServiceCompanyBusinessScopeSearchFormParameters,
       loading: state._availableService.loading,
-      owner: { type: '_availableService', id: state._availableService.id, listName: 'vehicleServiceCompanyBusinessScopeList', ref:state._availableService, listDisplayName: '商户服务范围列表'}, // this is for model namespace and
+      owner: { type: '_availableService', id: state._availableService.id, referenceName: 'availableService', listName: 'vehicleServiceCompanyBusinessScopeList', ref:state._availableService, listDisplayName: '商户服务范围列表'}, // this is for model namespace and
     }))(VehicleServiceCompanyBusinessScopeCreateForm)
   }
   
@@ -282,7 +281,9 @@ class AvailableServiceBizApp extends React.PureComponent {
      const {AvailableServiceEditDetail} = GlobalComponents
      const {AvailableServiceViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

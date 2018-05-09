@@ -47,15 +47,7 @@ class VehicleInspectionOrderChargeUpdateForm extends Component {
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
-    // const { getFieldDecorator, setFieldsValue } = this.props.form
-    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow()
-    if (!selectedRow) {
-      return
-    }
-    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
@@ -154,7 +146,7 @@ class VehicleInspectionOrderChargeUpdateForm extends Component {
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
         })
-        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        //setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateVehicleInspectionOrderCharge`,
@@ -242,8 +234,17 @@ class VehicleInspectionOrderChargeUpdateForm extends Component {
     if (!selectedRows) {
       return (<div>缺少被更新的对象</div>)
     }
+	const selectedRow = this.getSelectedRow()
 
-    // TODO
+	const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
+
     return (
       <PageHeaderLayout
         title={"更新车辆检验订单费用"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -251,46 +252,54 @@ class VehicleInspectionOrderChargeUpdateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.id}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
+                    initialValue: selectedRow.id,
                     rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入ID" disabled/>
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.title}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.title} {...formItemLayout}>
                   {getFieldDecorator('title', {
+                    initialValue: selectedRow.title,
                     rules: [{ required: true, message: '请输入标题' }],
                   })(
-                    <Input placeholder="请输入请输入标题string" />
+                    <Input placeholder="请输入标题" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.code}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.code} {...formItemLayout}>
                   {getFieldDecorator('code', {
+                    initialValue: selectedRow.code,
                     rules: [{ required: true, message: '请输入代码' }],
                   })(
-                    <Input placeholder="请输入请输入代码string" />
+                    <Input placeholder="请输入代码" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.amount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.amount} {...formItemLayout}>
                   {getFieldDecorator('amount', {
+                    initialValue: selectedRow.amount,
                     rules: [{ required: true, message: '请输入量' }],
                   })(
-                    <Input placeholder="请输入请输入量money" />
+                    <Input placeholder="请输入量" />
+                    
                   )}
                 </Form.Item>
               </Col>

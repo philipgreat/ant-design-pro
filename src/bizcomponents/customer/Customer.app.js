@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './Customer.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -108,10 +108,9 @@ class CustomerBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -160,7 +159,7 @@ class CustomerBizApp extends React.PureComponent {
       searchFormParameters: state._customer.companyQrcodePromotionRecordSearchFormParameters,
       loading: state._customer.loading,
       partialList: state._customer.partialList,
-      owner: { type: '_customer', id: state._customer.id, listName: 'companyQrcodePromotionRecordList', ref:state._customer, listDisplayName: '公司二维码推广记录列表' }, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'companyQrcodePromotionRecordList', ref:state._customer, listDisplayName: '公司二维码推广记录列表' }, // this is for model namespace and
     }))(CompanyQrcodePromotionRecordSearch)
   }
   getCompanyQrcodePromotionRecordCreateForm = () => {
@@ -172,7 +171,7 @@ class CustomerBizApp extends React.PureComponent {
       currentPage: state._customer.companyQrcodePromotionRecordCurrentPageNumber,
       searchFormParameters: state._customer.companyQrcodePromotionRecordSearchFormParameters,
       loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id, listName: 'companyQrcodePromotionRecordList', ref:state._customer, listDisplayName: '公司二维码推广记录列表'}, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'companyQrcodePromotionRecordList', ref:state._customer, listDisplayName: '公司二维码推广记录列表'}, // this is for model namespace and
     }))(CompanyQrcodePromotionRecordCreateForm)
   }
   
@@ -195,7 +194,7 @@ class CustomerBizApp extends React.PureComponent {
       searchFormParameters: state._customer.vehicleInfoSearchFormParameters,
       loading: state._customer.loading,
       partialList: state._customer.partialList,
-      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInfoList', ref:state._customer, listDisplayName: '车辆信息列表' }, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'vehicleInfoList', ref:state._customer, listDisplayName: '车辆信息列表' }, // this is for model namespace and
     }))(VehicleInfoSearch)
   }
   getVehicleInfoCreateForm = () => {
@@ -207,7 +206,7 @@ class CustomerBizApp extends React.PureComponent {
       currentPage: state._customer.vehicleInfoCurrentPageNumber,
       searchFormParameters: state._customer.vehicleInfoSearchFormParameters,
       loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInfoList', ref:state._customer, listDisplayName: '车辆信息列表'}, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'vehicleInfoList', ref:state._customer, listDisplayName: '车辆信息列表'}, // this is for model namespace and
     }))(VehicleInfoCreateForm)
   }
   
@@ -230,7 +229,7 @@ class CustomerBizApp extends React.PureComponent {
       searchFormParameters: state._customer.vehicleInspectionOrderSearchFormParameters,
       loading: state._customer.loading,
       partialList: state._customer.partialList,
-      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderList', ref:state._customer, listDisplayName: '年检订单列表' }, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'vehicleInspectionOrderList', ref:state._customer, listDisplayName: '年检订单列表' }, // this is for model namespace and
     }))(VehicleInspectionOrderSearch)
   }
   getVehicleInspectionOrderCreateForm = () => {
@@ -242,7 +241,7 @@ class CustomerBizApp extends React.PureComponent {
       currentPage: state._customer.vehicleInspectionOrderCurrentPageNumber,
       searchFormParameters: state._customer.vehicleInspectionOrderSearchFormParameters,
       loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderList', ref:state._customer, listDisplayName: '年检订单列表'}, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'vehicleInspectionOrderList', ref:state._customer, listDisplayName: '年检订单列表'}, // this is for model namespace and
     }))(VehicleInspectionOrderCreateForm)
   }
   
@@ -265,7 +264,7 @@ class CustomerBizApp extends React.PureComponent {
       searchFormParameters: state._customer.orderDiscountCouponSearchFormParameters,
       loading: state._customer.loading,
       partialList: state._customer.partialList,
-      owner: { type: '_customer', id: state._customer.id, listName: 'orderDiscountCouponList', ref:state._customer, listDisplayName: '优惠券列表' }, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'orderDiscountCouponList', ref:state._customer, listDisplayName: '优惠券列表' }, // this is for model namespace and
     }))(OrderDiscountCouponSearch)
   }
   getOrderDiscountCouponCreateForm = () => {
@@ -277,7 +276,7 @@ class CustomerBizApp extends React.PureComponent {
       currentPage: state._customer.orderDiscountCouponCurrentPageNumber,
       searchFormParameters: state._customer.orderDiscountCouponSearchFormParameters,
       loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id, listName: 'orderDiscountCouponList', ref:state._customer, listDisplayName: '优惠券列表'}, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'orderDiscountCouponList', ref:state._customer, listDisplayName: '优惠券列表'}, // this is for model namespace and
     }))(OrderDiscountCouponCreateForm)
   }
   
@@ -300,7 +299,7 @@ class CustomerBizApp extends React.PureComponent {
       searchFormParameters: state._customer.vehicleInspectionOrderCouponSearchFormParameters,
       loading: state._customer.loading,
       partialList: state._customer.partialList,
-      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderCouponList', ref:state._customer, listDisplayName: '优惠券使用记录列表' }, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'vehicleInspectionOrderCouponList', ref:state._customer, listDisplayName: '优惠券使用记录列表' }, // this is for model namespace and
     }))(VehicleInspectionOrderCouponSearch)
   }
   getVehicleInspectionOrderCouponCreateForm = () => {
@@ -312,7 +311,7 @@ class CustomerBizApp extends React.PureComponent {
       currentPage: state._customer.vehicleInspectionOrderCouponCurrentPageNumber,
       searchFormParameters: state._customer.vehicleInspectionOrderCouponSearchFormParameters,
       loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderCouponList', ref:state._customer, listDisplayName: '优惠券使用记录列表'}, // this is for model namespace and
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'vehicleInspectionOrderCouponList', ref:state._customer, listDisplayName: '优惠券使用记录列表'}, // this is for model namespace and
     }))(VehicleInspectionOrderCouponCreateForm)
   }
   
@@ -354,7 +353,9 @@ class CustomerBizApp extends React.PureComponent {
      const {CustomerEditDetail} = GlobalComponents
      const {CustomerViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

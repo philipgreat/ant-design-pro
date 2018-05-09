@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './Contract.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -104,10 +104,9 @@ class ContractBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -156,7 +155,7 @@ class ContractBizApp extends React.PureComponent {
       searchFormParameters: state._contract.servicePriceSearchFormParameters,
       loading: state._contract.loading,
       partialList: state._contract.partialList,
-      owner: { type: '_contract', id: state._contract.id, listName: 'servicePriceList', ref:state._contract, listDisplayName: '合同价格列表' }, // this is for model namespace and
+      owner: { type: '_contract', id: state._contract.id, referenceName: 'contract', listName: 'servicePriceList', ref:state._contract, listDisplayName: '合同价格列表' }, // this is for model namespace and
     }))(ServicePriceSearch)
   }
   getServicePriceCreateForm = () => {
@@ -168,7 +167,7 @@ class ContractBizApp extends React.PureComponent {
       currentPage: state._contract.servicePriceCurrentPageNumber,
       searchFormParameters: state._contract.servicePriceSearchFormParameters,
       loading: state._contract.loading,
-      owner: { type: '_contract', id: state._contract.id, listName: 'servicePriceList', ref:state._contract, listDisplayName: '合同价格列表'}, // this is for model namespace and
+      owner: { type: '_contract', id: state._contract.id, referenceName: 'contract', listName: 'servicePriceList', ref:state._contract, listDisplayName: '合同价格列表'}, // this is for model namespace and
     }))(ServicePriceCreateForm)
   }
   
@@ -210,7 +209,9 @@ class ContractBizApp extends React.PureComponent {
      const {ContractEditDetail} = GlobalComponents
      const {ContractViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

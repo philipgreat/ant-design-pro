@@ -24,7 +24,8 @@ const fieldLabels = {
   secondLevelMaintenancePrice: '二级维护价格',
   gradeEstimationPrice: '等级评定价格',
   agentServicePrice: '代办服务费用',
-  discountAgentServicePrice: '折扣价格代理服务',
+  toStoreServicePrice: '到店服务代办价格',
+  discountAgentServicePrice: '优惠代办价格',
   description: '描述',
 
 }
@@ -53,15 +54,7 @@ class ProductPriceUpdateForm extends Component {
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
-    // const { getFieldDecorator, setFieldsValue } = this.props.form
-    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow()
-    if (!selectedRow) {
-      return
-    }
-    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
@@ -160,7 +153,7 @@ class ProductPriceUpdateForm extends Component {
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
         })
-        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        //setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateProductPrice`,
@@ -248,8 +241,17 @@ class ProductPriceUpdateForm extends Component {
     if (!selectedRows) {
       return (<div>缺少被更新的对象</div>)
     }
+	const selectedRow = this.getSelectedRow()
 
-    // TODO
+	const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
+
     return (
       <PageHeaderLayout
         title={"更新产品价格"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -257,86 +259,114 @@ class ProductPriceUpdateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.id}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
+                    initialValue: selectedRow.id,
                     rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入ID" disabled/>
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehicleType}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.vehicleType} {...formItemLayout}>
                   {getFieldDecorator('vehicleType', {
+                    initialValue: selectedRow.vehicleType,
                     rules: [{ required: true, message: '请输入车辆类型' }],
                   })(
-                    <Input placeholder="请输入请输入车辆类型string" />
+                    <Input placeholder="请输入车辆类型" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.inspectionPrice}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.inspectionPrice} {...formItemLayout}>
                   {getFieldDecorator('inspectionPrice', {
+                    initialValue: selectedRow.inspectionPrice,
                     rules: [{ required: true, message: '请输入年检费用' }],
                   })(
-                    <Input placeholder="请输入请输入年检费用money" />
+                    <Input placeholder="请输入年检费用" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.secondLevelMaintenancePrice}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.secondLevelMaintenancePrice} {...formItemLayout}>
                   {getFieldDecorator('secondLevelMaintenancePrice', {
+                    initialValue: selectedRow.secondLevelMaintenancePrice,
                     rules: [{ required: true, message: '请输入二级维护价格' }],
                   })(
-                    <Input placeholder="请输入请输入二级维护价格money" />
+                    <Input placeholder="请输入二级维护价格" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.gradeEstimationPrice}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.gradeEstimationPrice} {...formItemLayout}>
                   {getFieldDecorator('gradeEstimationPrice', {
+                    initialValue: selectedRow.gradeEstimationPrice,
                     rules: [{ required: true, message: '请输入等级评定价格' }],
                   })(
-                    <Input placeholder="请输入请输入等级评定价格money" />
+                    <Input placeholder="请输入等级评定价格" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.agentServicePrice}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.agentServicePrice} {...formItemLayout}>
                   {getFieldDecorator('agentServicePrice', {
+                    initialValue: selectedRow.agentServicePrice,
                     rules: [{ required: true, message: '请输入代办服务费用' }],
                   })(
-                    <Input placeholder="请输入请输入代办服务费用money" />
+                    <Input placeholder="请输入代办服务费用" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.discountAgentServicePrice}>
-                  {getFieldDecorator('discountAgentServicePrice', {
-                    rules: [{ required: true, message: '请输入折扣价格代理服务' }],
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.toStoreServicePrice} {...formItemLayout}>
+                  {getFieldDecorator('toStoreServicePrice', {
+                    initialValue: selectedRow.toStoreServicePrice,
+                    rules: [{ required: true, message: '请输入到店服务代办价格' }],
                   })(
-                    <Input placeholder="请输入请输入折扣价格代理服务money" />
+                    <Input placeholder="请输入到店服务代办价格" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.description}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.discountAgentServicePrice} {...formItemLayout}>
+                  {getFieldDecorator('discountAgentServicePrice', {
+                    initialValue: selectedRow.discountAgentServicePrice,
+                    rules: [{ required: true, message: '请输入优惠代办价格' }],
+                  })(
+                    <Input placeholder="请输入优惠代办价格" />
+                    
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.description} {...formItemLayout}>
                   {getFieldDecorator('description', {
+                    initialValue: selectedRow.description,
                     rules: [{ required: true, message: '请输入描述' }],
                   })(
-                    <Input placeholder="请输入请输入描述string" />
+                    <Input placeholder="请输入描述" />
+                    
                   )}
                 </Form.Item>
               </Col>
@@ -346,13 +376,14 @@ class ProductPriceUpdateForm extends Component {
         </Card>
         
         <Card title="设置" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.greenVehicle}>
+              <Col lg={8} md={12} sm={24}>
+                <Form.Item label={fieldLabels.greenVehicle} {...switchFormItemLayout}>
                   {getFieldDecorator('greenVehicle', {
+                    initialValue: selectedRow.greenVehicle,
                     rules: [{ required: true, message: '请输入新能源车' }],
                     valuePropName: 'checked'
                   })(

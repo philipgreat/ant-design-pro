@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './AvailableProduct.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -109,10 +109,9 @@ class AvailableProductBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -161,7 +160,7 @@ class AvailableProductBizApp extends React.PureComponent {
       searchFormParameters: state._availableProduct.servicePriceSearchFormParameters,
       loading: state._availableProduct.loading,
       partialList: state._availableProduct.partialList,
-      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'servicePriceList', ref:state._availableProduct, listDisplayName: '合同价格列表' }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, referenceName: 'product', listName: 'servicePriceList', ref:state._availableProduct, listDisplayName: '合同价格列表' }, // this is for model namespace and
     }))(ServicePriceSearch)
   }
   getServicePriceCreateForm = () => {
@@ -173,7 +172,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.servicePriceCurrentPageNumber,
       searchFormParameters: state._availableProduct.servicePriceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'servicePriceList', ref:state._availableProduct, listDisplayName: '合同价格列表'}, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, referenceName: 'product', listName: 'servicePriceList', ref:state._availableProduct, listDisplayName: '合同价格列表'}, // this is for model namespace and
     }))(ServicePriceCreateForm)
   }
   
@@ -196,7 +195,7 @@ class AvailableProductBizApp extends React.PureComponent {
       searchFormParameters: state._availableProduct.availableServiceSearchFormParameters,
       loading: state._availableProduct.loading,
       partialList: state._availableProduct.partialList,
-      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableServiceList', ref:state._availableProduct, listDisplayName: '服务范围列表' }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, referenceName: 'availableProduct', listName: 'availableServiceList', ref:state._availableProduct, listDisplayName: '服务范围列表' }, // this is for model namespace and
     }))(AvailableServiceSearch)
   }
   getAvailableServiceCreateForm = () => {
@@ -208,7 +207,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.availableServiceCurrentPageNumber,
       searchFormParameters: state._availableProduct.availableServiceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableServiceList', ref:state._availableProduct, listDisplayName: '服务范围列表'}, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, referenceName: 'availableProduct', listName: 'availableServiceList', ref:state._availableProduct, listDisplayName: '服务范围列表'}, // this is for model namespace and
     }))(AvailableServiceCreateForm)
   }
   
@@ -231,7 +230,7 @@ class AvailableProductBizApp extends React.PureComponent {
       searchFormParameters: state._availableProduct.productPriceSearchFormParameters,
       loading: state._availableProduct.loading,
       partialList: state._availableProduct.partialList,
-      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'productPriceList', ref:state._availableProduct, listDisplayName: '产品价格列表' }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, referenceName: 'product', listName: 'productPriceList', ref:state._availableProduct, listDisplayName: '产品价格列表' }, // this is for model namespace and
     }))(ProductPriceSearch)
   }
   getProductPriceCreateForm = () => {
@@ -243,7 +242,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.productPriceCurrentPageNumber,
       searchFormParameters: state._availableProduct.productPriceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'productPriceList', ref:state._availableProduct, listDisplayName: '产品价格列表'}, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, referenceName: 'product', listName: 'productPriceList', ref:state._availableProduct, listDisplayName: '产品价格列表'}, // this is for model namespace and
     }))(ProductPriceCreateForm)
   }
   
@@ -266,7 +265,7 @@ class AvailableProductBizApp extends React.PureComponent {
       searchFormParameters: state._availableProduct.availableInsuranceSearchFormParameters,
       loading: state._availableProduct.loading,
       partialList: state._availableProduct.partialList,
-      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableInsuranceList', ref:state._availableProduct, listDisplayName: '车辆代办保险列表' }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, referenceName: 'product', listName: 'availableInsuranceList', ref:state._availableProduct, listDisplayName: '车辆代办保险列表' }, // this is for model namespace and
     }))(AvailableInsuranceSearch)
   }
   getAvailableInsuranceCreateForm = () => {
@@ -278,7 +277,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.availableInsuranceCurrentPageNumber,
       searchFormParameters: state._availableProduct.availableInsuranceSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableInsuranceList', ref:state._availableProduct, listDisplayName: '车辆代办保险列表'}, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, referenceName: 'product', listName: 'availableInsuranceList', ref:state._availableProduct, listDisplayName: '车辆代办保险列表'}, // this is for model namespace and
     }))(AvailableInsuranceCreateForm)
   }
   
@@ -301,7 +300,7 @@ class AvailableProductBizApp extends React.PureComponent {
       searchFormParameters: state._availableProduct.availableHandOverItemSearchFormParameters,
       loading: state._availableProduct.loading,
       partialList: state._availableProduct.partialList,
-      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableHandOverItemList', ref:state._availableProduct, listDisplayName: '交接检查项列表' }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, referenceName: 'product', listName: 'availableHandOverItemList', ref:state._availableProduct, listDisplayName: '交接检查项列表' }, // this is for model namespace and
     }))(AvailableHandOverItemSearch)
   }
   getAvailableHandOverItemCreateForm = () => {
@@ -313,7 +312,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.availableHandOverItemCurrentPageNumber,
       searchFormParameters: state._availableProduct.availableHandOverItemSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'availableHandOverItemList', ref:state._availableProduct, listDisplayName: '交接检查项列表'}, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, referenceName: 'product', listName: 'availableHandOverItemList', ref:state._availableProduct, listDisplayName: '交接检查项列表'}, // this is for model namespace and
     }))(AvailableHandOverItemCreateForm)
   }
   
@@ -336,7 +335,7 @@ class AvailableProductBizApp extends React.PureComponent {
       searchFormParameters: state._availableProduct.preorderPromotionSearchFormParameters,
       loading: state._availableProduct.loading,
       partialList: state._availableProduct.partialList,
-      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'preorderPromotionList', ref:state._availableProduct, listDisplayName: '提前下单优惠列表' }, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, referenceName: 'product', listName: 'preorderPromotionList', ref:state._availableProduct, listDisplayName: '提前下单优惠列表' }, // this is for model namespace and
     }))(PreorderPromotionSearch)
   }
   getPreorderPromotionCreateForm = () => {
@@ -348,7 +347,7 @@ class AvailableProductBizApp extends React.PureComponent {
       currentPage: state._availableProduct.preorderPromotionCurrentPageNumber,
       searchFormParameters: state._availableProduct.preorderPromotionSearchFormParameters,
       loading: state._availableProduct.loading,
-      owner: { type: '_availableProduct', id: state._availableProduct.id, listName: 'preorderPromotionList', ref:state._availableProduct, listDisplayName: '提前下单优惠列表'}, // this is for model namespace and
+      owner: { type: '_availableProduct', id: state._availableProduct.id, referenceName: 'product', listName: 'preorderPromotionList', ref:state._availableProduct, listDisplayName: '提前下单优惠列表'}, // this is for model namespace and
     }))(PreorderPromotionCreateForm)
   }
   
@@ -390,7 +389,9 @@ class AvailableProductBizApp extends React.PureComponent {
      const {AvailableProductEditDetail} = GlobalComponents
      const {AvailableProductViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

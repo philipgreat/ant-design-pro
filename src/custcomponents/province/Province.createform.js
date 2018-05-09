@@ -72,7 +72,7 @@ class ProvinceCreateForm extends Component {
 
     const {ProvinceService} = GlobalComponents;
     const ownerClass="carInspectionPlatform"
-    const id = "C000001";
+    const id = "";
     //const filterKey="";
     const pageNo=1;
     const future = ProvinceService.requestCandidatePlatform(ownerClass, id, filterKey, pageNo);

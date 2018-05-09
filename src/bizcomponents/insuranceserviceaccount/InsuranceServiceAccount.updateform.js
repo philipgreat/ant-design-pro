@@ -55,15 +55,7 @@ class InsuranceServiceAccountUpdateForm extends Component {
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
-    // const { getFieldDecorator, setFieldsValue } = this.props.form
-    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow()
-    if (!selectedRow) {
-      return
-    }
-    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
@@ -82,7 +74,7 @@ class InsuranceServiceAccountUpdateForm extends Component {
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
-        insuranceOrderDatetime: moment(item.insuranceOrderDatetime).format('YYYY-MM-DD'),
+        insuranceOrderDatetime: moment(item.insuranceOrderDatetime),
 
       }
     })
@@ -163,7 +155,7 @@ class InsuranceServiceAccountUpdateForm extends Component {
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
         })
-        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        //setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateInsuranceServiceAccount`,
@@ -251,8 +243,17 @@ class InsuranceServiceAccountUpdateForm extends Component {
     if (!selectedRows) {
       return (<div>缺少被更新的对象</div>)
     }
+	const selectedRow = this.getSelectedRow()
 
-    // TODO
+	const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
+
     return (
       <PageHeaderLayout
         title={"更新保险服务对账单"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -260,106 +261,126 @@ class InsuranceServiceAccountUpdateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.id}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
+                    initialValue: selectedRow.id,
                     rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入ID" disabled/>
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehicleLicensePlateNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.vehicleLicensePlateNumber} {...formItemLayout}>
                   {getFieldDecorator('vehicleLicensePlateNumber', {
+                    initialValue: selectedRow.vehicleLicensePlateNumber,
                     rules: [{ required: true, message: '请输入车牌号码' }],
                   })(
-                    <Input placeholder="请输入请输入车牌号码string" />
+                    <Input placeholder="请输入车牌号码" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceOrderNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceOrderNumber} {...formItemLayout}>
                   {getFieldDecorator('insuranceOrderNumber', {
+                    initialValue: selectedRow.insuranceOrderNumber,
                     rules: [{ required: true, message: '请输入保险服务单号' }],
                   })(
-                    <Input placeholder="请输入请输入保险服务单号string" />
+                    <Input placeholder="请输入保险服务单号" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.employeeName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.employeeName} {...formItemLayout}>
                   {getFieldDecorator('employeeName', {
+                    initialValue: selectedRow.employeeName,
                     rules: [{ required: true, message: '请输入员工姓名' }],
                   })(
-                    <Input placeholder="请输入请输入员工姓名string" />
+                    <Input placeholder="请输入员工姓名" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceName} {...formItemLayout}>
                   {getFieldDecorator('insuranceName', {
+                    initialValue: selectedRow.insuranceName,
                     rules: [{ required: true, message: '请输入保险名称' }],
                   })(
-                    <Input placeholder="请输入请输入保险名称string" />
+                    <Input placeholder="请输入保险名称" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceVendor}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceVendor} {...formItemLayout}>
                   {getFieldDecorator('insuranceVendor', {
+                    initialValue: selectedRow.insuranceVendor,
                     rules: [{ required: true, message: '请输入承保方' }],
                   })(
-                    <Input placeholder="请输入请输入承保方string" />
+                    <Input placeholder="请输入承保方" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insurancePrice}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insurancePrice} {...formItemLayout}>
                   {getFieldDecorator('insurancePrice', {
+                    initialValue: selectedRow.insurancePrice,
                     rules: [{ required: true, message: '请输入保费' }],
                   })(
-                    <Input placeholder="请输入请输入保费money" />
+                    <Input placeholder="请输入保费" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceNumber} {...formItemLayout}>
                   {getFieldDecorator('insuranceNumber', {
+                    initialValue: selectedRow.insuranceNumber,
                     rules: [{ required: true, message: '请输入保单号码' }],
                   })(
-                    <Input placeholder="请输入请输入保单号码string" />
+                    <Input placeholder="请输入保单号码" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceOrderDatetime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceOrderDatetime} {...formItemLayout}>
                   {getFieldDecorator('insuranceOrderDatetime', {
+                    initialValue: selectedRow.insuranceOrderDatetime,
                     rules: [{ required: true, message: '请输入保险购买日期' }],
                   })(
-                    <Input placeholder="请输入请输入保险购买日期date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入保险购买日期" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mainOrderId}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mainOrderId} {...formItemLayout}>
                   {getFieldDecorator('mainOrderId', {
+                    initialValue: selectedRow.mainOrderId,
                     rules: [{ required: true, message: '请输入年检订单ID' }],
                   })(
-                    <Input placeholder="请输入请输入年检订单IDstring" />
+                    <Input placeholder="请输入年检订单ID" />
+                    
                   )}
                 </Form.Item>
               </Col>

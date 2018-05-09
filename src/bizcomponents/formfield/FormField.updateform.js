@@ -59,15 +59,7 @@ class FormFieldUpdateForm extends Component {
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
-    // const { getFieldDecorator, setFieldsValue } = this.props.form
-    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow()
-    if (!selectedRow) {
-      return
-    }
-    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
@@ -166,7 +158,7 @@ class FormFieldUpdateForm extends Component {
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
         })
-        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        //setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateFormField`,
@@ -254,8 +246,17 @@ class FormFieldUpdateForm extends Component {
     if (!selectedRows) {
       return (<div>缺少被更新的对象</div>)
     }
+	const selectedRow = this.getSelectedRow()
 
-    // TODO
+	const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
+
     return (
       <PageHeaderLayout
         title={"更新表单字段"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -263,136 +264,162 @@ class FormFieldUpdateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.id}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
+                    initialValue: selectedRow.id,
                     rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入ID" disabled/>
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.label}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.label} {...formItemLayout}>
                   {getFieldDecorator('label', {
+                    initialValue: selectedRow.label,
                     rules: [{ required: true, message: '请输入标签' }],
                   })(
-                    <Input placeholder="请输入请输入标签string" />
+                    <Input placeholder="请输入标签" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.localeKey}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.localeKey} {...formItemLayout}>
                   {getFieldDecorator('localeKey', {
+                    initialValue: selectedRow.localeKey,
                     rules: [{ required: true, message: '请输入消息键值' }],
                   })(
-                    <Input placeholder="请输入请输入消息键值string" />
+                    <Input placeholder="请输入消息键值" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.parameterName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.parameterName} {...formItemLayout}>
                   {getFieldDecorator('parameterName', {
+                    initialValue: selectedRow.parameterName,
                     rules: [{ required: true, message: '请输入参数名称' }],
                   })(
-                    <Input placeholder="请输入请输入参数名称string" />
+                    <Input placeholder="请输入参数名称" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.type}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.type} {...formItemLayout}>
                   {getFieldDecorator('type', {
+                    initialValue: selectedRow.type,
                     rules: [{ required: true, message: '请输入类型' }],
                   })(
-                    <Input placeholder="请输入请输入类型string" />
+                    <Input placeholder="请输入类型" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.placeholder}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.placeholder} {...formItemLayout}>
                   {getFieldDecorator('placeholder', {
+                    initialValue: selectedRow.placeholder,
                     rules: [{ required: true, message: '请输入占位符' }],
                   })(
-                    <Input placeholder="请输入请输入占位符string" />
+                    <Input placeholder="请输入占位符" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.defaultValue}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.defaultValue} {...formItemLayout}>
                   {getFieldDecorator('defaultValue', {
+                    initialValue: selectedRow.defaultValue,
                     rules: [{ required: true, message: '请输入默认值' }],
                   })(
-                    <Input placeholder="请输入请输入默认值string" />
+                    <Input placeholder="请输入默认值" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.description}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.description} {...formItemLayout}>
                   {getFieldDecorator('description', {
+                    initialValue: selectedRow.description,
                     rules: [{ required: true, message: '请输入描述' }],
                   })(
-                    <Input placeholder="请输入请输入描述string" />
+                    <Input placeholder="请输入描述" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.fieldGroup}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.fieldGroup} {...formItemLayout}>
                   {getFieldDecorator('fieldGroup', {
+                    initialValue: selectedRow.fieldGroup,
                     rules: [{ required: true, message: '请输入字段组' }],
                   })(
-                    <Input placeholder="请输入请输入字段组string" />
+                    <Input placeholder="请输入字段组" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.minValue}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.minValue} {...formItemLayout}>
                   {getFieldDecorator('minValue', {
+                    initialValue: selectedRow.minValue,
                     rules: [{ required: true, message: '请输入最小值' }],
                   })(
-                    <Input placeholder="请输入请输入最小值string" />
+                    <Input placeholder="请输入最小值" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.maxValue}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.maxValue} {...formItemLayout}>
                   {getFieldDecorator('maxValue', {
+                    initialValue: selectedRow.maxValue,
                     rules: [{ required: true, message: '请输入最大的价值' }],
                   })(
-                    <Input placeholder="请输入请输入最大的价值string" />
+                    <Input placeholder="请输入最大的价值" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.candidateValues}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.candidateValues} {...formItemLayout}>
                   {getFieldDecorator('candidateValues', {
+                    initialValue: selectedRow.candidateValues,
                     rules: [{ required: true, message: '请输入候选人的价值观' }],
                   })(
-                    <Input placeholder="请输入请输入候选人的价值观string" />
+                    <Input placeholder="请输入候选人的价值观" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.suggestValues}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.suggestValues} {...formItemLayout}>
                   {getFieldDecorator('suggestValues', {
+                    initialValue: selectedRow.suggestValues,
                     rules: [{ required: true, message: '请输入建议值' }],
                   })(
-                    <Input placeholder="请输入请输入建议值string" />
+                    <Input placeholder="请输入建议值" />
+                    
                   )}
                 </Form.Item>
               </Col>
@@ -402,13 +429,14 @@ class FormFieldUpdateForm extends Component {
         </Card>
         
         <Card title="设置" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.required}>
+              <Col lg={8} md={12} sm={24}>
+                <Form.Item label={fieldLabels.required} {...switchFormItemLayout}>
                   {getFieldDecorator('required', {
+                    initialValue: selectedRow.required,
                     rules: [{ required: true, message: '请输入要求' }],
                     valuePropName: 'checked'
                   })(
@@ -417,9 +445,10 @@ class FormFieldUpdateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.disabled}>
+              <Col lg={8} md={12} sm={24}>
+                <Form.Item label={fieldLabels.disabled} {...switchFormItemLayout}>
                   {getFieldDecorator('disabled', {
+                    initialValue: selectedRow.disabled,
                     rules: [{ required: true, message: '请输入禁用' }],
                     valuePropName: 'checked'
                   })(
@@ -428,9 +457,10 @@ class FormFieldUpdateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.customRendering}>
+              <Col lg={8} md={12} sm={24}>
+                <Form.Item label={fieldLabels.customRendering} {...switchFormItemLayout}>
                   {getFieldDecorator('customRendering', {
+                    initialValue: selectedRow.customRendering,
                     rules: [{ required: true, message: '请输入自定义渲染' }],
                     valuePropName: 'checked'
                   })(

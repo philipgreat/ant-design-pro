@@ -239,7 +239,8 @@ export default class ProvinceSearch extends PureComponent {
               <ProvinceSearchForm {...this.props} />
             </div>
             <div className={styles.tableListOperator}>
-              <Button icon="plus" type="primary" onClick={() => this.handleCreate()}>新建</Button>
+            <Button icon="plus" type="primary" onClick={() => this.handleCreate()}>新建</Button>
+             
               {partialList&&(
               <div className={styles.searchAlert}>
                 	<Alert message="下面显示最近更新结果，关闭显示全部" type="success" closable  afterClose={this.handleCloseAlert}/>

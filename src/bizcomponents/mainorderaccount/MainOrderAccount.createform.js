@@ -43,21 +43,21 @@ const testValues = {};
 const testValues = {
   vehicleLicensePlateNumber: '川A44W11',
   productName: '上线检测,二级维护，等级评定',
-  inspectionPrice: '196.12',
-  agentServicePrice: '121.66',
+  inspectionPrice: '161.07',
+  agentServicePrice: '165.93',
   city: '成都',
   vehicleType: '小轿车',
-  orderTotalAmount: '334.61',
-  orderPromotionDiscount: '8.81',
-  orderCouponDiscount: '8.55',
-  orderInsuranceAmount: '3.57',
+  orderTotalAmount: '367.53',
+  orderPromotionDiscount: '7.05',
+  orderCouponDiscount: '7.11',
+  orderInsuranceAmount: '4.40',
   orderMerchantDiscount: '$40.0',
-  orderCustomerPaymentAmount: '289.28',
-  orderServiceAmount: '76.15',
-  orderPlatformBalance: '16.84',
-  orderPlacedDatetime: '2997-12-13 01:53:45',
-  orderPaymentDatetime: '2996-01-25 00:36:52',
-  orderFinishedDatetime: '2996-02-02 13:37:01',
+  orderCustomerPaymentAmount: '342.58',
+  orderServiceAmount: '67.93',
+  orderPlatformBalance: '18.40',
+  orderPlacedDatetime: '2996-03-18 17:48:56',
+  orderPaymentDatetime: '2994-06-01 00:53:00',
+  orderFinishedDatetime: '2996-12-28 01:59:24',
   mainOrderId: 'O1234567890',
   wechatOrderId: '5K8264ILTKCH16CQ2502SI8ZNMTM67VS',
   wechatPrepayId: 'u802345jgfjsdfgsdg888',
@@ -238,6 +238,33 @@ class MainOrderAccountCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个年检订单对账单"
@@ -245,205 +272,205 @@ class MainOrderAccountCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehicleLicensePlateNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.vehicleLicensePlateNumber} {...formItemLayout}>
                   {getFieldDecorator('vehicleLicensePlateNumber', {
                     rules: [{ required: true, message: '请输入车牌号码' }],
                   })(
-                    <Input placeholder="请输入请输入车牌号码string" />
+                    <Input placeholder="请输入车牌号码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.productName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.productName} {...formItemLayout}>
                   {getFieldDecorator('productName', {
                     rules: [{ required: true, message: '请输入产品名称' }],
                   })(
-                    <Input placeholder="请输入请输入产品名称string" />
+                    <Input placeholder="请输入产品名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.inspectionPrice}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.inspectionPrice} {...formItemLayout}>
                   {getFieldDecorator('inspectionPrice', {
                     rules: [{ required: true, message: '请输入年检费用' }],
                   })(
-                    <Input placeholder="请输入请输入年检费用money" />
+                    <Input placeholder="请输入年检费用" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.agentServicePrice}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.agentServicePrice} {...formItemLayout}>
                   {getFieldDecorator('agentServicePrice', {
                     rules: [{ required: true, message: '请输入代办服务费用' }],
                   })(
-                    <Input placeholder="请输入请输入代办服务费用money" />
+                    <Input placeholder="请输入代办服务费用" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.city}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.city} {...formItemLayout}>
                   {getFieldDecorator('city', {
                     rules: [{ required: true, message: '请输入城市' }],
                   })(
-                    <Input placeholder="请输入请输入城市string" />
+                    <Input placeholder="请输入城市" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.vehicleType}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.vehicleType} {...formItemLayout}>
                   {getFieldDecorator('vehicleType', {
                     rules: [{ required: true, message: '请输入车辆类型' }],
                   })(
-                    <Input placeholder="请输入请输入车辆类型string" />
+                    <Input placeholder="请输入车辆类型" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.orderTotalAmount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderTotalAmount} {...formItemLayout}>
                   {getFieldDecorator('orderTotalAmount', {
                     rules: [{ required: true, message: '请输入订单总金额' }],
                   })(
-                    <Input placeholder="请输入请输入订单总金额money" />
+                    <Input placeholder="请输入订单总金额" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.orderPromotionDiscount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderPromotionDiscount} {...formItemLayout}>
                   {getFieldDecorator('orderPromotionDiscount', {
                     rules: [{ required: true, message: '请输入优惠折扣' }],
                   })(
-                    <Input placeholder="请输入请输入优惠折扣money" />
+                    <Input placeholder="请输入优惠折扣" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.orderCouponDiscount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderCouponDiscount} {...formItemLayout}>
                   {getFieldDecorator('orderCouponDiscount', {
                     rules: [{ required: true, message: '请输入优惠券折扣' }],
                   })(
-                    <Input placeholder="请输入请输入优惠券折扣money" />
+                    <Input placeholder="请输入优惠券折扣" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.orderInsuranceAmount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderInsuranceAmount} {...formItemLayout}>
                   {getFieldDecorator('orderInsuranceAmount', {
                     rules: [{ required: true, message: '请输入保单费用' }],
                   })(
-                    <Input placeholder="请输入请输入保单费用money" />
+                    <Input placeholder="请输入保单费用" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.orderMerchantDiscount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderMerchantDiscount} {...formItemLayout}>
                   {getFieldDecorator('orderMerchantDiscount', {
                     rules: [{ required: true, message: '请输入商户优惠' }],
                   })(
-                    <Input placeholder="请输入请输入商户优惠string" />
+                    <Input placeholder="请输入商户优惠" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.orderCustomerPaymentAmount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderCustomerPaymentAmount} {...formItemLayout}>
                   {getFieldDecorator('orderCustomerPaymentAmount', {
                     rules: [{ required: true, message: '请输入客户付款总金额' }],
                   })(
-                    <Input placeholder="请输入请输入客户付款总金额money" />
+                    <Input placeholder="请输入客户付款总金额" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.orderServiceAmount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderServiceAmount} {...formItemLayout}>
                   {getFieldDecorator('orderServiceAmount', {
                     rules: [{ required: true, message: '请输入商户服务费总金额' }],
                   })(
-                    <Input placeholder="请输入请输入商户服务费总金额money" />
+                    <Input placeholder="请输入商户服务费总金额" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.orderPlatformBalance}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderPlatformBalance} {...formItemLayout}>
                   {getFieldDecorator('orderPlatformBalance', {
                     rules: [{ required: true, message: '请输入平台结余总金额' }],
                   })(
-                    <Input placeholder="请输入请输入平台结余总金额money" />
+                    <Input placeholder="请输入平台结余总金额" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.orderPlacedDatetime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderPlacedDatetime} {...formItemLayout}>
                   {getFieldDecorator('orderPlacedDatetime', {
                     rules: [{ required: true, message: '请输入下单时间' }],
                   })(
-                    <Input placeholder="请输入请输入下单时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入下单时间" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.orderPaymentDatetime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderPaymentDatetime} {...formItemLayout}>
                   {getFieldDecorator('orderPaymentDatetime', {
                     rules: [{ required: true, message: '请输入付款时间' }],
                   })(
-                    <Input placeholder="请输入请输入付款时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入付款时间" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.orderFinishedDatetime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.orderFinishedDatetime} {...formItemLayout}>
                   {getFieldDecorator('orderFinishedDatetime', {
                     rules: [{ required: true, message: '请输入订单完成时间' }],
                   })(
-                    <Input placeholder="请输入请输入订单完成时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入订单完成时间" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mainOrderId}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mainOrderId} {...formItemLayout}>
                   {getFieldDecorator('mainOrderId', {
                     rules: [{ required: true, message: '请输入年检订单ID' }],
                   })(
-                    <Input placeholder="请输入请输入年检订单IDstring" />
+                    <Input placeholder="请输入年检订单ID" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.wechatOrderId}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.wechatOrderId} {...formItemLayout}>
                   {getFieldDecorator('wechatOrderId', {
                     rules: [{ required: true, message: '请输入微信订单ID' }],
                   })(
-                    <Input placeholder="请输入请输入微信订单IDstring" />
+                    <Input placeholder="请输入微信订单ID" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.wechatPrepayId}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.wechatPrepayId} {...formItemLayout}>
                   {getFieldDecorator('wechatPrepayId', {
                     rules: [{ required: true, message: '请输入微信预付订单ID' }],
                   })(
-                    <Input placeholder="请输入请输入微信预付订单IDstring" />
+                    <Input placeholder="请输入微信预付订单ID" />
                   )}
                 </Form.Item>
               </Col>
@@ -466,21 +493,24 @@ class MainOrderAccountCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.account}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.account} {...formItemLayout}>
                   {getFieldDecorator('accountId', {
+                  	initialValue: tryinit('account'),
                     rules: [{ required: true, message: '请输入对账单' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateAccountList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateAccountSearch}
                     placeholder="请输入对账单"
+                    
+                    disabled={!availableForEdit('account')}
                   >
                   {candidateAccountList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.description}(${item.id})`}</Option>);

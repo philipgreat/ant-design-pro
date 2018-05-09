@@ -24,8 +24,8 @@ const fieldLabels = {
 const testValues = {};
 /*
 const testValues = {
-  startDate: '2997-05-09',
-  endDate: '2996-07-30',
+  startDate: '2998-02-24',
+  endDate: '2999-06-25',
   platformId: 'CIP000001',
   companyId: 'VSC000001',
 }
@@ -238,6 +238,33 @@ class ContractCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个合同"
@@ -245,25 +272,25 @@ class ContractCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.startDate}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.startDate} {...formItemLayout}>
                   {getFieldDecorator('startDate', {
                     rules: [{ required: true, message: '请输入开始日期' }],
                   })(
-                    <Input placeholder="请输入请输入开始日期date" />
+                    <DatePicker format="YYYY-MM-DD" placeholder="请输入开始日期" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.endDate}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.endDate} {...formItemLayout}>
                   {getFieldDecorator('endDate', {
                     rules: [{ required: true, message: '请输入结束日期' }],
                   })(
-                    <Input placeholder="请输入请输入结束日期date" />
+                    <DatePicker format="YYYY-MM-DD" placeholder="请输入结束日期" />
                   )}
                 </Form.Item>
               </Col>
@@ -286,21 +313,24 @@ class ContractCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.platform}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.platform} {...formItemLayout}>
                   {getFieldDecorator('platformId', {
+                  	initialValue: tryinit('platform'),
                     rules: [{ required: true, message: '请输入平台' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidatePlatformList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidatePlatformSearch}
                     placeholder="请输入平台"
+                    
+                    disabled={!availableForEdit('platform')}
                   >
                   {candidatePlatformList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);
@@ -311,18 +341,21 @@ class ContractCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.company}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.company} {...formItemLayout}>
                   {getFieldDecorator('companyId', {
+                  	initialValue: tryinit('company'),
                     rules: [{ required: true, message: '请输入商户' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateCompanyList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateCompanySearch}
                     placeholder="请输入商户"
+                    
+                    disabled={!availableForEdit('company')}
                   >
                   {candidateCompanyList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.companyName}(${item.id})`}</Option>);

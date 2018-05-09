@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './Account.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -108,10 +108,9 @@ class AccountBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -160,7 +159,7 @@ class AccountBizApp extends React.PureComponent {
       searchFormParameters: state._account.serviceCompanyAccountSearchFormParameters,
       loading: state._account.loading,
       partialList: state._account.partialList,
-      owner: { type: '_account', id: state._account.id, listName: 'serviceCompanyAccountList', ref:state._account, listDisplayName: '服务商户对账单列表' }, // this is for model namespace and
+      owner: { type: '_account', id: state._account.id, referenceName: 'account', listName: 'serviceCompanyAccountList', ref:state._account, listDisplayName: '服务商户对账单列表' }, // this is for model namespace and
     }))(ServiceCompanyAccountSearch)
   }
   getServiceCompanyAccountCreateForm = () => {
@@ -172,7 +171,7 @@ class AccountBizApp extends React.PureComponent {
       currentPage: state._account.serviceCompanyAccountCurrentPageNumber,
       searchFormParameters: state._account.serviceCompanyAccountSearchFormParameters,
       loading: state._account.loading,
-      owner: { type: '_account', id: state._account.id, listName: 'serviceCompanyAccountList', ref:state._account, listDisplayName: '服务商户对账单列表'}, // this is for model namespace and
+      owner: { type: '_account', id: state._account.id, referenceName: 'account', listName: 'serviceCompanyAccountList', ref:state._account, listDisplayName: '服务商户对账单列表'}, // this is for model namespace and
     }))(ServiceCompanyAccountCreateForm)
   }
   
@@ -195,7 +194,7 @@ class AccountBizApp extends React.PureComponent {
       searchFormParameters: state._account.repairingCompanyAccountSearchFormParameters,
       loading: state._account.loading,
       partialList: state._account.partialList,
-      owner: { type: '_account', id: state._account.id, listName: 'repairingCompanyAccountList', ref:state._account, listDisplayName: '修理厂对账单列表' }, // this is for model namespace and
+      owner: { type: '_account', id: state._account.id, referenceName: 'account', listName: 'repairingCompanyAccountList', ref:state._account, listDisplayName: '修理厂对账单列表' }, // this is for model namespace and
     }))(RepairingCompanyAccountSearch)
   }
   getRepairingCompanyAccountCreateForm = () => {
@@ -207,7 +206,7 @@ class AccountBizApp extends React.PureComponent {
       currentPage: state._account.repairingCompanyAccountCurrentPageNumber,
       searchFormParameters: state._account.repairingCompanyAccountSearchFormParameters,
       loading: state._account.loading,
-      owner: { type: '_account', id: state._account.id, listName: 'repairingCompanyAccountList', ref:state._account, listDisplayName: '修理厂对账单列表'}, // this is for model namespace and
+      owner: { type: '_account', id: state._account.id, referenceName: 'account', listName: 'repairingCompanyAccountList', ref:state._account, listDisplayName: '修理厂对账单列表'}, // this is for model namespace and
     }))(RepairingCompanyAccountCreateForm)
   }
   
@@ -230,7 +229,7 @@ class AccountBizApp extends React.PureComponent {
       searchFormParameters: state._account.insuranceServiceAccountSearchFormParameters,
       loading: state._account.loading,
       partialList: state._account.partialList,
-      owner: { type: '_account', id: state._account.id, listName: 'insuranceServiceAccountList', ref:state._account, listDisplayName: '保险服务对账单列表' }, // this is for model namespace and
+      owner: { type: '_account', id: state._account.id, referenceName: 'account', listName: 'insuranceServiceAccountList', ref:state._account, listDisplayName: '保险服务对账单列表' }, // this is for model namespace and
     }))(InsuranceServiceAccountSearch)
   }
   getInsuranceServiceAccountCreateForm = () => {
@@ -242,7 +241,7 @@ class AccountBizApp extends React.PureComponent {
       currentPage: state._account.insuranceServiceAccountCurrentPageNumber,
       searchFormParameters: state._account.insuranceServiceAccountSearchFormParameters,
       loading: state._account.loading,
-      owner: { type: '_account', id: state._account.id, listName: 'insuranceServiceAccountList', ref:state._account, listDisplayName: '保险服务对账单列表'}, // this is for model namespace and
+      owner: { type: '_account', id: state._account.id, referenceName: 'account', listName: 'insuranceServiceAccountList', ref:state._account, listDisplayName: '保险服务对账单列表'}, // this is for model namespace and
     }))(InsuranceServiceAccountCreateForm)
   }
   
@@ -265,7 +264,7 @@ class AccountBizApp extends React.PureComponent {
       searchFormParameters: state._account.mainOrderAccountSearchFormParameters,
       loading: state._account.loading,
       partialList: state._account.partialList,
-      owner: { type: '_account', id: state._account.id, listName: 'mainOrderAccountList', ref:state._account, listDisplayName: '年检订单对账单列表' }, // this is for model namespace and
+      owner: { type: '_account', id: state._account.id, referenceName: 'account', listName: 'mainOrderAccountList', ref:state._account, listDisplayName: '年检订单对账单列表' }, // this is for model namespace and
     }))(MainOrderAccountSearch)
   }
   getMainOrderAccountCreateForm = () => {
@@ -277,7 +276,7 @@ class AccountBizApp extends React.PureComponent {
       currentPage: state._account.mainOrderAccountCurrentPageNumber,
       searchFormParameters: state._account.mainOrderAccountSearchFormParameters,
       loading: state._account.loading,
-      owner: { type: '_account', id: state._account.id, listName: 'mainOrderAccountList', ref:state._account, listDisplayName: '年检订单对账单列表'}, // this is for model namespace and
+      owner: { type: '_account', id: state._account.id, referenceName: 'account', listName: 'mainOrderAccountList', ref:state._account, listDisplayName: '年检订单对账单列表'}, // this is for model namespace and
     }))(MainOrderAccountCreateForm)
   }
   
@@ -300,7 +299,7 @@ class AccountBizApp extends React.PureComponent {
       searchFormParameters: state._account.inspectionStationAccountSearchFormParameters,
       loading: state._account.loading,
       partialList: state._account.partialList,
-      owner: { type: '_account', id: state._account.id, listName: 'inspectionStationAccountList', ref:state._account, listDisplayName: '检测站对账单列表' }, // this is for model namespace and
+      owner: { type: '_account', id: state._account.id, referenceName: 'account', listName: 'inspectionStationAccountList', ref:state._account, listDisplayName: '检测站对账单列表' }, // this is for model namespace and
     }))(InspectionStationAccountSearch)
   }
   getInspectionStationAccountCreateForm = () => {
@@ -312,7 +311,7 @@ class AccountBizApp extends React.PureComponent {
       currentPage: state._account.inspectionStationAccountCurrentPageNumber,
       searchFormParameters: state._account.inspectionStationAccountSearchFormParameters,
       loading: state._account.loading,
-      owner: { type: '_account', id: state._account.id, listName: 'inspectionStationAccountList', ref:state._account, listDisplayName: '检测站对账单列表'}, // this is for model namespace and
+      owner: { type: '_account', id: state._account.id, referenceName: 'account', listName: 'inspectionStationAccountList', ref:state._account, listDisplayName: '检测站对账单列表'}, // this is for model namespace and
     }))(InspectionStationAccountCreateForm)
   }
   
@@ -354,7 +353,9 @@ class AccountBizApp extends React.PureComponent {
      const {AccountEditDetail} = GlobalComponents
      const {AccountViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

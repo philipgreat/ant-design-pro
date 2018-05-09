@@ -43,10 +43,10 @@ const testValues = {};
 const testValues = {
   serviceStatus: '审核中',
   serviceSummary: '请处理车辆 {车牌号码} 上线检测事项',
-  startTime: '2994-07-28 05:02:41',
-  longitude: '105.3488555935885',
-  latitude: '31.45758352227694',
-  inspectionDatetime: '2994-05-16 22:42:16',
+  startTime: '2995-02-04 18:06:18',
+  longitude: '103.20070515955271',
+  latitude: '29.59798102074147',
+  inspectionDatetime: '2995-12-13 11:32:05',
   inspectionResult: '通过',
   inspectionNeedRepair: '送修',
   responsibleWorkerId: 'VSCE000001',
@@ -339,6 +339,33 @@ class ServiceVehicleInspectionCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个车辆上线检测"
@@ -346,85 +373,85 @@ class ServiceVehicleInspectionCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceStatus}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceStatus} {...formItemLayout}>
                   {getFieldDecorator('serviceStatus', {
                     rules: [{ required: true, message: '请输入服务状态' }],
                   })(
-                    <Input placeholder="请输入请输入服务状态string" />
+                    <Input placeholder="请输入服务状态" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceSummary}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceSummary} {...formItemLayout}>
                   {getFieldDecorator('serviceSummary', {
                     rules: [{ required: true, message: '请输入服务概述' }],
                   })(
-                    <Input placeholder="请输入请输入服务概述string" />
+                    <Input placeholder="请输入服务概述" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.startTime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.startTime} {...formItemLayout}>
                   {getFieldDecorator('startTime', {
                     rules: [{ required: true, message: '请输入开始时间' }],
                   })(
-                    <Input placeholder="请输入请输入开始时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入开始时间" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.longitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.longitude} {...formItemLayout}>
                   {getFieldDecorator('longitude', {
                     rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入经度double" />
+                    <Input placeholder="请输入经度" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.latitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude} {...formItemLayout}>
                   {getFieldDecorator('latitude', {
                     rules: [{ required: true, message: '请输入纬度' }],
                   })(
-                    <Input placeholder="请输入请输入纬度double" />
+                    <Input placeholder="请输入纬度" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.inspectionDatetime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.inspectionDatetime} {...formItemLayout}>
                   {getFieldDecorator('inspectionDatetime', {
                     rules: [{ required: true, message: '请输入检测日期' }],
                   })(
-                    <Input placeholder="请输入请输入检测日期date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入检测日期" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.inspectionResult}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.inspectionResult} {...formItemLayout}>
                   {getFieldDecorator('inspectionResult', {
                     rules: [{ required: true, message: '请输入检测结果' }],
                   })(
-                    <Input placeholder="请输入请输入检测结果string" />
+                    <Input placeholder="请输入检测结果" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.inspectionNeedRepair}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.inspectionNeedRepair} {...formItemLayout}>
                   {getFieldDecorator('inspectionNeedRepair', {
                     rules: [{ required: true, message: '请输入是否要修理' }],
                   })(
-                    <Input placeholder="请输入请输入是否要修理string" />
+                    <Input placeholder="请输入是否要修理" />
                   )}
                 </Form.Item>
               </Col>
@@ -445,7 +472,7 @@ class ServiceVehicleInspectionCreateForm extends Component {
 
 
         <Card title="附件" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
@@ -527,21 +554,24 @@ class ServiceVehicleInspectionCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.responsibleWorker}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.responsibleWorker} {...formItemLayout}>
                   {getFieldDecorator('responsibleWorkerId', {
+                  	initialValue: tryinit('responsibleWorker'),
                     rules: [{ required: true, message: '请输入服务人员' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateResponsibleWorkerList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateResponsibleWorkerSearch}
                     placeholder="请输入服务人员"
+                    
+                    disabled={!availableForEdit('responsibleWorker')}
                   >
                   {candidateResponsibleWorkerList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.employeeName}(${item.id})`}</Option>);
@@ -552,18 +582,21 @@ class ServiceVehicleInspectionCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.inspectionStation}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.inspectionStation} {...formItemLayout}>
                   {getFieldDecorator('inspectionStationId', {
+                  	initialValue: tryinit('inspectionStation'),
                     rules: [{ required: true, message: '请输入检测站' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateInspectionStationList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateInspectionStationSearch}
                     placeholder="请输入检测站"
+                    
+                    disabled={!availableForEdit('inspectionStation')}
                   >
                   {candidateInspectionStationList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);
@@ -574,18 +607,21 @@ class ServiceVehicleInspectionCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.merchant}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.merchant} {...formItemLayout}>
                   {getFieldDecorator('merchantId', {
+                  	initialValue: tryinit('merchant'),
                     rules: [{ required: true, message: '请输入商户' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateMerchantList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateMerchantSearch}
                     placeholder="请输入商户"
+                    
+                    disabled={!availableForEdit('merchant')}
                   >
                   {candidateMerchantList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.companyName}(${item.id})`}</Option>);
@@ -596,18 +632,21 @@ class ServiceVehicleInspectionCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mainOrder}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mainOrder} {...formItemLayout}>
                   {getFieldDecorator('mainOrderId', {
+                  	initialValue: tryinit('mainOrder'),
                     rules: [{ required: true, message: '请输入年检订单' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateMainOrderList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateMainOrderSearch}
                     placeholder="请输入年检订单"
+                    
+                    disabled={!availableForEdit('mainOrder')}
                   >
                   {candidateMainOrderList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.orderStatus}(${item.id})`}</Option>);

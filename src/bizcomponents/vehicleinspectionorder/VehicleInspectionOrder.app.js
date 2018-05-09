@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './VehicleInspectionOrder.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -122,10 +122,9 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -174,7 +173,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionInsuranceOrderSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionInsuranceOrderList', ref:state._vehicleInspectionOrder, listDisplayName: '车辆上线检测保险订单列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'vehicleInspectionInsuranceOrderList', ref:state._vehicleInspectionOrder, listDisplayName: '车辆上线检测保险订单列表' }, // this is for model namespace and
     }))(VehicleInspectionInsuranceOrderSearch)
   }
   getVehicleInspectionInsuranceOrderCreateForm = () => {
@@ -186,7 +185,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionInsuranceOrderCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionInsuranceOrderSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionInsuranceOrderList', ref:state._vehicleInspectionOrder, listDisplayName: '车辆上线检测保险订单列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'vehicleInspectionInsuranceOrderList', ref:state._vehicleInspectionOrder, listDisplayName: '车辆上线检测保险订单列表'}, // this is for model namespace and
     }))(VehicleInspectionInsuranceOrderCreateForm)
   }
   
@@ -209,7 +208,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderChargeSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderChargeList', ref:state._vehicleInspectionOrder, listDisplayName: '车辆检验订单费用列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'vehicleInspectionOrderChargeList', ref:state._vehicleInspectionOrder, listDisplayName: '车辆检验订单费用列表' }, // this is for model namespace and
     }))(VehicleInspectionOrderChargeSearch)
   }
   getVehicleInspectionOrderChargeCreateForm = () => {
@@ -221,7 +220,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderChargeCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderChargeSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderChargeList', ref:state._vehicleInspectionOrder, listDisplayName: '车辆检验订单费用列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'vehicleInspectionOrderChargeList', ref:state._vehicleInspectionOrder, listDisplayName: '车辆检验订单费用列表'}, // this is for model namespace and
     }))(VehicleInspectionOrderChargeCreateForm)
   }
   
@@ -244,7 +243,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderServiceLogSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderServiceLogList', ref:state._vehicleInspectionOrder, listDisplayName: '年检订单执行日志列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'vehicleInspectionOrderServiceLogList', ref:state._vehicleInspectionOrder, listDisplayName: '年检订单执行日志列表' }, // this is for model namespace and
     }))(VehicleInspectionOrderServiceLogSearch)
   }
   getVehicleInspectionOrderServiceLogCreateForm = () => {
@@ -256,7 +255,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderServiceLogCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderServiceLogSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderServiceLogList', ref:state._vehicleInspectionOrder, listDisplayName: '年检订单执行日志列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'vehicleInspectionOrderServiceLogList', ref:state._vehicleInspectionOrder, listDisplayName: '年检订单执行日志列表'}, // this is for model namespace and
     }))(VehicleInspectionOrderServiceLogCreateForm)
   }
   
@@ -279,7 +278,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderPaymentSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderPaymentList', ref:state._vehicleInspectionOrder, listDisplayName: '年检订单支付列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'vehicleInspectionOrderPaymentList', ref:state._vehicleInspectionOrder, listDisplayName: '年检订单支付列表' }, // this is for model namespace and
     }))(VehicleInspectionOrderPaymentSearch)
   }
   getVehicleInspectionOrderPaymentCreateForm = () => {
@@ -291,7 +290,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderPaymentCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderPaymentSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderPaymentList', ref:state._vehicleInspectionOrder, listDisplayName: '年检订单支付列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'vehicleInspectionOrderPaymentList', ref:state._vehicleInspectionOrder, listDisplayName: '年检订单支付列表'}, // this is for model namespace and
     }))(VehicleInspectionOrderPaymentCreateForm)
   }
   
@@ -314,7 +313,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.handOverChecklistItemSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'handOverChecklistItemList', ref:state._vehicleInspectionOrder, listDisplayName: '交接检查项列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'handOverChecklistItemList', ref:state._vehicleInspectionOrder, listDisplayName: '交接检查项列表' }, // this is for model namespace and
     }))(HandOverChecklistItemSearch)
   }
   getHandOverChecklistItemCreateForm = () => {
@@ -326,7 +325,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.handOverChecklistItemCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.handOverChecklistItemSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'handOverChecklistItemList', ref:state._vehicleInspectionOrder, listDisplayName: '交接检查项列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'handOverChecklistItemList', ref:state._vehicleInspectionOrder, listDisplayName: '交接检查项列表'}, // this is for model namespace and
     }))(HandOverChecklistItemCreateForm)
   }
   
@@ -349,7 +348,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleMovementC2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementC2mList', ref:state._vehicleInspectionOrder, listDisplayName: '收车服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceVehicleMovementC2mList', ref:state._vehicleInspectionOrder, listDisplayName: '收车服务列表' }, // this is for model namespace and
     }))(ServiceVehicleMovementC2mSearch)
   }
   getServiceVehicleMovementC2mCreateForm = () => {
@@ -361,7 +360,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleMovementC2mCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleMovementC2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementC2mList', ref:state._vehicleInspectionOrder, listDisplayName: '收车服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceVehicleMovementC2mList', ref:state._vehicleInspectionOrder, listDisplayName: '收车服务列表'}, // this is for model namespace and
     }))(ServiceVehicleMovementC2mCreateForm)
   }
   
@@ -384,7 +383,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleMovementM2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementM2mList', ref:state._vehicleInspectionOrder, listDisplayName: '移车服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceVehicleMovementM2mList', ref:state._vehicleInspectionOrder, listDisplayName: '移车服务列表' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2mSearch)
   }
   getServiceVehicleMovementM2mCreateForm = () => {
@@ -396,7 +395,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleMovementM2mCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleMovementM2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementM2mList', ref:state._vehicleInspectionOrder, listDisplayName: '移车服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceVehicleMovementM2mList', ref:state._vehicleInspectionOrder, listDisplayName: '移车服务列表'}, // this is for model namespace and
     }))(ServiceVehicleMovementM2mCreateForm)
   }
   
@@ -419,7 +418,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleMovementM2cSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementM2cList', ref:state._vehicleInspectionOrder, listDisplayName: '还车服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceVehicleMovementM2cList', ref:state._vehicleInspectionOrder, listDisplayName: '还车服务列表' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2cSearch)
   }
   getServiceVehicleMovementM2cCreateForm = () => {
@@ -431,7 +430,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleMovementM2cCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleMovementM2cSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleMovementM2cList', ref:state._vehicleInspectionOrder, listDisplayName: '还车服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceVehicleMovementM2cList', ref:state._vehicleInspectionOrder, listDisplayName: '还车服务列表'}, // this is for model namespace and
     }))(ServiceVehicleMovementM2cCreateForm)
   }
   
@@ -454,7 +453,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.serviceFileMovementC2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementC2mList', ref:state._vehicleInspectionOrder, listDisplayName: '收件服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceFileMovementC2mList', ref:state._vehicleInspectionOrder, listDisplayName: '收件服务列表' }, // this is for model namespace and
     }))(ServiceFileMovementC2mSearch)
   }
   getServiceFileMovementC2mCreateForm = () => {
@@ -466,7 +465,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceFileMovementC2mCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceFileMovementC2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementC2mList', ref:state._vehicleInspectionOrder, listDisplayName: '收件服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceFileMovementC2mList', ref:state._vehicleInspectionOrder, listDisplayName: '收件服务列表'}, // this is for model namespace and
     }))(ServiceFileMovementC2mCreateForm)
   }
   
@@ -489,7 +488,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.serviceFileMovementM2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementM2mList', ref:state._vehicleInspectionOrder, listDisplayName: '移件服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceFileMovementM2mList', ref:state._vehicleInspectionOrder, listDisplayName: '移件服务列表' }, // this is for model namespace and
     }))(ServiceFileMovementM2mSearch)
   }
   getServiceFileMovementM2mCreateForm = () => {
@@ -501,7 +500,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceFileMovementM2mCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceFileMovementM2mSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementM2mList', ref:state._vehicleInspectionOrder, listDisplayName: '移件服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceFileMovementM2mList', ref:state._vehicleInspectionOrder, listDisplayName: '移件服务列表'}, // this is for model namespace and
     }))(ServiceFileMovementM2mCreateForm)
   }
   
@@ -524,7 +523,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.serviceFileMovementM2cSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementM2cList', ref:state._vehicleInspectionOrder, listDisplayName: '还件服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceFileMovementM2cList', ref:state._vehicleInspectionOrder, listDisplayName: '还件服务列表' }, // this is for model namespace and
     }))(ServiceFileMovementM2cSearch)
   }
   getServiceFileMovementM2cCreateForm = () => {
@@ -536,7 +535,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceFileMovementM2cCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceFileMovementM2cSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileMovementM2cList', ref:state._vehicleInspectionOrder, listDisplayName: '还件服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceFileMovementM2cList', ref:state._vehicleInspectionOrder, listDisplayName: '还件服务列表'}, // this is for model namespace and
     }))(ServiceFileMovementM2cCreateForm)
   }
   
@@ -559,7 +558,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.serviceInsuranceForInspectionSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceInsuranceForInspectionList', ref:state._vehicleInspectionOrder, listDisplayName: '保险服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceInsuranceForInspectionList', ref:state._vehicleInspectionOrder, listDisplayName: '保险服务列表' }, // this is for model namespace and
     }))(ServiceInsuranceForInspectionSearch)
   }
   getServiceInsuranceForInspectionCreateForm = () => {
@@ -571,7 +570,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceInsuranceForInspectionCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceInsuranceForInspectionSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceInsuranceForInspectionList', ref:state._vehicleInspectionOrder, listDisplayName: '保险服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceInsuranceForInspectionList', ref:state._vehicleInspectionOrder, listDisplayName: '保险服务列表'}, // this is for model namespace and
     }))(ServiceInsuranceForInspectionCreateForm)
   }
   
@@ -594,7 +593,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleInspectionSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleInspectionList', ref:state._vehicleInspectionOrder, listDisplayName: '车辆上线检测列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceVehicleInspectionList', ref:state._vehicleInspectionOrder, listDisplayName: '车辆上线检测列表' }, // this is for model namespace and
     }))(ServiceVehicleInspectionSearch)
   }
   getServiceVehicleInspectionCreateForm = () => {
@@ -606,7 +605,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleInspectionCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleInspectionSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleInspectionList', ref:state._vehicleInspectionOrder, listDisplayName: '车辆上线检测列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceVehicleInspectionList', ref:state._vehicleInspectionOrder, listDisplayName: '车辆上线检测列表'}, // this is for model namespace and
     }))(ServiceVehicleInspectionCreateForm)
   }
   
@@ -629,7 +628,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.serviceFileInspectionSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileInspectionList', ref:state._vehicleInspectionOrder, listDisplayName: '6年免检服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceFileInspectionList', ref:state._vehicleInspectionOrder, listDisplayName: '6年免检服务列表' }, // this is for model namespace and
     }))(ServiceFileInspectionSearch)
   }
   getServiceFileInspectionCreateForm = () => {
@@ -641,7 +640,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceFileInspectionCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceFileInspectionSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceFileInspectionList', ref:state._vehicleInspectionOrder, listDisplayName: '6年免检服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceFileInspectionList', ref:state._vehicleInspectionOrder, listDisplayName: '6年免检服务列表'}, // this is for model namespace and
     }))(ServiceFileInspectionCreateForm)
   }
   
@@ -664,7 +663,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleRepairingSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleRepairingList', ref:state._vehicleInspectionOrder, listDisplayName: '维修服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceVehicleRepairingList', ref:state._vehicleInspectionOrder, listDisplayName: '维修服务列表' }, // this is for model namespace and
     }))(ServiceVehicleRepairingSearch)
   }
   getServiceVehicleRepairingCreateForm = () => {
@@ -676,7 +675,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.serviceVehicleRepairingCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.serviceVehicleRepairingSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'serviceVehicleRepairingList', ref:state._vehicleInspectionOrder, listDisplayName: '维修服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'serviceVehicleRepairingList', ref:state._vehicleInspectionOrder, listDisplayName: '维修服务列表'}, // this is for model namespace and
     }))(ServiceVehicleRepairingCreateForm)
   }
   
@@ -699,7 +698,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.orderReviewResultSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'orderReviewResultList', ref:state._vehicleInspectionOrder, listDisplayName: '订单评论结果列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'orderReviewResultList', ref:state._vehicleInspectionOrder, listDisplayName: '订单评论结果列表' }, // this is for model namespace and
     }))(OrderReviewResultSearch)
   }
   getOrderReviewResultCreateForm = () => {
@@ -711,7 +710,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.orderReviewResultCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.orderReviewResultSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'orderReviewResultList', ref:state._vehicleInspectionOrder, listDisplayName: '订单评论结果列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'orderReviewResultList', ref:state._vehicleInspectionOrder, listDisplayName: '订单评论结果列表'}, // this is for model namespace and
     }))(OrderReviewResultCreateForm)
   }
   
@@ -734,7 +733,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.orderRatingResultSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'orderRatingResultList', ref:state._vehicleInspectionOrder, listDisplayName: '订单评分结果列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'orderRatingResultList', ref:state._vehicleInspectionOrder, listDisplayName: '订单评分结果列表' }, // this is for model namespace and
     }))(OrderRatingResultSearch)
   }
   getOrderRatingResultCreateForm = () => {
@@ -746,7 +745,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.orderRatingResultCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.orderRatingResultSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'orderRatingResultList', ref:state._vehicleInspectionOrder, listDisplayName: '订单评分结果列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'orderRatingResultList', ref:state._vehicleInspectionOrder, listDisplayName: '订单评分结果列表'}, // this is for model namespace and
     }))(OrderRatingResultCreateForm)
   }
   
@@ -769,7 +768,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.orderDiscountCouponSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'orderDiscountCouponList', ref:state._vehicleInspectionOrder, listDisplayName: '优惠券列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'orderDiscountCouponList', ref:state._vehicleInspectionOrder, listDisplayName: '优惠券列表' }, // this is for model namespace and
     }))(OrderDiscountCouponSearch)
   }
   getOrderDiscountCouponCreateForm = () => {
@@ -781,7 +780,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.orderDiscountCouponCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.orderDiscountCouponSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'orderDiscountCouponList', ref:state._vehicleInspectionOrder, listDisplayName: '优惠券列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'orderDiscountCouponList', ref:state._vehicleInspectionOrder, listDisplayName: '优惠券列表'}, // this is for model namespace and
     }))(OrderDiscountCouponCreateForm)
   }
   
@@ -804,7 +803,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderCouponSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
       partialList: state._vehicleInspectionOrder.partialList,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderCouponList', ref:state._vehicleInspectionOrder, listDisplayName: '优惠券使用记录列表' }, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'vehicleInspectionOrderCouponList', ref:state._vehicleInspectionOrder, listDisplayName: '优惠券使用记录列表' }, // this is for model namespace and
     }))(VehicleInspectionOrderCouponSearch)
   }
   getVehicleInspectionOrderCouponCreateForm = () => {
@@ -816,7 +815,7 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
       currentPage: state._vehicleInspectionOrder.vehicleInspectionOrderCouponCurrentPageNumber,
       searchFormParameters: state._vehicleInspectionOrder.vehicleInspectionOrderCouponSearchFormParameters,
       loading: state._vehicleInspectionOrder.loading,
-      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, listName: 'vehicleInspectionOrderCouponList', ref:state._vehicleInspectionOrder, listDisplayName: '优惠券使用记录列表'}, // this is for model namespace and
+      owner: { type: '_vehicleInspectionOrder', id: state._vehicleInspectionOrder.id, referenceName: 'mainOrder', listName: 'vehicleInspectionOrderCouponList', ref:state._vehicleInspectionOrder, listDisplayName: '优惠券使用记录列表'}, // this is for model namespace and
     }))(VehicleInspectionOrderCouponCreateForm)
   }
   
@@ -858,7 +857,9 @@ class VehicleInspectionOrderBizApp extends React.PureComponent {
      const {VehicleInspectionOrderEditDetail} = GlobalComponents
      const {VehicleInspectionOrderViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

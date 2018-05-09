@@ -30,7 +30,7 @@ const testValues = {};
 const testValues = {
   holderName: '李立国',
   licenseNumber: 'A123123102312312',
-  expirationDate: '2996-02-04',
+  expirationDate: '2998-09-06',
 }
 */
 const imageURLPrefix = '//localhost:2090'
@@ -178,6 +178,33 @@ class VehiclePermitCreateForm extends Component {
     
 
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个行驶证"
@@ -185,35 +212,35 @@ class VehiclePermitCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.holderName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.holderName} {...formItemLayout}>
                   {getFieldDecorator('holderName', {
                     rules: [{ required: true, message: '请输入姓名' }],
                   })(
-                    <Input placeholder="请输入请输入姓名string" />
+                    <Input placeholder="请输入姓名" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.licenseNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.licenseNumber} {...formItemLayout}>
                   {getFieldDecorator('licenseNumber', {
                     rules: [{ required: true, message: '请输入驾驶证号码' }],
                   })(
-                    <Input placeholder="请输入请输入驾驶证号码string" />
+                    <Input placeholder="请输入驾驶证号码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.expirationDate}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.expirationDate} {...formItemLayout}>
                   {getFieldDecorator('expirationDate', {
                     rules: [{ required: true, message: '请输入有效期至' }],
                   })(
-                    <Input placeholder="请输入请输入有效期至date" />
+                    <DatePicker format="YYYY-MM-DD" placeholder="请输入有效期至" />
                   )}
                 </Form.Item>
               </Col>
@@ -234,7 +261,7 @@ class VehiclePermitCreateForm extends Component {
 
 
         <Card title="附件" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>

@@ -26,7 +26,7 @@ const testValues = {};
 const testValues = {
   title: '提前下单优惠',
   code: 'INSPECTION',
-  amount: '96221.47',
+  amount: '94999.91',
   mainOrderId: 'VIO000001',
 }
 */
@@ -204,6 +204,33 @@ class VehicleInspectionOrderChargeCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个车辆检验订单费用"
@@ -211,35 +238,35 @@ class VehicleInspectionOrderChargeCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.title}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.title} {...formItemLayout}>
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: '请输入标题' }],
                   })(
-                    <Input placeholder="请输入请输入标题string" />
+                    <Input placeholder="请输入标题" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.code}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.code} {...formItemLayout}>
                   {getFieldDecorator('code', {
                     rules: [{ required: true, message: '请输入代码' }],
                   })(
-                    <Input placeholder="请输入请输入代码string" />
+                    <Input placeholder="请输入代码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.amount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.amount} {...formItemLayout}>
                   {getFieldDecorator('amount', {
                     rules: [{ required: true, message: '请输入量' }],
                   })(
-                    <Input placeholder="请输入请输入量money" />
+                    <Input placeholder="请输入量" />
                   )}
                 </Form.Item>
               </Col>
@@ -262,21 +289,24 @@ class VehicleInspectionOrderChargeCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mainOrder}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mainOrder} {...formItemLayout}>
                   {getFieldDecorator('mainOrderId', {
+                  	initialValue: tryinit('mainOrder'),
                     rules: [{ required: true, message: '请输入年检订单' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateMainOrderList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateMainOrderSearch}
                     placeholder="请输入年检订单"
+                    
+                    disabled={!availableForEdit('mainOrder')}
                   >
                   {candidateMainOrderList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.orderStatus}(${item.id})`}</Option>);

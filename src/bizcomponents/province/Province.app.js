@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './Province.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -104,10 +104,9 @@ class ProvinceBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -156,7 +155,7 @@ class ProvinceBizApp extends React.PureComponent {
       searchFormParameters: state._province.citySearchFormParameters,
       loading: state._province.loading,
       partialList: state._province.partialList,
-      owner: { type: '_province', id: state._province.id, listName: 'cityList', ref:state._province, listDisplayName: '城市列表' }, // this is for model namespace and
+      owner: { type: '_province', id: state._province.id, referenceName: 'province', listName: 'cityList', ref:state._province, listDisplayName: '城市列表' }, // this is for model namespace and
     }))(CitySearch)
   }
   getCityCreateForm = () => {
@@ -168,7 +167,7 @@ class ProvinceBizApp extends React.PureComponent {
       currentPage: state._province.cityCurrentPageNumber,
       searchFormParameters: state._province.citySearchFormParameters,
       loading: state._province.loading,
-      owner: { type: '_province', id: state._province.id, listName: 'cityList', ref:state._province, listDisplayName: '城市列表'}, // this is for model namespace and
+      owner: { type: '_province', id: state._province.id, referenceName: 'province', listName: 'cityList', ref:state._province, listDisplayName: '城市列表'}, // this is for model namespace and
     }))(CityCreateForm)
   }
   
@@ -210,7 +209,9 @@ class ProvinceBizApp extends React.PureComponent {
      const {ProvinceEditDetail} = GlobalComponents
      const {ProvinceViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

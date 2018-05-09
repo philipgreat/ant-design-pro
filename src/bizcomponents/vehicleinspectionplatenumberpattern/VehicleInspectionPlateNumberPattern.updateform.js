@@ -45,15 +45,7 @@ class VehicleInspectionPlateNumberPatternUpdateForm extends Component {
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
-    // const { getFieldDecorator, setFieldsValue } = this.props.form
-    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow()
-    if (!selectedRow) {
-      return
-    }
-    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
@@ -152,7 +144,7 @@ class VehicleInspectionPlateNumberPatternUpdateForm extends Component {
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
         })
-        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        //setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateVehicleInspectionPlateNumberPattern`,
@@ -240,8 +232,17 @@ class VehicleInspectionPlateNumberPatternUpdateForm extends Component {
     if (!selectedRows) {
       return (<div>缺少被更新的对象</div>)
     }
+	const selectedRow = this.getSelectedRow()
 
-    // TODO
+	const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
+
     return (
       <PageHeaderLayout
         title={"更新上线检测支持的车牌号码类别"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -249,26 +250,30 @@ class VehicleInspectionPlateNumberPatternUpdateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.id}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
+                    initialValue: selectedRow.id,
                     rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入ID" disabled/>
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.plateNumberPattern}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.plateNumberPattern} {...formItemLayout}>
                   {getFieldDecorator('plateNumberPattern', {
+                    initialValue: selectedRow.plateNumberPattern,
                     rules: [{ required: true, message: '请输入车牌号类别' }],
                   })(
-                    <Input placeholder="请输入请输入车牌号类别string" />
+                    <Input placeholder="请输入车牌号类别" />
+                    
                   )}
                 </Form.Item>
               </Col>

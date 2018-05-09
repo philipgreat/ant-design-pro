@@ -27,7 +27,7 @@ const testValues = {};
 const testValues = {
   insuranceName: '基本保险',
   insuranceVendor: '太平洋财产保险',
-  insurancePrice: '3.54',
+  insurancePrice: '4.17',
   summary: '除了基本保险，还可以购买额外保险',
   productId: 'AP000001',
 }
@@ -206,6 +206,33 @@ class AvailableInsuranceCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个车辆代办保险"
@@ -213,45 +240,45 @@ class AvailableInsuranceCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceName} {...formItemLayout}>
                   {getFieldDecorator('insuranceName', {
                     rules: [{ required: true, message: '请输入保险名称' }],
                   })(
-                    <Input placeholder="请输入请输入保险名称string" />
+                    <Input placeholder="请输入保险名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insuranceVendor}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insuranceVendor} {...formItemLayout}>
                   {getFieldDecorator('insuranceVendor', {
                     rules: [{ required: true, message: '请输入承保方' }],
                   })(
-                    <Input placeholder="请输入请输入承保方string" />
+                    <Input placeholder="请输入承保方" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.insurancePrice}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.insurancePrice} {...formItemLayout}>
                   {getFieldDecorator('insurancePrice', {
                     rules: [{ required: true, message: '请输入保费' }],
                   })(
-                    <Input placeholder="请输入请输入保费money" />
+                    <Input placeholder="请输入保费" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.summary}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.summary} {...formItemLayout}>
                   {getFieldDecorator('summary', {
                     rules: [{ required: true, message: '请输入摘要' }],
                   })(
-                    <Input placeholder="请输入请输入摘要string" />
+                    <Input placeholder="请输入摘要" />
                   )}
                 </Form.Item>
               </Col>
@@ -274,21 +301,24 @@ class AvailableInsuranceCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.product}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.product} {...formItemLayout}>
                   {getFieldDecorator('productId', {
+                  	initialValue: tryinit('product'),
                     rules: [{ required: true, message: '请输入产品名称' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateProductList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateProductSearch}
                     placeholder="请输入产品名称"
+                    
+                    disabled={!availableForEdit('product')}
                   >
                   {candidateProductList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.productName}(${item.id})`}</Option>);

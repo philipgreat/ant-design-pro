@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './VehicleServiceCompanyEmployee.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -124,10 +124,9 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -176,7 +175,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceOrderFilterSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceOrderFilterList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '服务单状态类型列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'employee', listName: 'serviceOrderFilterList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '服务单状态类型列表' }, // this is for model namespace and
     }))(ServiceOrderFilterSearch)
   }
   getServiceOrderFilterCreateForm = () => {
@@ -188,7 +187,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceOrderFilterCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceOrderFilterSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceOrderFilterList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '服务单状态类型列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'employee', listName: 'serviceOrderFilterList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '服务单状态类型列表'}, // this is for model namespace and
     }))(ServiceOrderFilterCreateForm)
   }
   
@@ -211,7 +210,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.employeeDrivingLicenseSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'employeeDrivingLicenseList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '员工驾驶证列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'employee', listName: 'employeeDrivingLicenseList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '员工驾驶证列表' }, // this is for model namespace and
     }))(EmployeeDrivingLicenseSearch)
   }
   getEmployeeDrivingLicenseCreateForm = () => {
@@ -223,7 +222,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.employeeDrivingLicenseCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.employeeDrivingLicenseSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'employeeDrivingLicenseList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '员工驾驶证列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'employee', listName: 'employeeDrivingLicenseList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '员工驾驶证列表'}, // this is for model namespace and
     }))(EmployeeDrivingLicenseCreateForm)
   }
   
@@ -246,7 +245,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.vehicleInspectionOrderServiceLogSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'vehicleInspectionOrderServiceLogList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '年检订单执行日志列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'vehicleInspectionOrderServiceLogList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '年检订单执行日志列表' }, // this is for model namespace and
     }))(VehicleInspectionOrderServiceLogSearch)
   }
   getVehicleInspectionOrderServiceLogCreateForm = () => {
@@ -258,7 +257,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.vehicleInspectionOrderServiceLogCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.vehicleInspectionOrderServiceLogSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'vehicleInspectionOrderServiceLogList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '年检订单执行日志列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'vehicleInspectionOrderServiceLogList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '年检订单执行日志列表'}, // this is for model namespace and
     }))(VehicleInspectionOrderServiceLogCreateForm)
   }
   
@@ -281,7 +280,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleMovementC2mSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleMovementC2mList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '收车服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceVehicleMovementC2mList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '收车服务列表' }, // this is for model namespace and
     }))(ServiceVehicleMovementC2mSearch)
   }
   getServiceVehicleMovementC2mCreateForm = () => {
@@ -293,7 +292,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceVehicleMovementC2mCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleMovementC2mSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleMovementC2mList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '收车服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceVehicleMovementC2mList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '收车服务列表'}, // this is for model namespace and
     }))(ServiceVehicleMovementC2mCreateForm)
   }
   
@@ -316,7 +315,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleMovementM2mAsResponsibleWorkerSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleMovementM2mListAsResponsibleWorker', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移车服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceVehicleMovementM2mListAsResponsibleWorker', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移车服务列表' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2mSearch)
   }
   getServiceVehicleMovementM2mAsResponsibleWorkerCreateForm = () => {
@@ -328,7 +327,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceVehicleMovementM2mAsResponsibleWorkerCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleMovementM2mAsResponsibleWorkerSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleMovementM2mListAsResponsibleWorker', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移车服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceVehicleMovementM2mListAsResponsibleWorker', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移车服务列表'}, // this is for model namespace and
     }))(ServiceVehicleMovementM2mCreateForm)
   }
   
@@ -351,7 +350,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleMovementM2mAsDriverSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleMovementM2mListAsDriver', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移车服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'driver', listName: 'serviceVehicleMovementM2mListAsDriver', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移车服务列表' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2mSearch)
   }
   getServiceVehicleMovementM2mAsDriverCreateForm = () => {
@@ -363,7 +362,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceVehicleMovementM2mAsDriverCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleMovementM2mAsDriverSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleMovementM2mListAsDriver', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移车服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'driver', listName: 'serviceVehicleMovementM2mListAsDriver', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移车服务列表'}, // this is for model namespace and
     }))(ServiceVehicleMovementM2mCreateForm)
   }
   
@@ -386,7 +385,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleMovementM2mAsReceiverSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleMovementM2mListAsReceiver', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移车服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'receiver', listName: 'serviceVehicleMovementM2mListAsReceiver', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移车服务列表' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2mSearch)
   }
   getServiceVehicleMovementM2mAsReceiverCreateForm = () => {
@@ -398,7 +397,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceVehicleMovementM2mAsReceiverCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleMovementM2mAsReceiverSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleMovementM2mListAsReceiver', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移车服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'receiver', listName: 'serviceVehicleMovementM2mListAsReceiver', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移车服务列表'}, // this is for model namespace and
     }))(ServiceVehicleMovementM2mCreateForm)
   }
   
@@ -421,7 +420,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleMovementM2cSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleMovementM2cList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '还车服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceVehicleMovementM2cList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '还车服务列表' }, // this is for model namespace and
     }))(ServiceVehicleMovementM2cSearch)
   }
   getServiceVehicleMovementM2cCreateForm = () => {
@@ -433,7 +432,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceVehicleMovementM2cCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleMovementM2cSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleMovementM2cList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '还车服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceVehicleMovementM2cList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '还车服务列表'}, // this is for model namespace and
     }))(ServiceVehicleMovementM2cCreateForm)
   }
   
@@ -456,7 +455,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceFileMovementC2mSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceFileMovementC2mList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '收件服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceFileMovementC2mList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '收件服务列表' }, // this is for model namespace and
     }))(ServiceFileMovementC2mSearch)
   }
   getServiceFileMovementC2mCreateForm = () => {
@@ -468,7 +467,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceFileMovementC2mCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceFileMovementC2mSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceFileMovementC2mList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '收件服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceFileMovementC2mList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '收件服务列表'}, // this is for model namespace and
     }))(ServiceFileMovementC2mCreateForm)
   }
   
@@ -491,7 +490,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceFileMovementM2mAsResponsibleWorkerSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceFileMovementM2mListAsResponsibleWorker', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移件服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceFileMovementM2mListAsResponsibleWorker', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移件服务列表' }, // this is for model namespace and
     }))(ServiceFileMovementM2mSearch)
   }
   getServiceFileMovementM2mAsResponsibleWorkerCreateForm = () => {
@@ -503,7 +502,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceFileMovementM2mAsResponsibleWorkerCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceFileMovementM2mAsResponsibleWorkerSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceFileMovementM2mListAsResponsibleWorker', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移件服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceFileMovementM2mListAsResponsibleWorker', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移件服务列表'}, // this is for model namespace and
     }))(ServiceFileMovementM2mCreateForm)
   }
   
@@ -526,7 +525,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceFileMovementM2mAsSenderSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceFileMovementM2mListAsSender', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移件服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'sender', listName: 'serviceFileMovementM2mListAsSender', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移件服务列表' }, // this is for model namespace and
     }))(ServiceFileMovementM2mSearch)
   }
   getServiceFileMovementM2mAsSenderCreateForm = () => {
@@ -538,7 +537,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceFileMovementM2mAsSenderCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceFileMovementM2mAsSenderSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceFileMovementM2mListAsSender', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移件服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'sender', listName: 'serviceFileMovementM2mListAsSender', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移件服务列表'}, // this is for model namespace and
     }))(ServiceFileMovementM2mCreateForm)
   }
   
@@ -561,7 +560,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceFileMovementM2mAsReceiverSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceFileMovementM2mListAsReceiver', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移件服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'receiver', listName: 'serviceFileMovementM2mListAsReceiver', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移件服务列表' }, // this is for model namespace and
     }))(ServiceFileMovementM2mSearch)
   }
   getServiceFileMovementM2mAsReceiverCreateForm = () => {
@@ -573,7 +572,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceFileMovementM2mAsReceiverCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceFileMovementM2mAsReceiverSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceFileMovementM2mListAsReceiver', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移件服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'receiver', listName: 'serviceFileMovementM2mListAsReceiver', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '移件服务列表'}, // this is for model namespace and
     }))(ServiceFileMovementM2mCreateForm)
   }
   
@@ -596,7 +595,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceFileMovementM2cSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceFileMovementM2cList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '还件服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceFileMovementM2cList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '还件服务列表' }, // this is for model namespace and
     }))(ServiceFileMovementM2cSearch)
   }
   getServiceFileMovementM2cCreateForm = () => {
@@ -608,7 +607,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceFileMovementM2cCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceFileMovementM2cSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceFileMovementM2cList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '还件服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceFileMovementM2cList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '还件服务列表'}, // this is for model namespace and
     }))(ServiceFileMovementM2cCreateForm)
   }
   
@@ -631,7 +630,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceInsuranceForInspectionSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceInsuranceForInspectionList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '保险服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceInsuranceForInspectionList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '保险服务列表' }, // this is for model namespace and
     }))(ServiceInsuranceForInspectionSearch)
   }
   getServiceInsuranceForInspectionCreateForm = () => {
@@ -643,7 +642,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceInsuranceForInspectionCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceInsuranceForInspectionSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceInsuranceForInspectionList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '保险服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceInsuranceForInspectionList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '保险服务列表'}, // this is for model namespace and
     }))(ServiceInsuranceForInspectionCreateForm)
   }
   
@@ -666,7 +665,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleInspectionSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleInspectionList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '车辆上线检测列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceVehicleInspectionList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '车辆上线检测列表' }, // this is for model namespace and
     }))(ServiceVehicleInspectionSearch)
   }
   getServiceVehicleInspectionCreateForm = () => {
@@ -678,7 +677,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceVehicleInspectionCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleInspectionSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleInspectionList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '车辆上线检测列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceVehicleInspectionList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '车辆上线检测列表'}, // this is for model namespace and
     }))(ServiceVehicleInspectionCreateForm)
   }
   
@@ -701,7 +700,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceFileInspectionSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceFileInspectionList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '6年免检服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceFileInspectionList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '6年免检服务列表' }, // this is for model namespace and
     }))(ServiceFileInspectionSearch)
   }
   getServiceFileInspectionCreateForm = () => {
@@ -713,7 +712,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceFileInspectionCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceFileInspectionSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceFileInspectionList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '6年免检服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceFileInspectionList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '6年免检服务列表'}, // this is for model namespace and
     }))(ServiceFileInspectionCreateForm)
   }
   
@@ -736,7 +735,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleRepairingSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleRepairingList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '维修服务列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceVehicleRepairingList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '维修服务列表' }, // this is for model namespace and
     }))(ServiceVehicleRepairingSearch)
   }
   getServiceVehicleRepairingCreateForm = () => {
@@ -748,7 +747,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceVehicleRepairingCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceVehicleRepairingSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceVehicleRepairingList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '维修服务列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceVehicleRepairingList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '维修服务列表'}, // this is for model namespace and
     }))(ServiceVehicleRepairingCreateForm)
   }
   
@@ -771,7 +770,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceCompanyAccountSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceCompanyAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '服务商户对账单列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceCompanyAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '服务商户对账单列表' }, // this is for model namespace and
     }))(ServiceCompanyAccountSearch)
   }
   getServiceCompanyAccountCreateForm = () => {
@@ -783,7 +782,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.serviceCompanyAccountCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.serviceCompanyAccountSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'serviceCompanyAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '服务商户对账单列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'serviceCompanyAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '服务商户对账单列表'}, // this is for model namespace and
     }))(ServiceCompanyAccountCreateForm)
   }
   
@@ -806,7 +805,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.repairingCompanyAccountSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'repairingCompanyAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '修理厂对账单列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'repairingCompanyAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '修理厂对账单列表' }, // this is for model namespace and
     }))(RepairingCompanyAccountSearch)
   }
   getRepairingCompanyAccountCreateForm = () => {
@@ -818,7 +817,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.repairingCompanyAccountCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.repairingCompanyAccountSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'repairingCompanyAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '修理厂对账单列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'repairingCompanyAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '修理厂对账单列表'}, // this is for model namespace and
     }))(RepairingCompanyAccountCreateForm)
   }
   
@@ -841,7 +840,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.insuranceServiceAccountSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'insuranceServiceAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '保险服务对账单列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'insuranceServiceAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '保险服务对账单列表' }, // this is for model namespace and
     }))(InsuranceServiceAccountSearch)
   }
   getInsuranceServiceAccountCreateForm = () => {
@@ -853,7 +852,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.insuranceServiceAccountCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.insuranceServiceAccountSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'insuranceServiceAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '保险服务对账单列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'insuranceServiceAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '保险服务对账单列表'}, // this is for model namespace and
     }))(InsuranceServiceAccountCreateForm)
   }
   
@@ -876,7 +875,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       searchFormParameters: state._vehicleServiceCompanyEmployee.inspectionStationAccountSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
       partialList: state._vehicleServiceCompanyEmployee.partialList,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'inspectionStationAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '检测站对账单列表' }, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'inspectionStationAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '检测站对账单列表' }, // this is for model namespace and
     }))(InspectionStationAccountSearch)
   }
   getInspectionStationAccountCreateForm = () => {
@@ -888,7 +887,7 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
       currentPage: state._vehicleServiceCompanyEmployee.inspectionStationAccountCurrentPageNumber,
       searchFormParameters: state._vehicleServiceCompanyEmployee.inspectionStationAccountSearchFormParameters,
       loading: state._vehicleServiceCompanyEmployee.loading,
-      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, listName: 'inspectionStationAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '检测站对账单列表'}, // this is for model namespace and
+      owner: { type: '_vehicleServiceCompanyEmployee', id: state._vehicleServiceCompanyEmployee.id, referenceName: 'responsibleWorker', listName: 'inspectionStationAccountList', ref:state._vehicleServiceCompanyEmployee, listDisplayName: '检测站对账单列表'}, // this is for model namespace and
     }))(InspectionStationAccountCreateForm)
   }
   
@@ -930,7 +929,9 @@ class VehicleServiceCompanyEmployeeBizApp extends React.PureComponent {
      const {VehicleServiceCompanyEmployeeEditDetail} = GlobalComponents
      const {VehicleServiceCompanyEmployeeViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

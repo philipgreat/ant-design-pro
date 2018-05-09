@@ -30,8 +30,8 @@ const testValues = {};
 const testValues = {
   couponTitle: '优惠￥10元',
   discountAmount: '10.00',
-  endDate: '2997-07-17 11:00:24',
-  appliedDate: '2997-09-04 07:40:34',
+  endDate: '2997-06-02 12:06:00',
+  appliedDate: '2998-11-16 10:51:16',
   couponStatus: '未使用',
   customerId: 'C000001',
   mainOrderId: 'VIO000001',
@@ -245,6 +245,33 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个优惠券使用记录"
@@ -252,55 +279,55 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.couponTitle}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.couponTitle} {...formItemLayout}>
                   {getFieldDecorator('couponTitle', {
                     rules: [{ required: true, message: '请输入优惠券名称' }],
                   })(
-                    <Input placeholder="请输入请输入优惠券名称string" />
+                    <Input placeholder="请输入优惠券名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.discountAmount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.discountAmount} {...formItemLayout}>
                   {getFieldDecorator('discountAmount', {
                     rules: [{ required: true, message: '请输入优惠金额' }],
                   })(
-                    <Input placeholder="请输入请输入优惠金额money" />
+                    <Input placeholder="请输入优惠金额" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.endDate}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.endDate} {...formItemLayout}>
                   {getFieldDecorator('endDate', {
                     rules: [{ required: true, message: '请输入结束日期' }],
                   })(
-                    <Input placeholder="请输入请输入结束日期date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入结束日期" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.appliedDate}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.appliedDate} {...formItemLayout}>
                   {getFieldDecorator('appliedDate', {
                     rules: [{ required: true, message: '请输入使用日期' }],
                   })(
-                    <Input placeholder="请输入请输入使用日期date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入使用日期" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.couponStatus}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.couponStatus} {...formItemLayout}>
                   {getFieldDecorator('couponStatus', {
                     rules: [{ required: true, message: '请输入优惠券状态' }],
                   })(
-                    <Input placeholder="请输入请输入优惠券状态string" />
+                    <Input placeholder="请输入优惠券状态" />
                   )}
                 </Form.Item>
               </Col>
@@ -323,21 +350,24 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.customer}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.customer} {...formItemLayout}>
                   {getFieldDecorator('customerId', {
+                  	initialValue: tryinit('customer'),
                     rules: [{ required: true, message: '请输入客户' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateCustomerList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateCustomerSearch}
                     placeholder="请输入客户"
+                    
+                    disabled={!availableForEdit('customer')}
                   >
                   {candidateCustomerList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.nickName}(${item.id})`}</Option>);
@@ -348,18 +378,21 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mainOrder}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mainOrder} {...formItemLayout}>
                   {getFieldDecorator('mainOrderId', {
+                  	initialValue: tryinit('mainOrder'),
                     rules: [{ required: true, message: '请输入年检订单' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateMainOrderList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateMainOrderSearch}
                     placeholder="请输入年检订单"
+                    
+                    disabled={!availableForEdit('mainOrder')}
                   >
                   {candidateMainOrderList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.orderStatus}(${item.id})`}</Option>);

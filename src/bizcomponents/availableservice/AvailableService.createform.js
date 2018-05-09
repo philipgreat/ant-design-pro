@@ -204,6 +204,33 @@ class AvailableServiceCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个服务范围"
@@ -211,35 +238,35 @@ class AvailableServiceCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceName} {...formItemLayout}>
                   {getFieldDecorator('serviceName', {
                     rules: [{ required: true, message: '请输入服务名称' }],
                   })(
-                    <Input placeholder="请输入请输入服务名称string" />
+                    <Input placeholder="请输入服务名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceKey}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceKey} {...formItemLayout}>
                   {getFieldDecorator('serviceKey', {
                     rules: [{ required: true, message: '请输入服务代码' }],
                   })(
-                    <Input placeholder="请输入请输入服务代码string" />
+                    <Input placeholder="请输入服务代码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceDescription}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceDescription} {...formItemLayout}>
                   {getFieldDecorator('serviceDescription', {
                     rules: [{ required: true, message: '请输入服务描述' }],
                   })(
-                    <Input placeholder="请输入请输入服务描述string" />
+                    <Input placeholder="请输入服务描述" />
                   )}
                 </Form.Item>
               </Col>
@@ -262,21 +289,24 @@ class AvailableServiceCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.availableProduct}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.availableProduct} {...formItemLayout}>
                   {getFieldDecorator('availableProductId', {
+                  	initialValue: tryinit('availableProduct'),
                     rules: [{ required: true, message: '请输入产品类型' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateAvailableProductList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateAvailableProductSearch}
                     placeholder="请输入产品类型"
+                    
+                    disabled={!availableForEdit('availableProduct')}
                   >
                   {candidateAvailableProductList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.productName}(${item.id})`}</Option>);

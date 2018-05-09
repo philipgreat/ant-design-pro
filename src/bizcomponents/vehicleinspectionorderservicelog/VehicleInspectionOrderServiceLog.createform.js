@@ -29,8 +29,8 @@ const testValues = {};
 /*
 const testValues = {
   summary: '待交接:请在2018-12-21联系客户(张巧巧:13389763456) 接收客户到店送审的车辆',
-  longitude: '104.34456613497873',
-  latitude: '29.84829656812795',
+  longitude: '103.82235701236016',
+  latitude: '32.39343242023263',
   serviceType: 'VEHICLE_C2M_RECEIVE_IN_STORE(门店收车)',
   serviceTicket: 'sub-order-12345',
   responsibleWorkerId: 'VSCE000001',
@@ -245,6 +245,33 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个年检订单执行日志"
@@ -252,55 +279,55 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.summary}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.summary} {...formItemLayout}>
                   {getFieldDecorator('summary', {
                     rules: [{ required: true, message: '请输入摘要' }],
                   })(
-                    <Input placeholder="请输入请输入摘要string" />
+                    <Input placeholder="请输入摘要" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.longitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.longitude} {...formItemLayout}>
                   {getFieldDecorator('longitude', {
                     rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入经度double" />
+                    <Input placeholder="请输入经度" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.latitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude} {...formItemLayout}>
                   {getFieldDecorator('latitude', {
                     rules: [{ required: true, message: '请输入纬度' }],
                   })(
-                    <Input placeholder="请输入请输入纬度double" />
+                    <Input placeholder="请输入纬度" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceType}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceType} {...formItemLayout}>
                   {getFieldDecorator('serviceType', {
                     rules: [{ required: true, message: '请输入服务类型' }],
                   })(
-                    <Input placeholder="请输入请输入服务类型string" />
+                    <Input placeholder="请输入服务类型" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceTicket}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTicket} {...formItemLayout}>
                   {getFieldDecorator('serviceTicket', {
                     rules: [{ required: true, message: '请输入服务单号' }],
                   })(
-                    <Input placeholder="请输入请输入服务单号string" />
+                    <Input placeholder="请输入服务单号" />
                   )}
                 </Form.Item>
               </Col>
@@ -323,21 +350,24 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.responsibleWorker}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.responsibleWorker} {...formItemLayout}>
                   {getFieldDecorator('responsibleWorkerId', {
+                  	initialValue: tryinit('responsibleWorker'),
                     rules: [{ required: true, message: '请输入服务人员' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateResponsibleWorkerList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateResponsibleWorkerSearch}
                     placeholder="请输入服务人员"
+                    
+                    disabled={!availableForEdit('responsibleWorker')}
                   >
                   {candidateResponsibleWorkerList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.employeeName}(${item.id})`}</Option>);
@@ -348,18 +378,21 @@ class VehicleInspectionOrderServiceLogCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mainOrder}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mainOrder} {...formItemLayout}>
                   {getFieldDecorator('mainOrderId', {
+                  	initialValue: tryinit('mainOrder'),
                     rules: [{ required: true, message: '请输入年检订单' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateMainOrderList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateMainOrderSearch}
                     placeholder="请输入年检订单"
+                    
+                    disabled={!availableForEdit('mainOrder')}
                   >
                   {candidateMainOrderList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.orderStatus}(${item.id})`}</Option>);

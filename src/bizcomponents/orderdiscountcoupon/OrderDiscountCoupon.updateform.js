@@ -52,15 +52,7 @@ class OrderDiscountCouponUpdateForm extends Component {
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
-    // const { getFieldDecorator, setFieldsValue } = this.props.form
-    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow()
-    if (!selectedRow) {
-      return
-    }
-    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
@@ -79,8 +71,8 @@ class OrderDiscountCouponUpdateForm extends Component {
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
-        endDate: moment(item.endDate).format('YYYY-MM-DD'),
-        lastUpdateTime: moment(item.lastUpdateTime).format('YYYY-MM-DD'),
+        endDate: moment(item.endDate),
+        lastUpdateTime: moment(item.lastUpdateTime),
 
       }
     })
@@ -161,7 +153,7 @@ class OrderDiscountCouponUpdateForm extends Component {
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
         })
-        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        //setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateOrderDiscountCoupon`,
@@ -249,8 +241,17 @@ class OrderDiscountCouponUpdateForm extends Component {
     if (!selectedRows) {
       return (<div>缺少被更新的对象</div>)
     }
+	const selectedRow = this.getSelectedRow()
 
-    // TODO
+	const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
+
     return (
       <PageHeaderLayout
         title={"更新优惠券"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -258,66 +259,78 @@ class OrderDiscountCouponUpdateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.id}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
+                    initialValue: selectedRow.id,
                     rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入ID" disabled/>
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.couponTitle}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.couponTitle} {...formItemLayout}>
                   {getFieldDecorator('couponTitle', {
+                    initialValue: selectedRow.couponTitle,
                     rules: [{ required: true, message: '请输入优惠券名称' }],
                   })(
-                    <Input placeholder="请输入请输入优惠券名称string" />
+                    <Input placeholder="请输入优惠券名称" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.discountAmount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.discountAmount} {...formItemLayout}>
                   {getFieldDecorator('discountAmount', {
+                    initialValue: selectedRow.discountAmount,
                     rules: [{ required: true, message: '请输入优惠金额' }],
                   })(
-                    <Input placeholder="请输入请输入优惠金额money" />
+                    <Input placeholder="请输入优惠金额" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.endDate}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.endDate} {...formItemLayout}>
                   {getFieldDecorator('endDate', {
+                    initialValue: selectedRow.endDate,
                     rules: [{ required: true, message: '请输入结束日期' }],
                   })(
-                    <Input placeholder="请输入请输入结束日期date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入结束日期" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.couponStatus}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.couponStatus} {...formItemLayout}>
                   {getFieldDecorator('couponStatus', {
+                    initialValue: selectedRow.couponStatus,
                     rules: [{ required: true, message: '请输入优惠券状态' }],
                   })(
-                    <Input placeholder="请输入请输入优惠券状态string" />
+                    <Input placeholder="请输入优惠券状态" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.shareCode}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.shareCode} {...formItemLayout}>
                   {getFieldDecorator('shareCode', {
+                    initialValue: selectedRow.shareCode,
                     rules: [{ required: true, message: '请输入优惠券分享随机码' }],
                   })(
-                    <Input placeholder="请输入请输入优惠券分享随机码string" />
+                    <Input placeholder="请输入优惠券分享随机码" />
+                    
                   )}
                 </Form.Item>
               </Col>

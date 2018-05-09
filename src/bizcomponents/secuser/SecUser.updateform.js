@@ -53,15 +53,7 @@ class SecUserUpdateForm extends Component {
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
-    // const { getFieldDecorator, setFieldsValue } = this.props.form
-    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow()
-    if (!selectedRow) {
-      return
-    }
-    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
@@ -80,8 +72,8 @@ class SecUserUpdateForm extends Component {
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
-        verificationCodeExpire: moment(item.verificationCodeExpire).format('YYYY-MM-DD'),
-        lastLoginTime: moment(item.lastLoginTime).format('YYYY-MM-DD'),
+        verificationCodeExpire: moment(item.verificationCodeExpire),
+        lastLoginTime: moment(item.lastLoginTime),
 
       }
     })
@@ -162,7 +154,7 @@ class SecUserUpdateForm extends Component {
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
         })
-        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        //setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateSecUser`,
@@ -250,8 +242,17 @@ class SecUserUpdateForm extends Component {
     if (!selectedRows) {
       return (<div>缺少被更新的对象</div>)
     }
+	const selectedRow = this.getSelectedRow()
 
-    // TODO
+	const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
+
     return (
       <PageHeaderLayout
         title={"更新SEC的用户"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -259,86 +260,102 @@ class SecUserUpdateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.id}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
+                    initialValue: selectedRow.id,
                     rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入ID" disabled/>
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.login}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.login} {...formItemLayout}>
                   {getFieldDecorator('login', {
+                    initialValue: selectedRow.login,
                     rules: [{ required: true, message: '请输入登录' }],
                   })(
-                    <Input placeholder="请输入请输入登录string" />
+                    <Input placeholder="请输入登录" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mobile}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mobile} {...formItemLayout}>
                   {getFieldDecorator('mobile', {
+                    initialValue: selectedRow.mobile,
                     rules: [{ required: true, message: '请输入手机号码' }],
                   })(
-                    <Input placeholder="请输入请输入手机号码string_china_mobile_phone" />
+                    <Input placeholder="请输入手机号码" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.email}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.email} {...formItemLayout}>
                   {getFieldDecorator('email', {
+                    initialValue: selectedRow.email,
                     rules: [{ required: true, message: '请输入电子邮件' }],
                   })(
-                    <Input placeholder="请输入请输入电子邮件string_email" />
+                    <Input placeholder="请输入电子邮件" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.pwd}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.pwd} {...formItemLayout}>
                   {getFieldDecorator('pwd', {
+                    initialValue: selectedRow.pwd,
                     rules: [{ required: true, message: '请输入密码' }],
                   })(
-                    <Input placeholder="请输入请输入密码string_password" />
+                    <Input placeholder="请输入密码" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.verificationCode}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.verificationCode} {...formItemLayout}>
                   {getFieldDecorator('verificationCode', {
+                    initialValue: selectedRow.verificationCode,
                     rules: [{ required: true, message: '请输入验证码' }],
                   })(
-                    <Input placeholder="请输入请输入验证码int" />
+                    <Input placeholder="请输入验证码" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.verificationCodeExpire}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.verificationCodeExpire} {...formItemLayout}>
                   {getFieldDecorator('verificationCodeExpire', {
+                    initialValue: selectedRow.verificationCodeExpire,
                     rules: [{ required: true, message: '请输入验证码过期时间' }],
                   })(
-                    <Input placeholder="请输入请输入验证码过期时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入验证码过期时间" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.lastLoginTime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.lastLoginTime} {...formItemLayout}>
                   {getFieldDecorator('lastLoginTime', {
+                    initialValue: selectedRow.lastLoginTime,
                     rules: [{ required: true, message: '请输入最后登录时间' }],
                   })(
-                    <Input placeholder="请输入请输入最后登录时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入最后登录时间" />
+                    
                   )}
                 </Form.Item>
               </Col>

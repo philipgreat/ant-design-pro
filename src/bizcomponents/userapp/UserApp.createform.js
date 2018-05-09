@@ -211,6 +211,33 @@ class UserAppCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个用户应用程序"
@@ -218,65 +245,65 @@ class UserAppCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.title}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.title} {...formItemLayout}>
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: '请输入标题' }],
                   })(
-                    <Input placeholder="请输入请输入标题string" />
+                    <Input placeholder="请输入标题" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.appIcon}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.appIcon} {...formItemLayout}>
                   {getFieldDecorator('appIcon', {
                     rules: [{ required: true, message: '请输入应用程序图标' }],
                   })(
-                    <Input placeholder="请输入请输入应用程序图标string" />
+                    <Input placeholder="请输入应用程序图标" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.permission}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.permission} {...formItemLayout}>
                   {getFieldDecorator('permission', {
                     rules: [{ required: true, message: '请输入权限' }],
                   })(
-                    <Input placeholder="请输入请输入权限string" />
+                    <Input placeholder="请输入权限" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.objectType}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.objectType} {...formItemLayout}>
                   {getFieldDecorator('objectType', {
                     rules: [{ required: true, message: '请输入访问对象类型' }],
                   })(
-                    <Input placeholder="请输入请输入访问对象类型string" />
+                    <Input placeholder="请输入访问对象类型" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.objectId}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.objectId} {...formItemLayout}>
                   {getFieldDecorator('objectId', {
                     rules: [{ required: true, message: '请输入对象ID' }],
                   })(
-                    <Input placeholder="请输入请输入对象IDstring" />
+                    <Input placeholder="请输入对象ID" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.location}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.location} {...formItemLayout}>
                   {getFieldDecorator('location', {
                     rules: [{ required: true, message: '请输入位置' }],
                   })(
-                    <Input placeholder="请输入请输入位置string" />
+                    <Input placeholder="请输入位置" />
                   )}
                 </Form.Item>
               </Col>
@@ -289,13 +316,14 @@ class UserAppCreateForm extends Component {
 
         
         <Card title="设置" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.fullAccess}>
+              <Col lg={8} md={12} sm={24}>
+                <Form.Item label={fieldLabels.fullAccess}  {...switchFormItemLayout}>
                   {getFieldDecorator('fullAccess', {
+                    initialValue: false,
                     rules: [{ required: true, message: '请输入完全访问' }],
                     valuePropName: 'checked'
                   })(
@@ -319,21 +347,24 @@ class UserAppCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.secUser}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.secUser} {...formItemLayout}>
                   {getFieldDecorator('secUserId', {
+                  	initialValue: tryinit('secUser'),
                     rules: [{ required: true, message: '请输入SEC的用户' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateSecUserList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateSecUserSearch}
                     placeholder="请输入SEC的用户"
+                    
+                    disabled={!availableForEdit('secUser')}
                   >
                   {candidateSecUserList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.login}(${item.id})`}</Option>);

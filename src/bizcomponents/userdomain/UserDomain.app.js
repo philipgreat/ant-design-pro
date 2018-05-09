@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './UserDomain.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -104,10 +104,9 @@ class UserDomainBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -156,7 +155,7 @@ class UserDomainBizApp extends React.PureComponent {
       searchFormParameters: state._userDomain.secUserSearchFormParameters,
       loading: state._userDomain.loading,
       partialList: state._userDomain.partialList,
-      owner: { type: '_userDomain', id: state._userDomain.id, listName: 'secUserList', ref:state._userDomain, listDisplayName: 'SEC的用户列表' }, // this is for model namespace and
+      owner: { type: '_userDomain', id: state._userDomain.id, referenceName: 'domain', listName: 'secUserList', ref:state._userDomain, listDisplayName: 'SEC的用户列表' }, // this is for model namespace and
     }))(SecUserSearch)
   }
   getSecUserCreateForm = () => {
@@ -168,7 +167,7 @@ class UserDomainBizApp extends React.PureComponent {
       currentPage: state._userDomain.secUserCurrentPageNumber,
       searchFormParameters: state._userDomain.secUserSearchFormParameters,
       loading: state._userDomain.loading,
-      owner: { type: '_userDomain', id: state._userDomain.id, listName: 'secUserList', ref:state._userDomain, listDisplayName: 'SEC的用户列表'}, // this is for model namespace and
+      owner: { type: '_userDomain', id: state._userDomain.id, referenceName: 'domain', listName: 'secUserList', ref:state._userDomain, listDisplayName: 'SEC的用户列表'}, // this is for model namespace and
     }))(SecUserCreateForm)
   }
   
@@ -210,7 +209,9 @@ class UserDomainBizApp extends React.PureComponent {
      const {UserDomainEditDetail} = GlobalComponents
      const {UserDomainViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

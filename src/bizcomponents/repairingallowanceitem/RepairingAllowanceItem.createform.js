@@ -26,7 +26,7 @@ const testValues = {};
 const testValues = {
   allowanceTitle: '维修费补贴',
   allowanceCode: 'REPAIRING_ALLOWANCE',
-  allowanceAmount: '18.84',
+  allowanceAmount: '18.67',
   serviceId: 'SVR000001',
 }
 */
@@ -204,6 +204,33 @@ class RepairingAllowanceItemCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个车辆维修补贴项"
@@ -211,35 +238,35 @@ class RepairingAllowanceItemCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.allowanceTitle}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.allowanceTitle} {...formItemLayout}>
                   {getFieldDecorator('allowanceTitle', {
                     rules: [{ required: true, message: '请输入补贴项名称' }],
                   })(
-                    <Input placeholder="请输入请输入补贴项名称string" />
+                    <Input placeholder="请输入补贴项名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.allowanceCode}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.allowanceCode} {...formItemLayout}>
                   {getFieldDecorator('allowanceCode', {
                     rules: [{ required: true, message: '请输入补贴代码' }],
                   })(
-                    <Input placeholder="请输入请输入补贴代码string" />
+                    <Input placeholder="请输入补贴代码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.allowanceAmount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.allowanceAmount} {...formItemLayout}>
                   {getFieldDecorator('allowanceAmount', {
                     rules: [{ required: true, message: '请输入补贴金额' }],
                   })(
-                    <Input placeholder="请输入请输入补贴金额money" />
+                    <Input placeholder="请输入补贴金额" />
                   )}
                 </Form.Item>
               </Col>
@@ -262,21 +289,24 @@ class RepairingAllowanceItemCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.service}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.service} {...formItemLayout}>
                   {getFieldDecorator('serviceId', {
+                  	initialValue: tryinit('service'),
                     rules: [{ required: true, message: '请输入服务' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateServiceList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateServiceSearch}
                     placeholder="请输入服务"
+                    
+                    disabled={!availableForEdit('service')}
                   >
                   {candidateServiceList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.serviceStatus}(${item.id})`}</Option>);

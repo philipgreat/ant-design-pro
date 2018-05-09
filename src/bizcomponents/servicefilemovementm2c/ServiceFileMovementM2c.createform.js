@@ -40,25 +40,25 @@ const testValues = {};
 const testValues = {
   serviceStatus: '待验收',
   serviceSummary: '请在 {日期} {时间} 前到 {地点} 联系 {姓名+电话}还件。{备注}',
-  startTime: '2994-08-19 03:31:05',
-  longitude: '103.866050356478',
-  latitude: '30.6549599366692',
+  startTime: '2996-10-14 06:13:51',
+  longitude: '103.13774935678703',
+  latitude: '30.84453301962218',
   transferVerifyCode: 'O12345',
   movementPurpose: 'FILE_M2C_IN_STORE',
   contactName: '张秋文',
   contactMobileNumber: '13812345678',
-  notifyDatetime: '2997-09-07 04:40:49',
+  notifyDatetime: '2998-12-16 16:33:31',
   notifyAddress: '',
   handoverResult: '',
+  responsibleWorkerId: 'VSCE000001',
+  mainOrderId: 'VIO000001',
+  merchantId: 'VSC000001',
+  notifyComment: '',
   handoverResultComment: '这是一个测试文本，目前只包括普通的字符，等会儿测试下特殊字符。\
 第一个要测试的是冒号：就是 :\
 第二个是逗号：就是 ,\
 第三个是单引号：就是 \'\
 第四个是双引号：就是 \"',
-  responsibleWorkerId: 'VSCE000001',
-  mainOrderId: 'VIO000001',
-  merchantId: 'VSC000001',
-  notifyComment: '',
 }
 */
 const imageURLPrefix = '//localhost:2090'
@@ -303,6 +303,33 @@ class ServiceFileMovementM2cCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个还件服务"
@@ -310,135 +337,125 @@ class ServiceFileMovementM2cCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceStatus}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceStatus} {...formItemLayout}>
                   {getFieldDecorator('serviceStatus', {
                     rules: [{ required: true, message: '请输入服务状态' }],
                   })(
-                    <Input placeholder="请输入请输入服务状态string" />
+                    <Input placeholder="请输入服务状态" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceSummary}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceSummary} {...formItemLayout}>
                   {getFieldDecorator('serviceSummary', {
                     rules: [{ required: true, message: '请输入服务概述' }],
                   })(
-                    <Input placeholder="请输入请输入服务概述string" />
+                    <Input placeholder="请输入服务概述" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.startTime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.startTime} {...formItemLayout}>
                   {getFieldDecorator('startTime', {
                     rules: [{ required: true, message: '请输入开始时间' }],
                   })(
-                    <Input placeholder="请输入请输入开始时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入开始时间" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.longitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.longitude} {...formItemLayout}>
                   {getFieldDecorator('longitude', {
                     rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入经度double" />
+                    <Input placeholder="请输入经度" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.latitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude} {...formItemLayout}>
                   {getFieldDecorator('latitude', {
                     rules: [{ required: true, message: '请输入纬度' }],
                   })(
-                    <Input placeholder="请输入请输入纬度double" />
+                    <Input placeholder="请输入纬度" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.transferVerifyCode}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.transferVerifyCode} {...formItemLayout}>
                   {getFieldDecorator('transferVerifyCode', {
                     rules: [{ required: true, message: '请输入交接检查码' }],
                   })(
-                    <Input placeholder="请输入请输入交接检查码string" />
+                    <Input placeholder="请输入交接检查码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.movementPurpose}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.movementPurpose} {...formItemLayout}>
                   {getFieldDecorator('movementPurpose', {
                     rules: [{ required: true, message: '请输入服务类型' }],
                   })(
-                    <Input placeholder="请输入请输入服务类型string" />
+                    <Input placeholder="请输入服务类型" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.contactName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.contactName} {...formItemLayout}>
                   {getFieldDecorator('contactName', {
                     rules: [{ required: true, message: '请输入联系人姓名' }],
                   })(
-                    <Input placeholder="请输入请输入联系人姓名string" />
+                    <Input placeholder="请输入联系人姓名" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.contactMobileNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.contactMobileNumber} {...formItemLayout}>
                   {getFieldDecorator('contactMobileNumber', {
                     rules: [{ required: true, message: '请输入联系人手机' }],
                   })(
-                    <Input placeholder="请输入请输入联系人手机string_china_mobile_phone" />
+                    <Input placeholder="请输入联系人手机" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.notifyDatetime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.notifyDatetime} {...formItemLayout}>
                   {getFieldDecorator('notifyDatetime', {
                     rules: [{ required: true, message: '请输入通知日期时间' }],
                   })(
-                    <Input placeholder="请输入请输入通知日期时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入通知日期时间" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.notifyAddress}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.notifyAddress} {...formItemLayout}>
                   {getFieldDecorator('notifyAddress', {
                     rules: [{ required: true, message: '请输入通知地址' }],
                   })(
-                    <Input placeholder="请输入请输入通知地址string" />
+                    <Input placeholder="请输入通知地址" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.handoverResult}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.handoverResult} {...formItemLayout}>
                   {getFieldDecorator('handoverResult', {
                     rules: [{ required: true, message: '请输入交接检查结果' }],
                   })(
-                    <Input placeholder="请输入请输入交接检查结果string" />
-                  )}
-                </Form.Item>
-              </Col>
-
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.handoverResultComment}>
-                  {getFieldDecorator('handoverResultComment', {
-                    rules: [{ required: true, message: '请输入交接检查备注' }],
-                  })(
-                    <Input placeholder="请输入请输入交接检查备注string_longtext" />
+                    <Input placeholder="请输入交接检查结果" />
                   )}
                 </Form.Item>
               </Col>
@@ -457,7 +474,7 @@ class ServiceFileMovementM2cCreateForm extends Component {
 
 
         <Card title="备注" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
               <Col lg={24} md={24} sm={24}>
                 <Form.Item>
@@ -472,26 +489,45 @@ class ServiceFileMovementM2cCreateForm extends Component {
           </Form>  
         </Card>
 
+        <Card title="交接检查备注" className={styles.card} bordered={false}>
+          <Form >
+            <Row gutter={16}>
+              <Col lg={24} md={24} sm={24}>
+                <Form.Item>
+                  {getFieldDecorator('handoverResultComment', {
+                    rules: [{ required: true, message: '请输入交接检查备注' }],
+                  })(
+                    <TextArea rows={4} placeholder="请输入请输入交接检查备注" />
+                  )}
+                </Form.Item>
+              </Col>
+      </Row>
+          </Form>  
+        </Card>
+
 
 
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.responsibleWorker}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.responsibleWorker} {...formItemLayout}>
                   {getFieldDecorator('responsibleWorkerId', {
+                  	initialValue: tryinit('responsibleWorker'),
                     rules: [{ required: true, message: '请输入服务人员' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateResponsibleWorkerList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateResponsibleWorkerSearch}
                     placeholder="请输入服务人员"
+                    
+                    disabled={!availableForEdit('responsibleWorker')}
                   >
                   {candidateResponsibleWorkerList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.employeeName}(${item.id})`}</Option>);
@@ -502,18 +538,21 @@ class ServiceFileMovementM2cCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mainOrder}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mainOrder} {...formItemLayout}>
                   {getFieldDecorator('mainOrderId', {
+                  	initialValue: tryinit('mainOrder'),
                     rules: [{ required: true, message: '请输入年检订单' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateMainOrderList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateMainOrderSearch}
                     placeholder="请输入年检订单"
+                    
+                    disabled={!availableForEdit('mainOrder')}
                   >
                   {candidateMainOrderList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.orderStatus}(${item.id})`}</Option>);
@@ -524,18 +563,21 @@ class ServiceFileMovementM2cCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.merchant}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.merchant} {...formItemLayout}>
                   {getFieldDecorator('merchantId', {
+                  	initialValue: tryinit('merchant'),
                     rules: [{ required: true, message: '请输入商户' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateMerchantList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateMerchantSearch}
                     placeholder="请输入商户"
+                    
+                    disabled={!availableForEdit('merchant')}
                   >
                   {candidateMerchantList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.companyName}(${item.id})`}</Option>);

@@ -1,7 +1,7 @@
 
 import { routerRedux } from 'dva/router'
 import key from 'keymaster'
-
+import {sessionObject} from '../utils/utils'
 
 
 // console.log("element", )
@@ -33,46 +33,58 @@ export default {
       return { ...state, ...action.payload }
     },
     gotoLink(state, action){
+     
+      const targetApp = sessionObject('targetApp')
+      const currentBreadcrumb =sessionObject(targetApp.id)
       
-      const appdata=state[state.currentApp];
-      if(!appdata){
+      //const appdata=state[state.currentApp];
+      if(!currentBreadcrumb){
         return state;
       }
       const link = action.payload.link;
       const name = action.payload.displayName
       
-      const index = appdata.findIndex((item)=>item.link==link);
+      const index = currentBreadcrumb.findIndex((item)=>item.link==link);
       console.log("index",index)
       if(index<0){
-        appdata.push({name,link})
+        currentBreadcrumb.push({name,link})
+        sessionObject(targetApp.id, currentBreadcrumb)
         return {...state};
       }
       
-      state[state.currentApp] = appdata.slice(0,index+1);
-     
+      const newBreadcrumb = currentBreadcrumb.slice(0,index+1);
+      sessionObject(targetApp.id, newBreadcrumb)
       return {...state};
 
     },
     selectApp(state, action) {
       console.log(action)
+      //const targetAppExpr = sessionStorage.getItem('targetApp');
+      const targetApp = action.payload.targetApp 
+      const menuData = action.payload.menuData
       const location = action.payload.location.pathname;
 
-      const targetApp = action.payload.targetApp
-      const currentApp = targetApp.id
-      const appdata=state[currentApp];
-      const menuData = action.payload.menuData;
-      if(appdata){
-        const name = targetApp.title
-        const link = location;
-        appdata.push({name,link});
-        return {...state,currentApp,menuData};
+      if(!targetApp){
+ 
+        return state;
       }
-      const newAppData = [];
+
+      const currentBreadcrumb =sessionObject(targetApp.id)||[]
+
+      //this is a new app
+      sessionObject('targetApp',targetApp)
+      sessionObject('menuData',menuData)
+
       const name = targetApp.title
       const link = location;
-      newAppData.push({name,link});
-      state[currentApp] = newAppData;
-      return { ...state, currentApp,targetApp,menuData}
+      const currentAppKey = targetApp.id
+      const index = currentBreadcrumb.findIndex((item)=>item.link==link);
+      if(index<0){
+        currentBreadcrumb.push({name,link});
+        sessionObject(currentAppKey,currentBreadcrumb)
+      }
+      
+      return { ...state,  targetApp,menuData}
     }
     
   },

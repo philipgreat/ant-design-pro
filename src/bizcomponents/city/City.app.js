@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './City.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -107,10 +107,9 @@ class CityBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -159,7 +158,7 @@ class CityBizApp extends React.PureComponent {
       searchFormParameters: state._city.productPriceSearchFormParameters,
       loading: state._city.loading,
       partialList: state._city.partialList,
-      owner: { type: '_city', id: state._city.id, listName: 'productPriceList', ref:state._city, listDisplayName: '产品价格列表' }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, referenceName: 'city', listName: 'productPriceList', ref:state._city, listDisplayName: '产品价格列表' }, // this is for model namespace and
     }))(ProductPriceSearch)
   }
   getProductPriceCreateForm = () => {
@@ -171,7 +170,7 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.productPriceCurrentPageNumber,
       searchFormParameters: state._city.productPriceSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, listName: 'productPriceList', ref:state._city, listDisplayName: '产品价格列表'}, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, referenceName: 'city', listName: 'productPriceList', ref:state._city, listDisplayName: '产品价格列表'}, // this is for model namespace and
     }))(ProductPriceCreateForm)
   }
   
@@ -194,7 +193,7 @@ class CityBizApp extends React.PureComponent {
       searchFormParameters: state._city.vehicleServiceCompanySearchFormParameters,
       loading: state._city.loading,
       partialList: state._city.partialList,
-      owner: { type: '_city', id: state._city.id, listName: 'vehicleServiceCompanyList', ref:state._city, listDisplayName: '商户列表' }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, referenceName: 'addressCity', listName: 'vehicleServiceCompanyList', ref:state._city, listDisplayName: '商户列表' }, // this is for model namespace and
     }))(VehicleServiceCompanySearch)
   }
   getVehicleServiceCompanyCreateForm = () => {
@@ -206,7 +205,7 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.vehicleServiceCompanyCurrentPageNumber,
       searchFormParameters: state._city.vehicleServiceCompanySearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, listName: 'vehicleServiceCompanyList', ref:state._city, listDisplayName: '商户列表'}, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, referenceName: 'addressCity', listName: 'vehicleServiceCompanyList', ref:state._city, listDisplayName: '商户列表'}, // this is for model namespace and
     }))(VehicleServiceCompanyCreateForm)
   }
   
@@ -229,7 +228,7 @@ class CityBizApp extends React.PureComponent {
       searchFormParameters: state._city.inspectionStationSearchFormParameters,
       loading: state._city.loading,
       partialList: state._city.partialList,
-      owner: { type: '_city', id: state._city.id, listName: 'inspectionStationList', ref:state._city, listDisplayName: '检测站列表' }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, referenceName: 'addressCity', listName: 'inspectionStationList', ref:state._city, listDisplayName: '检测站列表' }, // this is for model namespace and
     }))(InspectionStationSearch)
   }
   getInspectionStationCreateForm = () => {
@@ -241,7 +240,7 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.inspectionStationCurrentPageNumber,
       searchFormParameters: state._city.inspectionStationSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, listName: 'inspectionStationList', ref:state._city, listDisplayName: '检测站列表'}, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, referenceName: 'addressCity', listName: 'inspectionStationList', ref:state._city, listDisplayName: '检测站列表'}, // this is for model namespace and
     }))(InspectionStationCreateForm)
   }
   
@@ -264,7 +263,7 @@ class CityBizApp extends React.PureComponent {
       searchFormParameters: state._city.vehicleInspectionOrderSearchFormParameters,
       loading: state._city.loading,
       partialList: state._city.partialList,
-      owner: { type: '_city', id: state._city.id, listName: 'vehicleInspectionOrderList', ref:state._city, listDisplayName: '年检订单列表' }, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, referenceName: 'contactAddressCity', listName: 'vehicleInspectionOrderList', ref:state._city, listDisplayName: '年检订单列表' }, // this is for model namespace and
     }))(VehicleInspectionOrderSearch)
   }
   getVehicleInspectionOrderCreateForm = () => {
@@ -276,7 +275,7 @@ class CityBizApp extends React.PureComponent {
       currentPage: state._city.vehicleInspectionOrderCurrentPageNumber,
       searchFormParameters: state._city.vehicleInspectionOrderSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, listName: 'vehicleInspectionOrderList', ref:state._city, listDisplayName: '年检订单列表'}, // this is for model namespace and
+      owner: { type: '_city', id: state._city.id, referenceName: 'contactAddressCity', listName: 'vehicleInspectionOrderList', ref:state._city, listDisplayName: '年检订单列表'}, // this is for model namespace and
     }))(VehicleInspectionOrderCreateForm)
   }
   
@@ -318,7 +317,9 @@ class CityBizApp extends React.PureComponent {
      const {CityEditDetail} = GlobalComponents
      const {CityViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

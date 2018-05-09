@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceFileMovementM2c.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -104,10 +104,9 @@ class ServiceFileMovementM2cBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -156,7 +155,7 @@ class ServiceFileMovementM2cBizApp extends React.PureComponent {
       searchFormParameters: state._serviceFileMovementM2c.handOverChecklistResultSearchFormParameters,
       loading: state._serviceFileMovementM2c.loading,
       partialList: state._serviceFileMovementM2c.partialList,
-      owner: { type: '_serviceFileMovementM2c', id: state._serviceFileMovementM2c.id, listName: 'handOverChecklistResultList', ref:state._serviceFileMovementM2c, listDisplayName: '交接检查结果列表' }, // this is for model namespace and
+      owner: { type: '_serviceFileMovementM2c', id: state._serviceFileMovementM2c.id, referenceName: 'serviceTypeFileM2c', listName: 'handOverChecklistResultList', ref:state._serviceFileMovementM2c, listDisplayName: '交接检查结果列表' }, // this is for model namespace and
     }))(HandOverChecklistResultSearch)
   }
   getHandOverChecklistResultCreateForm = () => {
@@ -168,7 +167,7 @@ class ServiceFileMovementM2cBizApp extends React.PureComponent {
       currentPage: state._serviceFileMovementM2c.handOverChecklistResultCurrentPageNumber,
       searchFormParameters: state._serviceFileMovementM2c.handOverChecklistResultSearchFormParameters,
       loading: state._serviceFileMovementM2c.loading,
-      owner: { type: '_serviceFileMovementM2c', id: state._serviceFileMovementM2c.id, listName: 'handOverChecklistResultList', ref:state._serviceFileMovementM2c, listDisplayName: '交接检查结果列表'}, // this is for model namespace and
+      owner: { type: '_serviceFileMovementM2c', id: state._serviceFileMovementM2c.id, referenceName: 'serviceTypeFileM2c', listName: 'handOverChecklistResultList', ref:state._serviceFileMovementM2c, listDisplayName: '交接检查结果列表'}, // this is for model namespace and
     }))(HandOverChecklistResultCreateForm)
   }
   
@@ -210,7 +209,9 @@ class ServiceFileMovementM2cBizApp extends React.PureComponent {
      const {ServiceFileMovementM2cEditDetail} = GlobalComponents
      const {ServiceFileMovementM2cViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

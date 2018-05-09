@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './CompanyEmployeeQualification.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -104,10 +104,9 @@ class CompanyEmployeeQualificationBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -156,7 +155,7 @@ class CompanyEmployeeQualificationBizApp extends React.PureComponent {
       searchFormParameters: state._companyEmployeeQualification.vehicleServiceCompanyEmployeeSearchFormParameters,
       loading: state._companyEmployeeQualification.loading,
       partialList: state._companyEmployeeQualification.partialList,
-      owner: { type: '_companyEmployeeQualification', id: state._companyEmployeeQualification.id, listName: 'vehicleServiceCompanyEmployeeList', ref:state._companyEmployeeQualification, listDisplayName: '商户员工列表' }, // this is for model namespace and
+      owner: { type: '_companyEmployeeQualification', id: state._companyEmployeeQualification.id, referenceName: 'qualification', listName: 'vehicleServiceCompanyEmployeeList', ref:state._companyEmployeeQualification, listDisplayName: '商户员工列表' }, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeSearch)
   }
   getVehicleServiceCompanyEmployeeCreateForm = () => {
@@ -168,7 +167,7 @@ class CompanyEmployeeQualificationBizApp extends React.PureComponent {
       currentPage: state._companyEmployeeQualification.vehicleServiceCompanyEmployeeCurrentPageNumber,
       searchFormParameters: state._companyEmployeeQualification.vehicleServiceCompanyEmployeeSearchFormParameters,
       loading: state._companyEmployeeQualification.loading,
-      owner: { type: '_companyEmployeeQualification', id: state._companyEmployeeQualification.id, listName: 'vehicleServiceCompanyEmployeeList', ref:state._companyEmployeeQualification, listDisplayName: '商户员工列表'}, // this is for model namespace and
+      owner: { type: '_companyEmployeeQualification', id: state._companyEmployeeQualification.id, referenceName: 'qualification', listName: 'vehicleServiceCompanyEmployeeList', ref:state._companyEmployeeQualification, listDisplayName: '商户员工列表'}, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeCreateForm)
   }
   
@@ -210,7 +209,9 @@ class CompanyEmployeeQualificationBizApp extends React.PureComponent {
      const {CompanyEmployeeQualificationEditDetail} = GlobalComponents
      const {CompanyEmployeeQualificationViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './ServiceVehicleRepairing.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -105,10 +105,9 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -157,7 +156,7 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
       searchFormParameters: state._serviceVehicleRepairing.repairingAllowanceItemSearchFormParameters,
       loading: state._serviceVehicleRepairing.loading,
       partialList: state._serviceVehicleRepairing.partialList,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'repairingAllowanceItemList', ref:state._serviceVehicleRepairing, listDisplayName: '车辆维修补贴项列表' }, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, referenceName: 'service', listName: 'repairingAllowanceItemList', ref:state._serviceVehicleRepairing, listDisplayName: '车辆维修补贴项列表' }, // this is for model namespace and
     }))(RepairingAllowanceItemSearch)
   }
   getRepairingAllowanceItemCreateForm = () => {
@@ -169,7 +168,7 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
       currentPage: state._serviceVehicleRepairing.repairingAllowanceItemCurrentPageNumber,
       searchFormParameters: state._serviceVehicleRepairing.repairingAllowanceItemSearchFormParameters,
       loading: state._serviceVehicleRepairing.loading,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'repairingAllowanceItemList', ref:state._serviceVehicleRepairing, listDisplayName: '车辆维修补贴项列表'}, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, referenceName: 'service', listName: 'repairingAllowanceItemList', ref:state._serviceVehicleRepairing, listDisplayName: '车辆维修补贴项列表'}, // this is for model namespace and
     }))(RepairingAllowanceItemCreateForm)
   }
   
@@ -192,7 +191,7 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
       searchFormParameters: state._serviceVehicleRepairing.vehicleRepairingPaymentSearchFormParameters,
       loading: state._serviceVehicleRepairing.loading,
       partialList: state._serviceVehicleRepairing.partialList,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'vehicleRepairingPaymentList', ref:state._serviceVehicleRepairing, listDisplayName: '支付维修订单列表' }, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, referenceName: 'serviceVehicleRepairing', listName: 'vehicleRepairingPaymentList', ref:state._serviceVehicleRepairing, listDisplayName: '支付维修订单列表' }, // this is for model namespace and
     }))(VehicleRepairingPaymentSearch)
   }
   getVehicleRepairingPaymentCreateForm = () => {
@@ -204,7 +203,7 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
       currentPage: state._serviceVehicleRepairing.vehicleRepairingPaymentCurrentPageNumber,
       searchFormParameters: state._serviceVehicleRepairing.vehicleRepairingPaymentSearchFormParameters,
       loading: state._serviceVehicleRepairing.loading,
-      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, listName: 'vehicleRepairingPaymentList', ref:state._serviceVehicleRepairing, listDisplayName: '支付维修订单列表'}, // this is for model namespace and
+      owner: { type: '_serviceVehicleRepairing', id: state._serviceVehicleRepairing.id, referenceName: 'serviceVehicleRepairing', listName: 'vehicleRepairingPaymentList', ref:state._serviceVehicleRepairing, listDisplayName: '支付维修订单列表'}, // this is for model namespace and
     }))(VehicleRepairingPaymentCreateForm)
   }
   
@@ -246,7 +245,9 @@ class ServiceVehicleRepairingBizApp extends React.PureComponent {
      const {ServiceVehicleRepairingEditDetail} = GlobalComponents
      const {ServiceVehicleRepairingViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './SecUserBlocking.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -104,10 +104,9 @@ class SecUserBlockingBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -156,7 +155,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
       searchFormParameters: state._secUserBlocking.secUserSearchFormParameters,
       loading: state._secUserBlocking.loading,
       partialList: state._secUserBlocking.partialList,
-      owner: { type: '_secUserBlocking', id: state._secUserBlocking.id, listName: 'secUserList', ref:state._secUserBlocking, listDisplayName: 'SEC的用户列表' }, // this is for model namespace and
+      owner: { type: '_secUserBlocking', id: state._secUserBlocking.id, referenceName: 'blocking', listName: 'secUserList', ref:state._secUserBlocking, listDisplayName: 'SEC的用户列表' }, // this is for model namespace and
     }))(SecUserSearch)
   }
   getSecUserCreateForm = () => {
@@ -168,7 +167,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
       currentPage: state._secUserBlocking.secUserCurrentPageNumber,
       searchFormParameters: state._secUserBlocking.secUserSearchFormParameters,
       loading: state._secUserBlocking.loading,
-      owner: { type: '_secUserBlocking', id: state._secUserBlocking.id, listName: 'secUserList', ref:state._secUserBlocking, listDisplayName: 'SEC的用户列表'}, // this is for model namespace and
+      owner: { type: '_secUserBlocking', id: state._secUserBlocking.id, referenceName: 'blocking', listName: 'secUserList', ref:state._secUserBlocking, listDisplayName: 'SEC的用户列表'}, // this is for model namespace and
     }))(SecUserCreateForm)
   }
   
@@ -210,7 +209,9 @@ class SecUserBlockingBizApp extends React.PureComponent {
      const {SecUserBlockingEditDetail} = GlobalComponents
      const {SecUserBlockingViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

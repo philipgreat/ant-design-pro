@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './AvailableHandOverItem.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -105,10 +105,9 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -157,7 +156,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
       searchFormParameters: state._availableHandOverItem.handOverChecklistItemSearchFormParameters,
       loading: state._availableHandOverItem.loading,
       partialList: state._availableHandOverItem.partialList,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistItemList', ref:state._availableHandOverItem, listDisplayName: '交接检查项列表' }, // this is for model namespace and
+      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, referenceName: 'question', listName: 'handOverChecklistItemList', ref:state._availableHandOverItem, listDisplayName: '交接检查项列表' }, // this is for model namespace and
     }))(HandOverChecklistItemSearch)
   }
   getHandOverChecklistItemCreateForm = () => {
@@ -169,7 +168,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
       currentPage: state._availableHandOverItem.handOverChecklistItemCurrentPageNumber,
       searchFormParameters: state._availableHandOverItem.handOverChecklistItemSearchFormParameters,
       loading: state._availableHandOverItem.loading,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistItemList', ref:state._availableHandOverItem, listDisplayName: '交接检查项列表'}, // this is for model namespace and
+      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, referenceName: 'question', listName: 'handOverChecklistItemList', ref:state._availableHandOverItem, listDisplayName: '交接检查项列表'}, // this is for model namespace and
     }))(HandOverChecklistItemCreateForm)
   }
   
@@ -192,7 +191,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
       searchFormParameters: state._availableHandOverItem.handOverChecklistResultSearchFormParameters,
       loading: state._availableHandOverItem.loading,
       partialList: state._availableHandOverItem.partialList,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistResultList', ref:state._availableHandOverItem, listDisplayName: '交接检查结果列表' }, // this is for model namespace and
+      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, referenceName: 'availableHandOverItem', listName: 'handOverChecklistResultList', ref:state._availableHandOverItem, listDisplayName: '交接检查结果列表' }, // this is for model namespace and
     }))(HandOverChecklistResultSearch)
   }
   getHandOverChecklistResultCreateForm = () => {
@@ -204,7 +203,7 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
       currentPage: state._availableHandOverItem.handOverChecklistResultCurrentPageNumber,
       searchFormParameters: state._availableHandOverItem.handOverChecklistResultSearchFormParameters,
       loading: state._availableHandOverItem.loading,
-      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, listName: 'handOverChecklistResultList', ref:state._availableHandOverItem, listDisplayName: '交接检查结果列表'}, // this is for model namespace and
+      owner: { type: '_availableHandOverItem', id: state._availableHandOverItem.id, referenceName: 'availableHandOverItem', listName: 'handOverChecklistResultList', ref:state._availableHandOverItem, listDisplayName: '交接检查结果列表'}, // this is for model namespace and
     }))(HandOverChecklistResultCreateForm)
   }
   
@@ -246,7 +245,9 @@ class AvailableHandOverItemBizApp extends React.PureComponent {
      const {AvailableHandOverItemEditDetail} = GlobalComponents
      const {AvailableHandOverItemViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

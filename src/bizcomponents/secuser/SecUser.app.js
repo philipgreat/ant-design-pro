@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './SecUser.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -106,10 +106,9 @@ class SecUserBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -158,7 +157,7 @@ class SecUserBizApp extends React.PureComponent {
       searchFormParameters: state._secUser.customerSearchFormParameters,
       loading: state._secUser.loading,
       partialList: state._secUser.partialList,
-      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList', ref:state._secUser, listDisplayName: '客户列表' }, // this is for model namespace and
+      owner: { type: '_secUser', id: state._secUser.id, referenceName: 'secUser', listName: 'customerList', ref:state._secUser, listDisplayName: '客户列表' }, // this is for model namespace and
     }))(CustomerSearch)
   }
   getCustomerCreateForm = () => {
@@ -170,7 +169,7 @@ class SecUserBizApp extends React.PureComponent {
       currentPage: state._secUser.customerCurrentPageNumber,
       searchFormParameters: state._secUser.customerSearchFormParameters,
       loading: state._secUser.loading,
-      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList', ref:state._secUser, listDisplayName: '客户列表'}, // this is for model namespace and
+      owner: { type: '_secUser', id: state._secUser.id, referenceName: 'secUser', listName: 'customerList', ref:state._secUser, listDisplayName: '客户列表'}, // this is for model namespace and
     }))(CustomerCreateForm)
   }
   
@@ -193,7 +192,7 @@ class SecUserBizApp extends React.PureComponent {
       searchFormParameters: state._secUser.userAppSearchFormParameters,
       loading: state._secUser.loading,
       partialList: state._secUser.partialList,
-      owner: { type: '_secUser', id: state._secUser.id, listName: 'userAppList', ref:state._secUser, listDisplayName: '用户应用程序列表' }, // this is for model namespace and
+      owner: { type: '_secUser', id: state._secUser.id, referenceName: 'secUser', listName: 'userAppList', ref:state._secUser, listDisplayName: '用户应用程序列表' }, // this is for model namespace and
     }))(UserAppSearch)
   }
   getUserAppCreateForm = () => {
@@ -205,7 +204,7 @@ class SecUserBizApp extends React.PureComponent {
       currentPage: state._secUser.userAppCurrentPageNumber,
       searchFormParameters: state._secUser.userAppSearchFormParameters,
       loading: state._secUser.loading,
-      owner: { type: '_secUser', id: state._secUser.id, listName: 'userAppList', ref:state._secUser, listDisplayName: '用户应用程序列表'}, // this is for model namespace and
+      owner: { type: '_secUser', id: state._secUser.id, referenceName: 'secUser', listName: 'userAppList', ref:state._secUser, listDisplayName: '用户应用程序列表'}, // this is for model namespace and
     }))(UserAppCreateForm)
   }
   
@@ -228,7 +227,7 @@ class SecUserBizApp extends React.PureComponent {
       searchFormParameters: state._secUser.loginHistorySearchFormParameters,
       loading: state._secUser.loading,
       partialList: state._secUser.partialList,
-      owner: { type: '_secUser', id: state._secUser.id, listName: 'loginHistoryList', ref:state._secUser, listDisplayName: '登录历史列表' }, // this is for model namespace and
+      owner: { type: '_secUser', id: state._secUser.id, referenceName: 'secUser', listName: 'loginHistoryList', ref:state._secUser, listDisplayName: '登录历史列表' }, // this is for model namespace and
     }))(LoginHistorySearch)
   }
   getLoginHistoryCreateForm = () => {
@@ -240,7 +239,7 @@ class SecUserBizApp extends React.PureComponent {
       currentPage: state._secUser.loginHistoryCurrentPageNumber,
       searchFormParameters: state._secUser.loginHistorySearchFormParameters,
       loading: state._secUser.loading,
-      owner: { type: '_secUser', id: state._secUser.id, listName: 'loginHistoryList', ref:state._secUser, listDisplayName: '登录历史列表'}, // this is for model namespace and
+      owner: { type: '_secUser', id: state._secUser.id, referenceName: 'secUser', listName: 'loginHistoryList', ref:state._secUser, listDisplayName: '登录历史列表'}, // this is for model namespace and
     }))(LoginHistoryCreateForm)
   }
   
@@ -282,7 +281,9 @@ class SecUserBizApp extends React.PureComponent {
      const {SecUserEditDetail} = GlobalComponents
      const {SecUserViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

@@ -202,6 +202,33 @@ class OrderReviewResultCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个订单评论结果"
@@ -209,25 +236,25 @@ class OrderReviewResultCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.reviewName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.reviewName} {...formItemLayout}>
                   {getFieldDecorator('reviewName', {
                     rules: [{ required: true, message: '请输入评论内容' }],
                   })(
-                    <Input placeholder="请输入请输入评论内容string" />
+                    <Input placeholder="请输入评论内容" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.reviewResult}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.reviewResult} {...formItemLayout}>
                   {getFieldDecorator('reviewResult', {
                     rules: [{ required: true, message: '请输入评论结果' }],
                   })(
-                    <Input placeholder="请输入请输入评论结果string" />
+                    <Input placeholder="请输入评论结果" />
                   )}
                 </Form.Item>
               </Col>
@@ -250,21 +277,24 @@ class OrderReviewResultCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mainOrder}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mainOrder} {...formItemLayout}>
                   {getFieldDecorator('mainOrderId', {
+                  	initialValue: tryinit('mainOrder'),
                     rules: [{ required: true, message: '请输入年检订单' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateMainOrderList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateMainOrderSearch}
                     placeholder="请输入年检订单"
+                    
+                    disabled={!availableForEdit('mainOrder')}
                   >
                   {candidateMainOrderList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.orderStatus}(${item.id})`}</Option>);

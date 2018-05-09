@@ -35,8 +35,8 @@ const testValues = {
   email: 'suddy_chang@163.com',
   pwd: 'C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95',
   verificationCode: '9981727',
-  verificationCodeExpire: '2998-02-22 08:59:10',
-  lastLoginTime: '2995-08-22 17:27:38',
+  verificationCodeExpire: '2997-11-19 03:07:03',
+  lastLoginTime: '2995-09-14 08:59:45',
   domainId: 'UD000001',
 }
 */
@@ -214,6 +214,33 @@ class SecUserCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个SEC的用户"
@@ -221,75 +248,75 @@ class SecUserCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.login}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.login} {...formItemLayout}>
                   {getFieldDecorator('login', {
                     rules: [{ required: true, message: '请输入登录' }],
                   })(
-                    <Input placeholder="请输入请输入登录string" />
+                    <Input placeholder="请输入登录" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mobile}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mobile} {...formItemLayout}>
                   {getFieldDecorator('mobile', {
                     rules: [{ required: true, message: '请输入手机号码' }],
                   })(
-                    <Input placeholder="请输入请输入手机号码string_china_mobile_phone" />
+                    <Input placeholder="请输入手机号码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.email}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.email} {...formItemLayout}>
                   {getFieldDecorator('email', {
                     rules: [{ required: true, message: '请输入电子邮件' }],
                   })(
-                    <Input placeholder="请输入请输入电子邮件string_email" />
+                    <Input placeholder="请输入电子邮件" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.pwd}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.pwd} {...formItemLayout}>
                   {getFieldDecorator('pwd', {
                     rules: [{ required: true, message: '请输入密码' }],
                   })(
-                    <Input placeholder="请输入请输入密码string_password" />
+                    <Input placeholder="请输入密码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.verificationCode}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.verificationCode} {...formItemLayout}>
                   {getFieldDecorator('verificationCode', {
                     rules: [{ required: true, message: '请输入验证码' }],
                   })(
-                    <Input placeholder="请输入请输入验证码int" />
+                    <Input placeholder="请输入验证码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.verificationCodeExpire}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.verificationCodeExpire} {...formItemLayout}>
                   {getFieldDecorator('verificationCodeExpire', {
                     rules: [{ required: true, message: '请输入验证码过期时间' }],
                   })(
-                    <Input placeholder="请输入请输入验证码过期时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入验证码过期时间" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.lastLoginTime}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.lastLoginTime} {...formItemLayout}>
                   {getFieldDecorator('lastLoginTime', {
                     rules: [{ required: true, message: '请输入最后登录时间' }],
                   })(
-                    <Input placeholder="请输入请输入最后登录时间date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入最后登录时间" />
                   )}
                 </Form.Item>
               </Col>
@@ -312,21 +339,24 @@ class SecUserCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.domain}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.domain} {...formItemLayout}>
                   {getFieldDecorator('domainId', {
+                  	initialValue: tryinit('domain'),
                     rules: [{ required: true, message: '请输入域' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateDomainList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateDomainSearch}
                     placeholder="请输入域"
+                    
+                    disabled={!availableForEdit('domain')}
                   >
                   {candidateDomainList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);

@@ -51,15 +51,7 @@ class VehicleInspectionOrderServiceLogUpdateForm extends Component {
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
-    // const { getFieldDecorator, setFieldsValue } = this.props.form
-    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow()
-    if (!selectedRow) {
-      return
-    }
-    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
@@ -78,7 +70,7 @@ class VehicleInspectionOrderServiceLogUpdateForm extends Component {
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
-        createTime: moment(item.createTime).format('YYYY-MM-DD'),
+        createTime: moment(item.createTime),
 
       }
     })
@@ -159,7 +151,7 @@ class VehicleInspectionOrderServiceLogUpdateForm extends Component {
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
         })
-        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        //setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateVehicleInspectionOrderServiceLog`,
@@ -247,8 +239,17 @@ class VehicleInspectionOrderServiceLogUpdateForm extends Component {
     if (!selectedRows) {
       return (<div>缺少被更新的对象</div>)
     }
+	const selectedRow = this.getSelectedRow()
 
-    // TODO
+	const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
+
     return (
       <PageHeaderLayout
         title={"更新年检订单执行日志"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -256,66 +257,78 @@ class VehicleInspectionOrderServiceLogUpdateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.id}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
+                    initialValue: selectedRow.id,
                     rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入ID" disabled/>
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.summary}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.summary} {...formItemLayout}>
                   {getFieldDecorator('summary', {
+                    initialValue: selectedRow.summary,
                     rules: [{ required: true, message: '请输入摘要' }],
                   })(
-                    <Input placeholder="请输入请输入摘要string" />
+                    <Input placeholder="请输入摘要" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.longitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.longitude} {...formItemLayout}>
                   {getFieldDecorator('longitude', {
+                    initialValue: selectedRow.longitude,
                     rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入经度double" />
+                    <Input placeholder="请输入经度" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.latitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude} {...formItemLayout}>
                   {getFieldDecorator('latitude', {
+                    initialValue: selectedRow.latitude,
                     rules: [{ required: true, message: '请输入纬度' }],
                   })(
-                    <Input placeholder="请输入请输入纬度double" />
+                    <Input placeholder="请输入纬度" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceType}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceType} {...formItemLayout}>
                   {getFieldDecorator('serviceType', {
+                    initialValue: selectedRow.serviceType,
                     rules: [{ required: true, message: '请输入服务类型' }],
                   })(
-                    <Input placeholder="请输入请输入服务类型string" />
+                    <Input placeholder="请输入服务类型" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.serviceTicket}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.serviceTicket} {...formItemLayout}>
                   {getFieldDecorator('serviceTicket', {
+                    initialValue: selectedRow.serviceTicket,
                     rules: [{ required: true, message: '请输入服务单号' }],
                   })(
-                    <Input placeholder="请输入请输入服务单号string" />
+                    <Input placeholder="请输入服务单号" />
+                    
                   )}
                 </Form.Item>
               </Col>

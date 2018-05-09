@@ -5,6 +5,8 @@ import key from 'keymaster'
 import LauncherService from './Launcher.service'
 import GlobalComponents from '../custcomponents'
 import {message} from 'antd'
+
+import SystemConfig  from '../axios/config'
 const apps = {
 
 
@@ -110,6 +112,9 @@ const presentApp = (clazz, data) => {
 const calcLocationPath = (clazz,id,subLocation) => {
 
   const location = apps[clazz]
+  if(!location){
+    return '/home'
+  }
   const {name} = location;
   if (name) {
     return `${name}/${id}/${subLocation}`
@@ -133,7 +138,7 @@ export default {
 
   namespace: 'launcher',
 
-  state: { loggedIn: false, name: 'Philip', systemName: '代审车服务平台' },
+  state: { loggedIn: false, name: 'Philip', systemName: SystemConfig.SYSTEM_LOCAL_NAME },
 
 
   subscriptions: {
@@ -196,12 +201,17 @@ export default {
       console.log('location', location)
       const menuData = calcMenuData(data.class);
 
-      sessionStorage.setItem('targetApp',JSON.stringify(targetApp))
-      sessionStorage.setItem('menuData',JSON.stringify(menuData))
 
       yield put({ type: 'breadcrumb/selectApp', payload: { targetApp,location, menuData} })
       
       yield put(routerRedux.push(location))
+      // yield put({type:"showApp",payload:{data}})
+    },
+    *signOut({ payload }, { call, put }) {
+      // console.log("gotoApp has been called", payload)
+      const data = yield call(LauncherService.logout)
+      yield put({ type: 'logout', payload: { data } })
+      //yield put(routerRedux.push(location))
       // yield put({type:"showApp",payload:{data}})
     },
   },

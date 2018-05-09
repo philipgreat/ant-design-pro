@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './InspectionStation.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -107,10 +107,9 @@ class InspectionStationBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -159,7 +158,7 @@ class InspectionStationBizApp extends React.PureComponent {
       searchFormParameters: state._inspectionStation.vehicleServiceCompanyEmployeeSearchFormParameters,
       loading: state._inspectionStation.loading,
       partialList: state._inspectionStation.partialList,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'vehicleServiceCompanyEmployeeList', ref:state._inspectionStation, listDisplayName: '商户员工列表' }, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, referenceName: 'inspectionStation', listName: 'vehicleServiceCompanyEmployeeList', ref:state._inspectionStation, listDisplayName: '商户员工列表' }, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeSearch)
   }
   getVehicleServiceCompanyEmployeeCreateForm = () => {
@@ -171,7 +170,7 @@ class InspectionStationBizApp extends React.PureComponent {
       currentPage: state._inspectionStation.vehicleServiceCompanyEmployeeCurrentPageNumber,
       searchFormParameters: state._inspectionStation.vehicleServiceCompanyEmployeeSearchFormParameters,
       loading: state._inspectionStation.loading,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'vehicleServiceCompanyEmployeeList', ref:state._inspectionStation, listDisplayName: '商户员工列表'}, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, referenceName: 'inspectionStation', listName: 'vehicleServiceCompanyEmployeeList', ref:state._inspectionStation, listDisplayName: '商户员工列表'}, // this is for model namespace and
     }))(VehicleServiceCompanyEmployeeCreateForm)
   }
   
@@ -194,7 +193,7 @@ class InspectionStationBizApp extends React.PureComponent {
       searchFormParameters: state._inspectionStation.serviceVehicleInspectionSearchFormParameters,
       loading: state._inspectionStation.loading,
       partialList: state._inspectionStation.partialList,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'serviceVehicleInspectionList', ref:state._inspectionStation, listDisplayName: '车辆上线检测列表' }, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, referenceName: 'inspectionStation', listName: 'serviceVehicleInspectionList', ref:state._inspectionStation, listDisplayName: '车辆上线检测列表' }, // this is for model namespace and
     }))(ServiceVehicleInspectionSearch)
   }
   getServiceVehicleInspectionCreateForm = () => {
@@ -206,7 +205,7 @@ class InspectionStationBizApp extends React.PureComponent {
       currentPage: state._inspectionStation.serviceVehicleInspectionCurrentPageNumber,
       searchFormParameters: state._inspectionStation.serviceVehicleInspectionSearchFormParameters,
       loading: state._inspectionStation.loading,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'serviceVehicleInspectionList', ref:state._inspectionStation, listDisplayName: '车辆上线检测列表'}, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, referenceName: 'inspectionStation', listName: 'serviceVehicleInspectionList', ref:state._inspectionStation, listDisplayName: '车辆上线检测列表'}, // this is for model namespace and
     }))(ServiceVehicleInspectionCreateForm)
   }
   
@@ -229,7 +228,7 @@ class InspectionStationBizApp extends React.PureComponent {
       searchFormParameters: state._inspectionStation.serviceFileInspectionSearchFormParameters,
       loading: state._inspectionStation.loading,
       partialList: state._inspectionStation.partialList,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'serviceFileInspectionList', ref:state._inspectionStation, listDisplayName: '6年免检服务列表' }, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, referenceName: 'inspectionStation', listName: 'serviceFileInspectionList', ref:state._inspectionStation, listDisplayName: '6年免检服务列表' }, // this is for model namespace and
     }))(ServiceFileInspectionSearch)
   }
   getServiceFileInspectionCreateForm = () => {
@@ -241,7 +240,7 @@ class InspectionStationBizApp extends React.PureComponent {
       currentPage: state._inspectionStation.serviceFileInspectionCurrentPageNumber,
       searchFormParameters: state._inspectionStation.serviceFileInspectionSearchFormParameters,
       loading: state._inspectionStation.loading,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'serviceFileInspectionList', ref:state._inspectionStation, listDisplayName: '6年免检服务列表'}, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, referenceName: 'inspectionStation', listName: 'serviceFileInspectionList', ref:state._inspectionStation, listDisplayName: '6年免检服务列表'}, // this is for model namespace and
     }))(ServiceFileInspectionCreateForm)
   }
   
@@ -264,7 +263,7 @@ class InspectionStationBizApp extends React.PureComponent {
       searchFormParameters: state._inspectionStation.inspectionStationAccountSearchFormParameters,
       loading: state._inspectionStation.loading,
       partialList: state._inspectionStation.partialList,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'inspectionStationAccountList', ref:state._inspectionStation, listDisplayName: '检测站对账单列表' }, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, referenceName: 'inspectionStation', listName: 'inspectionStationAccountList', ref:state._inspectionStation, listDisplayName: '检测站对账单列表' }, // this is for model namespace and
     }))(InspectionStationAccountSearch)
   }
   getInspectionStationAccountCreateForm = () => {
@@ -276,7 +275,7 @@ class InspectionStationBizApp extends React.PureComponent {
       currentPage: state._inspectionStation.inspectionStationAccountCurrentPageNumber,
       searchFormParameters: state._inspectionStation.inspectionStationAccountSearchFormParameters,
       loading: state._inspectionStation.loading,
-      owner: { type: '_inspectionStation', id: state._inspectionStation.id, listName: 'inspectionStationAccountList', ref:state._inspectionStation, listDisplayName: '检测站对账单列表'}, // this is for model namespace and
+      owner: { type: '_inspectionStation', id: state._inspectionStation.id, referenceName: 'inspectionStation', listName: 'inspectionStationAccountList', ref:state._inspectionStation, listDisplayName: '检测站对账单列表'}, // this is for model namespace and
     }))(InspectionStationAccountCreateForm)
   }
   
@@ -318,7 +317,9 @@ class InspectionStationBizApp extends React.PureComponent {
      const {InspectionStationEditDetail} = GlobalComponents
      const {InspectionStationViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

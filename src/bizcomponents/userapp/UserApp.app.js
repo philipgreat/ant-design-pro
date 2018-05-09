@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './UserApp.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -104,10 +104,9 @@ class UserAppBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -156,7 +155,7 @@ class UserAppBizApp extends React.PureComponent {
       searchFormParameters: state._userApp.objectAccessSearchFormParameters,
       loading: state._userApp.loading,
       partialList: state._userApp.partialList,
-      owner: { type: '_userApp', id: state._userApp.id, listName: 'objectAccessList', ref:state._userApp, listDisplayName: '对象访问列表' }, // this is for model namespace and
+      owner: { type: '_userApp', id: state._userApp.id, referenceName: 'app', listName: 'objectAccessList', ref:state._userApp, listDisplayName: '对象访问列表' }, // this is for model namespace and
     }))(ObjectAccessSearch)
   }
   getObjectAccessCreateForm = () => {
@@ -168,7 +167,7 @@ class UserAppBizApp extends React.PureComponent {
       currentPage: state._userApp.objectAccessCurrentPageNumber,
       searchFormParameters: state._userApp.objectAccessSearchFormParameters,
       loading: state._userApp.loading,
-      owner: { type: '_userApp', id: state._userApp.id, listName: 'objectAccessList', ref:state._userApp, listDisplayName: '对象访问列表'}, // this is for model namespace and
+      owner: { type: '_userApp', id: state._userApp.id, referenceName: 'app', listName: 'objectAccessList', ref:state._userApp, listDisplayName: '对象访问列表'}, // this is for model namespace and
     }))(ObjectAccessCreateForm)
   }
   
@@ -210,7 +209,9 @@ class UserAppBizApp extends React.PureComponent {
      const {UserAppEditDetail} = GlobalComponents
      const {UserAppViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

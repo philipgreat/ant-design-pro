@@ -33,7 +33,7 @@ const testValues = {
   holderName: '李立国',
   licenseType: 'C1',
   licenseNumber: '510124199012010000',
-  expirationDate: '2998-03-26',
+  expirationDate: '2995-04-05',
   employeeId: 'VSCE000001',
 }
 */
@@ -216,6 +216,33 @@ class EmployeeDrivingLicenseCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个员工驾驶证"
@@ -223,45 +250,45 @@ class EmployeeDrivingLicenseCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.holderName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.holderName} {...formItemLayout}>
                   {getFieldDecorator('holderName', {
                     rules: [{ required: true, message: '请输入姓名' }],
                   })(
-                    <Input placeholder="请输入请输入姓名string" />
+                    <Input placeholder="请输入姓名" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.licenseType}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.licenseType} {...formItemLayout}>
                   {getFieldDecorator('licenseType', {
                     rules: [{ required: true, message: '请输入准驾车型' }],
                   })(
-                    <Input placeholder="请输入请输入准驾车型string" />
+                    <Input placeholder="请输入准驾车型" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.licenseNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.licenseNumber} {...formItemLayout}>
                   {getFieldDecorator('licenseNumber', {
                     rules: [{ required: true, message: '请输入驾驶证号码' }],
                   })(
-                    <Input placeholder="请输入请输入驾驶证号码string" />
+                    <Input placeholder="请输入驾驶证号码" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.expirationDate}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.expirationDate} {...formItemLayout}>
                   {getFieldDecorator('expirationDate', {
                     rules: [{ required: true, message: '请输入有效期至' }],
                   })(
-                    <Input placeholder="请输入请输入有效期至date" />
+                    <DatePicker format="YYYY-MM-DD" placeholder="请输入有效期至" />
                   )}
                 </Form.Item>
               </Col>
@@ -282,7 +309,7 @@ class EmployeeDrivingLicenseCreateForm extends Component {
 
 
         <Card title="附件" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
@@ -337,21 +364,24 @@ class EmployeeDrivingLicenseCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.employee}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.employee} {...formItemLayout}>
                   {getFieldDecorator('employeeId', {
+                  	initialValue: tryinit('employee'),
                     rules: [{ required: true, message: '请输入员工' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateEmployeeList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateEmployeeSearch}
                     placeholder="请输入员工"
+                    
+                    disabled={!availableForEdit('employee')}
                   >
                   {candidateEmployeeList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.employeeName}(${item.id})`}</Option>);

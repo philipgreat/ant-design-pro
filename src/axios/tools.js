@@ -6,7 +6,7 @@ import axios from 'axios';
 import { message } from 'antd';
 import {SYSTEM_SHORT_NAME} from './config'
 
-
+import SystemConfig from './config'
 import  PictureEdit from '../components/PictureEdit'
 import  ImageUpload from '../components/ImageUpload'
 import  OssPictureEdit from '../components/OSSPictureEdit'
@@ -76,6 +76,8 @@ export const getURLPrefix = () => {
         //return `http://www.yourongzhixing.com/dssc/`
         return `http://${url.hostname}:8080/naf/`
     }
+    //return `http://xm.jl51.com.cn/cis/`
+
     return `${url.origin}/${SYSTEM_SHORT_NAME}/`
     //return `${url.origin}/${SYSTEM_SHORT_NAME}/`
     
@@ -188,7 +190,7 @@ export  const mapBackToImageValuesSkynetMediaServer = (convertedImagesValues) =>
           }
           const uri=value.response.resourceUris[0];
           //{"status":"success","resourceUris":["public/example/product/shores/girls/pid456/skuid456/235/19/144/172/p456s456main.picture.png"]}
-          targetImages[key] = "//xm.jl51.com.cn/mss/"+uri;
+          targetImages[key] = SystemConfig.MEDIA_PREFIX+uri;
 
         })
         return targetImages

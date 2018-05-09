@@ -31,8 +31,8 @@ const testValues = {
   nickName: '张俊宝',
   weixinOpenid: 'wx123456789abcdefghijklmn',
   weixinAppid: 'wxapp12098410239840',
-  longitude: '103.13130288141538',
-  latitude: '31.369703760822766',
+  longitude: '105.92942953720137',
+  latitude: '32.319273985835565',
   secUserId: 'SU000001',
   platformId: 'CIP000001',
   logoImage: 'wx.qlogo.cnmmopenDYAIOgq83eqV99Oaly8icqjNWJWeCZTFR5HCwZcCJeibibCRMvWicIYBusmKFF6e8DAe7o07ql8mT8WhWdNUOJ3BiaQ.jpg',
@@ -247,6 +247,33 @@ class CustomerCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个客户"
@@ -254,55 +281,55 @@ class CustomerCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.nickName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.nickName} {...formItemLayout}>
                   {getFieldDecorator('nickName', {
                     rules: [{ required: true, message: '请输入客户昵称' }],
                   })(
-                    <Input placeholder="请输入请输入客户昵称string" />
+                    <Input placeholder="请输入客户昵称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.weixinOpenid}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.weixinOpenid} {...formItemLayout}>
                   {getFieldDecorator('weixinOpenid', {
                     rules: [{ required: true, message: '请输入微信ID' }],
                   })(
-                    <Input placeholder="请输入请输入微信IDstring" />
+                    <Input placeholder="请输入微信ID" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.weixinAppid}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.weixinAppid} {...formItemLayout}>
                   {getFieldDecorator('weixinAppid', {
                     rules: [{ required: true, message: '请输入微信APP' }],
                   })(
-                    <Input placeholder="请输入请输入微信APPstring" />
+                    <Input placeholder="请输入微信APP" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.longitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.longitude} {...formItemLayout}>
                   {getFieldDecorator('longitude', {
                     rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入经度double" />
+                    <Input placeholder="请输入经度" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.latitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude} {...formItemLayout}>
                   {getFieldDecorator('latitude', {
                     rules: [{ required: true, message: '请输入纬度' }],
                   })(
-                    <Input placeholder="请输入请输入纬度double" />
+                    <Input placeholder="请输入纬度" />
                   )}
                 </Form.Item>
               </Col>
@@ -321,7 +348,7 @@ class CustomerCreateForm extends Component {
 
 
         <Card title="头像" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
               <Col lg={24} md={24} sm={24}>
                 <Form.Item>
@@ -339,7 +366,7 @@ class CustomerCreateForm extends Component {
 
 
         <Card title="附件" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
@@ -358,21 +385,24 @@ class CustomerCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.secUser}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.secUser} {...formItemLayout}>
                   {getFieldDecorator('secUserId', {
+                  	initialValue: tryinit('secUser'),
                     rules: [{ required: true, message: '请输入SecUser' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateSecUserList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateSecUserSearch}
                     placeholder="请输入SecUser"
+                    
+                    disabled={!availableForEdit('secUser')}
                   >
                   {candidateSecUserList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.login}(${item.id})`}</Option>);
@@ -383,18 +413,21 @@ class CustomerCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.platform}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.platform} {...formItemLayout}>
                   {getFieldDecorator('platformId', {
+                  	initialValue: tryinit('platform'),
                     rules: [{ required: true, message: '请输入平台' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidatePlatformList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidatePlatformSearch}
                     placeholder="请输入平台"
+                    
+                    disabled={!availableForEdit('platform')}
                   >
                   {candidatePlatformList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);

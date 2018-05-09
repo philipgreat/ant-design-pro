@@ -56,15 +56,7 @@ class VehiclePermitUpdateForm extends Component {
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
-    // const { getFieldDecorator, setFieldsValue } = this.props.form
-    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow()
-    if (!selectedRow) {
-      return
-    }
-    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
@@ -83,7 +75,7 @@ class VehiclePermitUpdateForm extends Component {
     const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
-        expirationDate: moment(item.expirationDate).format('YYYY-MM-DD'),
+        expirationDate: moment(item.expirationDate),
 
       }
     })
@@ -164,7 +156,7 @@ class VehiclePermitUpdateForm extends Component {
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
         })
-        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        //setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateVehiclePermit`,
@@ -252,8 +244,17 @@ class VehiclePermitUpdateForm extends Component {
     if (!selectedRows) {
       return (<div>缺少被更新的对象</div>)
     }
+	const selectedRow = this.getSelectedRow()
 
-    // TODO
+	const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
+
     return (
       <PageHeaderLayout
         title={"更新行驶证"+(currentUpdateIndex+1)+"/"+selectedRows.length}
@@ -261,46 +262,54 @@ class VehiclePermitUpdateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
             
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.id}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
+                    initialValue: selectedRow.id,
                     rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入请输入IDstring" disabled />
+                    <Input placeholder="请输入ID" disabled/>
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.holderName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.holderName} {...formItemLayout}>
                   {getFieldDecorator('holderName', {
+                    initialValue: selectedRow.holderName,
                     rules: [{ required: true, message: '请输入姓名' }],
                   })(
-                    <Input placeholder="请输入请输入姓名string" />
+                    <Input placeholder="请输入姓名" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.licenseNumber}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.licenseNumber} {...formItemLayout}>
                   {getFieldDecorator('licenseNumber', {
+                    initialValue: selectedRow.licenseNumber,
                     rules: [{ required: true, message: '请输入驾驶证号码' }],
                   })(
-                    <Input placeholder="请输入请输入驾驶证号码string" />
+                    <Input placeholder="请输入驾驶证号码" />
+                    
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.expirationDate}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.expirationDate} {...formItemLayout}>
                   {getFieldDecorator('expirationDate', {
+                    initialValue: selectedRow.expirationDate,
                     rules: [{ required: true, message: '请输入有效期至' }],
                   })(
-                    <Input placeholder="请输入请输入有效期至date" />
+                    <DatePicker format="YYYY-MM-DD" placeholder="请输入有效期至" />
+                    
                   )}
                 </Form.Item>
               </Col>
@@ -314,8 +323,8 @@ class VehiclePermitUpdateForm extends Component {
         
 
 
-        <Card title="附件" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+        <Card title={<div>附件 <Popover title="扫描二维码可以从手机上传图片或者附件" content={<div><img src='./qrtest.png'/></div>}><Icon type="qrcode" ></Icon></Popover></div>} className={styles.card} bordered={false}>
+          <Form >
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>

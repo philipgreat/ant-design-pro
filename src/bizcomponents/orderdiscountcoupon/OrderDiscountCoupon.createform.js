@@ -31,7 +31,7 @@ const testValues = {};
 const testValues = {
   couponTitle: '优惠￥10元',
   discountAmount: '10.00',
-  endDate: '2994-07-12 06:02:31',
+  endDate: '2998-06-17 14:49:11',
   couponStatus: '未使用',
   shareCode: 'abcdefg',
   customerId: 'C000001',
@@ -281,6 +281,33 @@ class OrderDiscountCouponCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个优惠券"
@@ -288,55 +315,55 @@ class OrderDiscountCouponCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.couponTitle}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.couponTitle} {...formItemLayout}>
                   {getFieldDecorator('couponTitle', {
                     rules: [{ required: true, message: '请输入优惠券名称' }],
                   })(
-                    <Input placeholder="请输入请输入优惠券名称string" />
+                    <Input placeholder="请输入优惠券名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.discountAmount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.discountAmount} {...formItemLayout}>
                   {getFieldDecorator('discountAmount', {
                     rules: [{ required: true, message: '请输入优惠金额' }],
                   })(
-                    <Input placeholder="请输入请输入优惠金额money" />
+                    <Input placeholder="请输入优惠金额" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.endDate}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.endDate} {...formItemLayout}>
                   {getFieldDecorator('endDate', {
                     rules: [{ required: true, message: '请输入结束日期' }],
                   })(
-                    <Input placeholder="请输入请输入结束日期date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入结束日期" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.couponStatus}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.couponStatus} {...formItemLayout}>
                   {getFieldDecorator('couponStatus', {
                     rules: [{ required: true, message: '请输入优惠券状态' }],
                   })(
-                    <Input placeholder="请输入请输入优惠券状态string" />
+                    <Input placeholder="请输入优惠券状态" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.shareCode}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.shareCode} {...formItemLayout}>
                   {getFieldDecorator('shareCode', {
                     rules: [{ required: true, message: '请输入优惠券分享随机码' }],
                   })(
-                    <Input placeholder="请输入请输入优惠券分享随机码string" />
+                    <Input placeholder="请输入优惠券分享随机码" />
                   )}
                 </Form.Item>
               </Col>
@@ -359,21 +386,24 @@ class OrderDiscountCouponCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.customer}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.customer} {...formItemLayout}>
                   {getFieldDecorator('customerId', {
+                  	initialValue: tryinit('customer'),
                     rules: [{ required: true, message: '请输入客户' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateCustomerList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateCustomerSearch}
                     placeholder="请输入客户"
+                    
+                    disabled={!availableForEdit('customer')}
                   >
                   {candidateCustomerList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.nickName}(${item.id})`}</Option>);
@@ -384,18 +414,21 @@ class OrderDiscountCouponCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.mainOrder}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mainOrder} {...formItemLayout}>
                   {getFieldDecorator('mainOrderId', {
+                  	initialValue: tryinit('mainOrder'),
                     rules: [{ required: true, message: '请输入年检订单' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateMainOrderList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateMainOrderSearch}
                     placeholder="请输入年检订单"
+                    
+                    disabled={!availableForEdit('mainOrder')}
                   >
                   {candidateMainOrderList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.orderStatus}(${item.id})`}</Option>);
@@ -406,18 +439,21 @@ class OrderDiscountCouponCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.platform}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.platform} {...formItemLayout}>
                   {getFieldDecorator('platformId', {
+                  	initialValue: tryinit('platform'),
                     rules: [{ required: true, message: '请输入平台' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidatePlatformList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidatePlatformSearch}
                     placeholder="请输入平台"
+                    
+                    disabled={!availableForEdit('platform')}
                   >
                   {candidatePlatformList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);

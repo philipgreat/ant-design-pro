@@ -21,7 +21,7 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './AvailableInsurance.app.less'
-
+import {sessionObject} from '../../utils/utils'
 
 import HeaderSearch from '../../components/HeaderSearch';
 import NoticeIcon from '../../components/NoticeIcon';
@@ -105,10 +105,9 @@ class AvailableInsuranceBizApp extends React.PureComponent {
   
   getNavMenuItems = () => {
   
- 	const menuDataExpr = sessionStorage.getItem('menuData');
-    const targetAppExpr = sessionStorage.getItem('targetApp');
-    const menuData = JSON.parse(menuDataExpr)
-    const targetApp = JSON.parse(targetAppExpr)
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
 	const {objectId}=targetApp;
   
     return (
@@ -157,7 +156,7 @@ class AvailableInsuranceBizApp extends React.PureComponent {
       searchFormParameters: state._availableInsurance.vehicleInspectionInsuranceOrderSearchFormParameters,
       loading: state._availableInsurance.loading,
       partialList: state._availableInsurance.partialList,
-      owner: { type: '_availableInsurance', id: state._availableInsurance.id, listName: 'vehicleInspectionInsuranceOrderList', ref:state._availableInsurance, listDisplayName: '车辆上线检测保险订单列表' }, // this is for model namespace and
+      owner: { type: '_availableInsurance', id: state._availableInsurance.id, referenceName: 'insurance', listName: 'vehicleInspectionInsuranceOrderList', ref:state._availableInsurance, listDisplayName: '车辆上线检测保险订单列表' }, // this is for model namespace and
     }))(VehicleInspectionInsuranceOrderSearch)
   }
   getVehicleInspectionInsuranceOrderCreateForm = () => {
@@ -169,7 +168,7 @@ class AvailableInsuranceBizApp extends React.PureComponent {
       currentPage: state._availableInsurance.vehicleInspectionInsuranceOrderCurrentPageNumber,
       searchFormParameters: state._availableInsurance.vehicleInspectionInsuranceOrderSearchFormParameters,
       loading: state._availableInsurance.loading,
-      owner: { type: '_availableInsurance', id: state._availableInsurance.id, listName: 'vehicleInspectionInsuranceOrderList', ref:state._availableInsurance, listDisplayName: '车辆上线检测保险订单列表'}, // this is for model namespace and
+      owner: { type: '_availableInsurance', id: state._availableInsurance.id, referenceName: 'insurance', listName: 'vehicleInspectionInsuranceOrderList', ref:state._availableInsurance, listDisplayName: '车辆上线检测保险订单列表'}, // this is for model namespace and
     }))(VehicleInspectionInsuranceOrderCreateForm)
   }
   
@@ -192,7 +191,7 @@ class AvailableInsuranceBizApp extends React.PureComponent {
       searchFormParameters: state._availableInsurance.serviceInsuranceForInspectionSearchFormParameters,
       loading: state._availableInsurance.loading,
       partialList: state._availableInsurance.partialList,
-      owner: { type: '_availableInsurance', id: state._availableInsurance.id, listName: 'serviceInsuranceForInspectionList', ref:state._availableInsurance, listDisplayName: '保险服务列表' }, // this is for model namespace and
+      owner: { type: '_availableInsurance', id: state._availableInsurance.id, referenceName: 'orderedInsurance', listName: 'serviceInsuranceForInspectionList', ref:state._availableInsurance, listDisplayName: '保险服务列表' }, // this is for model namespace and
     }))(ServiceInsuranceForInspectionSearch)
   }
   getServiceInsuranceForInspectionCreateForm = () => {
@@ -204,7 +203,7 @@ class AvailableInsuranceBizApp extends React.PureComponent {
       currentPage: state._availableInsurance.serviceInsuranceForInspectionCurrentPageNumber,
       searchFormParameters: state._availableInsurance.serviceInsuranceForInspectionSearchFormParameters,
       loading: state._availableInsurance.loading,
-      owner: { type: '_availableInsurance', id: state._availableInsurance.id, listName: 'serviceInsuranceForInspectionList', ref:state._availableInsurance, listDisplayName: '保险服务列表'}, // this is for model namespace and
+      owner: { type: '_availableInsurance', id: state._availableInsurance.id, referenceName: 'orderedInsurance', listName: 'serviceInsuranceForInspectionList', ref:state._availableInsurance, listDisplayName: '保险服务列表'}, // this is for model namespace and
     }))(ServiceInsuranceForInspectionCreateForm)
   }
   
@@ -246,7 +245,9 @@ class AvailableInsuranceBizApp extends React.PureComponent {
      const {AvailableInsuranceEditDetail} = GlobalComponents
      const {AvailableInsuranceViewDetail} = GlobalComponents
      
-     const currentBreadcrumb = breadcrumb[breadcrumb.currentApp]
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
      
      
      // Don't show popup menu when it is been collapsed

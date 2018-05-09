@@ -54,7 +54,20 @@ class RepairingCompanyAccountTable extends PureComponent {
   cleanSelectedKeys = () => {
     this.handleRowSelectChange([], [])
   }
+  calcDisplayColumns=()=>{
 
+    const {owner} =  this.props
+    const {referenceName} = owner
+    
+    if(!referenceName){
+      return columns
+    }
+    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+ 
+    return remainColumns
+
+  }
+	
   render() {
     const { selectedRowKeys } = this.state
     // const { data, count, current, owner } = this.props
@@ -97,7 +110,7 @@ class RepairingCompanyAccountTable extends PureComponent {
           rowKey={record => record.id}
           rowSelection={rowSelection}
           dataSource={data}
-          columns={columns}
+          columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
           scroll={{ x: 2700 }}

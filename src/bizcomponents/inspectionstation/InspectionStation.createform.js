@@ -32,8 +32,8 @@ const testValues = {
   name: '西浦机动车检测站',
   operatingStatus: '正常',
   addressDetail: '武侯区火车南站西路799号',
-  longitude: '103.7028675945323',
-  latitude: '30.283627626607217',
+  longitude: '103.52808532339665',
+  latitude: '31.49002818335683',
   contactName: '张邱生',
   contactMobile: '13812345678',
   addressCityId: 'C000001',
@@ -214,6 +214,33 @@ class InspectionStationCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个检测站"
@@ -221,75 +248,75 @@ class InspectionStationCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.name}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.name} {...formItemLayout}>
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: '请输入名称' }],
                   })(
-                    <Input placeholder="请输入请输入名称string" />
+                    <Input placeholder="请输入名称" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.operatingStatus}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.operatingStatus} {...formItemLayout}>
                   {getFieldDecorator('operatingStatus', {
                     rules: [{ required: true, message: '请输入服务状态' }],
                   })(
-                    <Input placeholder="请输入请输入服务状态string" />
+                    <Input placeholder="请输入服务状态" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.addressDetail}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.addressDetail} {...formItemLayout}>
                   {getFieldDecorator('addressDetail', {
                     rules: [{ required: true, message: '请输入所在地址' }],
                   })(
-                    <Input placeholder="请输入请输入所在地址string" />
+                    <Input placeholder="请输入所在地址" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.longitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.longitude} {...formItemLayout}>
                   {getFieldDecorator('longitude', {
                     rules: [{ required: true, message: '请输入经度' }],
                   })(
-                    <Input placeholder="请输入请输入经度double" />
+                    <Input placeholder="请输入经度" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.latitude}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.latitude} {...formItemLayout}>
                   {getFieldDecorator('latitude', {
                     rules: [{ required: true, message: '请输入纬度' }],
                   })(
-                    <Input placeholder="请输入请输入纬度double" />
+                    <Input placeholder="请输入纬度" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.contactName}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.contactName} {...formItemLayout}>
                   {getFieldDecorator('contactName', {
                     rules: [{ required: true, message: '请输入联系人姓名' }],
                   })(
-                    <Input placeholder="请输入请输入联系人姓名string" />
+                    <Input placeholder="请输入联系人姓名" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.contactMobile}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.contactMobile} {...formItemLayout}>
                   {getFieldDecorator('contactMobile', {
                     rules: [{ required: true, message: '请输入联系人手机' }],
                   })(
-                    <Input placeholder="请输入请输入联系人手机string_china_mobile_phone" />
+                    <Input placeholder="请输入联系人手机" />
                   )}
                 </Form.Item>
               </Col>
@@ -310,7 +337,7 @@ class InspectionStationCreateForm extends Component {
 
 
         <Card title="附件" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
               <Col lg={6} md={12} sm={24}>
@@ -329,21 +356,24 @@ class InspectionStationCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.addressCity}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.addressCity} {...formItemLayout}>
                   {getFieldDecorator('addressCityId', {
+                  	initialValue: tryinit('addressCity'),
                     rules: [{ required: true, message: '请输入所在城市' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateAddressCityList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateAddressCitySearch}
                     placeholder="请输入所在城市"
+                    
+                    disabled={!availableForEdit('addressCity')}
                   >
                   {candidateAddressCityList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);

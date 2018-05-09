@@ -30,8 +30,8 @@ const testValues = {
   promotionMessage: '提前30天，立减10元',
   preorderDays: '5',
   discountAmount: '10.00',
-  startDate: '2996-04-10 13:05:24',
-  endDate: '2996-03-08 04:22:33',
+  startDate: '2995-11-13 23:35:49',
+  endDate: '2996-02-01 02:42:28',
   productId: 'AP000001',
   platformId: 'CIP000001',
 }
@@ -244,6 +244,33 @@ class PreorderPromotionCreateForm extends Component {
     }   
     
     
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个提前下单优惠"
@@ -251,55 +278,55 @@ class PreorderPromotionCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.promotionMessage}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.promotionMessage} {...formItemLayout}>
                   {getFieldDecorator('promotionMessage', {
                     rules: [{ required: true, message: '请输入优惠信息' }],
                   })(
-                    <Input placeholder="请输入请输入优惠信息string" />
+                    <Input placeholder="请输入优惠信息" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.preorderDays}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.preorderDays} {...formItemLayout}>
                   {getFieldDecorator('preorderDays', {
                     rules: [{ required: true, message: '请输入提前天数' }],
                   })(
-                    <Input placeholder="请输入请输入提前天数int" />
+                    <Input placeholder="请输入提前天数" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.discountAmount}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.discountAmount} {...formItemLayout}>
                   {getFieldDecorator('discountAmount', {
                     rules: [{ required: true, message: '请输入优惠金额' }],
                   })(
-                    <Input placeholder="请输入请输入优惠金额money" />
+                    <Input placeholder="请输入优惠金额" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.startDate}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.startDate} {...formItemLayout}>
                   {getFieldDecorator('startDate', {
                     rules: [{ required: true, message: '请输入开始日期' }],
                   })(
-                    <Input placeholder="请输入请输入开始日期date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入开始日期" />
                   )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.endDate}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.endDate} {...formItemLayout}>
                   {getFieldDecorator('endDate', {
                     rules: [{ required: true, message: '请输入结束日期' }],
                   })(
-                    <Input placeholder="请输入请输入结束日期date_time" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入结束日期" />
                   )}
                 </Form.Item>
               </Col>
@@ -322,21 +349,24 @@ class PreorderPromotionCreateForm extends Component {
 
 
         <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.product}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.product} {...formItemLayout}>
                   {getFieldDecorator('productId', {
+                  	initialValue: tryinit('product'),
                     rules: [{ required: true, message: '请输入产品名称' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidateProductList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidateProductSearch}
                     placeholder="请输入产品名称"
+                    
+                    disabled={!availableForEdit('product')}
                   >
                   {candidateProductList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.productName}(${item.id})`}</Option>);
@@ -347,18 +377,21 @@ class PreorderPromotionCreateForm extends Component {
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.platform}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.platform} {...formItemLayout}>
                   {getFieldDecorator('platformId', {
+                  	initialValue: tryinit('platform'),
                     rules: [{ required: true, message: '请输入平台' }],
                   })(
                                 
                   <AutoComplete
                     dataSource={candidatePlatformList.candidates}
-                    style={{ width: 200 }}
+                    
                     
                     onSearch={this.handleCandidatePlatformSearch}
                     placeholder="请输入平台"
+                    
+                    disabled={!availableForEdit('platform')}
                   >
                   {candidatePlatformList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);
