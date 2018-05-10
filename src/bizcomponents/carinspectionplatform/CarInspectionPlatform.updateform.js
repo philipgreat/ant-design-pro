@@ -19,7 +19,7 @@ const fieldLabels = {
   name: '名称',
   description: '描述',
   insuranceContactName: '保险联系人姓名',
-  insuranceContactMobile: '保险联系人手机',
+  insuranceContactMobile: '保险接触手机',
 
 }
 
@@ -187,7 +187,7 @@ class CarInspectionPlatformUpdateForm extends Component {
         payload: {
           id: owner.id,
           type: 'carInspectionPlatform',
-          listName:'驾乐乐车辆代审服务平台列表' 
+          listName:'汽车检测平台列表' 
         },
       })
     }
@@ -247,8 +247,8 @@ class CarInspectionPlatformUpdateForm extends Component {
 
     return (
       <PageHeaderLayout
-        title={"更新驾乐乐车辆代审服务平台"+(currentUpdateIndex+1)+"/"+selectedRows.length}
-        content="更新驾乐乐车辆代审服务平台"
+        title={"更新汽车检测平台"+(currentUpdateIndex+1)+"/"+selectedRows.length}
+        content="更新汽车检测平台"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
@@ -308,9 +308,9 @@ class CarInspectionPlatformUpdateForm extends Component {
                 <Form.Item label={fieldLabels.insuranceContactMobile} {...formItemLayout}>
                   {getFieldDecorator('insuranceContactMobile', {
                     initialValue: selectedRow.insuranceContactMobile,
-                    rules: [{ required: true, message: '请输入保险联系人手机' }],
+                    rules: [{ required: true, message: '请输入保险接触手机' }],
                   })(
-                    <Input placeholder="请输入保险联系人手机" />
+                    <Input placeholder="请输入保险接触手机" />
                     
                   )}
                 </Form.Item>

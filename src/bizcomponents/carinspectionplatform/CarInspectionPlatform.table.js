@@ -12,7 +12,8 @@ const columns = [
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '11' },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '11' },
   { title: '保险联系人姓名', debugtype: 'string', dataIndex: 'insuranceContactName', width: '8' },
-  { title: '保险联系人手机', debugtype: 'string_china_mobile_phone', dataIndex: 'insuranceContactMobile', width: '15' },
+  { title: '保险接触手机', debugtype: 'string_china_mobile_phone', dataIndex: 'insuranceContactMobile', width: '15' },
+
 
 ]
 
@@ -53,8 +54,42 @@ class CarInspectionPlatformTable extends PureComponent {
       return columns
     }
     const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
- 
+    const operationColumn={
+      title: '操作',
+      render: (text, record) => (
+        <p>
+          <a onClick={()=>this.gotoEdit(text, record)}>编辑</a>
+          
+        </p>
+      ),
+    }
+    remainColumns.push(
+      operationColumn
+    )
     return remainColumns
+
+  }
+  
+  gotoEdit = (text, record) =>{
+    this.handleRowSelectChange([record.id], [record])
+    const{dispatch,owner} = this.props
+    const selectedRows = [];
+    selectedRows.push(record)
+    console.log("selectedRows",selectedRows)
+
+    if(selectedRows.length<1){
+      return
+    }
+    const currentUpdateIndex = 0
+    dispatch({
+      type: `${owner.type}/gotoUpdateForm`,
+      payload: {
+        id: owner.id,
+        type: 'carInspectionPlatform',
+        selectedRows,
+        currentUpdateIndex,
+      },
+    })
 
   }
 	

@@ -166,7 +166,7 @@ export default class CarInspectionPlatformSearch extends PureComponent {
       const { dispatch, owner,location } = this.props;
       console.log("trying to call handleCloseAlert",owner)
       const pathname = location.pathname
-      dispatch({ type: `${owner.type}/view`, payload: { id: owner.id,pathname,displayName:'驾乐乐车辆代审服务平台列表' } })
+      dispatch({ type: `${owner.type}/view`, payload: { id: owner.id,pathname,displayName:'汽车检测平台列表' } })
 
   };  
     
@@ -231,7 +231,7 @@ export default class CarInspectionPlatformSearch extends PureComponent {
     }
     
     return (
-      <PageHeaderLayout title={`${displayName}: 驾乐乐车辆代审服务平台列表`}>
+      <PageHeaderLayout title={`${displayName}: 汽车检测平台列表`}>
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>
@@ -264,6 +264,7 @@ export default class CarInspectionPlatformSearch extends PureComponent {
               onSelectRow={this.handleSelectRows}
               onChange={this.handleStandardTableChange}
               owner={owner}
+              {...this.props}
             />
           </div>
         </Card>

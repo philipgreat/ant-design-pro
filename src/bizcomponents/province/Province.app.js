@@ -58,7 +58,6 @@ const query = {
   
 const menuData = {menuName:"省", menuFor: "province",
   		subItems: [
-  {name: 'cityList', displayName:'城市'},
   		
   		
   		],
@@ -144,41 +143,6 @@ class ProvinceBizApp extends React.PureComponent {
     )
   }
 
-
-  getCitySearch = () => {
-    const {CitySearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._province.cityList,
-      count: state._province.cityCount,
-      currentPage: state._province.cityCurrentPageNumber,
-      searchFormParameters: state._province.citySearchFormParameters,
-      loading: state._province.loading,
-      partialList: state._province.partialList,
-      owner: { type: '_province', id: state._province.id, referenceName: 'province', listName: 'cityList', ref:state._province, listDisplayName: '城市列表' }, // this is for model namespace and
-    }))(CitySearch)
-  }
-  getCityCreateForm = () => {
-   	const {CityCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._province.cityList,
-      count: state._province.cityCount,
-      currentPage: state._province.cityCurrentPageNumber,
-      searchFormParameters: state._province.citySearchFormParameters,
-      loading: state._province.loading,
-      owner: { type: '_province', id: state._province.id, referenceName: 'province', listName: 'cityList', ref:state._province, listDisplayName: '城市列表'}, // this is for model namespace and
-    }))(CityCreateForm)
-  }
-  
-  getCityUpdateForm = () => {
-  	const {CityUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._province.selectedRows,
-      currentUpdateIndex: state._province.currentUpdateIndex,
-      owner: { type: '_province', id: state._province.id, listName: 'cityList', ref:state._province, listDisplayName: '城市列表' }, // this is for model namespace and
-    }))(CityUpdateForm)
-  }
 
   getPageTitle = () => {
     // const { location } = this.props
@@ -291,10 +255,6 @@ class ProvinceBizApp extends React.PureComponent {
                <Route path="/province/:id/editDetail" component={ProvinceEditDetail} />
                <Route path="/province/:id/viewDetail" component={ProvinceViewDetail} /> 
                
-
-               <Route path="/province/:id/list/cityList" component={this.getCitySearch()} />
-               <Route path="/province/:id/list/cityCreateForm" component={this.getCityCreateForm()} />
-               <Route path="/province/:id/list/cityUpdateForm" component={this.getCityUpdateForm()} />
               
              </Switch>
            </Content>

@@ -1,16 +1,17 @@
 
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge,Popover} from 'antd'
+import { Table, Alert, Badge} from 'antd'
 import { Link } from 'dva/router'
 import styles from './Province.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: (<Popover  content={<div>隐藏</div>}><div>ID</div></Popover>), debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/province/${text}/dashboard`}>{text}</Link>) },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '6' },
   { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
+
 
 ]
 
@@ -51,8 +52,64 @@ class ProvinceTable extends PureComponent {
       return columns
     }
     const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
- 
+    const operationColumn={
+      title: '操作',
+      render: (text, record) => (
+        <p>
+          <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
+          {
+            record.actionList&&record.actionList.map((item)=>(<a key={item.actionId} onClick={()=>this.executeAction(item,text, record)}><span className={styles.splitLine} />{item.actionName}</a>))
+
+          }
+        </p>
+      ),
+    }
+    remainColumns.push(
+      operationColumn
+    )
     return remainColumns
+
+  }
+  executeAction = (action, text, record) => {
+    console.log("executeAction",action)
+    const {dispatch,owner} = this.props
+    const {actionPath}=action;
+    const url = actionPath
+    const successAction={
+
+      type:`${owner.type}/view`,
+      payload: {id:`${owner.id}`}
+
+    }
+    dispatch({
+      type:"actioncenter/executeAction",
+      payload:{action,url,successAction}
+
+    })
+
+
+
+  }
+  gotoEdit = (text, record) =>{
+    this.handleRowSelectChange([record.id], [record])
+    const{dispatch,owner} = this.props
+    const selectedRows = [];
+    selectedRows.push(record)
+    console.log("selectedRows",selectedRows)
+
+    if(selectedRows.length<1){
+      return
+    }
+    const currentUpdateIndex = 0
+    dispatch({
+      type: `${owner.type}/gotoUpdateForm`,
+      payload: {
+        id: owner.id,
+        type: 'province',
+        selectedRows,
+        currentUpdateIndex,
+      },
+    })
 
   }
 	
@@ -94,13 +151,6 @@ class ProvinceTable extends PureComponent {
           />
         </div>
         <Table
-
-onHeaderRow={(column) => {
-  return {
-    onClick: () => {alert(column)},        // 点击表头行
-  };
-}}
-
           loading={false}
           rowKey={record => record.id}
           rowSelection={rowSelection}

@@ -1,33 +1,17 @@
+
+
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
-import {
-  Row,
-  Col,
-  Card,
-  Form,
-  Input,
-  Select,
-  Icon,
-  Button,
-  Dropdown,
-  Menu,
-  InputNumber,
-  DatePicker,
-  Modal,
-  message,
-} from 'antd'
+import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd'
 
 import styles from './CarInspectionPlatform.search.less'
 
 const FormItem = Form.Item
 const { Option } = Select
-const getValue = obj =>
-  Object.keys(obj)
-    .map(key => obj[key])
-    .join(',')
+const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',')
 
-@Form.create()
-export default class CarInspectionPlatformSearchForm extends PureComponent {
+
+class CarInspectionPlatformSearchForm extends PureComponent {
   state = {
     // addInputValue: '',
     // modalVisible: false,
@@ -73,7 +57,7 @@ export default class CarInspectionPlatformSearchForm extends PureComponent {
       'carInspectionPlatformList.searchValue': fieldValue,
     }
   }
-  handleSearch = e => {
+  handleSearch = (e) => {
     e.preventDefault()
     const { dispatch, form } = this.props
     form.validateFields((err, fieldsValue) => {
@@ -82,56 +66,45 @@ export default class CarInspectionPlatformSearchForm extends PureComponent {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
         ...this.buildStringSearchParameters(fieldsValue, 'name'),
         ...this.buildStringSearchParameters(fieldsValue, 'description'),
-        ...this.buildStringSearchParameters(
-          fieldsValue,
-          'insuranceContactName'
-        ),
-        ...this.buildStringSearchParameters(
-          fieldsValue,
-          'insuranceContactMobile'
-        ),
+        ...this.buildStringSearchParameters(fieldsValue, 'insuranceContactName'),
+        ...this.buildStringSearchParameters(fieldsValue, 'insuranceContactMobile'),
+
       }
       const { owner } = this.props
       dispatch({
         type: `${owner.type}/load`,
-        payload: {
-          id: owner.id,
-          parameters: params,
-          carInspectionPlatformSearchFormParameters: fieldsValue,
-        },
+        payload: { id: owner.id, parameters: params, carInspectionPlatformSearchFormParameters: fieldsValue },
       })
     })
   }
-
+      
   renderSimpleForm() {
     const { getFieldDecorator } = this.props.form
     return (
       <Form onSubmit={this.handleSearch} layout="inline">
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+
           <Col md={8} sm={24}>
             <FormItem label="ID">
-              {getFieldDecorator('id')(<Input placeholder="请输入ID" />)}
+              {getFieldDecorator('id')(
+                <Input placeholder="请输入ID" />
+               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
             <FormItem label="名称">
-              {getFieldDecorator('name')(<Input placeholder="请输入名称" />)}
+              {getFieldDecorator('name')(
+                <Input placeholder="请输入名称" />
+               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
             <span className={styles.submitButtons}>
-              <Button type="primary" htmlType="submit">
-                查询
-              </Button>
-              <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>
-                重置
-              </Button>
-              <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
-                {' '}
-                展开 <Icon type="down" />{' '}
-              </a>
+              <Button type="primary" htmlType="submit">查询</Button>
+              <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>重置</Button>
+              <a style={{ marginLeft: 8 }} onClick={this.toggleForm}> 展开 <Icon type="down" /> </a>
             </span>
           </Col>
         </Row>
@@ -143,15 +116,20 @@ export default class CarInspectionPlatformSearchForm extends PureComponent {
     return (
       <Form onSubmit={this.handleSearch} layout="inline">
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+
           <Col md={8} sm={24}>
             <FormItem label="ID">
-              {getFieldDecorator('id')(<Input placeholder="请输入ID" />)}
+              {getFieldDecorator('id')(
+                <Input placeholder="请输入ID" />
+              )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
             <FormItem label="名称">
-              {getFieldDecorator('name')(<Input placeholder="请输入名称" />)}
+              {getFieldDecorator('name')(
+                <Input placeholder="请输入名称" />
+              )}
             </FormItem>
           </Col>
 
@@ -172,24 +150,19 @@ export default class CarInspectionPlatformSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="保险联系人手机">
+            <FormItem label="保险接触手机">
               {getFieldDecorator('insuranceContactMobile')(
-                <Input placeholder="请输入保险联系人手机" />
+                <Input placeholder="请输入保险接触手机" />
               )}
             </FormItem>
           </Col>
+
         </Row>
         <div style={{ overflow: 'hidden' }}>
           <span style={{ float: 'right', marginBottom: 24 }}>
-            <Button type="primary" htmlType="submit">
-              查询
-            </Button>
-            <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>
-              重置
-            </Button>
-            <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
-              收起 <Icon type="up" />
-            </a>
+            <Button type="primary" htmlType="submit">查询</Button>
+            <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>重置</Button>
+            <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>收起 <Icon type="up" /></a>
           </span>
         </div>
       </Form>
@@ -197,8 +170,10 @@ export default class CarInspectionPlatformSearchForm extends PureComponent {
   }
 
   render() {
-    return this.state.expandForm
-      ? this.renderAdvancedForm()
-      : this.renderSimpleForm()
+    return this.state.expandForm ? this.renderAdvancedForm() : this.renderSimpleForm()
   }
 }
+
+export default connect(state => ({
+  collapsed: state.global.collapsed,
+}))(Form.create()(CarInspectionPlatformSearchForm))
