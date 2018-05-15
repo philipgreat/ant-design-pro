@@ -17,13 +17,13 @@ const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
   name: '名称',
-  platform: '平台',
+  bookSharingPlatform: '书共享平台',
 }
 const testValues = {};
 /*
 const testValues = {
-  name: '四川',
-  platformId: 'CIP000001',
+  name: '四川省',
+  bookSharingPlatformId: 'BSP000001',
 }
 */
 const imageURLPrefix = '//localhost:2090'
@@ -45,7 +45,7 @@ class ProvinceCreateForm extends Component {
     const { setFieldsValue } = this.props.form
     //setFieldsValue(testValues)
       
-    this.executeCandidatePlatformSearch("")
+    this.executeCandidateBookSharingPlatformSearch("")
     
  
     
@@ -64,26 +64,26 @@ class ProvinceCreateForm extends Component {
   }
 
   
-  executeCandidatePlatformSearch = (filterKey) =>{
+  executeCandidateBookSharingPlatformSearch = (filterKey) =>{
 
     const {ProvinceService} = GlobalComponents;
     
     const id = "";//not used for now
     const pageNo = 1;
-    const future = ProvinceService.requestCandidatePlatform("carInspectionPlatform", id, filterKey, pageNo);
+    const future = ProvinceService.requestCandidateBookSharingPlatform("bookSharingPlatform", id, filterKey, pageNo);
     console.log(future);
     
 
-    future.then(candidatePlatformList=>{
+    future.then(candidateBookSharingPlatformList=>{
       this.setState({
-        candidatePlatformList
+        candidateBookSharingPlatformList
       })
 
     })
 
   }	 
-  handleCandidatePlatformSearch = (value) => {
-    this.executeCandidatePlatformSearch(value)
+  handleCandidateBookSharingPlatformSearch = (value) => {
+    this.executeCandidateBookSharingPlatformSearch(value)
   }
  
 
@@ -191,11 +191,11 @@ class ProvinceCreateForm extends Component {
     
 
     
-    const {candidatePlatformList} = this.state
-    if(!candidatePlatformList){
+    const {candidateBookSharingPlatformList} = this.state
+    if(!candidateBookSharingPlatformList){
       return (<div>等等</div>)
     }
-    if(!candidatePlatformList.candidates){
+    if(!candidateBookSharingPlatformList.candidates){
       return (<div>等等</div>)
     }   
     
@@ -269,22 +269,22 @@ class ProvinceCreateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={12} md={12} sm={24}>
-                <Form.Item label={fieldLabels.platform} {...formItemLayout}>
-                  {getFieldDecorator('platformId', {
-                  	initialValue: tryinit('platform'),
-                    rules: [{ required: true, message: '请输入平台' }],
+                <Form.Item label={fieldLabels.bookSharingPlatform} {...formItemLayout}>
+                  {getFieldDecorator('bookSharingPlatformId', {
+                  	initialValue: tryinit('bookSharingPlatform'),
+                    rules: [{ required: true, message: '请输入书共享平台' }],
                   })(
                                 
                   <AutoComplete
-                    dataSource={candidatePlatformList.candidates}
+                    dataSource={candidateBookSharingPlatformList.candidates}
                     
                     
-                    onSearch={this.handleCandidatePlatformSearch}
-                    placeholder="请输入平台"
+                    onSearch={this.handleCandidateBookSharingPlatformSearch}
+                    placeholder="请输入书共享平台"
                     
-                    disabled={!availableForEdit('platform')}
+                    disabled={!availableForEdit('bookSharingPlatform')}
                   >
-                  {candidatePlatformList.candidates.map(item=>{
+                  {candidateBookSharingPlatformList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);
             })}
                   

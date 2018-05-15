@@ -31,15 +31,14 @@ const topColResponsiveProps = {
 }
 
 
-@connect(state => ({
-  province: state._province,
-}))
-export default class ProvinceEditDetail extends Component {
+
+class ProvinceEditDetail extends Component {
   render() {
+    const {CityEditTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
-    const { id,  } = this.props.province
-    const {  } = this.props.province
+    const { id, cityCount } = this.props.province
+    const { cityList } = this.props.province
     
     const owner = { type: '_province', id }
     return (
@@ -51,11 +50,19 @@ export default class ProvinceEditDetail extends Component {
       >
 
 
+		<Card title="城市列表" className={styles.card} bordered={false}>
+          <Form layout="vertical" hideRequiredMark>
+            <CityEditTable data={cityList} owner={owner} {...this.props} />
+          </Form>
+        </Card>
+
  
       </PageHeaderLayout>
     )
   }
 }
-
+export default connect(state => ({
+  province: state._province,
+}))(ProvinceEditDetail)
 
 

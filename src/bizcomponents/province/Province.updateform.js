@@ -17,7 +17,7 @@ const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
   name: '名称',
-  platform: '平台',
+  bookSharingPlatform: '书共享平台',
 
 }
 

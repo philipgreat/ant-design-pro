@@ -42,10 +42,8 @@ const summaryOf = (province) =>{
 
 }
 
-@connect(state => ({
-  province: state._province,
-}))
-export default class ProvinceDashboard extends Component {
+
+class ProvinceDashboard extends Component {
 
 
   componentDidMount() {
@@ -70,9 +68,10 @@ export default class ProvinceDashboard extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const { id,displayName,  } = this.props.province
+    const { id,displayName, cityCount } = this.props.province
     const cardsData = {cardsName:"省",cardsFor: "province",cardsSource: this.props.province,
   		subItems: [
+{name: 'cityList', displayName:'城市',type:'city',count:cityCount},
     
       	],
   	};
@@ -101,5 +100,7 @@ export default class ProvinceDashboard extends Component {
   }
 }
 
-
+export default connect(state => ({
+  province: state._province,
+}))(ProvinceDashboard)
 

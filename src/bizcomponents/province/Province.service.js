@@ -18,10 +18,10 @@ const load = (targetObjectId, parameters) => {
 
 
 
-const requestCandidatePlatform = (ownerClass, id, filterKey, pageNo) => {
+const requestCandidateBookSharingPlatform = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
-    url: `${PREFIX}provinceManager/requestCandidatePlatform/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+    url: `${PREFIX}provinceManager/requestCandidateBookSharingPlatform/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
 }	 
  
@@ -29,17 +29,47 @@ const requestCandidatePlatform = (ownerClass, id, filterKey, pageNo) => {
 
 
 
+const addCity = (targetObjectId, parameters) => {
+  const url = `${PREFIX}provinceManager/addCity/provinceId/name/tokensExpr/`
+  const requestParameters = { ...parameters, tokensExpr: 'none' }
+
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const updateCity = (targetObjectId, parameters) => {
+  const url = `${PREFIX}provinceManager/updateCityProperties/provinceId/id/name/tokensExpr/`
+  const provinceId = targetObjectId
+  const requestParameters = { ...parameters, provinceId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+const removeCityList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}provinceManager/removeCityList/provinceId/cityIds/tokensExpr/`
+  const requestParameters = { ...parameters, provinceId: targetObjectId, tokensExpr: 'none' }
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+  return post({
+    url,
+    data: joinPostParameters(requestParameters),
+    headers,
+  })
+}
+
+
 const ProvinceService = { view,
   load,
-  requestCandidatePlatform }
+  addCity,
+  updateCity,
+  removeCityList,
+  requestCandidateBookSharingPlatform }
 export default ProvinceService
-
-
-
-
-
-
-
-
-
 

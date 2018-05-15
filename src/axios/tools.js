@@ -11,7 +11,9 @@ import  PictureEdit from '../components/PictureEdit'
 import  ImageUpload from '../components/ImageUpload'
 import  OssPictureEdit from '../components/OSSPictureEdit'
 
-export const ImageComponent = ImageUpload
+export const ImageComponent = OssPictureEdit 
+//for BBT only
+//export const ImageComponent = ImageUpload
 
 
 /**
@@ -74,6 +76,7 @@ export const getURLPrefix = () => {
     if (url.hostname === "localhost") {
         //return `http://xm.jl51.com.cn/cis/`
         //return `http://www.yourongzhixing.com/dssc/`
+        //return `https://www.kxbbt.com/bbt/`
         return `http://${url.hostname}:8080/naf/`
     }
     //return `http://xm.jl51.com.cn/cis/`
@@ -102,6 +105,7 @@ export const joinPostParameters = (parameters) => {
             const value = obj[key]
             if (!Array.isArray(value)) {
                 arr.push(key + '=' + encodeURIComponent(value))
+                continue
             }
             for (const subKey in value) {
                 const subvalue = value[subKey]
@@ -195,8 +199,9 @@ export  const mapBackToImageValuesSkynetMediaServer = (convertedImagesValues) =>
         })
         return targetImages
       }
-export  const mapBackToImageValues = mapBackToImageValuesSkynetMediaServer;
-            
+//export  const mapBackToImageValues = mapBackToImageValuesSkynetMediaServer;
+export  const mapBackToImageValues = mapBackToImageValuesFlatResponse;
+
 
 
 export const mapFromImageValues = (selectedRow,imageKeys) => {

@@ -83,10 +83,10 @@ class ProvinceEditTable extends PureComponent {
       this.setState({ data: newData, appendInProcess:false });
     }
     const remapReference = (record) => {
-			const platformId = record.platform.id
+			const bookSharingPlatformId = record.bookSharingPlatform.id
 
       //const communityId = record.community.id;
-      return {platformId,};
+      return {bookSharingPlatformId,};
     }
     const deleteRecord = (e,record) =>{
       const {dispatch, owner} = this.props
@@ -191,8 +191,8 @@ class ProvinceEditTable extends PureComponent {
     
     const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '6', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7', render: (text, record) => renderStringEdit('name',text, record)  },
+  { title: '书共享平台', dataIndex: 'bookSharingPlatform', render: (text, record) => (record.bookSharingPlatform ? record.bookSharingPlatform.displayName : '暂无') },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]
    
@@ -200,7 +200,7 @@ class ProvinceEditTable extends PureComponent {
       const newProvinceToAppend  = {
       	'id':`+1`, 
 				'name':'',
-				'platform':'',
+				'bookSharingPlatform':'',
 
 
       };

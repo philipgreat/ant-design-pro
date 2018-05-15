@@ -8,8 +8,8 @@ import ImagePreview from '../../components/ImagePreview';
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '6' },
-  { title: '平台',dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.id : '暂无') },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7' },
+  { title: '书共享平台',dataIndex: 'bookSharingPlatform', render: (text, record) => (record.bookSharingPlatform ? record.bookSharingPlatform.id : '暂无') },
 ];
 
 class ProvinceViewTable extends PureComponent {

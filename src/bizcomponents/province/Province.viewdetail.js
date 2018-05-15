@@ -45,34 +45,41 @@ const summaryOf = (province) =>{
 
 }
 
-@connect(state => ({
-  province: state._province,
-}))
-export default class ProvinceViewDetail extends Component {
+class ProvinceViewDetail extends Component {
 
+
+  state = {
+    tabKey: `cityList`,
+    stepDirection: 'horizontal',
+  }
  
   onTabChange = (key) => {
     this.setState({ tabKey: key });
   }  
   render() {
+    const {CityViewTable} = GlobalComponents;
   
     // eslint-disable-next-line max-len
     
     const province = this.props.province
-    const { id,  } = province
-    const {  } = province
+    const { id, cityCount } = province
+    const { cityList } = province
     
     const owner = { type: '_province', id }
     
     const tabList = [
 
+      {key: 'cityList',tab: `城市(${cityCount})`}, 
    
 
    ];
    
    
     const contentList = {
-     
+       cityList:  
+        <CityViewTable data={cityList} owner={owner} {...this.props} />,
+ 
+    
     };
     
 
@@ -104,5 +111,7 @@ export default class ProvinceViewDetail extends Component {
   }
 }
 
-
+export default connect(state => ({
+  province: state._province,
+}))(ProvinceViewDetail)
 

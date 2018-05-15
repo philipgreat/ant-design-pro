@@ -18,8 +18,8 @@ const { Option } = Select
 const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',')
 
 
-@Form.create()
-export default class ProvinceSearch extends PureComponent {
+
+class ProvinceSearch extends PureComponent {
   state = {
     addInputValue: '',
     modalVisible: false,
@@ -196,7 +196,7 @@ export default class ProvinceSearch extends PureComponent {
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
 
 
-<Menu.Item key="platform">关联平台</Menu.Item>
+<Menu.Item key="bookSharingPlatform">关联书共享平台</Menu.Item>
       
 
       </Menu>
@@ -274,5 +274,7 @@ export default class ProvinceSearch extends PureComponent {
     )
   }
 }
+
+export default Form.create()(ProvinceSearch)
 
 

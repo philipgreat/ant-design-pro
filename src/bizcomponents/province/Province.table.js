@@ -8,9 +8,9 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '6' },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/province/${text}/dashboard`}>{text}</Link>) },
+  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7' },
+  { title: '书共享平台', dataIndex: 'bookSharingPlatform', render: (text, record) => (record.bookSharingPlatform ? record.bookSharingPlatform.displayName : '暂无') },
 
 
 ]
@@ -43,7 +43,7 @@ class ProvinceTable extends PureComponent {
   cleanSelectedKeys = () => {
     this.handleRowSelectChange([], [])
   }
-  calcDisplayColumns=()=>{
+ calcDisplayColumns=()=>{
 
     const {owner} =  this.props
     const {referenceName} = owner
@@ -54,6 +54,8 @@ class ProvinceTable extends PureComponent {
     const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
     const operationColumn={
       title: '操作',
+      fixed: 'right',
+      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -90,6 +92,7 @@ class ProvinceTable extends PureComponent {
 
 
   }
+  
   gotoEdit = (text, record) =>{
     this.handleRowSelectChange([record.id], [record])
     const{dispatch,owner} = this.props

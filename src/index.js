@@ -4,18 +4,14 @@ import 'moment/locale/zh-cn'
 import models from './models'
 import './polyfill'
 import './g2'
-import RouterConfig from './router'
 // import { browserHistory } from 'dva/router'
 import './index.less'
 
 import LauncherModel from './launcher/Launcher.model'
 import BreadcrumbModel from './launcher/Breadcrumb.model'
 import ActionCenterModel from './actioncenter/ActionCenter.model'
-
-
-import CarInspectionPlatformModel from './bizcomponents/carinspectionplatform/CarInspectionPlatform.model'
-import ProvinceModel from './bizcomponents/province/Province.model'
-
+import GlobalComponents from './custcomponents';
+import RouterConfig from './custcomponents/router'
 
 // 1. Initialize
 const app = dva({
@@ -31,10 +27,9 @@ app.model(BreadcrumbModel)
 app.model(ActionCenterModel)
 
 
+const {bindBizModels} = GlobalComponents;
 
-app.model(CarInspectionPlatformModel)
-app.model(ProvinceModel)
-
+bindBizModels(app);
 
 // 3. Model move to router
 models.forEach((m) => {
