@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import BooleanOption from 'components/BooleanOption';
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -29,6 +30,50 @@ const topColResponsiveProps = {
   xl: 4,
   style: { marginBottom: 24 },
 }
+
+
+const imageListOf = (task) =>{
+
+	 return(<Card title='图片列表' className={styles.card}><Row type="flex" justify="space-between" align="bottom">
+<Col span={4}><ImagePreview imageTitle ={'封面图像路径1'} imageLocation={task.coverImagePath1} >封面图像路径1</ImagePreview></Col>
+<Col span={4}><ImagePreview imageTitle ={'封面图像路径2'} imageLocation={task.coverImagePath2} >封面图像路径2</ImagePreview></Col>
+<Col span={4}><ImagePreview imageTitle ={'封面图像路径3'} imageLocation={task.coverImagePath3} >封面图像路径3</ImagePreview></Col>
+<Col span={4}><ImagePreview imageTitle ={'图1'} imageLocation={task.imagePath1} >图1</ImagePreview></Col>
+<Col span={4}><ImagePreview imageTitle ={'图2'} imageLocation={task.imagePath2} >图2</ImagePreview></Col>
+<Col span={4}><ImagePreview imageTitle ={'图3'} imageLocation={task.imagePath3} >图3</ImagePreview></Col>
+<Col span={4}><ImagePreview imageTitle ={'图4'} imageLocation={task.imagePath4} >图4</ImagePreview></Col>
+<Col span={4}><ImagePreview imageTitle ={'图5'} imageLocation={task.imagePath5} >图5</ImagePreview></Col>
+</Row></Card> )
+
+	
+
+}
+
+const settingListOf = (task) =>{
+
+	return(<Card title='状态集合' className={styles.card}>
+<BooleanOption type={task.likeByCurrentUser?"success":"error"} title="当前用户已点赞"/>
+<BooleanOption type={task.repliedByCurrentUser?"success":"error"} title="当前用户已回复"/>
+</Card> )
+
+	
+	//(task)
+
+
+}
+
+const largeTextOf = (task) =>{
+
+	return(<div> 
+   <Card title={`内容`} ><pre>{task.content}</pre></Card>
+</div>)
+
+	
+
+}
+
+
+
 const summaryOf = (task) =>{
 
 	return (
@@ -36,22 +81,8 @@ const summaryOf = (task) =>{
 <Description term="序号">{task.id}</Description> 
 <Description term="标题">{task.title}</Description> 
 <Description term="选定的任务">{task.selectedTask}</Description> 
-<Description term="创建时间">{ moment(task.createTime).format('YYYY-MM-DD')}</Description> 
-<Description term="内容">{task.content}</Description> 
 <Description term="视频网址">{task.videoUrl}</Description> 
-<Description term="封面图像路径1"><ImagePreview imageTitle="封面图像路径1" imageLocation={task.coverImagePath1}/></Description> 
-<Description term="封面图像路径2"><ImagePreview imageTitle="封面图像路径2" imageLocation={task.coverImagePath2}/></Description> 
-<Description term="封面图像路径3"><ImagePreview imageTitle="封面图像路径3" imageLocation={task.coverImagePath3}/></Description> 
-<Description term="图1"><ImagePreview imageTitle="图1" imageLocation={task.imagePath1}/></Description> 
-<Description term="图2"><ImagePreview imageTitle="图2" imageLocation={task.imagePath2}/></Description> 
-<Description term="图3"><ImagePreview imageTitle="图3" imageLocation={task.imagePath3}/></Description> 
-<Description term="图4"><ImagePreview imageTitle="图4" imageLocation={task.imagePath4}/></Description> 
-<Description term="图5"><ImagePreview imageTitle="图5" imageLocation={task.imagePath5}/></Description> 
 <Description term="发布人的奖金">{task.creatorBonus}</Description> 
-<Description term="额外的奖金">{task.additionalBonus}</Description> 
-<Description term="当前用户已点赞">{task.likeByCurrentUser?'是':'否'}</Description> 
-<Description term="当前用户已回复">{task.repliedByCurrentUser?'是':'否'}</Description> 
-<Description term="当前状态">{task.currentStatus}</Description> 
 	
         
       </DescriptionList>
@@ -103,16 +134,22 @@ class TaskDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
+        {imageListOf(cardsData.cardsSource)}
+        {settingListOf(cardsData.cardsSource)}
           <Row gutter={24}>
 
-           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>           
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   
+           <Badge count={item.count} style={{ backgroundColor: '#52c41a' }} overflowCount={9999999999}>        
             <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
               <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
               <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
-          </Card> 
+          </Card> </Badge>
             </Col>))}
 
           </Row>
+          
+          {largeTextOf(cardsData.cardsSource)}
+          
         </div>
       </PageHeaderLayout>
     )

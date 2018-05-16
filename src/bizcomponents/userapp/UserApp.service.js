@@ -30,7 +30,7 @@ const requestCandidateSecUser = (ownerClass, id, filterKey, pageNo) => {
 
 
 const addObjectAccess = (targetObjectId, parameters) => {
-  const url = `${PREFIX}userAppManager/addObjectAccess/appId/name/objectType/list1/list2/list3/list4/list5/list6/list7/list8/list9/tokensExpr/`
+  const url = `${PREFIX}userAppManager/addObjectAccess/appId/displayName/objectType/list1/list2/list3/list4/list5/list6/list7/list8/list9/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -42,7 +42,7 @@ const addObjectAccess = (targetObjectId, parameters) => {
 }
 
 const updateObjectAccess = (targetObjectId, parameters) => {
-  const url = `${PREFIX}userAppManager/updateObjectAccessProperties/userAppId/id/name/objectType/list1/list2/list3/list4/list5/list6/list7/list8/list9/tokensExpr/`
+  const url = `${PREFIX}userAppManager/updateObjectAccessProperties/userAppId/id/displayName/objectType/list1/list2/list3/list4/list5/list6/list7/list8/list9/tokensExpr/`
   const userAppId = targetObjectId
   const requestParameters = { ...parameters, userAppId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }

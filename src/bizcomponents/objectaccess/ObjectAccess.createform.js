@@ -15,9 +15,9 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
-  name: '名称',
-  objectType: '访问对象类型',
+  id: '序号',
+  displayName: '显示名称',
+  objectType: '对象类型',
   list1: '列表1',
   list2: '列表2',
   list3: '列表3',
@@ -32,7 +32,7 @@ const fieldLabels = {
 const testValues = {};
 /*
 const testValues = {
-  name: '控制访问列表1',
+  displayName: '控制访问列表1',
   objectType: 'FranchiseeStoreCountryCenter',
   list1: 'catalogList',
   list2: 'catalogList',
@@ -258,11 +258,11 @@ class ObjectAccessCreateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={12} md={12} sm={24}>
-                <Form.Item label={fieldLabels.name} {...formItemLayout}>
-                  {getFieldDecorator('name', {
-                    rules: [{ required: true, message: '请输入名称' }],
+                <Form.Item label={fieldLabels.displayName} {...formItemLayout}>
+                  {getFieldDecorator('displayName', {
+                    rules: [{ required: true, message: '请输入显示名称' }],
                   })(
-                    <Input placeholder="请输入名称" />
+                    <Input placeholder="请输入显示名称" />
                   )}
                 </Form.Item>
               </Col>
@@ -270,9 +270,9 @@ class ObjectAccessCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.objectType} {...formItemLayout}>
                   {getFieldDecorator('objectType', {
-                    rules: [{ required: true, message: '请输入访问对象类型' }],
+                    rules: [{ required: true, message: '请输入对象类型' }],
                   })(
-                    <Input placeholder="请输入访问对象类型" />
+                    <Input placeholder="请输入对象类型" />
                   )}
                 </Form.Item>
               </Col>

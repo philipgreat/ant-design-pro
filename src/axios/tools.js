@@ -54,8 +54,15 @@ export const get3 = ({ url, msg = '接口异常', headers }) =>
 export const get = ({ url, msg = '接口异常', headers }) =>
     axios.get(url, headers).then(
         function (res) {
-            console.log("xxxx", res.headers)
+            console.log("http headers", res.headers)
+            const clazz = res.headers['x-class'];
+            if(clazz){
+                if(clazz.indexOf("CommonError")>0||clazz.indexOf("Exception")>0){
+                    message.error("后台系统出错，请检查错误消息" + res.data);
+                }
+                
 
+            }
             return res.data;
         }).catch(err => {
             console.log(err);
@@ -76,8 +83,8 @@ export const getURLPrefix = () => {
     if (url.hostname === "localhost") {
         //return `http://xm.jl51.com.cn/cis/`
         //return `http://www.yourongzhixing.com/dssc/`
-        //return `https://www.kxbbt.com/bbt/`
-        return `http://${url.hostname}:8080/naf/`
+        return `https://www.kxbbt.com/bbt/`
+        //return `http://${url.hostname}:8080/naf/`
     }
     //return `http://xm.jl51.com.cn/cis/`
 
@@ -200,7 +207,8 @@ export  const mapBackToImageValuesSkynetMediaServer = (convertedImagesValues) =>
         return targetImages
       }
 //export  const mapBackToImageValues = mapBackToImageValuesSkynetMediaServer;
-export  const mapBackToImageValues = mapBackToImageValuesFlatResponse;
+export  const mapBackToImageValues = mapBackToImageValuesFlatResponse; 
+//BBT
 
 
 

@@ -15,7 +15,7 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   title: '标题',
   parameterName: '参数名称',
   form: '形式',

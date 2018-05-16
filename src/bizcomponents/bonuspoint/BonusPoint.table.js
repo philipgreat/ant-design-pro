@@ -8,10 +8,10 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '10' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',},
+  { title: '名称', debugtype: 'string', dataIndex: 'name',},
   { title: '获得时间', dataIndex: 'obtainTime', render: (text, record) => moment(record.obtainTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '点', debugtype: 'int', dataIndex: 'points', width: '8' },
+  { title: '点', debugtype: 'int', dataIndex: 'points',},
   { title: '用户', dataIndex: 'user', render: (text, record) => (record.user ? record.user.displayName : '暂无') },
 
 
@@ -53,11 +53,10 @@ class BonusPointTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -163,7 +162,7 @@ class BonusPointTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 800 }}
+          
         />
       </div>
     )

@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import BooleanOption from 'components/BooleanOption';
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -29,13 +30,40 @@ const topColResponsiveProps = {
   xl: 4,
   style: { marginBottom: 24 },
 }
+
+
+const imageListOf = (objectAccess) =>{
+
+	     return null
+	
+
+}
+
+const settingListOf = (objectAccess) =>{
+
+	    return null
+	
+	//(objectAccess)
+
+
+}
+
+const largeTextOf = (objectAccess) =>{
+
+	return null
+	
+
+}
+
+
+
 const summaryOf = (objectAccess) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{objectAccess.id}</Description> 
-<Description term="名称">{objectAccess.name}</Description> 
-<Description term="访问对象类型">{objectAccess.objectType}</Description> 
+<Description term="序号">{objectAccess.id}</Description> 
+<Description term="显示名称">{objectAccess.displayName}</Description> 
+<Description term="对象类型">{objectAccess.objectType}</Description> 
 <Description term="列表1">{objectAccess.list1}</Description> 
 <Description term="列表2">{objectAccess.list2}</Description> 
 <Description term="列表3">{objectAccess.list3}</Description> 
@@ -44,7 +72,6 @@ const summaryOf = (objectAccess) =>{
 <Description term="列表6">{objectAccess.list6}</Description> 
 <Description term="列表7">{objectAccess.list7}</Description> 
 <Description term="列表8">{objectAccess.list8}</Description> 
-<Description term="列表9">{objectAccess.list9}</Description> 
 	
         
       </DescriptionList>
@@ -93,16 +120,22 @@ class ObjectAccessDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
+        {imageListOf(cardsData.cardsSource)}
+        {settingListOf(cardsData.cardsSource)}
           <Row gutter={24}>
 
-           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>           
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   
+           <Badge count={item.count} style={{ backgroundColor: '#52c41a' }} overflowCount={9999999999}>        
             <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
               <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
               <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
-          </Card> 
+          </Card> </Badge>
             </Col>))}
 
           </Row>
+          
+          {largeTextOf(cardsData.cardsSource)}
+          
         </div>
       </PageHeaderLayout>
     )

@@ -15,11 +15,11 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   login: '登录',
-  mobile: '手机号码',
+  mobile: '手机',
   email: '电子邮件',
-  pwd: '密码',
+  pwd: 'PWD',
   verificationCode: '验证码',
   verificationCodeExpire: '验证码过期',
   lastLoginTime: '最后登录时间',
@@ -268,9 +268,9 @@ class SecUserUpdateForm extends Component {
                 <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
                     initialValue: selectedRow.id,
-                    rules: [{ required: true, message: '请输入ID' }],
+                    rules: [{ required: true, message: '请输入序号' }],
                   })(
-                    <Input placeholder="请输入ID" disabled/>
+                    <Input placeholder="请输入序号" disabled/>
                     
                   )}
                 </Form.Item>
@@ -292,9 +292,9 @@ class SecUserUpdateForm extends Component {
                 <Form.Item label={fieldLabels.mobile} {...formItemLayout}>
                   {getFieldDecorator('mobile', {
                     initialValue: selectedRow.mobile,
-                    rules: [{ required: true, message: '请输入手机号码' }],
+                    rules: [{ required: true, message: '请输入手机' }],
                   })(
-                    <Input placeholder="请输入手机号码" />
+                    <Input placeholder="请输入手机" />
                     
                   )}
                 </Form.Item>
@@ -316,9 +316,9 @@ class SecUserUpdateForm extends Component {
                 <Form.Item label={fieldLabels.pwd} {...formItemLayout}>
                   {getFieldDecorator('pwd', {
                     initialValue: selectedRow.pwd,
-                    rules: [{ required: true, message: '请输入密码' }],
+                    rules: [{ required: true, message: '请输入PWD' }],
                   })(
-                    <Input placeholder="请输入密码" />
+                    <Input placeholder="请输入PWD" />
                     
                   )}
                 </Form.Item>

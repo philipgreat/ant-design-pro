@@ -44,8 +44,8 @@ class SecUserBlockingEditDetail extends Component {
     return (
 
       <PageHeaderLayout
-        title="用户屏蔽总览"
-        content="用户屏蔽总览"
+        title="SEC用户阻塞总览"
+        content="SEC用户阻塞总览"
         wrapperClassName={styles.advancedForm}
       >
 

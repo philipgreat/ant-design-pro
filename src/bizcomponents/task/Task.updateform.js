@@ -326,7 +326,7 @@ class TaskUpdateForm extends Component {
                 <Form.Item label={fieldLabels.videoUrl} {...formItemLayout}>
                   {getFieldDecorator('videoUrl', {
                     initialValue: selectedRow.videoUrl,
-                    rules: [{ required: true, message: '请输入视频网址' }],
+                    rules: [{ required: false, message: '请输入视频网址' }],
                   })(
                     <Input placeholder="请输入视频网址" />
                     
@@ -406,7 +406,7 @@ class TaskUpdateForm extends Component {
                 <Form.Item>
                   {getFieldDecorator('content', {
                   	initialValue: selectedRow.content,
-                    rules: [{ required: true, message: '请输入内容' }],
+                    rules: [{  required: true, message: '请输入内容' }],
                   })(
                     <TextArea rows={4} placeholder="请输入请输入内容" />
                   )}

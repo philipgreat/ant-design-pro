@@ -8,10 +8,10 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '15' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',},
+  { title: '标题', debugtype: 'string', dataIndex: 'title',},
   { title: '发布时间', dataIndex: 'publishTime', render: (text, record) => moment(record.publishTime).format('YYYY-MM-DD') },
-  { title: '内容', debugtype: 'string', dataIndex: 'content', width: '107' },
+  { title: '内容', debugtype: 'string', dataIndex: 'content',},
   { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? record.community.displayName : '暂无') },
   { title: '主页', dataIndex: 'homePage', render: (text, record) => (record.homePage ? record.homePage.displayName : '暂无') },
 
@@ -54,11 +54,10 @@ class EncyclopediaItemTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -164,7 +163,7 @@ class EncyclopediaItemTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 2115 }}
+          
         />
       </div>
     )

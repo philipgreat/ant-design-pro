@@ -189,7 +189,7 @@ class GenericFormEditTable extends PureComponent {
     
     
     const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '标题', debugtype: 'string', dataIndex: 'title', width: '9', render: (text, record) => renderStringEdit('title',text, record)  },
   { title: '描述', debugtype: 'string', dataIndex: 'description', width: '16', render: (text, record) => renderStringEdit('description',text, record)  },
 { title: '操作',

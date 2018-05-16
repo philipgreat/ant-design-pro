@@ -309,7 +309,7 @@ class EncyclopediaItemUpdateForm extends Component {
                 <Form.Item>
                   {getFieldDecorator('content', {
                   	initialValue: selectedRow.content,
-                    rules: [{ required: true, message: '请输入内容' }],
+                    rules: [{  required: true, message: '请输入内容' }],
                   })(
                     <TextArea rows={4} placeholder="请输入请输入内容" />
                   )}

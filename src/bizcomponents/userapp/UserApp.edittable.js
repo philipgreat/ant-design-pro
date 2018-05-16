@@ -190,14 +190,14 @@ class UserAppEditTable extends PureComponent {
     
     
     const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8', render: (text, record) => renderStringEdit('title',text, record)  },
   { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.displayName : '暂无') },
   { title: '应用程序图标', debugtype: 'string', dataIndex: 'appIcon', width: '13', render: (text, record) => renderStringEdit('appIcon',text, record)  },
   { title: '完全访问', dataIndex: 'fullAccess', render: (text, record) => (record.fullAccess ? '是' : '否') },
   { title: '许可', debugtype: 'string', dataIndex: 'permission', width: '8', render: (text, record) => renderStringEdit('permission',text, record)  },
-  { title: '访问对象类型', debugtype: 'string', dataIndex: 'objectType', width: '31', render: (text, record) => renderStringEdit('objectType',text, record)  },
-  { title: '对象ID', debugtype: 'string', dataIndex: 'objectId', width: '14', render: (text, record) => renderStringEdit('objectId',text, record)  },
+  { title: '对象类型', debugtype: 'string', dataIndex: 'objectType', width: '17', render: (text, record) => renderStringEdit('objectType',text, record)  },
+  { title: '对象ID', debugtype: 'string', dataIndex: 'objectId', width: '12', render: (text, record) => renderStringEdit('objectId',text, record)  },
   { title: '位置', debugtype: 'string', dataIndex: 'location', width: '16', render: (text, record) => renderStringEdit('location',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]

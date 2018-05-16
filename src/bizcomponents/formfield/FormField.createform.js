@@ -15,7 +15,7 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   label: '标签',
   localeKey: '语言环境的关键',
   parameterName: '参数名称',
@@ -365,7 +365,7 @@ class FormFieldCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.candidateValues} {...formItemLayout}>
                   {getFieldDecorator('candidateValues', {
-                    rules: [{ required: true, message: '请输入候选人的价值观' }],
+                    rules: [{ required: false, message: '请输入候选人的价值观' }],
                   })(
                     <Input placeholder="请输入候选人的价值观" />
                   )}
@@ -375,7 +375,7 @@ class FormFieldCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.suggestValues} {...formItemLayout}>
                   {getFieldDecorator('suggestValues', {
-                    rules: [{ required: true, message: '请输入建议值' }],
+                    rules: [{ required: false, message: '请输入建议值' }],
                   })(
                     <Input placeholder="请输入建议值" />
                   )}

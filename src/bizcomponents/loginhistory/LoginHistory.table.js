@@ -8,10 +8,10 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',},
   { title: '登录时间', dataIndex: 'loginTime', render: (text, record) => moment(record.loginTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '来自IP', debugtype: 'string', dataIndex: 'fromIp', width: '15' },
-  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '8' },
+  { title: '从IP', debugtype: 'string', dataIndex: 'fromIp',},
+  { title: '描述', debugtype: 'string', dataIndex: 'description',},
   { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.displayName : '暂无') },
 
 
@@ -53,11 +53,10 @@ class LoginHistoryTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -163,7 +162,7 @@ class LoginHistoryTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 800 }}
+          
         />
       </div>
     )

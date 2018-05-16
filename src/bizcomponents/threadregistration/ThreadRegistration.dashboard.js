@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import BooleanOption from 'components/BooleanOption';
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -29,13 +30,38 @@ const topColResponsiveProps = {
   xl: 4,
   style: { marginBottom: 24 },
 }
+
+
+const imageListOf = (threadRegistration) =>{
+
+	     return null
+	
+
+}
+
+const settingListOf = (threadRegistration) =>{
+
+	    return null
+	
+	//(threadRegistration)
+
+
+}
+
+const largeTextOf = (threadRegistration) =>{
+
+	return null
+	
+
+}
+
+
+
 const summaryOf = (threadRegistration) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="序号">{threadRegistration.id}</Description> 
-<Description term="登记时间">{ moment(threadRegistration.registerTime).format('YYYY-MM-DD')}</Description> 
-<Description term="评论">{threadRegistration.comments}</Description> 
 	
         
       </DescriptionList>
@@ -84,16 +110,22 @@ class ThreadRegistrationDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
+        {imageListOf(cardsData.cardsSource)}
+        {settingListOf(cardsData.cardsSource)}
           <Row gutter={24}>
 
-           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>           
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   
+           <Badge count={item.count} style={{ backgroundColor: '#52c41a' }} overflowCount={9999999999}>        
             <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
               <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
               <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
-          </Card> 
+          </Card> </Badge>
             </Col>))}
 
           </Row>
+          
+          {largeTextOf(cardsData.cardsSource)}
+          
         </div>
       </PageHeaderLayout>
     )

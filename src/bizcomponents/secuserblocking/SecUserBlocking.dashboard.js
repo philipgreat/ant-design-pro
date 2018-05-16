@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import BooleanOption from 'components/BooleanOption';
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -29,14 +30,39 @@ const topColResponsiveProps = {
   xl: 4,
   style: { marginBottom: 24 },
 }
+
+
+const imageListOf = (secUserBlocking) =>{
+
+	     return null
+	
+
+}
+
+const settingListOf = (secUserBlocking) =>{
+
+	    return null
+	
+	//(secUserBlocking)
+
+
+}
+
+const largeTextOf = (secUserBlocking) =>{
+
+	return null
+	
+
+}
+
+
+
 const summaryOf = (secUserBlocking) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{secUserBlocking.id}</Description> 
+<Description term="序号">{secUserBlocking.id}</Description> 
 <Description term="谁">{secUserBlocking.who}</Description> 
-<Description term="块时间">{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD')}</Description> 
-<Description term="评论">{secUserBlocking.comments}</Description> 
 	
         
       </DescriptionList>
@@ -71,7 +97,7 @@ class SecUserBlockingDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id,displayName, secUserCount } = this.props.secUserBlocking
-    const cardsData = {cardsName:"用户屏蔽",cardsFor: "secUserBlocking",cardsSource: this.props.secUserBlocking,
+    const cardsData = {cardsName:"SEC用户阻塞",cardsFor: "secUserBlocking",cardsSource: this.props.secUserBlocking,
   		subItems: [
 {name: 'secUserList', displayName:'SEC的用户',type:'secUser',count:secUserCount},
     
@@ -86,16 +112,22 @@ class SecUserBlockingDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
+        {imageListOf(cardsData.cardsSource)}
+        {settingListOf(cardsData.cardsSource)}
           <Row gutter={24}>
 
-           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>           
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   
+           <Badge count={item.count} style={{ backgroundColor: '#52c41a' }} overflowCount={9999999999}>        
             <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
               <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
               <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
-          </Card> 
+          </Card> </Badge>
             </Col>))}
 
           </Row>
+          
+          {largeTextOf(cardsData.cardsSource)}
+          
         </div>
       </PageHeaderLayout>
     )

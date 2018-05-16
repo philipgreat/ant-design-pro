@@ -189,7 +189,7 @@ class UserDomainEditTable extends PureComponent {
     
     
     const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '名称', debugtype: 'string', dataIndex: 'name', width: '8', render: (text, record) => renderStringEdit('name',text, record)  },
 { title: '操作',
    render: (text, record) => renderActions(text, record)}]

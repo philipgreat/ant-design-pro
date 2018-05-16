@@ -147,7 +147,7 @@ class FormFieldMessageBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '书香社区'
+    const title = '帮帮兔社区运营中心'
     return title
   }
  

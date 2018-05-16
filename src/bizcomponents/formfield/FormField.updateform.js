@@ -15,7 +15,7 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   label: '标签',
   localeKey: '语言环境的关键',
   parameterName: '参数名称',
@@ -272,9 +272,9 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
                     initialValue: selectedRow.id,
-                    rules: [{ required: true, message: '请输入ID' }],
+                    rules: [{ required: true, message: '请输入序号' }],
                   })(
-                    <Input placeholder="请输入ID" disabled/>
+                    <Input placeholder="请输入序号" disabled/>
                     
                   )}
                 </Form.Item>
@@ -404,7 +404,7 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.candidateValues} {...formItemLayout}>
                   {getFieldDecorator('candidateValues', {
                     initialValue: selectedRow.candidateValues,
-                    rules: [{ required: true, message: '请输入候选人的价值观' }],
+                    rules: [{ required: false, message: '请输入候选人的价值观' }],
                   })(
                     <Input placeholder="请输入候选人的价值观" />
                     
@@ -416,7 +416,7 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.suggestValues} {...formItemLayout}>
                   {getFieldDecorator('suggestValues', {
                     initialValue: selectedRow.suggestValues,
-                    rules: [{ required: true, message: '请输入建议值' }],
+                    rules: [{ required: false, message: '请输入建议值' }],
                   })(
                     <Input placeholder="请输入建议值" />
                     

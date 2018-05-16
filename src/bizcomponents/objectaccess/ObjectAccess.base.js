@@ -11,9 +11,9 @@ const menuData = {menuName:"对象访问", menuFor: "objectAccess",
 
 
 const displayColumns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '11' },
-  { title: '访问对象类型', debugtype: 'string', dataIndex: 'objectType', width: '32' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: '显示名称', debugtype: 'string', dataIndex: 'displayName', width: '11' },
+  { title: '对象类型', debugtype: 'string', dataIndex: 'objectType', width: '32' },
   { title: '列表1', debugtype: 'string', dataIndex: 'list1', width: '24' },
   { title: '列表2', debugtype: 'string', dataIndex: 'list2', width: '24' },
   { title: '列表3', debugtype: 'string', dataIndex: 'list3', width: '24' },
@@ -28,9 +28,9 @@ const displayColumns = [
 ]
 
 const fieldLabels = {
-  id: 'ID',
-  name: '名称',
-  objectType: '访问对象类型',
+  id: '序号',
+  displayName: '显示名称',
+  objectType: '对象类型',
   list1: '列表1',
   list2: '列表2',
   list3: '列表3',

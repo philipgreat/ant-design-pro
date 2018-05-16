@@ -8,11 +8,11 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',},
   { title: '任务', dataIndex: 'task', render: (text, record) => (record.task ? record.task.displayName : '暂无') },
   { title: '受让人', dataIndex: 'assignee', render: (text, record) => (record.assignee ? record.assignee.displayName : '暂无') },
   { title: '分配时间', dataIndex: 'assignTime', render: (text, record) => moment(record.assignTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '17' },
+  { title: '评论', debugtype: 'string', dataIndex: 'comments',},
 
 
 ]
@@ -53,11 +53,10 @@ class TaskAssigmentTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -163,7 +162,7 @@ class TaskAssigmentTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 800 }}
+          
         />
       </div>
     )

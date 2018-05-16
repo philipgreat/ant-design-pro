@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import BooleanOption from 'components/BooleanOption';
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -29,19 +30,44 @@ const topColResponsiveProps = {
   xl: 4,
   style: { marginBottom: 24 },
 }
+
+
+const imageListOf = (secUser) =>{
+
+	     return null
+	
+
+}
+
+const settingListOf = (secUser) =>{
+
+	    return null
+	
+	//(secUser)
+
+
+}
+
+const largeTextOf = (secUser) =>{
+
+	return null
+	
+
+}
+
+
+
 const summaryOf = (secUser) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{secUser.id}</Description> 
+<Description term="序号">{secUser.id}</Description> 
 <Description term="登录">{secUser.login}</Description> 
-<Description term="手机号码">{secUser.mobile}</Description> 
+<Description term="手机">{secUser.mobile}</Description> 
 <Description term="电子邮件">{secUser.email}</Description> 
-<Description term="密码">{secUser.pwd}</Description> 
+<Description term="PWD">{secUser.pwd}</Description> 
 <Description term="验证码">{secUser.verificationCode}</Description> 
 <Description term="验证码过期">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
-<Description term="最后登录时间">{ moment(secUser.lastLoginTime).format('YYYY-MM-DD')}</Description> 
-<Description term="当前状态">{secUser.currentStatus}</Description> 
 	
         
       </DescriptionList>
@@ -75,10 +101,9 @@ class SecUserDashboard extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const { id,displayName, customerCount, userAppCount, loginHistoryCount } = this.props.secUser
+    const { id,displayName, userAppCount, loginHistoryCount } = this.props.secUser
     const cardsData = {cardsName:"SEC的用户",cardsFor: "secUser",cardsSource: this.props.secUser,
   		subItems: [
-{name: 'customerList', displayName:'客户',type:'customer',count:customerCount},
 {name: 'userAppList', displayName:'用户应用程序',type:'userApp',count:userAppCount},
 {name: 'loginHistoryList', displayName:'登录历史',type:'loginHistory',count:loginHistoryCount},
     
@@ -93,16 +118,22 @@ class SecUserDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
+        {imageListOf(cardsData.cardsSource)}
+        {settingListOf(cardsData.cardsSource)}
           <Row gutter={24}>
 
-           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>           
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   
+           <Badge count={item.count} style={{ backgroundColor: '#52c41a' }} overflowCount={9999999999}>        
             <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
               <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
               <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
-          </Card> 
+          </Card> </Badge>
             </Col>))}
 
           </Row>
+          
+          {largeTextOf(cardsData.cardsSource)}
+          
         </div>
       </PageHeaderLayout>
     )

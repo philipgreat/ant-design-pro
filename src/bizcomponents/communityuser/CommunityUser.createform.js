@@ -40,14 +40,14 @@ const testValues = {
   nickName: '喀拉',
   gender: '男',
   userType: '患者',
-  birthday: '2037-04-04',
-  experiencePoint: '7402',
-  bonusPoint: '900714',
+  birthday: '2037-12-05',
+  experiencePoint: '9577',
+  bonusPoint: '979907',
   city: '北京',
   status: '迎接更光明的明天',
   experiencePointLimit: '200',
   experiencePointRemain: '200',
-  experiencePointLastDate: '2027-05-29',
+  experiencePointLastDate: '2029-09-08',
   communityId: 'C000001',
 }
 */

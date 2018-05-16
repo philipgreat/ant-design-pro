@@ -58,7 +58,6 @@ const query = {
   
 const menuData = {menuName:"SEC的用户", menuFor: "secUser",
   		subItems: [
-  {name: 'customerList', displayName:'客户'},
   {name: 'userAppList', displayName:'用户应用程序'},
   {name: 'loginHistoryList', displayName:'登录历史'},
   		
@@ -147,41 +146,6 @@ class SecUserBizApp extends React.PureComponent {
   }
 
 
-  getCustomerSearch = () => {
-    const {CustomerSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._secUser.customerList,
-      count: state._secUser.customerCount,
-      currentPage: state._secUser.customerCurrentPageNumber,
-      searchFormParameters: state._secUser.customerSearchFormParameters,
-      loading: state._secUser.loading,
-      partialList: state._secUser.partialList,
-      owner: { type: '_secUser', id: state._secUser.id, referenceName: 'secUser', listName: 'customerList', ref:state._secUser, listDisplayName: '客户列表' }, // this is for model namespace and
-    }))(CustomerSearch)
-  }
-  getCustomerCreateForm = () => {
-   	const {CustomerCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._secUser.customerList,
-      count: state._secUser.customerCount,
-      currentPage: state._secUser.customerCurrentPageNumber,
-      searchFormParameters: state._secUser.customerSearchFormParameters,
-      loading: state._secUser.loading,
-      owner: { type: '_secUser', id: state._secUser.id, referenceName: 'secUser', listName: 'customerList', ref:state._secUser, listDisplayName: '客户列表'}, // this is for model namespace and
-    }))(CustomerCreateForm)
-  }
-  
-  getCustomerUpdateForm = () => {
-  	const {CustomerUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._secUser.selectedRows,
-      currentUpdateIndex: state._secUser.currentUpdateIndex,
-      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList', ref:state._secUser, listDisplayName: '客户列表' }, // this is for model namespace and
-    }))(CustomerUpdateForm)
-  }
-
   getUserAppSearch = () => {
     const {UserAppSearch} = GlobalComponents;
     return connect(state => ({
@@ -255,7 +219,7 @@ class SecUserBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '书香社区'
+    const title = '帮帮兔社区运营中心'
     return title
   }
  
@@ -363,10 +327,6 @@ class SecUserBizApp extends React.PureComponent {
                <Route path="/secUser/:id/editDetail" component={SecUserEditDetail} />
                <Route path="/secUser/:id/viewDetail" component={SecUserViewDetail} /> 
                
-
-               <Route path="/secUser/:id/list/customerList" component={this.getCustomerSearch()} />
-               <Route path="/secUser/:id/list/customerCreateForm" component={this.getCustomerCreateForm()} />
-               <Route path="/secUser/:id/list/customerUpdateForm" component={this.getCustomerUpdateForm()} />
 
                <Route path="/secUser/:id/list/userAppList" component={this.getUserAppSearch()} />
                <Route path="/secUser/:id/list/userAppCreateForm" component={this.getUserAppCreateForm()} />

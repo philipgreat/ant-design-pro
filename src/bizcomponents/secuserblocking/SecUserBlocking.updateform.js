@@ -15,9 +15,9 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   who: '谁',
-  blockTime: '块时间',
+  blockTime: '屏蔽时间',
   comments: '评论',
 
 }
@@ -187,7 +187,7 @@ class SecUserBlockingUpdateForm extends Component {
         payload: {
           id: owner.id,
           type: 'secUserBlocking',
-          listName:'用户屏蔽列表' 
+          listName:'SEC用户阻塞列表' 
         },
       })
     }
@@ -247,8 +247,8 @@ class SecUserBlockingUpdateForm extends Component {
 
     return (
       <PageHeaderLayout
-        title={"更新用户屏蔽"+(currentUpdateIndex+1)+"/"+selectedRows.length}
-        content="更新用户屏蔽"
+        title={"更新SEC用户阻塞"+(currentUpdateIndex+1)+"/"+selectedRows.length}
+        content="更新SEC用户阻塞"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
@@ -260,9 +260,9 @@ class SecUserBlockingUpdateForm extends Component {
                 <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
                     initialValue: selectedRow.id,
-                    rules: [{ required: true, message: '请输入ID' }],
+                    rules: [{ required: true, message: '请输入序号' }],
                   })(
-                    <Input placeholder="请输入ID" disabled/>
+                    <Input placeholder="请输入序号" disabled/>
                     
                   )}
                 </Form.Item>

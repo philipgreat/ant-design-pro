@@ -8,12 +8,12 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '10' },
-  { title: '信息的关键', debugtype: 'string', dataIndex: 'messageKey', width: '18' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',},
+  { title: '标题', debugtype: 'string', dataIndex: 'title',},
+  { title: '信息的关键', debugtype: 'string', dataIndex: 'messageKey',},
   { title: '接收者', dataIndex: 'receiver', render: (text, record) => (record.receiver ? record.receiver.displayName : '暂无') },
-  { title: '内容', debugtype: 'string', dataIndex: 'content', width: '14' },
-  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl', width: '31' },
+  { title: '内容', debugtype: 'string', dataIndex: 'content',},
+  { title: '链接网址', debugtype: 'string', dataIndex: 'linkUrl',},
   { title: '消息的时间', dataIndex: 'messageTime', render: (text, record) => moment(record.messageTime).format('YYYY-MM-DD HH:mm:ss') },
 
 
@@ -55,11 +55,10 @@ class UserMessageTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -165,7 +164,7 @@ class UserMessageTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 1125 }}
+          
         />
       </div>
     )

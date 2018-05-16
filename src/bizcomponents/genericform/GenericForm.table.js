@@ -8,9 +8,9 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/genericForm/${text}/dashboard`}>{text}</Link>) },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '9' },
-  { title: '描述', debugtype: 'string', dataIndex: 'description', width: '16' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',  render: (text, record)=>(<Link to={`/genericForm/${text}/dashboard`}>{text}</Link>) },
+  { title: '标题', debugtype: 'string', dataIndex: 'title',},
+  { title: '描述', debugtype: 'string', dataIndex: 'description',},
 
 
 ]
@@ -51,11 +51,10 @@ class GenericFormTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -161,7 +160,7 @@ class GenericFormTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 800 }}
+          
         />
       </div>
     )

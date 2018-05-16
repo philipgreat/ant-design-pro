@@ -190,9 +190,9 @@ class ObjectAccessEditTable extends PureComponent {
     
     
     const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '11', render: (text, record) => renderStringEdit('name',text, record)  },
-  { title: '访问对象类型', debugtype: 'string', dataIndex: 'objectType', width: '32', render: (text, record) => renderStringEdit('objectType',text, record)  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '显示名称', debugtype: 'string', dataIndex: 'displayName', width: '11', render: (text, record) => renderStringEdit('displayName',text, record)  },
+  { title: '对象类型', debugtype: 'string', dataIndex: 'objectType', width: '32', render: (text, record) => renderStringEdit('objectType',text, record)  },
   { title: '列表1', debugtype: 'string', dataIndex: 'list1', width: '24', render: (text, record) => renderStringEdit('list1',text, record)  },
   { title: '列表2', debugtype: 'string', dataIndex: 'list2', width: '24', render: (text, record) => renderStringEdit('list2',text, record)  },
   { title: '列表3', debugtype: 'string', dataIndex: 'list3', width: '24', render: (text, record) => renderStringEdit('list3',text, record)  },
@@ -209,7 +209,7 @@ class ObjectAccessEditTable extends PureComponent {
     const newRecord =()=>{
       const newObjectAccessToAppend  = {
       	'id':`+1`, 
-				'name':'',
+				'displayName':'',
 				'objectType':'',
 				'list1':'',
 				'list2':'',

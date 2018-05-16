@@ -26,7 +26,7 @@ const testValues = {};
 /*
 const testValues = {
   name: '邀请码',
-  code: '786273',
+  code: '634628',
   communityId: 'C000001',
 }
 */

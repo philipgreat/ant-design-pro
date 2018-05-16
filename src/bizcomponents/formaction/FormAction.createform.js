@@ -15,7 +15,7 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
+  id: '序号',
   label: '标签',
   localeKey: '语言环境的关键',
   actionKey: '行动的关键',

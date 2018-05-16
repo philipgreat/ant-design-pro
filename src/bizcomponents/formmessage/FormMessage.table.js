@@ -8,10 +8,10 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '10' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',},
+  { title: '标题', debugtype: 'string', dataIndex: 'title',},
   { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.displayName : '暂无') },
-  { title: '水平', debugtype: 'string', dataIndex: 'level', width: '11' },
+  { title: '水平', debugtype: 'string', dataIndex: 'level',},
 
 
 ]
@@ -52,11 +52,10 @@ class FormMessageTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -162,7 +161,7 @@ class FormMessageTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 800 }}
+          
         />
       </div>
     )

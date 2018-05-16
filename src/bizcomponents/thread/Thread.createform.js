@@ -53,13 +53,13 @@ const testValues = {};
 const testValues = {
   title: '听力损失儿童回归的优点',
   displayOrder: '0',
-  eventTime: '2034-12-04 17:32:38',
-  registrationStopTime: '2038-01-11 01:09:19',
+  eventTime: '2035-01-29 13:28:42',
+  registrationStopTime: '2034-11-20 02:53:15',
   eventLocation: '奥克斯广场阳光咖啡',
   city: '成都',
   communityGroup: '最新',
   threadType: 'TOPIC',
-  videoUrl: 'https://player.youku.com/embed/XMzE0ODQ0NTA2NA',
+  videoUrl: '',
   communityId: 'C000001',
   creatorId: 'CU000001',
   homePageId: 'HP000001',
@@ -471,7 +471,7 @@ class ThreadCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.videoUrl} {...formItemLayout}>
                   {getFieldDecorator('videoUrl', {
-                    rules: [{ required: true, message: '请输入视频网址' }],
+                    rules: [{ required: false, message: '请输入视频网址' }],
                   })(
                     <Input placeholder="请输入视频网址" />
                   )}

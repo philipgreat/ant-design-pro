@@ -190,11 +190,11 @@ class SecUserEditTable extends PureComponent {
     
     
     const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20',  },
+  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20',  },
   { title: '登录', debugtype: 'string', dataIndex: 'login', width: '9', render: (text, record) => renderStringEdit('login',text, record)  },
-  { title: '手机号码', debugtype: 'string_china_mobile_phone', dataIndex: 'mobile', width: '15', render: (text, record) => renderStringEdit('mobile',text, record)  },
+  { title: '手机', debugtype: 'string_china_mobile_phone', dataIndex: 'mobile', width: '15', render: (text, record) => renderStringEdit('mobile',text, record)  },
   { title: '电子邮件', debugtype: 'string_email', dataIndex: 'email', width: '23', render: (text, record) => renderStringEdit('email',text, record)  },
-  { title: '密码', debugtype: 'string_password', dataIndex: 'pwd', width: '11', render: (text, record) => renderStringEdit('pwd',text, record)  },
+  { title: 'PWD', debugtype: 'string_password', dataIndex: 'pwd', width: '11', render: (text, record) => renderStringEdit('pwd',text, record)  },
   { title: '验证码', debugtype: 'int', dataIndex: 'verificationCode', width: '11', render: (text, record) => renderStringEdit('verificationCode',text, record)  },
   { title: '验证码过期', dataIndex: 'verificationCodeExpire', render: (text, record) => moment(record.verificationCodeExpire).format('YYYY-MM-DD HH:mm:ss') },
   { title: '最后登录时间', dataIndex: 'lastLoginTime', render: (text, record) => moment(record.lastLoginTime).format('YYYY-MM-DD HH:mm:ss') },

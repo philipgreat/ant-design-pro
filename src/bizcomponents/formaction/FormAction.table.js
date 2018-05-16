@@ -8,12 +8,12 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '标签', debugtype: 'string', dataIndex: 'label', width: '6' },
-  { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey', width: '8' },
-  { title: '行动的关键', debugtype: 'string', dataIndex: 'actionKey', width: '10' },
-  { title: '水平', debugtype: 'string', dataIndex: 'level', width: '11' },
-  { title: 'url', debugtype: 'string', dataIndex: 'url', width: '46' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',},
+  { title: '标签', debugtype: 'string', dataIndex: 'label',},
+  { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey',},
+  { title: '行动的关键', debugtype: 'string', dataIndex: 'actionKey',},
+  { title: '水平', debugtype: 'string', dataIndex: 'level',},
+  { title: 'url', debugtype: 'string', dataIndex: 'url',},
   { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.displayName : '暂无') },
 
 
@@ -55,11 +55,10 @@ class FormActionTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -165,7 +164,7 @@ class FormActionTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 1170 }}
+          
         />
       </div>
     )

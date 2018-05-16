@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd'
+import BooleanOption from 'components/BooleanOption';
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -29,6 +30,40 @@ const topColResponsiveProps = {
   xl: 4,
   style: { marginBottom: 24 },
 }
+
+
+const imageListOf = (communityUser) =>{
+
+	 return(<Card title='图片列表' className={styles.card}><Row type="flex" justify="space-between" align="bottom">
+<Col span={4}><ImagePreview imageTitle ={'头像'} imageLocation={communityUser.avatar} >头像</ImagePreview></Col>
+</Row></Card> )
+
+	
+
+}
+
+const settingListOf = (communityUser) =>{
+
+	return(<Card title='状态集合' className={styles.card}>
+<BooleanOption type={communityUser.hideInfo?"success":"error"} title="隐藏的信息"/>
+<BooleanOption type={communityUser.administrator?"success":"error"} title="管理员"/>
+</Card> )
+
+	
+	//(communityUser)
+
+
+}
+
+const largeTextOf = (communityUser) =>{
+
+	return null
+	
+
+}
+
+
+
 const summaryOf = (communityUser) =>{
 
 	return (
@@ -38,17 +73,13 @@ const summaryOf = (communityUser) =>{
 <Description term="昵称">{communityUser.nickName}</Description> 
 <Description term="性别">{communityUser.gender}</Description> 
 <Description term="用户类型">{communityUser.userType}</Description> 
-<Description term="头像"><ImagePreview imageTitle="头像" imageLocation={communityUser.avatar}/></Description> 
 <Description term="生日">{ moment(communityUser.birthday).format('YYYY-MM-DD')}</Description> 
 <Description term="成长值">{communityUser.experiencePoint}</Description> 
 <Description term="积分">{communityUser.bonusPoint}</Description> 
 <Description term="城市">{communityUser.city}</Description> 
 <Description term="状态">{communityUser.status}</Description> 
-<Description term="隐藏的信息">{communityUser.hideInfo?'是':'否'}</Description> 
-<Description term="管理员">{communityUser.administrator?'是':'否'}</Description> 
 <Description term="点经验限制">{communityUser.experiencePointLimit}</Description> 
 <Description term="经验点仍">{communityUser.experiencePointRemain}</Description> 
-<Description term="经验点过去的日子">{ moment(communityUser.experiencePointLastDate).format('YYYY-MM-DD')}</Description> 
 	
         
       </DescriptionList>
@@ -115,16 +146,22 @@ class CommunityUserDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
+        {imageListOf(cardsData.cardsSource)}
+        {settingListOf(cardsData.cardsSource)}
           <Row gutter={24}>
 
-           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>           
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   
+           <Badge count={item.count} style={{ backgroundColor: '#52c41a' }} overflowCount={9999999999}>        
             <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
               <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
               <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
-          </Card> 
+          </Card> </Badge>
             </Col>))}
 
           </Row>
+          
+          {largeTextOf(cardsData.cardsSource)}
+          
         </div>
       </PageHeaderLayout>
     )

@@ -25,7 +25,7 @@ const testValues = {};
 /*
 const testValues = {
   name: '浏览求助',
-  points: '84',
+  points: '71',
   userId: 'CU000001',
 }
 */

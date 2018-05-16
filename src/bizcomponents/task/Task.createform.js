@@ -47,9 +47,9 @@ const testValues = {};
 const testValues = {
   title: '听力损失儿童回归的优点',
   selectedTask: '是',
-  videoUrl: 'https://player.youku.com/embed/XMzE0ODQ0NTA2NA',
-  creatorBonus: '80',
-  additionalBonus: '77',
+  videoUrl: '',
+  creatorBonus: '85',
+  additionalBonus: '78',
   creatorId: 'CU000001',
   communityId: 'C000001',
   homePageId: 'HP000001',
@@ -401,7 +401,7 @@ class TaskCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.videoUrl} {...formItemLayout}>
                   {getFieldDecorator('videoUrl', {
-                    rules: [{ required: true, message: '请输入视频网址' }],
+                    rules: [{ required: false, message: '请输入视频网址' }],
                   })(
                     <Input placeholder="请输入视频网址" />
                   )}

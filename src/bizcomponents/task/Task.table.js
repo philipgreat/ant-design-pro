@@ -8,16 +8,16 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/task/${text}/dashboard`}>{text}</Link>) },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '15' },
-  { title: '选定的任务', debugtype: 'string', dataIndex: 'selectedTask', width: '5' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',  render: (text, record)=>(<Link to={`/task/${text}/dashboard`}>{text}</Link>) },
+  { title: '标题', debugtype: 'string', dataIndex: 'title',},
+  { title: '选定的任务', debugtype: 'string', dataIndex: 'selectedTask',},
   { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '内容', debugtype: 'string', dataIndex: 'content', width: '107' },
+  { title: '内容', debugtype: 'string', dataIndex: 'content',},
   { title: '创建者', dataIndex: 'creator', render: (text, record) => (record.creator ? record.creator.displayName : '暂无') },
   { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? record.community.displayName : '暂无') },
   { title: '主页', dataIndex: 'homePage', render: (text, record) => (record.homePage ? record.homePage.displayName : '暂无') },
   { title: '任务页面', dataIndex: 'taskPage', render: (text, record) => (record.taskPage ? record.taskPage.displayName : '暂无') },
-  { title: '视频网址', debugtype: 'string_url', dataIndex: 'videoUrl', width: '50' },
+  { title: '视频网址', debugtype: 'string', dataIndex: 'videoUrl',},
   { title: '封面图像路径1', dataIndex: 'coverImagePath1', render: (text, record) => <ImagePreview imageTitle="封面图像路径1" imageLocation={record.coverImagePath1} /> },
   { title: '封面图像路径2', dataIndex: 'coverImagePath2', render: (text, record) => <ImagePreview imageTitle="封面图像路径2" imageLocation={record.coverImagePath2} /> },
   { title: '封面图像路径3', dataIndex: 'coverImagePath3', render: (text, record) => <ImagePreview imageTitle="封面图像路径3" imageLocation={record.coverImagePath3} /> },
@@ -26,14 +26,14 @@ const columns = [
   { title: '图3', dataIndex: 'imagePath3', render: (text, record) => <ImagePreview imageTitle="图3" imageLocation={record.imagePath3} /> },
   { title: '图4', dataIndex: 'imagePath4', render: (text, record) => <ImagePreview imageTitle="图4" imageLocation={record.imagePath4} /> },
   { title: '图5', dataIndex: 'imagePath5', render: (text, record) => <ImagePreview imageTitle="图5" imageLocation={record.imagePath5} /> },
-  { title: '发布人的奖金', debugtype: 'int', dataIndex: 'creatorBonus', width: '7' },
-  { title: '额外的奖金', debugtype: 'int', dataIndex: 'additionalBonus', width: '7' },
+  { title: '发布人的奖金', debugtype: 'int', dataIndex: 'creatorBonus',},
+  { title: '额外的奖金', debugtype: 'int', dataIndex: 'additionalBonus',},
   { title: '躲藏', dataIndex: 'hiding', render: (text, record) => (record.hiding ? record.hiding.displayName : '暂无') },
   { title: '解决', dataIndex: 'resolving', render: (text, record) => (record.resolving ? record.resolving.displayName : '暂无') },
   { title: '悬赏', dataIndex: 'reward', render: (text, record) => (record.reward ? record.reward.displayName : '暂无') },
   { title: '当前用户已点赞', dataIndex: 'likeByCurrentUser', render: (text, record) => (record.likeByCurrentUser ? '是' : '否') },
   { title: '当前用户已回复', dataIndex: 'repliedByCurrentUser', render: (text, record) => (record.repliedByCurrentUser ? '是' : '否') },
-  { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus', width: '12' },
+  { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus',},
 
 
 ]
@@ -74,11 +74,10 @@ class TaskTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -184,7 +183,7 @@ class TaskTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 4860 }}
+          
         />
       </div>
     )

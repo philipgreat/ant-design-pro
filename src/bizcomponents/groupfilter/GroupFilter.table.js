@@ -8,9 +8,9 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '滤波环节', debugtype: 'string', dataIndex: 'filterLink', width: '32' },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',},
+  { title: '滤波环节', debugtype: 'string', dataIndex: 'filterLink',},
+  { title: '标题', debugtype: 'string', dataIndex: 'title',},
   { title: '群组页面', dataIndex: 'groupPage', render: (text, record) => (record.groupPage ? record.groupPage.displayName : '暂无') },
 
 
@@ -52,11 +52,10 @@ class GroupFilterTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -162,7 +161,7 @@ class GroupFilterTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 800 }}
+          
         />
       </div>
     )

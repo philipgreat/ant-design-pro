@@ -8,15 +8,15 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/userApp/${text}/dashboard`}>{text}</Link>) },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',  render: (text, record)=>(<Link to={`/userApp/${text}/dashboard`}>{text}</Link>) },
+  { title: '标题', debugtype: 'string', dataIndex: 'title',},
   { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.displayName : '暂无') },
-  { title: '应用程序图标', debugtype: 'string', dataIndex: 'appIcon', width: '13' },
+  { title: '应用程序图标', debugtype: 'string', dataIndex: 'appIcon',},
   { title: '完全访问', dataIndex: 'fullAccess', render: (text, record) => (record.fullAccess ? '是' : '否') },
-  { title: '许可', debugtype: 'string', dataIndex: 'permission', width: '8' },
-  { title: '访问对象类型', debugtype: 'string', dataIndex: 'objectType', width: '31' },
-  { title: '对象ID', debugtype: 'string', dataIndex: 'objectId', width: '14' },
-  { title: '位置', debugtype: 'string', dataIndex: 'location', width: '16' },
+  { title: '许可', debugtype: 'string', dataIndex: 'permission',},
+  { title: '对象类型', debugtype: 'string', dataIndex: 'objectType',},
+  { title: '对象ID', debugtype: 'string', dataIndex: 'objectId',},
+  { title: '位置', debugtype: 'string', dataIndex: 'location',},
 
 
 ]
@@ -57,11 +57,10 @@ class UserAppTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -167,7 +166,7 @@ class UserAppTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 1275 }}
+          
         />
       </div>
     )

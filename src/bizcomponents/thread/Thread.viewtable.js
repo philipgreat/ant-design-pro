@@ -21,7 +21,7 @@ const columns = [
   { title: '创建者',dataIndex: 'creator', render: (text, record) => (record.creator ? record.creator.id : '暂无') },
   { title: '主页',dataIndex: 'homePage', render: (text, record) => (record.homePage ? record.homePage.id : '暂无') },
   { title: '群组页面',dataIndex: 'groupPage', render: (text, record) => (record.groupPage ? record.groupPage.id : '暂无') },
-  { title: '视频网址', debugtype: 'string_url', dataIndex: 'videoUrl', width: '50' },
+  { title: '视频网址', debugtype: 'string', dataIndex: 'videoUrl', width: '50' },
   { title: '封面图像路径1', dataIndex: 'coverImagePath1', render: (text, record) => <ImagePreview imageLocation={record.coverImagePath1}/> },
   { title: '封面图像路径2', dataIndex: 'coverImagePath2', render: (text, record) => <ImagePreview imageLocation={record.coverImagePath2}/> },
   { title: '封面图像路径3', dataIndex: 'coverImagePath3', render: (text, record) => <ImagePreview imageLocation={record.coverImagePath3}/> },

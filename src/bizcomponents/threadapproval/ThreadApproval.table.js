@@ -8,10 +8,10 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/threadApproval/${text}/dashboard`}>{text}</Link>) },
-  { title: '谁', debugtype: 'string_current_user_name', dataIndex: 'who', width: '21' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',  render: (text, record)=>(<Link to={`/threadApproval/${text}/dashboard`}>{text}</Link>) },
+  { title: '谁', debugtype: 'string_current_user_name', dataIndex: 'who',},
   { title: '行动时间', dataIndex: 'actionTime', render: (text, record) => moment(record.actionTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '评论', debugtype: 'string', dataIndex: 'comment', width: '8' },
+  { title: '评论', debugtype: 'string', dataIndex: 'comment',},
 
 
 ]
@@ -52,11 +52,10 @@ class ThreadApprovalTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -162,7 +161,7 @@ class ThreadApprovalTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 800 }}
+          
         />
       </div>
     )

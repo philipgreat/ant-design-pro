@@ -83,17 +83,17 @@ class LoginHistorySearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="ID">
+            <FormItem label="序号">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入ID" />
+                <Input placeholder="请输入序号" />
                )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="来自IP">
+            <FormItem label="从IP">
               {getFieldDecorator('fromIp')(
-                <Input placeholder="请输入来自IP" />
+                <Input placeholder="请输入从IP" />
                )}
             </FormItem>
           </Col>
@@ -116,17 +116,17 @@ class LoginHistorySearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="ID">
+            <FormItem label="序号">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入ID" />
+                <Input placeholder="请输入序号" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="来自IP">
+            <FormItem label="从IP">
               {getFieldDecorator('fromIp')(
-                <Input placeholder="请输入来自IP" />
+                <Input placeholder="请输入从IP" />
               )}
             </FormItem>
           </Col>

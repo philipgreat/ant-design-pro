@@ -15,9 +15,9 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: 'ID',
-  name: '名称',
-  objectType: '访问对象类型',
+  id: '序号',
+  displayName: '显示名称',
+  objectType: '对象类型',
   list1: '列表1',
   list2: '列表2',
   list3: '列表3',
@@ -268,21 +268,21 @@ class ObjectAccessUpdateForm extends Component {
                 <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
                     initialValue: selectedRow.id,
-                    rules: [{ required: true, message: '请输入ID' }],
+                    rules: [{ required: true, message: '请输入序号' }],
                   })(
-                    <Input placeholder="请输入ID" disabled/>
+                    <Input placeholder="请输入序号" disabled/>
                     
                   )}
                 </Form.Item>
               </Col>
 
               <Col lg={12} md={12} sm={24}>
-                <Form.Item label={fieldLabels.name} {...formItemLayout}>
-                  {getFieldDecorator('name', {
-                    initialValue: selectedRow.name,
-                    rules: [{ required: true, message: '请输入名称' }],
+                <Form.Item label={fieldLabels.displayName} {...formItemLayout}>
+                  {getFieldDecorator('displayName', {
+                    initialValue: selectedRow.displayName,
+                    rules: [{ required: true, message: '请输入显示名称' }],
                   })(
-                    <Input placeholder="请输入名称" />
+                    <Input placeholder="请输入显示名称" />
                     
                   )}
                 </Form.Item>
@@ -292,9 +292,9 @@ class ObjectAccessUpdateForm extends Component {
                 <Form.Item label={fieldLabels.objectType} {...formItemLayout}>
                   {getFieldDecorator('objectType', {
                     initialValue: selectedRow.objectType,
-                    rules: [{ required: true, message: '请输入访问对象类型' }],
+                    rules: [{ required: true, message: '请输入对象类型' }],
                   })(
-                    <Input placeholder="请输入访问对象类型" />
+                    <Input placeholder="请输入对象类型" />
                     
                   )}
                 </Form.Item>

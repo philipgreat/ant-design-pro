@@ -8,9 +8,9 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '7' },
-  { title: '代码', debugtype: 'int', dataIndex: 'code', width: '10' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',},
+  { title: '名称', debugtype: 'string', dataIndex: 'name',},
+  { title: '代码', debugtype: 'int', dataIndex: 'code',},
   { title: '创建时间', dataIndex: 'createTime', render: (text, record) => moment(record.createTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '社区', dataIndex: 'community', render: (text, record) => (record.community ? record.community.displayName : '暂无') },
   { title: '用', dataIndex: 'used', render: (text, record) => (record.used ? '是' : '否') },
@@ -54,11 +54,10 @@ class InvitationCodeTable extends PureComponent {
     if(!referenceName){
       return columns
     }
-    const remainColumns = columns.filter((item)=> item.dataIndex!=referenceName)
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
     const operationColumn={
       title: '操作',
-      fixed: 'right',
-      width: 100,
       render: (text, record) => (
         <p>
           <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
@@ -164,7 +163,7 @@ class InvitationCodeTable extends PureComponent {
           columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 800 }}
+          
         />
       </div>
     )
