@@ -1,81 +1,142 @@
+
+
 import React, { Component } from 'react'
+import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
-import {
-  Row,
-  Col,
-  Icon,
-  Card,
-  Tabs,
-  Table,
-  Radio,
-  DatePicker,
-  Tooltip,
-  Menu,
-  Dropdown,
-} from 'antd'
+import BooleanOption from 'components/BooleanOption';
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
-  ChartCard,
-  yuan,
-  MiniArea,
-  MiniBar,
-  MiniProgress,
-  Field,
-  Bar,
-  Pie,
-  TimelineChart,
+  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
 import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './FormAction.dashboard.less'
-import DescriptionList from '../../components/DescriptionList'
-const { Description } = DescriptionList
+import DescriptionList from '../../components/DescriptionList';
+import ImagePreview from '../../components/ImagePreview';
+const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
 
 const topColResponsiveProps = {
-  xs: 24,
-  sm: 12,
-  md: 12,
-  lg: 12,
-  xl: 6,
+  xs: 8,
+  sm: 6,
+  md: 6,
+  lg: 4,
+  xl: 4,
   style: { marginBottom: 24 },
 }
-const summaryOf = formAction => {
-  return (
-    <DescriptionList className={styles.headerList} size="small" col="4">
-      <Description term="序号">{formAction.id}</Description>
-      <Description term="标签">{formAction.label}</Description>
-      <Description term="语言环境的关键">{formAction.localeKey}</Description>
-      <Description term="行动的关键">{formAction.actionKey}</Description>
-      <Description term="水平">{formAction.level}</Description>
-      <Description term="url">{formAction.url}</Description>
-    </DescriptionList>
-  )
+
+
+const imageListOf = (formAction) =>{
+
+	     return null
+	
+
 }
 
-@connect(state => ({
-  formAction: state._formAction,
-}))
-export default class FormActionDashboard extends Component {
+const settingListOf = (formAction) =>{
+
+	    return null
+	
+	//(formAction)
+
+
+}
+
+const largeTextOf = (formAction) =>{
+
+	return null
+	
+
+}
+
+
+
+const summaryOf = (formAction) =>{
+
+	return (
+	<DescriptionList className={styles.headerList} size="small" col="4">
+<Description term="序号">{formAction.id}</Description> 
+<Description term="标签">{formAction.label}</Description> 
+<Description term="语言环境的关键">{formAction.localeKey}</Description> 
+<Description term="行动的关键">{formAction.actionKey}</Description> 
+<Description term="水平">{formAction.level}</Description> 
+	
+        
+      </DescriptionList>
+	)
+
+}
+
+
+class FormActionDashboard extends Component {
+
+
+  componentDidMount() {
+  /*
+    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
+    // const { getFieldDecorator, setFieldsValue } = this.props.form;
+    const { dispatch, location, formAction } = this.props;
+    
+    if(!formAction){
+    	return;
+    }
+    const {displayName} = formAction;
+    if(!displayName){
+    	return;
+    }
+	const link = location.pathname;
+	
+    dispatch({ type: 'breadcrumb/gotoLink', payload: { displayName, link }})
+  	*/
+  }
+  
+
   render() {
     // eslint-disable-next-line max-len
-    const { id } = this.props.formAction
-
+    const { id,displayName,  } = this.props.formAction
+    const cardsData = {cardsName:"表单动作",cardsFor: "formAction",cardsSource: this.props.formAction,
+  		subItems: [
+    
+      	],
+  	};
+    
     return (
+
       <PageHeaderLayout
-        title="表单动作总览"
-        content={summaryOf(this.props.formAction)}
+        title={`${cardsData.cardsName}: ${displayName}`}
+        content={summaryOf(cardsData.cardsSource)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
-          <Row gutter={24} />
+        {imageListOf(cardsData.cardsSource)}
+        {settingListOf(cardsData.cardsSource)}
+          <Row gutter={24}>
+
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   
+           <Badge count={item.count} style={{ backgroundColor: '#52c41a' }} overflowCount={9999999999}>        
+            <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
+          </Card> </Badge>
+            </Col>))}
+
+          </Row>
+          
+          {largeTextOf(cardsData.cardsSource)}
+          
         </div>
       </PageHeaderLayout>
     )
   }
 }
+
+export default connect(state => ({
+  formAction: state._formAction,
+}))(FormActionDashboard)
+

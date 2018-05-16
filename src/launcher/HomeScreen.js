@@ -21,10 +21,10 @@ class HomeScreen extends React.Component {
 
 
 
-    gotoApp = (e, id) => {
-        console.log('click ', id);
+    gotoApp = (e, app) => {
+        console.log('click ', app.id);
         const dispatch = this.props.dispatch;
-        dispatch({type:"launcher/gotoApp", payload:{appId:id}});
+        dispatch({type:"launcher/gotoApp", payload:{app}});
     }
 
 
@@ -79,12 +79,12 @@ class HomeScreen extends React.Component {
                 <Row key="3" gutter={16} justify="center" align="center" >
                     {appList.map((app, i) => (
                         <Col key={i} className="gutter-row" span={6} style={{ textAlign: "center"}}
-                            onClick={(e)=>this.gotoApp(e,app.id)}
+                            onClick={(e)=>this.gotoApp(e,app)}
                         >
                             
 
                                 <br /><br />
-                                <FontAwesome name={app.appIcon} size='5x' />
+                                <FontAwesome name={app.appIcon} size='5x' style={{color:'brown'}}/>
                                 <br />{app.title}
                             
                         </Col>))}

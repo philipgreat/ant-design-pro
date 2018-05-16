@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}homePageManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -18,6 +15,19 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}homePageManager/loadHomePage/${targetObjectId}/${parametersExpr}/`,
   })
 }
+
+
+
+const requestCandidateCommunity = (ownerClass, id, filterKey, pageNo) => {
+  //const parametersExpr = joinParameters(parameters)
+  return get({
+    url: `${PREFIX}homePageManager/requestCandidateCommunity/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+  })
+}	 
+ 
+
+
+
 
 const addSlide = (targetObjectId, parameters) => {
   const url = `${PREFIX}homePageManager/addSlide/homePageId/title/imageUrl/linkUrl/tokensExpr/`
@@ -45,11 +55,7 @@ const updateSlide = (targetObjectId, parameters) => {
 
 const removeSlideList = (targetObjectId, parameters) => {
   const url = `${PREFIX}homePageManager/removeSlideList/homePageId/slideIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    homePageId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, homePageId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -57,6 +63,7 @@ const removeSlideList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addEncyclopediaItem = (targetObjectId, parameters) => {
   const url = `${PREFIX}homePageManager/addEncyclopediaItem/homePageId/title/publishTime/content/communityId/tokensExpr/`
@@ -84,11 +91,7 @@ const updateEncyclopediaItem = (targetObjectId, parameters) => {
 
 const removeEncyclopediaItemList = (targetObjectId, parameters) => {
   const url = `${PREFIX}homePageManager/removeEncyclopediaItemList/homePageId/encyclopediaItemIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    homePageId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, homePageId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -96,6 +99,7 @@ const removeEncyclopediaItemList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addTaskFilter = (targetObjectId, parameters) => {
   const url = `${PREFIX}homePageManager/addTaskFilter/homePageId/name/filterKey/linkUrl/taskPageId/tokensExpr/`
@@ -123,11 +127,7 @@ const updateTaskFilter = (targetObjectId, parameters) => {
 
 const removeTaskFilterList = (targetObjectId, parameters) => {
   const url = `${PREFIX}homePageManager/removeTaskFilterList/homePageId/taskFilterIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    homePageId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, homePageId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -135,6 +135,7 @@ const removeTaskFilterList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addTask = (targetObjectId, parameters) => {
   const url = `${PREFIX}homePageManager/addTask/homePageId/title/selectedTask/content/creatorId/communityId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/`
@@ -162,11 +163,7 @@ const updateTask = (targetObjectId, parameters) => {
 
 const removeTaskList = (targetObjectId, parameters) => {
   const url = `${PREFIX}homePageManager/removeTaskList/homePageId/taskIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    homePageId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, homePageId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -174,6 +171,7 @@ const removeTaskList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addThread = (targetObjectId, parameters) => {
   const url = `${PREFIX}homePageManager/addThread/homePageId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/communityId/creatorId/groupPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/`
@@ -201,11 +199,7 @@ const updateThread = (targetObjectId, parameters) => {
 
 const removeThreadList = (targetObjectId, parameters) => {
   const url = `${PREFIX}homePageManager/removeThreadList/homePageId/threadIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    homePageId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, homePageId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -214,8 +208,8 @@ const removeThreadList = (targetObjectId, parameters) => {
   })
 }
 
-const HomePageService = {
-  view,
+
+const HomePageService = { view,
   load,
   addSlide,
   addEncyclopediaItem,
@@ -232,5 +226,6 @@ const HomePageService = {
   removeTaskFilterList,
   removeTaskList,
   removeThreadList,
-}
+  requestCandidateCommunity }
 export default HomePageService
+

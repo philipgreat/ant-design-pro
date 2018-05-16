@@ -3,91 +3,8 @@ import { routerRedux } from 'dva/router'
 import key from 'keymaster'
 
 import LauncherService from './Launcher.service'
-
-const apps = {
-
-
-  'com.terapico.bbt.community.Community': 'community',
-  'com.terapico.bbt.invitationcode.InvitationCode': 'invitationCode',
-  'com.terapico.bbt.homepage.HomePage': 'homePage',
-  'com.terapico.bbt.slide.Slide': 'slide',
-  'com.terapico.bbt.encyclopediaitem.EncyclopediaItem': 'encyclopediaItem',
-  'com.terapico.bbt.taskpage.TaskPage': 'taskPage',
-  'com.terapico.bbt.taskfilter.TaskFilter': 'taskFilter',
-  'com.terapico.bbt.communityuser.CommunityUser': 'communityUser',
-  'com.terapico.bbt.patientinfo.PatientInfo': 'patientInfo',
-  'com.terapico.bbt.userskill.UserSkill': 'userSkill',
-  'com.terapico.bbt.messagefilter.MessageFilter': 'messageFilter',
-  'com.terapico.bbt.usermessage.UserMessage': 'userMessage',
-  'com.terapico.bbt.task.Task': 'task',
-  'com.terapico.bbt.taskassigment.TaskAssigment': 'taskAssigment',
-  'com.terapico.bbt.taskhiding.TaskHiding': 'taskHiding',
-  'com.terapico.bbt.taskresolving.TaskResolving': 'taskResolving',
-  'com.terapico.bbt.taskreward.TaskReward': 'taskReward',
-  'com.terapico.bbt.tasklike.TaskLike': 'taskLike',
-  'com.terapico.bbt.taskreply.TaskReply': 'taskReply',
-  'com.terapico.bbt.taskbestanswersetting.TaskBestAnswerSetting': 'taskBestAnswerSetting',
-  'com.terapico.bbt.taskreplylike.TaskReplyLike': 'taskReplyLike',
-  'com.terapico.bbt.grouppage.GroupPage': 'groupPage',
-  'com.terapico.bbt.groupfilter.GroupFilter': 'groupFilter',
-  'com.terapico.bbt.thread.Thread': 'thread',
-  'com.terapico.bbt.threadhiding.ThreadHiding': 'threadHiding',
-  'com.terapico.bbt.threadreply.ThreadReply': 'threadReply',
-  'com.terapico.bbt.threadapproval.ThreadApproval': 'threadApproval',
-  'com.terapico.bbt.threadcompletion.ThreadCompletion': 'threadCompletion',
-  'com.terapico.bbt.threadcanceling.ThreadCanceling': 'threadCanceling',
-  'com.terapico.bbt.threadregistration.ThreadRegistration': 'threadRegistration',
-  'com.terapico.bbt.threadlike.ThreadLike': 'threadLike',
-  'com.terapico.bbt.threadreplylike.ThreadReplyLike': 'threadReplyLike',
-  'com.terapico.bbt.fan.Fan': 'fan',
-  'com.terapico.bbt.follow.Follow': 'follow',
-  'com.terapico.bbt.bonuspoint.BonusPoint': 'bonusPoint',
-  'com.terapico.bbt.experiencepoint.ExperiencePoint': 'experiencePoint',
-  'com.terapico.bbt.userdomain.UserDomain': 'userDomain',
-  'com.terapico.bbt.secuser.SecUser': 'secUser',
-  'com.terapico.bbt.secuserblocking.SecUserBlocking': 'secUserBlocking',
-  'com.terapico.bbt.userapp.UserApp': 'userApp',
-  'com.terapico.bbt.objectaccess.ObjectAccess': 'objectAccess',
-  'com.terapico.bbt.loginhistory.LoginHistory': 'loginHistory',
-  'com.terapico.bbt.genericform.GenericForm': 'genericForm',
-  'com.terapico.bbt.formmessage.FormMessage': 'formMessage',
-  'com.terapico.bbt.formfieldmessage.FormFieldMessage': 'formFieldMessage',
-  'com.terapico.bbt.formfield.FormField': 'formField',
-  'com.terapico.bbt.formaction.FormAction': 'formAction',
-
-}
-
-// const rootElement = document.getElementById("root")
-
-// eslint-disable-next-line no-unused-vars
-const presentApp = (clazz, data) => {
-  // console.log(data)
-}
-
-// const lowercaseFirst = (stringExpr) => {
-//   if(typeof(stringExpr)!="string"){
-//       throw "parameter stringExpr is not a string"
-//   }
-//   // let stringExpr=""
-//   if(stringExpr.length<=0){
-//       return ""
-//   }
-//   if(stringExpr.length==1){
-//       return stringExpr.substring(0,1)
-//   }
-//   return stringExpr.substring(0,1).toLowerCase()+stringExpr.substring(1)
-// }
-
-const calcLocationPath = (clazz,id,subLocation) => {
-
-  const locationPath = apps[clazz]
-  if (locationPath) {
-    return `${locationPath}/${id}/${subLocation}`
-  }
-  return '/home'
-}
-
-// console.log("element", )
+import GlobalComponents from '../custcomponents'
+import SystemConfig  from '../axios/config'
 
 let currentLocation = ''
 
@@ -95,7 +12,7 @@ export default {
 
   namespace: 'launcher',
 
-  state: { loggedIn: false, name: 'Philip', systemName: '帮帮兔社区运营中心' },
+  state: { loggedIn: false, name: 'Philip', systemName: SystemConfig.SYSTEM_LOCAL_NAME },
 
 
   subscriptions: {
@@ -128,6 +45,7 @@ export default {
   },
   effects: {
     *login({ payload }, { call, put }) {
+      const {calcLocationPath,calcMenuData} = GlobalComponents
       const data = yield call(LauncherService.login, payload.username, payload.password)
       console.log('data.........................', data)
       if (!data) {
@@ -150,11 +68,25 @@ export default {
     },
     *gotoApp({ payload }, { call, put }) {
       // console.log("gotoApp has been called", payload)
-      const data = yield call(LauncherService.gotoApp, payload.appId)
+      const {calcLocationPath,calcMenuData} = GlobalComponents
+      const data = yield call(LauncherService.gotoApp, payload.app.id)
       const locationPath = calcLocationPath(data.class, data.id, 'dashboard')
       const location = { pathname: `/${locationPath}`, state: data }
+      const targetApp=payload.app;
       console.log('location', location)
+      const menuData = calcMenuData(data.class);
+      yield put({ type: 'breadcrumb/selectApp', payload: { targetApp,location, menuData} })
+      
       yield put(routerRedux.push(location))
+      // yield put({type:"showApp",payload:{data}})
+    },
+    *signOut({ payload }, { call, put }) {
+      // console.log("gotoApp has been called", payload)
+      const data = yield call(LauncherService.logout)
+     
+      yield put({ type: 'logout', payload: { data} })
+      
+     
       // yield put({type:"showApp",payload:{data}})
     },
   },
@@ -183,7 +115,6 @@ export default {
 
 
 }
-
 
 
 

@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}formMessageManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -19,8 +16,21 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-const FormMessageService = {
-  view,
+
+
+const requestCandidateForm = (ownerClass, id, filterKey, pageNo) => {
+  //const parametersExpr = joinParameters(parameters)
+  return get({
+    url: `${PREFIX}formMessageManager/requestCandidateForm/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+  })
+}	 
+ 
+
+
+
+
+const FormMessageService = { view,
   load,
-}
+  requestCandidateForm }
 export default FormMessageService
+

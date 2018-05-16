@@ -1,6 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Layout, Menu, Icon, Avatar, Dropdown, Tag, message, Spin } from 'antd'
+import {
+  Layout,
+  Menu,
+  Icon,
+  Avatar,
+  Dropdown,
+  Tag,
+  message,
+  Spin,
+  Breadcrumb,
+  AutoComplete,
+  Input,
+} from 'antd'
 import DocumentTitle from 'react-document-title'
 import { connect } from 'dva'
 import { Link, Route, Redirect, Switch } from 'dva/router'
@@ -9,12 +21,14 @@ import groupBy from 'lodash/groupBy'
 import { ContainerQuery } from 'react-container-query'
 import classNames from 'classnames'
 import styles from './CommunityUser.app.less'
+import {sessionObject} from '../../utils/utils'
 
-import HeaderSearch from '../../components/HeaderSearch'
-import NoticeIcon from '../../components/NoticeIcon'
-import GlobalFooter from '../../components/GlobalFooter'
+import HeaderSearch from '../../components/HeaderSearch';
+import NoticeIcon from '../../components/NoticeIcon';
+import GlobalFooter from '../../components/GlobalFooter';
 
-import GlobalComponents from '../../custcomponents'
+
+import GlobalComponents from '../../custcomponents';
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -40,6 +54,33 @@ const query = {
   },
 }
 
+
+  
+const menuData = {menuName:"社区用户", menuFor: "communityUser",
+  		subItems: [
+  {name: 'patientInfoList', displayName:'病人信息'},
+  {name: 'userSkillList', displayName:'用户技能'},
+  {name: 'messageFilterList', displayName:'消息过滤'},
+  {name: 'userMessageList', displayName:'用户消息'},
+  {name: 'taskList', displayName:'任务'},
+  {name: 'taskAssigmentList', displayName:'任务分配'},
+  {name: 'taskLikeList', displayName:'任务点赞'},
+  {name: 'taskReplyList', displayName:'回复任务'},
+  {name: 'taskReplyLikeList', displayName:'任务回复点赞'},
+  {name: 'threadList', displayName:'主贴'},
+  {name: 'threadReplyList', displayName:'跟帖回复'},
+  {name: 'threadRegistrationList', displayName:'活动注册'},
+  {name: 'threadLikeList', displayName:'主贴点赞'},
+  {name: 'threadReplyLikeList', displayName:'跟帖回复点赞'},
+  {name: 'fanList', displayName:'粉丝'},
+  {name: 'followList', displayName:'关注'},
+  {name: 'bonusPointList', displayName:'积分'},
+  {name: 'experiencePointList', displayName:'成长值'},
+  		
+  		
+  		],
+};
+
 class CommunityUserBizApp extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -54,14 +95,14 @@ class CommunityUserBizApp extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout)
   }
-  onCollapse = collapsed => {
+  onCollapse = (collapsed) => {
     this.props.dispatch({
       type: 'global/changeLayoutCollapsed',
       payload: collapsed,
     })
   }
 
-  getDefaultCollapsedSubMenus = props => {
+  getDefaultCollapsedSubMenus = (props) => {
     const currentMenuSelectedKeys = [...this.getCurrentMenuSelectedKeys(props)]
     currentMenuSelectedKeys.splice(-1, 1)
     if (currentMenuSelectedKeys.length === 0) {
@@ -69,7 +110,7 @@ class CommunityUserBizApp extends React.PureComponent {
     }
     return currentMenuSelectedKeys
   }
-  getCurrentMenuSelectedKeys = props => {
+  getCurrentMenuSelectedKeys = (props) => {
     const { location: { pathname } } = props || this.props
     const keys = pathname.split('/').slice(1)
     if (keys.length === 1 && keys[0] === '') {
@@ -77,152 +118,87 @@ class CommunityUserBizApp extends React.PureComponent {
     }
     return keys
   }
-  getNavMenuItems = objectId => {
+  
+  getNavMenuItems = () => {
+  
+
+    const menuData = sessionObject('menuData')
+    const targetApp = sessionObject('targetApp')
+	const {objectId}=targetApp;
+  
     return (
-      <SubMenu
-        title={
-          <span>
-            <Icon type="profile" />
-            <span>社区用户</span>
-          </span>
-        }
+      <SubMenu key="firstOne" title={
+        <span>
+          <Icon type="profile" />
+          <span>{menuData.menuName}</span>
+        </span>}
       >
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/patientInfoList`}>
-            病人信息
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/userSkillList`}>
-            用户技能
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/messageFilterList`}>
-            消息过滤
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/userMessageList`}>
-            用户消息
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/taskList`}>任务</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/taskAssigmentList`}>
-            任务分配
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/taskLikeList`}>
-            任务点赞
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/taskReplyList`}>
-            回复任务
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/taskReplyLikeList`}>
-            任务回复点赞
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/threadList`}>主贴</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/threadReplyList`}>
-            跟帖回复
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/threadRegistrationList`}>
-            活动注册
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/threadLikeList`}>
-            主贴点赞
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/threadReplyLikeList`}>
-            跟帖回复点赞
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/fanList`}>粉丝</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/followList`}>关注</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/bonusPointList`}>
-            积分
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`/communityUser/${objectId}/list/experiencePointList`}>
-            成长值
-          </Link>
-        </Menu.Item>
+        {menuData.subItems.map((item)=>(<Menu.Item key={item.name}>
+          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}/${item.displayName}列表`}>{item.displayName}</Link>
+        </Menu.Item>))}
+       
+      </SubMenu>
+    )
+  }
+  
+  getNavMenuItems2 = (objectId) => {
+  
+    const {menuData,targetApp} = this.props.breadcrumb;
+
+  
+    return (
+      <SubMenu key="firstOne" title={
+        <span>
+          <Icon type="profile" />
+          <span>{menuData.menuName}</span>
+        </span>}
+      >
+        {menuData.subItems.map((item)=>(<Menu.Item>
+          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
+        </Menu.Item>))}
+       
       </SubMenu>
     )
   }
 
+
   getPatientInfoSearch = () => {
-    const { PatientInfoSearch } = GlobalComponents
+    const {PatientInfoSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.patientInfoList,
       count: state._communityUser.patientInfoCount,
       currentPage: state._communityUser.patientInfoCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.patientInfoSearchFormParameters,
+      searchFormParameters: state._communityUser.patientInfoSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'patientInfoList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'patientInfoList', ref:state._communityUser, listDisplayName: '病人信息列表' }, // this is for model namespace and
     }))(PatientInfoSearch)
   }
   getPatientInfoCreateForm = () => {
-    const { PatientInfoCreateForm } = GlobalComponents
+   	const {PatientInfoCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.patientInfoList,
       count: state._communityUser.patientInfoCount,
       currentPage: state._communityUser.patientInfoCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.patientInfoSearchFormParameters,
+      searchFormParameters: state._communityUser.patientInfoSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'patientInfoList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'patientInfoList', ref:state._communityUser, listDisplayName: '病人信息列表'}, // this is for model namespace and
     }))(PatientInfoCreateForm)
   }
-
+  
   getPatientInfoUpdateForm = () => {
-    const { PatientInfoUpdateForm } = GlobalComponents
+  	const {PatientInfoUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'patientInfoList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'patientInfoList', ref:state._communityUser, listDisplayName: '病人信息列表' }, // this is for model namespace and
     }))(PatientInfoUpdateForm)
   }
 
   getUserSkillSearch = () => {
-    const { UserSkillSearch } = GlobalComponents
+    const {UserSkillSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.userSkillList,
@@ -230,15 +206,12 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.userSkillCurrentPageNumber,
       searchFormParameters: state._communityUser.userSkillSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'userSkillList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'userSkillList', ref:state._communityUser, listDisplayName: '用户技能列表' }, // this is for model namespace and
     }))(UserSkillSearch)
   }
   getUserSkillCreateForm = () => {
-    const { UserSkillCreateForm } = GlobalComponents
+   	const {UserSkillCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.userSkillList,
@@ -246,125 +219,91 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.userSkillCurrentPageNumber,
       searchFormParameters: state._communityUser.userSkillSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'userSkillList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'userSkillList', ref:state._communityUser, listDisplayName: '用户技能列表'}, // this is for model namespace and
     }))(UserSkillCreateForm)
   }
-
+  
   getUserSkillUpdateForm = () => {
-    const { UserSkillUpdateForm } = GlobalComponents
+  	const {UserSkillUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'userSkillList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'userSkillList', ref:state._communityUser, listDisplayName: '用户技能列表' }, // this is for model namespace and
     }))(UserSkillUpdateForm)
   }
 
   getMessageFilterSearch = () => {
-    const { MessageFilterSearch } = GlobalComponents
+    const {MessageFilterSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.messageFilterList,
       count: state._communityUser.messageFilterCount,
       currentPage: state._communityUser.messageFilterCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.messageFilterSearchFormParameters,
+      searchFormParameters: state._communityUser.messageFilterSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'messageFilterList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'messageFilterList', ref:state._communityUser, listDisplayName: '消息过滤列表' }, // this is for model namespace and
     }))(MessageFilterSearch)
   }
   getMessageFilterCreateForm = () => {
-    const { MessageFilterCreateForm } = GlobalComponents
+   	const {MessageFilterCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.messageFilterList,
       count: state._communityUser.messageFilterCount,
       currentPage: state._communityUser.messageFilterCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.messageFilterSearchFormParameters,
+      searchFormParameters: state._communityUser.messageFilterSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'messageFilterList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'messageFilterList', ref:state._communityUser, listDisplayName: '消息过滤列表'}, // this is for model namespace and
     }))(MessageFilterCreateForm)
   }
-
+  
   getMessageFilterUpdateForm = () => {
-    const { MessageFilterUpdateForm } = GlobalComponents
+  	const {MessageFilterUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'messageFilterList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'messageFilterList', ref:state._communityUser, listDisplayName: '消息过滤列表' }, // this is for model namespace and
     }))(MessageFilterUpdateForm)
   }
 
   getUserMessageSearch = () => {
-    const { UserMessageSearch } = GlobalComponents
+    const {UserMessageSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.userMessageList,
       count: state._communityUser.userMessageCount,
       currentPage: state._communityUser.userMessageCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.userMessageSearchFormParameters,
+      searchFormParameters: state._communityUser.userMessageSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'userMessageList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'receiver', listName: 'userMessageList', ref:state._communityUser, listDisplayName: '用户消息列表' }, // this is for model namespace and
     }))(UserMessageSearch)
   }
   getUserMessageCreateForm = () => {
-    const { UserMessageCreateForm } = GlobalComponents
+   	const {UserMessageCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.userMessageList,
       count: state._communityUser.userMessageCount,
       currentPage: state._communityUser.userMessageCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.userMessageSearchFormParameters,
+      searchFormParameters: state._communityUser.userMessageSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'userMessageList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'receiver', listName: 'userMessageList', ref:state._communityUser, listDisplayName: '用户消息列表'}, // this is for model namespace and
     }))(UserMessageCreateForm)
   }
-
+  
   getUserMessageUpdateForm = () => {
-    const { UserMessageUpdateForm } = GlobalComponents
+  	const {UserMessageUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'userMessageList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'userMessageList', ref:state._communityUser, listDisplayName: '用户消息列表' }, // this is for model namespace and
     }))(UserMessageUpdateForm)
   }
 
   getTaskSearch = () => {
-    const { TaskSearch } = GlobalComponents
+    const {TaskSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskList,
@@ -372,15 +311,12 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskCurrentPageNumber,
       searchFormParameters: state._communityUser.taskSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'creator', listName: 'taskList', ref:state._communityUser, listDisplayName: '任务列表' }, // this is for model namespace and
     }))(TaskSearch)
   }
   getTaskCreateForm = () => {
-    const { TaskCreateForm } = GlobalComponents
+   	const {TaskCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskList,
@@ -388,77 +324,56 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskCurrentPageNumber,
       searchFormParameters: state._communityUser.taskSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'creator', listName: 'taskList', ref:state._communityUser, listDisplayName: '任务列表'}, // this is for model namespace and
     }))(TaskCreateForm)
   }
-
+  
   getTaskUpdateForm = () => {
-    const { TaskUpdateForm } = GlobalComponents
+  	const {TaskUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'taskList', ref:state._communityUser, listDisplayName: '任务列表' }, // this is for model namespace and
     }))(TaskUpdateForm)
   }
 
   getTaskAssigmentSearch = () => {
-    const { TaskAssigmentSearch } = GlobalComponents
+    const {TaskAssigmentSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskAssigmentList,
       count: state._communityUser.taskAssigmentCount,
       currentPage: state._communityUser.taskAssigmentCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.taskAssigmentSearchFormParameters,
+      searchFormParameters: state._communityUser.taskAssigmentSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskAssigmentList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'assignee', listName: 'taskAssigmentList', ref:state._communityUser, listDisplayName: '任务分配列表' }, // this is for model namespace and
     }))(TaskAssigmentSearch)
   }
   getTaskAssigmentCreateForm = () => {
-    const { TaskAssigmentCreateForm } = GlobalComponents
+   	const {TaskAssigmentCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskAssigmentList,
       count: state._communityUser.taskAssigmentCount,
       currentPage: state._communityUser.taskAssigmentCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.taskAssigmentSearchFormParameters,
+      searchFormParameters: state._communityUser.taskAssigmentSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskAssigmentList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'assignee', listName: 'taskAssigmentList', ref:state._communityUser, listDisplayName: '任务分配列表'}, // this is for model namespace and
     }))(TaskAssigmentCreateForm)
   }
-
+  
   getTaskAssigmentUpdateForm = () => {
-    const { TaskAssigmentUpdateForm } = GlobalComponents
+  	const {TaskAssigmentUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskAssigmentList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'taskAssigmentList', ref:state._communityUser, listDisplayName: '任务分配列表' }, // this is for model namespace and
     }))(TaskAssigmentUpdateForm)
   }
 
   getTaskLikeSearch = () => {
-    const { TaskLikeSearch } = GlobalComponents
+    const {TaskLikeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskLikeList,
@@ -466,15 +381,12 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskLikeCurrentPageNumber,
       searchFormParameters: state._communityUser.taskLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskLikeList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'replier', listName: 'taskLikeList', ref:state._communityUser, listDisplayName: '任务点赞列表' }, // this is for model namespace and
     }))(TaskLikeSearch)
   }
   getTaskLikeCreateForm = () => {
-    const { TaskLikeCreateForm } = GlobalComponents
+   	const {TaskLikeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskLikeList,
@@ -482,29 +394,21 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskLikeCurrentPageNumber,
       searchFormParameters: state._communityUser.taskLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskLikeList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'replier', listName: 'taskLikeList', ref:state._communityUser, listDisplayName: '任务点赞列表'}, // this is for model namespace and
     }))(TaskLikeCreateForm)
   }
-
+  
   getTaskLikeUpdateForm = () => {
-    const { TaskLikeUpdateForm } = GlobalComponents
+  	const {TaskLikeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskLikeList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'taskLikeList', ref:state._communityUser, listDisplayName: '任务点赞列表' }, // this is for model namespace and
     }))(TaskLikeUpdateForm)
   }
 
   getTaskReplySearch = () => {
-    const { TaskReplySearch } = GlobalComponents
+    const {TaskReplySearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskReplyList,
@@ -512,15 +416,12 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskReplyCurrentPageNumber,
       searchFormParameters: state._communityUser.taskReplySearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskReplyList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'replier', listName: 'taskReplyList', ref:state._communityUser, listDisplayName: '回复任务列表' }, // this is for model namespace and
     }))(TaskReplySearch)
   }
   getTaskReplyCreateForm = () => {
-    const { TaskReplyCreateForm } = GlobalComponents
+   	const {TaskReplyCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskReplyList,
@@ -528,77 +429,56 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.taskReplyCurrentPageNumber,
       searchFormParameters: state._communityUser.taskReplySearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskReplyList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'replier', listName: 'taskReplyList', ref:state._communityUser, listDisplayName: '回复任务列表'}, // this is for model namespace and
     }))(TaskReplyCreateForm)
   }
-
+  
   getTaskReplyUpdateForm = () => {
-    const { TaskReplyUpdateForm } = GlobalComponents
+  	const {TaskReplyUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskReplyList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'taskReplyList', ref:state._communityUser, listDisplayName: '回复任务列表' }, // this is for model namespace and
     }))(TaskReplyUpdateForm)
   }
 
   getTaskReplyLikeSearch = () => {
-    const { TaskReplyLikeSearch } = GlobalComponents
+    const {TaskReplyLikeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskReplyLikeList,
       count: state._communityUser.taskReplyLikeCount,
       currentPage: state._communityUser.taskReplyLikeCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.taskReplyLikeSearchFormParameters,
+      searchFormParameters: state._communityUser.taskReplyLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskReplyLikeList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'replier', listName: 'taskReplyLikeList', ref:state._communityUser, listDisplayName: '任务回复点赞列表' }, // this is for model namespace and
     }))(TaskReplyLikeSearch)
   }
   getTaskReplyLikeCreateForm = () => {
-    const { TaskReplyLikeCreateForm } = GlobalComponents
+   	const {TaskReplyLikeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.taskReplyLikeList,
       count: state._communityUser.taskReplyLikeCount,
       currentPage: state._communityUser.taskReplyLikeCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.taskReplyLikeSearchFormParameters,
+      searchFormParameters: state._communityUser.taskReplyLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskReplyLikeList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'replier', listName: 'taskReplyLikeList', ref:state._communityUser, listDisplayName: '任务回复点赞列表'}, // this is for model namespace and
     }))(TaskReplyLikeCreateForm)
   }
-
+  
   getTaskReplyLikeUpdateForm = () => {
-    const { TaskReplyLikeUpdateForm } = GlobalComponents
+  	const {TaskReplyLikeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'taskReplyLikeList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'taskReplyLikeList', ref:state._communityUser, listDisplayName: '任务回复点赞列表' }, // this is for model namespace and
     }))(TaskReplyLikeUpdateForm)
   }
 
   getThreadSearch = () => {
-    const { ThreadSearch } = GlobalComponents
+    const {ThreadSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadList,
@@ -606,15 +486,12 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadCurrentPageNumber,
       searchFormParameters: state._communityUser.threadSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'creator', listName: 'threadList', ref:state._communityUser, listDisplayName: '主贴列表' }, // this is for model namespace and
     }))(ThreadSearch)
   }
   getThreadCreateForm = () => {
-    const { ThreadCreateForm } = GlobalComponents
+   	const {ThreadCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadList,
@@ -622,125 +499,91 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadCurrentPageNumber,
       searchFormParameters: state._communityUser.threadSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'creator', listName: 'threadList', ref:state._communityUser, listDisplayName: '主贴列表'}, // this is for model namespace and
     }))(ThreadCreateForm)
   }
-
+  
   getThreadUpdateForm = () => {
-    const { ThreadUpdateForm } = GlobalComponents
+  	const {ThreadUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'threadList', ref:state._communityUser, listDisplayName: '主贴列表' }, // this is for model namespace and
     }))(ThreadUpdateForm)
   }
 
   getThreadReplySearch = () => {
-    const { ThreadReplySearch } = GlobalComponents
+    const {ThreadReplySearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadReplyList,
       count: state._communityUser.threadReplyCount,
       currentPage: state._communityUser.threadReplyCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.threadReplySearchFormParameters,
+      searchFormParameters: state._communityUser.threadReplySearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadReplyList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'replier', listName: 'threadReplyList', ref:state._communityUser, listDisplayName: '跟帖回复列表' }, // this is for model namespace and
     }))(ThreadReplySearch)
   }
   getThreadReplyCreateForm = () => {
-    const { ThreadReplyCreateForm } = GlobalComponents
+   	const {ThreadReplyCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadReplyList,
       count: state._communityUser.threadReplyCount,
       currentPage: state._communityUser.threadReplyCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.threadReplySearchFormParameters,
+      searchFormParameters: state._communityUser.threadReplySearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadReplyList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'replier', listName: 'threadReplyList', ref:state._communityUser, listDisplayName: '跟帖回复列表'}, // this is for model namespace and
     }))(ThreadReplyCreateForm)
   }
-
+  
   getThreadReplyUpdateForm = () => {
-    const { ThreadReplyUpdateForm } = GlobalComponents
+  	const {ThreadReplyUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadReplyList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'threadReplyList', ref:state._communityUser, listDisplayName: '跟帖回复列表' }, // this is for model namespace and
     }))(ThreadReplyUpdateForm)
   }
 
   getThreadRegistrationSearch = () => {
-    const { ThreadRegistrationSearch } = GlobalComponents
+    const {ThreadRegistrationSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadRegistrationList,
       count: state._communityUser.threadRegistrationCount,
       currentPage: state._communityUser.threadRegistrationCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.threadRegistrationSearchFormParameters,
+      searchFormParameters: state._communityUser.threadRegistrationSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadRegistrationList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'participant', listName: 'threadRegistrationList', ref:state._communityUser, listDisplayName: '活动注册列表' }, // this is for model namespace and
     }))(ThreadRegistrationSearch)
   }
   getThreadRegistrationCreateForm = () => {
-    const { ThreadRegistrationCreateForm } = GlobalComponents
+   	const {ThreadRegistrationCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadRegistrationList,
       count: state._communityUser.threadRegistrationCount,
       currentPage: state._communityUser.threadRegistrationCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.threadRegistrationSearchFormParameters,
+      searchFormParameters: state._communityUser.threadRegistrationSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadRegistrationList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'participant', listName: 'threadRegistrationList', ref:state._communityUser, listDisplayName: '活动注册列表'}, // this is for model namespace and
     }))(ThreadRegistrationCreateForm)
   }
-
+  
   getThreadRegistrationUpdateForm = () => {
-    const { ThreadRegistrationUpdateForm } = GlobalComponents
+  	const {ThreadRegistrationUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadRegistrationList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'threadRegistrationList', ref:state._communityUser, listDisplayName: '活动注册列表' }, // this is for model namespace and
     }))(ThreadRegistrationUpdateForm)
   }
 
   getThreadLikeSearch = () => {
-    const { ThreadLikeSearch } = GlobalComponents
+    const {ThreadLikeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadLikeList,
@@ -748,15 +591,12 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadLikeCurrentPageNumber,
       searchFormParameters: state._communityUser.threadLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadLikeList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'replier', listName: 'threadLikeList', ref:state._communityUser, listDisplayName: '主贴点赞列表' }, // this is for model namespace and
     }))(ThreadLikeSearch)
   }
   getThreadLikeCreateForm = () => {
-    const { ThreadLikeCreateForm } = GlobalComponents
+   	const {ThreadLikeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadLikeList,
@@ -764,77 +604,56 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.threadLikeCurrentPageNumber,
       searchFormParameters: state._communityUser.threadLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadLikeList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'replier', listName: 'threadLikeList', ref:state._communityUser, listDisplayName: '主贴点赞列表'}, // this is for model namespace and
     }))(ThreadLikeCreateForm)
   }
-
+  
   getThreadLikeUpdateForm = () => {
-    const { ThreadLikeUpdateForm } = GlobalComponents
+  	const {ThreadLikeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadLikeList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'threadLikeList', ref:state._communityUser, listDisplayName: '主贴点赞列表' }, // this is for model namespace and
     }))(ThreadLikeUpdateForm)
   }
 
   getThreadReplyLikeSearch = () => {
-    const { ThreadReplyLikeSearch } = GlobalComponents
+    const {ThreadReplyLikeSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadReplyLikeList,
       count: state._communityUser.threadReplyLikeCount,
       currentPage: state._communityUser.threadReplyLikeCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.threadReplyLikeSearchFormParameters,
+      searchFormParameters: state._communityUser.threadReplyLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadReplyLikeList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'replier', listName: 'threadReplyLikeList', ref:state._communityUser, listDisplayName: '跟帖回复点赞列表' }, // this is for model namespace and
     }))(ThreadReplyLikeSearch)
   }
   getThreadReplyLikeCreateForm = () => {
-    const { ThreadReplyLikeCreateForm } = GlobalComponents
+   	const {ThreadReplyLikeCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.threadReplyLikeList,
       count: state._communityUser.threadReplyLikeCount,
       currentPage: state._communityUser.threadReplyLikeCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.threadReplyLikeSearchFormParameters,
+      searchFormParameters: state._communityUser.threadReplyLikeSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadReplyLikeList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'replier', listName: 'threadReplyLikeList', ref:state._communityUser, listDisplayName: '跟帖回复点赞列表'}, // this is for model namespace and
     }))(ThreadReplyLikeCreateForm)
   }
-
+  
   getThreadReplyLikeUpdateForm = () => {
-    const { ThreadReplyLikeUpdateForm } = GlobalComponents
+  	const {ThreadReplyLikeUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'threadReplyLikeList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'threadReplyLikeList', ref:state._communityUser, listDisplayName: '跟帖回复点赞列表' }, // this is for model namespace and
     }))(ThreadReplyLikeUpdateForm)
   }
 
   getFanSearch = () => {
-    const { FanSearch } = GlobalComponents
+    const {FanSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.fanList,
@@ -842,15 +661,12 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.fanCurrentPageNumber,
       searchFormParameters: state._communityUser.fanSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'fanList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'fanList', ref:state._communityUser, listDisplayName: '粉丝列表' }, // this is for model namespace and
     }))(FanSearch)
   }
   getFanCreateForm = () => {
-    const { FanCreateForm } = GlobalComponents
+   	const {FanCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.fanList,
@@ -858,29 +674,21 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.fanCurrentPageNumber,
       searchFormParameters: state._communityUser.fanSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'fanList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'fanList', ref:state._communityUser, listDisplayName: '粉丝列表'}, // this is for model namespace and
     }))(FanCreateForm)
   }
-
+  
   getFanUpdateForm = () => {
-    const { FanUpdateForm } = GlobalComponents
+  	const {FanUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'fanList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'fanList', ref:state._communityUser, listDisplayName: '粉丝列表' }, // this is for model namespace and
     }))(FanUpdateForm)
   }
 
   getFollowSearch = () => {
-    const { FollowSearch } = GlobalComponents
+    const {FollowSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.followList,
@@ -888,15 +696,12 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.followCurrentPageNumber,
       searchFormParameters: state._communityUser.followSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'followList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'followList', ref:state._communityUser, listDisplayName: '关注列表' }, // this is for model namespace and
     }))(FollowSearch)
   }
   getFollowCreateForm = () => {
-    const { FollowCreateForm } = GlobalComponents
+   	const {FollowCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.followList,
@@ -904,29 +709,21 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.followCurrentPageNumber,
       searchFormParameters: state._communityUser.followSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'followList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'followList', ref:state._communityUser, listDisplayName: '关注列表'}, // this is for model namespace and
     }))(FollowCreateForm)
   }
-
+  
   getFollowUpdateForm = () => {
-    const { FollowUpdateForm } = GlobalComponents
+  	const {FollowUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'followList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'followList', ref:state._communityUser, listDisplayName: '关注列表' }, // this is for model namespace and
     }))(FollowUpdateForm)
   }
 
   getBonusPointSearch = () => {
-    const { BonusPointSearch } = GlobalComponents
+    const {BonusPointSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.bonusPointList,
@@ -934,15 +731,12 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.bonusPointCurrentPageNumber,
       searchFormParameters: state._communityUser.bonusPointSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'bonusPointList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'bonusPointList', ref:state._communityUser, listDisplayName: '积分列表' }, // this is for model namespace and
     }))(BonusPointSearch)
   }
   getBonusPointCreateForm = () => {
-    const { BonusPointCreateForm } = GlobalComponents
+   	const {BonusPointCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.bonusPointList,
@@ -950,72 +744,51 @@ class CommunityUserBizApp extends React.PureComponent {
       currentPage: state._communityUser.bonusPointCurrentPageNumber,
       searchFormParameters: state._communityUser.bonusPointSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'bonusPointList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'bonusPointList', ref:state._communityUser, listDisplayName: '积分列表'}, // this is for model namespace and
     }))(BonusPointCreateForm)
   }
-
+  
   getBonusPointUpdateForm = () => {
-    const { BonusPointUpdateForm } = GlobalComponents
+  	const {BonusPointUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'bonusPointList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'bonusPointList', ref:state._communityUser, listDisplayName: '积分列表' }, // this is for model namespace and
     }))(BonusPointUpdateForm)
   }
 
   getExperiencePointSearch = () => {
-    const { ExperiencePointSearch } = GlobalComponents
+    const {ExperiencePointSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.experiencePointList,
       count: state._communityUser.experiencePointCount,
       currentPage: state._communityUser.experiencePointCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.experiencePointSearchFormParameters,
+      searchFormParameters: state._communityUser.experiencePointSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'experiencePointList',
-      }, // this is for model namespace and
+      partialList: state._communityUser.partialList,
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'experiencePointList', ref:state._communityUser, listDisplayName: '成长值列表' }, // this is for model namespace and
     }))(ExperiencePointSearch)
   }
   getExperiencePointCreateForm = () => {
-    const { ExperiencePointCreateForm } = GlobalComponents
+   	const {ExperiencePointCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
       data: state._communityUser.experiencePointList,
       count: state._communityUser.experiencePointCount,
       currentPage: state._communityUser.experiencePointCurrentPageNumber,
-      searchFormParameters:
-        state._communityUser.experiencePointSearchFormParameters,
+      searchFormParameters: state._communityUser.experiencePointSearchFormParameters,
       loading: state._communityUser.loading,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'experiencePointList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, referenceName: 'user', listName: 'experiencePointList', ref:state._communityUser, listDisplayName: '成长值列表'}, // this is for model namespace and
     }))(ExperiencePointCreateForm)
   }
-
+  
   getExperiencePointUpdateForm = () => {
-    const { ExperiencePointUpdateForm } = GlobalComponents
+  	const {ExperiencePointUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._communityUser.selectedRows,
       currentUpdateIndex: state._communityUser.currentUpdateIndex,
-      owner: {
-        type: '_communityUser',
-        id: state._communityUser.id,
-        listName: 'experiencePointList',
-      }, // this is for model namespace and
+      owner: { type: '_communityUser', id: state._communityUser.id, listName: 'experiencePointList', ref:state._communityUser, listDisplayName: '成长值列表' }, // this is for model namespace and
     }))(ExperiencePointUpdateForm)
   }
 
@@ -1025,345 +798,198 @@ class CommunityUserBizApp extends React.PureComponent {
     const title = '帮帮兔社区运营中心'
     return title
   }
-
-  handleOpenChange = openKeys => {
-    const latestOpenKey = openKeys.find(
-      key => this.state.openKeys.indexOf(key) === -1
-    )
+ 
+  handleOpenChange = (openKeys) => {
+    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1)
     this.setState({
       openKeys: latestOpenKey ? [latestOpenKey] : [],
     })
   }
-  toggle = () => {
-    const { collapsed } = this.props
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: !collapsed,
-    })
-  }
+   toggle = () => {
+     const { collapsed } = this.props
+     this.props.dispatch({
+       type: 'global/changeLayoutCollapsed',
+       payload: !collapsed,
+     })
+   }
 
-  render() {
-    // const { collapsed, fetchingNotices,loading } = this.props
-    const { collapsed } = this.props
+   render() {
+     // const { collapsed, fetchingNotices,loading } = this.props
+     const { collapsed } = this.props
+     const { breadcrumb }  = this.props
+     const {CommunityUserDashboard} = GlobalComponents
+     const {CommunityUserEditDetail} = GlobalComponents
+     const {CommunityUserViewDetail} = GlobalComponents
+     
+     
+     const targetApp = sessionObject('targetApp')
+     const currentBreadcrumb =sessionObject(targetApp.id)
+     
+     
+     // Don't show popup menu when it is been collapsed
+     const menuProps = collapsed ? {} : {
+       openKeys: this.state.openKeys,
+     }
+     const layout = (
+     <Layout>
+        <Header>
+          
+          <div className={styles.left}>
+          <img
+            src="./scm.svg"
+            alt="logo"
+            onClick={this.toggle}
+            className={styles.logo}
+          />
+          {currentBreadcrumb.map((item)=>{
+            return (<Link  key={item.link} to={`${item.link}`} className={styles.breadcrumbLink}> &gt;{item.name}</Link>)
 
-    const { CommunityUserDashboard } = GlobalComponents
-    const { CommunityUserEditDetail } = GlobalComponents
-    const { CommunityUserViewDetail } = GlobalComponents
-
-    // Don't show popup menu when it is been collapsed
-    const menuProps = collapsed
-      ? {}
-      : {
-          openKeys: this.state.openKeys,
-        }
-    const layout = (
-      <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          breakpoint="md"
-          onCollapse={() => this.onCollapse(collapsed)}
-          width={256}
-          className={styles.sider}
-        >
-          <div className={styles.logo}>
-            <img src="./scm.svg" alt="logo" onClick={this.toggle} />
-            <Link to="/home">
-              {' '}
-              <h1>社区用户</h1>
-            </Link>
-          </div>
-
-          <Menu
-            theme="dark"
-            mode="inline"
-            {...menuProps}
-            onOpenChange={this.handleOpenChange}
-            selectedKeys={this.getCurrentMenuSelectedKeys()}
-            style={{ margin: '16px 0', width: '100%' }}
+          })}
+         </div>
+          <div className={styles.right}>
+          
+          <AutoComplete
+            className="certain-category-search"
+            placeholder="请输入名称"
+            optionLabelProp="value"
+            
           >
-            <Menu.Item>
-              <Link
-                to={`/communityUser/${this.props.communityUser.id}/dashboard`}
-              >
-                <Icon type="dashboard" />
-                <span>仪表板</span>
-              </Link>
-            </Menu.Item>
+            <Input
+              suffix={<Icon type="search" className="certain-category-icon" />}
+            />
+          </AutoComplete> </div>
+        </Header>
+       <Layout>
+         <Sider
+           trigger={null}
+           collapsible
+           collapsed={collapsed}
+           breakpoint="md"
+           onCollapse={()=>this.onCollapse(collapsed)}
+           collapsedWidth={56}
+           className={styles.sider}
+         >
+           
 
-            {this.getNavMenuItems(this.props.communityUser.id)}
-            <Menu.Item>
-              <Link to={'/home'}>
-                <Icon type="home" />
-                <span>回到主页</span>
-              </Link>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout>
-          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <Switch>
-              <Route
-                path="/communityUser/:id/dashboard"
-                component={CommunityUserDashboard}
-              />
+           <Menu
+             theme="dark"
+             mode="inline"
+            
+             
+             onOpenChange={this.handleOpenChange}
+            
+             defaultOpenKeys={['firstOne']}
+             style={{ margin: '16px 0', width: '100%' }}
+           >
+           
 
-              <Route
-                path="/communityUser/:id/editDetail"
-                component={CommunityUserEditDetail}
-              />
-              <Route
-                path="/communityUser/:id/viewDetail"
-                component={CommunityUserViewDetail}
-              />
+             <Menu.Item key="dashboard">
+               <Link to={`/communityUser/${this.props.communityUser.id}/dashboard`}><Icon type="dashboard" /><span>仪表板</span></Link>
+             </Menu.Item>
 
-              <Route
-                path="/communityUser/:id/list/patientInfoList"
-                component={this.getPatientInfoSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/patientInfoCreateForm"
-                component={this.getPatientInfoCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/patientInfoUpdateForm"
-                component={this.getPatientInfoUpdateForm()}
-              />
 
-              <Route
-                path="/communityUser/:id/list/userSkillList"
-                component={this.getUserSkillSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/userSkillCreateForm"
-                component={this.getUserSkillCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/userSkillUpdateForm"
-                component={this.getUserSkillUpdateForm()}
-              />
+             {this.getNavMenuItems(this.props.communityUser.id)}
+             <Menu.Item key="homepage">
+               <Link to={"/home"}><Icon type="home" /><span>回到主页</span></Link>
+             </Menu.Item>
+           </Menu>
+         </Sider>
+         <Layout>
+           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+             <Switch>
+             
+               <Route path="/communityUser/:id/dashboard" component={CommunityUserDashboard} />
+               
+               <Route path="/communityUser/:id/editDetail" component={CommunityUserEditDetail} />
+               <Route path="/communityUser/:id/viewDetail" component={CommunityUserViewDetail} /> 
+               
 
-              <Route
-                path="/communityUser/:id/list/messageFilterList"
-                component={this.getMessageFilterSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/messageFilterCreateForm"
-                component={this.getMessageFilterCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/messageFilterUpdateForm"
-                component={this.getMessageFilterUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/patientInfoList" component={this.getPatientInfoSearch()} />
+               <Route path="/communityUser/:id/list/patientInfoCreateForm" component={this.getPatientInfoCreateForm()} />
+               <Route path="/communityUser/:id/list/patientInfoUpdateForm" component={this.getPatientInfoUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/userMessageList"
-                component={this.getUserMessageSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/userMessageCreateForm"
-                component={this.getUserMessageCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/userMessageUpdateForm"
-                component={this.getUserMessageUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/userSkillList" component={this.getUserSkillSearch()} />
+               <Route path="/communityUser/:id/list/userSkillCreateForm" component={this.getUserSkillCreateForm()} />
+               <Route path="/communityUser/:id/list/userSkillUpdateForm" component={this.getUserSkillUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/taskList"
-                component={this.getTaskSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/taskCreateForm"
-                component={this.getTaskCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/taskUpdateForm"
-                component={this.getTaskUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/messageFilterList" component={this.getMessageFilterSearch()} />
+               <Route path="/communityUser/:id/list/messageFilterCreateForm" component={this.getMessageFilterCreateForm()} />
+               <Route path="/communityUser/:id/list/messageFilterUpdateForm" component={this.getMessageFilterUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/taskAssigmentList"
-                component={this.getTaskAssigmentSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/taskAssigmentCreateForm"
-                component={this.getTaskAssigmentCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/taskAssigmentUpdateForm"
-                component={this.getTaskAssigmentUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/userMessageList" component={this.getUserMessageSearch()} />
+               <Route path="/communityUser/:id/list/userMessageCreateForm" component={this.getUserMessageCreateForm()} />
+               <Route path="/communityUser/:id/list/userMessageUpdateForm" component={this.getUserMessageUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/taskLikeList"
-                component={this.getTaskLikeSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/taskLikeCreateForm"
-                component={this.getTaskLikeCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/taskLikeUpdateForm"
-                component={this.getTaskLikeUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/taskList" component={this.getTaskSearch()} />
+               <Route path="/communityUser/:id/list/taskCreateForm" component={this.getTaskCreateForm()} />
+               <Route path="/communityUser/:id/list/taskUpdateForm" component={this.getTaskUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/taskReplyList"
-                component={this.getTaskReplySearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/taskReplyCreateForm"
-                component={this.getTaskReplyCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/taskReplyUpdateForm"
-                component={this.getTaskReplyUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/taskAssigmentList" component={this.getTaskAssigmentSearch()} />
+               <Route path="/communityUser/:id/list/taskAssigmentCreateForm" component={this.getTaskAssigmentCreateForm()} />
+               <Route path="/communityUser/:id/list/taskAssigmentUpdateForm" component={this.getTaskAssigmentUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/taskReplyLikeList"
-                component={this.getTaskReplyLikeSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/taskReplyLikeCreateForm"
-                component={this.getTaskReplyLikeCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/taskReplyLikeUpdateForm"
-                component={this.getTaskReplyLikeUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/taskLikeList" component={this.getTaskLikeSearch()} />
+               <Route path="/communityUser/:id/list/taskLikeCreateForm" component={this.getTaskLikeCreateForm()} />
+               <Route path="/communityUser/:id/list/taskLikeUpdateForm" component={this.getTaskLikeUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/threadList"
-                component={this.getThreadSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/threadCreateForm"
-                component={this.getThreadCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/threadUpdateForm"
-                component={this.getThreadUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/taskReplyList" component={this.getTaskReplySearch()} />
+               <Route path="/communityUser/:id/list/taskReplyCreateForm" component={this.getTaskReplyCreateForm()} />
+               <Route path="/communityUser/:id/list/taskReplyUpdateForm" component={this.getTaskReplyUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/threadReplyList"
-                component={this.getThreadReplySearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/threadReplyCreateForm"
-                component={this.getThreadReplyCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/threadReplyUpdateForm"
-                component={this.getThreadReplyUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/taskReplyLikeList" component={this.getTaskReplyLikeSearch()} />
+               <Route path="/communityUser/:id/list/taskReplyLikeCreateForm" component={this.getTaskReplyLikeCreateForm()} />
+               <Route path="/communityUser/:id/list/taskReplyLikeUpdateForm" component={this.getTaskReplyLikeUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/threadRegistrationList"
-                component={this.getThreadRegistrationSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/threadRegistrationCreateForm"
-                component={this.getThreadRegistrationCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/threadRegistrationUpdateForm"
-                component={this.getThreadRegistrationUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/threadList" component={this.getThreadSearch()} />
+               <Route path="/communityUser/:id/list/threadCreateForm" component={this.getThreadCreateForm()} />
+               <Route path="/communityUser/:id/list/threadUpdateForm" component={this.getThreadUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/threadLikeList"
-                component={this.getThreadLikeSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/threadLikeCreateForm"
-                component={this.getThreadLikeCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/threadLikeUpdateForm"
-                component={this.getThreadLikeUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/threadReplyList" component={this.getThreadReplySearch()} />
+               <Route path="/communityUser/:id/list/threadReplyCreateForm" component={this.getThreadReplyCreateForm()} />
+               <Route path="/communityUser/:id/list/threadReplyUpdateForm" component={this.getThreadReplyUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/threadReplyLikeList"
-                component={this.getThreadReplyLikeSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/threadReplyLikeCreateForm"
-                component={this.getThreadReplyLikeCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/threadReplyLikeUpdateForm"
-                component={this.getThreadReplyLikeUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/threadRegistrationList" component={this.getThreadRegistrationSearch()} />
+               <Route path="/communityUser/:id/list/threadRegistrationCreateForm" component={this.getThreadRegistrationCreateForm()} />
+               <Route path="/communityUser/:id/list/threadRegistrationUpdateForm" component={this.getThreadRegistrationUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/fanList"
-                component={this.getFanSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/fanCreateForm"
-                component={this.getFanCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/fanUpdateForm"
-                component={this.getFanUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/threadLikeList" component={this.getThreadLikeSearch()} />
+               <Route path="/communityUser/:id/list/threadLikeCreateForm" component={this.getThreadLikeCreateForm()} />
+               <Route path="/communityUser/:id/list/threadLikeUpdateForm" component={this.getThreadLikeUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/followList"
-                component={this.getFollowSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/followCreateForm"
-                component={this.getFollowCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/followUpdateForm"
-                component={this.getFollowUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/threadReplyLikeList" component={this.getThreadReplyLikeSearch()} />
+               <Route path="/communityUser/:id/list/threadReplyLikeCreateForm" component={this.getThreadReplyLikeCreateForm()} />
+               <Route path="/communityUser/:id/list/threadReplyLikeUpdateForm" component={this.getThreadReplyLikeUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/bonusPointList"
-                component={this.getBonusPointSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/bonusPointCreateForm"
-                component={this.getBonusPointCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/bonusPointUpdateForm"
-                component={this.getBonusPointUpdateForm()}
-              />
+               <Route path="/communityUser/:id/list/fanList" component={this.getFanSearch()} />
+               <Route path="/communityUser/:id/list/fanCreateForm" component={this.getFanCreateForm()} />
+               <Route path="/communityUser/:id/list/fanUpdateForm" component={this.getFanUpdateForm()} />
 
-              <Route
-                path="/communityUser/:id/list/experiencePointList"
-                component={this.getExperiencePointSearch()}
-              />
-              <Route
-                path="/communityUser/:id/list/experiencePointCreateForm"
-                component={this.getExperiencePointCreateForm()}
-              />
-              <Route
-                path="/communityUser/:id/list/experiencePointUpdateForm"
-                component={this.getExperiencePointUpdateForm()}
-              />
-            </Switch>
-          </Content>
+               <Route path="/communityUser/:id/list/followList" component={this.getFollowSearch()} />
+               <Route path="/communityUser/:id/list/followCreateForm" component={this.getFollowCreateForm()} />
+               <Route path="/communityUser/:id/list/followUpdateForm" component={this.getFollowUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/bonusPointList" component={this.getBonusPointSearch()} />
+               <Route path="/communityUser/:id/list/bonusPointCreateForm" component={this.getBonusPointCreateForm()} />
+               <Route path="/communityUser/:id/list/bonusPointUpdateForm" component={this.getBonusPointUpdateForm()} />
+
+               <Route path="/communityUser/:id/list/experiencePointList" component={this.getExperiencePointSearch()} />
+               <Route path="/communityUser/:id/list/experiencePointCreateForm" component={this.getExperiencePointCreateForm()} />
+               <Route path="/communityUser/:id/list/experiencePointUpdateForm" component={this.getExperiencePointUpdateForm()} />
+              
+             </Switch>
+           </Content>
+          </Layout>
         </Layout>
       </Layout>
-    )
-    return (
-      <DocumentTitle title={this.getPageTitle()}>
-        <ContainerQuery query={query}>
-          {params => <div className={classNames(params)}>{layout}</div>}
-        </ContainerQuery>
-      </DocumentTitle>
-    )
-  }
+     )
+     return (
+       <DocumentTitle title={this.getPageTitle()}>
+         <ContainerQuery query={query}>
+           {params => <div className={classNames(params)}>{layout}</div>}
+         </ContainerQuery>
+       </DocumentTitle>
+     )
+   }
 }
 
 export default connect(state => ({
@@ -1373,3 +999,6 @@ export default connect(state => ({
   communityUser: state._communityUser,
   ...state,
 }))(CommunityUserBizApp)
+
+
+

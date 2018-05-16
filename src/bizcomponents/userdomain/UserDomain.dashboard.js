@@ -1,113 +1,139 @@
+
+
 import React, { Component } from 'react'
+import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
-import {
-  Row,
-  Col,
-  Icon,
-  Card,
-  Tabs,
-  Table,
-  Radio,
-  DatePicker,
-  Tooltip,
-  Menu,
-  Dropdown,
-} from 'antd'
+import BooleanOption from 'components/BooleanOption';
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
-  ChartCard,
-  yuan,
-  MiniArea,
-  MiniBar,
-  MiniProgress,
-  Field,
-  Bar,
-  Pie,
-  TimelineChart,
+  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
 import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './UserDomain.dashboard.less'
-import DescriptionList from '../../components/DescriptionList'
-const { Description } = DescriptionList
+import DescriptionList from '../../components/DescriptionList';
+import ImagePreview from '../../components/ImagePreview';
+const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
 
 const topColResponsiveProps = {
-  xs: 24,
-  sm: 12,
-  md: 12,
-  lg: 12,
-  xl: 6,
+  xs: 8,
+  sm: 6,
+  md: 6,
+  lg: 4,
+  xl: 4,
   style: { marginBottom: 24 },
 }
-const summaryOf = userDomain => {
-  return (
-    <DescriptionList className={styles.headerList} size="small" col="4">
-      <Description term="序号">{userDomain.id}</Description>
-      <Description term="名称">{userDomain.name}</Description>
-    </DescriptionList>
-  )
+
+
+const imageListOf = (userDomain) =>{
+
+	     return null
+	
+
 }
 
-@connect(state => ({
-  userDomain: state._userDomain,
-}))
-export default class UserDomainDashboard extends Component {
+const settingListOf = (userDomain) =>{
+
+	    return null
+	
+	//(userDomain)
+
+
+}
+
+const largeTextOf = (userDomain) =>{
+
+	return null
+	
+
+}
+
+
+
+const summaryOf = (userDomain) =>{
+
+	return (
+	<DescriptionList className={styles.headerList} size="small" col="4">
+<Description term="序号">{userDomain.id}</Description> 
+	
+        
+      </DescriptionList>
+	)
+
+}
+
+
+class UserDomainDashboard extends Component {
+
+
+  componentDidMount() {
+  /*
+    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
+    // const { getFieldDecorator, setFieldsValue } = this.props.form;
+    const { dispatch, location, userDomain } = this.props;
+    
+    if(!userDomain){
+    	return;
+    }
+    const {displayName} = userDomain;
+    if(!displayName){
+    	return;
+    }
+	const link = location.pathname;
+	
+    dispatch({ type: 'breadcrumb/gotoLink', payload: { displayName, link }})
+  	*/
+  }
+  
+
   render() {
     // eslint-disable-next-line max-len
-    const { id, secUserCount } = this.props.userDomain
-
+    const { id,displayName, secUserCount } = this.props.userDomain
+    const cardsData = {cardsName:"用户域",cardsFor: "userDomain",cardsSource: this.props.userDomain,
+  		subItems: [
+{name: 'secUserList', displayName:'SEC的用户',type:'secUser',count:secUserCount},
+    
+      	],
+  	};
+    
     return (
+
       <PageHeaderLayout
-        title="用户域总览"
-        content={summaryOf(this.props.userDomain)}
+        title={`${cardsData.cardsName}: ${displayName}`}
+        content={summaryOf(cardsData.cardsSource)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
+        {imageListOf(cardsData.cardsSource)}
+        {settingListOf(cardsData.cardsSource)}
           <Row gutter={24}>
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="SEC的用户"
-                action={
-                  <Tooltip title="SEC的用户">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(secUserCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/userDomain/${id}/list/secUserList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/userDomain/${id}/list/secUserCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/userDomain/${id}/list/secUserList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
+
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   
+           <Badge count={item.count} style={{ backgroundColor: '#52c41a' }} overflowCount={9999999999}>        
+            <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
+          </Card> </Badge>
+            </Col>))}
+
           </Row>
+          
+          {largeTextOf(cardsData.cardsSource)}
+          
         </div>
       </PageHeaderLayout>
     )
   }
 }
+
+export default connect(state => ({
+  userDomain: state._userDomain,
+}))(UserDomainDashboard)
+

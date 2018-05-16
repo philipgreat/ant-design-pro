@@ -7,14 +7,14 @@ const MenuItemGroup = Menu.ItemGroup;
 
 class TopMenu extends React.Component {
   state = {
-    current: 'mail',
+    current: 'app1',
   }
   handleClick = (e) => {
     console.log('click ', e);
 
     console.log("props", this.props);
     const dispatch=this.props.dispatch;
-    dispatch({type:"launcher/showlogin"});
+    dispatch({type:"launcher/signOut"});
     this.setState({
       current: e.key,
     });

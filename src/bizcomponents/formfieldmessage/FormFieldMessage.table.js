@@ -1,32 +1,20 @@
+
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Table, Alert, Badge } from 'antd'
+import { Table, Alert, Badge} from 'antd'
 import { Link } from 'dva/router'
 import styles from './FormFieldMessage.table.less'
 import ImagePreview from '../../components/ImagePreview'
 
+
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8' },
-  {
-    title: '参数名称',
-    debugtype: 'string',
-    dataIndex: 'parameterName',
-    width: '8',
-  },
-  {
-    title: '形式',
-    dataIndex: 'form',
-    render: (text, record) =>
-      record.form ? (
-        <Link to={`/genericForm/${record.form.id}/dashboard`}>
-          {record.form.displayName}
-        </Link>
-      ) : (
-        '暂无'
-      ),
-  },
-  { title: '水平', debugtype: 'string', dataIndex: 'level', width: '11' },
+  { title: '序号', debugtype: 'string', dataIndex: 'id',},
+  { title: '标题', debugtype: 'string', dataIndex: 'title',},
+  { title: '参数名称', debugtype: 'string', dataIndex: 'parameterName',},
+  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.displayName : '暂无') },
+  { title: '水平', debugtype: 'string', dataIndex: 'level',},
+
+
 ]
 
 class FormFieldMessageTable extends PureComponent {
@@ -57,7 +45,78 @@ class FormFieldMessageTable extends PureComponent {
   cleanSelectedKeys = () => {
     this.handleRowSelectChange([], [])
   }
+ calcDisplayColumns=()=>{
 
+    const {owner} =  this.props
+    const {referenceName} = owner
+    
+    if(!referenceName){
+      return columns
+    }
+    const remainColumns = columns.filter((item,index)=> item.dataIndex!=referenceName&&index<5&&item.dataIndex!=='content')
+    //fixed: 'right',
+    const operationColumn={
+      title: '操作',
+      render: (text, record) => (
+        <p>
+          <a key="__" onClick={()=>this.gotoEdit(text, record)}>编辑</a>
+          {
+            record.actionList&&record.actionList.map((item)=>(<a key={item.actionId} onClick={()=>this.executeAction(item,text, record)}><span className={styles.splitLine} />{item.actionName}</a>))
+
+          }
+        </p>
+      ),
+    }
+    remainColumns.push(
+      operationColumn
+    )
+    return remainColumns
+
+  }
+  executeAction = (action, text, record) => {
+    console.log("executeAction",action)
+    const {dispatch,owner} = this.props
+    const {actionPath}=action;
+    const url = actionPath
+    const successAction={
+
+      type:`${owner.type}/view`,
+      payload: {id:`${owner.id}`}
+
+    }
+    dispatch({
+      type:"actioncenter/executeAction",
+      payload:{action,url,successAction}
+
+    })
+
+
+
+  }
+  
+  gotoEdit = (text, record) =>{
+    this.handleRowSelectChange([record.id], [record])
+    const{dispatch,owner} = this.props
+    const selectedRows = [];
+    selectedRows.push(record)
+    console.log("selectedRows",selectedRows)
+
+    if(selectedRows.length<1){
+      return
+    }
+    const currentUpdateIndex = 0
+    dispatch({
+      type: `${owner.type}/gotoUpdateForm`,
+      payload: {
+        id: owner.id,
+        type: 'formFieldMessage',
+        selectedRows,
+        currentUpdateIndex,
+      },
+    })
+
+  }
+	
   render() {
     const { selectedRowKeys } = this.state
     // const { data, count, current, owner } = this.props
@@ -69,6 +128,7 @@ class FormFieldMessageTable extends PureComponent {
       pageSize: 20,
       total: count,
       current,
+      
     }
 
     const rowSelection = {
@@ -83,15 +143,13 @@ class FormFieldMessageTable extends PureComponent {
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
           <Alert
-            message={
+            message={(
               <p>
-                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 已选择{' '}
-                <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
-                  清空
-                </a>
+                一共 <a style={{ fontWeight: 600 }}>{count}</a> 项 
+                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项 
+                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>清空</a>
               </p>
-            }
+            )}
             type="info"
             showIcon
           />
@@ -101,10 +159,10 @@ class FormFieldMessageTable extends PureComponent {
           rowKey={record => record.id}
           rowSelection={rowSelection}
           dataSource={data}
-          columns={columns}
+          columns={this.calcDisplayColumns()}
           pagination={paginationProps}
           onChange={this.handleTableChange}
-          scroll={{ x: 800 }}
+          
         />
       </div>
     )
@@ -112,3 +170,4 @@ class FormFieldMessageTable extends PureComponent {
 }
 
 export default FormFieldMessageTable
+

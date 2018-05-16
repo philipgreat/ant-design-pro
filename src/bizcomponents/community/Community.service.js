@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}communityManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -18,6 +15,11 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}communityManager/loadCommunity/${targetObjectId}/${parametersExpr}/`,
   })
 }
+
+
+
+
+
 
 const addInvitationCode = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/addInvitationCode/communityId/name/code/used/tokensExpr/`
@@ -45,11 +47,7 @@ const updateInvitationCode = (targetObjectId, parameters) => {
 
 const removeInvitationCodeList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/removeInvitationCodeList/communityId/invitationCodeIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    communityId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, communityId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -57,6 +55,7 @@ const removeInvitationCodeList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addHomePage = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/addHomePage/communityId/title/tokensExpr/`
@@ -84,11 +83,7 @@ const updateHomePage = (targetObjectId, parameters) => {
 
 const removeHomePageList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/removeHomePageList/communityId/homePageIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    communityId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, communityId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -96,6 +91,7 @@ const removeHomePageList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addEncyclopediaItem = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/addEncyclopediaItem/communityId/title/publishTime/content/homePageId/tokensExpr/`
@@ -123,11 +119,7 @@ const updateEncyclopediaItem = (targetObjectId, parameters) => {
 
 const removeEncyclopediaItemList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/removeEncyclopediaItemList/communityId/encyclopediaItemIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    communityId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, communityId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -135,6 +127,7 @@ const removeEncyclopediaItemList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addTaskPage = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/addTaskPage/communityId/title/currentKey/tokensExpr/`
@@ -162,11 +155,7 @@ const updateTaskPage = (targetObjectId, parameters) => {
 
 const removeTaskPageList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/removeTaskPageList/communityId/taskPageIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    communityId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, communityId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -174,6 +163,7 @@ const removeTaskPageList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addCommunityUser = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/addCommunityUser/communityId/mobile/nickName/gender/userType/avatar/birthday/experiencePoint/bonusPoint/city/status/hideInfo/administrator/experiencePointLimit/experiencePointRemain/experiencePointLastDate/tokensExpr/`
@@ -201,11 +191,7 @@ const updateCommunityUser = (targetObjectId, parameters) => {
 
 const removeCommunityUserList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/removeCommunityUserList/communityId/communityUserIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    communityId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, communityId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -213,6 +199,7 @@ const removeCommunityUserList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addTask = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/addTask/communityId/title/selectedTask/content/creatorId/homePageId/taskPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/creatorBonus/additionalBonus/likeByCurrentUser/repliedByCurrentUser/tokensExpr/`
@@ -240,11 +227,7 @@ const updateTask = (targetObjectId, parameters) => {
 
 const removeTaskList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/removeTaskList/communityId/taskIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    communityId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, communityId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -252,6 +235,7 @@ const removeTaskList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addGroupPage = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/addGroupPage/communityId/title/currentGroupName/tokensExpr/`
@@ -279,11 +263,7 @@ const updateGroupPage = (targetObjectId, parameters) => {
 
 const removeGroupPageList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/removeGroupPageList/communityId/groupPageIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    communityId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, communityId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -291,6 +271,7 @@ const removeGroupPageList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addThread = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/addThread/communityId/title/displayOrder/eventTime/registrationStopTime/eventLocation/city/communityGroup/threadType/creatorId/homePageId/groupPageId/videoUrl/coverImagePath1/coverImagePath2/coverImagePath3/imagePath1/imagePath2/imagePath3/imagePath4/imagePath5/content/likeByCurrentUser/repliedByCurrentUser/registeredByCurrentUser/tokensExpr/`
@@ -318,11 +299,7 @@ const updateThread = (targetObjectId, parameters) => {
 
 const removeThreadList = (targetObjectId, parameters) => {
   const url = `${PREFIX}communityManager/removeThreadList/communityId/threadIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    communityId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, communityId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -331,8 +308,8 @@ const removeThreadList = (targetObjectId, parameters) => {
   })
 }
 
-const CommunityService = {
-  view,
+
+const CommunityService = { view,
   load,
   addInvitationCode,
   addHomePage,
@@ -357,6 +334,6 @@ const CommunityService = {
   removeCommunityUserList,
   removeTaskList,
   removeGroupPageList,
-  removeThreadList,
-}
+  removeThreadList }
 export default CommunityService
+

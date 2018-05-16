@@ -1,777 +1,174 @@
+
+
 import React, { Component } from 'react'
+import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
-import {
-  Row,
-  Col,
-  Icon,
-  Card,
-  Tabs,
-  Table,
-  Radio,
-  DatePicker,
-  Tooltip,
-  Menu,
-  Dropdown,
-} from 'antd'
+import BooleanOption from 'components/BooleanOption';
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
-  ChartCard,
-  yuan,
-  MiniArea,
-  MiniBar,
-  MiniProgress,
-  Field,
-  Bar,
-  Pie,
-  TimelineChart,
+  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
 import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './CommunityUser.dashboard.less'
-import DescriptionList from '../../components/DescriptionList'
-const { Description } = DescriptionList
+import DescriptionList from '../../components/DescriptionList';
+import ImagePreview from '../../components/ImagePreview';
+const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
 
 const topColResponsiveProps = {
-  xs: 24,
-  sm: 12,
-  md: 12,
-  lg: 12,
-  xl: 6,
+  xs: 8,
+  sm: 6,
+  md: 6,
+  lg: 4,
+  xl: 4,
   style: { marginBottom: 24 },
 }
-const summaryOf = communityUser => {
-  return (
-    <DescriptionList className={styles.headerList} size="small" col="4">
-      <Description term="序号">{communityUser.id}</Description>
-      <Description term="手机">{communityUser.mobile}</Description>
-      <Description term="昵称">{communityUser.nickName}</Description>
-      <Description term="性别">{communityUser.gender}</Description>
-      <Description term="用户类型">{communityUser.userType}</Description>
-      <Description term="头像">{communityUser.avatar}</Description>
-      <Description term="生日">
-        {moment(communityUser.birthday).format('YYYY-MM-DD')}
-      </Description>
-      <Description term="成长值">{communityUser.experiencePoint}</Description>
-      <Description term="积分">{communityUser.bonusPoint}</Description>
-      <Description term="城市">{communityUser.city}</Description>
-      <Description term="状态">{communityUser.status}</Description>
-      <Description term="隐藏的信息">
-        {communityUser.hideInfo ? '是' : '否'}
-      </Description>
-      <Description term="管理员">
-        {communityUser.administrator ? '是' : '否'}
-      </Description>
-      <Description term="点经验限制">
-        {communityUser.experiencePointLimit}
-      </Description>
-      <Description term="经验点仍">
-        {communityUser.experiencePointRemain}
-      </Description>
-      <Description term="经验点过去的日子">
-        {moment(communityUser.experiencePointLastDate).format('YYYY-MM-DD')}
-      </Description>
-    </DescriptionList>
-  )
+
+
+const imageListOf = (communityUser) =>{
+
+	 return(<Card title='图片列表' className={styles.card}><Row type="flex" justify="space-between" align="bottom">
+<Col span={4}><ImagePreview imageTitle ={'头像'} imageLocation={communityUser.avatar} >头像</ImagePreview></Col>
+</Row></Card> )
+
+	
+
 }
 
-@connect(state => ({
-  communityUser: state._communityUser,
-}))
-export default class CommunityUserDashboard extends Component {
+const settingListOf = (communityUser) =>{
+
+	return(<Card title='状态集合' className={styles.card}>
+<BooleanOption type={communityUser.hideInfo?"success":"error"} title="隐藏的信息"/>
+<BooleanOption type={communityUser.administrator?"success":"error"} title="管理员"/>
+</Card> )
+
+	
+	//(communityUser)
+
+
+}
+
+const largeTextOf = (communityUser) =>{
+
+	return null
+	
+
+}
+
+
+
+const summaryOf = (communityUser) =>{
+
+	return (
+	<DescriptionList className={styles.headerList} size="small" col="4">
+<Description term="序号">{communityUser.id}</Description> 
+<Description term="手机">{communityUser.mobile}</Description> 
+<Description term="昵称">{communityUser.nickName}</Description> 
+<Description term="性别">{communityUser.gender}</Description> 
+<Description term="用户类型">{communityUser.userType}</Description> 
+<Description term="生日">{ moment(communityUser.birthday).format('YYYY-MM-DD')}</Description> 
+<Description term="成长值">{communityUser.experiencePoint}</Description> 
+<Description term="积分">{communityUser.bonusPoint}</Description> 
+<Description term="城市">{communityUser.city}</Description> 
+<Description term="状态">{communityUser.status}</Description> 
+<Description term="点经验限制">{communityUser.experiencePointLimit}</Description> 
+<Description term="经验点仍">{communityUser.experiencePointRemain}</Description> 
+	
+        
+      </DescriptionList>
+	)
+
+}
+
+
+class CommunityUserDashboard extends Component {
+
+
+  componentDidMount() {
+  /*
+    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
+    // const { getFieldDecorator, setFieldsValue } = this.props.form;
+    const { dispatch, location, communityUser } = this.props;
+    
+    if(!communityUser){
+    	return;
+    }
+    const {displayName} = communityUser;
+    if(!displayName){
+    	return;
+    }
+	const link = location.pathname;
+	
+    dispatch({ type: 'breadcrumb/gotoLink', payload: { displayName, link }})
+  	*/
+  }
+  
+
   render() {
     // eslint-disable-next-line max-len
-    const {
-      id,
-      patientInfoCount,
-      userSkillCount,
-      messageFilterCount,
-      userMessageCount,
-      taskCount,
-      taskAssigmentCount,
-      taskLikeCount,
-      taskReplyCount,
-      taskReplyLikeCount,
-      threadCount,
-      threadReplyCount,
-      threadRegistrationCount,
-      threadLikeCount,
-      threadReplyLikeCount,
-      fanCount,
-      followCount,
-      bonusPointCount,
-      experiencePointCount,
-    } = this.props.communityUser
-
+    const { id,displayName, patientInfoCount, userSkillCount, messageFilterCount, userMessageCount, taskCount, taskAssigmentCount, taskLikeCount, taskReplyCount, taskReplyLikeCount, threadCount, threadReplyCount, threadRegistrationCount, threadLikeCount, threadReplyLikeCount, fanCount, followCount, bonusPointCount, experiencePointCount } = this.props.communityUser
+    const cardsData = {cardsName:"社区用户",cardsFor: "communityUser",cardsSource: this.props.communityUser,
+  		subItems: [
+{name: 'patientInfoList', displayName:'病人信息',type:'patientInfo',count:patientInfoCount},
+{name: 'userSkillList', displayName:'用户技能',type:'userSkill',count:userSkillCount},
+{name: 'messageFilterList', displayName:'消息过滤',type:'messageFilter',count:messageFilterCount},
+{name: 'userMessageList', displayName:'用户消息',type:'userMessage',count:userMessageCount},
+{name: 'taskList', displayName:'任务',type:'task',count:taskCount},
+{name: 'taskAssigmentList', displayName:'任务分配',type:'taskAssigment',count:taskAssigmentCount},
+{name: 'taskLikeList', displayName:'任务点赞',type:'taskLike',count:taskLikeCount},
+{name: 'taskReplyList', displayName:'回复任务',type:'taskReply',count:taskReplyCount},
+{name: 'taskReplyLikeList', displayName:'任务回复点赞',type:'taskReplyLike',count:taskReplyLikeCount},
+{name: 'threadList', displayName:'主贴',type:'thread',count:threadCount},
+{name: 'threadReplyList', displayName:'跟帖回复',type:'threadReply',count:threadReplyCount},
+{name: 'threadRegistrationList', displayName:'活动注册',type:'threadRegistration',count:threadRegistrationCount},
+{name: 'threadLikeList', displayName:'主贴点赞',type:'threadLike',count:threadLikeCount},
+{name: 'threadReplyLikeList', displayName:'跟帖回复点赞',type:'threadReplyLike',count:threadReplyLikeCount},
+{name: 'fanList', displayName:'粉丝',type:'fan',count:fanCount},
+{name: 'followList', displayName:'关注',type:'follow',count:followCount},
+{name: 'bonusPointList', displayName:'积分',type:'bonusPoint',count:bonusPointCount},
+{name: 'experiencePointList', displayName:'成长值',type:'experiencePoint',count:experiencePointCount},
+    
+      	],
+  	};
+    
     return (
+
       <PageHeaderLayout
-        title="社区用户总览"
-        content={summaryOf(this.props.communityUser)}
+        title={`${cardsData.cardsName}: ${displayName}`}
+        content={summaryOf(cardsData.cardsSource)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
+        {imageListOf(cardsData.cardsSource)}
+        {settingListOf(cardsData.cardsSource)}
           <Row gutter={24}>
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="病人信息"
-                action={
-                  <Tooltip title="病人信息">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(patientInfoCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/patientInfoList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/patientInfoCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/patientInfoList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
 
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="用户技能"
-                action={
-                  <Tooltip title="用户技能">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(userSkillCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/userSkillList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/userSkillCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/userSkillList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   
+           <Badge count={item.count} style={{ backgroundColor: '#52c41a' }} overflowCount={9999999999}>        
+            <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
+          </Card> </Badge>
+            </Col>))}
 
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="消息过滤"
-                action={
-                  <Tooltip title="消息过滤">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(messageFilterCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/messageFilterList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/messageFilterCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/messageFilterList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="用户消息"
-                action={
-                  <Tooltip title="用户消息">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(userMessageCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/userMessageList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/userMessageCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/userMessageList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="任务"
-                action={
-                  <Tooltip title="任务">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(taskCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/taskList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/taskCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/taskList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="任务分配"
-                action={
-                  <Tooltip title="任务分配">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(taskAssigmentCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/taskAssigmentList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/taskAssigmentCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/taskAssigmentList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="任务点赞"
-                action={
-                  <Tooltip title="任务点赞">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(taskLikeCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/taskLikeList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/taskLikeCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/taskLikeList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="回复任务"
-                action={
-                  <Tooltip title="回复任务">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(taskReplyCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/taskReplyList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/taskReplyCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/taskReplyList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="任务回复点赞"
-                action={
-                  <Tooltip title="任务回复点赞">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(taskReplyLikeCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/taskReplyLikeList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/taskReplyLikeCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/taskReplyLikeList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="主贴"
-                action={
-                  <Tooltip title="主贴">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(threadCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/threadList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/threadCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/threadList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="跟帖回复"
-                action={
-                  <Tooltip title="跟帖回复">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(threadReplyCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/threadReplyList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/threadReplyCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/threadReplyList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="活动注册"
-                action={
-                  <Tooltip title="活动注册">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(threadRegistrationCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/threadRegistrationList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link
-                  to={`/communityUser/${id}/list/threadRegistrationCreateForm`}
-                >
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/threadRegistrationList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="主贴点赞"
-                action={
-                  <Tooltip title="主贴点赞">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(threadLikeCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/threadLikeList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/threadLikeCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/threadLikeList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="跟帖回复点赞"
-                action={
-                  <Tooltip title="跟帖回复点赞">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(threadReplyLikeCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/threadReplyLikeList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link
-                  to={`/communityUser/${id}/list/threadReplyLikeCreateForm`}
-                >
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/threadReplyLikeList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="粉丝"
-                action={
-                  <Tooltip title="粉丝">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(fanCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/fanList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/fanCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/fanList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="关注"
-                action={
-                  <Tooltip title="关注">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(followCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/followList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/followCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/followList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="积分"
-                action={
-                  <Tooltip title="积分">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(bonusPointCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/bonusPointList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/bonusPointCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/bonusPointList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
-
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="成长值"
-                action={
-                  <Tooltip title="成长值">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(experiencePointCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/communityUser/${id}/list/experiencePointList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link
-                  to={`/communityUser/${id}/list/experiencePointCreateForm`}
-                >
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/communityUser/${id}/list/experiencePointList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
           </Row>
+          
+          {largeTextOf(cardsData.cardsSource)}
+          
         </div>
       </PageHeaderLayout>
     )
   }
 }
+
+export default connect(state => ({
+  communityUser: state._communityUser,
+}))(CommunityUserDashboard)
+

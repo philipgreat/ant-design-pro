@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}taskBestAnswerSettingManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -18,6 +15,11 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}taskBestAnswerSettingManager/loadTaskBestAnswerSetting/${targetObjectId}/${parametersExpr}/`,
   })
 }
+
+
+
+
+
 
 const addTaskReply = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskBestAnswerSettingManager/addTaskReply/bestAnswerSettingId/content/replierId/taskId/likeByCurrentUser/tokensExpr/`
@@ -34,11 +36,7 @@ const addTaskReply = (targetObjectId, parameters) => {
 const updateTaskReply = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskBestAnswerSettingManager/updateTaskReplyProperties/taskBestAnswerSettingId/id/content/likeByCurrentUser/tokensExpr/`
   const taskBestAnswerSettingId = targetObjectId
-  const requestParameters = {
-    ...parameters,
-    taskBestAnswerSettingId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, taskBestAnswerSettingId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -49,11 +47,7 @@ const updateTaskReply = (targetObjectId, parameters) => {
 
 const removeTaskReplyList = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskBestAnswerSettingManager/removeTaskReplyList/taskBestAnswerSettingId/taskReplyIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    taskBestAnswerSettingId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, taskBestAnswerSettingId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -62,11 +56,11 @@ const removeTaskReplyList = (targetObjectId, parameters) => {
   })
 }
 
-const TaskBestAnswerSettingService = {
-  view,
+
+const TaskBestAnswerSettingService = { view,
   load,
   addTaskReply,
   updateTaskReply,
-  removeTaskReplyList,
-}
+  removeTaskReplyList }
 export default TaskBestAnswerSettingService
+

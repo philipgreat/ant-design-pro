@@ -1,24 +1,11 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-  Switch,
-} from 'antd'
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover, Switch } from 'antd'
 import moment from 'moment'
 import { connect } from 'dva'
-import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
-//import ImageUpload from '../../components/ImageUpload'
-import OSSPictureEdit from '../../components/OSSPictureEdit'
+import {ImageComponent} from '../../axios/tools'
+//import OSSPictureEdit from '../../components/OSSPictureEdit'
 
 import FooterToolbar from '../../components/FooterToolbar'
 
@@ -35,11 +22,14 @@ const fieldLabels = {
   level: '水平',
   url: 'url',
   form: '形式',
+
 }
 
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+const imageKeys = [
+]
+
 
 class FormActionUpdateForm extends Component {
   state = {
@@ -54,20 +44,12 @@ class FormActionUpdateForm extends Component {
       return
     }
     this.setState({
-      convertedImagesValues: mapFromImageValues(selectedRow, imageKeys),
+      convertedImagesValues: mapFromImageValues(selectedRow,imageKeys)
     })
   }
 
   componentDidMount() {
-    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
-    // const { getFieldDecorator, setFieldsValue } = this.props.form
-    const { setFieldsValue } = this.props.form
 
-    const selectedRow = this.getSelectedRow()
-    if (!selectedRow) {
-      return
-    }
-    setFieldsValue(selectedRow)
   }
 
   shouldComponentUpdate() {
@@ -83,9 +65,10 @@ class FormActionUpdateForm extends Component {
     if (currentUpdateIndex >= selectedRows.length) {
       return
     }
-    const convertiedValues = selectedRows.map(item => {
+    const convertiedValues = selectedRows.map((item) => {
       return {
         ...item,
+
       }
     })
     const selectedRow = convertiedValues[currentUpdateIndex]
@@ -101,7 +84,8 @@ class FormActionUpdateForm extends Component {
     console.log('/get file list from change in update change: ', source)
   }
 
-  handlePreview = file => {
+
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
@@ -110,17 +94,12 @@ class FormActionUpdateForm extends Component {
   }
 
   render() {
-    const {
-      form,
-      dispatch,
-      submitting,
-      selectedRows,
-      currentUpdateIndex,
-    } = this.props
+    const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props
     const { getFieldDecorator, validateFieldsAndScroll, getFieldsError } = form
     const { convertedImagesValues } = this.state
     const { setFieldsValue } = this.props.form
-
+    
+    
     const submitUpdateForm = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -147,7 +126,7 @@ class FormActionUpdateForm extends Component {
         })
       })
     }
-
+    
     const submitUpdateFormAndContinue = () => {
       validateFieldsAndScroll((error, values) => {
         if (error) {
@@ -162,14 +141,14 @@ class FormActionUpdateForm extends Component {
 
         // TODO
         const { currentUpdateIndex } = this.props
-
+        
         if (currentUpdateIndex >= selectedRows.length - 1) {
           return
         }
         this.setState({
           currentUpdateIndex: currentUpdateIndex + 1,
         })
-        setFieldsValue(selectedRows[currentUpdateIndex + 1])
+        //setFieldsValue(selectedRows[currentUpdateIndex + 1])
         const newIndex = currentUpdateIndex + 1
         dispatch({
           type: `${owner.type}/updateFormAction`,
@@ -184,11 +163,11 @@ class FormActionUpdateForm extends Component {
         })
       })
     }
-
+    
     const skipToNext = () => {
       const { currentUpdateIndex } = this.props
       const { owner } = this.props
-
+        
       const newIndex = currentUpdateIndex + 1
       dispatch({
         type: `${owner.type}/gotoNextFormActionUpdateRow`,
@@ -202,7 +181,7 @@ class FormActionUpdateForm extends Component {
         },
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
@@ -210,6 +189,7 @@ class FormActionUpdateForm extends Component {
         payload: {
           id: owner.id,
           type: 'formAction',
+          listName:'表单动作列表' 
         },
       })
     }
@@ -219,22 +199,18 @@ class FormActionUpdateForm extends Component {
       if (!errors || errorCount === 0) {
         return null
       }
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector(`label[for='${fieldKey}']`)
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -256,100 +232,122 @@ class FormActionUpdateForm extends Component {
         </span>
       )
     }
-
+    
     if (!selectedRows) {
-      return <div>缺少被更新的对象</div>
+      return (<div>缺少被更新的对象</div>)
+    }
+	const selectedRow = this.getSelectedRow()
+
+	const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
     }
 
-    // TODO
     return (
       <PageHeaderLayout
-        title={
-          '更新表单动作' + (currentUpdateIndex + 1) + '/' + selectedRows.length
-        }
+        title={"更新表单动作"+(currentUpdateIndex+1)+"/"+selectedRows.length}
         content="更新表单动作"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.id}>
+            
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
+                    initialValue: selectedRow.id,
                     rules: [{ required: true, message: '请输入序号' }],
-                  })(<Input placeholder="请输入请输入序号string" disabled />)}
+                  })(
+                    <Input placeholder="请输入序号" disabled/>
+                    
+                  )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.label}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.label} {...formItemLayout}>
                   {getFieldDecorator('label', {
+                    initialValue: selectedRow.label,
                     rules: [{ required: true, message: '请输入标签' }],
-                  })(<Input placeholder="请输入请输入标签string" />)}
+                  })(
+                    <Input placeholder="请输入标签" />
+                    
+                  )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.localeKey}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.localeKey} {...formItemLayout}>
                   {getFieldDecorator('localeKey', {
-                    rules: [
-                      { required: true, message: '请输入语言环境的关键' },
-                    ],
-                  })(<Input placeholder="请输入请输入语言环境的关键string" />)}
+                    initialValue: selectedRow.localeKey,
+                    rules: [{ required: true, message: '请输入语言环境的关键' }],
+                  })(
+                    <Input placeholder="请输入语言环境的关键" />
+                    
+                  )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.actionKey}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.actionKey} {...formItemLayout}>
                   {getFieldDecorator('actionKey', {
+                    initialValue: selectedRow.actionKey,
                     rules: [{ required: true, message: '请输入行动的关键' }],
-                  })(<Input placeholder="请输入请输入行动的关键string" />)}
+                  })(
+                    <Input placeholder="请输入行动的关键" />
+                    
+                  )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.level}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.level} {...formItemLayout}>
                   {getFieldDecorator('level', {
+                    initialValue: selectedRow.level,
                     rules: [{ required: true, message: '请输入水平' }],
-                  })(<Input placeholder="请输入请输入水平string" />)}
+                  })(
+                    <Input placeholder="请输入水平" />
+                    
+                  )}
                 </Form.Item>
               </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.url}>
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.url} {...formItemLayout}>
                   {getFieldDecorator('url', {
+                    initialValue: selectedRow.url,
                     rules: [{ required: true, message: '请输入url' }],
-                  })(<Input placeholder="请输入请输入urlstring" />)}
+                  })(
+                    <Input placeholder="请输入url" />
+                    
+                  )}
                 </Form.Item>
               </Col>
+
             </Row>
-          </Form>
+          </Form>  
         </Card>
+       
+        
+        
+        
+
 
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitUpdateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitUpdateForm} loading={submitting} htmlType="submit">
             更新
           </Button>
-          <Button
-            type="primary"
-            onClick={submitUpdateFormAndContinue}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="primary" onClick={submitUpdateFormAndContinue} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             更新并装载下一个
           </Button>
-          <Button
-            type="info"
-            onClick={skipToNext}
-            loading={submitting}
-            disabled={currentUpdateIndex + 1 >= selectedRows.length}
-          >
+          <Button type="info" onClick={skipToNext} loading={submitting} disabled={currentUpdateIndex + 1 >= selectedRows.length}>
             略过
           </Button>
           <Button type="info" onClick={goback} loading={submitting}>
@@ -364,3 +362,6 @@ class FormActionUpdateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(FormActionUpdateForm))
+
+
+

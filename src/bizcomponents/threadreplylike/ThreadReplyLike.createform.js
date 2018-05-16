@@ -1,27 +1,16 @@
 import React, { Component } from 'react'
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-  Switch,
-} from 'antd'
+import { AutoComplete, Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover,Switch } from 'antd'
 
 import { connect } from 'dva'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 //import PictureEdit from '../../components/PictureEdit'
-import OSSPictureEdit from '../../components/PictureEdit'
+//import OSSPictureEdit from '../../components/PictureEdit'
+import {ImageComponent} from '../../axios/tools'
 import FooterToolbar from '../../components/FooterToolbar'
 //import ImageUpload from '../../components/ImageUpload'
 import styles from './ThreadReplyLike.createform.less'
-import { mapBackToImageValues, mapFromImageValues } from '../../axios/tools'
+import {mapBackToImageValues, mapFromImageValues} from '../../axios/tools'
+import GlobalComponents from '../../custcomponents';
 const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
@@ -31,15 +20,19 @@ const fieldLabels = {
   replier: '应答者',
   threadReply: '跟帖回复',
 }
-
+const testValues = {};
+/*
 const testValues = {
   replierId: 'CU000001',
   threadReplyId: 'TR000001',
 }
-
+*/
 const imageURLPrefix = '//localhost:2090'
 
-const imageKeys = []
+
+const imageKeys = [
+]
+
 
 class ThreadReplyLikeCreateForm extends Component {
   state = {
@@ -51,18 +44,76 @@ class ThreadReplyLikeCreateForm extends Component {
   componentDidMount() {
     // const { getFieldDecorator,setFieldsValue } = this.props.form
     const { setFieldsValue } = this.props.form
-    setFieldsValue(testValues)
+    //setFieldsValue(testValues)
+      
+    this.executeCandidateReplierSearch("")
+    
+    
+    this.executeCandidateThreadReplySearch("")
+    
+ 
+    
+    
+    
   }
   shouldComponentUpdate() {
     return true
   }
-  handlePreview = file => {
+  handlePreview = (file) => {
     console.log('preview file', file)
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
     })
   }
+
+  
+  executeCandidateReplierSearch = (filterKey) =>{
+
+    const {ThreadReplyLikeService} = GlobalComponents;
+    
+    const id = "";//not used for now
+    const pageNo = 1;
+    const future = ThreadReplyLikeService.requestCandidateReplier("communityUser", id, filterKey, pageNo);
+    console.log(future);
+    
+
+    future.then(candidateReplierList=>{
+      this.setState({
+        candidateReplierList
+      })
+
+    })
+
+  }	 
+  handleCandidateReplierSearch = (value) => {
+    this.executeCandidateReplierSearch(value)
+  }
+
+  executeCandidateThreadReplySearch = (filterKey) =>{
+
+    const {ThreadReplyLikeService} = GlobalComponents;
+    
+    const id = "";//not used for now
+    const pageNo = 1;
+    const future = ThreadReplyLikeService.requestCandidateThreadReply("threadReply", id, filterKey, pageNo);
+    console.log(future);
+    
+
+    future.then(candidateThreadReplyList=>{
+      this.setState({
+        candidateThreadReplyList
+      })
+
+    })
+
+  }	 
+  handleCandidateThreadReplySearch = (value) => {
+    this.executeCandidateThreadReplySearch(value)
+  }
+ 
+
+
 
   handleChange = (event, source) => {
     console.log('get file list from change in update change:', source)
@@ -74,6 +125,7 @@ class ThreadReplyLikeCreateForm extends Component {
     this.setState({ convertedImagesValues })
     console.log('/get file list from change in update change:', source)
   }
+
 
   render() {
     const { form, dispatch, submitting } = this.props
@@ -103,28 +155,23 @@ class ThreadReplyLikeCreateForm extends Component {
           console.log('code go here', error)
           return
         }
-
+        
         const { owner } = this.props
         const imagesValues = mapBackToImageValues(convertedImagesValues)
-
+        
         const parameters = { ...values, ...imagesValues }
         dispatch({
           type: `${owner.type}/addThreadReplyLike`,
-          payload: {
-            id: owner.id,
-            type: 'threadReplyLike',
-            parameters,
-            continueNext: true,
-          },
+          payload: { id: owner.id, type: 'threadReplyLike', parameters, continueNext: true },
         })
       })
     }
-
+    
     const goback = () => {
       const { owner } = this.props
       dispatch({
         type: `${owner.type}/goback`,
-        payload: { id: owner.id, type: 'threadReplyLike' },
+        payload: { id: owner.id, type: 'threadReplyLike',listName:'跟帖回复点赞列表' },
       })
     }
     const errors = getFieldsError()
@@ -134,22 +181,18 @@ class ThreadReplyLikeCreateForm extends Component {
         return null
       }
       // eslint-disable-next-line no-unused-vars
-      const scrollToField = fieldKey => {
+      const scrollToField = (fieldKey) => {
         const labelNode = document.querySelector('label[for="${fieldKey}"]')
         if (labelNode) {
           labelNode.scrollIntoView(true)
         }
       }
-      const errorList = Object.keys(errors).map(key => {
+      const errorList = Object.keys(errors).map((key) => {
         if (!errors[key]) {
           return null
         }
         return (
-          <li
-            key={key}
-            className={styles.errorListItem}
-            onClick={() => scrollToField(key)}
-          >
+          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
             <Icon type="cross-circle-o" className={styles.errorIcon} />
             <div className={styles.errorMessage}>{errors[key][0]}</div>
             <div className={styles.errorField}>{fieldLabels[key]}</div>
@@ -171,6 +214,54 @@ class ThreadReplyLikeCreateForm extends Component {
         </span>
       )
     }
+    
+
+    
+    const {candidateReplierList} = this.state
+    if(!candidateReplierList){
+      return (<div>等等</div>)
+    }
+    if(!candidateReplierList.candidates){
+      return (<div>等等</div>)
+    }   
+    
+    
+    const {candidateThreadReplyList} = this.state
+    if(!candidateThreadReplyList){
+      return (<div>等等</div>)
+    }
+    if(!candidateThreadReplyList.candidates){
+      return (<div>等等</div>)
+    }   
+    
+    
+    
+    const tryinit  = (fieldName) => {
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return null
+      }
+      return owner.id
+    }
+    
+    const availableForEdit= (fieldName) =>{
+      const { owner } = this.props
+      const { referenceName } = owner
+      if(referenceName!=fieldName){
+        return true
+      }
+      return false
+    
+    }
+    const formItemLayout = {
+      labelCol: { span: 10 },
+      wrapperCol: { span: 14 },
+    }
+    const switchFormItemLayout = {
+      labelCol: { span: 14 },
+      wrapperCol: { span: 4 },
+    }
     return (
       <PageHeaderLayout
         title="新建一个跟帖回复点赞"
@@ -178,48 +269,90 @@ class ThreadReplyLikeCreateForm extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
-            <Row gutter={16} />
-          </Form>
-        </Card>
-
-        <Card title="关联" className={styles.card} bordered={false}>
-          <Form layout="vertical" hideRequiredMark>
+          <Form >
             <Row gutter={16}>
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.replier}>
-                  {getFieldDecorator('replierId', {
-                    rules: [{ required: true, message: '请输入应答者' }],
-                  })(<Input placeholder="请输入请输入应答者" />)}
-                </Form.Item>
-              </Col>
 
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.threadReply}>
-                  {getFieldDecorator('threadReplyId', {
-                    rules: [{ required: true, message: '请输入跟帖回复' }],
-                  })(<Input placeholder="请输入请输入跟帖回复" />)}
-                </Form.Item>
-              </Col>
             </Row>
           </Form>
         </Card>
 
+
+
+       
+        
+
+
+
+
+
+
+
+
+
+        <Card title="关联" className={styles.card} bordered={false}>
+          <Form >
+            <Row gutter={16}>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.replier} {...formItemLayout}>
+                  {getFieldDecorator('replierId', {
+                  	initialValue: tryinit('replier'),
+                    rules: [{ required: true, message: '请输入应答者' }],
+                  })(
+                                
+                  <AutoComplete
+                    dataSource={candidateReplierList.candidates}
+                    
+                    
+                    onSearch={this.handleCandidateReplierSearch}
+                    placeholder="请输入应答者"
+                    
+                    disabled={!availableForEdit('replier')}
+                  >
+                  {candidateReplierList.candidates.map(item=>{
+                return (<Option key={item.id}>{`${item.mobile}(${item.id})`}</Option>);
+            })}
+                  
+                  </AutoComplete>
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.threadReply} {...formItemLayout}>
+                  {getFieldDecorator('threadReplyId', {
+                  	initialValue: tryinit('threadReply'),
+                    rules: [{ required: true, message: '请输入跟帖回复' }],
+                  })(
+                                
+                  <AutoComplete
+                    dataSource={candidateThreadReplyList.candidates}
+                    
+                    
+                    onSearch={this.handleCandidateThreadReplySearch}
+                    placeholder="请输入跟帖回复"
+                    
+                    disabled={!availableForEdit('threadReply')}
+                  >
+                  {candidateThreadReplyList.candidates.map(item=>{
+                return (<Option key={item.id}>{`${item.content}(${item.id})`}</Option>);
+            })}
+                  
+                  </AutoComplete>
+                  )}
+                </Form.Item>
+              </Col>
+
+            </Row>
+          </Form>  
+        </Card>
+
         <FooterToolbar>
           {getErrorInfo()}
-          <Button
-            type="primary"
-            onClick={submitCreateForm}
-            loading={submitting}
-            htmlType="submit"
-          >
+          <Button type="primary" onClick={submitCreateForm} loading={submitting} htmlType="submit">
             提交
           </Button>
-          <Button
-            type="primary"
-            onClick={submitCreateFormAndContinue}
-            loading={submitting}
-          >
+          <Button type="primary" onClick={submitCreateFormAndContinue} loading={submitting}>
             提交并建下一个
           </Button>
           <Button type="danger" onClick={goback} loading={submitting}>
@@ -234,3 +367,7 @@ class ThreadReplyLikeCreateForm extends Component {
 export default connect(state => ({
   collapsed: state.global.collapsed,
 }))(Form.create()(ThreadReplyLikeCreateForm))
+
+
+
+

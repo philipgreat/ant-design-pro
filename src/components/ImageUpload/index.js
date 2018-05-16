@@ -1,5 +1,5 @@
 import { Upload, Icon, Modal } from 'antd';
-
+import SystemConfig from '../../axios/config'
 export default class ImageUpload extends React.Component {
   state = {
     previewVisible: false,
@@ -48,7 +48,7 @@ export default class ImageUpload extends React.Component {
     return (
       <div className="clearfix">
         <Upload
-          action="https://www.doublechaintech.com/mss/upload.html"
+          action={SystemConfig.MEDIA_UPLOAD_URL}
           listType="picture-card"
           fileList={internalFileList}
           onPreview={this.handlePreview}

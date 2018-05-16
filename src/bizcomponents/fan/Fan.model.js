@@ -1,9 +1,11 @@
+
+
 import pathToRegexp from 'path-to-regexp'
 import { routerRedux } from 'dva/router'
 import { notification } from 'antd'
-import GlobalComponents from '../../custcomponents'
+import GlobalComponents from '../../custcomponents';
 
-const hasError = data => {
+const hasError = (data) => {
   if (!data.class) {
     return false
   }
@@ -16,7 +18,7 @@ const hasError = data => {
   return false
 }
 
-const handleServerError = data => {
+const handleServerError = (data) => {
   if (data.message) {
     notification.error({
       message: data.message,
@@ -34,13 +36,15 @@ const handleServerError = data => {
 }
 
 export default {
+
   namespace: '_fan',
 
   state: {},
 
   subscriptions: {
-    setup({ dispatch, history }) {
-      history.listen(location => {
+    
+    setup({ dispatch, history }) { 
+      history.listen((location) => {
         const { pathname } = location
         if (!pathname.startsWith('/fan')) {
           return
@@ -53,54 +57,60 @@ export default {
         const dashboardmatch = pathToRegexp('/fan/:id/dashboard').exec(pathname)
         if (dashboardmatch) {
           const id = dashboardmatch[1]
-          dispatch({ type: 'view', payload: { id } })
+          dispatch({ type: 'view', payload: { id,pathname } })
           return
         }
-        const editDetailMatch = pathToRegexp('/fan/:id/editDetail').exec(
-          pathname
-        )
+        const editDetailMatch = pathToRegexp('/fan/:id/editDetail').exec(pathname)
         if (editDetailMatch) {
           const id = editDetailMatch[1]
-          dispatch({ type: 'view', payload: { id } })
+          dispatch({ type: 'view', payload: { id,pathname } })
           return
         }
-        const viewDetailMatch = pathToRegexp('/fan/:id/viewDetail').exec(
-          pathname
-        )
+        const viewDetailMatch = pathToRegexp('/fan/:id/viewDetail').exec(pathname)
         if (viewDetailMatch) {
           const id = viewDetailMatch[1]
-          dispatch({ type: 'view', payload: { id } })
+          dispatch({ type: 'view', payload: { id,pathname } })
           return
         }
-
-        const match = pathToRegexp('/fan/:id/list/:listName').exec(pathname)
+        
+        const match = pathToRegexp('/fan/:id/list/:listName/:listDisplayName').exec(pathname)
         if (!match) {
           return
           //  dispatch action with userId
         }
         const id = match[1]
-        dispatch({ type: 'view', payload: { id } })
+        const displayName = match[3]
+        dispatch({ type: 'view', payload: { id,pathname,displayName } })
       })
     },
   },
   effects: {
-    *view({ payload }, { call, put }) {
-      const { FanService } = GlobalComponents
+    *view({ payload }, { call, put }) { 
+      const {FanService} = GlobalComponents;
       yield put({ type: 'showLoading', payload })
       const data = yield call(FanService.view, payload.id)
+      
+      const displayName = payload.displayName||data.displayName
+      const link = payload.pathname
+      yield put({ type: 'breadcrumb/gotoLink', payload: { displayName,link }} )
+      
+      
       console.log('this is the data id:', data.id)
       yield put({ type: 'updateState', payload: data })
     },
-    *load({ payload }, { call, put }) {
-      const { FanService } = GlobalComponents
+    *load({ payload }, { call, put }) { 
+      const {FanService} = GlobalComponents;
       yield put({ type: 'showLoading', payload })
       const data = yield call(FanService.load, payload.id, payload.parameters)
-
+      
       const newPlayload = { ...payload, ...data }
-
+      
       console.log('this is the data id: ', data.id)
       yield put({ type: 'updateState', payload: newPlayload })
     },
+       
+    
+    
     *gotoCreateForm({ payload }, { put }) {
       const { id, type } = payload
       yield put(routerRedux.push(`/fan/${id}/list/${type}CreateForm`))
@@ -112,11 +122,12 @@ export default {
       yield put(routerRedux.push(location))
     },
     *goback({ payload }, { put }) {
-      const { id, type } = payload
-      yield put(routerRedux.push(`/fan/${id}/list/${type}List`))
+      const { id, type,listName } = payload
+      yield put(routerRedux.push(`/fan/${id}/list/${type}List/${listName}`))
     },
-  },
 
+  },
+  
   reducers: {
     updateState(state, action) {
       const payload = { ...action.payload, loading: false }
@@ -129,3 +140,4 @@ export default {
     },
   },
 }
+

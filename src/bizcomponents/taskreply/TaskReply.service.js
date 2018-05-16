@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}taskReplyManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -18,6 +15,27 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}taskReplyManager/loadTaskReply/${targetObjectId}/${parametersExpr}/`,
   })
 }
+
+
+
+const requestCandidateReplier = (ownerClass, id, filterKey, pageNo) => {
+  //const parametersExpr = joinParameters(parameters)
+  return get({
+    url: `${PREFIX}taskReplyManager/requestCandidateReplier/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+  })
+}	 
+ 
+
+const requestCandidateTask = (ownerClass, id, filterKey, pageNo) => {
+  //const parametersExpr = joinParameters(parameters)
+  return get({
+    url: `${PREFIX}taskReplyManager/requestCandidateTask/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+  })
+}	 
+ 
+
+
+
 
 const addTaskReplyLike = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskReplyManager/addTaskReplyLike/taskReplyId/replierId/tokensExpr/`
@@ -45,11 +63,7 @@ const updateTaskReplyLike = (targetObjectId, parameters) => {
 
 const removeTaskReplyLikeList = (targetObjectId, parameters) => {
   const url = `${PREFIX}taskReplyManager/removeTaskReplyLikeList/taskReplyId/taskReplyLikeIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    taskReplyId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, taskReplyId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -58,11 +72,13 @@ const removeTaskReplyLikeList = (targetObjectId, parameters) => {
   })
 }
 
-const TaskReplyService = {
-  view,
+
+const TaskReplyService = { view,
   load,
   addTaskReplyLike,
   updateTaskReplyLike,
   removeTaskReplyLikeList,
-}
+  requestCandidateReplier,
+  requestCandidateTask }
 export default TaskReplyService
+

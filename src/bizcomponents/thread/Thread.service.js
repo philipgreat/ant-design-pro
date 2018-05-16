@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}threadManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -18,6 +15,43 @@ const load = (targetObjectId, parameters) => {
     url: `${PREFIX}threadManager/loadThread/${targetObjectId}/${parametersExpr}/`,
   })
 }
+
+
+
+const requestCandidateCommunity = (ownerClass, id, filterKey, pageNo) => {
+  //const parametersExpr = joinParameters(parameters)
+  return get({
+    url: `${PREFIX}threadManager/requestCandidateCommunity/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+  })
+}	 
+ 
+
+const requestCandidateCreator = (ownerClass, id, filterKey, pageNo) => {
+  //const parametersExpr = joinParameters(parameters)
+  return get({
+    url: `${PREFIX}threadManager/requestCandidateCreator/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+  })
+}	 
+ 
+
+const requestCandidateHomePage = (ownerClass, id, filterKey, pageNo) => {
+  //const parametersExpr = joinParameters(parameters)
+  return get({
+    url: `${PREFIX}threadManager/requestCandidateHomePage/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+  })
+}	 
+ 
+
+const requestCandidateGroupPage = (ownerClass, id, filterKey, pageNo) => {
+  //const parametersExpr = joinParameters(parameters)
+  return get({
+    url: `${PREFIX}threadManager/requestCandidateGroupPage/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+  })
+}	 
+ 
+
+
+
 
 const addThreadReply = (targetObjectId, parameters) => {
   const url = `${PREFIX}threadManager/addThreadReply/threadId/content/replierId/likeByCurrentUser/tokensExpr/`
@@ -45,11 +79,7 @@ const updateThreadReply = (targetObjectId, parameters) => {
 
 const removeThreadReplyList = (targetObjectId, parameters) => {
   const url = `${PREFIX}threadManager/removeThreadReplyList/threadId/threadReplyIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    threadId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, threadId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -57,6 +87,7 @@ const removeThreadReplyList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addThreadRegistration = (targetObjectId, parameters) => {
   const url = `${PREFIX}threadManager/addThreadRegistration/threadId/participantId/comments/tokensExpr/`
@@ -84,11 +115,7 @@ const updateThreadRegistration = (targetObjectId, parameters) => {
 
 const removeThreadRegistrationList = (targetObjectId, parameters) => {
   const url = `${PREFIX}threadManager/removeThreadRegistrationList/threadId/threadRegistrationIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    threadId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, threadId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -96,6 +123,7 @@ const removeThreadRegistrationList = (targetObjectId, parameters) => {
     headers,
   })
 }
+
 
 const addThreadLike = (targetObjectId, parameters) => {
   const url = `${PREFIX}threadManager/addThreadLike/threadId/replierId/tokensExpr/`
@@ -123,11 +151,7 @@ const updateThreadLike = (targetObjectId, parameters) => {
 
 const removeThreadLikeList = (targetObjectId, parameters) => {
   const url = `${PREFIX}threadManager/removeThreadLikeList/threadId/threadLikeIds/tokensExpr/`
-  const requestParameters = {
-    ...parameters,
-    threadId: targetObjectId,
-    tokensExpr: 'none',
-  }
+  const requestParameters = { ...parameters, threadId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
     url,
@@ -136,8 +160,8 @@ const removeThreadLikeList = (targetObjectId, parameters) => {
   })
 }
 
-const ThreadService = {
-  view,
+
+const ThreadService = { view,
   load,
   addThreadReply,
   addThreadRegistration,
@@ -148,5 +172,9 @@ const ThreadService = {
   removeThreadReplyList,
   removeThreadRegistrationList,
   removeThreadLikeList,
-}
+  requestCandidateCommunity,
+  requestCandidateCreator,
+  requestCandidateHomePage,
+  requestCandidateGroupPage }
 export default ThreadService
+

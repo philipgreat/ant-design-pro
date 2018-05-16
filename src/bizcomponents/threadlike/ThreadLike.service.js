@@ -1,16 +1,13 @@
-import {
-  get,
-  post,
-  PREFIX,
-  joinParameters,
-  joinPostParameters,
-} from '../../axios/tools'
+import { get, post,PREFIX,joinParameters,joinPostParameters } from '../../axios/tools'
 
-const view = targetObjectId => {
+
+const view = (targetObjectId) => {
   return get({
     url: `${PREFIX}threadLikeManager/view/${targetObjectId}/`,
   })
 }
+
+
 
 const load = (targetObjectId, parameters) => {
   const parametersExpr = joinParameters(parameters)
@@ -19,8 +16,30 @@ const load = (targetObjectId, parameters) => {
   })
 }
 
-const ThreadLikeService = {
-  view,
+
+
+const requestCandidateReplier = (ownerClass, id, filterKey, pageNo) => {
+  //const parametersExpr = joinParameters(parameters)
+  return get({
+    url: `${PREFIX}threadLikeManager/requestCandidateReplier/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+  })
+}	 
+ 
+
+const requestCandidateThread = (ownerClass, id, filterKey, pageNo) => {
+  //const parametersExpr = joinParameters(parameters)
+  return get({
+    url: `${PREFIX}threadLikeManager/requestCandidateThread/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+  })
+}	 
+ 
+
+
+
+
+const ThreadLikeService = { view,
   load,
-}
+  requestCandidateReplier,
+  requestCandidateThread }
 export default ThreadLikeService
+

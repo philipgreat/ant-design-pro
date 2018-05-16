@@ -1,119 +1,142 @@
+
+
 import React, { Component } from 'react'
+import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
-import {
-  Row,
-  Col,
-  Icon,
-  Card,
-  Tabs,
-  Table,
-  Radio,
-  DatePicker,
-  Tooltip,
-  Menu,
-  Dropdown,
-} from 'antd'
+import BooleanOption from 'components/BooleanOption';
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge } from 'antd'
 import { Link, Route, Redirect, Switch } from 'dva/router'
 import numeral from 'numeral'
 import {
-  ChartCard,
-  yuan,
-  MiniArea,
-  MiniBar,
-  MiniProgress,
-  Field,
-  Bar,
-  Pie,
-  TimelineChart,
+  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
 } from '../../components/Charts'
 import Trend from '../../components/Trend'
 import NumberInfo from '../../components/NumberInfo'
 import { getTimeDistance } from '../../utils/utils'
 import PageHeaderLayout from '../../layouts/PageHeaderLayout'
 import styles from './ThreadReply.dashboard.less'
-import DescriptionList from '../../components/DescriptionList'
-const { Description } = DescriptionList
+import DescriptionList from '../../components/DescriptionList';
+import ImagePreview from '../../components/ImagePreview';
+const { Description } = DescriptionList;
 const { TabPane } = Tabs
 const { RangePicker } = DatePicker
 
 const topColResponsiveProps = {
-  xs: 24,
-  sm: 12,
-  md: 12,
-  lg: 12,
-  xl: 6,
+  xs: 8,
+  sm: 6,
+  md: 6,
+  lg: 4,
+  xl: 4,
   style: { marginBottom: 24 },
 }
-const summaryOf = threadReply => {
-  return (
-    <DescriptionList className={styles.headerList} size="small" col="4">
-      <Description term="序号">{threadReply.id}</Description>
-      <Description term="回复时间">
-        {moment(threadReply.replyTime).format('YYYY-MM-DD')}
-      </Description>
-      <Description term="内容">{threadReply.content}</Description>
-      <Description term="当前用户已点赞">
-        {threadReply.likeByCurrentUser ? '是' : '否'}
-      </Description>
-    </DescriptionList>
-  )
+
+
+const imageListOf = (threadReply) =>{
+
+	     return null
+	
+
 }
 
-@connect(state => ({
-  threadReply: state._threadReply,
-}))
-export default class ThreadReplyDashboard extends Component {
+const settingListOf = (threadReply) =>{
+
+	return(<Card title='状态集合' className={styles.card}>
+<BooleanOption type={threadReply.likeByCurrentUser?"success":"error"} title="当前用户已点赞"/>
+</Card> )
+
+	
+	//(threadReply)
+
+
+}
+
+const largeTextOf = (threadReply) =>{
+
+	return null
+	
+
+}
+
+
+
+const summaryOf = (threadReply) =>{
+
+	return (
+	<DescriptionList className={styles.headerList} size="small" col="4">
+<Description term="序号">{threadReply.id}</Description> 
+	
+        
+      </DescriptionList>
+	)
+
+}
+
+
+class ThreadReplyDashboard extends Component {
+
+
+  componentDidMount() {
+  /*
+    // const { form, dispatch, submitting, selectedRows, currentUpdateIndex } = this.props;
+    // const { getFieldDecorator, setFieldsValue } = this.props.form;
+    const { dispatch, location, threadReply } = this.props;
+    
+    if(!threadReply){
+    	return;
+    }
+    const {displayName} = threadReply;
+    if(!displayName){
+    	return;
+    }
+	const link = location.pathname;
+	
+    dispatch({ type: 'breadcrumb/gotoLink', payload: { displayName, link }})
+  	*/
+  }
+  
+
   render() {
     // eslint-disable-next-line max-len
-    const { id, threadReplyLikeCount } = this.props.threadReply
-
+    const { id,displayName, threadReplyLikeCount } = this.props.threadReply
+    const cardsData = {cardsName:"跟帖回复",cardsFor: "threadReply",cardsSource: this.props.threadReply,
+  		subItems: [
+{name: 'threadReplyLikeList', displayName:'跟帖回复点赞',type:'threadReplyLike',count:threadReplyLikeCount},
+    
+      	],
+  	};
+    
     return (
+
       <PageHeaderLayout
-        title="跟帖回复总览"
-        content={summaryOf(this.props.threadReply)}
+        title={`${cardsData.cardsName}: ${displayName}`}
+        content={summaryOf(cardsData.cardsSource)}
         wrapperClassName={styles.advancedForm}
       >
         <div>
+        {imageListOf(cardsData.cardsSource)}
+        {settingListOf(cardsData.cardsSource)}
           <Row gutter={24}>
-            <Col {...topColResponsiveProps}>
-              <ChartCard
-                bordered={false}
-                title="跟帖回复点赞"
-                action={
-                  <Tooltip title="跟帖回复点赞">
-                    <Icon type="info-circle-o" />
-                  </Tooltip>
-                }
-                total={numeral(threadReplyLikeCount).format('0,0')}
-                footer={<Field label="状态" value="良好" />}
-                contentHeight={46}
-              >
-                <Link to={`/threadReply/${id}/list/threadReplyLikeList`}>
-                  <Icon
-                    type="profile"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/threadReply/${id}/list/threadReplyLikeCreateForm`}>
-                  <Icon
-                    type="plus-circle-o"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-                &nbsp;
-                <Link to={`/threadReply/${id}/list/threadReplyLikeList`}>
-                  <Icon
-                    type="line-chart"
-                    style={{ fontSize: 20, color: '#08c' }}
-                  />
-                </Link>
-              </ChartCard>
-            </Col>
+
+           {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   
+           <Badge count={item.count} style={{ backgroundColor: '#52c41a' }} overflowCount={9999999999}>        
+            <Card title={`${item.displayName}(${numeral(item.count).format('0,0')})`}  style={{ width: 180 }}>             
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.name}/${item.displayName}列表`}><FontAwesome name="gear"  />&nbsp;管理</Link></p>
+              <p><Link to={`/${cardsData.cardsFor}/${id}/list/${item.type}CreateForm`}><FontAwesome name="plus"  />&nbsp;新增</Link></p>              
+          </Card> </Badge>
+            </Col>))}
+
           </Row>
+          
+          {largeTextOf(cardsData.cardsSource)}
+          
         </div>
       </PageHeaderLayout>
     )
   }
 }
+
+export default connect(state => ({
+  threadReply: state._threadReply,
+}))(ThreadReplyDashboard)
+
