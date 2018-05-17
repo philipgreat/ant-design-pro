@@ -15,13 +15,13 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   title: '标题',
   secUser: 'SEC的用户',
   appIcon: '应用程序图标',
   fullAccess: '完全访问',
   permission: '许可',
-  objectType: '对象类型',
+  objectType: '访问对象类型',
   objectId: '对象ID',
   location: '位置',
 
@@ -264,9 +264,9 @@ class UserAppUpdateForm extends Component {
                 <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
                     initialValue: selectedRow.id,
-                    rules: [{ required: true, message: '请输入序号' }],
+                    rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入序号" disabled/>
+                    <Input placeholder="请输入ID" disabled/>
                     
                   )}
                 </Form.Item>
@@ -312,9 +312,9 @@ class UserAppUpdateForm extends Component {
                 <Form.Item label={fieldLabels.objectType} {...formItemLayout}>
                   {getFieldDecorator('objectType', {
                     initialValue: selectedRow.objectType,
-                    rules: [{ required: true, message: '请输入对象类型' }],
+                    rules: [{ required: true, message: '请输入访问对象类型' }],
                   })(
-                    <Input placeholder="请输入对象类型" />
+                    <Input placeholder="请输入访问对象类型" />
                     
                   )}
                 </Form.Item>

@@ -64,7 +64,7 @@ class ObjectAccessSearchForm extends PureComponent {
       if (err) return
       const params = {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
-        ...this.buildStringSearchParameters(fieldsValue, 'displayName'),
+        ...this.buildStringSearchParameters(fieldsValue, 'name'),
         ...this.buildStringSearchParameters(fieldsValue, 'objectType'),
         ...this.buildStringSearchParameters(fieldsValue, 'list1'),
         ...this.buildStringSearchParameters(fieldsValue, 'list2'),
@@ -92,17 +92,17 @@ class ObjectAccessSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="序号">
+            <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入序号" />
+                <Input placeholder="请输入ID" />
                )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="显示名称">
-              {getFieldDecorator('displayName')(
-                <Input placeholder="请输入显示名称" />
+            <FormItem label="名称">
+              {getFieldDecorator('name')(
+                <Input placeholder="请输入名称" />
                )}
             </FormItem>
           </Col>
@@ -125,25 +125,25 @@ class ObjectAccessSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="序号">
+            <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入序号" />
+                <Input placeholder="请输入ID" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="显示名称">
-              {getFieldDecorator('displayName')(
-                <Input placeholder="请输入显示名称" />
+            <FormItem label="名称">
+              {getFieldDecorator('name')(
+                <Input placeholder="请输入名称" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="对象类型">
+            <FormItem label="访问对象类型">
               {getFieldDecorator('objectType')(
-                <Input placeholder="请输入对象类型" />
+                <Input placeholder="请输入访问对象类型" />
               )}
             </FormItem>
           </Col>

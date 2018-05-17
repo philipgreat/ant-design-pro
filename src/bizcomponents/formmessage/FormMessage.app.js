@@ -123,31 +123,13 @@ class FormMessageBizApp extends React.PureComponent {
     )
   }
   
-  getNavMenuItems2 = (objectId) => {
-  
-    const {menuData,targetApp} = this.props.breadcrumb;
 
-  
-    return (
-      <SubMenu key="firstOne" title={
-        <span>
-          <Icon type="profile" />
-          <span>{menuData.menuName}</span>
-        </span>}
-      >
-        {menuData.subItems.map((item)=>(<Menu.Item>
-          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
-        </Menu.Item>))}
-       
-      </SubMenu>
-    )
-  }
 
 
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '帮帮兔社区运营中心'
+    const title = '书香社区'
     return title
   }
  
@@ -170,8 +152,8 @@ class FormMessageBizApp extends React.PureComponent {
      const { collapsed } = this.props
      const { breadcrumb }  = this.props
      const {FormMessageDashboard} = GlobalComponents
-     const {FormMessageEditDetail} = GlobalComponents
-     const {FormMessageViewDetail} = GlobalComponents
+     //const {FormMessageEditDetail} = GlobalComponents
+     //const {FormMessageViewDetail} = GlobalComponents
      
      
      const targetApp = sessionObject('targetApp')
@@ -252,8 +234,6 @@ class FormMessageBizApp extends React.PureComponent {
              
                <Route path="/formMessage/:id/dashboard" component={FormMessageDashboard} />
                
-               <Route path="/formMessage/:id/editDetail" component={FormMessageEditDetail} />
-               <Route path="/formMessage/:id/viewDetail" component={FormMessageViewDetail} /> 
                
               
              </Switch>

@@ -15,11 +15,11 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   login: '登录',
-  mobile: '手机',
+  mobile: '手机号码',
   email: '电子邮件',
-  pwd: 'PWD',
+  pwd: '密码',
   verificationCode: '验证码',
   verificationCodeExpire: '验证码过期',
   lastLoginTime: '最后登录时间',
@@ -35,8 +35,8 @@ const testValues = {
   email: 'suddy_chang@163.com',
   pwd: 'C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95',
   verificationCode: '9981727',
-  verificationCodeExpire: '2038-01-23 12:06:57',
-  lastLoginTime: '2038-04-09 11:31:56',
+  verificationCodeExpire: '2995-02-09 09:31:11',
+  lastLoginTime: '2997-12-13 04:39:39',
   domainId: 'UD000001',
 }
 */
@@ -264,9 +264,9 @@ class SecUserCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.mobile} {...formItemLayout}>
                   {getFieldDecorator('mobile', {
-                    rules: [{ required: true, message: '请输入手机' }],
+                    rules: [{ required: true, message: '请输入手机号码' }],
                   })(
-                    <Input placeholder="请输入手机" />
+                    <Input placeholder="请输入手机号码" />
                   )}
                 </Form.Item>
               </Col>
@@ -284,9 +284,9 @@ class SecUserCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.pwd} {...formItemLayout}>
                   {getFieldDecorator('pwd', {
-                    rules: [{ required: true, message: '请输入PWD' }],
+                    rules: [{ required: true, message: '请输入密码' }],
                   })(
-                    <Input placeholder="请输入PWD" />
+                    <Input placeholder="请输入密码" />
                   )}
                 </Form.Item>
               </Col>

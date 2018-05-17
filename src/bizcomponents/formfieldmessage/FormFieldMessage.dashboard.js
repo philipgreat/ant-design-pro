@@ -61,7 +61,7 @@ const summaryOf = (formFieldMessage) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{formFieldMessage.id}</Description> 
+<Description term="ID">{formFieldMessage.id}</Description> 
 <Description term="标题">{formFieldMessage.title}</Description> 
 <Description term="参数名称">{formFieldMessage.parameterName}</Description> 
 	
@@ -112,8 +112,9 @@ class FormFieldMessageDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
-        {imageListOf(cardsData.cardsSource)}
         {settingListOf(cardsData.cardsSource)}
+        {imageListOf(cardsData.cardsSource)}
+        
           <Row gutter={24}>
 
            {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   

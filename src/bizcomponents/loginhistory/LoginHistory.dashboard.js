@@ -61,8 +61,8 @@ const summaryOf = (loginHistory) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{loginHistory.id}</Description> 
-<Description term="从IP">{loginHistory.fromIp}</Description> 
+<Description term="ID">{loginHistory.id}</Description> 
+<Description term="来自IP">{loginHistory.fromIp}</Description> 
 	
         
       </DescriptionList>
@@ -111,8 +111,9 @@ class LoginHistoryDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
-        {imageListOf(cardsData.cardsSource)}
         {settingListOf(cardsData.cardsSource)}
+        {imageListOf(cardsData.cardsSource)}
+        
           <Row gutter={24}>
 
            {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   

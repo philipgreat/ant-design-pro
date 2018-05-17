@@ -66,7 +66,7 @@ const summaryOf = (formField) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{formField.id}</Description> 
+<Description term="ID">{formField.id}</Description> 
 <Description term="标签">{formField.label}</Description> 
 <Description term="语言环境的关键">{formField.localeKey}</Description> 
 <Description term="参数名称">{formField.parameterName}</Description> 
@@ -75,8 +75,8 @@ const summaryOf = (formField) =>{
 <Description term="默认值">{formField.defaultValue}</Description> 
 <Description term="描述">{formField.description}</Description> 
 <Description term="字段组">{formField.fieldGroup}</Description> 
-<Description term="最小值">{formField.minValue}</Description> 
-<Description term="最大的价值">{formField.maxValue}</Description> 
+<Description term="最小值">{formField.minimumValue}</Description> 
+<Description term="最大值">{formField.maximumValue}</Description> 
 <Description term="候选人的价值观">{formField.candidateValues}</Description> 
 	
         
@@ -126,8 +126,9 @@ class FormFieldDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
-        {imageListOf(cardsData.cardsSource)}
         {settingListOf(cardsData.cardsSource)}
+        {imageListOf(cardsData.cardsSource)}
+        
           <Row gutter={24}>
 
            {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   

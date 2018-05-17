@@ -124,25 +124,7 @@ class UserAppBizApp extends React.PureComponent {
     )
   }
   
-  getNavMenuItems2 = (objectId) => {
-  
-    const {menuData,targetApp} = this.props.breadcrumb;
 
-  
-    return (
-      <SubMenu key="firstOne" title={
-        <span>
-          <Icon type="profile" />
-          <span>{menuData.menuName}</span>
-        </span>}
-      >
-        {menuData.subItems.map((item)=>(<Menu.Item>
-          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
-        </Menu.Item>))}
-       
-      </SubMenu>
-    )
-  }
 
 
   getObjectAccessSearch = () => {
@@ -183,7 +165,7 @@ class UserAppBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '帮帮兔社区运营中心'
+    const title = '书香社区'
     return title
   }
  
@@ -206,8 +188,8 @@ class UserAppBizApp extends React.PureComponent {
      const { collapsed } = this.props
      const { breadcrumb }  = this.props
      const {UserAppDashboard} = GlobalComponents
-     const {UserAppEditDetail} = GlobalComponents
-     const {UserAppViewDetail} = GlobalComponents
+     //const {UserAppEditDetail} = GlobalComponents
+     //const {UserAppViewDetail} = GlobalComponents
      
      
      const targetApp = sessionObject('targetApp')
@@ -288,8 +270,6 @@ class UserAppBizApp extends React.PureComponent {
              
                <Route path="/userApp/:id/dashboard" component={UserAppDashboard} />
                
-               <Route path="/userApp/:id/editDetail" component={UserAppEditDetail} />
-               <Route path="/userApp/:id/viewDetail" component={UserAppViewDetail} /> 
                
 
                <Route path="/userApp/:id/list/objectAccessList" component={this.getObjectAccessSearch()} />

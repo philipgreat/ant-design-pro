@@ -56,7 +56,7 @@ const query = {
 
 
   
-const menuData = {menuName:"SEC用户阻塞", menuFor: "secUserBlocking",
+const menuData = {menuName:"用户屏蔽", menuFor: "secUserBlocking",
   		subItems: [
   {name: 'secUserList', displayName:'SEC的用户'},
   		
@@ -124,25 +124,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
     )
   }
   
-  getNavMenuItems2 = (objectId) => {
-  
-    const {menuData,targetApp} = this.props.breadcrumb;
 
-  
-    return (
-      <SubMenu key="firstOne" title={
-        <span>
-          <Icon type="profile" />
-          <span>{menuData.menuName}</span>
-        </span>}
-      >
-        {menuData.subItems.map((item)=>(<Menu.Item>
-          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
-        </Menu.Item>))}
-       
-      </SubMenu>
-    )
-  }
 
 
   getSecUserSearch = () => {
@@ -183,7 +165,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '帮帮兔社区运营中心'
+    const title = '书香社区'
     return title
   }
  
@@ -206,8 +188,8 @@ class SecUserBlockingBizApp extends React.PureComponent {
      const { collapsed } = this.props
      const { breadcrumb }  = this.props
      const {SecUserBlockingDashboard} = GlobalComponents
-     const {SecUserBlockingEditDetail} = GlobalComponents
-     const {SecUserBlockingViewDetail} = GlobalComponents
+     //const {SecUserBlockingEditDetail} = GlobalComponents
+     //const {SecUserBlockingViewDetail} = GlobalComponents
      
      
      const targetApp = sessionObject('targetApp')
@@ -288,8 +270,6 @@ class SecUserBlockingBizApp extends React.PureComponent {
              
                <Route path="/secUserBlocking/:id/dashboard" component={SecUserBlockingDashboard} />
                
-               <Route path="/secUserBlocking/:id/editDetail" component={SecUserBlockingEditDetail} />
-               <Route path="/secUserBlocking/:id/viewDetail" component={SecUserBlockingViewDetail} /> 
                
 
                <Route path="/secUserBlocking/:id/list/secUserList" component={this.getSecUserSearch()} />

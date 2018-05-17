@@ -34,12 +34,3 @@ const FormActionService = { view,
   requestCandidateForm }
 export default FormActionService
 
-
-
-
-
-
-
-
-
-

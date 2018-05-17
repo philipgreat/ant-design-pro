@@ -55,6 +55,7 @@ export default {
         return
       }
       if (data.class.indexOf('LoginForm') > 0) {
+        message.error("用户名/密码错误，请重新输入密码");
         yield put({ type: 'showlogin', payload: { data } })
         return
       }

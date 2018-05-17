@@ -2,546 +2,589 @@
 
 
 
-import CommunityBase from './community/Community.base';
-import CommunityBizApp from './community/Community.app';
-import CommunityModel from './community/Community.model';
-import CommunityDashboard from './community/Community.dashboard';
-import CommunityConfirmationTable from './community/Community.confirmmationtable';
-import CommunitySearch from './community/Community.search';
-import CommunitySearchForm from './community/Community.searchform';
-import CommunityCreateForm from './community/Community.createform';
-import CommunityTable from './community/Community.table';
-import CommunityEditTable from './community/Community.edittable';
-import CommunityEditDetail from './community/Community.editdetail';
-import CommunityViewTable from './community/Community.viewtable';
-import CommunityViewDetail from './community/Community.viewdetail';
-import CommunityService from './community/Community.service';
-import CommunityUpdateForm from './community/Community.updateform';
-import InvitationCodeBase from './invitationcode/InvitationCode.base';
-import InvitationCodeBizApp from './invitationcode/InvitationCode.app';
-import InvitationCodeModel from './invitationcode/InvitationCode.model';
-import InvitationCodeDashboard from './invitationcode/InvitationCode.dashboard';
-import InvitationCodeConfirmationTable from './invitationcode/InvitationCode.confirmmationtable';
-import InvitationCodeSearch from './invitationcode/InvitationCode.search';
-import InvitationCodeSearchForm from './invitationcode/InvitationCode.searchform';
-import InvitationCodeCreateForm from './invitationcode/InvitationCode.createform';
-import InvitationCodeTable from './invitationcode/InvitationCode.table';
-import InvitationCodeEditTable from './invitationcode/InvitationCode.edittable';
-import InvitationCodeEditDetail from './invitationcode/InvitationCode.editdetail';
-import InvitationCodeViewTable from './invitationcode/InvitationCode.viewtable';
-import InvitationCodeViewDetail from './invitationcode/InvitationCode.viewdetail';
-import InvitationCodeService from './invitationcode/InvitationCode.service';
-import InvitationCodeUpdateForm from './invitationcode/InvitationCode.updateform';
-import HomePageBase from './homepage/HomePage.base';
-import HomePageBizApp from './homepage/HomePage.app';
-import HomePageModel from './homepage/HomePage.model';
-import HomePageDashboard from './homepage/HomePage.dashboard';
-import HomePageConfirmationTable from './homepage/HomePage.confirmmationtable';
-import HomePageSearch from './homepage/HomePage.search';
-import HomePageSearchForm from './homepage/HomePage.searchform';
-import HomePageCreateForm from './homepage/HomePage.createform';
-import HomePageTable from './homepage/HomePage.table';
-import HomePageEditTable from './homepage/HomePage.edittable';
-import HomePageEditDetail from './homepage/HomePage.editdetail';
-import HomePageViewTable from './homepage/HomePage.viewtable';
-import HomePageViewDetail from './homepage/HomePage.viewdetail';
-import HomePageService from './homepage/HomePage.service';
-import HomePageUpdateForm from './homepage/HomePage.updateform';
-import SlideBase from './slide/Slide.base';
-import SlideBizApp from './slide/Slide.app';
-import SlideModel from './slide/Slide.model';
-import SlideDashboard from './slide/Slide.dashboard';
-import SlideConfirmationTable from './slide/Slide.confirmmationtable';
-import SlideSearch from './slide/Slide.search';
-import SlideSearchForm from './slide/Slide.searchform';
-import SlideCreateForm from './slide/Slide.createform';
-import SlideTable from './slide/Slide.table';
-import SlideEditTable from './slide/Slide.edittable';
-import SlideEditDetail from './slide/Slide.editdetail';
-import SlideViewTable from './slide/Slide.viewtable';
-import SlideViewDetail from './slide/Slide.viewdetail';
-import SlideService from './slide/Slide.service';
-import SlideUpdateForm from './slide/Slide.updateform';
-import EncyclopediaItemBase from './encyclopediaitem/EncyclopediaItem.base';
-import EncyclopediaItemBizApp from './encyclopediaitem/EncyclopediaItem.app';
-import EncyclopediaItemModel from './encyclopediaitem/EncyclopediaItem.model';
-import EncyclopediaItemDashboard from './encyclopediaitem/EncyclopediaItem.dashboard';
-import EncyclopediaItemConfirmationTable from './encyclopediaitem/EncyclopediaItem.confirmmationtable';
-import EncyclopediaItemSearch from './encyclopediaitem/EncyclopediaItem.search';
-import EncyclopediaItemSearchForm from './encyclopediaitem/EncyclopediaItem.searchform';
-import EncyclopediaItemCreateForm from './encyclopediaitem/EncyclopediaItem.createform';
-import EncyclopediaItemTable from './encyclopediaitem/EncyclopediaItem.table';
-import EncyclopediaItemEditTable from './encyclopediaitem/EncyclopediaItem.edittable';
-import EncyclopediaItemEditDetail from './encyclopediaitem/EncyclopediaItem.editdetail';
-import EncyclopediaItemViewTable from './encyclopediaitem/EncyclopediaItem.viewtable';
-import EncyclopediaItemViewDetail from './encyclopediaitem/EncyclopediaItem.viewdetail';
-import EncyclopediaItemService from './encyclopediaitem/EncyclopediaItem.service';
-import EncyclopediaItemUpdateForm from './encyclopediaitem/EncyclopediaItem.updateform';
-import TaskPageBase from './taskpage/TaskPage.base';
-import TaskPageBizApp from './taskpage/TaskPage.app';
-import TaskPageModel from './taskpage/TaskPage.model';
-import TaskPageDashboard from './taskpage/TaskPage.dashboard';
-import TaskPageConfirmationTable from './taskpage/TaskPage.confirmmationtable';
-import TaskPageSearch from './taskpage/TaskPage.search';
-import TaskPageSearchForm from './taskpage/TaskPage.searchform';
-import TaskPageCreateForm from './taskpage/TaskPage.createform';
-import TaskPageTable from './taskpage/TaskPage.table';
-import TaskPageEditTable from './taskpage/TaskPage.edittable';
-import TaskPageEditDetail from './taskpage/TaskPage.editdetail';
-import TaskPageViewTable from './taskpage/TaskPage.viewtable';
-import TaskPageViewDetail from './taskpage/TaskPage.viewdetail';
-import TaskPageService from './taskpage/TaskPage.service';
-import TaskPageUpdateForm from './taskpage/TaskPage.updateform';
-import TaskFilterBase from './taskfilter/TaskFilter.base';
-import TaskFilterBizApp from './taskfilter/TaskFilter.app';
-import TaskFilterModel from './taskfilter/TaskFilter.model';
-import TaskFilterDashboard from './taskfilter/TaskFilter.dashboard';
-import TaskFilterConfirmationTable from './taskfilter/TaskFilter.confirmmationtable';
-import TaskFilterSearch from './taskfilter/TaskFilter.search';
-import TaskFilterSearchForm from './taskfilter/TaskFilter.searchform';
-import TaskFilterCreateForm from './taskfilter/TaskFilter.createform';
-import TaskFilterTable from './taskfilter/TaskFilter.table';
-import TaskFilterEditTable from './taskfilter/TaskFilter.edittable';
-import TaskFilterEditDetail from './taskfilter/TaskFilter.editdetail';
-import TaskFilterViewTable from './taskfilter/TaskFilter.viewtable';
-import TaskFilterViewDetail from './taskfilter/TaskFilter.viewdetail';
-import TaskFilterService from './taskfilter/TaskFilter.service';
-import TaskFilterUpdateForm from './taskfilter/TaskFilter.updateform';
-import CommunityUserBase from './communityuser/CommunityUser.base';
-import CommunityUserBizApp from './communityuser/CommunityUser.app';
-import CommunityUserModel from './communityuser/CommunityUser.model';
-import CommunityUserDashboard from './communityuser/CommunityUser.dashboard';
-import CommunityUserConfirmationTable from './communityuser/CommunityUser.confirmmationtable';
-import CommunityUserSearch from './communityuser/CommunityUser.search';
-import CommunityUserSearchForm from './communityuser/CommunityUser.searchform';
-import CommunityUserCreateForm from './communityuser/CommunityUser.createform';
-import CommunityUserTable from './communityuser/CommunityUser.table';
-import CommunityUserEditTable from './communityuser/CommunityUser.edittable';
-import CommunityUserEditDetail from './communityuser/CommunityUser.editdetail';
-import CommunityUserViewTable from './communityuser/CommunityUser.viewtable';
-import CommunityUserViewDetail from './communityuser/CommunityUser.viewdetail';
-import CommunityUserService from './communityuser/CommunityUser.service';
-import CommunityUserUpdateForm from './communityuser/CommunityUser.updateform';
-import PatientInfoBase from './patientinfo/PatientInfo.base';
-import PatientInfoBizApp from './patientinfo/PatientInfo.app';
-import PatientInfoModel from './patientinfo/PatientInfo.model';
-import PatientInfoDashboard from './patientinfo/PatientInfo.dashboard';
-import PatientInfoConfirmationTable from './patientinfo/PatientInfo.confirmmationtable';
-import PatientInfoSearch from './patientinfo/PatientInfo.search';
-import PatientInfoSearchForm from './patientinfo/PatientInfo.searchform';
-import PatientInfoCreateForm from './patientinfo/PatientInfo.createform';
-import PatientInfoTable from './patientinfo/PatientInfo.table';
-import PatientInfoEditTable from './patientinfo/PatientInfo.edittable';
-import PatientInfoEditDetail from './patientinfo/PatientInfo.editdetail';
-import PatientInfoViewTable from './patientinfo/PatientInfo.viewtable';
-import PatientInfoViewDetail from './patientinfo/PatientInfo.viewdetail';
-import PatientInfoService from './patientinfo/PatientInfo.service';
-import PatientInfoUpdateForm from './patientinfo/PatientInfo.updateform';
-import UserSkillBase from './userskill/UserSkill.base';
-import UserSkillBizApp from './userskill/UserSkill.app';
-import UserSkillModel from './userskill/UserSkill.model';
-import UserSkillDashboard from './userskill/UserSkill.dashboard';
-import UserSkillConfirmationTable from './userskill/UserSkill.confirmmationtable';
-import UserSkillSearch from './userskill/UserSkill.search';
-import UserSkillSearchForm from './userskill/UserSkill.searchform';
-import UserSkillCreateForm from './userskill/UserSkill.createform';
-import UserSkillTable from './userskill/UserSkill.table';
-import UserSkillEditTable from './userskill/UserSkill.edittable';
-import UserSkillEditDetail from './userskill/UserSkill.editdetail';
-import UserSkillViewTable from './userskill/UserSkill.viewtable';
-import UserSkillViewDetail from './userskill/UserSkill.viewdetail';
-import UserSkillService from './userskill/UserSkill.service';
-import UserSkillUpdateForm from './userskill/UserSkill.updateform';
-import MessageFilterBase from './messagefilter/MessageFilter.base';
-import MessageFilterBizApp from './messagefilter/MessageFilter.app';
-import MessageFilterModel from './messagefilter/MessageFilter.model';
-import MessageFilterDashboard from './messagefilter/MessageFilter.dashboard';
-import MessageFilterConfirmationTable from './messagefilter/MessageFilter.confirmmationtable';
-import MessageFilterSearch from './messagefilter/MessageFilter.search';
-import MessageFilterSearchForm from './messagefilter/MessageFilter.searchform';
-import MessageFilterCreateForm from './messagefilter/MessageFilter.createform';
-import MessageFilterTable from './messagefilter/MessageFilter.table';
-import MessageFilterEditTable from './messagefilter/MessageFilter.edittable';
-import MessageFilterEditDetail from './messagefilter/MessageFilter.editdetail';
-import MessageFilterViewTable from './messagefilter/MessageFilter.viewtable';
-import MessageFilterViewDetail from './messagefilter/MessageFilter.viewdetail';
-import MessageFilterService from './messagefilter/MessageFilter.service';
-import MessageFilterUpdateForm from './messagefilter/MessageFilter.updateform';
-import UserMessageBase from './usermessage/UserMessage.base';
-import UserMessageBizApp from './usermessage/UserMessage.app';
-import UserMessageModel from './usermessage/UserMessage.model';
-import UserMessageDashboard from './usermessage/UserMessage.dashboard';
-import UserMessageConfirmationTable from './usermessage/UserMessage.confirmmationtable';
-import UserMessageSearch from './usermessage/UserMessage.search';
-import UserMessageSearchForm from './usermessage/UserMessage.searchform';
-import UserMessageCreateForm from './usermessage/UserMessage.createform';
-import UserMessageTable from './usermessage/UserMessage.table';
-import UserMessageEditTable from './usermessage/UserMessage.edittable';
-import UserMessageEditDetail from './usermessage/UserMessage.editdetail';
-import UserMessageViewTable from './usermessage/UserMessage.viewtable';
-import UserMessageViewDetail from './usermessage/UserMessage.viewdetail';
-import UserMessageService from './usermessage/UserMessage.service';
-import UserMessageUpdateForm from './usermessage/UserMessage.updateform';
-import TaskBase from './task/Task.base';
-import TaskBizApp from './task/Task.app';
-import TaskModel from './task/Task.model';
-import TaskDashboard from './task/Task.dashboard';
-import TaskConfirmationTable from './task/Task.confirmmationtable';
-import TaskSearch from './task/Task.search';
-import TaskSearchForm from './task/Task.searchform';
-import TaskCreateForm from './task/Task.createform';
-import TaskTable from './task/Task.table';
-import TaskEditTable from './task/Task.edittable';
-import TaskEditDetail from './task/Task.editdetail';
-import TaskViewTable from './task/Task.viewtable';
-import TaskViewDetail from './task/Task.viewdetail';
-import TaskService from './task/Task.service';
-import TaskUpdateForm from './task/Task.updateform';
-import TaskAssigmentBase from './taskassigment/TaskAssigment.base';
-import TaskAssigmentBizApp from './taskassigment/TaskAssigment.app';
-import TaskAssigmentModel from './taskassigment/TaskAssigment.model';
-import TaskAssigmentDashboard from './taskassigment/TaskAssigment.dashboard';
-import TaskAssigmentConfirmationTable from './taskassigment/TaskAssigment.confirmmationtable';
-import TaskAssigmentSearch from './taskassigment/TaskAssigment.search';
-import TaskAssigmentSearchForm from './taskassigment/TaskAssigment.searchform';
-import TaskAssigmentCreateForm from './taskassigment/TaskAssigment.createform';
-import TaskAssigmentTable from './taskassigment/TaskAssigment.table';
-import TaskAssigmentEditTable from './taskassigment/TaskAssigment.edittable';
-import TaskAssigmentEditDetail from './taskassigment/TaskAssigment.editdetail';
-import TaskAssigmentViewTable from './taskassigment/TaskAssigment.viewtable';
-import TaskAssigmentViewDetail from './taskassigment/TaskAssigment.viewdetail';
-import TaskAssigmentService from './taskassigment/TaskAssigment.service';
-import TaskAssigmentUpdateForm from './taskassigment/TaskAssigment.updateform';
-import TaskHidingBase from './taskhiding/TaskHiding.base';
-import TaskHidingBizApp from './taskhiding/TaskHiding.app';
-import TaskHidingModel from './taskhiding/TaskHiding.model';
-import TaskHidingDashboard from './taskhiding/TaskHiding.dashboard';
-import TaskHidingConfirmationTable from './taskhiding/TaskHiding.confirmmationtable';
-import TaskHidingSearch from './taskhiding/TaskHiding.search';
-import TaskHidingSearchForm from './taskhiding/TaskHiding.searchform';
-import TaskHidingCreateForm from './taskhiding/TaskHiding.createform';
-import TaskHidingTable from './taskhiding/TaskHiding.table';
-import TaskHidingEditTable from './taskhiding/TaskHiding.edittable';
-import TaskHidingEditDetail from './taskhiding/TaskHiding.editdetail';
-import TaskHidingViewTable from './taskhiding/TaskHiding.viewtable';
-import TaskHidingViewDetail from './taskhiding/TaskHiding.viewdetail';
-import TaskHidingService from './taskhiding/TaskHiding.service';
-import TaskHidingUpdateForm from './taskhiding/TaskHiding.updateform';
-import TaskResolvingBase from './taskresolving/TaskResolving.base';
-import TaskResolvingBizApp from './taskresolving/TaskResolving.app';
-import TaskResolvingModel from './taskresolving/TaskResolving.model';
-import TaskResolvingDashboard from './taskresolving/TaskResolving.dashboard';
-import TaskResolvingConfirmationTable from './taskresolving/TaskResolving.confirmmationtable';
-import TaskResolvingSearch from './taskresolving/TaskResolving.search';
-import TaskResolvingSearchForm from './taskresolving/TaskResolving.searchform';
-import TaskResolvingCreateForm from './taskresolving/TaskResolving.createform';
-import TaskResolvingTable from './taskresolving/TaskResolving.table';
-import TaskResolvingEditTable from './taskresolving/TaskResolving.edittable';
-import TaskResolvingEditDetail from './taskresolving/TaskResolving.editdetail';
-import TaskResolvingViewTable from './taskresolving/TaskResolving.viewtable';
-import TaskResolvingViewDetail from './taskresolving/TaskResolving.viewdetail';
-import TaskResolvingService from './taskresolving/TaskResolving.service';
-import TaskResolvingUpdateForm from './taskresolving/TaskResolving.updateform';
-import TaskRewardBase from './taskreward/TaskReward.base';
-import TaskRewardBizApp from './taskreward/TaskReward.app';
-import TaskRewardModel from './taskreward/TaskReward.model';
-import TaskRewardDashboard from './taskreward/TaskReward.dashboard';
-import TaskRewardConfirmationTable from './taskreward/TaskReward.confirmmationtable';
-import TaskRewardSearch from './taskreward/TaskReward.search';
-import TaskRewardSearchForm from './taskreward/TaskReward.searchform';
-import TaskRewardCreateForm from './taskreward/TaskReward.createform';
-import TaskRewardTable from './taskreward/TaskReward.table';
-import TaskRewardEditTable from './taskreward/TaskReward.edittable';
-import TaskRewardEditDetail from './taskreward/TaskReward.editdetail';
-import TaskRewardViewTable from './taskreward/TaskReward.viewtable';
-import TaskRewardViewDetail from './taskreward/TaskReward.viewdetail';
-import TaskRewardService from './taskreward/TaskReward.service';
-import TaskRewardUpdateForm from './taskreward/TaskReward.updateform';
-import TaskLikeBase from './tasklike/TaskLike.base';
-import TaskLikeBizApp from './tasklike/TaskLike.app';
-import TaskLikeModel from './tasklike/TaskLike.model';
-import TaskLikeDashboard from './tasklike/TaskLike.dashboard';
-import TaskLikeConfirmationTable from './tasklike/TaskLike.confirmmationtable';
-import TaskLikeSearch from './tasklike/TaskLike.search';
-import TaskLikeSearchForm from './tasklike/TaskLike.searchform';
-import TaskLikeCreateForm from './tasklike/TaskLike.createform';
-import TaskLikeTable from './tasklike/TaskLike.table';
-import TaskLikeEditTable from './tasklike/TaskLike.edittable';
-import TaskLikeEditDetail from './tasklike/TaskLike.editdetail';
-import TaskLikeViewTable from './tasklike/TaskLike.viewtable';
-import TaskLikeViewDetail from './tasklike/TaskLike.viewdetail';
-import TaskLikeService from './tasklike/TaskLike.service';
-import TaskLikeUpdateForm from './tasklike/TaskLike.updateform';
-import TaskReplyBase from './taskreply/TaskReply.base';
-import TaskReplyBizApp from './taskreply/TaskReply.app';
-import TaskReplyModel from './taskreply/TaskReply.model';
-import TaskReplyDashboard from './taskreply/TaskReply.dashboard';
-import TaskReplyConfirmationTable from './taskreply/TaskReply.confirmmationtable';
-import TaskReplySearch from './taskreply/TaskReply.search';
-import TaskReplySearchForm from './taskreply/TaskReply.searchform';
-import TaskReplyCreateForm from './taskreply/TaskReply.createform';
-import TaskReplyTable from './taskreply/TaskReply.table';
-import TaskReplyEditTable from './taskreply/TaskReply.edittable';
-import TaskReplyEditDetail from './taskreply/TaskReply.editdetail';
-import TaskReplyViewTable from './taskreply/TaskReply.viewtable';
-import TaskReplyViewDetail from './taskreply/TaskReply.viewdetail';
-import TaskReplyService from './taskreply/TaskReply.service';
-import TaskReplyUpdateForm from './taskreply/TaskReply.updateform';
-import TaskBestAnswerSettingBase from './taskbestanswersetting/TaskBestAnswerSetting.base';
-import TaskBestAnswerSettingBizApp from './taskbestanswersetting/TaskBestAnswerSetting.app';
-import TaskBestAnswerSettingModel from './taskbestanswersetting/TaskBestAnswerSetting.model';
-import TaskBestAnswerSettingDashboard from './taskbestanswersetting/TaskBestAnswerSetting.dashboard';
-import TaskBestAnswerSettingConfirmationTable from './taskbestanswersetting/TaskBestAnswerSetting.confirmmationtable';
-import TaskBestAnswerSettingSearch from './taskbestanswersetting/TaskBestAnswerSetting.search';
-import TaskBestAnswerSettingSearchForm from './taskbestanswersetting/TaskBestAnswerSetting.searchform';
-import TaskBestAnswerSettingCreateForm from './taskbestanswersetting/TaskBestAnswerSetting.createform';
-import TaskBestAnswerSettingTable from './taskbestanswersetting/TaskBestAnswerSetting.table';
-import TaskBestAnswerSettingEditTable from './taskbestanswersetting/TaskBestAnswerSetting.edittable';
-import TaskBestAnswerSettingEditDetail from './taskbestanswersetting/TaskBestAnswerSetting.editdetail';
-import TaskBestAnswerSettingViewTable from './taskbestanswersetting/TaskBestAnswerSetting.viewtable';
-import TaskBestAnswerSettingViewDetail from './taskbestanswersetting/TaskBestAnswerSetting.viewdetail';
-import TaskBestAnswerSettingService from './taskbestanswersetting/TaskBestAnswerSetting.service';
-import TaskBestAnswerSettingUpdateForm from './taskbestanswersetting/TaskBestAnswerSetting.updateform';
-import TaskReplyLikeBase from './taskreplylike/TaskReplyLike.base';
-import TaskReplyLikeBizApp from './taskreplylike/TaskReplyLike.app';
-import TaskReplyLikeModel from './taskreplylike/TaskReplyLike.model';
-import TaskReplyLikeDashboard from './taskreplylike/TaskReplyLike.dashboard';
-import TaskReplyLikeConfirmationTable from './taskreplylike/TaskReplyLike.confirmmationtable';
-import TaskReplyLikeSearch from './taskreplylike/TaskReplyLike.search';
-import TaskReplyLikeSearchForm from './taskreplylike/TaskReplyLike.searchform';
-import TaskReplyLikeCreateForm from './taskreplylike/TaskReplyLike.createform';
-import TaskReplyLikeTable from './taskreplylike/TaskReplyLike.table';
-import TaskReplyLikeEditTable from './taskreplylike/TaskReplyLike.edittable';
-import TaskReplyLikeEditDetail from './taskreplylike/TaskReplyLike.editdetail';
-import TaskReplyLikeViewTable from './taskreplylike/TaskReplyLike.viewtable';
-import TaskReplyLikeViewDetail from './taskreplylike/TaskReplyLike.viewdetail';
-import TaskReplyLikeService from './taskreplylike/TaskReplyLike.service';
-import TaskReplyLikeUpdateForm from './taskreplylike/TaskReplyLike.updateform';
-import GroupPageBase from './grouppage/GroupPage.base';
-import GroupPageBizApp from './grouppage/GroupPage.app';
-import GroupPageModel from './grouppage/GroupPage.model';
-import GroupPageDashboard from './grouppage/GroupPage.dashboard';
-import GroupPageConfirmationTable from './grouppage/GroupPage.confirmmationtable';
-import GroupPageSearch from './grouppage/GroupPage.search';
-import GroupPageSearchForm from './grouppage/GroupPage.searchform';
-import GroupPageCreateForm from './grouppage/GroupPage.createform';
-import GroupPageTable from './grouppage/GroupPage.table';
-import GroupPageEditTable from './grouppage/GroupPage.edittable';
-import GroupPageEditDetail from './grouppage/GroupPage.editdetail';
-import GroupPageViewTable from './grouppage/GroupPage.viewtable';
-import GroupPageViewDetail from './grouppage/GroupPage.viewdetail';
-import GroupPageService from './grouppage/GroupPage.service';
-import GroupPageUpdateForm from './grouppage/GroupPage.updateform';
-import GroupFilterBase from './groupfilter/GroupFilter.base';
-import GroupFilterBizApp from './groupfilter/GroupFilter.app';
-import GroupFilterModel from './groupfilter/GroupFilter.model';
-import GroupFilterDashboard from './groupfilter/GroupFilter.dashboard';
-import GroupFilterConfirmationTable from './groupfilter/GroupFilter.confirmmationtable';
-import GroupFilterSearch from './groupfilter/GroupFilter.search';
-import GroupFilterSearchForm from './groupfilter/GroupFilter.searchform';
-import GroupFilterCreateForm from './groupfilter/GroupFilter.createform';
-import GroupFilterTable from './groupfilter/GroupFilter.table';
-import GroupFilterEditTable from './groupfilter/GroupFilter.edittable';
-import GroupFilterEditDetail from './groupfilter/GroupFilter.editdetail';
-import GroupFilterViewTable from './groupfilter/GroupFilter.viewtable';
-import GroupFilterViewDetail from './groupfilter/GroupFilter.viewdetail';
-import GroupFilterService from './groupfilter/GroupFilter.service';
-import GroupFilterUpdateForm from './groupfilter/GroupFilter.updateform';
-import ThreadBase from './thread/Thread.base';
-import ThreadBizApp from './thread/Thread.app';
-import ThreadModel from './thread/Thread.model';
-import ThreadDashboard from './thread/Thread.dashboard';
-import ThreadConfirmationTable from './thread/Thread.confirmmationtable';
-import ThreadSearch from './thread/Thread.search';
-import ThreadSearchForm from './thread/Thread.searchform';
-import ThreadCreateForm from './thread/Thread.createform';
-import ThreadTable from './thread/Thread.table';
-import ThreadEditTable from './thread/Thread.edittable';
-import ThreadEditDetail from './thread/Thread.editdetail';
-import ThreadViewTable from './thread/Thread.viewtable';
-import ThreadViewDetail from './thread/Thread.viewdetail';
-import ThreadService from './thread/Thread.service';
-import ThreadUpdateForm from './thread/Thread.updateform';
-import ThreadHidingBase from './threadhiding/ThreadHiding.base';
-import ThreadHidingBizApp from './threadhiding/ThreadHiding.app';
-import ThreadHidingModel from './threadhiding/ThreadHiding.model';
-import ThreadHidingDashboard from './threadhiding/ThreadHiding.dashboard';
-import ThreadHidingConfirmationTable from './threadhiding/ThreadHiding.confirmmationtable';
-import ThreadHidingSearch from './threadhiding/ThreadHiding.search';
-import ThreadHidingSearchForm from './threadhiding/ThreadHiding.searchform';
-import ThreadHidingCreateForm from './threadhiding/ThreadHiding.createform';
-import ThreadHidingTable from './threadhiding/ThreadHiding.table';
-import ThreadHidingEditTable from './threadhiding/ThreadHiding.edittable';
-import ThreadHidingEditDetail from './threadhiding/ThreadHiding.editdetail';
-import ThreadHidingViewTable from './threadhiding/ThreadHiding.viewtable';
-import ThreadHidingViewDetail from './threadhiding/ThreadHiding.viewdetail';
-import ThreadHidingService from './threadhiding/ThreadHiding.service';
-import ThreadHidingUpdateForm from './threadhiding/ThreadHiding.updateform';
-import ThreadReplyBase from './threadreply/ThreadReply.base';
-import ThreadReplyBizApp from './threadreply/ThreadReply.app';
-import ThreadReplyModel from './threadreply/ThreadReply.model';
-import ThreadReplyDashboard from './threadreply/ThreadReply.dashboard';
-import ThreadReplyConfirmationTable from './threadreply/ThreadReply.confirmmationtable';
-import ThreadReplySearch from './threadreply/ThreadReply.search';
-import ThreadReplySearchForm from './threadreply/ThreadReply.searchform';
-import ThreadReplyCreateForm from './threadreply/ThreadReply.createform';
-import ThreadReplyTable from './threadreply/ThreadReply.table';
-import ThreadReplyEditTable from './threadreply/ThreadReply.edittable';
-import ThreadReplyEditDetail from './threadreply/ThreadReply.editdetail';
-import ThreadReplyViewTable from './threadreply/ThreadReply.viewtable';
-import ThreadReplyViewDetail from './threadreply/ThreadReply.viewdetail';
-import ThreadReplyService from './threadreply/ThreadReply.service';
-import ThreadReplyUpdateForm from './threadreply/ThreadReply.updateform';
-import ThreadApprovalBase from './threadapproval/ThreadApproval.base';
-import ThreadApprovalBizApp from './threadapproval/ThreadApproval.app';
-import ThreadApprovalModel from './threadapproval/ThreadApproval.model';
-import ThreadApprovalDashboard from './threadapproval/ThreadApproval.dashboard';
-import ThreadApprovalConfirmationTable from './threadapproval/ThreadApproval.confirmmationtable';
-import ThreadApprovalSearch from './threadapproval/ThreadApproval.search';
-import ThreadApprovalSearchForm from './threadapproval/ThreadApproval.searchform';
-import ThreadApprovalCreateForm from './threadapproval/ThreadApproval.createform';
-import ThreadApprovalTable from './threadapproval/ThreadApproval.table';
-import ThreadApprovalEditTable from './threadapproval/ThreadApproval.edittable';
-import ThreadApprovalEditDetail from './threadapproval/ThreadApproval.editdetail';
-import ThreadApprovalViewTable from './threadapproval/ThreadApproval.viewtable';
-import ThreadApprovalViewDetail from './threadapproval/ThreadApproval.viewdetail';
-import ThreadApprovalService from './threadapproval/ThreadApproval.service';
-import ThreadApprovalUpdateForm from './threadapproval/ThreadApproval.updateform';
-import ThreadCompletionBase from './threadcompletion/ThreadCompletion.base';
-import ThreadCompletionBizApp from './threadcompletion/ThreadCompletion.app';
-import ThreadCompletionModel from './threadcompletion/ThreadCompletion.model';
-import ThreadCompletionDashboard from './threadcompletion/ThreadCompletion.dashboard';
-import ThreadCompletionConfirmationTable from './threadcompletion/ThreadCompletion.confirmmationtable';
-import ThreadCompletionSearch from './threadcompletion/ThreadCompletion.search';
-import ThreadCompletionSearchForm from './threadcompletion/ThreadCompletion.searchform';
-import ThreadCompletionCreateForm from './threadcompletion/ThreadCompletion.createform';
-import ThreadCompletionTable from './threadcompletion/ThreadCompletion.table';
-import ThreadCompletionEditTable from './threadcompletion/ThreadCompletion.edittable';
-import ThreadCompletionEditDetail from './threadcompletion/ThreadCompletion.editdetail';
-import ThreadCompletionViewTable from './threadcompletion/ThreadCompletion.viewtable';
-import ThreadCompletionViewDetail from './threadcompletion/ThreadCompletion.viewdetail';
-import ThreadCompletionService from './threadcompletion/ThreadCompletion.service';
-import ThreadCompletionUpdateForm from './threadcompletion/ThreadCompletion.updateform';
-import ThreadCancelingBase from './threadcanceling/ThreadCanceling.base';
-import ThreadCancelingBizApp from './threadcanceling/ThreadCanceling.app';
-import ThreadCancelingModel from './threadcanceling/ThreadCanceling.model';
-import ThreadCancelingDashboard from './threadcanceling/ThreadCanceling.dashboard';
-import ThreadCancelingConfirmationTable from './threadcanceling/ThreadCanceling.confirmmationtable';
-import ThreadCancelingSearch from './threadcanceling/ThreadCanceling.search';
-import ThreadCancelingSearchForm from './threadcanceling/ThreadCanceling.searchform';
-import ThreadCancelingCreateForm from './threadcanceling/ThreadCanceling.createform';
-import ThreadCancelingTable from './threadcanceling/ThreadCanceling.table';
-import ThreadCancelingEditTable from './threadcanceling/ThreadCanceling.edittable';
-import ThreadCancelingEditDetail from './threadcanceling/ThreadCanceling.editdetail';
-import ThreadCancelingViewTable from './threadcanceling/ThreadCanceling.viewtable';
-import ThreadCancelingViewDetail from './threadcanceling/ThreadCanceling.viewdetail';
-import ThreadCancelingService from './threadcanceling/ThreadCanceling.service';
-import ThreadCancelingUpdateForm from './threadcanceling/ThreadCanceling.updateform';
-import ThreadRegistrationBase from './threadregistration/ThreadRegistration.base';
-import ThreadRegistrationBizApp from './threadregistration/ThreadRegistration.app';
-import ThreadRegistrationModel from './threadregistration/ThreadRegistration.model';
-import ThreadRegistrationDashboard from './threadregistration/ThreadRegistration.dashboard';
-import ThreadRegistrationConfirmationTable from './threadregistration/ThreadRegistration.confirmmationtable';
-import ThreadRegistrationSearch from './threadregistration/ThreadRegistration.search';
-import ThreadRegistrationSearchForm from './threadregistration/ThreadRegistration.searchform';
-import ThreadRegistrationCreateForm from './threadregistration/ThreadRegistration.createform';
-import ThreadRegistrationTable from './threadregistration/ThreadRegistration.table';
-import ThreadRegistrationEditTable from './threadregistration/ThreadRegistration.edittable';
-import ThreadRegistrationEditDetail from './threadregistration/ThreadRegistration.editdetail';
-import ThreadRegistrationViewTable from './threadregistration/ThreadRegistration.viewtable';
-import ThreadRegistrationViewDetail from './threadregistration/ThreadRegistration.viewdetail';
-import ThreadRegistrationService from './threadregistration/ThreadRegistration.service';
-import ThreadRegistrationUpdateForm from './threadregistration/ThreadRegistration.updateform';
-import ThreadLikeBase from './threadlike/ThreadLike.base';
-import ThreadLikeBizApp from './threadlike/ThreadLike.app';
-import ThreadLikeModel from './threadlike/ThreadLike.model';
-import ThreadLikeDashboard from './threadlike/ThreadLike.dashboard';
-import ThreadLikeConfirmationTable from './threadlike/ThreadLike.confirmmationtable';
-import ThreadLikeSearch from './threadlike/ThreadLike.search';
-import ThreadLikeSearchForm from './threadlike/ThreadLike.searchform';
-import ThreadLikeCreateForm from './threadlike/ThreadLike.createform';
-import ThreadLikeTable from './threadlike/ThreadLike.table';
-import ThreadLikeEditTable from './threadlike/ThreadLike.edittable';
-import ThreadLikeEditDetail from './threadlike/ThreadLike.editdetail';
-import ThreadLikeViewTable from './threadlike/ThreadLike.viewtable';
-import ThreadLikeViewDetail from './threadlike/ThreadLike.viewdetail';
-import ThreadLikeService from './threadlike/ThreadLike.service';
-import ThreadLikeUpdateForm from './threadlike/ThreadLike.updateform';
-import ThreadReplyLikeBase from './threadreplylike/ThreadReplyLike.base';
-import ThreadReplyLikeBizApp from './threadreplylike/ThreadReplyLike.app';
-import ThreadReplyLikeModel from './threadreplylike/ThreadReplyLike.model';
-import ThreadReplyLikeDashboard from './threadreplylike/ThreadReplyLike.dashboard';
-import ThreadReplyLikeConfirmationTable from './threadreplylike/ThreadReplyLike.confirmmationtable';
-import ThreadReplyLikeSearch from './threadreplylike/ThreadReplyLike.search';
-import ThreadReplyLikeSearchForm from './threadreplylike/ThreadReplyLike.searchform';
-import ThreadReplyLikeCreateForm from './threadreplylike/ThreadReplyLike.createform';
-import ThreadReplyLikeTable from './threadreplylike/ThreadReplyLike.table';
-import ThreadReplyLikeEditTable from './threadreplylike/ThreadReplyLike.edittable';
-import ThreadReplyLikeEditDetail from './threadreplylike/ThreadReplyLike.editdetail';
-import ThreadReplyLikeViewTable from './threadreplylike/ThreadReplyLike.viewtable';
-import ThreadReplyLikeViewDetail from './threadreplylike/ThreadReplyLike.viewdetail';
-import ThreadReplyLikeService from './threadreplylike/ThreadReplyLike.service';
-import ThreadReplyLikeUpdateForm from './threadreplylike/ThreadReplyLike.updateform';
-import FanBase from './fan/Fan.base';
-import FanBizApp from './fan/Fan.app';
-import FanModel from './fan/Fan.model';
-import FanDashboard from './fan/Fan.dashboard';
-import FanConfirmationTable from './fan/Fan.confirmmationtable';
-import FanSearch from './fan/Fan.search';
-import FanSearchForm from './fan/Fan.searchform';
-import FanCreateForm from './fan/Fan.createform';
-import FanTable from './fan/Fan.table';
-import FanEditTable from './fan/Fan.edittable';
-import FanEditDetail from './fan/Fan.editdetail';
-import FanViewTable from './fan/Fan.viewtable';
-import FanViewDetail from './fan/Fan.viewdetail';
-import FanService from './fan/Fan.service';
-import FanUpdateForm from './fan/Fan.updateform';
-import FollowBase from './follow/Follow.base';
-import FollowBizApp from './follow/Follow.app';
-import FollowModel from './follow/Follow.model';
-import FollowDashboard from './follow/Follow.dashboard';
-import FollowConfirmationTable from './follow/Follow.confirmmationtable';
-import FollowSearch from './follow/Follow.search';
-import FollowSearchForm from './follow/Follow.searchform';
-import FollowCreateForm from './follow/Follow.createform';
-import FollowTable from './follow/Follow.table';
-import FollowEditTable from './follow/Follow.edittable';
-import FollowEditDetail from './follow/Follow.editdetail';
-import FollowViewTable from './follow/Follow.viewtable';
-import FollowViewDetail from './follow/Follow.viewdetail';
-import FollowService from './follow/Follow.service';
-import FollowUpdateForm from './follow/Follow.updateform';
-import BonusPointBase from './bonuspoint/BonusPoint.base';
-import BonusPointBizApp from './bonuspoint/BonusPoint.app';
-import BonusPointModel from './bonuspoint/BonusPoint.model';
-import BonusPointDashboard from './bonuspoint/BonusPoint.dashboard';
-import BonusPointConfirmationTable from './bonuspoint/BonusPoint.confirmmationtable';
-import BonusPointSearch from './bonuspoint/BonusPoint.search';
-import BonusPointSearchForm from './bonuspoint/BonusPoint.searchform';
-import BonusPointCreateForm from './bonuspoint/BonusPoint.createform';
-import BonusPointTable from './bonuspoint/BonusPoint.table';
-import BonusPointEditTable from './bonuspoint/BonusPoint.edittable';
-import BonusPointEditDetail from './bonuspoint/BonusPoint.editdetail';
-import BonusPointViewTable from './bonuspoint/BonusPoint.viewtable';
-import BonusPointViewDetail from './bonuspoint/BonusPoint.viewdetail';
-import BonusPointService from './bonuspoint/BonusPoint.service';
-import BonusPointUpdateForm from './bonuspoint/BonusPoint.updateform';
-import ExperiencePointBase from './experiencepoint/ExperiencePoint.base';
-import ExperiencePointBizApp from './experiencepoint/ExperiencePoint.app';
-import ExperiencePointModel from './experiencepoint/ExperiencePoint.model';
-import ExperiencePointDashboard from './experiencepoint/ExperiencePoint.dashboard';
-import ExperiencePointConfirmationTable from './experiencepoint/ExperiencePoint.confirmmationtable';
-import ExperiencePointSearch from './experiencepoint/ExperiencePoint.search';
-import ExperiencePointSearchForm from './experiencepoint/ExperiencePoint.searchform';
-import ExperiencePointCreateForm from './experiencepoint/ExperiencePoint.createform';
-import ExperiencePointTable from './experiencepoint/ExperiencePoint.table';
-import ExperiencePointEditTable from './experiencepoint/ExperiencePoint.edittable';
-import ExperiencePointEditDetail from './experiencepoint/ExperiencePoint.editdetail';
-import ExperiencePointViewTable from './experiencepoint/ExperiencePoint.viewtable';
-import ExperiencePointViewDetail from './experiencepoint/ExperiencePoint.viewdetail';
-import ExperiencePointService from './experiencepoint/ExperiencePoint.service';
-import ExperiencePointUpdateForm from './experiencepoint/ExperiencePoint.updateform';
+import BookSharingPlatformBase from './booksharingplatform/BookSharingPlatform.base';
+import BookSharingPlatformBizApp from './booksharingplatform/BookSharingPlatform.app';
+import BookSharingPlatformModel from './booksharingplatform/BookSharingPlatform.model';
+import BookSharingPlatformDashboard from './booksharingplatform/BookSharingPlatform.dashboard';
+import BookSharingPlatformConfirmationTable from './booksharingplatform/BookSharingPlatform.confirmmationtable';
+import BookSharingPlatformSearch from './booksharingplatform/BookSharingPlatform.search';
+import BookSharingPlatformSearchForm from './booksharingplatform/BookSharingPlatform.searchform';
+import BookSharingPlatformCreateForm from './booksharingplatform/BookSharingPlatform.createform';
+import BookSharingPlatformTable from './booksharingplatform/BookSharingPlatform.table';
+import BookSharingPlatformService from './booksharingplatform/BookSharingPlatform.service';
+import BookSharingPlatformUpdateForm from './booksharingplatform/BookSharingPlatform.updateform';
+import AvailableTokenBase from './availabletoken/AvailableToken.base';
+import AvailableTokenBizApp from './availabletoken/AvailableToken.app';
+import AvailableTokenModel from './availabletoken/AvailableToken.model';
+import AvailableTokenDashboard from './availabletoken/AvailableToken.dashboard';
+import AvailableTokenConfirmationTable from './availabletoken/AvailableToken.confirmmationtable';
+import AvailableTokenSearch from './availabletoken/AvailableToken.search';
+import AvailableTokenSearchForm from './availabletoken/AvailableToken.searchform';
+import AvailableTokenCreateForm from './availabletoken/AvailableToken.createform';
+import AvailableTokenTable from './availabletoken/AvailableToken.table';
+import AvailableTokenService from './availabletoken/AvailableToken.service';
+import AvailableTokenUpdateForm from './availabletoken/AvailableToken.updateform';
+import AccountManagementBase from './accountmanagement/AccountManagement.base';
+import AccountManagementBizApp from './accountmanagement/AccountManagement.app';
+import AccountManagementModel from './accountmanagement/AccountManagement.model';
+import AccountManagementDashboard from './accountmanagement/AccountManagement.dashboard';
+import AccountManagementConfirmationTable from './accountmanagement/AccountManagement.confirmmationtable';
+import AccountManagementSearch from './accountmanagement/AccountManagement.search';
+import AccountManagementSearchForm from './accountmanagement/AccountManagement.searchform';
+import AccountManagementCreateForm from './accountmanagement/AccountManagement.createform';
+import AccountManagementTable from './accountmanagement/AccountManagement.table';
+import AccountManagementService from './accountmanagement/AccountManagement.service';
+import AccountManagementUpdateForm from './accountmanagement/AccountManagement.updateform';
+import ProvinceBase from './province/Province.base';
+import ProvinceBizApp from './province/Province.app';
+import ProvinceModel from './province/Province.model';
+import ProvinceDashboard from './province/Province.dashboard';
+import ProvinceConfirmationTable from './province/Province.confirmmationtable';
+import ProvinceSearch from './province/Province.search';
+import ProvinceSearchForm from './province/Province.searchform';
+import ProvinceCreateForm from './province/Province.createform';
+import ProvinceTable from './province/Province.table';
+import ProvinceService from './province/Province.service';
+import ProvinceUpdateForm from './province/Province.updateform';
+import CityBase from './city/City.base';
+import CityBizApp from './city/City.app';
+import CityModel from './city/City.model';
+import CityDashboard from './city/City.dashboard';
+import CityConfirmationTable from './city/City.confirmmationtable';
+import CitySearch from './city/City.search';
+import CitySearchForm from './city/City.searchform';
+import CityCreateForm from './city/City.createform';
+import CityTable from './city/City.table';
+import CityService from './city/City.service';
+import CityUpdateForm from './city/City.updateform';
+import DistrictBase from './district/District.base';
+import DistrictBizApp from './district/District.app';
+import DistrictModel from './district/District.model';
+import DistrictDashboard from './district/District.dashboard';
+import DistrictConfirmationTable from './district/District.confirmmationtable';
+import DistrictSearch from './district/District.search';
+import DistrictSearchForm from './district/District.searchform';
+import DistrictCreateForm from './district/District.createform';
+import DistrictTable from './district/District.table';
+import DistrictService from './district/District.service';
+import DistrictUpdateForm from './district/District.updateform';
+import BookManagementBase from './bookmanagement/BookManagement.base';
+import BookManagementBizApp from './bookmanagement/BookManagement.app';
+import BookManagementModel from './bookmanagement/BookManagement.model';
+import BookManagementDashboard from './bookmanagement/BookManagement.dashboard';
+import BookManagementConfirmationTable from './bookmanagement/BookManagement.confirmmationtable';
+import BookManagementSearch from './bookmanagement/BookManagement.search';
+import BookManagementSearchForm from './bookmanagement/BookManagement.searchform';
+import BookManagementCreateForm from './bookmanagement/BookManagement.createform';
+import BookManagementTable from './bookmanagement/BookManagement.table';
+import BookManagementService from './bookmanagement/BookManagement.service';
+import BookManagementUpdateForm from './bookmanagement/BookManagement.updateform';
+import MemberServiceManagementBase from './memberservicemanagement/MemberServiceManagement.base';
+import MemberServiceManagementBizApp from './memberservicemanagement/MemberServiceManagement.app';
+import MemberServiceManagementModel from './memberservicemanagement/MemberServiceManagement.model';
+import MemberServiceManagementDashboard from './memberservicemanagement/MemberServiceManagement.dashboard';
+import MemberServiceManagementConfirmationTable from './memberservicemanagement/MemberServiceManagement.confirmmationtable';
+import MemberServiceManagementSearch from './memberservicemanagement/MemberServiceManagement.search';
+import MemberServiceManagementSearchForm from './memberservicemanagement/MemberServiceManagement.searchform';
+import MemberServiceManagementCreateForm from './memberservicemanagement/MemberServiceManagement.createform';
+import MemberServiceManagementTable from './memberservicemanagement/MemberServiceManagement.table';
+import MemberServiceManagementService from './memberservicemanagement/MemberServiceManagement.service';
+import MemberServiceManagementUpdateForm from './memberservicemanagement/MemberServiceManagement.updateform';
+import BookTagRecordBase from './booktagrecord/BookTagRecord.base';
+import BookTagRecordBizApp from './booktagrecord/BookTagRecord.app';
+import BookTagRecordModel from './booktagrecord/BookTagRecord.model';
+import BookTagRecordDashboard from './booktagrecord/BookTagRecord.dashboard';
+import BookTagRecordConfirmationTable from './booktagrecord/BookTagRecord.confirmmationtable';
+import BookTagRecordSearch from './booktagrecord/BookTagRecord.search';
+import BookTagRecordSearchForm from './booktagrecord/BookTagRecord.searchform';
+import BookTagRecordCreateForm from './booktagrecord/BookTagRecord.createform';
+import BookTagRecordTable from './booktagrecord/BookTagRecord.table';
+import BookTagRecordService from './booktagrecord/BookTagRecord.service';
+import BookTagRecordUpdateForm from './booktagrecord/BookTagRecord.updateform';
+import BookCopySharingBenefitConfigurationBase from './bookcopysharingbenefitconfiguration/BookCopySharingBenefitConfiguration.base';
+import BookCopySharingBenefitConfigurationBizApp from './bookcopysharingbenefitconfiguration/BookCopySharingBenefitConfiguration.app';
+import BookCopySharingBenefitConfigurationModel from './bookcopysharingbenefitconfiguration/BookCopySharingBenefitConfiguration.model';
+import BookCopySharingBenefitConfigurationDashboard from './bookcopysharingbenefitconfiguration/BookCopySharingBenefitConfiguration.dashboard';
+import BookCopySharingBenefitConfigurationConfirmationTable from './bookcopysharingbenefitconfiguration/BookCopySharingBenefitConfiguration.confirmmationtable';
+import BookCopySharingBenefitConfigurationSearch from './bookcopysharingbenefitconfiguration/BookCopySharingBenefitConfiguration.search';
+import BookCopySharingBenefitConfigurationSearchForm from './bookcopysharingbenefitconfiguration/BookCopySharingBenefitConfiguration.searchform';
+import BookCopySharingBenefitConfigurationCreateForm from './bookcopysharingbenefitconfiguration/BookCopySharingBenefitConfiguration.createform';
+import BookCopySharingBenefitConfigurationTable from './bookcopysharingbenefitconfiguration/BookCopySharingBenefitConfiguration.table';
+import BookCopySharingBenefitConfigurationService from './bookcopysharingbenefitconfiguration/BookCopySharingBenefitConfiguration.service';
+import BookCopySharingBenefitConfigurationUpdateForm from './bookcopysharingbenefitconfiguration/BookCopySharingBenefitConfiguration.updateform';
+import BookCopyDonateBenefitConfigurationBase from './bookcopydonatebenefitconfiguration/BookCopyDonateBenefitConfiguration.base';
+import BookCopyDonateBenefitConfigurationBizApp from './bookcopydonatebenefitconfiguration/BookCopyDonateBenefitConfiguration.app';
+import BookCopyDonateBenefitConfigurationModel from './bookcopydonatebenefitconfiguration/BookCopyDonateBenefitConfiguration.model';
+import BookCopyDonateBenefitConfigurationDashboard from './bookcopydonatebenefitconfiguration/BookCopyDonateBenefitConfiguration.dashboard';
+import BookCopyDonateBenefitConfigurationConfirmationTable from './bookcopydonatebenefitconfiguration/BookCopyDonateBenefitConfiguration.confirmmationtable';
+import BookCopyDonateBenefitConfigurationSearch from './bookcopydonatebenefitconfiguration/BookCopyDonateBenefitConfiguration.search';
+import BookCopyDonateBenefitConfigurationSearchForm from './bookcopydonatebenefitconfiguration/BookCopyDonateBenefitConfiguration.searchform';
+import BookCopyDonateBenefitConfigurationCreateForm from './bookcopydonatebenefitconfiguration/BookCopyDonateBenefitConfiguration.createform';
+import BookCopyDonateBenefitConfigurationTable from './bookcopydonatebenefitconfiguration/BookCopyDonateBenefitConfiguration.table';
+import BookCopyDonateBenefitConfigurationService from './bookcopydonatebenefitconfiguration/BookCopyDonateBenefitConfiguration.service';
+import BookCopyDonateBenefitConfigurationUpdateForm from './bookcopydonatebenefitconfiguration/BookCopyDonateBenefitConfiguration.updateform';
+import MemberServiceProductBase from './memberserviceproduct/MemberServiceProduct.base';
+import MemberServiceProductBizApp from './memberserviceproduct/MemberServiceProduct.app';
+import MemberServiceProductModel from './memberserviceproduct/MemberServiceProduct.model';
+import MemberServiceProductDashboard from './memberserviceproduct/MemberServiceProduct.dashboard';
+import MemberServiceProductConfirmationTable from './memberserviceproduct/MemberServiceProduct.confirmmationtable';
+import MemberServiceProductSearch from './memberserviceproduct/MemberServiceProduct.search';
+import MemberServiceProductSearchForm from './memberserviceproduct/MemberServiceProduct.searchform';
+import MemberServiceProductCreateForm from './memberserviceproduct/MemberServiceProduct.createform';
+import MemberServiceProductTable from './memberserviceproduct/MemberServiceProduct.table';
+import MemberServiceProductService from './memberserviceproduct/MemberServiceProduct.service';
+import MemberServiceProductUpdateForm from './memberserviceproduct/MemberServiceProduct.updateform';
+import TokenInMemberServiceProductBase from './tokeninmemberserviceproduct/TokenInMemberServiceProduct.base';
+import TokenInMemberServiceProductBizApp from './tokeninmemberserviceproduct/TokenInMemberServiceProduct.app';
+import TokenInMemberServiceProductModel from './tokeninmemberserviceproduct/TokenInMemberServiceProduct.model';
+import TokenInMemberServiceProductDashboard from './tokeninmemberserviceproduct/TokenInMemberServiceProduct.dashboard';
+import TokenInMemberServiceProductConfirmationTable from './tokeninmemberserviceproduct/TokenInMemberServiceProduct.confirmmationtable';
+import TokenInMemberServiceProductSearch from './tokeninmemberserviceproduct/TokenInMemberServiceProduct.search';
+import TokenInMemberServiceProductSearchForm from './tokeninmemberserviceproduct/TokenInMemberServiceProduct.searchform';
+import TokenInMemberServiceProductCreateForm from './tokeninmemberserviceproduct/TokenInMemberServiceProduct.createform';
+import TokenInMemberServiceProductTable from './tokeninmemberserviceproduct/TokenInMemberServiceProduct.table';
+import TokenInMemberServiceProductService from './tokeninmemberserviceproduct/TokenInMemberServiceProduct.service';
+import TokenInMemberServiceProductUpdateForm from './tokeninmemberserviceproduct/TokenInMemberServiceProduct.updateform';
+import MemberServiceBoundleSkuBase from './memberserviceboundlesku/MemberServiceBoundleSku.base';
+import MemberServiceBoundleSkuBizApp from './memberserviceboundlesku/MemberServiceBoundleSku.app';
+import MemberServiceBoundleSkuModel from './memberserviceboundlesku/MemberServiceBoundleSku.model';
+import MemberServiceBoundleSkuDashboard from './memberserviceboundlesku/MemberServiceBoundleSku.dashboard';
+import MemberServiceBoundleSkuConfirmationTable from './memberserviceboundlesku/MemberServiceBoundleSku.confirmmationtable';
+import MemberServiceBoundleSkuSearch from './memberserviceboundlesku/MemberServiceBoundleSku.search';
+import MemberServiceBoundleSkuSearchForm from './memberserviceboundlesku/MemberServiceBoundleSku.searchform';
+import MemberServiceBoundleSkuCreateForm from './memberserviceboundlesku/MemberServiceBoundleSku.createform';
+import MemberServiceBoundleSkuTable from './memberserviceboundlesku/MemberServiceBoundleSku.table';
+import MemberServiceBoundleSkuService from './memberserviceboundlesku/MemberServiceBoundleSku.service';
+import MemberServiceBoundleSkuUpdateForm from './memberserviceboundlesku/MemberServiceBoundleSku.updateform';
+import MemberAccountRechargeProductBase from './memberaccountrechargeproduct/MemberAccountRechargeProduct.base';
+import MemberAccountRechargeProductBizApp from './memberaccountrechargeproduct/MemberAccountRechargeProduct.app';
+import MemberAccountRechargeProductModel from './memberaccountrechargeproduct/MemberAccountRechargeProduct.model';
+import MemberAccountRechargeProductDashboard from './memberaccountrechargeproduct/MemberAccountRechargeProduct.dashboard';
+import MemberAccountRechargeProductConfirmationTable from './memberaccountrechargeproduct/MemberAccountRechargeProduct.confirmmationtable';
+import MemberAccountRechargeProductSearch from './memberaccountrechargeproduct/MemberAccountRechargeProduct.search';
+import MemberAccountRechargeProductSearchForm from './memberaccountrechargeproduct/MemberAccountRechargeProduct.searchform';
+import MemberAccountRechargeProductCreateForm from './memberaccountrechargeproduct/MemberAccountRechargeProduct.createform';
+import MemberAccountRechargeProductTable from './memberaccountrechargeproduct/MemberAccountRechargeProduct.table';
+import MemberAccountRechargeProductService from './memberaccountrechargeproduct/MemberAccountRechargeProduct.service';
+import MemberAccountRechargeProductUpdateForm from './memberaccountrechargeproduct/MemberAccountRechargeProduct.updateform';
+import MemberAccountRechargeSkuBase from './memberaccountrechargesku/MemberAccountRechargeSku.base';
+import MemberAccountRechargeSkuBizApp from './memberaccountrechargesku/MemberAccountRechargeSku.app';
+import MemberAccountRechargeSkuModel from './memberaccountrechargesku/MemberAccountRechargeSku.model';
+import MemberAccountRechargeSkuDashboard from './memberaccountrechargesku/MemberAccountRechargeSku.dashboard';
+import MemberAccountRechargeSkuConfirmationTable from './memberaccountrechargesku/MemberAccountRechargeSku.confirmmationtable';
+import MemberAccountRechargeSkuSearch from './memberaccountrechargesku/MemberAccountRechargeSku.search';
+import MemberAccountRechargeSkuSearchForm from './memberaccountrechargesku/MemberAccountRechargeSku.searchform';
+import MemberAccountRechargeSkuCreateForm from './memberaccountrechargesku/MemberAccountRechargeSku.createform';
+import MemberAccountRechargeSkuTable from './memberaccountrechargesku/MemberAccountRechargeSku.table';
+import MemberAccountRechargeSkuService from './memberaccountrechargesku/MemberAccountRechargeSku.service';
+import MemberAccountRechargeSkuUpdateForm from './memberaccountrechargesku/MemberAccountRechargeSku.updateform';
+import LineItemBase from './lineitem/LineItem.base';
+import LineItemBizApp from './lineitem/LineItem.app';
+import LineItemModel from './lineitem/LineItem.model';
+import LineItemDashboard from './lineitem/LineItem.dashboard';
+import LineItemConfirmationTable from './lineitem/LineItem.confirmmationtable';
+import LineItemSearch from './lineitem/LineItem.search';
+import LineItemSearchForm from './lineitem/LineItem.searchform';
+import LineItemCreateForm from './lineitem/LineItem.createform';
+import LineItemTable from './lineitem/LineItem.table';
+import LineItemService from './lineitem/LineItem.service';
+import LineItemUpdateForm from './lineitem/LineItem.updateform';
+import MainOrderPaymentBase from './mainorderpayment/MainOrderPayment.base';
+import MainOrderPaymentBizApp from './mainorderpayment/MainOrderPayment.app';
+import MainOrderPaymentModel from './mainorderpayment/MainOrderPayment.model';
+import MainOrderPaymentDashboard from './mainorderpayment/MainOrderPayment.dashboard';
+import MainOrderPaymentConfirmationTable from './mainorderpayment/MainOrderPayment.confirmmationtable';
+import MainOrderPaymentSearch from './mainorderpayment/MainOrderPayment.search';
+import MainOrderPaymentSearchForm from './mainorderpayment/MainOrderPayment.searchform';
+import MainOrderPaymentCreateForm from './mainorderpayment/MainOrderPayment.createform';
+import MainOrderPaymentTable from './mainorderpayment/MainOrderPayment.table';
+import MainOrderPaymentService from './mainorderpayment/MainOrderPayment.service';
+import MainOrderPaymentUpdateForm from './mainorderpayment/MainOrderPayment.updateform';
+import MainOrderBase from './mainorder/MainOrder.base';
+import MainOrderBizApp from './mainorder/MainOrder.app';
+import MainOrderModel from './mainorder/MainOrder.model';
+import MainOrderDashboard from './mainorder/MainOrder.dashboard';
+import MainOrderConfirmationTable from './mainorder/MainOrder.confirmmationtable';
+import MainOrderSearch from './mainorder/MainOrder.search';
+import MainOrderSearchForm from './mainorder/MainOrder.searchform';
+import MainOrderCreateForm from './mainorder/MainOrder.createform';
+import MainOrderTable from './mainorder/MainOrder.table';
+import MainOrderService from './mainorder/MainOrder.service';
+import MainOrderUpdateForm from './mainorder/MainOrder.updateform';
+import BookBorrowConfigurationBase from './bookborrowconfiguration/BookBorrowConfiguration.base';
+import BookBorrowConfigurationBizApp from './bookborrowconfiguration/BookBorrowConfiguration.app';
+import BookBorrowConfigurationModel from './bookborrowconfiguration/BookBorrowConfiguration.model';
+import BookBorrowConfigurationDashboard from './bookborrowconfiguration/BookBorrowConfiguration.dashboard';
+import BookBorrowConfigurationConfirmationTable from './bookborrowconfiguration/BookBorrowConfiguration.confirmmationtable';
+import BookBorrowConfigurationSearch from './bookborrowconfiguration/BookBorrowConfiguration.search';
+import BookBorrowConfigurationSearchForm from './bookborrowconfiguration/BookBorrowConfiguration.searchform';
+import BookBorrowConfigurationCreateForm from './bookborrowconfiguration/BookBorrowConfiguration.createform';
+import BookBorrowConfigurationTable from './bookborrowconfiguration/BookBorrowConfiguration.table';
+import BookBorrowConfigurationService from './bookborrowconfiguration/BookBorrowConfiguration.service';
+import BookBorrowConfigurationUpdateForm from './bookborrowconfiguration/BookBorrowConfiguration.updateform';
+import BookBase from './book/Book.base';
+import BookBizApp from './book/Book.app';
+import BookModel from './book/Book.model';
+import BookDashboard from './book/Book.dashboard';
+import BookConfirmationTable from './book/Book.confirmmationtable';
+import BookSearch from './book/Book.search';
+import BookSearchForm from './book/Book.searchform';
+import BookCreateForm from './book/Book.createform';
+import BookTable from './book/Book.table';
+import BookService from './book/Book.service';
+import BookUpdateForm from './book/Book.updateform';
+import PrinterBase from './printer/Printer.base';
+import PrinterBizApp from './printer/Printer.app';
+import PrinterModel from './printer/Printer.model';
+import PrinterDashboard from './printer/Printer.dashboard';
+import PrinterConfirmationTable from './printer/Printer.confirmmationtable';
+import PrinterSearch from './printer/Printer.search';
+import PrinterSearchForm from './printer/Printer.searchform';
+import PrinterCreateForm from './printer/Printer.createform';
+import PrinterTable from './printer/Printer.table';
+import PrinterService from './printer/Printer.service';
+import PrinterUpdateForm from './printer/Printer.updateform';
+import PrinterTaskBase from './printertask/PrinterTask.base';
+import PrinterTaskBizApp from './printertask/PrinterTask.app';
+import PrinterTaskModel from './printertask/PrinterTask.model';
+import PrinterTaskDashboard from './printertask/PrinterTask.dashboard';
+import PrinterTaskConfirmationTable from './printertask/PrinterTask.confirmmationtable';
+import PrinterTaskSearch from './printertask/PrinterTask.search';
+import PrinterTaskSearchForm from './printertask/PrinterTask.searchform';
+import PrinterTaskCreateForm from './printertask/PrinterTask.createform';
+import PrinterTaskTable from './printertask/PrinterTask.table';
+import PrinterTaskService from './printertask/PrinterTask.service';
+import PrinterTaskUpdateForm from './printertask/PrinterTask.updateform';
+import BookCopyStatusBase from './bookcopystatus/BookCopyStatus.base';
+import BookCopyStatusBizApp from './bookcopystatus/BookCopyStatus.app';
+import BookCopyStatusModel from './bookcopystatus/BookCopyStatus.model';
+import BookCopyStatusDashboard from './bookcopystatus/BookCopyStatus.dashboard';
+import BookCopyStatusConfirmationTable from './bookcopystatus/BookCopyStatus.confirmmationtable';
+import BookCopyStatusSearch from './bookcopystatus/BookCopyStatus.search';
+import BookCopyStatusSearchForm from './bookcopystatus/BookCopyStatus.searchform';
+import BookCopyStatusCreateForm from './bookcopystatus/BookCopyStatus.createform';
+import BookCopyStatusTable from './bookcopystatus/BookCopyStatus.table';
+import BookCopyStatusService from './bookcopystatus/BookCopyStatus.service';
+import BookCopyStatusUpdateForm from './bookcopystatus/BookCopyStatus.updateform';
+import BookCopyBase from './bookcopy/BookCopy.base';
+import BookCopyBizApp from './bookcopy/BookCopy.app';
+import BookCopyModel from './bookcopy/BookCopy.model';
+import BookCopyDashboard from './bookcopy/BookCopy.dashboard';
+import BookCopyConfirmationTable from './bookcopy/BookCopy.confirmmationtable';
+import BookCopySearch from './bookcopy/BookCopy.search';
+import BookCopySearchForm from './bookcopy/BookCopy.searchform';
+import BookCopyCreateForm from './bookcopy/BookCopy.createform';
+import BookCopyTable from './bookcopy/BookCopy.table';
+import BookCopyService from './bookcopy/BookCopy.service';
+import BookCopyUpdateForm from './bookcopy/BookCopy.updateform';
+import BookCopySkuBase from './bookcopysku/BookCopySku.base';
+import BookCopySkuBizApp from './bookcopysku/BookCopySku.app';
+import BookCopySkuModel from './bookcopysku/BookCopySku.model';
+import BookCopySkuDashboard from './bookcopysku/BookCopySku.dashboard';
+import BookCopySkuConfirmationTable from './bookcopysku/BookCopySku.confirmmationtable';
+import BookCopySkuSearch from './bookcopysku/BookCopySku.search';
+import BookCopySkuSearchForm from './bookcopysku/BookCopySku.searchform';
+import BookCopySkuCreateForm from './bookcopysku/BookCopySku.createform';
+import BookCopySkuTable from './bookcopysku/BookCopySku.table';
+import BookCopySkuService from './bookcopysku/BookCopySku.service';
+import BookCopySkuUpdateForm from './bookcopysku/BookCopySku.updateform';
+import BookCopyCheckPlanBase from './bookcopycheckplan/BookCopyCheckPlan.base';
+import BookCopyCheckPlanBizApp from './bookcopycheckplan/BookCopyCheckPlan.app';
+import BookCopyCheckPlanModel from './bookcopycheckplan/BookCopyCheckPlan.model';
+import BookCopyCheckPlanDashboard from './bookcopycheckplan/BookCopyCheckPlan.dashboard';
+import BookCopyCheckPlanConfirmationTable from './bookcopycheckplan/BookCopyCheckPlan.confirmmationtable';
+import BookCopyCheckPlanSearch from './bookcopycheckplan/BookCopyCheckPlan.search';
+import BookCopyCheckPlanSearchForm from './bookcopycheckplan/BookCopyCheckPlan.searchform';
+import BookCopyCheckPlanCreateForm from './bookcopycheckplan/BookCopyCheckPlan.createform';
+import BookCopyCheckPlanTable from './bookcopycheckplan/BookCopyCheckPlan.table';
+import BookCopyCheckPlanService from './bookcopycheckplan/BookCopyCheckPlan.service';
+import BookCopyCheckPlanUpdateForm from './bookcopycheckplan/BookCopyCheckPlan.updateform';
+import BookCopyCheckStatusBase from './bookcopycheckstatus/BookCopyCheckStatus.base';
+import BookCopyCheckStatusBizApp from './bookcopycheckstatus/BookCopyCheckStatus.app';
+import BookCopyCheckStatusModel from './bookcopycheckstatus/BookCopyCheckStatus.model';
+import BookCopyCheckStatusDashboard from './bookcopycheckstatus/BookCopyCheckStatus.dashboard';
+import BookCopyCheckStatusConfirmationTable from './bookcopycheckstatus/BookCopyCheckStatus.confirmmationtable';
+import BookCopyCheckStatusSearch from './bookcopycheckstatus/BookCopyCheckStatus.search';
+import BookCopyCheckStatusSearchForm from './bookcopycheckstatus/BookCopyCheckStatus.searchform';
+import BookCopyCheckStatusCreateForm from './bookcopycheckstatus/BookCopyCheckStatus.createform';
+import BookCopyCheckStatusTable from './bookcopycheckstatus/BookCopyCheckStatus.table';
+import BookCopyCheckStatusService from './bookcopycheckstatus/BookCopyCheckStatus.service';
+import BookCopyCheckStatusUpdateForm from './bookcopycheckstatus/BookCopyCheckStatus.updateform';
+import BookCopyCheckRecordBase from './bookcopycheckrecord/BookCopyCheckRecord.base';
+import BookCopyCheckRecordBizApp from './bookcopycheckrecord/BookCopyCheckRecord.app';
+import BookCopyCheckRecordModel from './bookcopycheckrecord/BookCopyCheckRecord.model';
+import BookCopyCheckRecordDashboard from './bookcopycheckrecord/BookCopyCheckRecord.dashboard';
+import BookCopyCheckRecordConfirmationTable from './bookcopycheckrecord/BookCopyCheckRecord.confirmmationtable';
+import BookCopyCheckRecordSearch from './bookcopycheckrecord/BookCopyCheckRecord.search';
+import BookCopyCheckRecordSearchForm from './bookcopycheckrecord/BookCopyCheckRecord.searchform';
+import BookCopyCheckRecordCreateForm from './bookcopycheckrecord/BookCopyCheckRecord.createform';
+import BookCopyCheckRecordTable from './bookcopycheckrecord/BookCopyCheckRecord.table';
+import BookCopyCheckRecordService from './bookcopycheckrecord/BookCopyCheckRecord.service';
+import BookCopyCheckRecordUpdateForm from './bookcopycheckrecord/BookCopyCheckRecord.updateform';
+import BookCopyOperationRecordBase from './bookcopyoperationrecord/BookCopyOperationRecord.base';
+import BookCopyOperationRecordBizApp from './bookcopyoperationrecord/BookCopyOperationRecord.app';
+import BookCopyOperationRecordModel from './bookcopyoperationrecord/BookCopyOperationRecord.model';
+import BookCopyOperationRecordDashboard from './bookcopyoperationrecord/BookCopyOperationRecord.dashboard';
+import BookCopyOperationRecordConfirmationTable from './bookcopyoperationrecord/BookCopyOperationRecord.confirmmationtable';
+import BookCopyOperationRecordSearch from './bookcopyoperationrecord/BookCopyOperationRecord.search';
+import BookCopyOperationRecordSearchForm from './bookcopyoperationrecord/BookCopyOperationRecord.searchform';
+import BookCopyOperationRecordCreateForm from './bookcopyoperationrecord/BookCopyOperationRecord.createform';
+import BookCopyOperationRecordTable from './bookcopyoperationrecord/BookCopyOperationRecord.table';
+import BookCopyOperationRecordService from './bookcopyoperationrecord/BookCopyOperationRecord.service';
+import BookCopyOperationRecordUpdateForm from './bookcopyoperationrecord/BookCopyOperationRecord.updateform';
+import BorrowingHistoryBase from './borrowinghistory/BorrowingHistory.base';
+import BorrowingHistoryBizApp from './borrowinghistory/BorrowingHistory.app';
+import BorrowingHistoryModel from './borrowinghistory/BorrowingHistory.model';
+import BorrowingHistoryDashboard from './borrowinghistory/BorrowingHistory.dashboard';
+import BorrowingHistoryConfirmationTable from './borrowinghistory/BorrowingHistory.confirmmationtable';
+import BorrowingHistorySearch from './borrowinghistory/BorrowingHistory.search';
+import BorrowingHistorySearchForm from './borrowinghistory/BorrowingHistory.searchform';
+import BorrowingHistoryCreateForm from './borrowinghistory/BorrowingHistory.createform';
+import BorrowingHistoryTable from './borrowinghistory/BorrowingHistory.table';
+import BorrowingHistoryService from './borrowinghistory/BorrowingHistory.service';
+import BorrowingHistoryUpdateForm from './borrowinghistory/BorrowingHistory.updateform';
+import BorrowingExpiredSkuBase from './borrowingexpiredsku/BorrowingExpiredSku.base';
+import BorrowingExpiredSkuBizApp from './borrowingexpiredsku/BorrowingExpiredSku.app';
+import BorrowingExpiredSkuModel from './borrowingexpiredsku/BorrowingExpiredSku.model';
+import BorrowingExpiredSkuDashboard from './borrowingexpiredsku/BorrowingExpiredSku.dashboard';
+import BorrowingExpiredSkuConfirmationTable from './borrowingexpiredsku/BorrowingExpiredSku.confirmmationtable';
+import BorrowingExpiredSkuSearch from './borrowingexpiredsku/BorrowingExpiredSku.search';
+import BorrowingExpiredSkuSearchForm from './borrowingexpiredsku/BorrowingExpiredSku.searchform';
+import BorrowingExpiredSkuCreateForm from './borrowingexpiredsku/BorrowingExpiredSku.createform';
+import BorrowingExpiredSkuTable from './borrowingexpiredsku/BorrowingExpiredSku.table';
+import BorrowingExpiredSkuService from './borrowingexpiredsku/BorrowingExpiredSku.service';
+import BorrowingExpiredSkuUpdateForm from './borrowingexpiredsku/BorrowingExpiredSku.updateform';
+import BookReviewTypeBase from './bookreviewtype/BookReviewType.base';
+import BookReviewTypeBizApp from './bookreviewtype/BookReviewType.app';
+import BookReviewTypeModel from './bookreviewtype/BookReviewType.model';
+import BookReviewTypeDashboard from './bookreviewtype/BookReviewType.dashboard';
+import BookReviewTypeConfirmationTable from './bookreviewtype/BookReviewType.confirmmationtable';
+import BookReviewTypeSearch from './bookreviewtype/BookReviewType.search';
+import BookReviewTypeSearchForm from './bookreviewtype/BookReviewType.searchform';
+import BookReviewTypeCreateForm from './bookreviewtype/BookReviewType.createform';
+import BookReviewTypeTable from './bookreviewtype/BookReviewType.table';
+import BookReviewTypeService from './bookreviewtype/BookReviewType.service';
+import BookReviewTypeUpdateForm from './bookreviewtype/BookReviewType.updateform';
+import BookReviewBase from './bookreview/BookReview.base';
+import BookReviewBizApp from './bookreview/BookReview.app';
+import BookReviewModel from './bookreview/BookReview.model';
+import BookReviewDashboard from './bookreview/BookReview.dashboard';
+import BookReviewConfirmationTable from './bookreview/BookReview.confirmmationtable';
+import BookReviewSearch from './bookreview/BookReview.search';
+import BookReviewSearchForm from './bookreview/BookReview.searchform';
+import BookReviewCreateForm from './bookreview/BookReview.createform';
+import BookReviewTable from './bookreview/BookReview.table';
+import BookReviewService from './bookreview/BookReview.service';
+import BookReviewUpdateForm from './bookreview/BookReview.updateform';
+import BookReviewLikeBase from './bookreviewlike/BookReviewLike.base';
+import BookReviewLikeBizApp from './bookreviewlike/BookReviewLike.app';
+import BookReviewLikeModel from './bookreviewlike/BookReviewLike.model';
+import BookReviewLikeDashboard from './bookreviewlike/BookReviewLike.dashboard';
+import BookReviewLikeConfirmationTable from './bookreviewlike/BookReviewLike.confirmmationtable';
+import BookReviewLikeSearch from './bookreviewlike/BookReviewLike.search';
+import BookReviewLikeSearchForm from './bookreviewlike/BookReviewLike.searchform';
+import BookReviewLikeCreateForm from './bookreviewlike/BookReviewLike.createform';
+import BookReviewLikeTable from './bookreviewlike/BookReviewLike.table';
+import BookReviewLikeService from './bookreviewlike/BookReviewLike.service';
+import BookReviewLikeUpdateForm from './bookreviewlike/BookReviewLike.updateform';
+import BookCopySharingApplicationBase from './bookcopysharingapplication/BookCopySharingApplication.base';
+import BookCopySharingApplicationBizApp from './bookcopysharingapplication/BookCopySharingApplication.app';
+import BookCopySharingApplicationModel from './bookcopysharingapplication/BookCopySharingApplication.model';
+import BookCopySharingApplicationDashboard from './bookcopysharingapplication/BookCopySharingApplication.dashboard';
+import BookCopySharingApplicationConfirmationTable from './bookcopysharingapplication/BookCopySharingApplication.confirmmationtable';
+import BookCopySharingApplicationSearch from './bookcopysharingapplication/BookCopySharingApplication.search';
+import BookCopySharingApplicationSearchForm from './bookcopysharingapplication/BookCopySharingApplication.searchform';
+import BookCopySharingApplicationCreateForm from './bookcopysharingapplication/BookCopySharingApplication.createform';
+import BookCopySharingApplicationTable from './bookcopysharingapplication/BookCopySharingApplication.table';
+import BookCopySharingApplicationService from './bookcopysharingapplication/BookCopySharingApplication.service';
+import BookCopySharingApplicationUpdateForm from './bookcopysharingapplication/BookCopySharingApplication.updateform';
+import PlatformAccountBase from './platformaccount/PlatformAccount.base';
+import PlatformAccountBizApp from './platformaccount/PlatformAccount.app';
+import PlatformAccountModel from './platformaccount/PlatformAccount.model';
+import PlatformAccountDashboard from './platformaccount/PlatformAccount.dashboard';
+import PlatformAccountConfirmationTable from './platformaccount/PlatformAccount.confirmmationtable';
+import PlatformAccountSearch from './platformaccount/PlatformAccount.search';
+import PlatformAccountSearchForm from './platformaccount/PlatformAccount.searchform';
+import PlatformAccountCreateForm from './platformaccount/PlatformAccount.createform';
+import PlatformAccountTable from './platformaccount/PlatformAccount.table';
+import PlatformAccountService from './platformaccount/PlatformAccount.service';
+import PlatformAccountUpdateForm from './platformaccount/PlatformAccount.updateform';
+import PlatformAccountDetailsBase from './platformaccountdetails/PlatformAccountDetails.base';
+import PlatformAccountDetailsBizApp from './platformaccountdetails/PlatformAccountDetails.app';
+import PlatformAccountDetailsModel from './platformaccountdetails/PlatformAccountDetails.model';
+import PlatformAccountDetailsDashboard from './platformaccountdetails/PlatformAccountDetails.dashboard';
+import PlatformAccountDetailsConfirmationTable from './platformaccountdetails/PlatformAccountDetails.confirmmationtable';
+import PlatformAccountDetailsSearch from './platformaccountdetails/PlatformAccountDetails.search';
+import PlatformAccountDetailsSearchForm from './platformaccountdetails/PlatformAccountDetails.searchform';
+import PlatformAccountDetailsCreateForm from './platformaccountdetails/PlatformAccountDetails.createform';
+import PlatformAccountDetailsTable from './platformaccountdetails/PlatformAccountDetails.table';
+import PlatformAccountDetailsService from './platformaccountdetails/PlatformAccountDetails.service';
+import PlatformAccountDetailsUpdateForm from './platformaccountdetails/PlatformAccountDetails.updateform';
+import FundationAccountBase from './fundationaccount/FundationAccount.base';
+import FundationAccountBizApp from './fundationaccount/FundationAccount.app';
+import FundationAccountModel from './fundationaccount/FundationAccount.model';
+import FundationAccountDashboard from './fundationaccount/FundationAccount.dashboard';
+import FundationAccountConfirmationTable from './fundationaccount/FundationAccount.confirmmationtable';
+import FundationAccountSearch from './fundationaccount/FundationAccount.search';
+import FundationAccountSearchForm from './fundationaccount/FundationAccount.searchform';
+import FundationAccountCreateForm from './fundationaccount/FundationAccount.createform';
+import FundationAccountTable from './fundationaccount/FundationAccount.table';
+import FundationAccountService from './fundationaccount/FundationAccount.service';
+import FundationAccountUpdateForm from './fundationaccount/FundationAccount.updateform';
+import FundationAccountDetailsBase from './fundationaccountdetails/FundationAccountDetails.base';
+import FundationAccountDetailsBizApp from './fundationaccountdetails/FundationAccountDetails.app';
+import FundationAccountDetailsModel from './fundationaccountdetails/FundationAccountDetails.model';
+import FundationAccountDetailsDashboard from './fundationaccountdetails/FundationAccountDetails.dashboard';
+import FundationAccountDetailsConfirmationTable from './fundationaccountdetails/FundationAccountDetails.confirmmationtable';
+import FundationAccountDetailsSearch from './fundationaccountdetails/FundationAccountDetails.search';
+import FundationAccountDetailsSearchForm from './fundationaccountdetails/FundationAccountDetails.searchform';
+import FundationAccountDetailsCreateForm from './fundationaccountdetails/FundationAccountDetails.createform';
+import FundationAccountDetailsTable from './fundationaccountdetails/FundationAccountDetails.table';
+import FundationAccountDetailsService from './fundationaccountdetails/FundationAccountDetails.service';
+import FundationAccountDetailsUpdateForm from './fundationaccountdetails/FundationAccountDetails.updateform';
+import StoreAccountBase from './storeaccount/StoreAccount.base';
+import StoreAccountBizApp from './storeaccount/StoreAccount.app';
+import StoreAccountModel from './storeaccount/StoreAccount.model';
+import StoreAccountDashboard from './storeaccount/StoreAccount.dashboard';
+import StoreAccountConfirmationTable from './storeaccount/StoreAccount.confirmmationtable';
+import StoreAccountSearch from './storeaccount/StoreAccount.search';
+import StoreAccountSearchForm from './storeaccount/StoreAccount.searchform';
+import StoreAccountCreateForm from './storeaccount/StoreAccount.createform';
+import StoreAccountTable from './storeaccount/StoreAccount.table';
+import StoreAccountService from './storeaccount/StoreAccount.service';
+import StoreAccountUpdateForm from './storeaccount/StoreAccount.updateform';
+import StoreAccountDetailsBase from './storeaccountdetails/StoreAccountDetails.base';
+import StoreAccountDetailsBizApp from './storeaccountdetails/StoreAccountDetails.app';
+import StoreAccountDetailsModel from './storeaccountdetails/StoreAccountDetails.model';
+import StoreAccountDetailsDashboard from './storeaccountdetails/StoreAccountDetails.dashboard';
+import StoreAccountDetailsConfirmationTable from './storeaccountdetails/StoreAccountDetails.confirmmationtable';
+import StoreAccountDetailsSearch from './storeaccountdetails/StoreAccountDetails.search';
+import StoreAccountDetailsSearchForm from './storeaccountdetails/StoreAccountDetails.searchform';
+import StoreAccountDetailsCreateForm from './storeaccountdetails/StoreAccountDetails.createform';
+import StoreAccountDetailsTable from './storeaccountdetails/StoreAccountDetails.table';
+import StoreAccountDetailsService from './storeaccountdetails/StoreAccountDetails.service';
+import StoreAccountDetailsUpdateForm from './storeaccountdetails/StoreAccountDetails.updateform';
+import CustomerAccountBase from './customeraccount/CustomerAccount.base';
+import CustomerAccountBizApp from './customeraccount/CustomerAccount.app';
+import CustomerAccountModel from './customeraccount/CustomerAccount.model';
+import CustomerAccountDashboard from './customeraccount/CustomerAccount.dashboard';
+import CustomerAccountConfirmationTable from './customeraccount/CustomerAccount.confirmmationtable';
+import CustomerAccountSearch from './customeraccount/CustomerAccount.search';
+import CustomerAccountSearchForm from './customeraccount/CustomerAccount.searchform';
+import CustomerAccountCreateForm from './customeraccount/CustomerAccount.createform';
+import CustomerAccountTable from './customeraccount/CustomerAccount.table';
+import CustomerAccountService from './customeraccount/CustomerAccount.service';
+import CustomerAccountUpdateForm from './customeraccount/CustomerAccount.updateform';
+import CustomerAccountDetailsBase from './customeraccountdetails/CustomerAccountDetails.base';
+import CustomerAccountDetailsBizApp from './customeraccountdetails/CustomerAccountDetails.app';
+import CustomerAccountDetailsModel from './customeraccountdetails/CustomerAccountDetails.model';
+import CustomerAccountDetailsDashboard from './customeraccountdetails/CustomerAccountDetails.dashboard';
+import CustomerAccountDetailsConfirmationTable from './customeraccountdetails/CustomerAccountDetails.confirmmationtable';
+import CustomerAccountDetailsSearch from './customeraccountdetails/CustomerAccountDetails.search';
+import CustomerAccountDetailsSearchForm from './customeraccountdetails/CustomerAccountDetails.searchform';
+import CustomerAccountDetailsCreateForm from './customeraccountdetails/CustomerAccountDetails.createform';
+import CustomerAccountDetailsTable from './customeraccountdetails/CustomerAccountDetails.table';
+import CustomerAccountDetailsService from './customeraccountdetails/CustomerAccountDetails.service';
+import CustomerAccountDetailsUpdateForm from './customeraccountdetails/CustomerAccountDetails.updateform';
+import StoreBase from './store/Store.base';
+import StoreBizApp from './store/Store.app';
+import StoreModel from './store/Store.model';
+import StoreDashboard from './store/Store.dashboard';
+import StoreConfirmationTable from './store/Store.confirmmationtable';
+import StoreSearch from './store/Store.search';
+import StoreSearchForm from './store/Store.searchform';
+import StoreCreateForm from './store/Store.createform';
+import StoreTable from './store/Store.table';
+import StoreService from './store/Store.service';
+import StoreUpdateForm from './store/Store.updateform';
+import WorkshopBase from './workshop/Workshop.base';
+import WorkshopBizApp from './workshop/Workshop.app';
+import WorkshopModel from './workshop/Workshop.model';
+import WorkshopDashboard from './workshop/Workshop.dashboard';
+import WorkshopConfirmationTable from './workshop/Workshop.confirmmationtable';
+import WorkshopSearch from './workshop/Workshop.search';
+import WorkshopSearchForm from './workshop/Workshop.searchform';
+import WorkshopCreateForm from './workshop/Workshop.createform';
+import WorkshopTable from './workshop/Workshop.table';
+import WorkshopService from './workshop/Workshop.service';
+import WorkshopUpdateForm from './workshop/Workshop.updateform';
+import WorkshopRegisterHistoryBase from './workshopregisterhistory/WorkshopRegisterHistory.base';
+import WorkshopRegisterHistoryBizApp from './workshopregisterhistory/WorkshopRegisterHistory.app';
+import WorkshopRegisterHistoryModel from './workshopregisterhistory/WorkshopRegisterHistory.model';
+import WorkshopRegisterHistoryDashboard from './workshopregisterhistory/WorkshopRegisterHistory.dashboard';
+import WorkshopRegisterHistoryConfirmationTable from './workshopregisterhistory/WorkshopRegisterHistory.confirmmationtable';
+import WorkshopRegisterHistorySearch from './workshopregisterhistory/WorkshopRegisterHistory.search';
+import WorkshopRegisterHistorySearchForm from './workshopregisterhistory/WorkshopRegisterHistory.searchform';
+import WorkshopRegisterHistoryCreateForm from './workshopregisterhistory/WorkshopRegisterHistory.createform';
+import WorkshopRegisterHistoryTable from './workshopregisterhistory/WorkshopRegisterHistory.table';
+import WorkshopRegisterHistoryService from './workshopregisterhistory/WorkshopRegisterHistory.service';
+import WorkshopRegisterHistoryUpdateForm from './workshopregisterhistory/WorkshopRegisterHistory.updateform';
+import WorkshopReviewBase from './workshopreview/WorkshopReview.base';
+import WorkshopReviewBizApp from './workshopreview/WorkshopReview.app';
+import WorkshopReviewModel from './workshopreview/WorkshopReview.model';
+import WorkshopReviewDashboard from './workshopreview/WorkshopReview.dashboard';
+import WorkshopReviewConfirmationTable from './workshopreview/WorkshopReview.confirmmationtable';
+import WorkshopReviewSearch from './workshopreview/WorkshopReview.search';
+import WorkshopReviewSearchForm from './workshopreview/WorkshopReview.searchform';
+import WorkshopReviewCreateForm from './workshopreview/WorkshopReview.createform';
+import WorkshopReviewTable from './workshopreview/WorkshopReview.table';
+import WorkshopReviewService from './workshopreview/WorkshopReview.service';
+import WorkshopReviewUpdateForm from './workshopreview/WorkshopReview.updateform';
+import WorkshopLikeBase from './workshoplike/WorkshopLike.base';
+import WorkshopLikeBizApp from './workshoplike/WorkshopLike.app';
+import WorkshopLikeModel from './workshoplike/WorkshopLike.model';
+import WorkshopLikeDashboard from './workshoplike/WorkshopLike.dashboard';
+import WorkshopLikeConfirmationTable from './workshoplike/WorkshopLike.confirmmationtable';
+import WorkshopLikeSearch from './workshoplike/WorkshopLike.search';
+import WorkshopLikeSearchForm from './workshoplike/WorkshopLike.searchform';
+import WorkshopLikeCreateForm from './workshoplike/WorkshopLike.createform';
+import WorkshopLikeTable from './workshoplike/WorkshopLike.table';
+import WorkshopLikeService from './workshoplike/WorkshopLike.service';
+import WorkshopLikeUpdateForm from './workshoplike/WorkshopLike.updateform';
+import CustomerBase from './customer/Customer.base';
+import CustomerBizApp from './customer/Customer.app';
+import CustomerModel from './customer/Customer.model';
+import CustomerDashboard from './customer/Customer.dashboard';
+import CustomerConfirmationTable from './customer/Customer.confirmmationtable';
+import CustomerSearch from './customer/Customer.search';
+import CustomerSearchForm from './customer/Customer.searchform';
+import CustomerCreateForm from './customer/Customer.createform';
+import CustomerTable from './customer/Customer.table';
+import CustomerService from './customer/Customer.service';
+import CustomerUpdateForm from './customer/Customer.updateform';
+import EmployeeBase from './employee/Employee.base';
+import EmployeeBizApp from './employee/Employee.app';
+import EmployeeModel from './employee/Employee.model';
+import EmployeeDashboard from './employee/Employee.dashboard';
+import EmployeeConfirmationTable from './employee/Employee.confirmmationtable';
+import EmployeeSearch from './employee/Employee.search';
+import EmployeeSearchForm from './employee/Employee.searchform';
+import EmployeeCreateForm from './employee/Employee.createform';
+import EmployeeTable from './employee/Employee.table';
+import EmployeeService from './employee/Employee.service';
+import EmployeeUpdateForm from './employee/Employee.updateform';
+import EmployeeWorkingStoreBase from './employeeworkingstore/EmployeeWorkingStore.base';
+import EmployeeWorkingStoreBizApp from './employeeworkingstore/EmployeeWorkingStore.app';
+import EmployeeWorkingStoreModel from './employeeworkingstore/EmployeeWorkingStore.model';
+import EmployeeWorkingStoreDashboard from './employeeworkingstore/EmployeeWorkingStore.dashboard';
+import EmployeeWorkingStoreConfirmationTable from './employeeworkingstore/EmployeeWorkingStore.confirmmationtable';
+import EmployeeWorkingStoreSearch from './employeeworkingstore/EmployeeWorkingStore.search';
+import EmployeeWorkingStoreSearchForm from './employeeworkingstore/EmployeeWorkingStore.searchform';
+import EmployeeWorkingStoreCreateForm from './employeeworkingstore/EmployeeWorkingStore.createform';
+import EmployeeWorkingStoreTable from './employeeworkingstore/EmployeeWorkingStore.table';
+import EmployeeWorkingStoreService from './employeeworkingstore/EmployeeWorkingStore.service';
+import EmployeeWorkingStoreUpdateForm from './employeeworkingstore/EmployeeWorkingStore.updateform';
+import RoleBase from './role/Role.base';
+import RoleBizApp from './role/Role.app';
+import RoleModel from './role/Role.model';
+import RoleDashboard from './role/Role.dashboard';
+import RoleConfirmationTable from './role/Role.confirmmationtable';
+import RoleSearch from './role/Role.search';
+import RoleSearchForm from './role/Role.searchform';
+import RoleCreateForm from './role/Role.createform';
+import RoleTable from './role/Role.table';
+import RoleService from './role/Role.service';
+import RoleUpdateForm from './role/Role.updateform';
 import UserDomainBase from './userdomain/UserDomain.base';
 import UserDomainBizApp from './userdomain/UserDomain.app';
 import UserDomainModel from './userdomain/UserDomain.model';
@@ -551,10 +594,6 @@ import UserDomainSearch from './userdomain/UserDomain.search';
 import UserDomainSearchForm from './userdomain/UserDomain.searchform';
 import UserDomainCreateForm from './userdomain/UserDomain.createform';
 import UserDomainTable from './userdomain/UserDomain.table';
-import UserDomainEditTable from './userdomain/UserDomain.edittable';
-import UserDomainEditDetail from './userdomain/UserDomain.editdetail';
-import UserDomainViewTable from './userdomain/UserDomain.viewtable';
-import UserDomainViewDetail from './userdomain/UserDomain.viewdetail';
 import UserDomainService from './userdomain/UserDomain.service';
 import UserDomainUpdateForm from './userdomain/UserDomain.updateform';
 import SecUserBase from './secuser/SecUser.base';
@@ -566,10 +605,6 @@ import SecUserSearch from './secuser/SecUser.search';
 import SecUserSearchForm from './secuser/SecUser.searchform';
 import SecUserCreateForm from './secuser/SecUser.createform';
 import SecUserTable from './secuser/SecUser.table';
-import SecUserEditTable from './secuser/SecUser.edittable';
-import SecUserEditDetail from './secuser/SecUser.editdetail';
-import SecUserViewTable from './secuser/SecUser.viewtable';
-import SecUserViewDetail from './secuser/SecUser.viewdetail';
 import SecUserService from './secuser/SecUser.service';
 import SecUserUpdateForm from './secuser/SecUser.updateform';
 import SecUserBlockingBase from './secuserblocking/SecUserBlocking.base';
@@ -581,10 +616,6 @@ import SecUserBlockingSearch from './secuserblocking/SecUserBlocking.search';
 import SecUserBlockingSearchForm from './secuserblocking/SecUserBlocking.searchform';
 import SecUserBlockingCreateForm from './secuserblocking/SecUserBlocking.createform';
 import SecUserBlockingTable from './secuserblocking/SecUserBlocking.table';
-import SecUserBlockingEditTable from './secuserblocking/SecUserBlocking.edittable';
-import SecUserBlockingEditDetail from './secuserblocking/SecUserBlocking.editdetail';
-import SecUserBlockingViewTable from './secuserblocking/SecUserBlocking.viewtable';
-import SecUserBlockingViewDetail from './secuserblocking/SecUserBlocking.viewdetail';
 import SecUserBlockingService from './secuserblocking/SecUserBlocking.service';
 import SecUserBlockingUpdateForm from './secuserblocking/SecUserBlocking.updateform';
 import UserAppBase from './userapp/UserApp.base';
@@ -596,10 +627,6 @@ import UserAppSearch from './userapp/UserApp.search';
 import UserAppSearchForm from './userapp/UserApp.searchform';
 import UserAppCreateForm from './userapp/UserApp.createform';
 import UserAppTable from './userapp/UserApp.table';
-import UserAppEditTable from './userapp/UserApp.edittable';
-import UserAppEditDetail from './userapp/UserApp.editdetail';
-import UserAppViewTable from './userapp/UserApp.viewtable';
-import UserAppViewDetail from './userapp/UserApp.viewdetail';
 import UserAppService from './userapp/UserApp.service';
 import UserAppUpdateForm from './userapp/UserApp.updateform';
 import ObjectAccessBase from './objectaccess/ObjectAccess.base';
@@ -611,10 +638,6 @@ import ObjectAccessSearch from './objectaccess/ObjectAccess.search';
 import ObjectAccessSearchForm from './objectaccess/ObjectAccess.searchform';
 import ObjectAccessCreateForm from './objectaccess/ObjectAccess.createform';
 import ObjectAccessTable from './objectaccess/ObjectAccess.table';
-import ObjectAccessEditTable from './objectaccess/ObjectAccess.edittable';
-import ObjectAccessEditDetail from './objectaccess/ObjectAccess.editdetail';
-import ObjectAccessViewTable from './objectaccess/ObjectAccess.viewtable';
-import ObjectAccessViewDetail from './objectaccess/ObjectAccess.viewdetail';
 import ObjectAccessService from './objectaccess/ObjectAccess.service';
 import ObjectAccessUpdateForm from './objectaccess/ObjectAccess.updateform';
 import LoginHistoryBase from './loginhistory/LoginHistory.base';
@@ -626,10 +649,6 @@ import LoginHistorySearch from './loginhistory/LoginHistory.search';
 import LoginHistorySearchForm from './loginhistory/LoginHistory.searchform';
 import LoginHistoryCreateForm from './loginhistory/LoginHistory.createform';
 import LoginHistoryTable from './loginhistory/LoginHistory.table';
-import LoginHistoryEditTable from './loginhistory/LoginHistory.edittable';
-import LoginHistoryEditDetail from './loginhistory/LoginHistory.editdetail';
-import LoginHistoryViewTable from './loginhistory/LoginHistory.viewtable';
-import LoginHistoryViewDetail from './loginhistory/LoginHistory.viewdetail';
 import LoginHistoryService from './loginhistory/LoginHistory.service';
 import LoginHistoryUpdateForm from './loginhistory/LoginHistory.updateform';
 import GenericFormBase from './genericform/GenericForm.base';
@@ -641,10 +660,6 @@ import GenericFormSearch from './genericform/GenericForm.search';
 import GenericFormSearchForm from './genericform/GenericForm.searchform';
 import GenericFormCreateForm from './genericform/GenericForm.createform';
 import GenericFormTable from './genericform/GenericForm.table';
-import GenericFormEditTable from './genericform/GenericForm.edittable';
-import GenericFormEditDetail from './genericform/GenericForm.editdetail';
-import GenericFormViewTable from './genericform/GenericForm.viewtable';
-import GenericFormViewDetail from './genericform/GenericForm.viewdetail';
 import GenericFormService from './genericform/GenericForm.service';
 import GenericFormUpdateForm from './genericform/GenericForm.updateform';
 import FormMessageBase from './formmessage/FormMessage.base';
@@ -656,10 +671,6 @@ import FormMessageSearch from './formmessage/FormMessage.search';
 import FormMessageSearchForm from './formmessage/FormMessage.searchform';
 import FormMessageCreateForm from './formmessage/FormMessage.createform';
 import FormMessageTable from './formmessage/FormMessage.table';
-import FormMessageEditTable from './formmessage/FormMessage.edittable';
-import FormMessageEditDetail from './formmessage/FormMessage.editdetail';
-import FormMessageViewTable from './formmessage/FormMessage.viewtable';
-import FormMessageViewDetail from './formmessage/FormMessage.viewdetail';
 import FormMessageService from './formmessage/FormMessage.service';
 import FormMessageUpdateForm from './formmessage/FormMessage.updateform';
 import FormFieldMessageBase from './formfieldmessage/FormFieldMessage.base';
@@ -671,10 +682,6 @@ import FormFieldMessageSearch from './formfieldmessage/FormFieldMessage.search';
 import FormFieldMessageSearchForm from './formfieldmessage/FormFieldMessage.searchform';
 import FormFieldMessageCreateForm from './formfieldmessage/FormFieldMessage.createform';
 import FormFieldMessageTable from './formfieldmessage/FormFieldMessage.table';
-import FormFieldMessageEditTable from './formfieldmessage/FormFieldMessage.edittable';
-import FormFieldMessageEditDetail from './formfieldmessage/FormFieldMessage.editdetail';
-import FormFieldMessageViewTable from './formfieldmessage/FormFieldMessage.viewtable';
-import FormFieldMessageViewDetail from './formfieldmessage/FormFieldMessage.viewdetail';
 import FormFieldMessageService from './formfieldmessage/FormFieldMessage.service';
 import FormFieldMessageUpdateForm from './formfieldmessage/FormFieldMessage.updateform';
 import FormFieldBase from './formfield/FormField.base';
@@ -686,10 +693,6 @@ import FormFieldSearch from './formfield/FormField.search';
 import FormFieldSearchForm from './formfield/FormField.searchform';
 import FormFieldCreateForm from './formfield/FormField.createform';
 import FormFieldTable from './formfield/FormField.table';
-import FormFieldEditTable from './formfield/FormField.edittable';
-import FormFieldEditDetail from './formfield/FormField.editdetail';
-import FormFieldViewTable from './formfield/FormField.viewtable';
-import FormFieldViewDetail from './formfield/FormField.viewdetail';
 import FormFieldService from './formfield/FormField.service';
 import FormFieldUpdateForm from './formfield/FormField.updateform';
 import FormActionBase from './formaction/FormAction.base';
@@ -701,51 +704,75 @@ import FormActionSearch from './formaction/FormAction.search';
 import FormActionSearchForm from './formaction/FormAction.searchform';
 import FormActionCreateForm from './formaction/FormAction.createform';
 import FormActionTable from './formaction/FormAction.table';
-import FormActionEditTable from './formaction/FormAction.edittable';
-import FormActionEditDetail from './formaction/FormAction.editdetail';
-import FormActionViewTable from './formaction/FormAction.viewtable';
-import FormActionViewDetail from './formaction/FormAction.viewdetail';
 import FormActionService from './formaction/FormAction.service';
 import FormActionUpdateForm from './formaction/FormAction.updateform';
+import ActionTokenBase from './actiontoken/ActionToken.base';
+import ActionTokenBizApp from './actiontoken/ActionToken.app';
+import ActionTokenModel from './actiontoken/ActionToken.model';
+import ActionTokenDashboard from './actiontoken/ActionToken.dashboard';
+import ActionTokenConfirmationTable from './actiontoken/ActionToken.confirmmationtable';
+import ActionTokenSearch from './actiontoken/ActionToken.search';
+import ActionTokenSearchForm from './actiontoken/ActionToken.searchform';
+import ActionTokenCreateForm from './actiontoken/ActionToken.createform';
+import ActionTokenTable from './actiontoken/ActionToken.table';
+import ActionTokenService from './actiontoken/ActionToken.service';
+import ActionTokenUpdateForm from './actiontoken/ActionToken.updateform';
 
 
 const BizModels = [
-	CommunityModel,
-	InvitationCodeModel,
-	HomePageModel,
-	SlideModel,
-	EncyclopediaItemModel,
-	TaskPageModel,
-	TaskFilterModel,
-	CommunityUserModel,
-	PatientInfoModel,
-	UserSkillModel,
-	MessageFilterModel,
-	UserMessageModel,
-	TaskModel,
-	TaskAssigmentModel,
-	TaskHidingModel,
-	TaskResolvingModel,
-	TaskRewardModel,
-	TaskLikeModel,
-	TaskReplyModel,
-	TaskBestAnswerSettingModel,
-	TaskReplyLikeModel,
-	GroupPageModel,
-	GroupFilterModel,
-	ThreadModel,
-	ThreadHidingModel,
-	ThreadReplyModel,
-	ThreadApprovalModel,
-	ThreadCompletionModel,
-	ThreadCancelingModel,
-	ThreadRegistrationModel,
-	ThreadLikeModel,
-	ThreadReplyLikeModel,
-	FanModel,
-	FollowModel,
-	BonusPointModel,
-	ExperiencePointModel,
+	BookSharingPlatformModel,
+	AvailableTokenModel,
+	AccountManagementModel,
+	ProvinceModel,
+	CityModel,
+	DistrictModel,
+	BookManagementModel,
+	MemberServiceManagementModel,
+	BookTagRecordModel,
+	BookCopySharingBenefitConfigurationModel,
+	BookCopyDonateBenefitConfigurationModel,
+	MemberServiceProductModel,
+	TokenInMemberServiceProductModel,
+	MemberServiceBoundleSkuModel,
+	MemberAccountRechargeProductModel,
+	MemberAccountRechargeSkuModel,
+	LineItemModel,
+	MainOrderPaymentModel,
+	MainOrderModel,
+	BookBorrowConfigurationModel,
+	BookModel,
+	PrinterModel,
+	PrinterTaskModel,
+	BookCopyStatusModel,
+	BookCopyModel,
+	BookCopySkuModel,
+	BookCopyCheckPlanModel,
+	BookCopyCheckStatusModel,
+	BookCopyCheckRecordModel,
+	BookCopyOperationRecordModel,
+	BorrowingHistoryModel,
+	BorrowingExpiredSkuModel,
+	BookReviewTypeModel,
+	BookReviewModel,
+	BookReviewLikeModel,
+	BookCopySharingApplicationModel,
+	PlatformAccountModel,
+	PlatformAccountDetailsModel,
+	FundationAccountModel,
+	FundationAccountDetailsModel,
+	StoreAccountModel,
+	StoreAccountDetailsModel,
+	CustomerAccountModel,
+	CustomerAccountDetailsModel,
+	StoreModel,
+	WorkshopModel,
+	WorkshopRegisterHistoryModel,
+	WorkshopReviewModel,
+	WorkshopLikeModel,
+	CustomerModel,
+	EmployeeModel,
+	EmployeeWorkingStoreModel,
+	RoleModel,
 	UserDomainModel,
 	SecUserModel,
 	SecUserBlockingModel,
@@ -757,6 +784,7 @@ const BizModels = [
 	FormFieldMessageModel,
 	FormFieldModel,
 	FormActionModel,
+	ActionTokenModel,
 
 ]
 
@@ -774,42 +802,59 @@ const unbindBizModels = (app) =>{
 
 const menuLibrary = []
 
-menuLibrary['community'] = CommunityBase.menuData
-menuLibrary['invitationCode'] = InvitationCodeBase.menuData
-menuLibrary['homePage'] = HomePageBase.menuData
-menuLibrary['slide'] = SlideBase.menuData
-menuLibrary['encyclopediaItem'] = EncyclopediaItemBase.menuData
-menuLibrary['taskPage'] = TaskPageBase.menuData
-menuLibrary['taskFilter'] = TaskFilterBase.menuData
-menuLibrary['communityUser'] = CommunityUserBase.menuData
-menuLibrary['patientInfo'] = PatientInfoBase.menuData
-menuLibrary['userSkill'] = UserSkillBase.menuData
-menuLibrary['messageFilter'] = MessageFilterBase.menuData
-menuLibrary['userMessage'] = UserMessageBase.menuData
-menuLibrary['task'] = TaskBase.menuData
-menuLibrary['taskAssigment'] = TaskAssigmentBase.menuData
-menuLibrary['taskHiding'] = TaskHidingBase.menuData
-menuLibrary['taskResolving'] = TaskResolvingBase.menuData
-menuLibrary['taskReward'] = TaskRewardBase.menuData
-menuLibrary['taskLike'] = TaskLikeBase.menuData
-menuLibrary['taskReply'] = TaskReplyBase.menuData
-menuLibrary['taskBestAnswerSetting'] = TaskBestAnswerSettingBase.menuData
-menuLibrary['taskReplyLike'] = TaskReplyLikeBase.menuData
-menuLibrary['groupPage'] = GroupPageBase.menuData
-menuLibrary['groupFilter'] = GroupFilterBase.menuData
-menuLibrary['thread'] = ThreadBase.menuData
-menuLibrary['threadHiding'] = ThreadHidingBase.menuData
-menuLibrary['threadReply'] = ThreadReplyBase.menuData
-menuLibrary['threadApproval'] = ThreadApprovalBase.menuData
-menuLibrary['threadCompletion'] = ThreadCompletionBase.menuData
-menuLibrary['threadCanceling'] = ThreadCancelingBase.menuData
-menuLibrary['threadRegistration'] = ThreadRegistrationBase.menuData
-menuLibrary['threadLike'] = ThreadLikeBase.menuData
-menuLibrary['threadReplyLike'] = ThreadReplyLikeBase.menuData
-menuLibrary['fan'] = FanBase.menuData
-menuLibrary['follow'] = FollowBase.menuData
-menuLibrary['bonusPoint'] = BonusPointBase.menuData
-menuLibrary['experiencePoint'] = ExperiencePointBase.menuData
+menuLibrary['bookSharingPlatform'] = BookSharingPlatformBase.menuData
+menuLibrary['availableToken'] = AvailableTokenBase.menuData
+menuLibrary['accountManagement'] = AccountManagementBase.menuData
+menuLibrary['province'] = ProvinceBase.menuData
+menuLibrary['city'] = CityBase.menuData
+menuLibrary['district'] = DistrictBase.menuData
+menuLibrary['bookManagement'] = BookManagementBase.menuData
+menuLibrary['memberServiceManagement'] = MemberServiceManagementBase.menuData
+menuLibrary['bookTagRecord'] = BookTagRecordBase.menuData
+menuLibrary['bookCopySharingBenefitConfiguration'] = BookCopySharingBenefitConfigurationBase.menuData
+menuLibrary['bookCopyDonateBenefitConfiguration'] = BookCopyDonateBenefitConfigurationBase.menuData
+menuLibrary['memberServiceProduct'] = MemberServiceProductBase.menuData
+menuLibrary['tokenInMemberServiceProduct'] = TokenInMemberServiceProductBase.menuData
+menuLibrary['memberServiceBoundleSku'] = MemberServiceBoundleSkuBase.menuData
+menuLibrary['memberAccountRechargeProduct'] = MemberAccountRechargeProductBase.menuData
+menuLibrary['memberAccountRechargeSku'] = MemberAccountRechargeSkuBase.menuData
+menuLibrary['lineItem'] = LineItemBase.menuData
+menuLibrary['mainOrderPayment'] = MainOrderPaymentBase.menuData
+menuLibrary['mainOrder'] = MainOrderBase.menuData
+menuLibrary['bookBorrowConfiguration'] = BookBorrowConfigurationBase.menuData
+menuLibrary['book'] = BookBase.menuData
+menuLibrary['printer'] = PrinterBase.menuData
+menuLibrary['printerTask'] = PrinterTaskBase.menuData
+menuLibrary['bookCopyStatus'] = BookCopyStatusBase.menuData
+menuLibrary['bookCopy'] = BookCopyBase.menuData
+menuLibrary['bookCopySku'] = BookCopySkuBase.menuData
+menuLibrary['bookCopyCheckPlan'] = BookCopyCheckPlanBase.menuData
+menuLibrary['bookCopyCheckStatus'] = BookCopyCheckStatusBase.menuData
+menuLibrary['bookCopyCheckRecord'] = BookCopyCheckRecordBase.menuData
+menuLibrary['bookCopyOperationRecord'] = BookCopyOperationRecordBase.menuData
+menuLibrary['borrowingHistory'] = BorrowingHistoryBase.menuData
+menuLibrary['borrowingExpiredSku'] = BorrowingExpiredSkuBase.menuData
+menuLibrary['bookReviewType'] = BookReviewTypeBase.menuData
+menuLibrary['bookReview'] = BookReviewBase.menuData
+menuLibrary['bookReviewLike'] = BookReviewLikeBase.menuData
+menuLibrary['bookCopySharingApplication'] = BookCopySharingApplicationBase.menuData
+menuLibrary['platformAccount'] = PlatformAccountBase.menuData
+menuLibrary['platformAccountDetails'] = PlatformAccountDetailsBase.menuData
+menuLibrary['fundationAccount'] = FundationAccountBase.menuData
+menuLibrary['fundationAccountDetails'] = FundationAccountDetailsBase.menuData
+menuLibrary['storeAccount'] = StoreAccountBase.menuData
+menuLibrary['storeAccountDetails'] = StoreAccountDetailsBase.menuData
+menuLibrary['customerAccount'] = CustomerAccountBase.menuData
+menuLibrary['customerAccountDetails'] = CustomerAccountDetailsBase.menuData
+menuLibrary['store'] = StoreBase.menuData
+menuLibrary['workshop'] = WorkshopBase.menuData
+menuLibrary['workshopRegisterHistory'] = WorkshopRegisterHistoryBase.menuData
+menuLibrary['workshopReview'] = WorkshopReviewBase.menuData
+menuLibrary['workshopLike'] = WorkshopLikeBase.menuData
+menuLibrary['customer'] = CustomerBase.menuData
+menuLibrary['employee'] = EmployeeBase.menuData
+menuLibrary['employeeWorkingStore'] = EmployeeWorkingStoreBase.menuData
+menuLibrary['role'] = RoleBase.menuData
 menuLibrary['userDomain'] = UserDomainBase.menuData
 menuLibrary['secUser'] = SecUserBase.menuData
 menuLibrary['secUserBlocking'] = SecUserBlockingBase.menuData
@@ -821,6 +866,7 @@ menuLibrary['formMessage'] = FormMessageBase.menuData
 menuLibrary['formFieldMessage'] = FormFieldMessageBase.menuData
 menuLibrary['formField'] = FormFieldBase.menuData
 menuLibrary['formAction'] = FormActionBase.menuData
+menuLibrary['actionToken'] = ActionTokenBase.menuData
 
 
 const menuDataOf=(type)=>{
@@ -841,53 +887,71 @@ const menuDataOf=(type)=>{
 const ViewMapping = {
 
 
-  'com.terapico.bbt.community.Community': {name:'community'},
-  'com.terapico.bbt.invitationcode.InvitationCode': {name:'invitationCode'},
-  'com.terapico.bbt.homepage.HomePage': {name:'homePage'},
-  'com.terapico.bbt.slide.Slide': {name:'slide'},
-  'com.terapico.bbt.encyclopediaitem.EncyclopediaItem': {name:'encyclopediaItem'},
-  'com.terapico.bbt.taskpage.TaskPage': {name:'taskPage'},
-  'com.terapico.bbt.taskfilter.TaskFilter': {name:'taskFilter'},
-  'com.terapico.bbt.communityuser.CommunityUser': {name:'communityUser'},
-  'com.terapico.bbt.patientinfo.PatientInfo': {name:'patientInfo'},
-  'com.terapico.bbt.userskill.UserSkill': {name:'userSkill'},
-  'com.terapico.bbt.messagefilter.MessageFilter': {name:'messageFilter'},
-  'com.terapico.bbt.usermessage.UserMessage': {name:'userMessage'},
-  'com.terapico.bbt.task.Task': {name:'task'},
-  'com.terapico.bbt.taskassigment.TaskAssigment': {name:'taskAssigment'},
-  'com.terapico.bbt.taskhiding.TaskHiding': {name:'taskHiding'},
-  'com.terapico.bbt.taskresolving.TaskResolving': {name:'taskResolving'},
-  'com.terapico.bbt.taskreward.TaskReward': {name:'taskReward'},
-  'com.terapico.bbt.tasklike.TaskLike': {name:'taskLike'},
-  'com.terapico.bbt.taskreply.TaskReply': {name:'taskReply'},
-  'com.terapico.bbt.taskbestanswersetting.TaskBestAnswerSetting': {name:'taskBestAnswerSetting'},
-  'com.terapico.bbt.taskreplylike.TaskReplyLike': {name:'taskReplyLike'},
-  'com.terapico.bbt.grouppage.GroupPage': {name:'groupPage'},
-  'com.terapico.bbt.groupfilter.GroupFilter': {name:'groupFilter'},
-  'com.terapico.bbt.thread.Thread': {name:'thread'},
-  'com.terapico.bbt.threadhiding.ThreadHiding': {name:'threadHiding'},
-  'com.terapico.bbt.threadreply.ThreadReply': {name:'threadReply'},
-  'com.terapico.bbt.threadapproval.ThreadApproval': {name:'threadApproval'},
-  'com.terapico.bbt.threadcompletion.ThreadCompletion': {name:'threadCompletion'},
-  'com.terapico.bbt.threadcanceling.ThreadCanceling': {name:'threadCanceling'},
-  'com.terapico.bbt.threadregistration.ThreadRegistration': {name:'threadRegistration'},
-  'com.terapico.bbt.threadlike.ThreadLike': {name:'threadLike'},
-  'com.terapico.bbt.threadreplylike.ThreadReplyLike': {name:'threadReplyLike'},
-  'com.terapico.bbt.fan.Fan': {name:'fan'},
-  'com.terapico.bbt.follow.Follow': {name:'follow'},
-  'com.terapico.bbt.bonuspoint.BonusPoint': {name:'bonusPoint'},
-  'com.terapico.bbt.experiencepoint.ExperiencePoint': {name:'experiencePoint'},
-  'com.terapico.bbt.userdomain.UserDomain': {name:'userDomain'},
-  'com.terapico.bbt.secuser.SecUser': {name:'secUser'},
-  'com.terapico.bbt.secuserblocking.SecUserBlocking': {name:'secUserBlocking'},
-  'com.terapico.bbt.userapp.UserApp': {name:'userApp'},
-  'com.terapico.bbt.objectaccess.ObjectAccess': {name:'objectAccess'},
-  'com.terapico.bbt.loginhistory.LoginHistory': {name:'loginHistory'},
-  'com.terapico.bbt.genericform.GenericForm': {name:'genericForm'},
-  'com.terapico.bbt.formmessage.FormMessage': {name:'formMessage'},
-  'com.terapico.bbt.formfieldmessage.FormFieldMessage': {name:'formFieldMessage'},
-  'com.terapico.bbt.formfield.FormField': {name:'formField'},
-  'com.terapico.bbt.formaction.FormAction': {name:'formAction'},
+  'com.terapico.shuxiang.booksharingplatform.BookSharingPlatform': {name:'bookSharingPlatform'},
+  'com.terapico.shuxiang.availabletoken.AvailableToken': {name:'availableToken'},
+  'com.terapico.shuxiang.accountmanagement.AccountManagement': {name:'accountManagement'},
+  'com.terapico.shuxiang.province.Province': {name:'province'},
+  'com.terapico.shuxiang.city.City': {name:'city'},
+  'com.terapico.shuxiang.district.District': {name:'district'},
+  'com.terapico.shuxiang.bookmanagement.BookManagement': {name:'bookManagement'},
+  'com.terapico.shuxiang.memberservicemanagement.MemberServiceManagement': {name:'memberServiceManagement'},
+  'com.terapico.shuxiang.booktagrecord.BookTagRecord': {name:'bookTagRecord'},
+  'com.terapico.shuxiang.bookcopysharingbenefitconfiguration.BookCopySharingBenefitConfiguration': {name:'bookCopySharingBenefitConfiguration'},
+  'com.terapico.shuxiang.bookcopydonatebenefitconfiguration.BookCopyDonateBenefitConfiguration': {name:'bookCopyDonateBenefitConfiguration'},
+  'com.terapico.shuxiang.memberserviceproduct.MemberServiceProduct': {name:'memberServiceProduct'},
+  'com.terapico.shuxiang.tokeninmemberserviceproduct.TokenInMemberServiceProduct': {name:'tokenInMemberServiceProduct'},
+  'com.terapico.shuxiang.memberserviceboundlesku.MemberServiceBoundleSku': {name:'memberServiceBoundleSku'},
+  'com.terapico.shuxiang.memberaccountrechargeproduct.MemberAccountRechargeProduct': {name:'memberAccountRechargeProduct'},
+  'com.terapico.shuxiang.memberaccountrechargesku.MemberAccountRechargeSku': {name:'memberAccountRechargeSku'},
+  'com.terapico.shuxiang.lineitem.LineItem': {name:'lineItem'},
+  'com.terapico.shuxiang.mainorderpayment.MainOrderPayment': {name:'mainOrderPayment'},
+  'com.terapico.shuxiang.mainorder.MainOrder': {name:'mainOrder'},
+  'com.terapico.shuxiang.bookborrowconfiguration.BookBorrowConfiguration': {name:'bookBorrowConfiguration'},
+  'com.terapico.shuxiang.book.Book': {name:'book'},
+  'com.terapico.shuxiang.printer.Printer': {name:'printer'},
+  'com.terapico.shuxiang.printertask.PrinterTask': {name:'printerTask'},
+  'com.terapico.shuxiang.bookcopystatus.BookCopyStatus': {name:'bookCopyStatus'},
+  'com.terapico.shuxiang.bookcopy.BookCopy': {name:'bookCopy'},
+  'com.terapico.shuxiang.bookcopysku.BookCopySku': {name:'bookCopySku'},
+  'com.terapico.shuxiang.bookcopycheckplan.BookCopyCheckPlan': {name:'bookCopyCheckPlan'},
+  'com.terapico.shuxiang.bookcopycheckstatus.BookCopyCheckStatus': {name:'bookCopyCheckStatus'},
+  'com.terapico.shuxiang.bookcopycheckrecord.BookCopyCheckRecord': {name:'bookCopyCheckRecord'},
+  'com.terapico.shuxiang.bookcopyoperationrecord.BookCopyOperationRecord': {name:'bookCopyOperationRecord'},
+  'com.terapico.shuxiang.borrowinghistory.BorrowingHistory': {name:'borrowingHistory'},
+  'com.terapico.shuxiang.borrowingexpiredsku.BorrowingExpiredSku': {name:'borrowingExpiredSku'},
+  'com.terapico.shuxiang.bookreviewtype.BookReviewType': {name:'bookReviewType'},
+  'com.terapico.shuxiang.bookreview.BookReview': {name:'bookReview'},
+  'com.terapico.shuxiang.bookreviewlike.BookReviewLike': {name:'bookReviewLike'},
+  'com.terapico.shuxiang.bookcopysharingapplication.BookCopySharingApplication': {name:'bookCopySharingApplication'},
+  'com.terapico.shuxiang.platformaccount.PlatformAccount': {name:'platformAccount'},
+  'com.terapico.shuxiang.platformaccountdetails.PlatformAccountDetails': {name:'platformAccountDetails'},
+  'com.terapico.shuxiang.fundationaccount.FundationAccount': {name:'fundationAccount'},
+  'com.terapico.shuxiang.fundationaccountdetails.FundationAccountDetails': {name:'fundationAccountDetails'},
+  'com.terapico.shuxiang.storeaccount.StoreAccount': {name:'storeAccount'},
+  'com.terapico.shuxiang.storeaccountdetails.StoreAccountDetails': {name:'storeAccountDetails'},
+  'com.terapico.shuxiang.customeraccount.CustomerAccount': {name:'customerAccount'},
+  'com.terapico.shuxiang.customeraccountdetails.CustomerAccountDetails': {name:'customerAccountDetails'},
+  'com.terapico.shuxiang.store.Store': {name:'store'},
+  'com.terapico.shuxiang.workshop.Workshop': {name:'workshop'},
+  'com.terapico.shuxiang.workshopregisterhistory.WorkshopRegisterHistory': {name:'workshopRegisterHistory'},
+  'com.terapico.shuxiang.workshopreview.WorkshopReview': {name:'workshopReview'},
+  'com.terapico.shuxiang.workshoplike.WorkshopLike': {name:'workshopLike'},
+  'com.terapico.shuxiang.customer.Customer': {name:'customer'},
+  'com.terapico.shuxiang.employee.Employee': {name:'employee'},
+  'com.terapico.shuxiang.employeeworkingstore.EmployeeWorkingStore': {name:'employeeWorkingStore'},
+  'com.terapico.shuxiang.role.Role': {name:'role'},
+  'com.terapico.shuxiang.userdomain.UserDomain': {name:'userDomain'},
+  'com.terapico.shuxiang.secuser.SecUser': {name:'secUser'},
+  'com.terapico.shuxiang.secuserblocking.SecUserBlocking': {name:'secUserBlocking'},
+  'com.terapico.shuxiang.userapp.UserApp': {name:'userApp'},
+  'com.terapico.shuxiang.objectaccess.ObjectAccess': {name:'objectAccess'},
+  'com.terapico.shuxiang.loginhistory.LoginHistory': {name:'loginHistory'},
+  'com.terapico.shuxiang.genericform.GenericForm': {name:'genericForm'},
+  'com.terapico.shuxiang.formmessage.FormMessage': {name:'formMessage'},
+  'com.terapico.shuxiang.formfieldmessage.FormFieldMessage': {name:'formFieldMessage'},
+  'com.terapico.shuxiang.formfield.FormField': {name:'formField'},
+  'com.terapico.shuxiang.formaction.FormAction': {name:'formAction'},
+  'com.terapico.shuxiang.actiontoken.ActionToken': {name:'actionToken'},
 
 }
 
@@ -933,546 +997,589 @@ const calcMenuData=(clazz) => {
 
 
 const OOTBComponents={
-    CommunityBase,
-    CommunityBizApp,
-    CommunityModel,
-    CommunityDashboard,
-    CommunityConfirmationTable,
-    CommunitySearch,
-    CommunitySearchForm,
-    CommunityCreateForm,
-    CommunityTable,
-    CommunityEditTable,
-    CommunityEditDetail,
-    CommunityViewTable,
-    CommunityViewDetail,
-    CommunityService,
-    CommunityUpdateForm,
-    InvitationCodeBase,
-    InvitationCodeBizApp,
-    InvitationCodeModel,
-    InvitationCodeDashboard,
-    InvitationCodeConfirmationTable,
-    InvitationCodeSearch,
-    InvitationCodeSearchForm,
-    InvitationCodeCreateForm,
-    InvitationCodeTable,
-    InvitationCodeEditTable,
-    InvitationCodeEditDetail,
-    InvitationCodeViewTable,
-    InvitationCodeViewDetail,
-    InvitationCodeService,
-    InvitationCodeUpdateForm,
-    HomePageBase,
-    HomePageBizApp,
-    HomePageModel,
-    HomePageDashboard,
-    HomePageConfirmationTable,
-    HomePageSearch,
-    HomePageSearchForm,
-    HomePageCreateForm,
-    HomePageTable,
-    HomePageEditTable,
-    HomePageEditDetail,
-    HomePageViewTable,
-    HomePageViewDetail,
-    HomePageService,
-    HomePageUpdateForm,
-    SlideBase,
-    SlideBizApp,
-    SlideModel,
-    SlideDashboard,
-    SlideConfirmationTable,
-    SlideSearch,
-    SlideSearchForm,
-    SlideCreateForm,
-    SlideTable,
-    SlideEditTable,
-    SlideEditDetail,
-    SlideViewTable,
-    SlideViewDetail,
-    SlideService,
-    SlideUpdateForm,
-    EncyclopediaItemBase,
-    EncyclopediaItemBizApp,
-    EncyclopediaItemModel,
-    EncyclopediaItemDashboard,
-    EncyclopediaItemConfirmationTable,
-    EncyclopediaItemSearch,
-    EncyclopediaItemSearchForm,
-    EncyclopediaItemCreateForm,
-    EncyclopediaItemTable,
-    EncyclopediaItemEditTable,
-    EncyclopediaItemEditDetail,
-    EncyclopediaItemViewTable,
-    EncyclopediaItemViewDetail,
-    EncyclopediaItemService,
-    EncyclopediaItemUpdateForm,
-    TaskPageBase,
-    TaskPageBizApp,
-    TaskPageModel,
-    TaskPageDashboard,
-    TaskPageConfirmationTable,
-    TaskPageSearch,
-    TaskPageSearchForm,
-    TaskPageCreateForm,
-    TaskPageTable,
-    TaskPageEditTable,
-    TaskPageEditDetail,
-    TaskPageViewTable,
-    TaskPageViewDetail,
-    TaskPageService,
-    TaskPageUpdateForm,
-    TaskFilterBase,
-    TaskFilterBizApp,
-    TaskFilterModel,
-    TaskFilterDashboard,
-    TaskFilterConfirmationTable,
-    TaskFilterSearch,
-    TaskFilterSearchForm,
-    TaskFilterCreateForm,
-    TaskFilterTable,
-    TaskFilterEditTable,
-    TaskFilterEditDetail,
-    TaskFilterViewTable,
-    TaskFilterViewDetail,
-    TaskFilterService,
-    TaskFilterUpdateForm,
-    CommunityUserBase,
-    CommunityUserBizApp,
-    CommunityUserModel,
-    CommunityUserDashboard,
-    CommunityUserConfirmationTable,
-    CommunityUserSearch,
-    CommunityUserSearchForm,
-    CommunityUserCreateForm,
-    CommunityUserTable,
-    CommunityUserEditTable,
-    CommunityUserEditDetail,
-    CommunityUserViewTable,
-    CommunityUserViewDetail,
-    CommunityUserService,
-    CommunityUserUpdateForm,
-    PatientInfoBase,
-    PatientInfoBizApp,
-    PatientInfoModel,
-    PatientInfoDashboard,
-    PatientInfoConfirmationTable,
-    PatientInfoSearch,
-    PatientInfoSearchForm,
-    PatientInfoCreateForm,
-    PatientInfoTable,
-    PatientInfoEditTable,
-    PatientInfoEditDetail,
-    PatientInfoViewTable,
-    PatientInfoViewDetail,
-    PatientInfoService,
-    PatientInfoUpdateForm,
-    UserSkillBase,
-    UserSkillBizApp,
-    UserSkillModel,
-    UserSkillDashboard,
-    UserSkillConfirmationTable,
-    UserSkillSearch,
-    UserSkillSearchForm,
-    UserSkillCreateForm,
-    UserSkillTable,
-    UserSkillEditTable,
-    UserSkillEditDetail,
-    UserSkillViewTable,
-    UserSkillViewDetail,
-    UserSkillService,
-    UserSkillUpdateForm,
-    MessageFilterBase,
-    MessageFilterBizApp,
-    MessageFilterModel,
-    MessageFilterDashboard,
-    MessageFilterConfirmationTable,
-    MessageFilterSearch,
-    MessageFilterSearchForm,
-    MessageFilterCreateForm,
-    MessageFilterTable,
-    MessageFilterEditTable,
-    MessageFilterEditDetail,
-    MessageFilterViewTable,
-    MessageFilterViewDetail,
-    MessageFilterService,
-    MessageFilterUpdateForm,
-    UserMessageBase,
-    UserMessageBizApp,
-    UserMessageModel,
-    UserMessageDashboard,
-    UserMessageConfirmationTable,
-    UserMessageSearch,
-    UserMessageSearchForm,
-    UserMessageCreateForm,
-    UserMessageTable,
-    UserMessageEditTable,
-    UserMessageEditDetail,
-    UserMessageViewTable,
-    UserMessageViewDetail,
-    UserMessageService,
-    UserMessageUpdateForm,
-    TaskBase,
-    TaskBizApp,
-    TaskModel,
-    TaskDashboard,
-    TaskConfirmationTable,
-    TaskSearch,
-    TaskSearchForm,
-    TaskCreateForm,
-    TaskTable,
-    TaskEditTable,
-    TaskEditDetail,
-    TaskViewTable,
-    TaskViewDetail,
-    TaskService,
-    TaskUpdateForm,
-    TaskAssigmentBase,
-    TaskAssigmentBizApp,
-    TaskAssigmentModel,
-    TaskAssigmentDashboard,
-    TaskAssigmentConfirmationTable,
-    TaskAssigmentSearch,
-    TaskAssigmentSearchForm,
-    TaskAssigmentCreateForm,
-    TaskAssigmentTable,
-    TaskAssigmentEditTable,
-    TaskAssigmentEditDetail,
-    TaskAssigmentViewTable,
-    TaskAssigmentViewDetail,
-    TaskAssigmentService,
-    TaskAssigmentUpdateForm,
-    TaskHidingBase,
-    TaskHidingBizApp,
-    TaskHidingModel,
-    TaskHidingDashboard,
-    TaskHidingConfirmationTable,
-    TaskHidingSearch,
-    TaskHidingSearchForm,
-    TaskHidingCreateForm,
-    TaskHidingTable,
-    TaskHidingEditTable,
-    TaskHidingEditDetail,
-    TaskHidingViewTable,
-    TaskHidingViewDetail,
-    TaskHidingService,
-    TaskHidingUpdateForm,
-    TaskResolvingBase,
-    TaskResolvingBizApp,
-    TaskResolvingModel,
-    TaskResolvingDashboard,
-    TaskResolvingConfirmationTable,
-    TaskResolvingSearch,
-    TaskResolvingSearchForm,
-    TaskResolvingCreateForm,
-    TaskResolvingTable,
-    TaskResolvingEditTable,
-    TaskResolvingEditDetail,
-    TaskResolvingViewTable,
-    TaskResolvingViewDetail,
-    TaskResolvingService,
-    TaskResolvingUpdateForm,
-    TaskRewardBase,
-    TaskRewardBizApp,
-    TaskRewardModel,
-    TaskRewardDashboard,
-    TaskRewardConfirmationTable,
-    TaskRewardSearch,
-    TaskRewardSearchForm,
-    TaskRewardCreateForm,
-    TaskRewardTable,
-    TaskRewardEditTable,
-    TaskRewardEditDetail,
-    TaskRewardViewTable,
-    TaskRewardViewDetail,
-    TaskRewardService,
-    TaskRewardUpdateForm,
-    TaskLikeBase,
-    TaskLikeBizApp,
-    TaskLikeModel,
-    TaskLikeDashboard,
-    TaskLikeConfirmationTable,
-    TaskLikeSearch,
-    TaskLikeSearchForm,
-    TaskLikeCreateForm,
-    TaskLikeTable,
-    TaskLikeEditTable,
-    TaskLikeEditDetail,
-    TaskLikeViewTable,
-    TaskLikeViewDetail,
-    TaskLikeService,
-    TaskLikeUpdateForm,
-    TaskReplyBase,
-    TaskReplyBizApp,
-    TaskReplyModel,
-    TaskReplyDashboard,
-    TaskReplyConfirmationTable,
-    TaskReplySearch,
-    TaskReplySearchForm,
-    TaskReplyCreateForm,
-    TaskReplyTable,
-    TaskReplyEditTable,
-    TaskReplyEditDetail,
-    TaskReplyViewTable,
-    TaskReplyViewDetail,
-    TaskReplyService,
-    TaskReplyUpdateForm,
-    TaskBestAnswerSettingBase,
-    TaskBestAnswerSettingBizApp,
-    TaskBestAnswerSettingModel,
-    TaskBestAnswerSettingDashboard,
-    TaskBestAnswerSettingConfirmationTable,
-    TaskBestAnswerSettingSearch,
-    TaskBestAnswerSettingSearchForm,
-    TaskBestAnswerSettingCreateForm,
-    TaskBestAnswerSettingTable,
-    TaskBestAnswerSettingEditTable,
-    TaskBestAnswerSettingEditDetail,
-    TaskBestAnswerSettingViewTable,
-    TaskBestAnswerSettingViewDetail,
-    TaskBestAnswerSettingService,
-    TaskBestAnswerSettingUpdateForm,
-    TaskReplyLikeBase,
-    TaskReplyLikeBizApp,
-    TaskReplyLikeModel,
-    TaskReplyLikeDashboard,
-    TaskReplyLikeConfirmationTable,
-    TaskReplyLikeSearch,
-    TaskReplyLikeSearchForm,
-    TaskReplyLikeCreateForm,
-    TaskReplyLikeTable,
-    TaskReplyLikeEditTable,
-    TaskReplyLikeEditDetail,
-    TaskReplyLikeViewTable,
-    TaskReplyLikeViewDetail,
-    TaskReplyLikeService,
-    TaskReplyLikeUpdateForm,
-    GroupPageBase,
-    GroupPageBizApp,
-    GroupPageModel,
-    GroupPageDashboard,
-    GroupPageConfirmationTable,
-    GroupPageSearch,
-    GroupPageSearchForm,
-    GroupPageCreateForm,
-    GroupPageTable,
-    GroupPageEditTable,
-    GroupPageEditDetail,
-    GroupPageViewTable,
-    GroupPageViewDetail,
-    GroupPageService,
-    GroupPageUpdateForm,
-    GroupFilterBase,
-    GroupFilterBizApp,
-    GroupFilterModel,
-    GroupFilterDashboard,
-    GroupFilterConfirmationTable,
-    GroupFilterSearch,
-    GroupFilterSearchForm,
-    GroupFilterCreateForm,
-    GroupFilterTable,
-    GroupFilterEditTable,
-    GroupFilterEditDetail,
-    GroupFilterViewTable,
-    GroupFilterViewDetail,
-    GroupFilterService,
-    GroupFilterUpdateForm,
-    ThreadBase,
-    ThreadBizApp,
-    ThreadModel,
-    ThreadDashboard,
-    ThreadConfirmationTable,
-    ThreadSearch,
-    ThreadSearchForm,
-    ThreadCreateForm,
-    ThreadTable,
-    ThreadEditTable,
-    ThreadEditDetail,
-    ThreadViewTable,
-    ThreadViewDetail,
-    ThreadService,
-    ThreadUpdateForm,
-    ThreadHidingBase,
-    ThreadHidingBizApp,
-    ThreadHidingModel,
-    ThreadHidingDashboard,
-    ThreadHidingConfirmationTable,
-    ThreadHidingSearch,
-    ThreadHidingSearchForm,
-    ThreadHidingCreateForm,
-    ThreadHidingTable,
-    ThreadHidingEditTable,
-    ThreadHidingEditDetail,
-    ThreadHidingViewTable,
-    ThreadHidingViewDetail,
-    ThreadHidingService,
-    ThreadHidingUpdateForm,
-    ThreadReplyBase,
-    ThreadReplyBizApp,
-    ThreadReplyModel,
-    ThreadReplyDashboard,
-    ThreadReplyConfirmationTable,
-    ThreadReplySearch,
-    ThreadReplySearchForm,
-    ThreadReplyCreateForm,
-    ThreadReplyTable,
-    ThreadReplyEditTable,
-    ThreadReplyEditDetail,
-    ThreadReplyViewTable,
-    ThreadReplyViewDetail,
-    ThreadReplyService,
-    ThreadReplyUpdateForm,
-    ThreadApprovalBase,
-    ThreadApprovalBizApp,
-    ThreadApprovalModel,
-    ThreadApprovalDashboard,
-    ThreadApprovalConfirmationTable,
-    ThreadApprovalSearch,
-    ThreadApprovalSearchForm,
-    ThreadApprovalCreateForm,
-    ThreadApprovalTable,
-    ThreadApprovalEditTable,
-    ThreadApprovalEditDetail,
-    ThreadApprovalViewTable,
-    ThreadApprovalViewDetail,
-    ThreadApprovalService,
-    ThreadApprovalUpdateForm,
-    ThreadCompletionBase,
-    ThreadCompletionBizApp,
-    ThreadCompletionModel,
-    ThreadCompletionDashboard,
-    ThreadCompletionConfirmationTable,
-    ThreadCompletionSearch,
-    ThreadCompletionSearchForm,
-    ThreadCompletionCreateForm,
-    ThreadCompletionTable,
-    ThreadCompletionEditTable,
-    ThreadCompletionEditDetail,
-    ThreadCompletionViewTable,
-    ThreadCompletionViewDetail,
-    ThreadCompletionService,
-    ThreadCompletionUpdateForm,
-    ThreadCancelingBase,
-    ThreadCancelingBizApp,
-    ThreadCancelingModel,
-    ThreadCancelingDashboard,
-    ThreadCancelingConfirmationTable,
-    ThreadCancelingSearch,
-    ThreadCancelingSearchForm,
-    ThreadCancelingCreateForm,
-    ThreadCancelingTable,
-    ThreadCancelingEditTable,
-    ThreadCancelingEditDetail,
-    ThreadCancelingViewTable,
-    ThreadCancelingViewDetail,
-    ThreadCancelingService,
-    ThreadCancelingUpdateForm,
-    ThreadRegistrationBase,
-    ThreadRegistrationBizApp,
-    ThreadRegistrationModel,
-    ThreadRegistrationDashboard,
-    ThreadRegistrationConfirmationTable,
-    ThreadRegistrationSearch,
-    ThreadRegistrationSearchForm,
-    ThreadRegistrationCreateForm,
-    ThreadRegistrationTable,
-    ThreadRegistrationEditTable,
-    ThreadRegistrationEditDetail,
-    ThreadRegistrationViewTable,
-    ThreadRegistrationViewDetail,
-    ThreadRegistrationService,
-    ThreadRegistrationUpdateForm,
-    ThreadLikeBase,
-    ThreadLikeBizApp,
-    ThreadLikeModel,
-    ThreadLikeDashboard,
-    ThreadLikeConfirmationTable,
-    ThreadLikeSearch,
-    ThreadLikeSearchForm,
-    ThreadLikeCreateForm,
-    ThreadLikeTable,
-    ThreadLikeEditTable,
-    ThreadLikeEditDetail,
-    ThreadLikeViewTable,
-    ThreadLikeViewDetail,
-    ThreadLikeService,
-    ThreadLikeUpdateForm,
-    ThreadReplyLikeBase,
-    ThreadReplyLikeBizApp,
-    ThreadReplyLikeModel,
-    ThreadReplyLikeDashboard,
-    ThreadReplyLikeConfirmationTable,
-    ThreadReplyLikeSearch,
-    ThreadReplyLikeSearchForm,
-    ThreadReplyLikeCreateForm,
-    ThreadReplyLikeTable,
-    ThreadReplyLikeEditTable,
-    ThreadReplyLikeEditDetail,
-    ThreadReplyLikeViewTable,
-    ThreadReplyLikeViewDetail,
-    ThreadReplyLikeService,
-    ThreadReplyLikeUpdateForm,
-    FanBase,
-    FanBizApp,
-    FanModel,
-    FanDashboard,
-    FanConfirmationTable,
-    FanSearch,
-    FanSearchForm,
-    FanCreateForm,
-    FanTable,
-    FanEditTable,
-    FanEditDetail,
-    FanViewTable,
-    FanViewDetail,
-    FanService,
-    FanUpdateForm,
-    FollowBase,
-    FollowBizApp,
-    FollowModel,
-    FollowDashboard,
-    FollowConfirmationTable,
-    FollowSearch,
-    FollowSearchForm,
-    FollowCreateForm,
-    FollowTable,
-    FollowEditTable,
-    FollowEditDetail,
-    FollowViewTable,
-    FollowViewDetail,
-    FollowService,
-    FollowUpdateForm,
-    BonusPointBase,
-    BonusPointBizApp,
-    BonusPointModel,
-    BonusPointDashboard,
-    BonusPointConfirmationTable,
-    BonusPointSearch,
-    BonusPointSearchForm,
-    BonusPointCreateForm,
-    BonusPointTable,
-    BonusPointEditTable,
-    BonusPointEditDetail,
-    BonusPointViewTable,
-    BonusPointViewDetail,
-    BonusPointService,
-    BonusPointUpdateForm,
-    ExperiencePointBase,
-    ExperiencePointBizApp,
-    ExperiencePointModel,
-    ExperiencePointDashboard,
-    ExperiencePointConfirmationTable,
-    ExperiencePointSearch,
-    ExperiencePointSearchForm,
-    ExperiencePointCreateForm,
-    ExperiencePointTable,
-    ExperiencePointEditTable,
-    ExperiencePointEditDetail,
-    ExperiencePointViewTable,
-    ExperiencePointViewDetail,
-    ExperiencePointService,
-    ExperiencePointUpdateForm,
+    BookSharingPlatformBase,
+    BookSharingPlatformBizApp,
+    BookSharingPlatformModel,
+    BookSharingPlatformDashboard,
+    BookSharingPlatformConfirmationTable,
+    BookSharingPlatformSearch,
+    BookSharingPlatformSearchForm,
+    BookSharingPlatformCreateForm,
+    BookSharingPlatformTable,
+    BookSharingPlatformService,
+    BookSharingPlatformUpdateForm,
+    AvailableTokenBase,
+    AvailableTokenBizApp,
+    AvailableTokenModel,
+    AvailableTokenDashboard,
+    AvailableTokenConfirmationTable,
+    AvailableTokenSearch,
+    AvailableTokenSearchForm,
+    AvailableTokenCreateForm,
+    AvailableTokenTable,
+    AvailableTokenService,
+    AvailableTokenUpdateForm,
+    AccountManagementBase,
+    AccountManagementBizApp,
+    AccountManagementModel,
+    AccountManagementDashboard,
+    AccountManagementConfirmationTable,
+    AccountManagementSearch,
+    AccountManagementSearchForm,
+    AccountManagementCreateForm,
+    AccountManagementTable,
+    AccountManagementService,
+    AccountManagementUpdateForm,
+    ProvinceBase,
+    ProvinceBizApp,
+    ProvinceModel,
+    ProvinceDashboard,
+    ProvinceConfirmationTable,
+    ProvinceSearch,
+    ProvinceSearchForm,
+    ProvinceCreateForm,
+    ProvinceTable,
+    ProvinceService,
+    ProvinceUpdateForm,
+    CityBase,
+    CityBizApp,
+    CityModel,
+    CityDashboard,
+    CityConfirmationTable,
+    CitySearch,
+    CitySearchForm,
+    CityCreateForm,
+    CityTable,
+    CityService,
+    CityUpdateForm,
+    DistrictBase,
+    DistrictBizApp,
+    DistrictModel,
+    DistrictDashboard,
+    DistrictConfirmationTable,
+    DistrictSearch,
+    DistrictSearchForm,
+    DistrictCreateForm,
+    DistrictTable,
+    DistrictService,
+    DistrictUpdateForm,
+    BookManagementBase,
+    BookManagementBizApp,
+    BookManagementModel,
+    BookManagementDashboard,
+    BookManagementConfirmationTable,
+    BookManagementSearch,
+    BookManagementSearchForm,
+    BookManagementCreateForm,
+    BookManagementTable,
+    BookManagementService,
+    BookManagementUpdateForm,
+    MemberServiceManagementBase,
+    MemberServiceManagementBizApp,
+    MemberServiceManagementModel,
+    MemberServiceManagementDashboard,
+    MemberServiceManagementConfirmationTable,
+    MemberServiceManagementSearch,
+    MemberServiceManagementSearchForm,
+    MemberServiceManagementCreateForm,
+    MemberServiceManagementTable,
+    MemberServiceManagementService,
+    MemberServiceManagementUpdateForm,
+    BookTagRecordBase,
+    BookTagRecordBizApp,
+    BookTagRecordModel,
+    BookTagRecordDashboard,
+    BookTagRecordConfirmationTable,
+    BookTagRecordSearch,
+    BookTagRecordSearchForm,
+    BookTagRecordCreateForm,
+    BookTagRecordTable,
+    BookTagRecordService,
+    BookTagRecordUpdateForm,
+    BookCopySharingBenefitConfigurationBase,
+    BookCopySharingBenefitConfigurationBizApp,
+    BookCopySharingBenefitConfigurationModel,
+    BookCopySharingBenefitConfigurationDashboard,
+    BookCopySharingBenefitConfigurationConfirmationTable,
+    BookCopySharingBenefitConfigurationSearch,
+    BookCopySharingBenefitConfigurationSearchForm,
+    BookCopySharingBenefitConfigurationCreateForm,
+    BookCopySharingBenefitConfigurationTable,
+    BookCopySharingBenefitConfigurationService,
+    BookCopySharingBenefitConfigurationUpdateForm,
+    BookCopyDonateBenefitConfigurationBase,
+    BookCopyDonateBenefitConfigurationBizApp,
+    BookCopyDonateBenefitConfigurationModel,
+    BookCopyDonateBenefitConfigurationDashboard,
+    BookCopyDonateBenefitConfigurationConfirmationTable,
+    BookCopyDonateBenefitConfigurationSearch,
+    BookCopyDonateBenefitConfigurationSearchForm,
+    BookCopyDonateBenefitConfigurationCreateForm,
+    BookCopyDonateBenefitConfigurationTable,
+    BookCopyDonateBenefitConfigurationService,
+    BookCopyDonateBenefitConfigurationUpdateForm,
+    MemberServiceProductBase,
+    MemberServiceProductBizApp,
+    MemberServiceProductModel,
+    MemberServiceProductDashboard,
+    MemberServiceProductConfirmationTable,
+    MemberServiceProductSearch,
+    MemberServiceProductSearchForm,
+    MemberServiceProductCreateForm,
+    MemberServiceProductTable,
+    MemberServiceProductService,
+    MemberServiceProductUpdateForm,
+    TokenInMemberServiceProductBase,
+    TokenInMemberServiceProductBizApp,
+    TokenInMemberServiceProductModel,
+    TokenInMemberServiceProductDashboard,
+    TokenInMemberServiceProductConfirmationTable,
+    TokenInMemberServiceProductSearch,
+    TokenInMemberServiceProductSearchForm,
+    TokenInMemberServiceProductCreateForm,
+    TokenInMemberServiceProductTable,
+    TokenInMemberServiceProductService,
+    TokenInMemberServiceProductUpdateForm,
+    MemberServiceBoundleSkuBase,
+    MemberServiceBoundleSkuBizApp,
+    MemberServiceBoundleSkuModel,
+    MemberServiceBoundleSkuDashboard,
+    MemberServiceBoundleSkuConfirmationTable,
+    MemberServiceBoundleSkuSearch,
+    MemberServiceBoundleSkuSearchForm,
+    MemberServiceBoundleSkuCreateForm,
+    MemberServiceBoundleSkuTable,
+    MemberServiceBoundleSkuService,
+    MemberServiceBoundleSkuUpdateForm,
+    MemberAccountRechargeProductBase,
+    MemberAccountRechargeProductBizApp,
+    MemberAccountRechargeProductModel,
+    MemberAccountRechargeProductDashboard,
+    MemberAccountRechargeProductConfirmationTable,
+    MemberAccountRechargeProductSearch,
+    MemberAccountRechargeProductSearchForm,
+    MemberAccountRechargeProductCreateForm,
+    MemberAccountRechargeProductTable,
+    MemberAccountRechargeProductService,
+    MemberAccountRechargeProductUpdateForm,
+    MemberAccountRechargeSkuBase,
+    MemberAccountRechargeSkuBizApp,
+    MemberAccountRechargeSkuModel,
+    MemberAccountRechargeSkuDashboard,
+    MemberAccountRechargeSkuConfirmationTable,
+    MemberAccountRechargeSkuSearch,
+    MemberAccountRechargeSkuSearchForm,
+    MemberAccountRechargeSkuCreateForm,
+    MemberAccountRechargeSkuTable,
+    MemberAccountRechargeSkuService,
+    MemberAccountRechargeSkuUpdateForm,
+    LineItemBase,
+    LineItemBizApp,
+    LineItemModel,
+    LineItemDashboard,
+    LineItemConfirmationTable,
+    LineItemSearch,
+    LineItemSearchForm,
+    LineItemCreateForm,
+    LineItemTable,
+    LineItemService,
+    LineItemUpdateForm,
+    MainOrderPaymentBase,
+    MainOrderPaymentBizApp,
+    MainOrderPaymentModel,
+    MainOrderPaymentDashboard,
+    MainOrderPaymentConfirmationTable,
+    MainOrderPaymentSearch,
+    MainOrderPaymentSearchForm,
+    MainOrderPaymentCreateForm,
+    MainOrderPaymentTable,
+    MainOrderPaymentService,
+    MainOrderPaymentUpdateForm,
+    MainOrderBase,
+    MainOrderBizApp,
+    MainOrderModel,
+    MainOrderDashboard,
+    MainOrderConfirmationTable,
+    MainOrderSearch,
+    MainOrderSearchForm,
+    MainOrderCreateForm,
+    MainOrderTable,
+    MainOrderService,
+    MainOrderUpdateForm,
+    BookBorrowConfigurationBase,
+    BookBorrowConfigurationBizApp,
+    BookBorrowConfigurationModel,
+    BookBorrowConfigurationDashboard,
+    BookBorrowConfigurationConfirmationTable,
+    BookBorrowConfigurationSearch,
+    BookBorrowConfigurationSearchForm,
+    BookBorrowConfigurationCreateForm,
+    BookBorrowConfigurationTable,
+    BookBorrowConfigurationService,
+    BookBorrowConfigurationUpdateForm,
+    BookBase,
+    BookBizApp,
+    BookModel,
+    BookDashboard,
+    BookConfirmationTable,
+    BookSearch,
+    BookSearchForm,
+    BookCreateForm,
+    BookTable,
+    BookService,
+    BookUpdateForm,
+    PrinterBase,
+    PrinterBizApp,
+    PrinterModel,
+    PrinterDashboard,
+    PrinterConfirmationTable,
+    PrinterSearch,
+    PrinterSearchForm,
+    PrinterCreateForm,
+    PrinterTable,
+    PrinterService,
+    PrinterUpdateForm,
+    PrinterTaskBase,
+    PrinterTaskBizApp,
+    PrinterTaskModel,
+    PrinterTaskDashboard,
+    PrinterTaskConfirmationTable,
+    PrinterTaskSearch,
+    PrinterTaskSearchForm,
+    PrinterTaskCreateForm,
+    PrinterTaskTable,
+    PrinterTaskService,
+    PrinterTaskUpdateForm,
+    BookCopyStatusBase,
+    BookCopyStatusBizApp,
+    BookCopyStatusModel,
+    BookCopyStatusDashboard,
+    BookCopyStatusConfirmationTable,
+    BookCopyStatusSearch,
+    BookCopyStatusSearchForm,
+    BookCopyStatusCreateForm,
+    BookCopyStatusTable,
+    BookCopyStatusService,
+    BookCopyStatusUpdateForm,
+    BookCopyBase,
+    BookCopyBizApp,
+    BookCopyModel,
+    BookCopyDashboard,
+    BookCopyConfirmationTable,
+    BookCopySearch,
+    BookCopySearchForm,
+    BookCopyCreateForm,
+    BookCopyTable,
+    BookCopyService,
+    BookCopyUpdateForm,
+    BookCopySkuBase,
+    BookCopySkuBizApp,
+    BookCopySkuModel,
+    BookCopySkuDashboard,
+    BookCopySkuConfirmationTable,
+    BookCopySkuSearch,
+    BookCopySkuSearchForm,
+    BookCopySkuCreateForm,
+    BookCopySkuTable,
+    BookCopySkuService,
+    BookCopySkuUpdateForm,
+    BookCopyCheckPlanBase,
+    BookCopyCheckPlanBizApp,
+    BookCopyCheckPlanModel,
+    BookCopyCheckPlanDashboard,
+    BookCopyCheckPlanConfirmationTable,
+    BookCopyCheckPlanSearch,
+    BookCopyCheckPlanSearchForm,
+    BookCopyCheckPlanCreateForm,
+    BookCopyCheckPlanTable,
+    BookCopyCheckPlanService,
+    BookCopyCheckPlanUpdateForm,
+    BookCopyCheckStatusBase,
+    BookCopyCheckStatusBizApp,
+    BookCopyCheckStatusModel,
+    BookCopyCheckStatusDashboard,
+    BookCopyCheckStatusConfirmationTable,
+    BookCopyCheckStatusSearch,
+    BookCopyCheckStatusSearchForm,
+    BookCopyCheckStatusCreateForm,
+    BookCopyCheckStatusTable,
+    BookCopyCheckStatusService,
+    BookCopyCheckStatusUpdateForm,
+    BookCopyCheckRecordBase,
+    BookCopyCheckRecordBizApp,
+    BookCopyCheckRecordModel,
+    BookCopyCheckRecordDashboard,
+    BookCopyCheckRecordConfirmationTable,
+    BookCopyCheckRecordSearch,
+    BookCopyCheckRecordSearchForm,
+    BookCopyCheckRecordCreateForm,
+    BookCopyCheckRecordTable,
+    BookCopyCheckRecordService,
+    BookCopyCheckRecordUpdateForm,
+    BookCopyOperationRecordBase,
+    BookCopyOperationRecordBizApp,
+    BookCopyOperationRecordModel,
+    BookCopyOperationRecordDashboard,
+    BookCopyOperationRecordConfirmationTable,
+    BookCopyOperationRecordSearch,
+    BookCopyOperationRecordSearchForm,
+    BookCopyOperationRecordCreateForm,
+    BookCopyOperationRecordTable,
+    BookCopyOperationRecordService,
+    BookCopyOperationRecordUpdateForm,
+    BorrowingHistoryBase,
+    BorrowingHistoryBizApp,
+    BorrowingHistoryModel,
+    BorrowingHistoryDashboard,
+    BorrowingHistoryConfirmationTable,
+    BorrowingHistorySearch,
+    BorrowingHistorySearchForm,
+    BorrowingHistoryCreateForm,
+    BorrowingHistoryTable,
+    BorrowingHistoryService,
+    BorrowingHistoryUpdateForm,
+    BorrowingExpiredSkuBase,
+    BorrowingExpiredSkuBizApp,
+    BorrowingExpiredSkuModel,
+    BorrowingExpiredSkuDashboard,
+    BorrowingExpiredSkuConfirmationTable,
+    BorrowingExpiredSkuSearch,
+    BorrowingExpiredSkuSearchForm,
+    BorrowingExpiredSkuCreateForm,
+    BorrowingExpiredSkuTable,
+    BorrowingExpiredSkuService,
+    BorrowingExpiredSkuUpdateForm,
+    BookReviewTypeBase,
+    BookReviewTypeBizApp,
+    BookReviewTypeModel,
+    BookReviewTypeDashboard,
+    BookReviewTypeConfirmationTable,
+    BookReviewTypeSearch,
+    BookReviewTypeSearchForm,
+    BookReviewTypeCreateForm,
+    BookReviewTypeTable,
+    BookReviewTypeService,
+    BookReviewTypeUpdateForm,
+    BookReviewBase,
+    BookReviewBizApp,
+    BookReviewModel,
+    BookReviewDashboard,
+    BookReviewConfirmationTable,
+    BookReviewSearch,
+    BookReviewSearchForm,
+    BookReviewCreateForm,
+    BookReviewTable,
+    BookReviewService,
+    BookReviewUpdateForm,
+    BookReviewLikeBase,
+    BookReviewLikeBizApp,
+    BookReviewLikeModel,
+    BookReviewLikeDashboard,
+    BookReviewLikeConfirmationTable,
+    BookReviewLikeSearch,
+    BookReviewLikeSearchForm,
+    BookReviewLikeCreateForm,
+    BookReviewLikeTable,
+    BookReviewLikeService,
+    BookReviewLikeUpdateForm,
+    BookCopySharingApplicationBase,
+    BookCopySharingApplicationBizApp,
+    BookCopySharingApplicationModel,
+    BookCopySharingApplicationDashboard,
+    BookCopySharingApplicationConfirmationTable,
+    BookCopySharingApplicationSearch,
+    BookCopySharingApplicationSearchForm,
+    BookCopySharingApplicationCreateForm,
+    BookCopySharingApplicationTable,
+    BookCopySharingApplicationService,
+    BookCopySharingApplicationUpdateForm,
+    PlatformAccountBase,
+    PlatformAccountBizApp,
+    PlatformAccountModel,
+    PlatformAccountDashboard,
+    PlatformAccountConfirmationTable,
+    PlatformAccountSearch,
+    PlatformAccountSearchForm,
+    PlatformAccountCreateForm,
+    PlatformAccountTable,
+    PlatformAccountService,
+    PlatformAccountUpdateForm,
+    PlatformAccountDetailsBase,
+    PlatformAccountDetailsBizApp,
+    PlatformAccountDetailsModel,
+    PlatformAccountDetailsDashboard,
+    PlatformAccountDetailsConfirmationTable,
+    PlatformAccountDetailsSearch,
+    PlatformAccountDetailsSearchForm,
+    PlatformAccountDetailsCreateForm,
+    PlatformAccountDetailsTable,
+    PlatformAccountDetailsService,
+    PlatformAccountDetailsUpdateForm,
+    FundationAccountBase,
+    FundationAccountBizApp,
+    FundationAccountModel,
+    FundationAccountDashboard,
+    FundationAccountConfirmationTable,
+    FundationAccountSearch,
+    FundationAccountSearchForm,
+    FundationAccountCreateForm,
+    FundationAccountTable,
+    FundationAccountService,
+    FundationAccountUpdateForm,
+    FundationAccountDetailsBase,
+    FundationAccountDetailsBizApp,
+    FundationAccountDetailsModel,
+    FundationAccountDetailsDashboard,
+    FundationAccountDetailsConfirmationTable,
+    FundationAccountDetailsSearch,
+    FundationAccountDetailsSearchForm,
+    FundationAccountDetailsCreateForm,
+    FundationAccountDetailsTable,
+    FundationAccountDetailsService,
+    FundationAccountDetailsUpdateForm,
+    StoreAccountBase,
+    StoreAccountBizApp,
+    StoreAccountModel,
+    StoreAccountDashboard,
+    StoreAccountConfirmationTable,
+    StoreAccountSearch,
+    StoreAccountSearchForm,
+    StoreAccountCreateForm,
+    StoreAccountTable,
+    StoreAccountService,
+    StoreAccountUpdateForm,
+    StoreAccountDetailsBase,
+    StoreAccountDetailsBizApp,
+    StoreAccountDetailsModel,
+    StoreAccountDetailsDashboard,
+    StoreAccountDetailsConfirmationTable,
+    StoreAccountDetailsSearch,
+    StoreAccountDetailsSearchForm,
+    StoreAccountDetailsCreateForm,
+    StoreAccountDetailsTable,
+    StoreAccountDetailsService,
+    StoreAccountDetailsUpdateForm,
+    CustomerAccountBase,
+    CustomerAccountBizApp,
+    CustomerAccountModel,
+    CustomerAccountDashboard,
+    CustomerAccountConfirmationTable,
+    CustomerAccountSearch,
+    CustomerAccountSearchForm,
+    CustomerAccountCreateForm,
+    CustomerAccountTable,
+    CustomerAccountService,
+    CustomerAccountUpdateForm,
+    CustomerAccountDetailsBase,
+    CustomerAccountDetailsBizApp,
+    CustomerAccountDetailsModel,
+    CustomerAccountDetailsDashboard,
+    CustomerAccountDetailsConfirmationTable,
+    CustomerAccountDetailsSearch,
+    CustomerAccountDetailsSearchForm,
+    CustomerAccountDetailsCreateForm,
+    CustomerAccountDetailsTable,
+    CustomerAccountDetailsService,
+    CustomerAccountDetailsUpdateForm,
+    StoreBase,
+    StoreBizApp,
+    StoreModel,
+    StoreDashboard,
+    StoreConfirmationTable,
+    StoreSearch,
+    StoreSearchForm,
+    StoreCreateForm,
+    StoreTable,
+    StoreService,
+    StoreUpdateForm,
+    WorkshopBase,
+    WorkshopBizApp,
+    WorkshopModel,
+    WorkshopDashboard,
+    WorkshopConfirmationTable,
+    WorkshopSearch,
+    WorkshopSearchForm,
+    WorkshopCreateForm,
+    WorkshopTable,
+    WorkshopService,
+    WorkshopUpdateForm,
+    WorkshopRegisterHistoryBase,
+    WorkshopRegisterHistoryBizApp,
+    WorkshopRegisterHistoryModel,
+    WorkshopRegisterHistoryDashboard,
+    WorkshopRegisterHistoryConfirmationTable,
+    WorkshopRegisterHistorySearch,
+    WorkshopRegisterHistorySearchForm,
+    WorkshopRegisterHistoryCreateForm,
+    WorkshopRegisterHistoryTable,
+    WorkshopRegisterHistoryService,
+    WorkshopRegisterHistoryUpdateForm,
+    WorkshopReviewBase,
+    WorkshopReviewBizApp,
+    WorkshopReviewModel,
+    WorkshopReviewDashboard,
+    WorkshopReviewConfirmationTable,
+    WorkshopReviewSearch,
+    WorkshopReviewSearchForm,
+    WorkshopReviewCreateForm,
+    WorkshopReviewTable,
+    WorkshopReviewService,
+    WorkshopReviewUpdateForm,
+    WorkshopLikeBase,
+    WorkshopLikeBizApp,
+    WorkshopLikeModel,
+    WorkshopLikeDashboard,
+    WorkshopLikeConfirmationTable,
+    WorkshopLikeSearch,
+    WorkshopLikeSearchForm,
+    WorkshopLikeCreateForm,
+    WorkshopLikeTable,
+    WorkshopLikeService,
+    WorkshopLikeUpdateForm,
+    CustomerBase,
+    CustomerBizApp,
+    CustomerModel,
+    CustomerDashboard,
+    CustomerConfirmationTable,
+    CustomerSearch,
+    CustomerSearchForm,
+    CustomerCreateForm,
+    CustomerTable,
+    CustomerService,
+    CustomerUpdateForm,
+    EmployeeBase,
+    EmployeeBizApp,
+    EmployeeModel,
+    EmployeeDashboard,
+    EmployeeConfirmationTable,
+    EmployeeSearch,
+    EmployeeSearchForm,
+    EmployeeCreateForm,
+    EmployeeTable,
+    EmployeeService,
+    EmployeeUpdateForm,
+    EmployeeWorkingStoreBase,
+    EmployeeWorkingStoreBizApp,
+    EmployeeWorkingStoreModel,
+    EmployeeWorkingStoreDashboard,
+    EmployeeWorkingStoreConfirmationTable,
+    EmployeeWorkingStoreSearch,
+    EmployeeWorkingStoreSearchForm,
+    EmployeeWorkingStoreCreateForm,
+    EmployeeWorkingStoreTable,
+    EmployeeWorkingStoreService,
+    EmployeeWorkingStoreUpdateForm,
+    RoleBase,
+    RoleBizApp,
+    RoleModel,
+    RoleDashboard,
+    RoleConfirmationTable,
+    RoleSearch,
+    RoleSearchForm,
+    RoleCreateForm,
+    RoleTable,
+    RoleService,
+    RoleUpdateForm,
     UserDomainBase,
     UserDomainBizApp,
     UserDomainModel,
@@ -1482,10 +1589,6 @@ const OOTBComponents={
     UserDomainSearchForm,
     UserDomainCreateForm,
     UserDomainTable,
-    UserDomainEditTable,
-    UserDomainEditDetail,
-    UserDomainViewTable,
-    UserDomainViewDetail,
     UserDomainService,
     UserDomainUpdateForm,
     SecUserBase,
@@ -1497,10 +1600,6 @@ const OOTBComponents={
     SecUserSearchForm,
     SecUserCreateForm,
     SecUserTable,
-    SecUserEditTable,
-    SecUserEditDetail,
-    SecUserViewTable,
-    SecUserViewDetail,
     SecUserService,
     SecUserUpdateForm,
     SecUserBlockingBase,
@@ -1512,10 +1611,6 @@ const OOTBComponents={
     SecUserBlockingSearchForm,
     SecUserBlockingCreateForm,
     SecUserBlockingTable,
-    SecUserBlockingEditTable,
-    SecUserBlockingEditDetail,
-    SecUserBlockingViewTable,
-    SecUserBlockingViewDetail,
     SecUserBlockingService,
     SecUserBlockingUpdateForm,
     UserAppBase,
@@ -1527,10 +1622,6 @@ const OOTBComponents={
     UserAppSearchForm,
     UserAppCreateForm,
     UserAppTable,
-    UserAppEditTable,
-    UserAppEditDetail,
-    UserAppViewTable,
-    UserAppViewDetail,
     UserAppService,
     UserAppUpdateForm,
     ObjectAccessBase,
@@ -1542,10 +1633,6 @@ const OOTBComponents={
     ObjectAccessSearchForm,
     ObjectAccessCreateForm,
     ObjectAccessTable,
-    ObjectAccessEditTable,
-    ObjectAccessEditDetail,
-    ObjectAccessViewTable,
-    ObjectAccessViewDetail,
     ObjectAccessService,
     ObjectAccessUpdateForm,
     LoginHistoryBase,
@@ -1557,10 +1644,6 @@ const OOTBComponents={
     LoginHistorySearchForm,
     LoginHistoryCreateForm,
     LoginHistoryTable,
-    LoginHistoryEditTable,
-    LoginHistoryEditDetail,
-    LoginHistoryViewTable,
-    LoginHistoryViewDetail,
     LoginHistoryService,
     LoginHistoryUpdateForm,
     GenericFormBase,
@@ -1572,10 +1655,6 @@ const OOTBComponents={
     GenericFormSearchForm,
     GenericFormCreateForm,
     GenericFormTable,
-    GenericFormEditTable,
-    GenericFormEditDetail,
-    GenericFormViewTable,
-    GenericFormViewDetail,
     GenericFormService,
     GenericFormUpdateForm,
     FormMessageBase,
@@ -1587,10 +1666,6 @@ const OOTBComponents={
     FormMessageSearchForm,
     FormMessageCreateForm,
     FormMessageTable,
-    FormMessageEditTable,
-    FormMessageEditDetail,
-    FormMessageViewTable,
-    FormMessageViewDetail,
     FormMessageService,
     FormMessageUpdateForm,
     FormFieldMessageBase,
@@ -1602,10 +1677,6 @@ const OOTBComponents={
     FormFieldMessageSearchForm,
     FormFieldMessageCreateForm,
     FormFieldMessageTable,
-    FormFieldMessageEditTable,
-    FormFieldMessageEditDetail,
-    FormFieldMessageViewTable,
-    FormFieldMessageViewDetail,
     FormFieldMessageService,
     FormFieldMessageUpdateForm,
     FormFieldBase,
@@ -1617,10 +1688,6 @@ const OOTBComponents={
     FormFieldSearchForm,
     FormFieldCreateForm,
     FormFieldTable,
-    FormFieldEditTable,
-    FormFieldEditDetail,
-    FormFieldViewTable,
-    FormFieldViewDetail,
     FormFieldService,
     FormFieldUpdateForm,
     FormActionBase,
@@ -1632,12 +1699,19 @@ const OOTBComponents={
     FormActionSearchForm,
     FormActionCreateForm,
     FormActionTable,
-    FormActionEditTable,
-    FormActionEditDetail,
-    FormActionViewTable,
-    FormActionViewDetail,
     FormActionService,
     FormActionUpdateForm,
+    ActionTokenBase,
+    ActionTokenBizApp,
+    ActionTokenModel,
+    ActionTokenDashboard,
+    ActionTokenConfirmationTable,
+    ActionTokenSearch,
+    ActionTokenSearchForm,
+    ActionTokenCreateForm,
+    ActionTokenTable,
+    ActionTokenService,
+    ActionTokenUpdateForm,
     menuDataOf,bindBizModels,unbindBizModels,calcLocationPath,calcMenuData
 };
        

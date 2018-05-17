@@ -94,7 +94,7 @@ const removeFormFieldMessageList = (targetObjectId, parameters) => {
 
 
 const addFormField = (targetObjectId, parameters) => {
-  const url = `${PREFIX}genericFormManager/addFormField/formId/label/localeKey/parameterName/type/placeholder/defaultValue/description/fieldGroup/minValue/maxValue/required/disabled/customRendering/candidateValues/suggestValues/tokensExpr/`
+  const url = `${PREFIX}genericFormManager/addFormField/formId/label/localeKey/parameterName/type/placeholder/defaultValue/description/fieldGroup/minimumValue/maximumValue/required/disabled/customRendering/candidateValues/suggestValues/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -106,7 +106,7 @@ const addFormField = (targetObjectId, parameters) => {
 }
 
 const updateFormField = (targetObjectId, parameters) => {
-  const url = `${PREFIX}genericFormManager/updateFormFieldProperties/genericFormId/id/label/localeKey/parameterName/type/placeholder/defaultValue/description/fieldGroup/minValue/maxValue/required/disabled/customRendering/candidateValues/suggestValues/tokensExpr/`
+  const url = `${PREFIX}genericFormManager/updateFormFieldProperties/genericFormId/id/label/localeKey/parameterName/type/placeholder/defaultValue/description/fieldGroup/minimumValue/maximumValue/required/disabled/customRendering/candidateValues/suggestValues/tokensExpr/`
   const genericFormId = targetObjectId
   const requestParameters = { ...parameters, genericFormId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }

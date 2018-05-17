@@ -15,7 +15,7 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   label: '标签',
   localeKey: '语言环境的关键',
   parameterName: '参数名称',
@@ -25,8 +25,8 @@ const fieldLabels = {
   defaultValue: '默认值',
   description: '描述',
   fieldGroup: '字段组',
-  minValue: '最小值',
-  maxValue: '最大的价值',
+  minimumValue: '最小值',
+  maximumValue: '最大值',
   required: '要求',
   disabled: '禁用',
   customRendering: '自定义渲染',
@@ -272,9 +272,9 @@ class FormFieldUpdateForm extends Component {
                 <Form.Item label={fieldLabels.id} {...formItemLayout}>
                   {getFieldDecorator('id', {
                     initialValue: selectedRow.id,
-                    rules: [{ required: true, message: '请输入序号' }],
+                    rules: [{ required: true, message: '请输入ID' }],
                   })(
-                    <Input placeholder="请输入序号" disabled/>
+                    <Input placeholder="请输入ID" disabled/>
                     
                   )}
                 </Form.Item>
@@ -377,9 +377,9 @@ class FormFieldUpdateForm extends Component {
               </Col>
 
               <Col lg={12} md={12} sm={24}>
-                <Form.Item label={fieldLabels.minValue} {...formItemLayout}>
-                  {getFieldDecorator('minValue', {
-                    initialValue: selectedRow.minValue,
+                <Form.Item label={fieldLabels.minimumValue} {...formItemLayout}>
+                  {getFieldDecorator('minimumValue', {
+                    initialValue: selectedRow.minimumValue,
                     rules: [{ required: true, message: '请输入最小值' }],
                   })(
                     <Input placeholder="请输入最小值" />
@@ -389,12 +389,12 @@ class FormFieldUpdateForm extends Component {
               </Col>
 
               <Col lg={12} md={12} sm={24}>
-                <Form.Item label={fieldLabels.maxValue} {...formItemLayout}>
-                  {getFieldDecorator('maxValue', {
-                    initialValue: selectedRow.maxValue,
-                    rules: [{ required: true, message: '请输入最大的价值' }],
+                <Form.Item label={fieldLabels.maximumValue} {...formItemLayout}>
+                  {getFieldDecorator('maximumValue', {
+                    initialValue: selectedRow.maximumValue,
+                    rules: [{ required: true, message: '请输入最大值' }],
                   })(
-                    <Input placeholder="请输入最大的价值" />
+                    <Input placeholder="请输入最大值" />
                     
                   )}
                 </Form.Item>

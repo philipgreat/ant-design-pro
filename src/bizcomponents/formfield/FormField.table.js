@@ -8,7 +8,7 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id',},
+  { title: 'ID', debugtype: 'string', dataIndex: 'id',},
   { title: '标签', debugtype: 'string', dataIndex: 'label',},
   { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey',},
   { title: '参数名称', debugtype: 'string', dataIndex: 'parameterName',},
@@ -18,8 +18,8 @@ const columns = [
   { title: '默认值', debugtype: 'string', dataIndex: 'defaultValue',},
   { title: '描述', debugtype: 'string', dataIndex: 'description',},
   { title: '字段组', debugtype: 'string', dataIndex: 'fieldGroup',},
-  { title: '最小值', debugtype: 'string', dataIndex: 'minValue',},
-  { title: '最大的价值', debugtype: 'string', dataIndex: 'maxValue',},
+  { title: '最小值', debugtype: 'string', dataIndex: 'minimumValue',},
+  { title: '最大值', debugtype: 'string', dataIndex: 'maximumValue',},
   { title: '要求', dataIndex: 'required', render: (text, record) => (record.required ? '是' : '否') },
   { title: '禁用', dataIndex: 'disabled', render: (text, record) => (record.disabled ? '是' : '否') },
   { title: '自定义渲染', dataIndex: 'customRendering', render: (text, record) => (record.customRendering ? '是' : '否') },

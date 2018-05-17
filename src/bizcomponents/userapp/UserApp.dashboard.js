@@ -64,11 +64,11 @@ const summaryOf = (userApp) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{userApp.id}</Description> 
+<Description term="ID">{userApp.id}</Description> 
 <Description term="标题">{userApp.title}</Description> 
 <Description term="应用程序图标">{userApp.appIcon}</Description> 
 <Description term="许可">{userApp.permission}</Description> 
-<Description term="对象类型">{userApp.objectType}</Description> 
+<Description term="访问对象类型">{userApp.objectType}</Description> 
 <Description term="对象ID">{userApp.objectId}</Description> 
 	
         
@@ -119,8 +119,9 @@ class UserAppDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
-        {imageListOf(cardsData.cardsSource)}
         {settingListOf(cardsData.cardsSource)}
+        {imageListOf(cardsData.cardsSource)}
+        
           <Row gutter={24}>
 
            {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   

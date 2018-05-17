@@ -72,8 +72,8 @@ class FormFieldSearchForm extends PureComponent {
         ...this.buildStringSearchParameters(fieldsValue, 'defaultValue'),
         ...this.buildStringSearchParameters(fieldsValue, 'description'),
         ...this.buildStringSearchParameters(fieldsValue, 'fieldGroup'),
-        ...this.buildStringSearchParameters(fieldsValue, 'minValue'),
-        ...this.buildStringSearchParameters(fieldsValue, 'maxValue'),
+        ...this.buildStringSearchParameters(fieldsValue, 'minimumValue'),
+        ...this.buildStringSearchParameters(fieldsValue, 'maximumValue'),
         ...this.buildStringSearchParameters(fieldsValue, 'candidateValues'),
         ...this.buildStringSearchParameters(fieldsValue, 'suggestValues'),
 
@@ -93,9 +93,9 @@ class FormFieldSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="序号">
+            <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入序号" />
+                <Input placeholder="请输入ID" />
                )}
             </FormItem>
           </Col>
@@ -126,9 +126,9 @@ class FormFieldSearchForm extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-            <FormItem label="序号">
+            <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input placeholder="请输入序号" />
+                <Input placeholder="请输入ID" />
               )}
             </FormItem>
           </Col>
@@ -199,16 +199,16 @@ class FormFieldSearchForm extends PureComponent {
 
           <Col md={8} sm={24}>
             <FormItem label="最小值">
-              {getFieldDecorator('minValue')(
+              {getFieldDecorator('minimumValue')(
                 <Input placeholder="请输入最小值" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="最大的价值">
-              {getFieldDecorator('maxValue')(
-                <Input placeholder="请输入最大的价值" />
+            <FormItem label="最大值">
+              {getFieldDecorator('maximumValue')(
+                <Input placeholder="请输入最大值" />
               )}
             </FormItem>
           </Col>

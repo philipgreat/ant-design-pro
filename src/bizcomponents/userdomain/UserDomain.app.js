@@ -59,6 +59,7 @@ const query = {
 const menuData = {menuName:"用户域", menuFor: "userDomain",
   		subItems: [
   {name: 'secUserList', displayName:'SEC的用户'},
+  {name: 'actionTokenList', displayName:'行动令牌'},
   		
   		
   		],
@@ -124,25 +125,7 @@ class UserDomainBizApp extends React.PureComponent {
     )
   }
   
-  getNavMenuItems2 = (objectId) => {
-  
-    const {menuData,targetApp} = this.props.breadcrumb;
 
-  
-    return (
-      <SubMenu key="firstOne" title={
-        <span>
-          <Icon type="profile" />
-          <span>{menuData.menuName}</span>
-        </span>}
-      >
-        {menuData.subItems.map((item)=>(<Menu.Item>
-          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
-        </Menu.Item>))}
-       
-      </SubMenu>
-    )
-  }
 
 
   getSecUserSearch = () => {
@@ -180,10 +163,45 @@ class UserDomainBizApp extends React.PureComponent {
     }))(SecUserUpdateForm)
   }
 
+  getActionTokenSearch = () => {
+    const {ActionTokenSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._userDomain.actionTokenList,
+      count: state._userDomain.actionTokenCount,
+      currentPage: state._userDomain.actionTokenCurrentPageNumber,
+      searchFormParameters: state._userDomain.actionTokenSearchFormParameters,
+      loading: state._userDomain.loading,
+      partialList: state._userDomain.partialList,
+      owner: { type: '_userDomain', id: state._userDomain.id, referenceName: 'userDomain', listName: 'actionTokenList', ref:state._userDomain, listDisplayName: '行动令牌列表' }, // this is for model namespace and
+    }))(ActionTokenSearch)
+  }
+  getActionTokenCreateForm = () => {
+   	const {ActionTokenCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._userDomain.actionTokenList,
+      count: state._userDomain.actionTokenCount,
+      currentPage: state._userDomain.actionTokenCurrentPageNumber,
+      searchFormParameters: state._userDomain.actionTokenSearchFormParameters,
+      loading: state._userDomain.loading,
+      owner: { type: '_userDomain', id: state._userDomain.id, referenceName: 'userDomain', listName: 'actionTokenList', ref:state._userDomain, listDisplayName: '行动令牌列表'}, // this is for model namespace and
+    }))(ActionTokenCreateForm)
+  }
+  
+  getActionTokenUpdateForm = () => {
+  	const {ActionTokenUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._userDomain.selectedRows,
+      currentUpdateIndex: state._userDomain.currentUpdateIndex,
+      owner: { type: '_userDomain', id: state._userDomain.id, listName: 'actionTokenList', ref:state._userDomain, listDisplayName: '行动令牌列表' }, // this is for model namespace and
+    }))(ActionTokenUpdateForm)
+  }
+
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '帮帮兔社区运营中心'
+    const title = '书香社区'
     return title
   }
  
@@ -206,8 +224,8 @@ class UserDomainBizApp extends React.PureComponent {
      const { collapsed } = this.props
      const { breadcrumb }  = this.props
      const {UserDomainDashboard} = GlobalComponents
-     const {UserDomainEditDetail} = GlobalComponents
-     const {UserDomainViewDetail} = GlobalComponents
+     //const {UserDomainEditDetail} = GlobalComponents
+     //const {UserDomainViewDetail} = GlobalComponents
      
      
      const targetApp = sessionObject('targetApp')
@@ -288,13 +306,15 @@ class UserDomainBizApp extends React.PureComponent {
              
                <Route path="/userDomain/:id/dashboard" component={UserDomainDashboard} />
                
-               <Route path="/userDomain/:id/editDetail" component={UserDomainEditDetail} />
-               <Route path="/userDomain/:id/viewDetail" component={UserDomainViewDetail} /> 
                
 
                <Route path="/userDomain/:id/list/secUserList" component={this.getSecUserSearch()} />
                <Route path="/userDomain/:id/list/secUserCreateForm" component={this.getSecUserCreateForm()} />
                <Route path="/userDomain/:id/list/secUserUpdateForm" component={this.getSecUserUpdateForm()} />
+
+               <Route path="/userDomain/:id/list/actionTokenList" component={this.getActionTokenSearch()} />
+               <Route path="/userDomain/:id/list/actionTokenCreateForm" component={this.getActionTokenCreateForm()} />
+               <Route path="/userDomain/:id/list/actionTokenUpdateForm" component={this.getActionTokenUpdateForm()} />
               
              </Switch>
            </Content>

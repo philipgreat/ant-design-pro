@@ -61,7 +61,7 @@ const summaryOf = (formAction) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{formAction.id}</Description> 
+<Description term="ID">{formAction.id}</Description> 
 <Description term="标签">{formAction.label}</Description> 
 <Description term="语言环境的关键">{formAction.localeKey}</Description> 
 <Description term="行动的关键">{formAction.actionKey}</Description> 
@@ -114,8 +114,9 @@ class FormActionDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
-        {imageListOf(cardsData.cardsSource)}
         {settingListOf(cardsData.cardsSource)}
+        {imageListOf(cardsData.cardsSource)}
+        
           <Row gutter={24}>
 
            {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   

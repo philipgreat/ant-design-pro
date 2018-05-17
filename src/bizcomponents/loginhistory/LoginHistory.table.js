@@ -8,9 +8,9 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id',},
+  { title: 'ID', debugtype: 'string', dataIndex: 'id',},
   { title: '登录时间', dataIndex: 'loginTime', render: (text, record) => moment(record.loginTime).format('YYYY-MM-DD HH:mm:ss') },
-  { title: '从IP', debugtype: 'string', dataIndex: 'fromIp',},
+  { title: '来自IP', debugtype: 'string', dataIndex: 'fromIp',},
   { title: '描述', debugtype: 'string', dataIndex: 'description',},
   { title: 'SEC的用户', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.displayName : '暂无') },
 

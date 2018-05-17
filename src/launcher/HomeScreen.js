@@ -84,7 +84,7 @@ class HomeScreen extends React.Component {
                             
 
                                 <br /><br />
-                                <FontAwesome name={app.appIcon} size='5x' style={{color:'brown'}}/>
+                                <FontAwesome name={app.appIcon} size='5x' style={{color:'#1890ff'}}/>
                                 <br />{app.title}
                             
                         </Col>))}

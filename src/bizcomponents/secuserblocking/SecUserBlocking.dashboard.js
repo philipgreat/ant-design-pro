@@ -61,7 +61,7 @@ const summaryOf = (secUserBlocking) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{secUserBlocking.id}</Description> 
+<Description term="ID">{secUserBlocking.id}</Description> 
 <Description term="谁">{secUserBlocking.who}</Description> 
 	
         
@@ -97,7 +97,7 @@ class SecUserBlockingDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id,displayName, secUserCount } = this.props.secUserBlocking
-    const cardsData = {cardsName:"SEC用户阻塞",cardsFor: "secUserBlocking",cardsSource: this.props.secUserBlocking,
+    const cardsData = {cardsName:"用户屏蔽",cardsFor: "secUserBlocking",cardsSource: this.props.secUserBlocking,
   		subItems: [
 {name: 'secUserList', displayName:'SEC的用户',type:'secUser',count:secUserCount},
     
@@ -112,8 +112,9 @@ class SecUserBlockingDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
-        {imageListOf(cardsData.cardsSource)}
         {settingListOf(cardsData.cardsSource)}
+        {imageListOf(cardsData.cardsSource)}
+        
           <Row gutter={24}>
 
            {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   
