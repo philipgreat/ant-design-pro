@@ -15,9 +15,9 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   label: '标签',
-  localeKey: '语言环境的关键',
+  localeKey: '消息键值',
   parameterName: '参数名称',
   type: '类型',
   form: '形式',
@@ -275,9 +275,9 @@ class FormFieldCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.localeKey} {...formItemLayout}>
                   {getFieldDecorator('localeKey', {
-                    rules: [{ required: true, message: '请输入语言环境的关键' }],
+                    rules: [{ required: true, message: '请输入消息键值' }],
                   })(
-                    <Input placeholder="请输入语言环境的关键" />
+                    <Input placeholder="请输入消息键值" />
                   )}
                 </Form.Item>
               </Col>

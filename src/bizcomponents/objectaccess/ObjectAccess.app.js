@@ -123,31 +123,13 @@ class ObjectAccessBizApp extends React.PureComponent {
     )
   }
   
-  getNavMenuItems2 = (objectId) => {
-  
-    const {menuData,targetApp} = this.props.breadcrumb;
 
-  
-    return (
-      <SubMenu key="firstOne" title={
-        <span>
-          <Icon type="profile" />
-          <span>{menuData.menuName}</span>
-        </span>}
-      >
-        {menuData.subItems.map((item)=>(<Menu.Item>
-          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
-        </Menu.Item>))}
-       
-      </SubMenu>
-    )
-  }
 
 
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '帮帮兔社区运营中心'
+    const title = '代审车服务平台'
     return title
   }
  
@@ -170,8 +152,8 @@ class ObjectAccessBizApp extends React.PureComponent {
      const { collapsed } = this.props
      const { breadcrumb }  = this.props
      const {ObjectAccessDashboard} = GlobalComponents
-     const {ObjectAccessEditDetail} = GlobalComponents
-     const {ObjectAccessViewDetail} = GlobalComponents
+     //const {ObjectAccessEditDetail} = GlobalComponents
+     //const {ObjectAccessViewDetail} = GlobalComponents
      
      
      const targetApp = sessionObject('targetApp')
@@ -252,8 +234,6 @@ class ObjectAccessBizApp extends React.PureComponent {
              
                <Route path="/objectAccess/:id/dashboard" component={ObjectAccessDashboard} />
                
-               <Route path="/objectAccess/:id/editDetail" component={ObjectAccessEditDetail} />
-               <Route path="/objectAccess/:id/viewDetail" component={ObjectAccessViewDetail} /> 
                
               
              </Switch>

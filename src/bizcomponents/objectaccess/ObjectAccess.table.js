@@ -8,9 +8,9 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id',},
-  { title: '显示名称', debugtype: 'string', dataIndex: 'displayName',},
-  { title: '对象类型', debugtype: 'string', dataIndex: 'objectType',},
+  { title: 'ID', debugtype: 'string', dataIndex: 'id',},
+  { title: '名称', debugtype: 'string', dataIndex: 'name',},
+  { title: '访问对象类型', debugtype: 'string', dataIndex: 'objectType',},
   { title: '列表1', debugtype: 'string', dataIndex: 'list1',},
   { title: '列表2', debugtype: 'string', dataIndex: 'list2',},
   { title: '列表3', debugtype: 'string', dataIndex: 'list3',},

@@ -34,16 +34,37 @@ const topColResponsiveProps = {
 
 const imageListOf = (secUserBlocking) =>{
 
-	     return null
-	
+  const imageList = [
+	 ]
+  const filteredList = imageList.filter((item)=>item.imageLocation!=null)
+  if(filteredList.length===0){
+    return null
+  }
+
+  return(<Card title='图片列表' className={styles.card}><Row type="flex" justify="start" align="bottom">
+  {
+      filteredList.map((item)=>(<Col span={4}><ImagePreview imageTitle ={item.title} showTitleUnderImage={true} imageLocation={item.imageLocation} >{item.title}</ImagePreview></Col>))
+  }</Row></Card> )
 
 }
 
 const settingListOf = (secUserBlocking) =>{
 
-	    return null
+	const optionList = [ 
+	]
 	
-	//(secUserBlocking)
+  if(optionList.length===0){
+    return null
+  }
+  return(<Card title='状态集合' className={styles.card}>
+  	
+  	{
+  	   optionList.map((item)=><BooleanOption title={item.title} type={item.value?"success":"error"} />)
+  	}
+
+
+</Card> )
+	
 
 
 }
@@ -61,8 +82,8 @@ const summaryOf = (secUserBlocking) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{secUserBlocking.id}</Description> 
-<Description term="谁">{secUserBlocking.who}</Description> 
+<Description term="ID">{secUserBlocking.id}</Description> 
+<Description term="审批人">{secUserBlocking.who}</Description> 
 	
         
       </DescriptionList>
@@ -112,8 +133,9 @@ class SecUserBlockingDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
-        {imageListOf(cardsData.cardsSource)}
         {settingListOf(cardsData.cardsSource)}
+        {imageListOf(cardsData.cardsSource)}
+        
           <Row gutter={24}>
 
            {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   

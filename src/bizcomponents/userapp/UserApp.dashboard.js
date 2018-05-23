@@ -34,19 +34,38 @@ const topColResponsiveProps = {
 
 const imageListOf = (userApp) =>{
 
-	     return null
-	
+  const imageList = [
+	 ]
+  const filteredList = imageList.filter((item)=>item.imageLocation!=null)
+  if(filteredList.length===0){
+    return null
+  }
+
+  return(<Card title='图片列表' className={styles.card}><Row type="flex" justify="start" align="bottom">
+  {
+      filteredList.map((item)=>(<Col span={4}><ImagePreview imageTitle ={item.title} showTitleUnderImage={true} imageLocation={item.imageLocation} >{item.title}</ImagePreview></Col>))
+  }</Row></Card> )
 
 }
 
 const settingListOf = (userApp) =>{
 
-	return(<Card title='状态集合' className={styles.card}>
-<BooleanOption type={userApp.fullAccess?"success":"error"} title="完全访问"/>
-</Card> )
-
+	const optionList = [ 
+	  {"title":'完全访问',"value":userApp.fullAccess},
+]
 	
-	//(userApp)
+  if(optionList.length===0){
+    return null
+  }
+  return(<Card title='状态集合' className={styles.card}>
+  	
+  	{
+  	   optionList.map((item)=><BooleanOption title={item.title} type={item.value?"success":"error"} />)
+  	}
+
+
+</Card> )
+	
 
 
 }
@@ -64,11 +83,11 @@ const summaryOf = (userApp) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{userApp.id}</Description> 
+<Description term="ID">{userApp.id}</Description> 
 <Description term="标题">{userApp.title}</Description> 
 <Description term="应用程序图标">{userApp.appIcon}</Description> 
-<Description term="许可">{userApp.permission}</Description> 
-<Description term="对象类型">{userApp.objectType}</Description> 
+<Description term="权限">{userApp.permission}</Description> 
+<Description term="访问对象类型">{userApp.objectType}</Description> 
 <Description term="对象ID">{userApp.objectId}</Description> 
 	
         
@@ -119,8 +138,9 @@ class UserAppDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
-        {imageListOf(cardsData.cardsSource)}
         {settingListOf(cardsData.cardsSource)}
+        {imageListOf(cardsData.cardsSource)}
+        
           <Row gutter={24}>
 
            {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   

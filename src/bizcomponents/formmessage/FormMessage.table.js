@@ -8,7 +8,7 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id',},
+  { title: 'ID', debugtype: 'string', dataIndex: 'id',},
   { title: '标题', debugtype: 'string', dataIndex: 'title',},
   { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.displayName : '暂无') },
   { title: '水平', debugtype: 'string', dataIndex: 'level',},

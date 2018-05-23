@@ -8,9 +8,9 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id',},
+  { title: 'ID', debugtype: 'string', dataIndex: 'id',},
   { title: '标签', debugtype: 'string', dataIndex: 'label',},
-  { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey',},
+  { title: '消息键值', debugtype: 'string', dataIndex: 'localeKey',},
   { title: '参数名称', debugtype: 'string', dataIndex: 'parameterName',},
   { title: '类型', debugtype: 'string', dataIndex: 'type',},
   { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.displayName : '暂无') },

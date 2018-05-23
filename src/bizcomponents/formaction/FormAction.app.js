@@ -123,31 +123,13 @@ class FormActionBizApp extends React.PureComponent {
     )
   }
   
-  getNavMenuItems2 = (objectId) => {
-  
-    const {menuData,targetApp} = this.props.breadcrumb;
 
-  
-    return (
-      <SubMenu key="firstOne" title={
-        <span>
-          <Icon type="profile" />
-          <span>{menuData.menuName}</span>
-        </span>}
-      >
-        {menuData.subItems.map((item)=>(<Menu.Item>
-          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
-        </Menu.Item>))}
-       
-      </SubMenu>
-    )
-  }
 
 
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '帮帮兔社区运营中心'
+    const title = '代审车服务平台'
     return title
   }
  
@@ -170,8 +152,8 @@ class FormActionBizApp extends React.PureComponent {
      const { collapsed } = this.props
      const { breadcrumb }  = this.props
      const {FormActionDashboard} = GlobalComponents
-     const {FormActionEditDetail} = GlobalComponents
-     const {FormActionViewDetail} = GlobalComponents
+     //const {FormActionEditDetail} = GlobalComponents
+     //const {FormActionViewDetail} = GlobalComponents
      
      
      const targetApp = sessionObject('targetApp')
@@ -252,8 +234,6 @@ class FormActionBizApp extends React.PureComponent {
              
                <Route path="/formAction/:id/dashboard" component={FormActionDashboard} />
                
-               <Route path="/formAction/:id/editDetail" component={FormActionEditDetail} />
-               <Route path="/formAction/:id/viewDetail" component={FormActionViewDetail} /> 
                
               
              </Switch>

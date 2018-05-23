@@ -58,6 +58,7 @@ const query = {
   
 const menuData = {menuName:"SEC的用户", menuFor: "secUser",
   		subItems: [
+  {name: 'customerList', displayName:'客户'},
   {name: 'userAppList', displayName:'用户应用程序'},
   {name: 'loginHistoryList', displayName:'登录历史'},
   		
@@ -125,26 +126,43 @@ class SecUserBizApp extends React.PureComponent {
     )
   }
   
-  getNavMenuItems2 = (objectId) => {
-  
-    const {menuData,targetApp} = this.props.breadcrumb;
 
-  
-    return (
-      <SubMenu key="firstOne" title={
-        <span>
-          <Icon type="profile" />
-          <span>{menuData.menuName}</span>
-        </span>}
-      >
-        {menuData.subItems.map((item)=>(<Menu.Item>
-          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
-        </Menu.Item>))}
-       
-      </SubMenu>
-    )
+
+
+  getCustomerSearch = () => {
+    const {CustomerSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._secUser.customerList,
+      count: state._secUser.customerCount,
+      currentPage: state._secUser.customerCurrentPageNumber,
+      searchFormParameters: state._secUser.customerSearchFormParameters,
+      loading: state._secUser.loading,
+      partialList: state._secUser.partialList,
+      owner: { type: '_secUser', id: state._secUser.id, referenceName: 'secUser', listName: 'customerList', ref:state._secUser, listDisplayName: '客户列表' }, // this is for model namespace and
+    }))(CustomerSearch)
   }
-
+  getCustomerCreateForm = () => {
+   	const {CustomerCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._secUser.customerList,
+      count: state._secUser.customerCount,
+      currentPage: state._secUser.customerCurrentPageNumber,
+      searchFormParameters: state._secUser.customerSearchFormParameters,
+      loading: state._secUser.loading,
+      owner: { type: '_secUser', id: state._secUser.id, referenceName: 'secUser', listName: 'customerList', ref:state._secUser, listDisplayName: '客户列表'}, // this is for model namespace and
+    }))(CustomerCreateForm)
+  }
+  
+  getCustomerUpdateForm = () => {
+  	const {CustomerUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._secUser.selectedRows,
+      currentUpdateIndex: state._secUser.currentUpdateIndex,
+      owner: { type: '_secUser', id: state._secUser.id, listName: 'customerList', ref:state._secUser, listDisplayName: '客户列表' }, // this is for model namespace and
+    }))(CustomerUpdateForm)
+  }
 
   getUserAppSearch = () => {
     const {UserAppSearch} = GlobalComponents;
@@ -219,7 +237,7 @@ class SecUserBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '帮帮兔社区运营中心'
+    const title = '代审车服务平台'
     return title
   }
  
@@ -242,8 +260,8 @@ class SecUserBizApp extends React.PureComponent {
      const { collapsed } = this.props
      const { breadcrumb }  = this.props
      const {SecUserDashboard} = GlobalComponents
-     const {SecUserEditDetail} = GlobalComponents
-     const {SecUserViewDetail} = GlobalComponents
+     //const {SecUserEditDetail} = GlobalComponents
+     //const {SecUserViewDetail} = GlobalComponents
      
      
      const targetApp = sessionObject('targetApp')
@@ -324,9 +342,11 @@ class SecUserBizApp extends React.PureComponent {
              
                <Route path="/secUser/:id/dashboard" component={SecUserDashboard} />
                
-               <Route path="/secUser/:id/editDetail" component={SecUserEditDetail} />
-               <Route path="/secUser/:id/viewDetail" component={SecUserViewDetail} /> 
                
+
+               <Route path="/secUser/:id/list/customerList" component={this.getCustomerSearch()} />
+               <Route path="/secUser/:id/list/customerCreateForm" component={this.getCustomerCreateForm()} />
+               <Route path="/secUser/:id/list/customerUpdateForm" component={this.getCustomerUpdateForm()} />
 
                <Route path="/secUser/:id/list/userAppList" component={this.getUserAppSearch()} />
                <Route path="/secUser/:id/list/userAppCreateForm" component={this.getUserAppCreateForm()} />

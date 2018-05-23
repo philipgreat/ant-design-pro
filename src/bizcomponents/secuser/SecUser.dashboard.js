@@ -34,16 +34,37 @@ const topColResponsiveProps = {
 
 const imageListOf = (secUser) =>{
 
-	     return null
-	
+  const imageList = [
+	 ]
+  const filteredList = imageList.filter((item)=>item.imageLocation!=null)
+  if(filteredList.length===0){
+    return null
+  }
+
+  return(<Card title='图片列表' className={styles.card}><Row type="flex" justify="start" align="bottom">
+  {
+      filteredList.map((item)=>(<Col span={4}><ImagePreview imageTitle ={item.title} showTitleUnderImage={true} imageLocation={item.imageLocation} >{item.title}</ImagePreview></Col>))
+  }</Row></Card> )
 
 }
 
 const settingListOf = (secUser) =>{
 
-	    return null
+	const optionList = [ 
+	]
 	
-	//(secUser)
+  if(optionList.length===0){
+    return null
+  }
+  return(<Card title='状态集合' className={styles.card}>
+  	
+  	{
+  	   optionList.map((item)=><BooleanOption title={item.title} type={item.value?"success":"error"} />)
+  	}
+
+
+</Card> )
+	
 
 
 }
@@ -61,13 +82,13 @@ const summaryOf = (secUser) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{secUser.id}</Description> 
+<Description term="ID">{secUser.id}</Description> 
 <Description term="登录">{secUser.login}</Description> 
-<Description term="手机">{secUser.mobile}</Description> 
+<Description term="手机号码">{secUser.mobile}</Description> 
 <Description term="电子邮件">{secUser.email}</Description> 
-<Description term="PWD">{secUser.pwd}</Description> 
+<Description term="密码">{secUser.pwd}</Description> 
 <Description term="验证码">{secUser.verificationCode}</Description> 
-<Description term="验证码过期">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
+<Description term="验证码过期时间">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
 	
         
       </DescriptionList>
@@ -101,9 +122,10 @@ class SecUserDashboard extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const { id,displayName, userAppCount, loginHistoryCount } = this.props.secUser
+    const { id,displayName, customerCount, userAppCount, loginHistoryCount } = this.props.secUser
     const cardsData = {cardsName:"SEC的用户",cardsFor: "secUser",cardsSource: this.props.secUser,
   		subItems: [
+{name: 'customerList', displayName:'客户',type:'customer',count:customerCount},
 {name: 'userAppList', displayName:'用户应用程序',type:'userApp',count:userAppCount},
 {name: 'loginHistoryList', displayName:'登录历史',type:'loginHistory',count:loginHistoryCount},
     
@@ -118,8 +140,9 @@ class SecUserDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
-        {imageListOf(cardsData.cardsSource)}
         {settingListOf(cardsData.cardsSource)}
+        {imageListOf(cardsData.cardsSource)}
+        
           <Row gutter={24}>
 
            {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   

@@ -34,16 +34,37 @@ const topColResponsiveProps = {
 
 const imageListOf = (formAction) =>{
 
-	     return null
-	
+  const imageList = [
+	 ]
+  const filteredList = imageList.filter((item)=>item.imageLocation!=null)
+  if(filteredList.length===0){
+    return null
+  }
+
+  return(<Card title='图片列表' className={styles.card}><Row type="flex" justify="start" align="bottom">
+  {
+      filteredList.map((item)=>(<Col span={4}><ImagePreview imageTitle ={item.title} showTitleUnderImage={true} imageLocation={item.imageLocation} >{item.title}</ImagePreview></Col>))
+  }</Row></Card> )
 
 }
 
 const settingListOf = (formAction) =>{
 
-	    return null
+	const optionList = [ 
+	]
 	
-	//(formAction)
+  if(optionList.length===0){
+    return null
+  }
+  return(<Card title='状态集合' className={styles.card}>
+  	
+  	{
+  	   optionList.map((item)=><BooleanOption title={item.title} type={item.value?"success":"error"} />)
+  	}
+
+
+</Card> )
+	
 
 
 }
@@ -61,9 +82,9 @@ const summaryOf = (formAction) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{formAction.id}</Description> 
+<Description term="ID">{formAction.id}</Description> 
 <Description term="标签">{formAction.label}</Description> 
-<Description term="语言环境的关键">{formAction.localeKey}</Description> 
+<Description term="消息键值">{formAction.localeKey}</Description> 
 <Description term="行动的关键">{formAction.actionKey}</Description> 
 <Description term="水平">{formAction.level}</Description> 
 	
@@ -114,8 +135,9 @@ class FormActionDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
-        {imageListOf(cardsData.cardsSource)}
         {settingListOf(cardsData.cardsSource)}
+        {imageListOf(cardsData.cardsSource)}
+        
           <Row gutter={24}>
 
            {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   

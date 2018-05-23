@@ -2,546 +2,688 @@
 
 
 
-import CommunityBase from './community/Community.base';
-import CommunityBizApp from './community/Community.app';
-import CommunityModel from './community/Community.model';
-import CommunityDashboard from './community/Community.dashboard';
-import CommunityConfirmationTable from './community/Community.confirmmationtable';
-import CommunitySearch from './community/Community.search';
-import CommunitySearchForm from './community/Community.searchform';
-import CommunityCreateForm from './community/Community.createform';
-import CommunityTable from './community/Community.table';
-import CommunityEditTable from './community/Community.edittable';
-import CommunityEditDetail from './community/Community.editdetail';
-import CommunityViewTable from './community/Community.viewtable';
-import CommunityViewDetail from './community/Community.viewdetail';
-import CommunityService from './community/Community.service';
-import CommunityUpdateForm from './community/Community.updateform';
-import InvitationCodeBase from './invitationcode/InvitationCode.base';
-import InvitationCodeBizApp from './invitationcode/InvitationCode.app';
-import InvitationCodeModel from './invitationcode/InvitationCode.model';
-import InvitationCodeDashboard from './invitationcode/InvitationCode.dashboard';
-import InvitationCodeConfirmationTable from './invitationcode/InvitationCode.confirmmationtable';
-import InvitationCodeSearch from './invitationcode/InvitationCode.search';
-import InvitationCodeSearchForm from './invitationcode/InvitationCode.searchform';
-import InvitationCodeCreateForm from './invitationcode/InvitationCode.createform';
-import InvitationCodeTable from './invitationcode/InvitationCode.table';
-import InvitationCodeEditTable from './invitationcode/InvitationCode.edittable';
-import InvitationCodeEditDetail from './invitationcode/InvitationCode.editdetail';
-import InvitationCodeViewTable from './invitationcode/InvitationCode.viewtable';
-import InvitationCodeViewDetail from './invitationcode/InvitationCode.viewdetail';
-import InvitationCodeService from './invitationcode/InvitationCode.service';
-import InvitationCodeUpdateForm from './invitationcode/InvitationCode.updateform';
-import HomePageBase from './homepage/HomePage.base';
-import HomePageBizApp from './homepage/HomePage.app';
-import HomePageModel from './homepage/HomePage.model';
-import HomePageDashboard from './homepage/HomePage.dashboard';
-import HomePageConfirmationTable from './homepage/HomePage.confirmmationtable';
-import HomePageSearch from './homepage/HomePage.search';
-import HomePageSearchForm from './homepage/HomePage.searchform';
-import HomePageCreateForm from './homepage/HomePage.createform';
-import HomePageTable from './homepage/HomePage.table';
-import HomePageEditTable from './homepage/HomePage.edittable';
-import HomePageEditDetail from './homepage/HomePage.editdetail';
-import HomePageViewTable from './homepage/HomePage.viewtable';
-import HomePageViewDetail from './homepage/HomePage.viewdetail';
-import HomePageService from './homepage/HomePage.service';
-import HomePageUpdateForm from './homepage/HomePage.updateform';
-import SlideBase from './slide/Slide.base';
-import SlideBizApp from './slide/Slide.app';
-import SlideModel from './slide/Slide.model';
-import SlideDashboard from './slide/Slide.dashboard';
-import SlideConfirmationTable from './slide/Slide.confirmmationtable';
-import SlideSearch from './slide/Slide.search';
-import SlideSearchForm from './slide/Slide.searchform';
-import SlideCreateForm from './slide/Slide.createform';
-import SlideTable from './slide/Slide.table';
-import SlideEditTable from './slide/Slide.edittable';
-import SlideEditDetail from './slide/Slide.editdetail';
-import SlideViewTable from './slide/Slide.viewtable';
-import SlideViewDetail from './slide/Slide.viewdetail';
-import SlideService from './slide/Slide.service';
-import SlideUpdateForm from './slide/Slide.updateform';
-import EncyclopediaItemBase from './encyclopediaitem/EncyclopediaItem.base';
-import EncyclopediaItemBizApp from './encyclopediaitem/EncyclopediaItem.app';
-import EncyclopediaItemModel from './encyclopediaitem/EncyclopediaItem.model';
-import EncyclopediaItemDashboard from './encyclopediaitem/EncyclopediaItem.dashboard';
-import EncyclopediaItemConfirmationTable from './encyclopediaitem/EncyclopediaItem.confirmmationtable';
-import EncyclopediaItemSearch from './encyclopediaitem/EncyclopediaItem.search';
-import EncyclopediaItemSearchForm from './encyclopediaitem/EncyclopediaItem.searchform';
-import EncyclopediaItemCreateForm from './encyclopediaitem/EncyclopediaItem.createform';
-import EncyclopediaItemTable from './encyclopediaitem/EncyclopediaItem.table';
-import EncyclopediaItemEditTable from './encyclopediaitem/EncyclopediaItem.edittable';
-import EncyclopediaItemEditDetail from './encyclopediaitem/EncyclopediaItem.editdetail';
-import EncyclopediaItemViewTable from './encyclopediaitem/EncyclopediaItem.viewtable';
-import EncyclopediaItemViewDetail from './encyclopediaitem/EncyclopediaItem.viewdetail';
-import EncyclopediaItemService from './encyclopediaitem/EncyclopediaItem.service';
-import EncyclopediaItemUpdateForm from './encyclopediaitem/EncyclopediaItem.updateform';
-import TaskPageBase from './taskpage/TaskPage.base';
-import TaskPageBizApp from './taskpage/TaskPage.app';
-import TaskPageModel from './taskpage/TaskPage.model';
-import TaskPageDashboard from './taskpage/TaskPage.dashboard';
-import TaskPageConfirmationTable from './taskpage/TaskPage.confirmmationtable';
-import TaskPageSearch from './taskpage/TaskPage.search';
-import TaskPageSearchForm from './taskpage/TaskPage.searchform';
-import TaskPageCreateForm from './taskpage/TaskPage.createform';
-import TaskPageTable from './taskpage/TaskPage.table';
-import TaskPageEditTable from './taskpage/TaskPage.edittable';
-import TaskPageEditDetail from './taskpage/TaskPage.editdetail';
-import TaskPageViewTable from './taskpage/TaskPage.viewtable';
-import TaskPageViewDetail from './taskpage/TaskPage.viewdetail';
-import TaskPageService from './taskpage/TaskPage.service';
-import TaskPageUpdateForm from './taskpage/TaskPage.updateform';
-import TaskFilterBase from './taskfilter/TaskFilter.base';
-import TaskFilterBizApp from './taskfilter/TaskFilter.app';
-import TaskFilterModel from './taskfilter/TaskFilter.model';
-import TaskFilterDashboard from './taskfilter/TaskFilter.dashboard';
-import TaskFilterConfirmationTable from './taskfilter/TaskFilter.confirmmationtable';
-import TaskFilterSearch from './taskfilter/TaskFilter.search';
-import TaskFilterSearchForm from './taskfilter/TaskFilter.searchform';
-import TaskFilterCreateForm from './taskfilter/TaskFilter.createform';
-import TaskFilterTable from './taskfilter/TaskFilter.table';
-import TaskFilterEditTable from './taskfilter/TaskFilter.edittable';
-import TaskFilterEditDetail from './taskfilter/TaskFilter.editdetail';
-import TaskFilterViewTable from './taskfilter/TaskFilter.viewtable';
-import TaskFilterViewDetail from './taskfilter/TaskFilter.viewdetail';
-import TaskFilterService from './taskfilter/TaskFilter.service';
-import TaskFilterUpdateForm from './taskfilter/TaskFilter.updateform';
-import CommunityUserBase from './communityuser/CommunityUser.base';
-import CommunityUserBizApp from './communityuser/CommunityUser.app';
-import CommunityUserModel from './communityuser/CommunityUser.model';
-import CommunityUserDashboard from './communityuser/CommunityUser.dashboard';
-import CommunityUserConfirmationTable from './communityuser/CommunityUser.confirmmationtable';
-import CommunityUserSearch from './communityuser/CommunityUser.search';
-import CommunityUserSearchForm from './communityuser/CommunityUser.searchform';
-import CommunityUserCreateForm from './communityuser/CommunityUser.createform';
-import CommunityUserTable from './communityuser/CommunityUser.table';
-import CommunityUserEditTable from './communityuser/CommunityUser.edittable';
-import CommunityUserEditDetail from './communityuser/CommunityUser.editdetail';
-import CommunityUserViewTable from './communityuser/CommunityUser.viewtable';
-import CommunityUserViewDetail from './communityuser/CommunityUser.viewdetail';
-import CommunityUserService from './communityuser/CommunityUser.service';
-import CommunityUserUpdateForm from './communityuser/CommunityUser.updateform';
-import PatientInfoBase from './patientinfo/PatientInfo.base';
-import PatientInfoBizApp from './patientinfo/PatientInfo.app';
-import PatientInfoModel from './patientinfo/PatientInfo.model';
-import PatientInfoDashboard from './patientinfo/PatientInfo.dashboard';
-import PatientInfoConfirmationTable from './patientinfo/PatientInfo.confirmmationtable';
-import PatientInfoSearch from './patientinfo/PatientInfo.search';
-import PatientInfoSearchForm from './patientinfo/PatientInfo.searchform';
-import PatientInfoCreateForm from './patientinfo/PatientInfo.createform';
-import PatientInfoTable from './patientinfo/PatientInfo.table';
-import PatientInfoEditTable from './patientinfo/PatientInfo.edittable';
-import PatientInfoEditDetail from './patientinfo/PatientInfo.editdetail';
-import PatientInfoViewTable from './patientinfo/PatientInfo.viewtable';
-import PatientInfoViewDetail from './patientinfo/PatientInfo.viewdetail';
-import PatientInfoService from './patientinfo/PatientInfo.service';
-import PatientInfoUpdateForm from './patientinfo/PatientInfo.updateform';
-import UserSkillBase from './userskill/UserSkill.base';
-import UserSkillBizApp from './userskill/UserSkill.app';
-import UserSkillModel from './userskill/UserSkill.model';
-import UserSkillDashboard from './userskill/UserSkill.dashboard';
-import UserSkillConfirmationTable from './userskill/UserSkill.confirmmationtable';
-import UserSkillSearch from './userskill/UserSkill.search';
-import UserSkillSearchForm from './userskill/UserSkill.searchform';
-import UserSkillCreateForm from './userskill/UserSkill.createform';
-import UserSkillTable from './userskill/UserSkill.table';
-import UserSkillEditTable from './userskill/UserSkill.edittable';
-import UserSkillEditDetail from './userskill/UserSkill.editdetail';
-import UserSkillViewTable from './userskill/UserSkill.viewtable';
-import UserSkillViewDetail from './userskill/UserSkill.viewdetail';
-import UserSkillService from './userskill/UserSkill.service';
-import UserSkillUpdateForm from './userskill/UserSkill.updateform';
-import MessageFilterBase from './messagefilter/MessageFilter.base';
-import MessageFilterBizApp from './messagefilter/MessageFilter.app';
-import MessageFilterModel from './messagefilter/MessageFilter.model';
-import MessageFilterDashboard from './messagefilter/MessageFilter.dashboard';
-import MessageFilterConfirmationTable from './messagefilter/MessageFilter.confirmmationtable';
-import MessageFilterSearch from './messagefilter/MessageFilter.search';
-import MessageFilterSearchForm from './messagefilter/MessageFilter.searchform';
-import MessageFilterCreateForm from './messagefilter/MessageFilter.createform';
-import MessageFilterTable from './messagefilter/MessageFilter.table';
-import MessageFilterEditTable from './messagefilter/MessageFilter.edittable';
-import MessageFilterEditDetail from './messagefilter/MessageFilter.editdetail';
-import MessageFilterViewTable from './messagefilter/MessageFilter.viewtable';
-import MessageFilterViewDetail from './messagefilter/MessageFilter.viewdetail';
-import MessageFilterService from './messagefilter/MessageFilter.service';
-import MessageFilterUpdateForm from './messagefilter/MessageFilter.updateform';
-import UserMessageBase from './usermessage/UserMessage.base';
-import UserMessageBizApp from './usermessage/UserMessage.app';
-import UserMessageModel from './usermessage/UserMessage.model';
-import UserMessageDashboard from './usermessage/UserMessage.dashboard';
-import UserMessageConfirmationTable from './usermessage/UserMessage.confirmmationtable';
-import UserMessageSearch from './usermessage/UserMessage.search';
-import UserMessageSearchForm from './usermessage/UserMessage.searchform';
-import UserMessageCreateForm from './usermessage/UserMessage.createform';
-import UserMessageTable from './usermessage/UserMessage.table';
-import UserMessageEditTable from './usermessage/UserMessage.edittable';
-import UserMessageEditDetail from './usermessage/UserMessage.editdetail';
-import UserMessageViewTable from './usermessage/UserMessage.viewtable';
-import UserMessageViewDetail from './usermessage/UserMessage.viewdetail';
-import UserMessageService from './usermessage/UserMessage.service';
-import UserMessageUpdateForm from './usermessage/UserMessage.updateform';
-import TaskBase from './task/Task.base';
-import TaskBizApp from './task/Task.app';
-import TaskModel from './task/Task.model';
-import TaskDashboard from './task/Task.dashboard';
-import TaskConfirmationTable from './task/Task.confirmmationtable';
-import TaskSearch from './task/Task.search';
-import TaskSearchForm from './task/Task.searchform';
-import TaskCreateForm from './task/Task.createform';
-import TaskTable from './task/Task.table';
-import TaskEditTable from './task/Task.edittable';
-import TaskEditDetail from './task/Task.editdetail';
-import TaskViewTable from './task/Task.viewtable';
-import TaskViewDetail from './task/Task.viewdetail';
-import TaskService from './task/Task.service';
-import TaskUpdateForm from './task/Task.updateform';
-import TaskAssigmentBase from './taskassigment/TaskAssigment.base';
-import TaskAssigmentBizApp from './taskassigment/TaskAssigment.app';
-import TaskAssigmentModel from './taskassigment/TaskAssigment.model';
-import TaskAssigmentDashboard from './taskassigment/TaskAssigment.dashboard';
-import TaskAssigmentConfirmationTable from './taskassigment/TaskAssigment.confirmmationtable';
-import TaskAssigmentSearch from './taskassigment/TaskAssigment.search';
-import TaskAssigmentSearchForm from './taskassigment/TaskAssigment.searchform';
-import TaskAssigmentCreateForm from './taskassigment/TaskAssigment.createform';
-import TaskAssigmentTable from './taskassigment/TaskAssigment.table';
-import TaskAssigmentEditTable from './taskassigment/TaskAssigment.edittable';
-import TaskAssigmentEditDetail from './taskassigment/TaskAssigment.editdetail';
-import TaskAssigmentViewTable from './taskassigment/TaskAssigment.viewtable';
-import TaskAssigmentViewDetail from './taskassigment/TaskAssigment.viewdetail';
-import TaskAssigmentService from './taskassigment/TaskAssigment.service';
-import TaskAssigmentUpdateForm from './taskassigment/TaskAssigment.updateform';
-import TaskHidingBase from './taskhiding/TaskHiding.base';
-import TaskHidingBizApp from './taskhiding/TaskHiding.app';
-import TaskHidingModel from './taskhiding/TaskHiding.model';
-import TaskHidingDashboard from './taskhiding/TaskHiding.dashboard';
-import TaskHidingConfirmationTable from './taskhiding/TaskHiding.confirmmationtable';
-import TaskHidingSearch from './taskhiding/TaskHiding.search';
-import TaskHidingSearchForm from './taskhiding/TaskHiding.searchform';
-import TaskHidingCreateForm from './taskhiding/TaskHiding.createform';
-import TaskHidingTable from './taskhiding/TaskHiding.table';
-import TaskHidingEditTable from './taskhiding/TaskHiding.edittable';
-import TaskHidingEditDetail from './taskhiding/TaskHiding.editdetail';
-import TaskHidingViewTable from './taskhiding/TaskHiding.viewtable';
-import TaskHidingViewDetail from './taskhiding/TaskHiding.viewdetail';
-import TaskHidingService from './taskhiding/TaskHiding.service';
-import TaskHidingUpdateForm from './taskhiding/TaskHiding.updateform';
-import TaskResolvingBase from './taskresolving/TaskResolving.base';
-import TaskResolvingBizApp from './taskresolving/TaskResolving.app';
-import TaskResolvingModel from './taskresolving/TaskResolving.model';
-import TaskResolvingDashboard from './taskresolving/TaskResolving.dashboard';
-import TaskResolvingConfirmationTable from './taskresolving/TaskResolving.confirmmationtable';
-import TaskResolvingSearch from './taskresolving/TaskResolving.search';
-import TaskResolvingSearchForm from './taskresolving/TaskResolving.searchform';
-import TaskResolvingCreateForm from './taskresolving/TaskResolving.createform';
-import TaskResolvingTable from './taskresolving/TaskResolving.table';
-import TaskResolvingEditTable from './taskresolving/TaskResolving.edittable';
-import TaskResolvingEditDetail from './taskresolving/TaskResolving.editdetail';
-import TaskResolvingViewTable from './taskresolving/TaskResolving.viewtable';
-import TaskResolvingViewDetail from './taskresolving/TaskResolving.viewdetail';
-import TaskResolvingService from './taskresolving/TaskResolving.service';
-import TaskResolvingUpdateForm from './taskresolving/TaskResolving.updateform';
-import TaskRewardBase from './taskreward/TaskReward.base';
-import TaskRewardBizApp from './taskreward/TaskReward.app';
-import TaskRewardModel from './taskreward/TaskReward.model';
-import TaskRewardDashboard from './taskreward/TaskReward.dashboard';
-import TaskRewardConfirmationTable from './taskreward/TaskReward.confirmmationtable';
-import TaskRewardSearch from './taskreward/TaskReward.search';
-import TaskRewardSearchForm from './taskreward/TaskReward.searchform';
-import TaskRewardCreateForm from './taskreward/TaskReward.createform';
-import TaskRewardTable from './taskreward/TaskReward.table';
-import TaskRewardEditTable from './taskreward/TaskReward.edittable';
-import TaskRewardEditDetail from './taskreward/TaskReward.editdetail';
-import TaskRewardViewTable from './taskreward/TaskReward.viewtable';
-import TaskRewardViewDetail from './taskreward/TaskReward.viewdetail';
-import TaskRewardService from './taskreward/TaskReward.service';
-import TaskRewardUpdateForm from './taskreward/TaskReward.updateform';
-import TaskLikeBase from './tasklike/TaskLike.base';
-import TaskLikeBizApp from './tasklike/TaskLike.app';
-import TaskLikeModel from './tasklike/TaskLike.model';
-import TaskLikeDashboard from './tasklike/TaskLike.dashboard';
-import TaskLikeConfirmationTable from './tasklike/TaskLike.confirmmationtable';
-import TaskLikeSearch from './tasklike/TaskLike.search';
-import TaskLikeSearchForm from './tasklike/TaskLike.searchform';
-import TaskLikeCreateForm from './tasklike/TaskLike.createform';
-import TaskLikeTable from './tasklike/TaskLike.table';
-import TaskLikeEditTable from './tasklike/TaskLike.edittable';
-import TaskLikeEditDetail from './tasklike/TaskLike.editdetail';
-import TaskLikeViewTable from './tasklike/TaskLike.viewtable';
-import TaskLikeViewDetail from './tasklike/TaskLike.viewdetail';
-import TaskLikeService from './tasklike/TaskLike.service';
-import TaskLikeUpdateForm from './tasklike/TaskLike.updateform';
-import TaskReplyBase from './taskreply/TaskReply.base';
-import TaskReplyBizApp from './taskreply/TaskReply.app';
-import TaskReplyModel from './taskreply/TaskReply.model';
-import TaskReplyDashboard from './taskreply/TaskReply.dashboard';
-import TaskReplyConfirmationTable from './taskreply/TaskReply.confirmmationtable';
-import TaskReplySearch from './taskreply/TaskReply.search';
-import TaskReplySearchForm from './taskreply/TaskReply.searchform';
-import TaskReplyCreateForm from './taskreply/TaskReply.createform';
-import TaskReplyTable from './taskreply/TaskReply.table';
-import TaskReplyEditTable from './taskreply/TaskReply.edittable';
-import TaskReplyEditDetail from './taskreply/TaskReply.editdetail';
-import TaskReplyViewTable from './taskreply/TaskReply.viewtable';
-import TaskReplyViewDetail from './taskreply/TaskReply.viewdetail';
-import TaskReplyService from './taskreply/TaskReply.service';
-import TaskReplyUpdateForm from './taskreply/TaskReply.updateform';
-import TaskBestAnswerSettingBase from './taskbestanswersetting/TaskBestAnswerSetting.base';
-import TaskBestAnswerSettingBizApp from './taskbestanswersetting/TaskBestAnswerSetting.app';
-import TaskBestAnswerSettingModel from './taskbestanswersetting/TaskBestAnswerSetting.model';
-import TaskBestAnswerSettingDashboard from './taskbestanswersetting/TaskBestAnswerSetting.dashboard';
-import TaskBestAnswerSettingConfirmationTable from './taskbestanswersetting/TaskBestAnswerSetting.confirmmationtable';
-import TaskBestAnswerSettingSearch from './taskbestanswersetting/TaskBestAnswerSetting.search';
-import TaskBestAnswerSettingSearchForm from './taskbestanswersetting/TaskBestAnswerSetting.searchform';
-import TaskBestAnswerSettingCreateForm from './taskbestanswersetting/TaskBestAnswerSetting.createform';
-import TaskBestAnswerSettingTable from './taskbestanswersetting/TaskBestAnswerSetting.table';
-import TaskBestAnswerSettingEditTable from './taskbestanswersetting/TaskBestAnswerSetting.edittable';
-import TaskBestAnswerSettingEditDetail from './taskbestanswersetting/TaskBestAnswerSetting.editdetail';
-import TaskBestAnswerSettingViewTable from './taskbestanswersetting/TaskBestAnswerSetting.viewtable';
-import TaskBestAnswerSettingViewDetail from './taskbestanswersetting/TaskBestAnswerSetting.viewdetail';
-import TaskBestAnswerSettingService from './taskbestanswersetting/TaskBestAnswerSetting.service';
-import TaskBestAnswerSettingUpdateForm from './taskbestanswersetting/TaskBestAnswerSetting.updateform';
-import TaskReplyLikeBase from './taskreplylike/TaskReplyLike.base';
-import TaskReplyLikeBizApp from './taskreplylike/TaskReplyLike.app';
-import TaskReplyLikeModel from './taskreplylike/TaskReplyLike.model';
-import TaskReplyLikeDashboard from './taskreplylike/TaskReplyLike.dashboard';
-import TaskReplyLikeConfirmationTable from './taskreplylike/TaskReplyLike.confirmmationtable';
-import TaskReplyLikeSearch from './taskreplylike/TaskReplyLike.search';
-import TaskReplyLikeSearchForm from './taskreplylike/TaskReplyLike.searchform';
-import TaskReplyLikeCreateForm from './taskreplylike/TaskReplyLike.createform';
-import TaskReplyLikeTable from './taskreplylike/TaskReplyLike.table';
-import TaskReplyLikeEditTable from './taskreplylike/TaskReplyLike.edittable';
-import TaskReplyLikeEditDetail from './taskreplylike/TaskReplyLike.editdetail';
-import TaskReplyLikeViewTable from './taskreplylike/TaskReplyLike.viewtable';
-import TaskReplyLikeViewDetail from './taskreplylike/TaskReplyLike.viewdetail';
-import TaskReplyLikeService from './taskreplylike/TaskReplyLike.service';
-import TaskReplyLikeUpdateForm from './taskreplylike/TaskReplyLike.updateform';
-import GroupPageBase from './grouppage/GroupPage.base';
-import GroupPageBizApp from './grouppage/GroupPage.app';
-import GroupPageModel from './grouppage/GroupPage.model';
-import GroupPageDashboard from './grouppage/GroupPage.dashboard';
-import GroupPageConfirmationTable from './grouppage/GroupPage.confirmmationtable';
-import GroupPageSearch from './grouppage/GroupPage.search';
-import GroupPageSearchForm from './grouppage/GroupPage.searchform';
-import GroupPageCreateForm from './grouppage/GroupPage.createform';
-import GroupPageTable from './grouppage/GroupPage.table';
-import GroupPageEditTable from './grouppage/GroupPage.edittable';
-import GroupPageEditDetail from './grouppage/GroupPage.editdetail';
-import GroupPageViewTable from './grouppage/GroupPage.viewtable';
-import GroupPageViewDetail from './grouppage/GroupPage.viewdetail';
-import GroupPageService from './grouppage/GroupPage.service';
-import GroupPageUpdateForm from './grouppage/GroupPage.updateform';
-import GroupFilterBase from './groupfilter/GroupFilter.base';
-import GroupFilterBizApp from './groupfilter/GroupFilter.app';
-import GroupFilterModel from './groupfilter/GroupFilter.model';
-import GroupFilterDashboard from './groupfilter/GroupFilter.dashboard';
-import GroupFilterConfirmationTable from './groupfilter/GroupFilter.confirmmationtable';
-import GroupFilterSearch from './groupfilter/GroupFilter.search';
-import GroupFilterSearchForm from './groupfilter/GroupFilter.searchform';
-import GroupFilterCreateForm from './groupfilter/GroupFilter.createform';
-import GroupFilterTable from './groupfilter/GroupFilter.table';
-import GroupFilterEditTable from './groupfilter/GroupFilter.edittable';
-import GroupFilterEditDetail from './groupfilter/GroupFilter.editdetail';
-import GroupFilterViewTable from './groupfilter/GroupFilter.viewtable';
-import GroupFilterViewDetail from './groupfilter/GroupFilter.viewdetail';
-import GroupFilterService from './groupfilter/GroupFilter.service';
-import GroupFilterUpdateForm from './groupfilter/GroupFilter.updateform';
-import ThreadBase from './thread/Thread.base';
-import ThreadBizApp from './thread/Thread.app';
-import ThreadModel from './thread/Thread.model';
-import ThreadDashboard from './thread/Thread.dashboard';
-import ThreadConfirmationTable from './thread/Thread.confirmmationtable';
-import ThreadSearch from './thread/Thread.search';
-import ThreadSearchForm from './thread/Thread.searchform';
-import ThreadCreateForm from './thread/Thread.createform';
-import ThreadTable from './thread/Thread.table';
-import ThreadEditTable from './thread/Thread.edittable';
-import ThreadEditDetail from './thread/Thread.editdetail';
-import ThreadViewTable from './thread/Thread.viewtable';
-import ThreadViewDetail from './thread/Thread.viewdetail';
-import ThreadService from './thread/Thread.service';
-import ThreadUpdateForm from './thread/Thread.updateform';
-import ThreadHidingBase from './threadhiding/ThreadHiding.base';
-import ThreadHidingBizApp from './threadhiding/ThreadHiding.app';
-import ThreadHidingModel from './threadhiding/ThreadHiding.model';
-import ThreadHidingDashboard from './threadhiding/ThreadHiding.dashboard';
-import ThreadHidingConfirmationTable from './threadhiding/ThreadHiding.confirmmationtable';
-import ThreadHidingSearch from './threadhiding/ThreadHiding.search';
-import ThreadHidingSearchForm from './threadhiding/ThreadHiding.searchform';
-import ThreadHidingCreateForm from './threadhiding/ThreadHiding.createform';
-import ThreadHidingTable from './threadhiding/ThreadHiding.table';
-import ThreadHidingEditTable from './threadhiding/ThreadHiding.edittable';
-import ThreadHidingEditDetail from './threadhiding/ThreadHiding.editdetail';
-import ThreadHidingViewTable from './threadhiding/ThreadHiding.viewtable';
-import ThreadHidingViewDetail from './threadhiding/ThreadHiding.viewdetail';
-import ThreadHidingService from './threadhiding/ThreadHiding.service';
-import ThreadHidingUpdateForm from './threadhiding/ThreadHiding.updateform';
-import ThreadReplyBase from './threadreply/ThreadReply.base';
-import ThreadReplyBizApp from './threadreply/ThreadReply.app';
-import ThreadReplyModel from './threadreply/ThreadReply.model';
-import ThreadReplyDashboard from './threadreply/ThreadReply.dashboard';
-import ThreadReplyConfirmationTable from './threadreply/ThreadReply.confirmmationtable';
-import ThreadReplySearch from './threadreply/ThreadReply.search';
-import ThreadReplySearchForm from './threadreply/ThreadReply.searchform';
-import ThreadReplyCreateForm from './threadreply/ThreadReply.createform';
-import ThreadReplyTable from './threadreply/ThreadReply.table';
-import ThreadReplyEditTable from './threadreply/ThreadReply.edittable';
-import ThreadReplyEditDetail from './threadreply/ThreadReply.editdetail';
-import ThreadReplyViewTable from './threadreply/ThreadReply.viewtable';
-import ThreadReplyViewDetail from './threadreply/ThreadReply.viewdetail';
-import ThreadReplyService from './threadreply/ThreadReply.service';
-import ThreadReplyUpdateForm from './threadreply/ThreadReply.updateform';
-import ThreadApprovalBase from './threadapproval/ThreadApproval.base';
-import ThreadApprovalBizApp from './threadapproval/ThreadApproval.app';
-import ThreadApprovalModel from './threadapproval/ThreadApproval.model';
-import ThreadApprovalDashboard from './threadapproval/ThreadApproval.dashboard';
-import ThreadApprovalConfirmationTable from './threadapproval/ThreadApproval.confirmmationtable';
-import ThreadApprovalSearch from './threadapproval/ThreadApproval.search';
-import ThreadApprovalSearchForm from './threadapproval/ThreadApproval.searchform';
-import ThreadApprovalCreateForm from './threadapproval/ThreadApproval.createform';
-import ThreadApprovalTable from './threadapproval/ThreadApproval.table';
-import ThreadApprovalEditTable from './threadapproval/ThreadApproval.edittable';
-import ThreadApprovalEditDetail from './threadapproval/ThreadApproval.editdetail';
-import ThreadApprovalViewTable from './threadapproval/ThreadApproval.viewtable';
-import ThreadApprovalViewDetail from './threadapproval/ThreadApproval.viewdetail';
-import ThreadApprovalService from './threadapproval/ThreadApproval.service';
-import ThreadApprovalUpdateForm from './threadapproval/ThreadApproval.updateform';
-import ThreadCompletionBase from './threadcompletion/ThreadCompletion.base';
-import ThreadCompletionBizApp from './threadcompletion/ThreadCompletion.app';
-import ThreadCompletionModel from './threadcompletion/ThreadCompletion.model';
-import ThreadCompletionDashboard from './threadcompletion/ThreadCompletion.dashboard';
-import ThreadCompletionConfirmationTable from './threadcompletion/ThreadCompletion.confirmmationtable';
-import ThreadCompletionSearch from './threadcompletion/ThreadCompletion.search';
-import ThreadCompletionSearchForm from './threadcompletion/ThreadCompletion.searchform';
-import ThreadCompletionCreateForm from './threadcompletion/ThreadCompletion.createform';
-import ThreadCompletionTable from './threadcompletion/ThreadCompletion.table';
-import ThreadCompletionEditTable from './threadcompletion/ThreadCompletion.edittable';
-import ThreadCompletionEditDetail from './threadcompletion/ThreadCompletion.editdetail';
-import ThreadCompletionViewTable from './threadcompletion/ThreadCompletion.viewtable';
-import ThreadCompletionViewDetail from './threadcompletion/ThreadCompletion.viewdetail';
-import ThreadCompletionService from './threadcompletion/ThreadCompletion.service';
-import ThreadCompletionUpdateForm from './threadcompletion/ThreadCompletion.updateform';
-import ThreadCancelingBase from './threadcanceling/ThreadCanceling.base';
-import ThreadCancelingBizApp from './threadcanceling/ThreadCanceling.app';
-import ThreadCancelingModel from './threadcanceling/ThreadCanceling.model';
-import ThreadCancelingDashboard from './threadcanceling/ThreadCanceling.dashboard';
-import ThreadCancelingConfirmationTable from './threadcanceling/ThreadCanceling.confirmmationtable';
-import ThreadCancelingSearch from './threadcanceling/ThreadCanceling.search';
-import ThreadCancelingSearchForm from './threadcanceling/ThreadCanceling.searchform';
-import ThreadCancelingCreateForm from './threadcanceling/ThreadCanceling.createform';
-import ThreadCancelingTable from './threadcanceling/ThreadCanceling.table';
-import ThreadCancelingEditTable from './threadcanceling/ThreadCanceling.edittable';
-import ThreadCancelingEditDetail from './threadcanceling/ThreadCanceling.editdetail';
-import ThreadCancelingViewTable from './threadcanceling/ThreadCanceling.viewtable';
-import ThreadCancelingViewDetail from './threadcanceling/ThreadCanceling.viewdetail';
-import ThreadCancelingService from './threadcanceling/ThreadCanceling.service';
-import ThreadCancelingUpdateForm from './threadcanceling/ThreadCanceling.updateform';
-import ThreadRegistrationBase from './threadregistration/ThreadRegistration.base';
-import ThreadRegistrationBizApp from './threadregistration/ThreadRegistration.app';
-import ThreadRegistrationModel from './threadregistration/ThreadRegistration.model';
-import ThreadRegistrationDashboard from './threadregistration/ThreadRegistration.dashboard';
-import ThreadRegistrationConfirmationTable from './threadregistration/ThreadRegistration.confirmmationtable';
-import ThreadRegistrationSearch from './threadregistration/ThreadRegistration.search';
-import ThreadRegistrationSearchForm from './threadregistration/ThreadRegistration.searchform';
-import ThreadRegistrationCreateForm from './threadregistration/ThreadRegistration.createform';
-import ThreadRegistrationTable from './threadregistration/ThreadRegistration.table';
-import ThreadRegistrationEditTable from './threadregistration/ThreadRegistration.edittable';
-import ThreadRegistrationEditDetail from './threadregistration/ThreadRegistration.editdetail';
-import ThreadRegistrationViewTable from './threadregistration/ThreadRegistration.viewtable';
-import ThreadRegistrationViewDetail from './threadregistration/ThreadRegistration.viewdetail';
-import ThreadRegistrationService from './threadregistration/ThreadRegistration.service';
-import ThreadRegistrationUpdateForm from './threadregistration/ThreadRegistration.updateform';
-import ThreadLikeBase from './threadlike/ThreadLike.base';
-import ThreadLikeBizApp from './threadlike/ThreadLike.app';
-import ThreadLikeModel from './threadlike/ThreadLike.model';
-import ThreadLikeDashboard from './threadlike/ThreadLike.dashboard';
-import ThreadLikeConfirmationTable from './threadlike/ThreadLike.confirmmationtable';
-import ThreadLikeSearch from './threadlike/ThreadLike.search';
-import ThreadLikeSearchForm from './threadlike/ThreadLike.searchform';
-import ThreadLikeCreateForm from './threadlike/ThreadLike.createform';
-import ThreadLikeTable from './threadlike/ThreadLike.table';
-import ThreadLikeEditTable from './threadlike/ThreadLike.edittable';
-import ThreadLikeEditDetail from './threadlike/ThreadLike.editdetail';
-import ThreadLikeViewTable from './threadlike/ThreadLike.viewtable';
-import ThreadLikeViewDetail from './threadlike/ThreadLike.viewdetail';
-import ThreadLikeService from './threadlike/ThreadLike.service';
-import ThreadLikeUpdateForm from './threadlike/ThreadLike.updateform';
-import ThreadReplyLikeBase from './threadreplylike/ThreadReplyLike.base';
-import ThreadReplyLikeBizApp from './threadreplylike/ThreadReplyLike.app';
-import ThreadReplyLikeModel from './threadreplylike/ThreadReplyLike.model';
-import ThreadReplyLikeDashboard from './threadreplylike/ThreadReplyLike.dashboard';
-import ThreadReplyLikeConfirmationTable from './threadreplylike/ThreadReplyLike.confirmmationtable';
-import ThreadReplyLikeSearch from './threadreplylike/ThreadReplyLike.search';
-import ThreadReplyLikeSearchForm from './threadreplylike/ThreadReplyLike.searchform';
-import ThreadReplyLikeCreateForm from './threadreplylike/ThreadReplyLike.createform';
-import ThreadReplyLikeTable from './threadreplylike/ThreadReplyLike.table';
-import ThreadReplyLikeEditTable from './threadreplylike/ThreadReplyLike.edittable';
-import ThreadReplyLikeEditDetail from './threadreplylike/ThreadReplyLike.editdetail';
-import ThreadReplyLikeViewTable from './threadreplylike/ThreadReplyLike.viewtable';
-import ThreadReplyLikeViewDetail from './threadreplylike/ThreadReplyLike.viewdetail';
-import ThreadReplyLikeService from './threadreplylike/ThreadReplyLike.service';
-import ThreadReplyLikeUpdateForm from './threadreplylike/ThreadReplyLike.updateform';
-import FanBase from './fan/Fan.base';
-import FanBizApp from './fan/Fan.app';
-import FanModel from './fan/Fan.model';
-import FanDashboard from './fan/Fan.dashboard';
-import FanConfirmationTable from './fan/Fan.confirmmationtable';
-import FanSearch from './fan/Fan.search';
-import FanSearchForm from './fan/Fan.searchform';
-import FanCreateForm from './fan/Fan.createform';
-import FanTable from './fan/Fan.table';
-import FanEditTable from './fan/Fan.edittable';
-import FanEditDetail from './fan/Fan.editdetail';
-import FanViewTable from './fan/Fan.viewtable';
-import FanViewDetail from './fan/Fan.viewdetail';
-import FanService from './fan/Fan.service';
-import FanUpdateForm from './fan/Fan.updateform';
-import FollowBase from './follow/Follow.base';
-import FollowBizApp from './follow/Follow.app';
-import FollowModel from './follow/Follow.model';
-import FollowDashboard from './follow/Follow.dashboard';
-import FollowConfirmationTable from './follow/Follow.confirmmationtable';
-import FollowSearch from './follow/Follow.search';
-import FollowSearchForm from './follow/Follow.searchform';
-import FollowCreateForm from './follow/Follow.createform';
-import FollowTable from './follow/Follow.table';
-import FollowEditTable from './follow/Follow.edittable';
-import FollowEditDetail from './follow/Follow.editdetail';
-import FollowViewTable from './follow/Follow.viewtable';
-import FollowViewDetail from './follow/Follow.viewdetail';
-import FollowService from './follow/Follow.service';
-import FollowUpdateForm from './follow/Follow.updateform';
-import BonusPointBase from './bonuspoint/BonusPoint.base';
-import BonusPointBizApp from './bonuspoint/BonusPoint.app';
-import BonusPointModel from './bonuspoint/BonusPoint.model';
-import BonusPointDashboard from './bonuspoint/BonusPoint.dashboard';
-import BonusPointConfirmationTable from './bonuspoint/BonusPoint.confirmmationtable';
-import BonusPointSearch from './bonuspoint/BonusPoint.search';
-import BonusPointSearchForm from './bonuspoint/BonusPoint.searchform';
-import BonusPointCreateForm from './bonuspoint/BonusPoint.createform';
-import BonusPointTable from './bonuspoint/BonusPoint.table';
-import BonusPointEditTable from './bonuspoint/BonusPoint.edittable';
-import BonusPointEditDetail from './bonuspoint/BonusPoint.editdetail';
-import BonusPointViewTable from './bonuspoint/BonusPoint.viewtable';
-import BonusPointViewDetail from './bonuspoint/BonusPoint.viewdetail';
-import BonusPointService from './bonuspoint/BonusPoint.service';
-import BonusPointUpdateForm from './bonuspoint/BonusPoint.updateform';
-import ExperiencePointBase from './experiencepoint/ExperiencePoint.base';
-import ExperiencePointBizApp from './experiencepoint/ExperiencePoint.app';
-import ExperiencePointModel from './experiencepoint/ExperiencePoint.model';
-import ExperiencePointDashboard from './experiencepoint/ExperiencePoint.dashboard';
-import ExperiencePointConfirmationTable from './experiencepoint/ExperiencePoint.confirmmationtable';
-import ExperiencePointSearch from './experiencepoint/ExperiencePoint.search';
-import ExperiencePointSearchForm from './experiencepoint/ExperiencePoint.searchform';
-import ExperiencePointCreateForm from './experiencepoint/ExperiencePoint.createform';
-import ExperiencePointTable from './experiencepoint/ExperiencePoint.table';
-import ExperiencePointEditTable from './experiencepoint/ExperiencePoint.edittable';
-import ExperiencePointEditDetail from './experiencepoint/ExperiencePoint.editdetail';
-import ExperiencePointViewTable from './experiencepoint/ExperiencePoint.viewtable';
-import ExperiencePointViewDetail from './experiencepoint/ExperiencePoint.viewdetail';
-import ExperiencePointService from './experiencepoint/ExperiencePoint.service';
-import ExperiencePointUpdateForm from './experiencepoint/ExperiencePoint.updateform';
+import CarInspectionPlatformBase from './carinspectionplatform/CarInspectionPlatform.base';
+import CarInspectionPlatformBizApp from './carinspectionplatform/CarInspectionPlatform.app';
+import CarInspectionPlatformModel from './carinspectionplatform/CarInspectionPlatform.model';
+import CarInspectionPlatformDashboard from './carinspectionplatform/CarInspectionPlatform.dashboard';
+import CarInspectionPlatformConfirmationTable from './carinspectionplatform/CarInspectionPlatform.confirmmationtable';
+import CarInspectionPlatformSearch from './carinspectionplatform/CarInspectionPlatform.search';
+import CarInspectionPlatformSearchForm from './carinspectionplatform/CarInspectionPlatform.searchform';
+import CarInspectionPlatformCreateForm from './carinspectionplatform/CarInspectionPlatform.createform';
+import CarInspectionPlatformTable from './carinspectionplatform/CarInspectionPlatform.table';
+import CarInspectionPlatformService from './carinspectionplatform/CarInspectionPlatform.service';
+import CarInspectionPlatformUpdateForm from './carinspectionplatform/CarInspectionPlatform.updateform';
+import ProvinceBase from './province/Province.base';
+import ProvinceBizApp from './province/Province.app';
+import ProvinceModel from './province/Province.model';
+import ProvinceDashboard from './province/Province.dashboard';
+import ProvinceConfirmationTable from './province/Province.confirmmationtable';
+import ProvinceSearch from './province/Province.search';
+import ProvinceSearchForm from './province/Province.searchform';
+import ProvinceCreateForm from './province/Province.createform';
+import ProvinceTable from './province/Province.table';
+import ProvinceService from './province/Province.service';
+import ProvinceUpdateForm from './province/Province.updateform';
+import CityBase from './city/City.base';
+import CityBizApp from './city/City.app';
+import CityModel from './city/City.model';
+import CityDashboard from './city/City.dashboard';
+import CityConfirmationTable from './city/City.confirmmationtable';
+import CitySearch from './city/City.search';
+import CitySearchForm from './city/City.searchform';
+import CityCreateForm from './city/City.createform';
+import CityTable from './city/City.table';
+import CityService from './city/City.service';
+import CityUpdateForm from './city/City.updateform';
+import AvailableProductBase from './availableproduct/AvailableProduct.base';
+import AvailableProductBizApp from './availableproduct/AvailableProduct.app';
+import AvailableProductModel from './availableproduct/AvailableProduct.model';
+import AvailableProductDashboard from './availableproduct/AvailableProduct.dashboard';
+import AvailableProductConfirmationTable from './availableproduct/AvailableProduct.confirmmationtable';
+import AvailableProductSearch from './availableproduct/AvailableProduct.search';
+import AvailableProductSearchForm from './availableproduct/AvailableProduct.searchform';
+import AvailableProductCreateForm from './availableproduct/AvailableProduct.createform';
+import AvailableProductTable from './availableproduct/AvailableProduct.table';
+import AvailableProductService from './availableproduct/AvailableProduct.service';
+import AvailableProductUpdateForm from './availableproduct/AvailableProduct.updateform';
+import AvailableVehicleTypeBase from './availablevehicletype/AvailableVehicleType.base';
+import AvailableVehicleTypeBizApp from './availablevehicletype/AvailableVehicleType.app';
+import AvailableVehicleTypeModel from './availablevehicletype/AvailableVehicleType.model';
+import AvailableVehicleTypeDashboard from './availablevehicletype/AvailableVehicleType.dashboard';
+import AvailableVehicleTypeConfirmationTable from './availablevehicletype/AvailableVehicleType.confirmmationtable';
+import AvailableVehicleTypeSearch from './availablevehicletype/AvailableVehicleType.search';
+import AvailableVehicleTypeSearchForm from './availablevehicletype/AvailableVehicleType.searchform';
+import AvailableVehicleTypeCreateForm from './availablevehicletype/AvailableVehicleType.createform';
+import AvailableVehicleTypeTable from './availablevehicletype/AvailableVehicleType.table';
+import AvailableVehicleTypeService from './availablevehicletype/AvailableVehicleType.service';
+import AvailableVehicleTypeUpdateForm from './availablevehicletype/AvailableVehicleType.updateform';
+import AvailableVehicleUseCharacterBase from './availablevehicleusecharacter/AvailableVehicleUseCharacter.base';
+import AvailableVehicleUseCharacterBizApp from './availablevehicleusecharacter/AvailableVehicleUseCharacter.app';
+import AvailableVehicleUseCharacterModel from './availablevehicleusecharacter/AvailableVehicleUseCharacter.model';
+import AvailableVehicleUseCharacterDashboard from './availablevehicleusecharacter/AvailableVehicleUseCharacter.dashboard';
+import AvailableVehicleUseCharacterConfirmationTable from './availablevehicleusecharacter/AvailableVehicleUseCharacter.confirmmationtable';
+import AvailableVehicleUseCharacterSearch from './availablevehicleusecharacter/AvailableVehicleUseCharacter.search';
+import AvailableVehicleUseCharacterSearchForm from './availablevehicleusecharacter/AvailableVehicleUseCharacter.searchform';
+import AvailableVehicleUseCharacterCreateForm from './availablevehicleusecharacter/AvailableVehicleUseCharacter.createform';
+import AvailableVehicleUseCharacterTable from './availablevehicleusecharacter/AvailableVehicleUseCharacter.table';
+import AvailableVehicleUseCharacterService from './availablevehicleusecharacter/AvailableVehicleUseCharacter.service';
+import AvailableVehicleUseCharacterUpdateForm from './availablevehicleusecharacter/AvailableVehicleUseCharacter.updateform';
+import ContractBase from './contract/Contract.base';
+import ContractBizApp from './contract/Contract.app';
+import ContractModel from './contract/Contract.model';
+import ContractDashboard from './contract/Contract.dashboard';
+import ContractConfirmationTable from './contract/Contract.confirmmationtable';
+import ContractSearch from './contract/Contract.search';
+import ContractSearchForm from './contract/Contract.searchform';
+import ContractCreateForm from './contract/Contract.createform';
+import ContractTable from './contract/Contract.table';
+import ContractService from './contract/Contract.service';
+import ContractUpdateForm from './contract/Contract.updateform';
+import ServicePriceBase from './serviceprice/ServicePrice.base';
+import ServicePriceBizApp from './serviceprice/ServicePrice.app';
+import ServicePriceModel from './serviceprice/ServicePrice.model';
+import ServicePriceDashboard from './serviceprice/ServicePrice.dashboard';
+import ServicePriceConfirmationTable from './serviceprice/ServicePrice.confirmmationtable';
+import ServicePriceSearch from './serviceprice/ServicePrice.search';
+import ServicePriceSearchForm from './serviceprice/ServicePrice.searchform';
+import ServicePriceCreateForm from './serviceprice/ServicePrice.createform';
+import ServicePriceTable from './serviceprice/ServicePrice.table';
+import ServicePriceService from './serviceprice/ServicePrice.service';
+import ServicePriceUpdateForm from './serviceprice/ServicePrice.updateform';
+import AvailableServiceBase from './availableservice/AvailableService.base';
+import AvailableServiceBizApp from './availableservice/AvailableService.app';
+import AvailableServiceModel from './availableservice/AvailableService.model';
+import AvailableServiceDashboard from './availableservice/AvailableService.dashboard';
+import AvailableServiceConfirmationTable from './availableservice/AvailableService.confirmmationtable';
+import AvailableServiceSearch from './availableservice/AvailableService.search';
+import AvailableServiceSearchForm from './availableservice/AvailableService.searchform';
+import AvailableServiceCreateForm from './availableservice/AvailableService.createform';
+import AvailableServiceTable from './availableservice/AvailableService.table';
+import AvailableServiceService from './availableservice/AvailableService.service';
+import AvailableServiceUpdateForm from './availableservice/AvailableService.updateform';
+import ProductPriceBase from './productprice/ProductPrice.base';
+import ProductPriceBizApp from './productprice/ProductPrice.app';
+import ProductPriceModel from './productprice/ProductPrice.model';
+import ProductPriceDashboard from './productprice/ProductPrice.dashboard';
+import ProductPriceConfirmationTable from './productprice/ProductPrice.confirmmationtable';
+import ProductPriceSearch from './productprice/ProductPrice.search';
+import ProductPriceSearchForm from './productprice/ProductPrice.searchform';
+import ProductPriceCreateForm from './productprice/ProductPrice.createform';
+import ProductPriceTable from './productprice/ProductPrice.table';
+import ProductPriceService from './productprice/ProductPrice.service';
+import ProductPriceUpdateForm from './productprice/ProductPrice.updateform';
+import AvailableInsuranceBase from './availableinsurance/AvailableInsurance.base';
+import AvailableInsuranceBizApp from './availableinsurance/AvailableInsurance.app';
+import AvailableInsuranceModel from './availableinsurance/AvailableInsurance.model';
+import AvailableInsuranceDashboard from './availableinsurance/AvailableInsurance.dashboard';
+import AvailableInsuranceConfirmationTable from './availableinsurance/AvailableInsurance.confirmmationtable';
+import AvailableInsuranceSearch from './availableinsurance/AvailableInsurance.search';
+import AvailableInsuranceSearchForm from './availableinsurance/AvailableInsurance.searchform';
+import AvailableInsuranceCreateForm from './availableinsurance/AvailableInsurance.createform';
+import AvailableInsuranceTable from './availableinsurance/AvailableInsurance.table';
+import AvailableInsuranceService from './availableinsurance/AvailableInsurance.service';
+import AvailableInsuranceUpdateForm from './availableinsurance/AvailableInsurance.updateform';
+import VehicleRepairingAllowanceBase from './vehiclerepairingallowance/VehicleRepairingAllowance.base';
+import VehicleRepairingAllowanceBizApp from './vehiclerepairingallowance/VehicleRepairingAllowance.app';
+import VehicleRepairingAllowanceModel from './vehiclerepairingallowance/VehicleRepairingAllowance.model';
+import VehicleRepairingAllowanceDashboard from './vehiclerepairingallowance/VehicleRepairingAllowance.dashboard';
+import VehicleRepairingAllowanceConfirmationTable from './vehiclerepairingallowance/VehicleRepairingAllowance.confirmmationtable';
+import VehicleRepairingAllowanceSearch from './vehiclerepairingallowance/VehicleRepairingAllowance.search';
+import VehicleRepairingAllowanceSearchForm from './vehiclerepairingallowance/VehicleRepairingAllowance.searchform';
+import VehicleRepairingAllowanceCreateForm from './vehiclerepairingallowance/VehicleRepairingAllowance.createform';
+import VehicleRepairingAllowanceTable from './vehiclerepairingallowance/VehicleRepairingAllowance.table';
+import VehicleRepairingAllowanceService from './vehiclerepairingallowance/VehicleRepairingAllowance.service';
+import VehicleRepairingAllowanceUpdateForm from './vehiclerepairingallowance/VehicleRepairingAllowance.updateform';
+import AvailableHandOverItemBase from './availablehandoveritem/AvailableHandOverItem.base';
+import AvailableHandOverItemBizApp from './availablehandoveritem/AvailableHandOverItem.app';
+import AvailableHandOverItemModel from './availablehandoveritem/AvailableHandOverItem.model';
+import AvailableHandOverItemDashboard from './availablehandoveritem/AvailableHandOverItem.dashboard';
+import AvailableHandOverItemConfirmationTable from './availablehandoveritem/AvailableHandOverItem.confirmmationtable';
+import AvailableHandOverItemSearch from './availablehandoveritem/AvailableHandOverItem.search';
+import AvailableHandOverItemSearchForm from './availablehandoveritem/AvailableHandOverItem.searchform';
+import AvailableHandOverItemCreateForm from './availablehandoveritem/AvailableHandOverItem.createform';
+import AvailableHandOverItemTable from './availablehandoveritem/AvailableHandOverItem.table';
+import AvailableHandOverItemService from './availablehandoveritem/AvailableHandOverItem.service';
+import AvailableHandOverItemUpdateForm from './availablehandoveritem/AvailableHandOverItem.updateform';
+import CustomerBase from './customer/Customer.base';
+import CustomerBizApp from './customer/Customer.app';
+import CustomerModel from './customer/Customer.model';
+import CustomerDashboard from './customer/Customer.dashboard';
+import CustomerConfirmationTable from './customer/Customer.confirmmationtable';
+import CustomerSearch from './customer/Customer.search';
+import CustomerSearchForm from './customer/Customer.searchform';
+import CustomerCreateForm from './customer/Customer.createform';
+import CustomerTable from './customer/Customer.table';
+import CustomerService from './customer/Customer.service';
+import CustomerUpdateForm from './customer/Customer.updateform';
+import VehicleServiceCompanyBase from './vehicleservicecompany/VehicleServiceCompany.base';
+import VehicleServiceCompanyBizApp from './vehicleservicecompany/VehicleServiceCompany.app';
+import VehicleServiceCompanyModel from './vehicleservicecompany/VehicleServiceCompany.model';
+import VehicleServiceCompanyDashboard from './vehicleservicecompany/VehicleServiceCompany.dashboard';
+import VehicleServiceCompanyConfirmationTable from './vehicleservicecompany/VehicleServiceCompany.confirmmationtable';
+import VehicleServiceCompanySearch from './vehicleservicecompany/VehicleServiceCompany.search';
+import VehicleServiceCompanySearchForm from './vehicleservicecompany/VehicleServiceCompany.searchform';
+import VehicleServiceCompanyCreateForm from './vehicleservicecompany/VehicleServiceCompany.createform';
+import VehicleServiceCompanyTable from './vehicleservicecompany/VehicleServiceCompany.table';
+import VehicleServiceCompanyService from './vehicleservicecompany/VehicleServiceCompany.service';
+import VehicleServiceCompanyUpdateForm from './vehicleservicecompany/VehicleServiceCompany.updateform';
+import ServiceCompanyAuthenticationInfoBase from './servicecompanyauthenticationinfo/ServiceCompanyAuthenticationInfo.base';
+import ServiceCompanyAuthenticationInfoBizApp from './servicecompanyauthenticationinfo/ServiceCompanyAuthenticationInfo.app';
+import ServiceCompanyAuthenticationInfoModel from './servicecompanyauthenticationinfo/ServiceCompanyAuthenticationInfo.model';
+import ServiceCompanyAuthenticationInfoDashboard from './servicecompanyauthenticationinfo/ServiceCompanyAuthenticationInfo.dashboard';
+import ServiceCompanyAuthenticationInfoConfirmationTable from './servicecompanyauthenticationinfo/ServiceCompanyAuthenticationInfo.confirmmationtable';
+import ServiceCompanyAuthenticationInfoSearch from './servicecompanyauthenticationinfo/ServiceCompanyAuthenticationInfo.search';
+import ServiceCompanyAuthenticationInfoSearchForm from './servicecompanyauthenticationinfo/ServiceCompanyAuthenticationInfo.searchform';
+import ServiceCompanyAuthenticationInfoCreateForm from './servicecompanyauthenticationinfo/ServiceCompanyAuthenticationInfo.createform';
+import ServiceCompanyAuthenticationInfoTable from './servicecompanyauthenticationinfo/ServiceCompanyAuthenticationInfo.table';
+import ServiceCompanyAuthenticationInfoService from './servicecompanyauthenticationinfo/ServiceCompanyAuthenticationInfo.service';
+import ServiceCompanyAuthenticationInfoUpdateForm from './servicecompanyauthenticationinfo/ServiceCompanyAuthenticationInfo.updateform';
+import VehicleInspectionPlateNumberPatternBase from './vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.base';
+import VehicleInspectionPlateNumberPatternBizApp from './vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.app';
+import VehicleInspectionPlateNumberPatternModel from './vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.model';
+import VehicleInspectionPlateNumberPatternDashboard from './vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.dashboard';
+import VehicleInspectionPlateNumberPatternConfirmationTable from './vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.confirmmationtable';
+import VehicleInspectionPlateNumberPatternSearch from './vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.search';
+import VehicleInspectionPlateNumberPatternSearchForm from './vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.searchform';
+import VehicleInspectionPlateNumberPatternCreateForm from './vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.createform';
+import VehicleInspectionPlateNumberPatternTable from './vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.table';
+import VehicleInspectionPlateNumberPatternService from './vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.service';
+import VehicleInspectionPlateNumberPatternUpdateForm from './vehicleinspectionplatenumberpattern/VehicleInspectionPlateNumberPattern.updateform';
+import FileInspectionPlateNumberPatternBase from './fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.base';
+import FileInspectionPlateNumberPatternBizApp from './fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.app';
+import FileInspectionPlateNumberPatternModel from './fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.model';
+import FileInspectionPlateNumberPatternDashboard from './fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.dashboard';
+import FileInspectionPlateNumberPatternConfirmationTable from './fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.confirmmationtable';
+import FileInspectionPlateNumberPatternSearch from './fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.search';
+import FileInspectionPlateNumberPatternSearchForm from './fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.searchform';
+import FileInspectionPlateNumberPatternCreateForm from './fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.createform';
+import FileInspectionPlateNumberPatternTable from './fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.table';
+import FileInspectionPlateNumberPatternService from './fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.service';
+import FileInspectionPlateNumberPatternUpdateForm from './fileinspectionplatenumberpattern/FileInspectionPlateNumberPattern.updateform';
+import VehicleServiceCompanyBusinessScopeBase from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.base';
+import VehicleServiceCompanyBusinessScopeBizApp from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.app';
+import VehicleServiceCompanyBusinessScopeModel from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.model';
+import VehicleServiceCompanyBusinessScopeDashboard from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.dashboard';
+import VehicleServiceCompanyBusinessScopeConfirmationTable from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.confirmmationtable';
+import VehicleServiceCompanyBusinessScopeSearch from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.search';
+import VehicleServiceCompanyBusinessScopeSearchForm from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.searchform';
+import VehicleServiceCompanyBusinessScopeCreateForm from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.createform';
+import VehicleServiceCompanyBusinessScopeTable from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.table';
+import VehicleServiceCompanyBusinessScopeService from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.service';
+import VehicleServiceCompanyBusinessScopeUpdateForm from './vehicleservicecompanybusinessscope/VehicleServiceCompanyBusinessScope.updateform';
+import CompanyQrcodePromotionRecordBase from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.base';
+import CompanyQrcodePromotionRecordBizApp from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.app';
+import CompanyQrcodePromotionRecordModel from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.model';
+import CompanyQrcodePromotionRecordDashboard from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.dashboard';
+import CompanyQrcodePromotionRecordConfirmationTable from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.confirmmationtable';
+import CompanyQrcodePromotionRecordSearch from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.search';
+import CompanyQrcodePromotionRecordSearchForm from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.searchform';
+import CompanyQrcodePromotionRecordCreateForm from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.createform';
+import CompanyQrcodePromotionRecordTable from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.table';
+import CompanyQrcodePromotionRecordService from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.service';
+import CompanyQrcodePromotionRecordUpdateForm from './companyqrcodepromotionrecord/CompanyQrcodePromotionRecord.updateform';
+import VehicleServiceCompanyDispatcherBase from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.base';
+import VehicleServiceCompanyDispatcherBizApp from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.app';
+import VehicleServiceCompanyDispatcherModel from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.model';
+import VehicleServiceCompanyDispatcherDashboard from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.dashboard';
+import VehicleServiceCompanyDispatcherConfirmationTable from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.confirmmationtable';
+import VehicleServiceCompanyDispatcherSearch from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.search';
+import VehicleServiceCompanyDispatcherSearchForm from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.searchform';
+import VehicleServiceCompanyDispatcherCreateForm from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.createform';
+import VehicleServiceCompanyDispatcherTable from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.table';
+import VehicleServiceCompanyDispatcherService from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.service';
+import VehicleServiceCompanyDispatcherUpdateForm from './vehicleservicecompanydispatcher/VehicleServiceCompanyDispatcher.updateform';
+import CompanyDiscountBase from './companydiscount/CompanyDiscount.base';
+import CompanyDiscountBizApp from './companydiscount/CompanyDiscount.app';
+import CompanyDiscountModel from './companydiscount/CompanyDiscount.model';
+import CompanyDiscountDashboard from './companydiscount/CompanyDiscount.dashboard';
+import CompanyDiscountConfirmationTable from './companydiscount/CompanyDiscount.confirmmationtable';
+import CompanyDiscountSearch from './companydiscount/CompanyDiscount.search';
+import CompanyDiscountSearchForm from './companydiscount/CompanyDiscount.searchform';
+import CompanyDiscountCreateForm from './companydiscount/CompanyDiscount.createform';
+import CompanyDiscountTable from './companydiscount/CompanyDiscount.table';
+import CompanyDiscountService from './companydiscount/CompanyDiscount.service';
+import CompanyDiscountUpdateForm from './companydiscount/CompanyDiscount.updateform';
+import VehicleServiceCompanyEmployeeBase from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.base';
+import VehicleServiceCompanyEmployeeBizApp from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.app';
+import VehicleServiceCompanyEmployeeModel from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.model';
+import VehicleServiceCompanyEmployeeDashboard from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.dashboard';
+import VehicleServiceCompanyEmployeeConfirmationTable from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.confirmmationtable';
+import VehicleServiceCompanyEmployeeSearch from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.search';
+import VehicleServiceCompanyEmployeeSearchForm from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.searchform';
+import VehicleServiceCompanyEmployeeCreateForm from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.createform';
+import VehicleServiceCompanyEmployeeTable from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.table';
+import VehicleServiceCompanyEmployeeService from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.service';
+import VehicleServiceCompanyEmployeeUpdateForm from './vehicleservicecompanyemployee/VehicleServiceCompanyEmployee.updateform';
+import ServiceOrderFilterBase from './serviceorderfilter/ServiceOrderFilter.base';
+import ServiceOrderFilterBizApp from './serviceorderfilter/ServiceOrderFilter.app';
+import ServiceOrderFilterModel from './serviceorderfilter/ServiceOrderFilter.model';
+import ServiceOrderFilterDashboard from './serviceorderfilter/ServiceOrderFilter.dashboard';
+import ServiceOrderFilterConfirmationTable from './serviceorderfilter/ServiceOrderFilter.confirmmationtable';
+import ServiceOrderFilterSearch from './serviceorderfilter/ServiceOrderFilter.search';
+import ServiceOrderFilterSearchForm from './serviceorderfilter/ServiceOrderFilter.searchform';
+import ServiceOrderFilterCreateForm from './serviceorderfilter/ServiceOrderFilter.createform';
+import ServiceOrderFilterTable from './serviceorderfilter/ServiceOrderFilter.table';
+import ServiceOrderFilterService from './serviceorderfilter/ServiceOrderFilter.service';
+import ServiceOrderFilterUpdateForm from './serviceorderfilter/ServiceOrderFilter.updateform';
+import CompanyEmployeeQualificationBase from './companyemployeequalification/CompanyEmployeeQualification.base';
+import CompanyEmployeeQualificationBizApp from './companyemployeequalification/CompanyEmployeeQualification.app';
+import CompanyEmployeeQualificationModel from './companyemployeequalification/CompanyEmployeeQualification.model';
+import CompanyEmployeeQualificationDashboard from './companyemployeequalification/CompanyEmployeeQualification.dashboard';
+import CompanyEmployeeQualificationConfirmationTable from './companyemployeequalification/CompanyEmployeeQualification.confirmmationtable';
+import CompanyEmployeeQualificationSearch from './companyemployeequalification/CompanyEmployeeQualification.search';
+import CompanyEmployeeQualificationSearchForm from './companyemployeequalification/CompanyEmployeeQualification.searchform';
+import CompanyEmployeeQualificationCreateForm from './companyemployeequalification/CompanyEmployeeQualification.createform';
+import CompanyEmployeeQualificationTable from './companyemployeequalification/CompanyEmployeeQualification.table';
+import CompanyEmployeeQualificationService from './companyemployeequalification/CompanyEmployeeQualification.service';
+import CompanyEmployeeQualificationUpdateForm from './companyemployeequalification/CompanyEmployeeQualification.updateform';
+import CompanyEmployeeServingBase from './companyemployeeserving/CompanyEmployeeServing.base';
+import CompanyEmployeeServingBizApp from './companyemployeeserving/CompanyEmployeeServing.app';
+import CompanyEmployeeServingModel from './companyemployeeserving/CompanyEmployeeServing.model';
+import CompanyEmployeeServingDashboard from './companyemployeeserving/CompanyEmployeeServing.dashboard';
+import CompanyEmployeeServingConfirmationTable from './companyemployeeserving/CompanyEmployeeServing.confirmmationtable';
+import CompanyEmployeeServingSearch from './companyemployeeserving/CompanyEmployeeServing.search';
+import CompanyEmployeeServingSearchForm from './companyemployeeserving/CompanyEmployeeServing.searchform';
+import CompanyEmployeeServingCreateForm from './companyemployeeserving/CompanyEmployeeServing.createform';
+import CompanyEmployeeServingTable from './companyemployeeserving/CompanyEmployeeServing.table';
+import CompanyEmployeeServingService from './companyemployeeserving/CompanyEmployeeServing.service';
+import CompanyEmployeeServingUpdateForm from './companyemployeeserving/CompanyEmployeeServing.updateform';
+import CompanyEmployeeTerminationBase from './companyemployeetermination/CompanyEmployeeTermination.base';
+import CompanyEmployeeTerminationBizApp from './companyemployeetermination/CompanyEmployeeTermination.app';
+import CompanyEmployeeTerminationModel from './companyemployeetermination/CompanyEmployeeTermination.model';
+import CompanyEmployeeTerminationDashboard from './companyemployeetermination/CompanyEmployeeTermination.dashboard';
+import CompanyEmployeeTerminationConfirmationTable from './companyemployeetermination/CompanyEmployeeTermination.confirmmationtable';
+import CompanyEmployeeTerminationSearch from './companyemployeetermination/CompanyEmployeeTermination.search';
+import CompanyEmployeeTerminationSearchForm from './companyemployeetermination/CompanyEmployeeTermination.searchform';
+import CompanyEmployeeTerminationCreateForm from './companyemployeetermination/CompanyEmployeeTermination.createform';
+import CompanyEmployeeTerminationTable from './companyemployeetermination/CompanyEmployeeTermination.table';
+import CompanyEmployeeTerminationService from './companyemployeetermination/CompanyEmployeeTermination.service';
+import CompanyEmployeeTerminationUpdateForm from './companyemployeetermination/CompanyEmployeeTermination.updateform';
+import EmployeeDrivingLicenseBase from './employeedrivinglicense/EmployeeDrivingLicense.base';
+import EmployeeDrivingLicenseBizApp from './employeedrivinglicense/EmployeeDrivingLicense.app';
+import EmployeeDrivingLicenseModel from './employeedrivinglicense/EmployeeDrivingLicense.model';
+import EmployeeDrivingLicenseDashboard from './employeedrivinglicense/EmployeeDrivingLicense.dashboard';
+import EmployeeDrivingLicenseConfirmationTable from './employeedrivinglicense/EmployeeDrivingLicense.confirmmationtable';
+import EmployeeDrivingLicenseSearch from './employeedrivinglicense/EmployeeDrivingLicense.search';
+import EmployeeDrivingLicenseSearchForm from './employeedrivinglicense/EmployeeDrivingLicense.searchform';
+import EmployeeDrivingLicenseCreateForm from './employeedrivinglicense/EmployeeDrivingLicense.createform';
+import EmployeeDrivingLicenseTable from './employeedrivinglicense/EmployeeDrivingLicense.table';
+import EmployeeDrivingLicenseService from './employeedrivinglicense/EmployeeDrivingLicense.service';
+import EmployeeDrivingLicenseUpdateForm from './employeedrivinglicense/EmployeeDrivingLicense.updateform';
+import InspectionStationBase from './inspectionstation/InspectionStation.base';
+import InspectionStationBizApp from './inspectionstation/InspectionStation.app';
+import InspectionStationModel from './inspectionstation/InspectionStation.model';
+import InspectionStationDashboard from './inspectionstation/InspectionStation.dashboard';
+import InspectionStationConfirmationTable from './inspectionstation/InspectionStation.confirmmationtable';
+import InspectionStationSearch from './inspectionstation/InspectionStation.search';
+import InspectionStationSearchForm from './inspectionstation/InspectionStation.searchform';
+import InspectionStationCreateForm from './inspectionstation/InspectionStation.createform';
+import InspectionStationTable from './inspectionstation/InspectionStation.table';
+import InspectionStationService from './inspectionstation/InspectionStation.service';
+import InspectionStationUpdateForm from './inspectionstation/InspectionStation.updateform';
+import VehicleInfoBase from './vehicleinfo/VehicleInfo.base';
+import VehicleInfoBizApp from './vehicleinfo/VehicleInfo.app';
+import VehicleInfoModel from './vehicleinfo/VehicleInfo.model';
+import VehicleInfoDashboard from './vehicleinfo/VehicleInfo.dashboard';
+import VehicleInfoConfirmationTable from './vehicleinfo/VehicleInfo.confirmmationtable';
+import VehicleInfoSearch from './vehicleinfo/VehicleInfo.search';
+import VehicleInfoSearchForm from './vehicleinfo/VehicleInfo.searchform';
+import VehicleInfoCreateForm from './vehicleinfo/VehicleInfo.createform';
+import VehicleInfoTable from './vehicleinfo/VehicleInfo.table';
+import VehicleInfoService from './vehicleinfo/VehicleInfo.service';
+import VehicleInfoUpdateForm from './vehicleinfo/VehicleInfo.updateform';
+import VehicleInspectionOrderBase from './vehicleinspectionorder/VehicleInspectionOrder.base';
+import VehicleInspectionOrderBizApp from './vehicleinspectionorder/VehicleInspectionOrder.app';
+import VehicleInspectionOrderModel from './vehicleinspectionorder/VehicleInspectionOrder.model';
+import VehicleInspectionOrderDashboard from './vehicleinspectionorder/VehicleInspectionOrder.dashboard';
+import VehicleInspectionOrderConfirmationTable from './vehicleinspectionorder/VehicleInspectionOrder.confirmmationtable';
+import VehicleInspectionOrderSearch from './vehicleinspectionorder/VehicleInspectionOrder.search';
+import VehicleInspectionOrderSearchForm from './vehicleinspectionorder/VehicleInspectionOrder.searchform';
+import VehicleInspectionOrderCreateForm from './vehicleinspectionorder/VehicleInspectionOrder.createform';
+import VehicleInspectionOrderTable from './vehicleinspectionorder/VehicleInspectionOrder.table';
+import VehicleInspectionOrderService from './vehicleinspectionorder/VehicleInspectionOrder.service';
+import VehicleInspectionOrderUpdateForm from './vehicleinspectionorder/VehicleInspectionOrder.updateform';
+import VehicleInspectionInsuranceOrderBase from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.base';
+import VehicleInspectionInsuranceOrderBizApp from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.app';
+import VehicleInspectionInsuranceOrderModel from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.model';
+import VehicleInspectionInsuranceOrderDashboard from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.dashboard';
+import VehicleInspectionInsuranceOrderConfirmationTable from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.confirmmationtable';
+import VehicleInspectionInsuranceOrderSearch from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.search';
+import VehicleInspectionInsuranceOrderSearchForm from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.searchform';
+import VehicleInspectionInsuranceOrderCreateForm from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.createform';
+import VehicleInspectionInsuranceOrderTable from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.table';
+import VehicleInspectionInsuranceOrderService from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.service';
+import VehicleInspectionInsuranceOrderUpdateForm from './vehicleinspectioninsuranceorder/VehicleInspectionInsuranceOrder.updateform';
+import VehicleInspectionOrderChargeBase from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.base';
+import VehicleInspectionOrderChargeBizApp from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.app';
+import VehicleInspectionOrderChargeModel from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.model';
+import VehicleInspectionOrderChargeDashboard from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.dashboard';
+import VehicleInspectionOrderChargeConfirmationTable from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.confirmmationtable';
+import VehicleInspectionOrderChargeSearch from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.search';
+import VehicleInspectionOrderChargeSearchForm from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.searchform';
+import VehicleInspectionOrderChargeCreateForm from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.createform';
+import VehicleInspectionOrderChargeTable from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.table';
+import VehicleInspectionOrderChargeService from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.service';
+import VehicleInspectionOrderChargeUpdateForm from './vehicleinspectionordercharge/VehicleInspectionOrderCharge.updateform';
+import VehicleInspectionOrderServiceLogBase from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.base';
+import VehicleInspectionOrderServiceLogBizApp from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.app';
+import VehicleInspectionOrderServiceLogModel from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.model';
+import VehicleInspectionOrderServiceLogDashboard from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.dashboard';
+import VehicleInspectionOrderServiceLogConfirmationTable from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.confirmmationtable';
+import VehicleInspectionOrderServiceLogSearch from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.search';
+import VehicleInspectionOrderServiceLogSearchForm from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.searchform';
+import VehicleInspectionOrderServiceLogCreateForm from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.createform';
+import VehicleInspectionOrderServiceLogTable from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.table';
+import VehicleInspectionOrderServiceLogService from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.service';
+import VehicleInspectionOrderServiceLogUpdateForm from './vehicleinspectionorderservicelog/VehicleInspectionOrderServiceLog.updateform';
+import VehicleInspectionOrderPaymentBase from './vehicleinspectionorderpayment/VehicleInspectionOrderPayment.base';
+import VehicleInspectionOrderPaymentBizApp from './vehicleinspectionorderpayment/VehicleInspectionOrderPayment.app';
+import VehicleInspectionOrderPaymentModel from './vehicleinspectionorderpayment/VehicleInspectionOrderPayment.model';
+import VehicleInspectionOrderPaymentDashboard from './vehicleinspectionorderpayment/VehicleInspectionOrderPayment.dashboard';
+import VehicleInspectionOrderPaymentConfirmationTable from './vehicleinspectionorderpayment/VehicleInspectionOrderPayment.confirmmationtable';
+import VehicleInspectionOrderPaymentSearch from './vehicleinspectionorderpayment/VehicleInspectionOrderPayment.search';
+import VehicleInspectionOrderPaymentSearchForm from './vehicleinspectionorderpayment/VehicleInspectionOrderPayment.searchform';
+import VehicleInspectionOrderPaymentCreateForm from './vehicleinspectionorderpayment/VehicleInspectionOrderPayment.createform';
+import VehicleInspectionOrderPaymentTable from './vehicleinspectionorderpayment/VehicleInspectionOrderPayment.table';
+import VehicleInspectionOrderPaymentService from './vehicleinspectionorderpayment/VehicleInspectionOrderPayment.service';
+import VehicleInspectionOrderPaymentUpdateForm from './vehicleinspectionorderpayment/VehicleInspectionOrderPayment.updateform';
+import HandOverChecklistItemBase from './handoverchecklistitem/HandOverChecklistItem.base';
+import HandOverChecklistItemBizApp from './handoverchecklistitem/HandOverChecklistItem.app';
+import HandOverChecklistItemModel from './handoverchecklistitem/HandOverChecklistItem.model';
+import HandOverChecklistItemDashboard from './handoverchecklistitem/HandOverChecklistItem.dashboard';
+import HandOverChecklistItemConfirmationTable from './handoverchecklistitem/HandOverChecklistItem.confirmmationtable';
+import HandOverChecklistItemSearch from './handoverchecklistitem/HandOverChecklistItem.search';
+import HandOverChecklistItemSearchForm from './handoverchecklistitem/HandOverChecklistItem.searchform';
+import HandOverChecklistItemCreateForm from './handoverchecklistitem/HandOverChecklistItem.createform';
+import HandOverChecklistItemTable from './handoverchecklistitem/HandOverChecklistItem.table';
+import HandOverChecklistItemService from './handoverchecklistitem/HandOverChecklistItem.service';
+import HandOverChecklistItemUpdateForm from './handoverchecklistitem/HandOverChecklistItem.updateform';
+import ServiceVehicleMovementC2mBase from './servicevehiclemovementc2m/ServiceVehicleMovementC2m.base';
+import ServiceVehicleMovementC2mBizApp from './servicevehiclemovementc2m/ServiceVehicleMovementC2m.app';
+import ServiceVehicleMovementC2mModel from './servicevehiclemovementc2m/ServiceVehicleMovementC2m.model';
+import ServiceVehicleMovementC2mDashboard from './servicevehiclemovementc2m/ServiceVehicleMovementC2m.dashboard';
+import ServiceVehicleMovementC2mConfirmationTable from './servicevehiclemovementc2m/ServiceVehicleMovementC2m.confirmmationtable';
+import ServiceVehicleMovementC2mSearch from './servicevehiclemovementc2m/ServiceVehicleMovementC2m.search';
+import ServiceVehicleMovementC2mSearchForm from './servicevehiclemovementc2m/ServiceVehicleMovementC2m.searchform';
+import ServiceVehicleMovementC2mCreateForm from './servicevehiclemovementc2m/ServiceVehicleMovementC2m.createform';
+import ServiceVehicleMovementC2mTable from './servicevehiclemovementc2m/ServiceVehicleMovementC2m.table';
+import ServiceVehicleMovementC2mService from './servicevehiclemovementc2m/ServiceVehicleMovementC2m.service';
+import ServiceVehicleMovementC2mUpdateForm from './servicevehiclemovementc2m/ServiceVehicleMovementC2m.updateform';
+import ServiceVehicleMovementM2mBase from './servicevehiclemovementm2m/ServiceVehicleMovementM2m.base';
+import ServiceVehicleMovementM2mBizApp from './servicevehiclemovementm2m/ServiceVehicleMovementM2m.app';
+import ServiceVehicleMovementM2mModel from './servicevehiclemovementm2m/ServiceVehicleMovementM2m.model';
+import ServiceVehicleMovementM2mDashboard from './servicevehiclemovementm2m/ServiceVehicleMovementM2m.dashboard';
+import ServiceVehicleMovementM2mConfirmationTable from './servicevehiclemovementm2m/ServiceVehicleMovementM2m.confirmmationtable';
+import ServiceVehicleMovementM2mSearch from './servicevehiclemovementm2m/ServiceVehicleMovementM2m.search';
+import ServiceVehicleMovementM2mSearchForm from './servicevehiclemovementm2m/ServiceVehicleMovementM2m.searchform';
+import ServiceVehicleMovementM2mCreateForm from './servicevehiclemovementm2m/ServiceVehicleMovementM2m.createform';
+import ServiceVehicleMovementM2mTable from './servicevehiclemovementm2m/ServiceVehicleMovementM2m.table';
+import ServiceVehicleMovementM2mService from './servicevehiclemovementm2m/ServiceVehicleMovementM2m.service';
+import ServiceVehicleMovementM2mUpdateForm from './servicevehiclemovementm2m/ServiceVehicleMovementM2m.updateform';
+import ServiceVehicleMovementM2cBase from './servicevehiclemovementm2c/ServiceVehicleMovementM2c.base';
+import ServiceVehicleMovementM2cBizApp from './servicevehiclemovementm2c/ServiceVehicleMovementM2c.app';
+import ServiceVehicleMovementM2cModel from './servicevehiclemovementm2c/ServiceVehicleMovementM2c.model';
+import ServiceVehicleMovementM2cDashboard from './servicevehiclemovementm2c/ServiceVehicleMovementM2c.dashboard';
+import ServiceVehicleMovementM2cConfirmationTable from './servicevehiclemovementm2c/ServiceVehicleMovementM2c.confirmmationtable';
+import ServiceVehicleMovementM2cSearch from './servicevehiclemovementm2c/ServiceVehicleMovementM2c.search';
+import ServiceVehicleMovementM2cSearchForm from './servicevehiclemovementm2c/ServiceVehicleMovementM2c.searchform';
+import ServiceVehicleMovementM2cCreateForm from './servicevehiclemovementm2c/ServiceVehicleMovementM2c.createform';
+import ServiceVehicleMovementM2cTable from './servicevehiclemovementm2c/ServiceVehicleMovementM2c.table';
+import ServiceVehicleMovementM2cService from './servicevehiclemovementm2c/ServiceVehicleMovementM2c.service';
+import ServiceVehicleMovementM2cUpdateForm from './servicevehiclemovementm2c/ServiceVehicleMovementM2c.updateform';
+import ServiceFileMovementC2mBase from './servicefilemovementc2m/ServiceFileMovementC2m.base';
+import ServiceFileMovementC2mBizApp from './servicefilemovementc2m/ServiceFileMovementC2m.app';
+import ServiceFileMovementC2mModel from './servicefilemovementc2m/ServiceFileMovementC2m.model';
+import ServiceFileMovementC2mDashboard from './servicefilemovementc2m/ServiceFileMovementC2m.dashboard';
+import ServiceFileMovementC2mConfirmationTable from './servicefilemovementc2m/ServiceFileMovementC2m.confirmmationtable';
+import ServiceFileMovementC2mSearch from './servicefilemovementc2m/ServiceFileMovementC2m.search';
+import ServiceFileMovementC2mSearchForm from './servicefilemovementc2m/ServiceFileMovementC2m.searchform';
+import ServiceFileMovementC2mCreateForm from './servicefilemovementc2m/ServiceFileMovementC2m.createform';
+import ServiceFileMovementC2mTable from './servicefilemovementc2m/ServiceFileMovementC2m.table';
+import ServiceFileMovementC2mService from './servicefilemovementc2m/ServiceFileMovementC2m.service';
+import ServiceFileMovementC2mUpdateForm from './servicefilemovementc2m/ServiceFileMovementC2m.updateform';
+import ServiceFileMovementM2mBase from './servicefilemovementm2m/ServiceFileMovementM2m.base';
+import ServiceFileMovementM2mBizApp from './servicefilemovementm2m/ServiceFileMovementM2m.app';
+import ServiceFileMovementM2mModel from './servicefilemovementm2m/ServiceFileMovementM2m.model';
+import ServiceFileMovementM2mDashboard from './servicefilemovementm2m/ServiceFileMovementM2m.dashboard';
+import ServiceFileMovementM2mConfirmationTable from './servicefilemovementm2m/ServiceFileMovementM2m.confirmmationtable';
+import ServiceFileMovementM2mSearch from './servicefilemovementm2m/ServiceFileMovementM2m.search';
+import ServiceFileMovementM2mSearchForm from './servicefilemovementm2m/ServiceFileMovementM2m.searchform';
+import ServiceFileMovementM2mCreateForm from './servicefilemovementm2m/ServiceFileMovementM2m.createform';
+import ServiceFileMovementM2mTable from './servicefilemovementm2m/ServiceFileMovementM2m.table';
+import ServiceFileMovementM2mService from './servicefilemovementm2m/ServiceFileMovementM2m.service';
+import ServiceFileMovementM2mUpdateForm from './servicefilemovementm2m/ServiceFileMovementM2m.updateform';
+import ServiceFileMovementM2cBase from './servicefilemovementm2c/ServiceFileMovementM2c.base';
+import ServiceFileMovementM2cBizApp from './servicefilemovementm2c/ServiceFileMovementM2c.app';
+import ServiceFileMovementM2cModel from './servicefilemovementm2c/ServiceFileMovementM2c.model';
+import ServiceFileMovementM2cDashboard from './servicefilemovementm2c/ServiceFileMovementM2c.dashboard';
+import ServiceFileMovementM2cConfirmationTable from './servicefilemovementm2c/ServiceFileMovementM2c.confirmmationtable';
+import ServiceFileMovementM2cSearch from './servicefilemovementm2c/ServiceFileMovementM2c.search';
+import ServiceFileMovementM2cSearchForm from './servicefilemovementm2c/ServiceFileMovementM2c.searchform';
+import ServiceFileMovementM2cCreateForm from './servicefilemovementm2c/ServiceFileMovementM2c.createform';
+import ServiceFileMovementM2cTable from './servicefilemovementm2c/ServiceFileMovementM2c.table';
+import ServiceFileMovementM2cService from './servicefilemovementm2c/ServiceFileMovementM2c.service';
+import ServiceFileMovementM2cUpdateForm from './servicefilemovementm2c/ServiceFileMovementM2c.updateform';
+import HandOverChecklistResultBase from './handoverchecklistresult/HandOverChecklistResult.base';
+import HandOverChecklistResultBizApp from './handoverchecklistresult/HandOverChecklistResult.app';
+import HandOverChecklistResultModel from './handoverchecklistresult/HandOverChecklistResult.model';
+import HandOverChecklistResultDashboard from './handoverchecklistresult/HandOverChecklistResult.dashboard';
+import HandOverChecklistResultConfirmationTable from './handoverchecklistresult/HandOverChecklistResult.confirmmationtable';
+import HandOverChecklistResultSearch from './handoverchecklistresult/HandOverChecklistResult.search';
+import HandOverChecklistResultSearchForm from './handoverchecklistresult/HandOverChecklistResult.searchform';
+import HandOverChecklistResultCreateForm from './handoverchecklistresult/HandOverChecklistResult.createform';
+import HandOverChecklistResultTable from './handoverchecklistresult/HandOverChecklistResult.table';
+import HandOverChecklistResultService from './handoverchecklistresult/HandOverChecklistResult.service';
+import HandOverChecklistResultUpdateForm from './handoverchecklistresult/HandOverChecklistResult.updateform';
+import ServiceInsuranceForInspectionBase from './serviceinsuranceforinspection/ServiceInsuranceForInspection.base';
+import ServiceInsuranceForInspectionBizApp from './serviceinsuranceforinspection/ServiceInsuranceForInspection.app';
+import ServiceInsuranceForInspectionModel from './serviceinsuranceforinspection/ServiceInsuranceForInspection.model';
+import ServiceInsuranceForInspectionDashboard from './serviceinsuranceforinspection/ServiceInsuranceForInspection.dashboard';
+import ServiceInsuranceForInspectionConfirmationTable from './serviceinsuranceforinspection/ServiceInsuranceForInspection.confirmmationtable';
+import ServiceInsuranceForInspectionSearch from './serviceinsuranceforinspection/ServiceInsuranceForInspection.search';
+import ServiceInsuranceForInspectionSearchForm from './serviceinsuranceforinspection/ServiceInsuranceForInspection.searchform';
+import ServiceInsuranceForInspectionCreateForm from './serviceinsuranceforinspection/ServiceInsuranceForInspection.createform';
+import ServiceInsuranceForInspectionTable from './serviceinsuranceforinspection/ServiceInsuranceForInspection.table';
+import ServiceInsuranceForInspectionService from './serviceinsuranceforinspection/ServiceInsuranceForInspection.service';
+import ServiceInsuranceForInspectionUpdateForm from './serviceinsuranceforinspection/ServiceInsuranceForInspection.updateform';
+import ServiceVehicleInspectionBase from './servicevehicleinspection/ServiceVehicleInspection.base';
+import ServiceVehicleInspectionBizApp from './servicevehicleinspection/ServiceVehicleInspection.app';
+import ServiceVehicleInspectionModel from './servicevehicleinspection/ServiceVehicleInspection.model';
+import ServiceVehicleInspectionDashboard from './servicevehicleinspection/ServiceVehicleInspection.dashboard';
+import ServiceVehicleInspectionConfirmationTable from './servicevehicleinspection/ServiceVehicleInspection.confirmmationtable';
+import ServiceVehicleInspectionSearch from './servicevehicleinspection/ServiceVehicleInspection.search';
+import ServiceVehicleInspectionSearchForm from './servicevehicleinspection/ServiceVehicleInspection.searchform';
+import ServiceVehicleInspectionCreateForm from './servicevehicleinspection/ServiceVehicleInspection.createform';
+import ServiceVehicleInspectionTable from './servicevehicleinspection/ServiceVehicleInspection.table';
+import ServiceVehicleInspectionService from './servicevehicleinspection/ServiceVehicleInspection.service';
+import ServiceVehicleInspectionUpdateForm from './servicevehicleinspection/ServiceVehicleInspection.updateform';
+import ServiceFileInspectionBase from './servicefileinspection/ServiceFileInspection.base';
+import ServiceFileInspectionBizApp from './servicefileinspection/ServiceFileInspection.app';
+import ServiceFileInspectionModel from './servicefileinspection/ServiceFileInspection.model';
+import ServiceFileInspectionDashboard from './servicefileinspection/ServiceFileInspection.dashboard';
+import ServiceFileInspectionConfirmationTable from './servicefileinspection/ServiceFileInspection.confirmmationtable';
+import ServiceFileInspectionSearch from './servicefileinspection/ServiceFileInspection.search';
+import ServiceFileInspectionSearchForm from './servicefileinspection/ServiceFileInspection.searchform';
+import ServiceFileInspectionCreateForm from './servicefileinspection/ServiceFileInspection.createform';
+import ServiceFileInspectionTable from './servicefileinspection/ServiceFileInspection.table';
+import ServiceFileInspectionService from './servicefileinspection/ServiceFileInspection.service';
+import ServiceFileInspectionUpdateForm from './servicefileinspection/ServiceFileInspection.updateform';
+import ServiceVehicleRepairingBase from './servicevehiclerepairing/ServiceVehicleRepairing.base';
+import ServiceVehicleRepairingBizApp from './servicevehiclerepairing/ServiceVehicleRepairing.app';
+import ServiceVehicleRepairingModel from './servicevehiclerepairing/ServiceVehicleRepairing.model';
+import ServiceVehicleRepairingDashboard from './servicevehiclerepairing/ServiceVehicleRepairing.dashboard';
+import ServiceVehicleRepairingConfirmationTable from './servicevehiclerepairing/ServiceVehicleRepairing.confirmmationtable';
+import ServiceVehicleRepairingSearch from './servicevehiclerepairing/ServiceVehicleRepairing.search';
+import ServiceVehicleRepairingSearchForm from './servicevehiclerepairing/ServiceVehicleRepairing.searchform';
+import ServiceVehicleRepairingCreateForm from './servicevehiclerepairing/ServiceVehicleRepairing.createform';
+import ServiceVehicleRepairingTable from './servicevehiclerepairing/ServiceVehicleRepairing.table';
+import ServiceVehicleRepairingService from './servicevehiclerepairing/ServiceVehicleRepairing.service';
+import ServiceVehicleRepairingUpdateForm from './servicevehiclerepairing/ServiceVehicleRepairing.updateform';
+import RepairingAllowanceItemBase from './repairingallowanceitem/RepairingAllowanceItem.base';
+import RepairingAllowanceItemBizApp from './repairingallowanceitem/RepairingAllowanceItem.app';
+import RepairingAllowanceItemModel from './repairingallowanceitem/RepairingAllowanceItem.model';
+import RepairingAllowanceItemDashboard from './repairingallowanceitem/RepairingAllowanceItem.dashboard';
+import RepairingAllowanceItemConfirmationTable from './repairingallowanceitem/RepairingAllowanceItem.confirmmationtable';
+import RepairingAllowanceItemSearch from './repairingallowanceitem/RepairingAllowanceItem.search';
+import RepairingAllowanceItemSearchForm from './repairingallowanceitem/RepairingAllowanceItem.searchform';
+import RepairingAllowanceItemCreateForm from './repairingallowanceitem/RepairingAllowanceItem.createform';
+import RepairingAllowanceItemTable from './repairingallowanceitem/RepairingAllowanceItem.table';
+import RepairingAllowanceItemService from './repairingallowanceitem/RepairingAllowanceItem.service';
+import RepairingAllowanceItemUpdateForm from './repairingallowanceitem/RepairingAllowanceItem.updateform';
+import VehicleRepairingPaymentBase from './vehiclerepairingpayment/VehicleRepairingPayment.base';
+import VehicleRepairingPaymentBizApp from './vehiclerepairingpayment/VehicleRepairingPayment.app';
+import VehicleRepairingPaymentModel from './vehiclerepairingpayment/VehicleRepairingPayment.model';
+import VehicleRepairingPaymentDashboard from './vehiclerepairingpayment/VehicleRepairingPayment.dashboard';
+import VehicleRepairingPaymentConfirmationTable from './vehiclerepairingpayment/VehicleRepairingPayment.confirmmationtable';
+import VehicleRepairingPaymentSearch from './vehiclerepairingpayment/VehicleRepairingPayment.search';
+import VehicleRepairingPaymentSearchForm from './vehiclerepairingpayment/VehicleRepairingPayment.searchform';
+import VehicleRepairingPaymentCreateForm from './vehiclerepairingpayment/VehicleRepairingPayment.createform';
+import VehicleRepairingPaymentTable from './vehiclerepairingpayment/VehicleRepairingPayment.table';
+import VehicleRepairingPaymentService from './vehiclerepairingpayment/VehicleRepairingPayment.service';
+import VehicleRepairingPaymentUpdateForm from './vehiclerepairingpayment/VehicleRepairingPayment.updateform';
+import AvailableReviewItemBase from './availablereviewitem/AvailableReviewItem.base';
+import AvailableReviewItemBizApp from './availablereviewitem/AvailableReviewItem.app';
+import AvailableReviewItemModel from './availablereviewitem/AvailableReviewItem.model';
+import AvailableReviewItemDashboard from './availablereviewitem/AvailableReviewItem.dashboard';
+import AvailableReviewItemConfirmationTable from './availablereviewitem/AvailableReviewItem.confirmmationtable';
+import AvailableReviewItemSearch from './availablereviewitem/AvailableReviewItem.search';
+import AvailableReviewItemSearchForm from './availablereviewitem/AvailableReviewItem.searchform';
+import AvailableReviewItemCreateForm from './availablereviewitem/AvailableReviewItem.createform';
+import AvailableReviewItemTable from './availablereviewitem/AvailableReviewItem.table';
+import AvailableReviewItemService from './availablereviewitem/AvailableReviewItem.service';
+import AvailableReviewItemUpdateForm from './availablereviewitem/AvailableReviewItem.updateform';
+import OrderReviewResultBase from './orderreviewresult/OrderReviewResult.base';
+import OrderReviewResultBizApp from './orderreviewresult/OrderReviewResult.app';
+import OrderReviewResultModel from './orderreviewresult/OrderReviewResult.model';
+import OrderReviewResultDashboard from './orderreviewresult/OrderReviewResult.dashboard';
+import OrderReviewResultConfirmationTable from './orderreviewresult/OrderReviewResult.confirmmationtable';
+import OrderReviewResultSearch from './orderreviewresult/OrderReviewResult.search';
+import OrderReviewResultSearchForm from './orderreviewresult/OrderReviewResult.searchform';
+import OrderReviewResultCreateForm from './orderreviewresult/OrderReviewResult.createform';
+import OrderReviewResultTable from './orderreviewresult/OrderReviewResult.table';
+import OrderReviewResultService from './orderreviewresult/OrderReviewResult.service';
+import OrderReviewResultUpdateForm from './orderreviewresult/OrderReviewResult.updateform';
+import AvailableRatingItemBase from './availableratingitem/AvailableRatingItem.base';
+import AvailableRatingItemBizApp from './availableratingitem/AvailableRatingItem.app';
+import AvailableRatingItemModel from './availableratingitem/AvailableRatingItem.model';
+import AvailableRatingItemDashboard from './availableratingitem/AvailableRatingItem.dashboard';
+import AvailableRatingItemConfirmationTable from './availableratingitem/AvailableRatingItem.confirmmationtable';
+import AvailableRatingItemSearch from './availableratingitem/AvailableRatingItem.search';
+import AvailableRatingItemSearchForm from './availableratingitem/AvailableRatingItem.searchform';
+import AvailableRatingItemCreateForm from './availableratingitem/AvailableRatingItem.createform';
+import AvailableRatingItemTable from './availableratingitem/AvailableRatingItem.table';
+import AvailableRatingItemService from './availableratingitem/AvailableRatingItem.service';
+import AvailableRatingItemUpdateForm from './availableratingitem/AvailableRatingItem.updateform';
+import OrderRatingResultBase from './orderratingresult/OrderRatingResult.base';
+import OrderRatingResultBizApp from './orderratingresult/OrderRatingResult.app';
+import OrderRatingResultModel from './orderratingresult/OrderRatingResult.model';
+import OrderRatingResultDashboard from './orderratingresult/OrderRatingResult.dashboard';
+import OrderRatingResultConfirmationTable from './orderratingresult/OrderRatingResult.confirmmationtable';
+import OrderRatingResultSearch from './orderratingresult/OrderRatingResult.search';
+import OrderRatingResultSearchForm from './orderratingresult/OrderRatingResult.searchform';
+import OrderRatingResultCreateForm from './orderratingresult/OrderRatingResult.createform';
+import OrderRatingResultTable from './orderratingresult/OrderRatingResult.table';
+import OrderRatingResultService from './orderratingresult/OrderRatingResult.service';
+import OrderRatingResultUpdateForm from './orderratingresult/OrderRatingResult.updateform';
+import PreorderPromotionBase from './preorderpromotion/PreorderPromotion.base';
+import PreorderPromotionBizApp from './preorderpromotion/PreorderPromotion.app';
+import PreorderPromotionModel from './preorderpromotion/PreorderPromotion.model';
+import PreorderPromotionDashboard from './preorderpromotion/PreorderPromotion.dashboard';
+import PreorderPromotionConfirmationTable from './preorderpromotion/PreorderPromotion.confirmmationtable';
+import PreorderPromotionSearch from './preorderpromotion/PreorderPromotion.search';
+import PreorderPromotionSearchForm from './preorderpromotion/PreorderPromotion.searchform';
+import PreorderPromotionCreateForm from './preorderpromotion/PreorderPromotion.createform';
+import PreorderPromotionTable from './preorderpromotion/PreorderPromotion.table';
+import PreorderPromotionService from './preorderpromotion/PreorderPromotion.service';
+import PreorderPromotionUpdateForm from './preorderpromotion/PreorderPromotion.updateform';
+import OrderDiscountCouponBase from './orderdiscountcoupon/OrderDiscountCoupon.base';
+import OrderDiscountCouponBizApp from './orderdiscountcoupon/OrderDiscountCoupon.app';
+import OrderDiscountCouponModel from './orderdiscountcoupon/OrderDiscountCoupon.model';
+import OrderDiscountCouponDashboard from './orderdiscountcoupon/OrderDiscountCoupon.dashboard';
+import OrderDiscountCouponConfirmationTable from './orderdiscountcoupon/OrderDiscountCoupon.confirmmationtable';
+import OrderDiscountCouponSearch from './orderdiscountcoupon/OrderDiscountCoupon.search';
+import OrderDiscountCouponSearchForm from './orderdiscountcoupon/OrderDiscountCoupon.searchform';
+import OrderDiscountCouponCreateForm from './orderdiscountcoupon/OrderDiscountCoupon.createform';
+import OrderDiscountCouponTable from './orderdiscountcoupon/OrderDiscountCoupon.table';
+import OrderDiscountCouponService from './orderdiscountcoupon/OrderDiscountCoupon.service';
+import OrderDiscountCouponUpdateForm from './orderdiscountcoupon/OrderDiscountCoupon.updateform';
+import VehicleInspectionOrderCouponBase from './vehicleinspectionordercoupon/VehicleInspectionOrderCoupon.base';
+import VehicleInspectionOrderCouponBizApp from './vehicleinspectionordercoupon/VehicleInspectionOrderCoupon.app';
+import VehicleInspectionOrderCouponModel from './vehicleinspectionordercoupon/VehicleInspectionOrderCoupon.model';
+import VehicleInspectionOrderCouponDashboard from './vehicleinspectionordercoupon/VehicleInspectionOrderCoupon.dashboard';
+import VehicleInspectionOrderCouponConfirmationTable from './vehicleinspectionordercoupon/VehicleInspectionOrderCoupon.confirmmationtable';
+import VehicleInspectionOrderCouponSearch from './vehicleinspectionordercoupon/VehicleInspectionOrderCoupon.search';
+import VehicleInspectionOrderCouponSearchForm from './vehicleinspectionordercoupon/VehicleInspectionOrderCoupon.searchform';
+import VehicleInspectionOrderCouponCreateForm from './vehicleinspectionordercoupon/VehicleInspectionOrderCoupon.createform';
+import VehicleInspectionOrderCouponTable from './vehicleinspectionordercoupon/VehicleInspectionOrderCoupon.table';
+import VehicleInspectionOrderCouponService from './vehicleinspectionordercoupon/VehicleInspectionOrderCoupon.service';
+import VehicleInspectionOrderCouponUpdateForm from './vehicleinspectionordercoupon/VehicleInspectionOrderCoupon.updateform';
+import AccountBase from './account/Account.base';
+import AccountBizApp from './account/Account.app';
+import AccountModel from './account/Account.model';
+import AccountDashboard from './account/Account.dashboard';
+import AccountConfirmationTable from './account/Account.confirmmationtable';
+import AccountSearch from './account/Account.search';
+import AccountSearchForm from './account/Account.searchform';
+import AccountCreateForm from './account/Account.createform';
+import AccountTable from './account/Account.table';
+import AccountService from './account/Account.service';
+import AccountUpdateForm from './account/Account.updateform';
+import ServiceCompanyAccountBase from './servicecompanyaccount/ServiceCompanyAccount.base';
+import ServiceCompanyAccountBizApp from './servicecompanyaccount/ServiceCompanyAccount.app';
+import ServiceCompanyAccountModel from './servicecompanyaccount/ServiceCompanyAccount.model';
+import ServiceCompanyAccountDashboard from './servicecompanyaccount/ServiceCompanyAccount.dashboard';
+import ServiceCompanyAccountConfirmationTable from './servicecompanyaccount/ServiceCompanyAccount.confirmmationtable';
+import ServiceCompanyAccountSearch from './servicecompanyaccount/ServiceCompanyAccount.search';
+import ServiceCompanyAccountSearchForm from './servicecompanyaccount/ServiceCompanyAccount.searchform';
+import ServiceCompanyAccountCreateForm from './servicecompanyaccount/ServiceCompanyAccount.createform';
+import ServiceCompanyAccountTable from './servicecompanyaccount/ServiceCompanyAccount.table';
+import ServiceCompanyAccountService from './servicecompanyaccount/ServiceCompanyAccount.service';
+import ServiceCompanyAccountUpdateForm from './servicecompanyaccount/ServiceCompanyAccount.updateform';
+import RepairingCompanyAccountBase from './repairingcompanyaccount/RepairingCompanyAccount.base';
+import RepairingCompanyAccountBizApp from './repairingcompanyaccount/RepairingCompanyAccount.app';
+import RepairingCompanyAccountModel from './repairingcompanyaccount/RepairingCompanyAccount.model';
+import RepairingCompanyAccountDashboard from './repairingcompanyaccount/RepairingCompanyAccount.dashboard';
+import RepairingCompanyAccountConfirmationTable from './repairingcompanyaccount/RepairingCompanyAccount.confirmmationtable';
+import RepairingCompanyAccountSearch from './repairingcompanyaccount/RepairingCompanyAccount.search';
+import RepairingCompanyAccountSearchForm from './repairingcompanyaccount/RepairingCompanyAccount.searchform';
+import RepairingCompanyAccountCreateForm from './repairingcompanyaccount/RepairingCompanyAccount.createform';
+import RepairingCompanyAccountTable from './repairingcompanyaccount/RepairingCompanyAccount.table';
+import RepairingCompanyAccountService from './repairingcompanyaccount/RepairingCompanyAccount.service';
+import RepairingCompanyAccountUpdateForm from './repairingcompanyaccount/RepairingCompanyAccount.updateform';
+import InsuranceServiceAccountBase from './insuranceserviceaccount/InsuranceServiceAccount.base';
+import InsuranceServiceAccountBizApp from './insuranceserviceaccount/InsuranceServiceAccount.app';
+import InsuranceServiceAccountModel from './insuranceserviceaccount/InsuranceServiceAccount.model';
+import InsuranceServiceAccountDashboard from './insuranceserviceaccount/InsuranceServiceAccount.dashboard';
+import InsuranceServiceAccountConfirmationTable from './insuranceserviceaccount/InsuranceServiceAccount.confirmmationtable';
+import InsuranceServiceAccountSearch from './insuranceserviceaccount/InsuranceServiceAccount.search';
+import InsuranceServiceAccountSearchForm from './insuranceserviceaccount/InsuranceServiceAccount.searchform';
+import InsuranceServiceAccountCreateForm from './insuranceserviceaccount/InsuranceServiceAccount.createform';
+import InsuranceServiceAccountTable from './insuranceserviceaccount/InsuranceServiceAccount.table';
+import InsuranceServiceAccountService from './insuranceserviceaccount/InsuranceServiceAccount.service';
+import InsuranceServiceAccountUpdateForm from './insuranceserviceaccount/InsuranceServiceAccount.updateform';
+import MainOrderAccountBase from './mainorderaccount/MainOrderAccount.base';
+import MainOrderAccountBizApp from './mainorderaccount/MainOrderAccount.app';
+import MainOrderAccountModel from './mainorderaccount/MainOrderAccount.model';
+import MainOrderAccountDashboard from './mainorderaccount/MainOrderAccount.dashboard';
+import MainOrderAccountConfirmationTable from './mainorderaccount/MainOrderAccount.confirmmationtable';
+import MainOrderAccountSearch from './mainorderaccount/MainOrderAccount.search';
+import MainOrderAccountSearchForm from './mainorderaccount/MainOrderAccount.searchform';
+import MainOrderAccountCreateForm from './mainorderaccount/MainOrderAccount.createform';
+import MainOrderAccountTable from './mainorderaccount/MainOrderAccount.table';
+import MainOrderAccountService from './mainorderaccount/MainOrderAccount.service';
+import MainOrderAccountUpdateForm from './mainorderaccount/MainOrderAccount.updateform';
+import InspectionStationAccountBase from './inspectionstationaccount/InspectionStationAccount.base';
+import InspectionStationAccountBizApp from './inspectionstationaccount/InspectionStationAccount.app';
+import InspectionStationAccountModel from './inspectionstationaccount/InspectionStationAccount.model';
+import InspectionStationAccountDashboard from './inspectionstationaccount/InspectionStationAccount.dashboard';
+import InspectionStationAccountConfirmationTable from './inspectionstationaccount/InspectionStationAccount.confirmmationtable';
+import InspectionStationAccountSearch from './inspectionstationaccount/InspectionStationAccount.search';
+import InspectionStationAccountSearchForm from './inspectionstationaccount/InspectionStationAccount.searchform';
+import InspectionStationAccountCreateForm from './inspectionstationaccount/InspectionStationAccount.createform';
+import InspectionStationAccountTable from './inspectionstationaccount/InspectionStationAccount.table';
+import InspectionStationAccountService from './inspectionstationaccount/InspectionStationAccount.service';
+import InspectionStationAccountUpdateForm from './inspectionstationaccount/InspectionStationAccount.updateform';
 import UserDomainBase from './userdomain/UserDomain.base';
 import UserDomainBizApp from './userdomain/UserDomain.app';
 import UserDomainModel from './userdomain/UserDomain.model';
@@ -551,10 +693,6 @@ import UserDomainSearch from './userdomain/UserDomain.search';
 import UserDomainSearchForm from './userdomain/UserDomain.searchform';
 import UserDomainCreateForm from './userdomain/UserDomain.createform';
 import UserDomainTable from './userdomain/UserDomain.table';
-import UserDomainEditTable from './userdomain/UserDomain.edittable';
-import UserDomainEditDetail from './userdomain/UserDomain.editdetail';
-import UserDomainViewTable from './userdomain/UserDomain.viewtable';
-import UserDomainViewDetail from './userdomain/UserDomain.viewdetail';
 import UserDomainService from './userdomain/UserDomain.service';
 import UserDomainUpdateForm from './userdomain/UserDomain.updateform';
 import SecUserBase from './secuser/SecUser.base';
@@ -566,10 +704,6 @@ import SecUserSearch from './secuser/SecUser.search';
 import SecUserSearchForm from './secuser/SecUser.searchform';
 import SecUserCreateForm from './secuser/SecUser.createform';
 import SecUserTable from './secuser/SecUser.table';
-import SecUserEditTable from './secuser/SecUser.edittable';
-import SecUserEditDetail from './secuser/SecUser.editdetail';
-import SecUserViewTable from './secuser/SecUser.viewtable';
-import SecUserViewDetail from './secuser/SecUser.viewdetail';
 import SecUserService from './secuser/SecUser.service';
 import SecUserUpdateForm from './secuser/SecUser.updateform';
 import SecUserBlockingBase from './secuserblocking/SecUserBlocking.base';
@@ -581,10 +715,6 @@ import SecUserBlockingSearch from './secuserblocking/SecUserBlocking.search';
 import SecUserBlockingSearchForm from './secuserblocking/SecUserBlocking.searchform';
 import SecUserBlockingCreateForm from './secuserblocking/SecUserBlocking.createform';
 import SecUserBlockingTable from './secuserblocking/SecUserBlocking.table';
-import SecUserBlockingEditTable from './secuserblocking/SecUserBlocking.edittable';
-import SecUserBlockingEditDetail from './secuserblocking/SecUserBlocking.editdetail';
-import SecUserBlockingViewTable from './secuserblocking/SecUserBlocking.viewtable';
-import SecUserBlockingViewDetail from './secuserblocking/SecUserBlocking.viewdetail';
 import SecUserBlockingService from './secuserblocking/SecUserBlocking.service';
 import SecUserBlockingUpdateForm from './secuserblocking/SecUserBlocking.updateform';
 import UserAppBase from './userapp/UserApp.base';
@@ -596,10 +726,6 @@ import UserAppSearch from './userapp/UserApp.search';
 import UserAppSearchForm from './userapp/UserApp.searchform';
 import UserAppCreateForm from './userapp/UserApp.createform';
 import UserAppTable from './userapp/UserApp.table';
-import UserAppEditTable from './userapp/UserApp.edittable';
-import UserAppEditDetail from './userapp/UserApp.editdetail';
-import UserAppViewTable from './userapp/UserApp.viewtable';
-import UserAppViewDetail from './userapp/UserApp.viewdetail';
 import UserAppService from './userapp/UserApp.service';
 import UserAppUpdateForm from './userapp/UserApp.updateform';
 import ObjectAccessBase from './objectaccess/ObjectAccess.base';
@@ -611,10 +737,6 @@ import ObjectAccessSearch from './objectaccess/ObjectAccess.search';
 import ObjectAccessSearchForm from './objectaccess/ObjectAccess.searchform';
 import ObjectAccessCreateForm from './objectaccess/ObjectAccess.createform';
 import ObjectAccessTable from './objectaccess/ObjectAccess.table';
-import ObjectAccessEditTable from './objectaccess/ObjectAccess.edittable';
-import ObjectAccessEditDetail from './objectaccess/ObjectAccess.editdetail';
-import ObjectAccessViewTable from './objectaccess/ObjectAccess.viewtable';
-import ObjectAccessViewDetail from './objectaccess/ObjectAccess.viewdetail';
 import ObjectAccessService from './objectaccess/ObjectAccess.service';
 import ObjectAccessUpdateForm from './objectaccess/ObjectAccess.updateform';
 import LoginHistoryBase from './loginhistory/LoginHistory.base';
@@ -626,10 +748,6 @@ import LoginHistorySearch from './loginhistory/LoginHistory.search';
 import LoginHistorySearchForm from './loginhistory/LoginHistory.searchform';
 import LoginHistoryCreateForm from './loginhistory/LoginHistory.createform';
 import LoginHistoryTable from './loginhistory/LoginHistory.table';
-import LoginHistoryEditTable from './loginhistory/LoginHistory.edittable';
-import LoginHistoryEditDetail from './loginhistory/LoginHistory.editdetail';
-import LoginHistoryViewTable from './loginhistory/LoginHistory.viewtable';
-import LoginHistoryViewDetail from './loginhistory/LoginHistory.viewdetail';
 import LoginHistoryService from './loginhistory/LoginHistory.service';
 import LoginHistoryUpdateForm from './loginhistory/LoginHistory.updateform';
 import GenericFormBase from './genericform/GenericForm.base';
@@ -641,10 +759,6 @@ import GenericFormSearch from './genericform/GenericForm.search';
 import GenericFormSearchForm from './genericform/GenericForm.searchform';
 import GenericFormCreateForm from './genericform/GenericForm.createform';
 import GenericFormTable from './genericform/GenericForm.table';
-import GenericFormEditTable from './genericform/GenericForm.edittable';
-import GenericFormEditDetail from './genericform/GenericForm.editdetail';
-import GenericFormViewTable from './genericform/GenericForm.viewtable';
-import GenericFormViewDetail from './genericform/GenericForm.viewdetail';
 import GenericFormService from './genericform/GenericForm.service';
 import GenericFormUpdateForm from './genericform/GenericForm.updateform';
 import FormMessageBase from './formmessage/FormMessage.base';
@@ -656,10 +770,6 @@ import FormMessageSearch from './formmessage/FormMessage.search';
 import FormMessageSearchForm from './formmessage/FormMessage.searchform';
 import FormMessageCreateForm from './formmessage/FormMessage.createform';
 import FormMessageTable from './formmessage/FormMessage.table';
-import FormMessageEditTable from './formmessage/FormMessage.edittable';
-import FormMessageEditDetail from './formmessage/FormMessage.editdetail';
-import FormMessageViewTable from './formmessage/FormMessage.viewtable';
-import FormMessageViewDetail from './formmessage/FormMessage.viewdetail';
 import FormMessageService from './formmessage/FormMessage.service';
 import FormMessageUpdateForm from './formmessage/FormMessage.updateform';
 import FormFieldMessageBase from './formfieldmessage/FormFieldMessage.base';
@@ -671,10 +781,6 @@ import FormFieldMessageSearch from './formfieldmessage/FormFieldMessage.search';
 import FormFieldMessageSearchForm from './formfieldmessage/FormFieldMessage.searchform';
 import FormFieldMessageCreateForm from './formfieldmessage/FormFieldMessage.createform';
 import FormFieldMessageTable from './formfieldmessage/FormFieldMessage.table';
-import FormFieldMessageEditTable from './formfieldmessage/FormFieldMessage.edittable';
-import FormFieldMessageEditDetail from './formfieldmessage/FormFieldMessage.editdetail';
-import FormFieldMessageViewTable from './formfieldmessage/FormFieldMessage.viewtable';
-import FormFieldMessageViewDetail from './formfieldmessage/FormFieldMessage.viewdetail';
 import FormFieldMessageService from './formfieldmessage/FormFieldMessage.service';
 import FormFieldMessageUpdateForm from './formfieldmessage/FormFieldMessage.updateform';
 import FormFieldBase from './formfield/FormField.base';
@@ -686,10 +792,6 @@ import FormFieldSearch from './formfield/FormField.search';
 import FormFieldSearchForm from './formfield/FormField.searchform';
 import FormFieldCreateForm from './formfield/FormField.createform';
 import FormFieldTable from './formfield/FormField.table';
-import FormFieldEditTable from './formfield/FormField.edittable';
-import FormFieldEditDetail from './formfield/FormField.editdetail';
-import FormFieldViewTable from './formfield/FormField.viewtable';
-import FormFieldViewDetail from './formfield/FormField.viewdetail';
 import FormFieldService from './formfield/FormField.service';
 import FormFieldUpdateForm from './formfield/FormField.updateform';
 import FormActionBase from './formaction/FormAction.base';
@@ -701,51 +803,73 @@ import FormActionSearch from './formaction/FormAction.search';
 import FormActionSearchForm from './formaction/FormAction.searchform';
 import FormActionCreateForm from './formaction/FormAction.createform';
 import FormActionTable from './formaction/FormAction.table';
-import FormActionEditTable from './formaction/FormAction.edittable';
-import FormActionEditDetail from './formaction/FormAction.editdetail';
-import FormActionViewTable from './formaction/FormAction.viewtable';
-import FormActionViewDetail from './formaction/FormAction.viewdetail';
 import FormActionService from './formaction/FormAction.service';
 import FormActionUpdateForm from './formaction/FormAction.updateform';
 
 
 const BizModels = [
-	CommunityModel,
-	InvitationCodeModel,
-	HomePageModel,
-	SlideModel,
-	EncyclopediaItemModel,
-	TaskPageModel,
-	TaskFilterModel,
-	CommunityUserModel,
-	PatientInfoModel,
-	UserSkillModel,
-	MessageFilterModel,
-	UserMessageModel,
-	TaskModel,
-	TaskAssigmentModel,
-	TaskHidingModel,
-	TaskResolvingModel,
-	TaskRewardModel,
-	TaskLikeModel,
-	TaskReplyModel,
-	TaskBestAnswerSettingModel,
-	TaskReplyLikeModel,
-	GroupPageModel,
-	GroupFilterModel,
-	ThreadModel,
-	ThreadHidingModel,
-	ThreadReplyModel,
-	ThreadApprovalModel,
-	ThreadCompletionModel,
-	ThreadCancelingModel,
-	ThreadRegistrationModel,
-	ThreadLikeModel,
-	ThreadReplyLikeModel,
-	FanModel,
-	FollowModel,
-	BonusPointModel,
-	ExperiencePointModel,
+	CarInspectionPlatformModel,
+	ProvinceModel,
+	CityModel,
+	AvailableProductModel,
+	AvailableVehicleTypeModel,
+	AvailableVehicleUseCharacterModel,
+	ContractModel,
+	ServicePriceModel,
+	AvailableServiceModel,
+	ProductPriceModel,
+	AvailableInsuranceModel,
+	VehicleRepairingAllowanceModel,
+	AvailableHandOverItemModel,
+	CustomerModel,
+	VehicleServiceCompanyModel,
+	ServiceCompanyAuthenticationInfoModel,
+	VehicleInspectionPlateNumberPatternModel,
+	FileInspectionPlateNumberPatternModel,
+	VehicleServiceCompanyBusinessScopeModel,
+	CompanyQrcodePromotionRecordModel,
+	VehicleServiceCompanyDispatcherModel,
+	CompanyDiscountModel,
+	VehicleServiceCompanyEmployeeModel,
+	ServiceOrderFilterModel,
+	CompanyEmployeeQualificationModel,
+	CompanyEmployeeServingModel,
+	CompanyEmployeeTerminationModel,
+	EmployeeDrivingLicenseModel,
+	InspectionStationModel,
+	VehicleInfoModel,
+	VehicleInspectionOrderModel,
+	VehicleInspectionInsuranceOrderModel,
+	VehicleInspectionOrderChargeModel,
+	VehicleInspectionOrderServiceLogModel,
+	VehicleInspectionOrderPaymentModel,
+	HandOverChecklistItemModel,
+	ServiceVehicleMovementC2mModel,
+	ServiceVehicleMovementM2mModel,
+	ServiceVehicleMovementM2cModel,
+	ServiceFileMovementC2mModel,
+	ServiceFileMovementM2mModel,
+	ServiceFileMovementM2cModel,
+	HandOverChecklistResultModel,
+	ServiceInsuranceForInspectionModel,
+	ServiceVehicleInspectionModel,
+	ServiceFileInspectionModel,
+	ServiceVehicleRepairingModel,
+	RepairingAllowanceItemModel,
+	VehicleRepairingPaymentModel,
+	AvailableReviewItemModel,
+	OrderReviewResultModel,
+	AvailableRatingItemModel,
+	OrderRatingResultModel,
+	PreorderPromotionModel,
+	OrderDiscountCouponModel,
+	VehicleInspectionOrderCouponModel,
+	AccountModel,
+	ServiceCompanyAccountModel,
+	RepairingCompanyAccountModel,
+	InsuranceServiceAccountModel,
+	MainOrderAccountModel,
+	InspectionStationAccountModel,
 	UserDomainModel,
 	SecUserModel,
 	SecUserBlockingModel,
@@ -774,42 +898,68 @@ const unbindBizModels = (app) =>{
 
 const menuLibrary = []
 
-menuLibrary['community'] = CommunityBase.menuData
-menuLibrary['invitationCode'] = InvitationCodeBase.menuData
-menuLibrary['homePage'] = HomePageBase.menuData
-menuLibrary['slide'] = SlideBase.menuData
-menuLibrary['encyclopediaItem'] = EncyclopediaItemBase.menuData
-menuLibrary['taskPage'] = TaskPageBase.menuData
-menuLibrary['taskFilter'] = TaskFilterBase.menuData
-menuLibrary['communityUser'] = CommunityUserBase.menuData
-menuLibrary['patientInfo'] = PatientInfoBase.menuData
-menuLibrary['userSkill'] = UserSkillBase.menuData
-menuLibrary['messageFilter'] = MessageFilterBase.menuData
-menuLibrary['userMessage'] = UserMessageBase.menuData
-menuLibrary['task'] = TaskBase.menuData
-menuLibrary['taskAssigment'] = TaskAssigmentBase.menuData
-menuLibrary['taskHiding'] = TaskHidingBase.menuData
-menuLibrary['taskResolving'] = TaskResolvingBase.menuData
-menuLibrary['taskReward'] = TaskRewardBase.menuData
-menuLibrary['taskLike'] = TaskLikeBase.menuData
-menuLibrary['taskReply'] = TaskReplyBase.menuData
-menuLibrary['taskBestAnswerSetting'] = TaskBestAnswerSettingBase.menuData
-menuLibrary['taskReplyLike'] = TaskReplyLikeBase.menuData
-menuLibrary['groupPage'] = GroupPageBase.menuData
-menuLibrary['groupFilter'] = GroupFilterBase.menuData
-menuLibrary['thread'] = ThreadBase.menuData
-menuLibrary['threadHiding'] = ThreadHidingBase.menuData
-menuLibrary['threadReply'] = ThreadReplyBase.menuData
-menuLibrary['threadApproval'] = ThreadApprovalBase.menuData
-menuLibrary['threadCompletion'] = ThreadCompletionBase.menuData
-menuLibrary['threadCanceling'] = ThreadCancelingBase.menuData
-menuLibrary['threadRegistration'] = ThreadRegistrationBase.menuData
-menuLibrary['threadLike'] = ThreadLikeBase.menuData
-menuLibrary['threadReplyLike'] = ThreadReplyLikeBase.menuData
-menuLibrary['fan'] = FanBase.menuData
-menuLibrary['follow'] = FollowBase.menuData
-menuLibrary['bonusPoint'] = BonusPointBase.menuData
-menuLibrary['experiencePoint'] = ExperiencePointBase.menuData
+menuLibrary['carInspectionPlatform'] = CarInspectionPlatformBase.menuData
+menuLibrary['province'] = ProvinceBase.menuData
+menuLibrary['city'] = CityBase.menuData
+menuLibrary['availableProduct'] = AvailableProductBase.menuData
+menuLibrary['availableVehicleType'] = AvailableVehicleTypeBase.menuData
+menuLibrary['availableVehicleUseCharacter'] = AvailableVehicleUseCharacterBase.menuData
+menuLibrary['contract'] = ContractBase.menuData
+menuLibrary['servicePrice'] = ServicePriceBase.menuData
+menuLibrary['availableService'] = AvailableServiceBase.menuData
+menuLibrary['productPrice'] = ProductPriceBase.menuData
+menuLibrary['availableInsurance'] = AvailableInsuranceBase.menuData
+menuLibrary['vehicleRepairingAllowance'] = VehicleRepairingAllowanceBase.menuData
+menuLibrary['availableHandOverItem'] = AvailableHandOverItemBase.menuData
+menuLibrary['customer'] = CustomerBase.menuData
+menuLibrary['vehicleServiceCompany'] = VehicleServiceCompanyBase.menuData
+menuLibrary['serviceCompanyAuthenticationInfo'] = ServiceCompanyAuthenticationInfoBase.menuData
+menuLibrary['vehicleInspectionPlateNumberPattern'] = VehicleInspectionPlateNumberPatternBase.menuData
+menuLibrary['fileInspectionPlateNumberPattern'] = FileInspectionPlateNumberPatternBase.menuData
+menuLibrary['vehicleServiceCompanyBusinessScope'] = VehicleServiceCompanyBusinessScopeBase.menuData
+menuLibrary['companyQrcodePromotionRecord'] = CompanyQrcodePromotionRecordBase.menuData
+menuLibrary['vehicleServiceCompanyDispatcher'] = VehicleServiceCompanyDispatcherBase.menuData
+menuLibrary['companyDiscount'] = CompanyDiscountBase.menuData
+menuLibrary['vehicleServiceCompanyEmployee'] = VehicleServiceCompanyEmployeeBase.menuData
+menuLibrary['serviceOrderFilter'] = ServiceOrderFilterBase.menuData
+menuLibrary['companyEmployeeQualification'] = CompanyEmployeeQualificationBase.menuData
+menuLibrary['companyEmployeeServing'] = CompanyEmployeeServingBase.menuData
+menuLibrary['companyEmployeeTermination'] = CompanyEmployeeTerminationBase.menuData
+menuLibrary['employeeDrivingLicense'] = EmployeeDrivingLicenseBase.menuData
+menuLibrary['inspectionStation'] = InspectionStationBase.menuData
+menuLibrary['vehicleInfo'] = VehicleInfoBase.menuData
+menuLibrary['vehicleInspectionOrder'] = VehicleInspectionOrderBase.menuData
+menuLibrary['vehicleInspectionInsuranceOrder'] = VehicleInspectionInsuranceOrderBase.menuData
+menuLibrary['vehicleInspectionOrderCharge'] = VehicleInspectionOrderChargeBase.menuData
+menuLibrary['vehicleInspectionOrderServiceLog'] = VehicleInspectionOrderServiceLogBase.menuData
+menuLibrary['vehicleInspectionOrderPayment'] = VehicleInspectionOrderPaymentBase.menuData
+menuLibrary['handOverChecklistItem'] = HandOverChecklistItemBase.menuData
+menuLibrary['serviceVehicleMovementC2m'] = ServiceVehicleMovementC2mBase.menuData
+menuLibrary['serviceVehicleMovementM2m'] = ServiceVehicleMovementM2mBase.menuData
+menuLibrary['serviceVehicleMovementM2c'] = ServiceVehicleMovementM2cBase.menuData
+menuLibrary['serviceFileMovementC2m'] = ServiceFileMovementC2mBase.menuData
+menuLibrary['serviceFileMovementM2m'] = ServiceFileMovementM2mBase.menuData
+menuLibrary['serviceFileMovementM2c'] = ServiceFileMovementM2cBase.menuData
+menuLibrary['handOverChecklistResult'] = HandOverChecklistResultBase.menuData
+menuLibrary['serviceInsuranceForInspection'] = ServiceInsuranceForInspectionBase.menuData
+menuLibrary['serviceVehicleInspection'] = ServiceVehicleInspectionBase.menuData
+menuLibrary['serviceFileInspection'] = ServiceFileInspectionBase.menuData
+menuLibrary['serviceVehicleRepairing'] = ServiceVehicleRepairingBase.menuData
+menuLibrary['repairingAllowanceItem'] = RepairingAllowanceItemBase.menuData
+menuLibrary['vehicleRepairingPayment'] = VehicleRepairingPaymentBase.menuData
+menuLibrary['availableReviewItem'] = AvailableReviewItemBase.menuData
+menuLibrary['orderReviewResult'] = OrderReviewResultBase.menuData
+menuLibrary['availableRatingItem'] = AvailableRatingItemBase.menuData
+menuLibrary['orderRatingResult'] = OrderRatingResultBase.menuData
+menuLibrary['preorderPromotion'] = PreorderPromotionBase.menuData
+menuLibrary['orderDiscountCoupon'] = OrderDiscountCouponBase.menuData
+menuLibrary['vehicleInspectionOrderCoupon'] = VehicleInspectionOrderCouponBase.menuData
+menuLibrary['account'] = AccountBase.menuData
+menuLibrary['serviceCompanyAccount'] = ServiceCompanyAccountBase.menuData
+menuLibrary['repairingCompanyAccount'] = RepairingCompanyAccountBase.menuData
+menuLibrary['insuranceServiceAccount'] = InsuranceServiceAccountBase.menuData
+menuLibrary['mainOrderAccount'] = MainOrderAccountBase.menuData
+menuLibrary['inspectionStationAccount'] = InspectionStationAccountBase.menuData
 menuLibrary['userDomain'] = UserDomainBase.menuData
 menuLibrary['secUser'] = SecUserBase.menuData
 menuLibrary['secUserBlocking'] = SecUserBlockingBase.menuData
@@ -841,53 +991,79 @@ const menuDataOf=(type)=>{
 const ViewMapping = {
 
 
-  'com.terapico.bbt.community.Community': {name:'community'},
-  'com.terapico.bbt.invitationcode.InvitationCode': {name:'invitationCode'},
-  'com.terapico.bbt.homepage.HomePage': {name:'homePage'},
-  'com.terapico.bbt.slide.Slide': {name:'slide'},
-  'com.terapico.bbt.encyclopediaitem.EncyclopediaItem': {name:'encyclopediaItem'},
-  'com.terapico.bbt.taskpage.TaskPage': {name:'taskPage'},
-  'com.terapico.bbt.taskfilter.TaskFilter': {name:'taskFilter'},
-  'com.terapico.bbt.communityuser.CommunityUser': {name:'communityUser'},
-  'com.terapico.bbt.patientinfo.PatientInfo': {name:'patientInfo'},
-  'com.terapico.bbt.userskill.UserSkill': {name:'userSkill'},
-  'com.terapico.bbt.messagefilter.MessageFilter': {name:'messageFilter'},
-  'com.terapico.bbt.usermessage.UserMessage': {name:'userMessage'},
-  'com.terapico.bbt.task.Task': {name:'task'},
-  'com.terapico.bbt.taskassigment.TaskAssigment': {name:'taskAssigment'},
-  'com.terapico.bbt.taskhiding.TaskHiding': {name:'taskHiding'},
-  'com.terapico.bbt.taskresolving.TaskResolving': {name:'taskResolving'},
-  'com.terapico.bbt.taskreward.TaskReward': {name:'taskReward'},
-  'com.terapico.bbt.tasklike.TaskLike': {name:'taskLike'},
-  'com.terapico.bbt.taskreply.TaskReply': {name:'taskReply'},
-  'com.terapico.bbt.taskbestanswersetting.TaskBestAnswerSetting': {name:'taskBestAnswerSetting'},
-  'com.terapico.bbt.taskreplylike.TaskReplyLike': {name:'taskReplyLike'},
-  'com.terapico.bbt.grouppage.GroupPage': {name:'groupPage'},
-  'com.terapico.bbt.groupfilter.GroupFilter': {name:'groupFilter'},
-  'com.terapico.bbt.thread.Thread': {name:'thread'},
-  'com.terapico.bbt.threadhiding.ThreadHiding': {name:'threadHiding'},
-  'com.terapico.bbt.threadreply.ThreadReply': {name:'threadReply'},
-  'com.terapico.bbt.threadapproval.ThreadApproval': {name:'threadApproval'},
-  'com.terapico.bbt.threadcompletion.ThreadCompletion': {name:'threadCompletion'},
-  'com.terapico.bbt.threadcanceling.ThreadCanceling': {name:'threadCanceling'},
-  'com.terapico.bbt.threadregistration.ThreadRegistration': {name:'threadRegistration'},
-  'com.terapico.bbt.threadlike.ThreadLike': {name:'threadLike'},
-  'com.terapico.bbt.threadreplylike.ThreadReplyLike': {name:'threadReplyLike'},
-  'com.terapico.bbt.fan.Fan': {name:'fan'},
-  'com.terapico.bbt.follow.Follow': {name:'follow'},
-  'com.terapico.bbt.bonuspoint.BonusPoint': {name:'bonusPoint'},
-  'com.terapico.bbt.experiencepoint.ExperiencePoint': {name:'experiencePoint'},
-  'com.terapico.bbt.userdomain.UserDomain': {name:'userDomain'},
-  'com.terapico.bbt.secuser.SecUser': {name:'secUser'},
-  'com.terapico.bbt.secuserblocking.SecUserBlocking': {name:'secUserBlocking'},
-  'com.terapico.bbt.userapp.UserApp': {name:'userApp'},
-  'com.terapico.bbt.objectaccess.ObjectAccess': {name:'objectAccess'},
-  'com.terapico.bbt.loginhistory.LoginHistory': {name:'loginHistory'},
-  'com.terapico.bbt.genericform.GenericForm': {name:'genericForm'},
-  'com.terapico.bbt.formmessage.FormMessage': {name:'formMessage'},
-  'com.terapico.bbt.formfieldmessage.FormFieldMessage': {name:'formFieldMessage'},
-  'com.terapico.bbt.formfield.FormField': {name:'formField'},
-  'com.terapico.bbt.formaction.FormAction': {name:'formAction'},
+  'com.terapico.cis.carinspectionplatform.CarInspectionPlatform': {name:'carInspectionPlatform'},
+  'com.terapico.cis.province.Province': {name:'province'},
+  'com.terapico.cis.city.City': {name:'city'},
+  'com.terapico.cis.availableproduct.AvailableProduct': {name:'availableProduct'},
+  'com.terapico.cis.availablevehicletype.AvailableVehicleType': {name:'availableVehicleType'},
+  'com.terapico.cis.availablevehicleusecharacter.AvailableVehicleUseCharacter': {name:'availableVehicleUseCharacter'},
+  'com.terapico.cis.contract.Contract': {name:'contract'},
+  'com.terapico.cis.serviceprice.ServicePrice': {name:'servicePrice'},
+  'com.terapico.cis.availableservice.AvailableService': {name:'availableService'},
+  'com.terapico.cis.productprice.ProductPrice': {name:'productPrice'},
+  'com.terapico.cis.availableinsurance.AvailableInsurance': {name:'availableInsurance'},
+  'com.terapico.cis.vehiclerepairingallowance.VehicleRepairingAllowance': {name:'vehicleRepairingAllowance'},
+  'com.terapico.cis.availablehandoveritem.AvailableHandOverItem': {name:'availableHandOverItem'},
+  'com.terapico.cis.customer.Customer': {name:'customer'},
+  'com.terapico.cis.vehicleservicecompany.VehicleServiceCompany': {name:'vehicleServiceCompany'},
+  'com.terapico.cis.servicecompanyauthenticationinfo.ServiceCompanyAuthenticationInfo': {name:'serviceCompanyAuthenticationInfo'},
+  'com.terapico.cis.vehicleinspectionplatenumberpattern.VehicleInspectionPlateNumberPattern': {name:'vehicleInspectionPlateNumberPattern'},
+  'com.terapico.cis.fileinspectionplatenumberpattern.FileInspectionPlateNumberPattern': {name:'fileInspectionPlateNumberPattern'},
+  'com.terapico.cis.vehicleservicecompanybusinessscope.VehicleServiceCompanyBusinessScope': {name:'vehicleServiceCompanyBusinessScope'},
+  'com.terapico.cis.companyqrcodepromotionrecord.CompanyQrcodePromotionRecord': {name:'companyQrcodePromotionRecord'},
+  'com.terapico.cis.vehicleservicecompanydispatcher.VehicleServiceCompanyDispatcher': {name:'vehicleServiceCompanyDispatcher'},
+  'com.terapico.cis.companydiscount.CompanyDiscount': {name:'companyDiscount'},
+  'com.terapico.cis.vehicleservicecompanyemployee.VehicleServiceCompanyEmployee': {name:'vehicleServiceCompanyEmployee'},
+  'com.terapico.cis.serviceorderfilter.ServiceOrderFilter': {name:'serviceOrderFilter'},
+  'com.terapico.cis.companyemployeequalification.CompanyEmployeeQualification': {name:'companyEmployeeQualification'},
+  'com.terapico.cis.companyemployeeserving.CompanyEmployeeServing': {name:'companyEmployeeServing'},
+  'com.terapico.cis.companyemployeetermination.CompanyEmployeeTermination': {name:'companyEmployeeTermination'},
+  'com.terapico.cis.employeedrivinglicense.EmployeeDrivingLicense': {name:'employeeDrivingLicense'},
+  'com.terapico.cis.inspectionstation.InspectionStation': {name:'inspectionStation'},
+  'com.terapico.cis.vehicleinfo.VehicleInfo': {name:'vehicleInfo'},
+  'com.terapico.cis.vehicleinspectionorder.VehicleInspectionOrder': {name:'vehicleInspectionOrder'},
+  'com.terapico.cis.vehicleinspectioninsuranceorder.VehicleInspectionInsuranceOrder': {name:'vehicleInspectionInsuranceOrder'},
+  'com.terapico.cis.vehicleinspectionordercharge.VehicleInspectionOrderCharge': {name:'vehicleInspectionOrderCharge'},
+  'com.terapico.cis.vehicleinspectionorderservicelog.VehicleInspectionOrderServiceLog': {name:'vehicleInspectionOrderServiceLog'},
+  'com.terapico.cis.vehicleinspectionorderpayment.VehicleInspectionOrderPayment': {name:'vehicleInspectionOrderPayment'},
+  'com.terapico.cis.handoverchecklistitem.HandOverChecklistItem': {name:'handOverChecklistItem'},
+  'com.terapico.cis.servicevehiclemovementc2m.ServiceVehicleMovementC2m': {name:'serviceVehicleMovementC2m'},
+  'com.terapico.cis.servicevehiclemovementm2m.ServiceVehicleMovementM2m': {name:'serviceVehicleMovementM2m'},
+  'com.terapico.cis.servicevehiclemovementm2c.ServiceVehicleMovementM2c': {name:'serviceVehicleMovementM2c'},
+  'com.terapico.cis.servicefilemovementc2m.ServiceFileMovementC2m': {name:'serviceFileMovementC2m'},
+  'com.terapico.cis.servicefilemovementm2m.ServiceFileMovementM2m': {name:'serviceFileMovementM2m'},
+  'com.terapico.cis.servicefilemovementm2c.ServiceFileMovementM2c': {name:'serviceFileMovementM2c'},
+  'com.terapico.cis.handoverchecklistresult.HandOverChecklistResult': {name:'handOverChecklistResult'},
+  'com.terapico.cis.serviceinsuranceforinspection.ServiceInsuranceForInspection': {name:'serviceInsuranceForInspection'},
+  'com.terapico.cis.servicevehicleinspection.ServiceVehicleInspection': {name:'serviceVehicleInspection'},
+  'com.terapico.cis.servicefileinspection.ServiceFileInspection': {name:'serviceFileInspection'},
+  'com.terapico.cis.servicevehiclerepairing.ServiceVehicleRepairing': {name:'serviceVehicleRepairing'},
+  'com.terapico.cis.repairingallowanceitem.RepairingAllowanceItem': {name:'repairingAllowanceItem'},
+  'com.terapico.cis.vehiclerepairingpayment.VehicleRepairingPayment': {name:'vehicleRepairingPayment'},
+  'com.terapico.cis.availablereviewitem.AvailableReviewItem': {name:'availableReviewItem'},
+  'com.terapico.cis.orderreviewresult.OrderReviewResult': {name:'orderReviewResult'},
+  'com.terapico.cis.availableratingitem.AvailableRatingItem': {name:'availableRatingItem'},
+  'com.terapico.cis.orderratingresult.OrderRatingResult': {name:'orderRatingResult'},
+  'com.terapico.cis.preorderpromotion.PreorderPromotion': {name:'preorderPromotion'},
+  'com.terapico.cis.orderdiscountcoupon.OrderDiscountCoupon': {name:'orderDiscountCoupon'},
+  'com.terapico.cis.vehicleinspectionordercoupon.VehicleInspectionOrderCoupon': {name:'vehicleInspectionOrderCoupon'},
+  'com.terapico.cis.account.Account': {name:'account'},
+  'com.terapico.cis.servicecompanyaccount.ServiceCompanyAccount': {name:'serviceCompanyAccount'},
+  'com.terapico.cis.repairingcompanyaccount.RepairingCompanyAccount': {name:'repairingCompanyAccount'},
+  'com.terapico.cis.insuranceserviceaccount.InsuranceServiceAccount': {name:'insuranceServiceAccount'},
+  'com.terapico.cis.mainorderaccount.MainOrderAccount': {name:'mainOrderAccount'},
+  'com.terapico.cis.inspectionstationaccount.InspectionStationAccount': {name:'inspectionStationAccount'},
+  'com.terapico.cis.userdomain.UserDomain': {name:'userDomain'},
+  'com.terapico.cis.secuser.SecUser': {name:'secUser'},
+  'com.terapico.cis.secuserblocking.SecUserBlocking': {name:'secUserBlocking'},
+  'com.terapico.cis.userapp.UserApp': {name:'userApp'},
+  'com.terapico.cis.objectaccess.ObjectAccess': {name:'objectAccess'},
+  'com.terapico.cis.loginhistory.LoginHistory': {name:'loginHistory'},
+  'com.terapico.cis.genericform.GenericForm': {name:'genericForm'},
+  'com.terapico.cis.formmessage.FormMessage': {name:'formMessage'},
+  'com.terapico.cis.formfieldmessage.FormFieldMessage': {name:'formFieldMessage'},
+  'com.terapico.cis.formfield.FormField': {name:'formField'},
+  'com.terapico.cis.formaction.FormAction': {name:'formAction'},
 
 }
 
@@ -933,546 +1109,688 @@ const calcMenuData=(clazz) => {
 
 
 const OOTBComponents={
-    CommunityBase,
-    CommunityBizApp,
-    CommunityModel,
-    CommunityDashboard,
-    CommunityConfirmationTable,
-    CommunitySearch,
-    CommunitySearchForm,
-    CommunityCreateForm,
-    CommunityTable,
-    CommunityEditTable,
-    CommunityEditDetail,
-    CommunityViewTable,
-    CommunityViewDetail,
-    CommunityService,
-    CommunityUpdateForm,
-    InvitationCodeBase,
-    InvitationCodeBizApp,
-    InvitationCodeModel,
-    InvitationCodeDashboard,
-    InvitationCodeConfirmationTable,
-    InvitationCodeSearch,
-    InvitationCodeSearchForm,
-    InvitationCodeCreateForm,
-    InvitationCodeTable,
-    InvitationCodeEditTable,
-    InvitationCodeEditDetail,
-    InvitationCodeViewTable,
-    InvitationCodeViewDetail,
-    InvitationCodeService,
-    InvitationCodeUpdateForm,
-    HomePageBase,
-    HomePageBizApp,
-    HomePageModel,
-    HomePageDashboard,
-    HomePageConfirmationTable,
-    HomePageSearch,
-    HomePageSearchForm,
-    HomePageCreateForm,
-    HomePageTable,
-    HomePageEditTable,
-    HomePageEditDetail,
-    HomePageViewTable,
-    HomePageViewDetail,
-    HomePageService,
-    HomePageUpdateForm,
-    SlideBase,
-    SlideBizApp,
-    SlideModel,
-    SlideDashboard,
-    SlideConfirmationTable,
-    SlideSearch,
-    SlideSearchForm,
-    SlideCreateForm,
-    SlideTable,
-    SlideEditTable,
-    SlideEditDetail,
-    SlideViewTable,
-    SlideViewDetail,
-    SlideService,
-    SlideUpdateForm,
-    EncyclopediaItemBase,
-    EncyclopediaItemBizApp,
-    EncyclopediaItemModel,
-    EncyclopediaItemDashboard,
-    EncyclopediaItemConfirmationTable,
-    EncyclopediaItemSearch,
-    EncyclopediaItemSearchForm,
-    EncyclopediaItemCreateForm,
-    EncyclopediaItemTable,
-    EncyclopediaItemEditTable,
-    EncyclopediaItemEditDetail,
-    EncyclopediaItemViewTable,
-    EncyclopediaItemViewDetail,
-    EncyclopediaItemService,
-    EncyclopediaItemUpdateForm,
-    TaskPageBase,
-    TaskPageBizApp,
-    TaskPageModel,
-    TaskPageDashboard,
-    TaskPageConfirmationTable,
-    TaskPageSearch,
-    TaskPageSearchForm,
-    TaskPageCreateForm,
-    TaskPageTable,
-    TaskPageEditTable,
-    TaskPageEditDetail,
-    TaskPageViewTable,
-    TaskPageViewDetail,
-    TaskPageService,
-    TaskPageUpdateForm,
-    TaskFilterBase,
-    TaskFilterBizApp,
-    TaskFilterModel,
-    TaskFilterDashboard,
-    TaskFilterConfirmationTable,
-    TaskFilterSearch,
-    TaskFilterSearchForm,
-    TaskFilterCreateForm,
-    TaskFilterTable,
-    TaskFilterEditTable,
-    TaskFilterEditDetail,
-    TaskFilterViewTable,
-    TaskFilterViewDetail,
-    TaskFilterService,
-    TaskFilterUpdateForm,
-    CommunityUserBase,
-    CommunityUserBizApp,
-    CommunityUserModel,
-    CommunityUserDashboard,
-    CommunityUserConfirmationTable,
-    CommunityUserSearch,
-    CommunityUserSearchForm,
-    CommunityUserCreateForm,
-    CommunityUserTable,
-    CommunityUserEditTable,
-    CommunityUserEditDetail,
-    CommunityUserViewTable,
-    CommunityUserViewDetail,
-    CommunityUserService,
-    CommunityUserUpdateForm,
-    PatientInfoBase,
-    PatientInfoBizApp,
-    PatientInfoModel,
-    PatientInfoDashboard,
-    PatientInfoConfirmationTable,
-    PatientInfoSearch,
-    PatientInfoSearchForm,
-    PatientInfoCreateForm,
-    PatientInfoTable,
-    PatientInfoEditTable,
-    PatientInfoEditDetail,
-    PatientInfoViewTable,
-    PatientInfoViewDetail,
-    PatientInfoService,
-    PatientInfoUpdateForm,
-    UserSkillBase,
-    UserSkillBizApp,
-    UserSkillModel,
-    UserSkillDashboard,
-    UserSkillConfirmationTable,
-    UserSkillSearch,
-    UserSkillSearchForm,
-    UserSkillCreateForm,
-    UserSkillTable,
-    UserSkillEditTable,
-    UserSkillEditDetail,
-    UserSkillViewTable,
-    UserSkillViewDetail,
-    UserSkillService,
-    UserSkillUpdateForm,
-    MessageFilterBase,
-    MessageFilterBizApp,
-    MessageFilterModel,
-    MessageFilterDashboard,
-    MessageFilterConfirmationTable,
-    MessageFilterSearch,
-    MessageFilterSearchForm,
-    MessageFilterCreateForm,
-    MessageFilterTable,
-    MessageFilterEditTable,
-    MessageFilterEditDetail,
-    MessageFilterViewTable,
-    MessageFilterViewDetail,
-    MessageFilterService,
-    MessageFilterUpdateForm,
-    UserMessageBase,
-    UserMessageBizApp,
-    UserMessageModel,
-    UserMessageDashboard,
-    UserMessageConfirmationTable,
-    UserMessageSearch,
-    UserMessageSearchForm,
-    UserMessageCreateForm,
-    UserMessageTable,
-    UserMessageEditTable,
-    UserMessageEditDetail,
-    UserMessageViewTable,
-    UserMessageViewDetail,
-    UserMessageService,
-    UserMessageUpdateForm,
-    TaskBase,
-    TaskBizApp,
-    TaskModel,
-    TaskDashboard,
-    TaskConfirmationTable,
-    TaskSearch,
-    TaskSearchForm,
-    TaskCreateForm,
-    TaskTable,
-    TaskEditTable,
-    TaskEditDetail,
-    TaskViewTable,
-    TaskViewDetail,
-    TaskService,
-    TaskUpdateForm,
-    TaskAssigmentBase,
-    TaskAssigmentBizApp,
-    TaskAssigmentModel,
-    TaskAssigmentDashboard,
-    TaskAssigmentConfirmationTable,
-    TaskAssigmentSearch,
-    TaskAssigmentSearchForm,
-    TaskAssigmentCreateForm,
-    TaskAssigmentTable,
-    TaskAssigmentEditTable,
-    TaskAssigmentEditDetail,
-    TaskAssigmentViewTable,
-    TaskAssigmentViewDetail,
-    TaskAssigmentService,
-    TaskAssigmentUpdateForm,
-    TaskHidingBase,
-    TaskHidingBizApp,
-    TaskHidingModel,
-    TaskHidingDashboard,
-    TaskHidingConfirmationTable,
-    TaskHidingSearch,
-    TaskHidingSearchForm,
-    TaskHidingCreateForm,
-    TaskHidingTable,
-    TaskHidingEditTable,
-    TaskHidingEditDetail,
-    TaskHidingViewTable,
-    TaskHidingViewDetail,
-    TaskHidingService,
-    TaskHidingUpdateForm,
-    TaskResolvingBase,
-    TaskResolvingBizApp,
-    TaskResolvingModel,
-    TaskResolvingDashboard,
-    TaskResolvingConfirmationTable,
-    TaskResolvingSearch,
-    TaskResolvingSearchForm,
-    TaskResolvingCreateForm,
-    TaskResolvingTable,
-    TaskResolvingEditTable,
-    TaskResolvingEditDetail,
-    TaskResolvingViewTable,
-    TaskResolvingViewDetail,
-    TaskResolvingService,
-    TaskResolvingUpdateForm,
-    TaskRewardBase,
-    TaskRewardBizApp,
-    TaskRewardModel,
-    TaskRewardDashboard,
-    TaskRewardConfirmationTable,
-    TaskRewardSearch,
-    TaskRewardSearchForm,
-    TaskRewardCreateForm,
-    TaskRewardTable,
-    TaskRewardEditTable,
-    TaskRewardEditDetail,
-    TaskRewardViewTable,
-    TaskRewardViewDetail,
-    TaskRewardService,
-    TaskRewardUpdateForm,
-    TaskLikeBase,
-    TaskLikeBizApp,
-    TaskLikeModel,
-    TaskLikeDashboard,
-    TaskLikeConfirmationTable,
-    TaskLikeSearch,
-    TaskLikeSearchForm,
-    TaskLikeCreateForm,
-    TaskLikeTable,
-    TaskLikeEditTable,
-    TaskLikeEditDetail,
-    TaskLikeViewTable,
-    TaskLikeViewDetail,
-    TaskLikeService,
-    TaskLikeUpdateForm,
-    TaskReplyBase,
-    TaskReplyBizApp,
-    TaskReplyModel,
-    TaskReplyDashboard,
-    TaskReplyConfirmationTable,
-    TaskReplySearch,
-    TaskReplySearchForm,
-    TaskReplyCreateForm,
-    TaskReplyTable,
-    TaskReplyEditTable,
-    TaskReplyEditDetail,
-    TaskReplyViewTable,
-    TaskReplyViewDetail,
-    TaskReplyService,
-    TaskReplyUpdateForm,
-    TaskBestAnswerSettingBase,
-    TaskBestAnswerSettingBizApp,
-    TaskBestAnswerSettingModel,
-    TaskBestAnswerSettingDashboard,
-    TaskBestAnswerSettingConfirmationTable,
-    TaskBestAnswerSettingSearch,
-    TaskBestAnswerSettingSearchForm,
-    TaskBestAnswerSettingCreateForm,
-    TaskBestAnswerSettingTable,
-    TaskBestAnswerSettingEditTable,
-    TaskBestAnswerSettingEditDetail,
-    TaskBestAnswerSettingViewTable,
-    TaskBestAnswerSettingViewDetail,
-    TaskBestAnswerSettingService,
-    TaskBestAnswerSettingUpdateForm,
-    TaskReplyLikeBase,
-    TaskReplyLikeBizApp,
-    TaskReplyLikeModel,
-    TaskReplyLikeDashboard,
-    TaskReplyLikeConfirmationTable,
-    TaskReplyLikeSearch,
-    TaskReplyLikeSearchForm,
-    TaskReplyLikeCreateForm,
-    TaskReplyLikeTable,
-    TaskReplyLikeEditTable,
-    TaskReplyLikeEditDetail,
-    TaskReplyLikeViewTable,
-    TaskReplyLikeViewDetail,
-    TaskReplyLikeService,
-    TaskReplyLikeUpdateForm,
-    GroupPageBase,
-    GroupPageBizApp,
-    GroupPageModel,
-    GroupPageDashboard,
-    GroupPageConfirmationTable,
-    GroupPageSearch,
-    GroupPageSearchForm,
-    GroupPageCreateForm,
-    GroupPageTable,
-    GroupPageEditTable,
-    GroupPageEditDetail,
-    GroupPageViewTable,
-    GroupPageViewDetail,
-    GroupPageService,
-    GroupPageUpdateForm,
-    GroupFilterBase,
-    GroupFilterBizApp,
-    GroupFilterModel,
-    GroupFilterDashboard,
-    GroupFilterConfirmationTable,
-    GroupFilterSearch,
-    GroupFilterSearchForm,
-    GroupFilterCreateForm,
-    GroupFilterTable,
-    GroupFilterEditTable,
-    GroupFilterEditDetail,
-    GroupFilterViewTable,
-    GroupFilterViewDetail,
-    GroupFilterService,
-    GroupFilterUpdateForm,
-    ThreadBase,
-    ThreadBizApp,
-    ThreadModel,
-    ThreadDashboard,
-    ThreadConfirmationTable,
-    ThreadSearch,
-    ThreadSearchForm,
-    ThreadCreateForm,
-    ThreadTable,
-    ThreadEditTable,
-    ThreadEditDetail,
-    ThreadViewTable,
-    ThreadViewDetail,
-    ThreadService,
-    ThreadUpdateForm,
-    ThreadHidingBase,
-    ThreadHidingBizApp,
-    ThreadHidingModel,
-    ThreadHidingDashboard,
-    ThreadHidingConfirmationTable,
-    ThreadHidingSearch,
-    ThreadHidingSearchForm,
-    ThreadHidingCreateForm,
-    ThreadHidingTable,
-    ThreadHidingEditTable,
-    ThreadHidingEditDetail,
-    ThreadHidingViewTable,
-    ThreadHidingViewDetail,
-    ThreadHidingService,
-    ThreadHidingUpdateForm,
-    ThreadReplyBase,
-    ThreadReplyBizApp,
-    ThreadReplyModel,
-    ThreadReplyDashboard,
-    ThreadReplyConfirmationTable,
-    ThreadReplySearch,
-    ThreadReplySearchForm,
-    ThreadReplyCreateForm,
-    ThreadReplyTable,
-    ThreadReplyEditTable,
-    ThreadReplyEditDetail,
-    ThreadReplyViewTable,
-    ThreadReplyViewDetail,
-    ThreadReplyService,
-    ThreadReplyUpdateForm,
-    ThreadApprovalBase,
-    ThreadApprovalBizApp,
-    ThreadApprovalModel,
-    ThreadApprovalDashboard,
-    ThreadApprovalConfirmationTable,
-    ThreadApprovalSearch,
-    ThreadApprovalSearchForm,
-    ThreadApprovalCreateForm,
-    ThreadApprovalTable,
-    ThreadApprovalEditTable,
-    ThreadApprovalEditDetail,
-    ThreadApprovalViewTable,
-    ThreadApprovalViewDetail,
-    ThreadApprovalService,
-    ThreadApprovalUpdateForm,
-    ThreadCompletionBase,
-    ThreadCompletionBizApp,
-    ThreadCompletionModel,
-    ThreadCompletionDashboard,
-    ThreadCompletionConfirmationTable,
-    ThreadCompletionSearch,
-    ThreadCompletionSearchForm,
-    ThreadCompletionCreateForm,
-    ThreadCompletionTable,
-    ThreadCompletionEditTable,
-    ThreadCompletionEditDetail,
-    ThreadCompletionViewTable,
-    ThreadCompletionViewDetail,
-    ThreadCompletionService,
-    ThreadCompletionUpdateForm,
-    ThreadCancelingBase,
-    ThreadCancelingBizApp,
-    ThreadCancelingModel,
-    ThreadCancelingDashboard,
-    ThreadCancelingConfirmationTable,
-    ThreadCancelingSearch,
-    ThreadCancelingSearchForm,
-    ThreadCancelingCreateForm,
-    ThreadCancelingTable,
-    ThreadCancelingEditTable,
-    ThreadCancelingEditDetail,
-    ThreadCancelingViewTable,
-    ThreadCancelingViewDetail,
-    ThreadCancelingService,
-    ThreadCancelingUpdateForm,
-    ThreadRegistrationBase,
-    ThreadRegistrationBizApp,
-    ThreadRegistrationModel,
-    ThreadRegistrationDashboard,
-    ThreadRegistrationConfirmationTable,
-    ThreadRegistrationSearch,
-    ThreadRegistrationSearchForm,
-    ThreadRegistrationCreateForm,
-    ThreadRegistrationTable,
-    ThreadRegistrationEditTable,
-    ThreadRegistrationEditDetail,
-    ThreadRegistrationViewTable,
-    ThreadRegistrationViewDetail,
-    ThreadRegistrationService,
-    ThreadRegistrationUpdateForm,
-    ThreadLikeBase,
-    ThreadLikeBizApp,
-    ThreadLikeModel,
-    ThreadLikeDashboard,
-    ThreadLikeConfirmationTable,
-    ThreadLikeSearch,
-    ThreadLikeSearchForm,
-    ThreadLikeCreateForm,
-    ThreadLikeTable,
-    ThreadLikeEditTable,
-    ThreadLikeEditDetail,
-    ThreadLikeViewTable,
-    ThreadLikeViewDetail,
-    ThreadLikeService,
-    ThreadLikeUpdateForm,
-    ThreadReplyLikeBase,
-    ThreadReplyLikeBizApp,
-    ThreadReplyLikeModel,
-    ThreadReplyLikeDashboard,
-    ThreadReplyLikeConfirmationTable,
-    ThreadReplyLikeSearch,
-    ThreadReplyLikeSearchForm,
-    ThreadReplyLikeCreateForm,
-    ThreadReplyLikeTable,
-    ThreadReplyLikeEditTable,
-    ThreadReplyLikeEditDetail,
-    ThreadReplyLikeViewTable,
-    ThreadReplyLikeViewDetail,
-    ThreadReplyLikeService,
-    ThreadReplyLikeUpdateForm,
-    FanBase,
-    FanBizApp,
-    FanModel,
-    FanDashboard,
-    FanConfirmationTable,
-    FanSearch,
-    FanSearchForm,
-    FanCreateForm,
-    FanTable,
-    FanEditTable,
-    FanEditDetail,
-    FanViewTable,
-    FanViewDetail,
-    FanService,
-    FanUpdateForm,
-    FollowBase,
-    FollowBizApp,
-    FollowModel,
-    FollowDashboard,
-    FollowConfirmationTable,
-    FollowSearch,
-    FollowSearchForm,
-    FollowCreateForm,
-    FollowTable,
-    FollowEditTable,
-    FollowEditDetail,
-    FollowViewTable,
-    FollowViewDetail,
-    FollowService,
-    FollowUpdateForm,
-    BonusPointBase,
-    BonusPointBizApp,
-    BonusPointModel,
-    BonusPointDashboard,
-    BonusPointConfirmationTable,
-    BonusPointSearch,
-    BonusPointSearchForm,
-    BonusPointCreateForm,
-    BonusPointTable,
-    BonusPointEditTable,
-    BonusPointEditDetail,
-    BonusPointViewTable,
-    BonusPointViewDetail,
-    BonusPointService,
-    BonusPointUpdateForm,
-    ExperiencePointBase,
-    ExperiencePointBizApp,
-    ExperiencePointModel,
-    ExperiencePointDashboard,
-    ExperiencePointConfirmationTable,
-    ExperiencePointSearch,
-    ExperiencePointSearchForm,
-    ExperiencePointCreateForm,
-    ExperiencePointTable,
-    ExperiencePointEditTable,
-    ExperiencePointEditDetail,
-    ExperiencePointViewTable,
-    ExperiencePointViewDetail,
-    ExperiencePointService,
-    ExperiencePointUpdateForm,
+    CarInspectionPlatformBase,
+    CarInspectionPlatformBizApp,
+    CarInspectionPlatformModel,
+    CarInspectionPlatformDashboard,
+    CarInspectionPlatformConfirmationTable,
+    CarInspectionPlatformSearch,
+    CarInspectionPlatformSearchForm,
+    CarInspectionPlatformCreateForm,
+    CarInspectionPlatformTable,
+    CarInspectionPlatformService,
+    CarInspectionPlatformUpdateForm,
+    ProvinceBase,
+    ProvinceBizApp,
+    ProvinceModel,
+    ProvinceDashboard,
+    ProvinceConfirmationTable,
+    ProvinceSearch,
+    ProvinceSearchForm,
+    ProvinceCreateForm,
+    ProvinceTable,
+    ProvinceService,
+    ProvinceUpdateForm,
+    CityBase,
+    CityBizApp,
+    CityModel,
+    CityDashboard,
+    CityConfirmationTable,
+    CitySearch,
+    CitySearchForm,
+    CityCreateForm,
+    CityTable,
+    CityService,
+    CityUpdateForm,
+    AvailableProductBase,
+    AvailableProductBizApp,
+    AvailableProductModel,
+    AvailableProductDashboard,
+    AvailableProductConfirmationTable,
+    AvailableProductSearch,
+    AvailableProductSearchForm,
+    AvailableProductCreateForm,
+    AvailableProductTable,
+    AvailableProductService,
+    AvailableProductUpdateForm,
+    AvailableVehicleTypeBase,
+    AvailableVehicleTypeBizApp,
+    AvailableVehicleTypeModel,
+    AvailableVehicleTypeDashboard,
+    AvailableVehicleTypeConfirmationTable,
+    AvailableVehicleTypeSearch,
+    AvailableVehicleTypeSearchForm,
+    AvailableVehicleTypeCreateForm,
+    AvailableVehicleTypeTable,
+    AvailableVehicleTypeService,
+    AvailableVehicleTypeUpdateForm,
+    AvailableVehicleUseCharacterBase,
+    AvailableVehicleUseCharacterBizApp,
+    AvailableVehicleUseCharacterModel,
+    AvailableVehicleUseCharacterDashboard,
+    AvailableVehicleUseCharacterConfirmationTable,
+    AvailableVehicleUseCharacterSearch,
+    AvailableVehicleUseCharacterSearchForm,
+    AvailableVehicleUseCharacterCreateForm,
+    AvailableVehicleUseCharacterTable,
+    AvailableVehicleUseCharacterService,
+    AvailableVehicleUseCharacterUpdateForm,
+    ContractBase,
+    ContractBizApp,
+    ContractModel,
+    ContractDashboard,
+    ContractConfirmationTable,
+    ContractSearch,
+    ContractSearchForm,
+    ContractCreateForm,
+    ContractTable,
+    ContractService,
+    ContractUpdateForm,
+    ServicePriceBase,
+    ServicePriceBizApp,
+    ServicePriceModel,
+    ServicePriceDashboard,
+    ServicePriceConfirmationTable,
+    ServicePriceSearch,
+    ServicePriceSearchForm,
+    ServicePriceCreateForm,
+    ServicePriceTable,
+    ServicePriceService,
+    ServicePriceUpdateForm,
+    AvailableServiceBase,
+    AvailableServiceBizApp,
+    AvailableServiceModel,
+    AvailableServiceDashboard,
+    AvailableServiceConfirmationTable,
+    AvailableServiceSearch,
+    AvailableServiceSearchForm,
+    AvailableServiceCreateForm,
+    AvailableServiceTable,
+    AvailableServiceService,
+    AvailableServiceUpdateForm,
+    ProductPriceBase,
+    ProductPriceBizApp,
+    ProductPriceModel,
+    ProductPriceDashboard,
+    ProductPriceConfirmationTable,
+    ProductPriceSearch,
+    ProductPriceSearchForm,
+    ProductPriceCreateForm,
+    ProductPriceTable,
+    ProductPriceService,
+    ProductPriceUpdateForm,
+    AvailableInsuranceBase,
+    AvailableInsuranceBizApp,
+    AvailableInsuranceModel,
+    AvailableInsuranceDashboard,
+    AvailableInsuranceConfirmationTable,
+    AvailableInsuranceSearch,
+    AvailableInsuranceSearchForm,
+    AvailableInsuranceCreateForm,
+    AvailableInsuranceTable,
+    AvailableInsuranceService,
+    AvailableInsuranceUpdateForm,
+    VehicleRepairingAllowanceBase,
+    VehicleRepairingAllowanceBizApp,
+    VehicleRepairingAllowanceModel,
+    VehicleRepairingAllowanceDashboard,
+    VehicleRepairingAllowanceConfirmationTable,
+    VehicleRepairingAllowanceSearch,
+    VehicleRepairingAllowanceSearchForm,
+    VehicleRepairingAllowanceCreateForm,
+    VehicleRepairingAllowanceTable,
+    VehicleRepairingAllowanceService,
+    VehicleRepairingAllowanceUpdateForm,
+    AvailableHandOverItemBase,
+    AvailableHandOverItemBizApp,
+    AvailableHandOverItemModel,
+    AvailableHandOverItemDashboard,
+    AvailableHandOverItemConfirmationTable,
+    AvailableHandOverItemSearch,
+    AvailableHandOverItemSearchForm,
+    AvailableHandOverItemCreateForm,
+    AvailableHandOverItemTable,
+    AvailableHandOverItemService,
+    AvailableHandOverItemUpdateForm,
+    CustomerBase,
+    CustomerBizApp,
+    CustomerModel,
+    CustomerDashboard,
+    CustomerConfirmationTable,
+    CustomerSearch,
+    CustomerSearchForm,
+    CustomerCreateForm,
+    CustomerTable,
+    CustomerService,
+    CustomerUpdateForm,
+    VehicleServiceCompanyBase,
+    VehicleServiceCompanyBizApp,
+    VehicleServiceCompanyModel,
+    VehicleServiceCompanyDashboard,
+    VehicleServiceCompanyConfirmationTable,
+    VehicleServiceCompanySearch,
+    VehicleServiceCompanySearchForm,
+    VehicleServiceCompanyCreateForm,
+    VehicleServiceCompanyTable,
+    VehicleServiceCompanyService,
+    VehicleServiceCompanyUpdateForm,
+    ServiceCompanyAuthenticationInfoBase,
+    ServiceCompanyAuthenticationInfoBizApp,
+    ServiceCompanyAuthenticationInfoModel,
+    ServiceCompanyAuthenticationInfoDashboard,
+    ServiceCompanyAuthenticationInfoConfirmationTable,
+    ServiceCompanyAuthenticationInfoSearch,
+    ServiceCompanyAuthenticationInfoSearchForm,
+    ServiceCompanyAuthenticationInfoCreateForm,
+    ServiceCompanyAuthenticationInfoTable,
+    ServiceCompanyAuthenticationInfoService,
+    ServiceCompanyAuthenticationInfoUpdateForm,
+    VehicleInspectionPlateNumberPatternBase,
+    VehicleInspectionPlateNumberPatternBizApp,
+    VehicleInspectionPlateNumberPatternModel,
+    VehicleInspectionPlateNumberPatternDashboard,
+    VehicleInspectionPlateNumberPatternConfirmationTable,
+    VehicleInspectionPlateNumberPatternSearch,
+    VehicleInspectionPlateNumberPatternSearchForm,
+    VehicleInspectionPlateNumberPatternCreateForm,
+    VehicleInspectionPlateNumberPatternTable,
+    VehicleInspectionPlateNumberPatternService,
+    VehicleInspectionPlateNumberPatternUpdateForm,
+    FileInspectionPlateNumberPatternBase,
+    FileInspectionPlateNumberPatternBizApp,
+    FileInspectionPlateNumberPatternModel,
+    FileInspectionPlateNumberPatternDashboard,
+    FileInspectionPlateNumberPatternConfirmationTable,
+    FileInspectionPlateNumberPatternSearch,
+    FileInspectionPlateNumberPatternSearchForm,
+    FileInspectionPlateNumberPatternCreateForm,
+    FileInspectionPlateNumberPatternTable,
+    FileInspectionPlateNumberPatternService,
+    FileInspectionPlateNumberPatternUpdateForm,
+    VehicleServiceCompanyBusinessScopeBase,
+    VehicleServiceCompanyBusinessScopeBizApp,
+    VehicleServiceCompanyBusinessScopeModel,
+    VehicleServiceCompanyBusinessScopeDashboard,
+    VehicleServiceCompanyBusinessScopeConfirmationTable,
+    VehicleServiceCompanyBusinessScopeSearch,
+    VehicleServiceCompanyBusinessScopeSearchForm,
+    VehicleServiceCompanyBusinessScopeCreateForm,
+    VehicleServiceCompanyBusinessScopeTable,
+    VehicleServiceCompanyBusinessScopeService,
+    VehicleServiceCompanyBusinessScopeUpdateForm,
+    CompanyQrcodePromotionRecordBase,
+    CompanyQrcodePromotionRecordBizApp,
+    CompanyQrcodePromotionRecordModel,
+    CompanyQrcodePromotionRecordDashboard,
+    CompanyQrcodePromotionRecordConfirmationTable,
+    CompanyQrcodePromotionRecordSearch,
+    CompanyQrcodePromotionRecordSearchForm,
+    CompanyQrcodePromotionRecordCreateForm,
+    CompanyQrcodePromotionRecordTable,
+    CompanyQrcodePromotionRecordService,
+    CompanyQrcodePromotionRecordUpdateForm,
+    VehicleServiceCompanyDispatcherBase,
+    VehicleServiceCompanyDispatcherBizApp,
+    VehicleServiceCompanyDispatcherModel,
+    VehicleServiceCompanyDispatcherDashboard,
+    VehicleServiceCompanyDispatcherConfirmationTable,
+    VehicleServiceCompanyDispatcherSearch,
+    VehicleServiceCompanyDispatcherSearchForm,
+    VehicleServiceCompanyDispatcherCreateForm,
+    VehicleServiceCompanyDispatcherTable,
+    VehicleServiceCompanyDispatcherService,
+    VehicleServiceCompanyDispatcherUpdateForm,
+    CompanyDiscountBase,
+    CompanyDiscountBizApp,
+    CompanyDiscountModel,
+    CompanyDiscountDashboard,
+    CompanyDiscountConfirmationTable,
+    CompanyDiscountSearch,
+    CompanyDiscountSearchForm,
+    CompanyDiscountCreateForm,
+    CompanyDiscountTable,
+    CompanyDiscountService,
+    CompanyDiscountUpdateForm,
+    VehicleServiceCompanyEmployeeBase,
+    VehicleServiceCompanyEmployeeBizApp,
+    VehicleServiceCompanyEmployeeModel,
+    VehicleServiceCompanyEmployeeDashboard,
+    VehicleServiceCompanyEmployeeConfirmationTable,
+    VehicleServiceCompanyEmployeeSearch,
+    VehicleServiceCompanyEmployeeSearchForm,
+    VehicleServiceCompanyEmployeeCreateForm,
+    VehicleServiceCompanyEmployeeTable,
+    VehicleServiceCompanyEmployeeService,
+    VehicleServiceCompanyEmployeeUpdateForm,
+    ServiceOrderFilterBase,
+    ServiceOrderFilterBizApp,
+    ServiceOrderFilterModel,
+    ServiceOrderFilterDashboard,
+    ServiceOrderFilterConfirmationTable,
+    ServiceOrderFilterSearch,
+    ServiceOrderFilterSearchForm,
+    ServiceOrderFilterCreateForm,
+    ServiceOrderFilterTable,
+    ServiceOrderFilterService,
+    ServiceOrderFilterUpdateForm,
+    CompanyEmployeeQualificationBase,
+    CompanyEmployeeQualificationBizApp,
+    CompanyEmployeeQualificationModel,
+    CompanyEmployeeQualificationDashboard,
+    CompanyEmployeeQualificationConfirmationTable,
+    CompanyEmployeeQualificationSearch,
+    CompanyEmployeeQualificationSearchForm,
+    CompanyEmployeeQualificationCreateForm,
+    CompanyEmployeeQualificationTable,
+    CompanyEmployeeQualificationService,
+    CompanyEmployeeQualificationUpdateForm,
+    CompanyEmployeeServingBase,
+    CompanyEmployeeServingBizApp,
+    CompanyEmployeeServingModel,
+    CompanyEmployeeServingDashboard,
+    CompanyEmployeeServingConfirmationTable,
+    CompanyEmployeeServingSearch,
+    CompanyEmployeeServingSearchForm,
+    CompanyEmployeeServingCreateForm,
+    CompanyEmployeeServingTable,
+    CompanyEmployeeServingService,
+    CompanyEmployeeServingUpdateForm,
+    CompanyEmployeeTerminationBase,
+    CompanyEmployeeTerminationBizApp,
+    CompanyEmployeeTerminationModel,
+    CompanyEmployeeTerminationDashboard,
+    CompanyEmployeeTerminationConfirmationTable,
+    CompanyEmployeeTerminationSearch,
+    CompanyEmployeeTerminationSearchForm,
+    CompanyEmployeeTerminationCreateForm,
+    CompanyEmployeeTerminationTable,
+    CompanyEmployeeTerminationService,
+    CompanyEmployeeTerminationUpdateForm,
+    EmployeeDrivingLicenseBase,
+    EmployeeDrivingLicenseBizApp,
+    EmployeeDrivingLicenseModel,
+    EmployeeDrivingLicenseDashboard,
+    EmployeeDrivingLicenseConfirmationTable,
+    EmployeeDrivingLicenseSearch,
+    EmployeeDrivingLicenseSearchForm,
+    EmployeeDrivingLicenseCreateForm,
+    EmployeeDrivingLicenseTable,
+    EmployeeDrivingLicenseService,
+    EmployeeDrivingLicenseUpdateForm,
+    InspectionStationBase,
+    InspectionStationBizApp,
+    InspectionStationModel,
+    InspectionStationDashboard,
+    InspectionStationConfirmationTable,
+    InspectionStationSearch,
+    InspectionStationSearchForm,
+    InspectionStationCreateForm,
+    InspectionStationTable,
+    InspectionStationService,
+    InspectionStationUpdateForm,
+    VehicleInfoBase,
+    VehicleInfoBizApp,
+    VehicleInfoModel,
+    VehicleInfoDashboard,
+    VehicleInfoConfirmationTable,
+    VehicleInfoSearch,
+    VehicleInfoSearchForm,
+    VehicleInfoCreateForm,
+    VehicleInfoTable,
+    VehicleInfoService,
+    VehicleInfoUpdateForm,
+    VehicleInspectionOrderBase,
+    VehicleInspectionOrderBizApp,
+    VehicleInspectionOrderModel,
+    VehicleInspectionOrderDashboard,
+    VehicleInspectionOrderConfirmationTable,
+    VehicleInspectionOrderSearch,
+    VehicleInspectionOrderSearchForm,
+    VehicleInspectionOrderCreateForm,
+    VehicleInspectionOrderTable,
+    VehicleInspectionOrderService,
+    VehicleInspectionOrderUpdateForm,
+    VehicleInspectionInsuranceOrderBase,
+    VehicleInspectionInsuranceOrderBizApp,
+    VehicleInspectionInsuranceOrderModel,
+    VehicleInspectionInsuranceOrderDashboard,
+    VehicleInspectionInsuranceOrderConfirmationTable,
+    VehicleInspectionInsuranceOrderSearch,
+    VehicleInspectionInsuranceOrderSearchForm,
+    VehicleInspectionInsuranceOrderCreateForm,
+    VehicleInspectionInsuranceOrderTable,
+    VehicleInspectionInsuranceOrderService,
+    VehicleInspectionInsuranceOrderUpdateForm,
+    VehicleInspectionOrderChargeBase,
+    VehicleInspectionOrderChargeBizApp,
+    VehicleInspectionOrderChargeModel,
+    VehicleInspectionOrderChargeDashboard,
+    VehicleInspectionOrderChargeConfirmationTable,
+    VehicleInspectionOrderChargeSearch,
+    VehicleInspectionOrderChargeSearchForm,
+    VehicleInspectionOrderChargeCreateForm,
+    VehicleInspectionOrderChargeTable,
+    VehicleInspectionOrderChargeService,
+    VehicleInspectionOrderChargeUpdateForm,
+    VehicleInspectionOrderServiceLogBase,
+    VehicleInspectionOrderServiceLogBizApp,
+    VehicleInspectionOrderServiceLogModel,
+    VehicleInspectionOrderServiceLogDashboard,
+    VehicleInspectionOrderServiceLogConfirmationTable,
+    VehicleInspectionOrderServiceLogSearch,
+    VehicleInspectionOrderServiceLogSearchForm,
+    VehicleInspectionOrderServiceLogCreateForm,
+    VehicleInspectionOrderServiceLogTable,
+    VehicleInspectionOrderServiceLogService,
+    VehicleInspectionOrderServiceLogUpdateForm,
+    VehicleInspectionOrderPaymentBase,
+    VehicleInspectionOrderPaymentBizApp,
+    VehicleInspectionOrderPaymentModel,
+    VehicleInspectionOrderPaymentDashboard,
+    VehicleInspectionOrderPaymentConfirmationTable,
+    VehicleInspectionOrderPaymentSearch,
+    VehicleInspectionOrderPaymentSearchForm,
+    VehicleInspectionOrderPaymentCreateForm,
+    VehicleInspectionOrderPaymentTable,
+    VehicleInspectionOrderPaymentService,
+    VehicleInspectionOrderPaymentUpdateForm,
+    HandOverChecklistItemBase,
+    HandOverChecklistItemBizApp,
+    HandOverChecklistItemModel,
+    HandOverChecklistItemDashboard,
+    HandOverChecklistItemConfirmationTable,
+    HandOverChecklistItemSearch,
+    HandOverChecklistItemSearchForm,
+    HandOverChecklistItemCreateForm,
+    HandOverChecklistItemTable,
+    HandOverChecklistItemService,
+    HandOverChecklistItemUpdateForm,
+    ServiceVehicleMovementC2mBase,
+    ServiceVehicleMovementC2mBizApp,
+    ServiceVehicleMovementC2mModel,
+    ServiceVehicleMovementC2mDashboard,
+    ServiceVehicleMovementC2mConfirmationTable,
+    ServiceVehicleMovementC2mSearch,
+    ServiceVehicleMovementC2mSearchForm,
+    ServiceVehicleMovementC2mCreateForm,
+    ServiceVehicleMovementC2mTable,
+    ServiceVehicleMovementC2mService,
+    ServiceVehicleMovementC2mUpdateForm,
+    ServiceVehicleMovementM2mBase,
+    ServiceVehicleMovementM2mBizApp,
+    ServiceVehicleMovementM2mModel,
+    ServiceVehicleMovementM2mDashboard,
+    ServiceVehicleMovementM2mConfirmationTable,
+    ServiceVehicleMovementM2mSearch,
+    ServiceVehicleMovementM2mSearchForm,
+    ServiceVehicleMovementM2mCreateForm,
+    ServiceVehicleMovementM2mTable,
+    ServiceVehicleMovementM2mService,
+    ServiceVehicleMovementM2mUpdateForm,
+    ServiceVehicleMovementM2cBase,
+    ServiceVehicleMovementM2cBizApp,
+    ServiceVehicleMovementM2cModel,
+    ServiceVehicleMovementM2cDashboard,
+    ServiceVehicleMovementM2cConfirmationTable,
+    ServiceVehicleMovementM2cSearch,
+    ServiceVehicleMovementM2cSearchForm,
+    ServiceVehicleMovementM2cCreateForm,
+    ServiceVehicleMovementM2cTable,
+    ServiceVehicleMovementM2cService,
+    ServiceVehicleMovementM2cUpdateForm,
+    ServiceFileMovementC2mBase,
+    ServiceFileMovementC2mBizApp,
+    ServiceFileMovementC2mModel,
+    ServiceFileMovementC2mDashboard,
+    ServiceFileMovementC2mConfirmationTable,
+    ServiceFileMovementC2mSearch,
+    ServiceFileMovementC2mSearchForm,
+    ServiceFileMovementC2mCreateForm,
+    ServiceFileMovementC2mTable,
+    ServiceFileMovementC2mService,
+    ServiceFileMovementC2mUpdateForm,
+    ServiceFileMovementM2mBase,
+    ServiceFileMovementM2mBizApp,
+    ServiceFileMovementM2mModel,
+    ServiceFileMovementM2mDashboard,
+    ServiceFileMovementM2mConfirmationTable,
+    ServiceFileMovementM2mSearch,
+    ServiceFileMovementM2mSearchForm,
+    ServiceFileMovementM2mCreateForm,
+    ServiceFileMovementM2mTable,
+    ServiceFileMovementM2mService,
+    ServiceFileMovementM2mUpdateForm,
+    ServiceFileMovementM2cBase,
+    ServiceFileMovementM2cBizApp,
+    ServiceFileMovementM2cModel,
+    ServiceFileMovementM2cDashboard,
+    ServiceFileMovementM2cConfirmationTable,
+    ServiceFileMovementM2cSearch,
+    ServiceFileMovementM2cSearchForm,
+    ServiceFileMovementM2cCreateForm,
+    ServiceFileMovementM2cTable,
+    ServiceFileMovementM2cService,
+    ServiceFileMovementM2cUpdateForm,
+    HandOverChecklistResultBase,
+    HandOverChecklistResultBizApp,
+    HandOverChecklistResultModel,
+    HandOverChecklistResultDashboard,
+    HandOverChecklistResultConfirmationTable,
+    HandOverChecklistResultSearch,
+    HandOverChecklistResultSearchForm,
+    HandOverChecklistResultCreateForm,
+    HandOverChecklistResultTable,
+    HandOverChecklistResultService,
+    HandOverChecklistResultUpdateForm,
+    ServiceInsuranceForInspectionBase,
+    ServiceInsuranceForInspectionBizApp,
+    ServiceInsuranceForInspectionModel,
+    ServiceInsuranceForInspectionDashboard,
+    ServiceInsuranceForInspectionConfirmationTable,
+    ServiceInsuranceForInspectionSearch,
+    ServiceInsuranceForInspectionSearchForm,
+    ServiceInsuranceForInspectionCreateForm,
+    ServiceInsuranceForInspectionTable,
+    ServiceInsuranceForInspectionService,
+    ServiceInsuranceForInspectionUpdateForm,
+    ServiceVehicleInspectionBase,
+    ServiceVehicleInspectionBizApp,
+    ServiceVehicleInspectionModel,
+    ServiceVehicleInspectionDashboard,
+    ServiceVehicleInspectionConfirmationTable,
+    ServiceVehicleInspectionSearch,
+    ServiceVehicleInspectionSearchForm,
+    ServiceVehicleInspectionCreateForm,
+    ServiceVehicleInspectionTable,
+    ServiceVehicleInspectionService,
+    ServiceVehicleInspectionUpdateForm,
+    ServiceFileInspectionBase,
+    ServiceFileInspectionBizApp,
+    ServiceFileInspectionModel,
+    ServiceFileInspectionDashboard,
+    ServiceFileInspectionConfirmationTable,
+    ServiceFileInspectionSearch,
+    ServiceFileInspectionSearchForm,
+    ServiceFileInspectionCreateForm,
+    ServiceFileInspectionTable,
+    ServiceFileInspectionService,
+    ServiceFileInspectionUpdateForm,
+    ServiceVehicleRepairingBase,
+    ServiceVehicleRepairingBizApp,
+    ServiceVehicleRepairingModel,
+    ServiceVehicleRepairingDashboard,
+    ServiceVehicleRepairingConfirmationTable,
+    ServiceVehicleRepairingSearch,
+    ServiceVehicleRepairingSearchForm,
+    ServiceVehicleRepairingCreateForm,
+    ServiceVehicleRepairingTable,
+    ServiceVehicleRepairingService,
+    ServiceVehicleRepairingUpdateForm,
+    RepairingAllowanceItemBase,
+    RepairingAllowanceItemBizApp,
+    RepairingAllowanceItemModel,
+    RepairingAllowanceItemDashboard,
+    RepairingAllowanceItemConfirmationTable,
+    RepairingAllowanceItemSearch,
+    RepairingAllowanceItemSearchForm,
+    RepairingAllowanceItemCreateForm,
+    RepairingAllowanceItemTable,
+    RepairingAllowanceItemService,
+    RepairingAllowanceItemUpdateForm,
+    VehicleRepairingPaymentBase,
+    VehicleRepairingPaymentBizApp,
+    VehicleRepairingPaymentModel,
+    VehicleRepairingPaymentDashboard,
+    VehicleRepairingPaymentConfirmationTable,
+    VehicleRepairingPaymentSearch,
+    VehicleRepairingPaymentSearchForm,
+    VehicleRepairingPaymentCreateForm,
+    VehicleRepairingPaymentTable,
+    VehicleRepairingPaymentService,
+    VehicleRepairingPaymentUpdateForm,
+    AvailableReviewItemBase,
+    AvailableReviewItemBizApp,
+    AvailableReviewItemModel,
+    AvailableReviewItemDashboard,
+    AvailableReviewItemConfirmationTable,
+    AvailableReviewItemSearch,
+    AvailableReviewItemSearchForm,
+    AvailableReviewItemCreateForm,
+    AvailableReviewItemTable,
+    AvailableReviewItemService,
+    AvailableReviewItemUpdateForm,
+    OrderReviewResultBase,
+    OrderReviewResultBizApp,
+    OrderReviewResultModel,
+    OrderReviewResultDashboard,
+    OrderReviewResultConfirmationTable,
+    OrderReviewResultSearch,
+    OrderReviewResultSearchForm,
+    OrderReviewResultCreateForm,
+    OrderReviewResultTable,
+    OrderReviewResultService,
+    OrderReviewResultUpdateForm,
+    AvailableRatingItemBase,
+    AvailableRatingItemBizApp,
+    AvailableRatingItemModel,
+    AvailableRatingItemDashboard,
+    AvailableRatingItemConfirmationTable,
+    AvailableRatingItemSearch,
+    AvailableRatingItemSearchForm,
+    AvailableRatingItemCreateForm,
+    AvailableRatingItemTable,
+    AvailableRatingItemService,
+    AvailableRatingItemUpdateForm,
+    OrderRatingResultBase,
+    OrderRatingResultBizApp,
+    OrderRatingResultModel,
+    OrderRatingResultDashboard,
+    OrderRatingResultConfirmationTable,
+    OrderRatingResultSearch,
+    OrderRatingResultSearchForm,
+    OrderRatingResultCreateForm,
+    OrderRatingResultTable,
+    OrderRatingResultService,
+    OrderRatingResultUpdateForm,
+    PreorderPromotionBase,
+    PreorderPromotionBizApp,
+    PreorderPromotionModel,
+    PreorderPromotionDashboard,
+    PreorderPromotionConfirmationTable,
+    PreorderPromotionSearch,
+    PreorderPromotionSearchForm,
+    PreorderPromotionCreateForm,
+    PreorderPromotionTable,
+    PreorderPromotionService,
+    PreorderPromotionUpdateForm,
+    OrderDiscountCouponBase,
+    OrderDiscountCouponBizApp,
+    OrderDiscountCouponModel,
+    OrderDiscountCouponDashboard,
+    OrderDiscountCouponConfirmationTable,
+    OrderDiscountCouponSearch,
+    OrderDiscountCouponSearchForm,
+    OrderDiscountCouponCreateForm,
+    OrderDiscountCouponTable,
+    OrderDiscountCouponService,
+    OrderDiscountCouponUpdateForm,
+    VehicleInspectionOrderCouponBase,
+    VehicleInspectionOrderCouponBizApp,
+    VehicleInspectionOrderCouponModel,
+    VehicleInspectionOrderCouponDashboard,
+    VehicleInspectionOrderCouponConfirmationTable,
+    VehicleInspectionOrderCouponSearch,
+    VehicleInspectionOrderCouponSearchForm,
+    VehicleInspectionOrderCouponCreateForm,
+    VehicleInspectionOrderCouponTable,
+    VehicleInspectionOrderCouponService,
+    VehicleInspectionOrderCouponUpdateForm,
+    AccountBase,
+    AccountBizApp,
+    AccountModel,
+    AccountDashboard,
+    AccountConfirmationTable,
+    AccountSearch,
+    AccountSearchForm,
+    AccountCreateForm,
+    AccountTable,
+    AccountService,
+    AccountUpdateForm,
+    ServiceCompanyAccountBase,
+    ServiceCompanyAccountBizApp,
+    ServiceCompanyAccountModel,
+    ServiceCompanyAccountDashboard,
+    ServiceCompanyAccountConfirmationTable,
+    ServiceCompanyAccountSearch,
+    ServiceCompanyAccountSearchForm,
+    ServiceCompanyAccountCreateForm,
+    ServiceCompanyAccountTable,
+    ServiceCompanyAccountService,
+    ServiceCompanyAccountUpdateForm,
+    RepairingCompanyAccountBase,
+    RepairingCompanyAccountBizApp,
+    RepairingCompanyAccountModel,
+    RepairingCompanyAccountDashboard,
+    RepairingCompanyAccountConfirmationTable,
+    RepairingCompanyAccountSearch,
+    RepairingCompanyAccountSearchForm,
+    RepairingCompanyAccountCreateForm,
+    RepairingCompanyAccountTable,
+    RepairingCompanyAccountService,
+    RepairingCompanyAccountUpdateForm,
+    InsuranceServiceAccountBase,
+    InsuranceServiceAccountBizApp,
+    InsuranceServiceAccountModel,
+    InsuranceServiceAccountDashboard,
+    InsuranceServiceAccountConfirmationTable,
+    InsuranceServiceAccountSearch,
+    InsuranceServiceAccountSearchForm,
+    InsuranceServiceAccountCreateForm,
+    InsuranceServiceAccountTable,
+    InsuranceServiceAccountService,
+    InsuranceServiceAccountUpdateForm,
+    MainOrderAccountBase,
+    MainOrderAccountBizApp,
+    MainOrderAccountModel,
+    MainOrderAccountDashboard,
+    MainOrderAccountConfirmationTable,
+    MainOrderAccountSearch,
+    MainOrderAccountSearchForm,
+    MainOrderAccountCreateForm,
+    MainOrderAccountTable,
+    MainOrderAccountService,
+    MainOrderAccountUpdateForm,
+    InspectionStationAccountBase,
+    InspectionStationAccountBizApp,
+    InspectionStationAccountModel,
+    InspectionStationAccountDashboard,
+    InspectionStationAccountConfirmationTable,
+    InspectionStationAccountSearch,
+    InspectionStationAccountSearchForm,
+    InspectionStationAccountCreateForm,
+    InspectionStationAccountTable,
+    InspectionStationAccountService,
+    InspectionStationAccountUpdateForm,
     UserDomainBase,
     UserDomainBizApp,
     UserDomainModel,
@@ -1482,10 +1800,6 @@ const OOTBComponents={
     UserDomainSearchForm,
     UserDomainCreateForm,
     UserDomainTable,
-    UserDomainEditTable,
-    UserDomainEditDetail,
-    UserDomainViewTable,
-    UserDomainViewDetail,
     UserDomainService,
     UserDomainUpdateForm,
     SecUserBase,
@@ -1497,10 +1811,6 @@ const OOTBComponents={
     SecUserSearchForm,
     SecUserCreateForm,
     SecUserTable,
-    SecUserEditTable,
-    SecUserEditDetail,
-    SecUserViewTable,
-    SecUserViewDetail,
     SecUserService,
     SecUserUpdateForm,
     SecUserBlockingBase,
@@ -1512,10 +1822,6 @@ const OOTBComponents={
     SecUserBlockingSearchForm,
     SecUserBlockingCreateForm,
     SecUserBlockingTable,
-    SecUserBlockingEditTable,
-    SecUserBlockingEditDetail,
-    SecUserBlockingViewTable,
-    SecUserBlockingViewDetail,
     SecUserBlockingService,
     SecUserBlockingUpdateForm,
     UserAppBase,
@@ -1527,10 +1833,6 @@ const OOTBComponents={
     UserAppSearchForm,
     UserAppCreateForm,
     UserAppTable,
-    UserAppEditTable,
-    UserAppEditDetail,
-    UserAppViewTable,
-    UserAppViewDetail,
     UserAppService,
     UserAppUpdateForm,
     ObjectAccessBase,
@@ -1542,10 +1844,6 @@ const OOTBComponents={
     ObjectAccessSearchForm,
     ObjectAccessCreateForm,
     ObjectAccessTable,
-    ObjectAccessEditTable,
-    ObjectAccessEditDetail,
-    ObjectAccessViewTable,
-    ObjectAccessViewDetail,
     ObjectAccessService,
     ObjectAccessUpdateForm,
     LoginHistoryBase,
@@ -1557,10 +1855,6 @@ const OOTBComponents={
     LoginHistorySearchForm,
     LoginHistoryCreateForm,
     LoginHistoryTable,
-    LoginHistoryEditTable,
-    LoginHistoryEditDetail,
-    LoginHistoryViewTable,
-    LoginHistoryViewDetail,
     LoginHistoryService,
     LoginHistoryUpdateForm,
     GenericFormBase,
@@ -1572,10 +1866,6 @@ const OOTBComponents={
     GenericFormSearchForm,
     GenericFormCreateForm,
     GenericFormTable,
-    GenericFormEditTable,
-    GenericFormEditDetail,
-    GenericFormViewTable,
-    GenericFormViewDetail,
     GenericFormService,
     GenericFormUpdateForm,
     FormMessageBase,
@@ -1587,10 +1877,6 @@ const OOTBComponents={
     FormMessageSearchForm,
     FormMessageCreateForm,
     FormMessageTable,
-    FormMessageEditTable,
-    FormMessageEditDetail,
-    FormMessageViewTable,
-    FormMessageViewDetail,
     FormMessageService,
     FormMessageUpdateForm,
     FormFieldMessageBase,
@@ -1602,10 +1888,6 @@ const OOTBComponents={
     FormFieldMessageSearchForm,
     FormFieldMessageCreateForm,
     FormFieldMessageTable,
-    FormFieldMessageEditTable,
-    FormFieldMessageEditDetail,
-    FormFieldMessageViewTable,
-    FormFieldMessageViewDetail,
     FormFieldMessageService,
     FormFieldMessageUpdateForm,
     FormFieldBase,
@@ -1617,10 +1899,6 @@ const OOTBComponents={
     FormFieldSearchForm,
     FormFieldCreateForm,
     FormFieldTable,
-    FormFieldEditTable,
-    FormFieldEditDetail,
-    FormFieldViewTable,
-    FormFieldViewDetail,
     FormFieldService,
     FormFieldUpdateForm,
     FormActionBase,
@@ -1632,10 +1910,6 @@ const OOTBComponents={
     FormActionSearchForm,
     FormActionCreateForm,
     FormActionTable,
-    FormActionEditTable,
-    FormActionEditDetail,
-    FormActionViewTable,
-    FormActionViewDetail,
     FormActionService,
     FormActionUpdateForm,
     menuDataOf,bindBizModels,unbindBizModels,calcLocationPath,calcMenuData

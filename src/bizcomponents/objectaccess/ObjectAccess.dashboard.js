@@ -34,16 +34,37 @@ const topColResponsiveProps = {
 
 const imageListOf = (objectAccess) =>{
 
-	     return null
-	
+  const imageList = [
+	 ]
+  const filteredList = imageList.filter((item)=>item.imageLocation!=null)
+  if(filteredList.length===0){
+    return null
+  }
+
+  return(<Card title='图片列表' className={styles.card}><Row type="flex" justify="start" align="bottom">
+  {
+      filteredList.map((item)=>(<Col span={4}><ImagePreview imageTitle ={item.title} showTitleUnderImage={true} imageLocation={item.imageLocation} >{item.title}</ImagePreview></Col>))
+  }</Row></Card> )
 
 }
 
 const settingListOf = (objectAccess) =>{
 
-	    return null
+	const optionList = [ 
+	]
 	
-	//(objectAccess)
+  if(optionList.length===0){
+    return null
+  }
+  return(<Card title='状态集合' className={styles.card}>
+  	
+  	{
+  	   optionList.map((item)=><BooleanOption title={item.title} type={item.value?"success":"error"} />)
+  	}
+
+
+</Card> )
+	
 
 
 }
@@ -61,9 +82,9 @@ const summaryOf = (objectAccess) =>{
 
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="序号">{objectAccess.id}</Description> 
-<Description term="显示名称">{objectAccess.displayName}</Description> 
-<Description term="对象类型">{objectAccess.objectType}</Description> 
+<Description term="ID">{objectAccess.id}</Description> 
+<Description term="名称">{objectAccess.name}</Description> 
+<Description term="访问对象类型">{objectAccess.objectType}</Description> 
 <Description term="列表1">{objectAccess.list1}</Description> 
 <Description term="列表2">{objectAccess.list2}</Description> 
 <Description term="列表3">{objectAccess.list3}</Description> 
@@ -120,8 +141,9 @@ class ObjectAccessDashboard extends Component {
         wrapperClassName={styles.advancedForm}
       >
         <div>
-        {imageListOf(cardsData.cardsSource)}
         {settingListOf(cardsData.cardsSource)}
+        {imageListOf(cardsData.cardsSource)}
+        
           <Row gutter={24}>
 
            {cardsData.subItems.map((item)=>(<Col {...topColResponsiveProps} key={item.name}>   

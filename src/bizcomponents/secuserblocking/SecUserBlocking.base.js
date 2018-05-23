@@ -12,17 +12,17 @@ const menuData = {menuName:"SEC用户阻塞", menuFor: "secUserBlocking",
 
 
 const displayColumns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/secUserBlocking/${text}/dashboard`}>{text}</Link>) },
-  { title: '谁', debugtype: 'string', dataIndex: 'who', width: '17' },
-  { title: '屏蔽时间', dataIndex: 'blockTime', render: (text, record) => moment(record.blockTime).format('YYYY-MM-DD HH:mm:ss') },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/secUserBlocking/${text}/dashboard`}>{text}</Link>) },
+  { title: '审批人', debugtype: 'string', dataIndex: 'who', width: '17' },
+  { title: '块时间', dataIndex: 'blockTime', render: (text, record) => moment(record.blockTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '评论', debugtype: 'string', dataIndex: 'comments', width: '28' },
 
 ]
 
 const fieldLabels = {
-  id: '序号',
-  who: '谁',
-  blockTime: '屏蔽时间',
+  id: 'ID',
+  who: '审批人',
+  blockTime: '块时间',
   comments: '评论',
 
 }

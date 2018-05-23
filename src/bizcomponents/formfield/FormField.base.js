@@ -11,9 +11,9 @@ const menuData = {menuName:"表单字段", menuFor: "formField",
 
 
 const displayColumns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id', width: '20' },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '标签', debugtype: 'string', dataIndex: 'label', width: '7' },
-  { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey', width: '15' },
+  { title: '消息键值', debugtype: 'string', dataIndex: 'localeKey', width: '15' },
   { title: '参数名称', debugtype: 'string', dataIndex: 'parameterName', width: '8' },
   { title: '类型', debugtype: 'string', dataIndex: 'type', width: '13' },
   { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.displayName : '暂无') },
@@ -32,9 +32,9 @@ const displayColumns = [
 ]
 
 const fieldLabels = {
-  id: '序号',
+  id: 'ID',
   label: '标签',
-  localeKey: '语言环境的关键',
+  localeKey: '消息键值',
   parameterName: '参数名称',
   type: '类型',
   form: '形式',

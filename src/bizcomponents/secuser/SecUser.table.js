@@ -8,16 +8,16 @@ import ImagePreview from '../../components/ImagePreview'
 
 
 const columns = [
-  { title: '序号', debugtype: 'string', dataIndex: 'id',  render: (text, record)=>(<Link to={`/secUser/${text}/dashboard`}>{text}</Link>) },
+  { title: 'ID', debugtype: 'string', dataIndex: 'id',  render: (text, record)=>(<Link to={`/secUser/${text}/dashboard`}>{text}</Link>) },
   { title: '登录', debugtype: 'string', dataIndex: 'login',},
-  { title: '手机', debugtype: 'string_china_mobile_phone', dataIndex: 'mobile',},
+  { title: '手机号码', debugtype: 'string_china_mobile_phone', dataIndex: 'mobile',},
   { title: '电子邮件', debugtype: 'string_email', dataIndex: 'email',},
-  { title: 'PWD', debugtype: 'string_password', dataIndex: 'pwd',},
+  { title: '密码', debugtype: 'string_password', dataIndex: 'pwd',},
   { title: '验证码', debugtype: 'int', dataIndex: 'verificationCode',},
-  { title: '验证码过期', dataIndex: 'verificationCodeExpire', render: (text, record) => moment(record.verificationCodeExpire).format('YYYY-MM-DD HH:mm:ss') },
+  { title: '验证码过期时间', dataIndex: 'verificationCodeExpire', render: (text, record) => moment(record.verificationCodeExpire).format('YYYY-MM-DD HH:mm:ss') },
   { title: '最后登录时间', dataIndex: 'lastLoginTime', render: (text, record) => moment(record.lastLoginTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '域', dataIndex: 'domain', render: (text, record) => (record.domain ? record.domain.displayName : '暂无') },
-  { title: '屏蔽', dataIndex: 'blocking', render: (text, record) => (record.blocking ? record.blocking.displayName : '暂无') },
+  { title: '舞台调度', dataIndex: 'blocking', render: (text, record) => (record.blocking ? record.blocking.displayName : '暂无') },
   { title: '当前状态', debugtype: 'string', dataIndex: 'currentStatus',},
 
 

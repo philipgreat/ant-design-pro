@@ -15,9 +15,9 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
-  id: '序号',
-  who: '谁',
-  blockTime: '屏蔽时间',
+  id: 'ID',
+  who: '审批人',
+  blockTime: '块时间',
   comments: '评论',
 }
 const testValues = {};
@@ -207,9 +207,9 @@ class SecUserBlockingCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.who} {...formItemLayout}>
                   {getFieldDecorator('who', {
-                    rules: [{ required: true, message: '请输入谁' }],
+                    rules: [{ required: true, message: '请输入审批人' }],
                   })(
-                    <Input placeholder="请输入谁" />
+                    <Input placeholder="请输入审批人" />
                   )}
                 </Form.Item>
               </Col>

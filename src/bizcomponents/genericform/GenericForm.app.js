@@ -127,25 +127,7 @@ class GenericFormBizApp extends React.PureComponent {
     )
   }
   
-  getNavMenuItems2 = (objectId) => {
-  
-    const {menuData,targetApp} = this.props.breadcrumb;
 
-  
-    return (
-      <SubMenu key="firstOne" title={
-        <span>
-          <Icon type="profile" />
-          <span>{menuData.menuName}</span>
-        </span>}
-      >
-        {menuData.subItems.map((item)=>(<Menu.Item>
-          <Link to={`/${menuData.menuFor}/${objectId}/list/${item.name}`}>{item.displayName}</Link>
-        </Menu.Item>))}
-       
-      </SubMenu>
-    )
-  }
 
 
   getFormMessageSearch = () => {
@@ -291,7 +273,7 @@ class GenericFormBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '帮帮兔社区运营中心'
+    const title = '代审车服务平台'
     return title
   }
  
@@ -314,8 +296,8 @@ class GenericFormBizApp extends React.PureComponent {
      const { collapsed } = this.props
      const { breadcrumb }  = this.props
      const {GenericFormDashboard} = GlobalComponents
-     const {GenericFormEditDetail} = GlobalComponents
-     const {GenericFormViewDetail} = GlobalComponents
+     //const {GenericFormEditDetail} = GlobalComponents
+     //const {GenericFormViewDetail} = GlobalComponents
      
      
      const targetApp = sessionObject('targetApp')
@@ -396,8 +378,6 @@ class GenericFormBizApp extends React.PureComponent {
              
                <Route path="/genericForm/:id/dashboard" component={GenericFormDashboard} />
                
-               <Route path="/genericForm/:id/editDetail" component={GenericFormEditDetail} />
-               <Route path="/genericForm/:id/viewDetail" component={GenericFormViewDetail} /> 
                
 
                <Route path="/genericForm/:id/list/formMessageList" component={this.getFormMessageSearch()} />
