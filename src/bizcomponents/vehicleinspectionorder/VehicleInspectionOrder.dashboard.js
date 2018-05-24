@@ -72,7 +72,10 @@ const settingListOf = (vehicleInspectionOrder) =>{
   return(<Card title='状态集合' className={styles.card}>
   	
   	{
-  	   optionList.map((item)=><BooleanOption title={item.title} checked={item.value} type={item.value?"success":"error"}/>)
+  	  optionList.map((item)=><Col span={6} style={{"height":"60px"}}>
+       <Switch title={item.title} checked={item.value} type={item.value?"success":"error"} checkedChildren="是" unCheckedChildren="否" />
+       <span style={{"margin":"10px"}}>{item.title}</span>
+       </Col>)
   	}
 
 

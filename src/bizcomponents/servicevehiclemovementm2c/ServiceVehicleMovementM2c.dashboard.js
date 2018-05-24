@@ -5,8 +5,8 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
 import BooleanOption from 'components/BooleanOption';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge } from 'antd'
-import { Link, Route, Redirect, Switch } from 'dva/router'
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch  } from 'antd'
+import { Link, Route, Redirect} from 'dva/router'
 import numeral from 'numeral'
 import {
   ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
@@ -59,7 +59,10 @@ const settingListOf = (serviceVehicleMovementM2c) =>{
   return(<Card title='状态集合' className={styles.card}>
   	
   	{
-  	   optionList.map((item)=><BooleanOption title={item.title} type={item.value?"success":"error"} />)
+  	  optionList.map((item)=><Col span={6} style={{"height":"60px"}}>
+       <Switch title={item.title} checked={item.value} type={item.value?"success":"error"} checkedChildren="是" unCheckedChildren="否" />
+       <span style={{"margin":"10px"}}>{item.title}</span>
+       </Col>)
   	}
 
 
