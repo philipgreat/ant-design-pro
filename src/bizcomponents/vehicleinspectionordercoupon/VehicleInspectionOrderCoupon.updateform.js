@@ -305,7 +305,7 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
                     initialValue: selectedRow.endDate,
                     rules: [{ required: true, message: '请输入结束日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入结束日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入结束日期" />
                     
                   )}
                 </Form.Item>
@@ -317,7 +317,7 @@ class VehicleInspectionOrderCouponUpdateForm extends Component {
                     initialValue: selectedRow.appliedDate,
                     rules: [{ required: true, message: '请输入使用日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入使用日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入使用日期" />
                     
                   )}
                 </Form.Item>

@@ -58,6 +58,7 @@ const query = {
   
 const menuData = {menuName:"用户域", menuFor: "userDomain",
   		subItems: [
+  {name: 'actionTokenList', displayName:'行动令牌'},
   {name: 'secUserList', displayName:'SEC的用户'},
   		
   		
@@ -127,6 +128,41 @@ class UserDomainBizApp extends React.PureComponent {
 
 
 
+  getActionTokenSearch = () => {
+    const {ActionTokenSearch} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._userDomain.actionTokenList,
+      count: state._userDomain.actionTokenCount,
+      currentPage: state._userDomain.actionTokenCurrentPageNumber,
+      searchFormParameters: state._userDomain.actionTokenSearchFormParameters,
+      loading: state._userDomain.loading,
+      partialList: state._userDomain.partialList,
+      owner: { type: '_userDomain', id: state._userDomain.id, referenceName: 'userDomain', listName: 'actionTokenList', ref:state._userDomain, listDisplayName: '行动令牌列表' }, // this is for model namespace and
+    }))(ActionTokenSearch)
+  }
+  getActionTokenCreateForm = () => {
+   	const {ActionTokenCreateForm} = GlobalComponents;
+    return connect(state => ({
+      rule: state.rule,
+      data: state._userDomain.actionTokenList,
+      count: state._userDomain.actionTokenCount,
+      currentPage: state._userDomain.actionTokenCurrentPageNumber,
+      searchFormParameters: state._userDomain.actionTokenSearchFormParameters,
+      loading: state._userDomain.loading,
+      owner: { type: '_userDomain', id: state._userDomain.id, referenceName: 'userDomain', listName: 'actionTokenList', ref:state._userDomain, listDisplayName: '行动令牌列表'}, // this is for model namespace and
+    }))(ActionTokenCreateForm)
+  }
+  
+  getActionTokenUpdateForm = () => {
+  	const {ActionTokenUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._userDomain.selectedRows,
+      currentUpdateIndex: state._userDomain.currentUpdateIndex,
+      owner: { type: '_userDomain', id: state._userDomain.id, listName: 'actionTokenList', ref:state._userDomain, listDisplayName: '行动令牌列表' }, // this is for model namespace and
+    }))(ActionTokenUpdateForm)
+  }
+
   getSecUserSearch = () => {
     const {SecUserSearch} = GlobalComponents;
     return connect(state => ({
@@ -165,7 +201,7 @@ class UserDomainBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '代审车服务平台'
+    const title = '濮瑞游戏'
     return title
   }
  
@@ -271,6 +307,10 @@ class UserDomainBizApp extends React.PureComponent {
                <Route path="/userDomain/:id/dashboard" component={UserDomainDashboard} />
                
                
+
+               <Route path="/userDomain/:id/list/actionTokenList" component={this.getActionTokenSearch()} />
+               <Route path="/userDomain/:id/list/actionTokenCreateForm" component={this.getActionTokenCreateForm()} />
+               <Route path="/userDomain/:id/list/actionTokenUpdateForm" component={this.getActionTokenUpdateForm()} />
 
                <Route path="/userDomain/:id/list/secUserList" component={this.getSecUserSearch()} />
                <Route path="/userDomain/:id/list/secUserCreateForm" component={this.getSecUserCreateForm()} />

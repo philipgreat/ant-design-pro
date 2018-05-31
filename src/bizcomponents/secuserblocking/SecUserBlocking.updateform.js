@@ -16,7 +16,7 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  who: '审批人',
+  who: '谁',
   blockTime: '块时间',
   comments: '评论',
 
@@ -187,7 +187,7 @@ class SecUserBlockingUpdateForm extends Component {
         payload: {
           id: owner.id,
           type: 'secUserBlocking',
-          listName:'SEC用户阻塞列表' 
+          listName:'用户块列表' 
         },
       })
     }
@@ -247,8 +247,8 @@ class SecUserBlockingUpdateForm extends Component {
 
     return (
       <PageHeaderLayout
-        title={"更新SEC用户阻塞"+(currentUpdateIndex+1)+"/"+selectedRows.length}
-        content="更新SEC用户阻塞"
+        title={"更新用户块"+(currentUpdateIndex+1)+"/"+selectedRows.length}
+        content="更新用户块"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
@@ -272,9 +272,9 @@ class SecUserBlockingUpdateForm extends Component {
                 <Form.Item label={fieldLabels.who} {...formItemLayout}>
                   {getFieldDecorator('who', {
                     initialValue: selectedRow.who,
-                    rules: [{ required: true, message: '请输入审批人' }],
+                    rules: [{ required: true, message: '请输入谁' }],
                   })(
-                    <Input placeholder="请输入审批人" />
+                    <Input placeholder="请输入谁" />
                     
                   )}
                 </Form.Item>

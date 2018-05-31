@@ -10,8 +10,8 @@ const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
   { title: '标题', debugtype: 'string', dataIndex: 'title', width: '8' },
   { title: '参数名称', debugtype: 'string', dataIndex: 'parameterName', width: '8' },
-  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.id : '暂无') },
-  { title: '水平', debugtype: 'string', dataIndex: 'level', width: '11' },
+  { title: '表单', dataIndex: 'form', render: (text, record) => (record.form ? record.form.id : '暂无') },
+  { title: '级别', debugtype: 'string', dataIndex: 'level', width: '11' },
 ]
 
 class FormFieldMessageConfirmationTable extends PureComponent {

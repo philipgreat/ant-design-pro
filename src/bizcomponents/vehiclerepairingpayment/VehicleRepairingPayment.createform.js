@@ -28,12 +28,12 @@ const fieldLabels = {
 const testValues = {};
 /*
 const testValues = {
-  originalAmount: '372.41',
-  actualAmount: '442.73',
+  originalAmount: '372.29',
+  actualAmount: '420.68',
   status: '未支付',
   wechatOrderId: '',
   wechatPrepayId: '',
-  createTime: '2995-05-22 22:10:37',
+  createTime: '2995-07-10 03:38:19',
   serviceVehicleRepairingId: 'SVR000001',
 }
 */
@@ -303,7 +303,7 @@ class VehicleRepairingPaymentCreateForm extends Component {
                   {getFieldDecorator('createTime', {
                     rules: [{ required: true, message: '请输入创建时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入创建时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入创建时间" />
                   )}
                 </Form.Item>
               </Col>

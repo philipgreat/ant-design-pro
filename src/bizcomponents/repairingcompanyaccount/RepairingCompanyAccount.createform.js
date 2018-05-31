@@ -42,7 +42,7 @@ const testValues = {
   allowanceAmount: '40.00',
   actualAmount: '160.00',
   mainOrderId: 'O1234567890',
-  paymentDatetime: '2995-03-16 13:30:19',
+  paymentDatetime: '2994-04-09 22:10:43',
   wechatOrderId: '5K8264ILTKCH16CQ2502SI8ZNMTM67VS',
   wechatPrepayId: 'u802345jgfjsdfgsdg888',
   merchantId: 'VSC000001',
@@ -414,7 +414,7 @@ class RepairingCompanyAccountCreateForm extends Component {
                   {getFieldDecorator('paymentDatetime', {
                     rules: [{ required: true, message: '请输入付款日期时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入付款日期时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入付款日期时间" />
                   )}
                 </Form.Item>
               </Col>

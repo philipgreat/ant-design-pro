@@ -16,21 +16,27 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  nickName: '客户昵称',
-  logoImage: '头像',
-  weixinOpenid: '微信ID',
-  weixinAppid: '微信APP',
+  nickName: '昵称',
+  avatarImg: '头像',
+  secUser: 'SecUser',
+  mobile: '手机号码',
+  email: '电子邮件',
+  qq: 'qq',
+  weixinOpenid: '微信 Openid',
+  weixinAppid: '微信 Appid',
   longitude: '经度',
   latitude: '纬度',
-  secUser: 'SecUser',
-  platform: '平台',
+  experienceValue: '经验值',
+  gameScore: '积分',
+  vipLevel: 'Vip级别',
+  gamePlatform: '游戏平台',
 
 }
 
 const imageURLPrefix = '//localhost:2090'
 
 const imageKeys = [
-  'logoImage',
+  'avatarImg',
 ]
 
 
@@ -277,9 +283,45 @@ class CustomerUpdateForm extends Component {
                 <Form.Item label={fieldLabels.nickName} {...formItemLayout}>
                   {getFieldDecorator('nickName', {
                     initialValue: selectedRow.nickName,
-                    rules: [{ required: true, message: '请输入客户昵称' }],
+                    rules: [{ required: true, message: '请输入昵称' }],
                   })(
-                    <Input placeholder="请输入客户昵称" />
+                    <Input placeholder="请输入昵称" />
+                    
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mobile} {...formItemLayout}>
+                  {getFieldDecorator('mobile', {
+                    initialValue: selectedRow.mobile,
+                    rules: [{ required: true, message: '请输入手机号码' }],
+                  })(
+                    <Input placeholder="请输入手机号码" />
+                    
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.email} {...formItemLayout}>
+                  {getFieldDecorator('email', {
+                    initialValue: selectedRow.email,
+                    rules: [{ required: false, message: '请输入电子邮件' }],
+                  })(
+                    <Input placeholder="请输入电子邮件" />
+                    
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.qq} {...formItemLayout}>
+                  {getFieldDecorator('qq', {
+                    initialValue: selectedRow.qq,
+                    rules: [{ required: true, message: '请输入qq' }],
+                  })(
+                    <Input placeholder="请输入qq" />
                     
                   )}
                 </Form.Item>
@@ -289,9 +331,9 @@ class CustomerUpdateForm extends Component {
                 <Form.Item label={fieldLabels.weixinOpenid} {...formItemLayout}>
                   {getFieldDecorator('weixinOpenid', {
                     initialValue: selectedRow.weixinOpenid,
-                    rules: [{ required: true, message: '请输入微信ID' }],
+                    rules: [{ required: true, message: '请输入微信 Openid' }],
                   })(
-                    <Input placeholder="请输入微信ID" />
+                    <Input placeholder="请输入微信 Openid" />
                     
                   )}
                 </Form.Item>
@@ -301,9 +343,9 @@ class CustomerUpdateForm extends Component {
                 <Form.Item label={fieldLabels.weixinAppid} {...formItemLayout}>
                   {getFieldDecorator('weixinAppid', {
                     initialValue: selectedRow.weixinAppid,
-                    rules: [{ required: true, message: '请输入微信APP' }],
+                    rules: [{ required: true, message: '请输入微信 Appid' }],
                   })(
-                    <Input placeholder="请输入微信APP" />
+                    <Input placeholder="请输入微信 Appid" />
                     
                   )}
                 </Form.Item>
@@ -333,6 +375,30 @@ class CustomerUpdateForm extends Component {
                 </Form.Item>
               </Col>
 
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.experienceValue} {...formItemLayout}>
+                  {getFieldDecorator('experienceValue', {
+                    initialValue: selectedRow.experienceValue,
+                    rules: [{ required: true, message: '请输入经验值' }],
+                  })(
+                    <Input placeholder="请输入经验值" />
+                    
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.gameScore} {...formItemLayout}>
+                  {getFieldDecorator('gameScore', {
+                    initialValue: selectedRow.gameScore,
+                    rules: [{ required: true, message: '请输入积分' }],
+                  })(
+                    <Input placeholder="请输入积分" />
+                    
+                  )}
+                </Form.Item>
+              </Col>
+
             </Row>
           </Form>  
         </Card>
@@ -340,23 +406,6 @@ class CustomerUpdateForm extends Component {
         
         
         
-
-        <Card title="头像" className={styles.card} bordered={false}>
-          <Form >
-            <Row gutter={16}>
-              <Col lg={24} md={24} sm={24}>
-                <Form.Item>
-                  {getFieldDecorator('logoImage', {
-                  	initialValue: selectedRow.logoImage,
-                    rules: [{  required: true, message: '请输入头像' }],
-                  })(
-                    <TextArea rows={4} placeholder="请输入请输入头像" />
-                  )}
-                </Form.Item>
-              </Col>
-            </Row>
-          </Form>
-        </Card>
 
 
         <Card title={<div>附件 <Popover title="扫描二维码可以从手机上传图片或者附件" content={<div><img src='./qrtest.png'/></div>}><Icon type="qrcode" ></Icon></Popover></div>} className={styles.card} bordered={false}>
@@ -367,8 +416,8 @@ class CustomerUpdateForm extends Component {
                 <ImageComponent
                   buttonTitle="头像"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'logoImage')}
-                  fileList={convertedImagesValues.logoImage}
+                  handleChange={event => this.handleChange(event, 'avatarImg')}
+                  fileList={convertedImagesValues.avatarImg}
                 />
               </Col>
 

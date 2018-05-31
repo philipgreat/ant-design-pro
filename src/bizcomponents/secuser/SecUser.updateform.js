@@ -21,10 +21,10 @@ const fieldLabels = {
   email: '电子邮件',
   pwd: '密码',
   verificationCode: '验证码',
-  verificationCodeExpire: '验证码过期时间',
+  verificationCodeExpire: '验证码过期',
   lastLoginTime: '最后登录时间',
   domain: '域',
-  blocking: '舞台调度',
+  blocking: '屏蔽',
   currentStatus: '当前状态',
 
 }
@@ -340,9 +340,9 @@ class SecUserUpdateForm extends Component {
                 <Form.Item label={fieldLabels.verificationCodeExpire} {...formItemLayout}>
                   {getFieldDecorator('verificationCodeExpire', {
                     initialValue: selectedRow.verificationCodeExpire,
-                    rules: [{ required: true, message: '请输入验证码过期时间' }],
+                    rules: [{ required: true, message: '请输入验证码过期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入验证码过期时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入验证码过期" />
                     
                   )}
                 </Form.Item>
@@ -354,7 +354,7 @@ class SecUserUpdateForm extends Component {
                     initialValue: selectedRow.lastLoginTime,
                     rules: [{ required: true, message: '请输入最后登录时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入最后登录时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入最后登录时间" />
                     
                   )}
                 </Form.Item>

@@ -91,7 +91,7 @@ const summaryOf = (secUser) =>{
 <Description term="电子邮件">{secUser.email}</Description> 
 <Description term="密码">{secUser.pwd}</Description> 
 <Description term="验证码">{secUser.verificationCode}</Description> 
-<Description term="验证码过期时间">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
+<Description term="验证码过期">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
 	
         
       </DescriptionList>

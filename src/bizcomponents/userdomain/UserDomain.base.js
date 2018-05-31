@@ -4,6 +4,7 @@ import { Link } from 'dva/router'
 
 const menuData = {menuName:"用户域", menuFor: "userDomain",
   		subItems: [
+  {name: 'actionTokenList', displayName:'行动令牌'},
   {name: 'secUserList', displayName:'SEC的用户'},
   
   		],

@@ -64,7 +64,7 @@ class CitySearchForm extends PureComponent {
       if (err) return
       const params = {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
-        ...this.buildStringSearchParameters(fieldsValue, 'name'),
+        ...this.buildStringSearchParameters(fieldsValue, 'cityName'),
 
       }
       const { owner } = this.props
@@ -90,9 +90,9 @@ class CitySearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="名称">
-              {getFieldDecorator('name')(
-                <Input placeholder="请输入名称" />
+            <FormItem label="城市名字">
+              {getFieldDecorator('cityName')(
+                <Input placeholder="请输入城市名字" />
                )}
             </FormItem>
           </Col>
@@ -123,9 +123,9 @@ class CitySearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="名称">
-              {getFieldDecorator('name')(
-                <Input placeholder="请输入名称" />
+            <FormItem label="城市名字">
+              {getFieldDecorator('cityName')(
+                <Input placeholder="请输入城市名字" />
               )}
             </FormItem>
           </Col>

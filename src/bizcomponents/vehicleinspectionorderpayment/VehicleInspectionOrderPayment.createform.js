@@ -30,12 +30,12 @@ const testValues = {};
 /*
 const testValues = {
   paymentMethod: '微信',
-  originalAmount: '420.72',
-  actualAmount: '360.58',
+  originalAmount: '365.14',
+  actualAmount: '401.29',
   status: '未支付',
   wechatOrderId: '',
   wechatPrepayId: '',
-  createTime: '2995-12-30 07:11:44',
+  createTime: '2996-11-30 02:09:31',
   mainOrderId: 'VIO000001',
 }
 */
@@ -315,7 +315,7 @@ class VehicleInspectionOrderPaymentCreateForm extends Component {
                   {getFieldDecorator('createTime', {
                     rules: [{ required: true, message: '请输入创建时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入创建时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入创建时间" />
                   )}
                 </Form.Item>
               </Col>

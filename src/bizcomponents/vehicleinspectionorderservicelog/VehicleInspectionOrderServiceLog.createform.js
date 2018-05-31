@@ -29,8 +29,8 @@ const testValues = {};
 /*
 const testValues = {
   summary: '待交接:请在2018-12-21联系客户(张巧巧:13389763456) 接收客户到店送审的车辆',
-  longitude: '104.62000322786733',
-  latitude: '31.757158225128606',
+  longitude: '105.14056609022792',
+  latitude: '30.140095533814154',
   serviceType: 'VEHICLE_C2M_RECEIVE_IN_STORE(门店收车)',
   serviceTicket: 'sub-order-12345',
   responsibleWorkerId: 'VSCE000001',

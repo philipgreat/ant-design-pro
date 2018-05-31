@@ -37,14 +37,14 @@ const testValues = {
   serviceOrderNumber: 'SID11234',
   serviceOrderCode: 'VEHICLE_C2M_RECEIVE_IN_STORE',
   serviceOrderName: '门店收车',
-  serviceFulfilledDatetime: '2998-12-18 20:33:54',
+  serviceFulfilledDatetime: '2995-01-06 17:39:49',
   contractId: 'CTA00001',
   contractPriceValue: '20.00',
   contractPriceType: '二次送修',
   serviceWorkerName: '周杰伦',
   serviceCompanyName: 'vehicle_service_company',
   mainOrderId: 'vehicle_inspection_order',
-  merchantDiscount: '31.66',
+  merchantDiscount: '34.98',
   merchantId: 'VSC000001',
   responsibleWorkerId: 'VSCE000001',
   accountId: 'A000001',
@@ -364,7 +364,7 @@ class ServiceCompanyAccountCreateForm extends Component {
                   {getFieldDecorator('serviceFulfilledDatetime', {
                     rules: [{ required: true, message: '请输入服务完成时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入服务完成时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入服务完成时间" />
                   )}
                 </Form.Item>
               </Col>

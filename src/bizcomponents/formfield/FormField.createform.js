@@ -17,20 +17,20 @@ const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
   label: '标签',
-  localeKey: '消息键值',
+  localeKey: '语言环境的关键',
   parameterName: '参数名称',
   type: '类型',
-  form: '形式',
+  form: '表单',
   placeholder: '占位符',
   defaultValue: '默认值',
   description: '描述',
   fieldGroup: '字段组',
   minValue: '最小值',
   maxValue: '最大的价值',
-  required: '要求',
+  required: '必填',
   disabled: '禁用',
   customRendering: '自定义渲染',
-  candidateValues: '候选人的价值观',
+  candidateValues: '候选值',
   suggestValues: '建议值',
 }
 const testValues = {};
@@ -275,9 +275,9 @@ class FormFieldCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.localeKey} {...formItemLayout}>
                   {getFieldDecorator('localeKey', {
-                    rules: [{ required: true, message: '请输入消息键值' }],
+                    rules: [{ required: true, message: '请输入语言环境的关键' }],
                   })(
-                    <Input placeholder="请输入消息键值" />
+                    <Input placeholder="请输入语言环境的关键" />
                   )}
                 </Form.Item>
               </Col>
@@ -365,9 +365,9 @@ class FormFieldCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.candidateValues} {...formItemLayout}>
                   {getFieldDecorator('candidateValues', {
-                    rules: [{ required: false, message: '请输入候选人的价值观' }],
+                    rules: [{ required: false, message: '请输入候选值' }],
                   })(
-                    <Input placeholder="请输入候选人的价值观" />
+                    <Input placeholder="请输入候选值" />
                   )}
                 </Form.Item>
               </Col>
@@ -398,10 +398,10 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.required}  {...switchFormItemLayout}>
                   {getFieldDecorator('required', {
                     initialValue: false,
-                    rules: [{ required: true, message: '请输入要求' }],
+                    rules: [{ required: true, message: '请输入必填' }],
                     valuePropName: 'checked'
                   })(
-                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入要求bool" />
+                    <Switch checkedChildren="是" unCheckedChildren="否"  placeholder="请输入必填bool" />
                   )}
                 </Form.Item>
               </Col>
@@ -452,7 +452,7 @@ class FormFieldCreateForm extends Component {
                 <Form.Item label={fieldLabels.form} {...formItemLayout}>
                   {getFieldDecorator('formId', {
                   	initialValue: tryinit('form'),
-                    rules: [{ required: true, message: '请输入形式' }],
+                    rules: [{ required: true, message: '请输入表单' }],
                   })(
                                 
                   <AutoComplete
@@ -460,7 +460,7 @@ class FormFieldCreateForm extends Component {
                     
                     
                     onSearch={this.handleCandidateFormSearch}
-                    placeholder="请输入形式"
+                    placeholder="请输入表单"
                     
                     disabled={!availableForEdit('form')}
                   >

@@ -367,7 +367,7 @@ class InsuranceServiceAccountUpdateForm extends Component {
                     initialValue: selectedRow.insuranceOrderDatetime,
                     rules: [{ required: true, message: '请输入保险购买日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入保险购买日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入保险购买日期" />
                     
                   )}
                 </Form.Item>

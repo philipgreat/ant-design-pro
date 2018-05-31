@@ -61,24 +61,24 @@ const testValues = {};
 const testValues = {
   orderStatus: '未支付',
   vehicleLicensePlateNumber: '川ACD234',
-  createTime: '2996-09-27 05:04:27',
+  createTime: '2999-09-01 18:03:17',
   contactName: '张俊宝',
   contactMobileNumber: '13812345678',
   productType: '上线检测',
   contactAddressDetail: '四川省成都市学院路东段919号',
-  planInspectionDate: '2997-06-10',
+  planInspectionDate: '2997-12-19',
   vehicleType: '面包车',
   vehicleUseCharacter: '营运',
   vehicleSeatsQuantity: '5',
-  vehicleRegistrationDate: '2016-03-06',
-  inspectionValidationDate: '2999-09-08',
-  insuranceValidationDate: '2998-04-29',
+  vehicleRegistrationDate: '2017-06-22',
+  inspectionValidationDate: '2996-04-04',
+  insuranceValidationDate: '2999-06-27',
   engineNumber: '',
   vehicleIdentificationNumber: '',
-  vehiclePermitIssueDate: '2016-12-17',
+  vehiclePermitIssueDate: '2017-11-08',
   vehiclePermitHolderName: '李立国',
-  longitude: '104.43743185390058',
-  latitude: '29.671314245760787',
+  longitude: '104.87377034927752',
+  latitude: '30.438367854626613',
   serviceCompanyId: 'VSC000001',
   contactAddressCityId: 'C000001',
   customerId: 'C000001',
@@ -436,7 +436,7 @@ class VehicleInspectionOrderCreateForm extends Component {
                   {getFieldDecorator('createTime', {
                     rules: [{ required: true, message: '请输入创建时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入创建时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入创建时间" />
                   )}
                 </Form.Item>
               </Col>

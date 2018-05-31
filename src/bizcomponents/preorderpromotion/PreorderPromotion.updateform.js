@@ -315,7 +315,7 @@ class PreorderPromotionUpdateForm extends Component {
                     initialValue: selectedRow.startDate,
                     rules: [{ required: true, message: '请输入开始日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入开始日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入开始日期" />
                     
                   )}
                 </Form.Item>
@@ -327,7 +327,7 @@ class PreorderPromotionUpdateForm extends Component {
                     initialValue: selectedRow.endDate,
                     rules: [{ required: true, message: '请输入结束日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入结束日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入结束日期" />
                     
                   )}
                 </Form.Item>

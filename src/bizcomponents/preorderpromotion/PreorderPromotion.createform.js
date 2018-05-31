@@ -30,8 +30,8 @@ const testValues = {
   promotionMessage: '提前30天，立减10元',
   preorderDays: '5',
   discountAmount: '10.00',
-  startDate: '2998-02-02 01:41:16',
-  endDate: '2998-06-19 18:36:57',
+  startDate: '2994-09-08 17:27:32',
+  endDate: '2995-07-10 06:30:30',
   productId: 'AP000001',
   platformId: 'CIP000001',
 }
@@ -316,7 +316,7 @@ class PreorderPromotionCreateForm extends Component {
                   {getFieldDecorator('startDate', {
                     rules: [{ required: true, message: '请输入开始日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入开始日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入开始日期" />
                   )}
                 </Form.Item>
               </Col>
@@ -326,7 +326,7 @@ class PreorderPromotionCreateForm extends Component {
                   {getFieldDecorator('endDate', {
                     rules: [{ required: true, message: '请输入结束日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入结束日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入结束日期" />
                   )}
                 </Form.Item>
               </Col>

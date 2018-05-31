@@ -197,7 +197,8 @@ class CustomerSearch extends PureComponent {
 
 
 <Menu.Item key="secUser">关联SecUser</Menu.Item>
-<Menu.Item key="platform">关联平台</Menu.Item>
+<Menu.Item key="vipLevel">关联Vip级别</Menu.Item>
+<Menu.Item key="gamePlatform">关联游戏平台</Menu.Item>
       
 
       </Menu>

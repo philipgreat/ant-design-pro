@@ -42,10 +42,10 @@ const testValues = {
   serviceStatus: '待购买',
   serviceSummary: '请为{车牌号}购买{保险产品名称}保险。',
   serviceComments: '购买系统赠送的基本保险',
-  startTime: '2998-06-26 09:04:31',
+  startTime: '2995-09-09 05:39:00',
   insuranceName: '基本保险',
   insuranceVendor: '太平洋财产保险',
-  insurancePrice: '4.17',
+  insurancePrice: '3.90',
   summary: '除了基本保险，还可以购买额外保险',
   insuranceNumber: 'ADK123123087KMN',
   orderedInsuranceId: 'AI000001',
@@ -407,7 +407,7 @@ class ServiceInsuranceForInspectionCreateForm extends Component {
                   {getFieldDecorator('startTime', {
                     rules: [{ required: true, message: '请输入开始时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入开始时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入开始时间" />
                   )}
                 </Form.Item>
               </Col>

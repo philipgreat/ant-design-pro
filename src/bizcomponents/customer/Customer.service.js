@@ -26,10 +26,18 @@ const requestCandidateSecUser = (ownerClass, id, filterKey, pageNo) => {
 }	 
  
 
-const requestCandidatePlatform = (ownerClass, id, filterKey, pageNo) => {
+const requestCandidateVipLevel = (ownerClass, id, filterKey, pageNo) => {
   //const parametersExpr = joinParameters(parameters)
   return get({
-    url: `${PREFIX}customerManager/requestCandidatePlatform/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+    url: `${PREFIX}customerManager/requestCandidateVipLevel/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
+  })
+}	 
+ 
+
+const requestCandidateGamePlatform = (ownerClass, id, filterKey, pageNo) => {
+  //const parametersExpr = joinParameters(parameters)
+  return get({
+    url: `${PREFIX}customerManager/requestCandidateGamePlatform/${ownerClass}/${id}/${filterKey}/${pageNo}/`,
   })
 }	 
  
@@ -37,8 +45,8 @@ const requestCandidatePlatform = (ownerClass, id, filterKey, pageNo) => {
 
 
 
-const addCompanyQrcodePromotionRecord = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/addCompanyQrcodePromotionRecord/customerId/companyId/tokensExpr/`
+const addOnlineOrder = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/addOnlineOrder/customerId/gameName/gameSessionDatetime/gameSessionName/playerCount/originalAmount/payableAmount/redeemPhone/redeemCode/orderStatus/discount/storeId/gameId/sessionId/gameTicketId/gamePlatformId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -49,8 +57,8 @@ const addCompanyQrcodePromotionRecord = (targetObjectId, parameters) => {
   })
 }
 
-const updateCompanyQrcodePromotionRecord = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/updateCompanyQrcodePromotionRecordProperties/customerId/id/tokensExpr/`
+const updateOnlineOrder = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/updateOnlineOrderProperties/customerId/id/gameName/gameSessionDatetime/gameSessionName/playerCount/originalAmount/payableAmount/redeemPhone/redeemCode/orderStatus/discount/tokensExpr/`
   const customerId = targetObjectId
   const requestParameters = { ...parameters, customerId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -61,8 +69,8 @@ const updateCompanyQrcodePromotionRecord = (targetObjectId, parameters) => {
   })
 }
 
-const removeCompanyQrcodePromotionRecordList = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/removeCompanyQrcodePromotionRecordList/customerId/companyQrcodePromotionRecordIds/tokensExpr/`
+const removeOnlineOrderList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/removeOnlineOrderList/customerId/onlineOrderIds/tokensExpr/`
   const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
@@ -73,8 +81,8 @@ const removeCompanyQrcodePromotionRecordList = (targetObjectId, parameters) => {
 }
 
 
-const addVehicleInfo = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/addVehicleInfo/customerId/licensePlateNumber/vehicleType/useCharacter/seatsQuantity/registrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/platformId/tokensExpr/`
+const addCoupon = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/addCoupon/customerId/couponName/couponDiscount/gamePlatformId/onlineOrderId/offlineStoreOrderId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -85,8 +93,8 @@ const addVehicleInfo = (targetObjectId, parameters) => {
   })
 }
 
-const updateVehicleInfo = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/updateVehicleInfoProperties/customerId/id/licensePlateNumber/vehicleType/useCharacter/seatsQuantity/registrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/tokensExpr/`
+const updateCoupon = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/updateCouponProperties/customerId/id/couponName/couponDiscount/tokensExpr/`
   const customerId = targetObjectId
   const requestParameters = { ...parameters, customerId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -97,116 +105,8 @@ const updateVehicleInfo = (targetObjectId, parameters) => {
   })
 }
 
-const removeVehicleInfoList = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/removeVehicleInfoList/customerId/vehicleInfoIds/tokensExpr/`
-  const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
-  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-  return post({
-    url,
-    data: joinPostParameters(requestParameters),
-    headers,
-  })
-}
-
-
-const addVehicleInspectionOrder = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/addVehicleInspectionOrder/customerId/orderStatus/vehicleLicensePlateNumber/createTime/contactName/contactMobileNumber/productType/hasSixYearExemption/hasInspection/hasSecondLevelMaintenance/hasGradeEstimation/merchantDiscount/serviceCompanyId/serviceCompanyInfo/contactAddressDetail/contactAddressCityId/planInspectionDate/trafficAccidentAnnouncement/engagementLetterProvided/homePickUp/vehicleType/vehicleUseCharacter/vehicleSeatsQuantity/vehicleRegistrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/longitude/latitude/platformId/tokensExpr/`
-  const requestParameters = { ...parameters, tokensExpr: 'none' }
-
-  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-  return post({
-    url,
-    data: joinPostParameters(requestParameters),
-    headers,
-  })
-}
-
-const updateVehicleInspectionOrder = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/updateVehicleInspectionOrderProperties/customerId/id/orderStatus/vehicleLicensePlateNumber/createTime/contactName/contactMobileNumber/productType/hasSixYearExemption/hasInspection/hasSecondLevelMaintenance/hasGradeEstimation/merchantDiscount/serviceCompanyInfo/contactAddressDetail/planInspectionDate/trafficAccidentAnnouncement/engagementLetterProvided/homePickUp/vehicleType/vehicleUseCharacter/vehicleSeatsQuantity/vehicleRegistrationDate/inspectionValidationDate/insuranceValidationDate/engineNumber/vehicleIdentificationNumber/vehiclePermitIssueDate/vehiclePermitHolderName/vehiclePermitImage1/vehiclePermitImage2/vehiclePermitImage3/vehiclePermitImage4/vehiclePermitImage5/longitude/latitude/tokensExpr/`
-  const customerId = targetObjectId
-  const requestParameters = { ...parameters, customerId, tokensExpr: 'none' }
-  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-  return post({
-    url,
-    data: joinPostParameters(requestParameters),
-    headers,
-  })
-}
-
-const removeVehicleInspectionOrderList = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/removeVehicleInspectionOrderList/customerId/vehicleInspectionOrderIds/tokensExpr/`
-  const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
-  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-  return post({
-    url,
-    data: joinPostParameters(requestParameters),
-    headers,
-  })
-}
-
-
-const addOrderDiscountCoupon = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/addOrderDiscountCoupon/customerId/couponTitle/discountAmount/endDate/couponStatus/shareCode/mainOrderId/platformId/tokensExpr/`
-  const requestParameters = { ...parameters, tokensExpr: 'none' }
-
-  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-  return post({
-    url,
-    data: joinPostParameters(requestParameters),
-    headers,
-  })
-}
-
-const updateOrderDiscountCoupon = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/updateOrderDiscountCouponProperties/customerId/id/couponTitle/discountAmount/endDate/couponStatus/shareCode/tokensExpr/`
-  const customerId = targetObjectId
-  const requestParameters = { ...parameters, customerId, tokensExpr: 'none' }
-  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-  return post({
-    url,
-    data: joinPostParameters(requestParameters),
-    headers,
-  })
-}
-
-const removeOrderDiscountCouponList = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/removeOrderDiscountCouponList/customerId/orderDiscountCouponIds/tokensExpr/`
-  const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
-  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-  return post({
-    url,
-    data: joinPostParameters(requestParameters),
-    headers,
-  })
-}
-
-
-const addVehicleInspectionOrderCoupon = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/addVehicleInspectionOrderCoupon/customerId/couponTitle/discountAmount/endDate/appliedDate/couponStatus/mainOrderId/tokensExpr/`
-  const requestParameters = { ...parameters, tokensExpr: 'none' }
-
-  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-  return post({
-    url,
-    data: joinPostParameters(requestParameters),
-    headers,
-  })
-}
-
-const updateVehicleInspectionOrderCoupon = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/updateVehicleInspectionOrderCouponProperties/customerId/id/couponTitle/discountAmount/endDate/appliedDate/couponStatus/tokensExpr/`
-  const customerId = targetObjectId
-  const requestParameters = { ...parameters, customerId, tokensExpr: 'none' }
-  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-  return post({
-    url,
-    data: joinPostParameters(requestParameters),
-    headers,
-  })
-}
-
-const removeVehicleInspectionOrderCouponList = (targetObjectId, parameters) => {
-  const url = `${PREFIX}customerManager/removeVehicleInspectionOrderCouponList/customerId/vehicleInspectionOrderCouponIds/tokensExpr/`
+const removeCouponList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}customerManager/removeCouponList/customerId/couponIds/tokensExpr/`
   const requestParameters = { ...parameters, customerId: targetObjectId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
   return post({
@@ -219,22 +119,14 @@ const removeVehicleInspectionOrderCouponList = (targetObjectId, parameters) => {
 
 const CustomerService = { view,
   load,
-  addCompanyQrcodePromotionRecord,
-  addVehicleInfo,
-  addVehicleInspectionOrder,
-  addOrderDiscountCoupon,
-  addVehicleInspectionOrderCoupon,
-  updateCompanyQrcodePromotionRecord,
-  updateVehicleInfo,
-  updateVehicleInspectionOrder,
-  updateOrderDiscountCoupon,
-  updateVehicleInspectionOrderCoupon,
-  removeCompanyQrcodePromotionRecordList,
-  removeVehicleInfoList,
-  removeVehicleInspectionOrderList,
-  removeOrderDiscountCouponList,
-  removeVehicleInspectionOrderCouponList,
+  addOnlineOrder,
+  addCoupon,
+  updateOnlineOrder,
+  updateCoupon,
+  removeOnlineOrderList,
+  removeCouponList,
   requestCandidateSecUser,
-  requestCandidatePlatform }
+  requestCandidateVipLevel,
+  requestCandidateGamePlatform }
 export default CustomerService
 

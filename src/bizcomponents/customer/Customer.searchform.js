@@ -65,6 +65,8 @@ class CustomerSearchForm extends PureComponent {
       const params = {
         ...this.buildStringSearchParameters(fieldsValue, 'id'),
         ...this.buildStringSearchParameters(fieldsValue, 'nickName'),
+        ...this.buildStringSearchParameters(fieldsValue, 'mobile'),
+        ...this.buildStringSearchParameters(fieldsValue, 'email'),
         ...this.buildStringSearchParameters(fieldsValue, 'weixinOpenid'),
         ...this.buildStringSearchParameters(fieldsValue, 'weixinAppid'),
 
@@ -92,9 +94,9 @@ class CustomerSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="客户昵称">
+            <FormItem label="昵称">
               {getFieldDecorator('nickName')(
-                <Input placeholder="请输入客户昵称" />
+                <Input placeholder="请输入昵称" />
                )}
             </FormItem>
           </Col>
@@ -125,25 +127,41 @@ class CustomerSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="客户昵称">
+            <FormItem label="昵称">
               {getFieldDecorator('nickName')(
-                <Input placeholder="请输入客户昵称" />
+                <Input placeholder="请输入昵称" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="微信ID">
+            <FormItem label="手机号码">
+              {getFieldDecorator('mobile')(
+                <Input placeholder="请输入手机号码" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="电子邮件">
+              {getFieldDecorator('email')(
+                <Input placeholder="请输入电子邮件" />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="微信 Openid">
               {getFieldDecorator('weixinOpenid')(
-                <Input placeholder="请输入微信ID" />
+                <Input placeholder="请输入微信 Openid" />
               )}
             </FormItem>
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="微信APP">
+            <FormItem label="微信 Appid">
               {getFieldDecorator('weixinAppid')(
-                <Input placeholder="请输入微信APP" />
+                <Input placeholder="请输入微信 Appid" />
               )}
             </FormItem>
           </Col>

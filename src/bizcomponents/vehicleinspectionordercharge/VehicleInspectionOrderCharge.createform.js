@@ -26,7 +26,7 @@ const testValues = {};
 const testValues = {
   title: '提前下单优惠',
   code: 'INSPECTION',
-  amount: '92646.84',
+  amount: '70706.21',
   mainOrderId: 'VIO000001',
 }
 */

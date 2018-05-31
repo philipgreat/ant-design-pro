@@ -16,14 +16,14 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  name: '名称',
-  province: '省',
+  cityName: '城市名字',
+  gamePlatform: '游戏平台',
 }
 const testValues = {};
 /*
 const testValues = {
-  name: '成都',
-  provinceId: 'P000001',
+  cityName: '上海市',
+  gamePlatformId: 'GP000001',
 }
 */
 const imageURLPrefix = '//localhost:2090'
@@ -45,7 +45,7 @@ class CityCreateForm extends Component {
     const { setFieldsValue } = this.props.form
     //setFieldsValue(testValues)
       
-    this.executeCandidateProvinceSearch("")
+    this.executeCandidateGamePlatformSearch("")
     
  
     
@@ -64,26 +64,26 @@ class CityCreateForm extends Component {
   }
 
   
-  executeCandidateProvinceSearch = (filterKey) =>{
+  executeCandidateGamePlatformSearch = (filterKey) =>{
 
     const {CityService} = GlobalComponents;
     
     const id = "";//not used for now
     const pageNo = 1;
-    const future = CityService.requestCandidateProvince("province", id, filterKey, pageNo);
+    const future = CityService.requestCandidateGamePlatform("gamePlatform", id, filterKey, pageNo);
     console.log(future);
     
 
-    future.then(candidateProvinceList=>{
+    future.then(candidateGamePlatformList=>{
       this.setState({
-        candidateProvinceList
+        candidateGamePlatformList
       })
 
     })
 
   }	 
-  handleCandidateProvinceSearch = (value) => {
-    this.executeCandidateProvinceSearch(value)
+  handleCandidateGamePlatformSearch = (value) => {
+    this.executeCandidateGamePlatformSearch(value)
   }
  
 
@@ -191,11 +191,11 @@ class CityCreateForm extends Component {
     
 
     
-    const {candidateProvinceList} = this.state
-    if(!candidateProvinceList){
+    const {candidateGamePlatformList} = this.state
+    if(!candidateGamePlatformList){
       return (<div>等等</div>)
     }
-    if(!candidateProvinceList.candidates){
+    if(!candidateGamePlatformList.candidates){
       return (<div>等等</div>)
     }   
     
@@ -238,11 +238,11 @@ class CityCreateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={12} md={12} sm={24}>
-                <Form.Item label={fieldLabels.name} {...formItemLayout}>
-                  {getFieldDecorator('name', {
-                    rules: [{ required: true, message: '请输入名称' }],
+                <Form.Item label={fieldLabels.cityName} {...formItemLayout}>
+                  {getFieldDecorator('cityName', {
+                    rules: [{ required: true, message: '请输入城市名字' }],
                   })(
-                    <Input placeholder="请输入名称" />
+                    <Input placeholder="请输入城市名字" />
                   )}
                 </Form.Item>
               </Col>
@@ -269,22 +269,22 @@ class CityCreateForm extends Component {
             <Row gutter={16}>
 
               <Col lg={12} md={12} sm={24}>
-                <Form.Item label={fieldLabels.province} {...formItemLayout}>
-                  {getFieldDecorator('provinceId', {
-                  	initialValue: tryinit('province'),
-                    rules: [{ required: true, message: '请输入省' }],
+                <Form.Item label={fieldLabels.gamePlatform} {...formItemLayout}>
+                  {getFieldDecorator('gamePlatformId', {
+                  	initialValue: tryinit('gamePlatform'),
+                    rules: [{ required: true, message: '请输入游戏平台' }],
                   })(
                                 
                   <AutoComplete
-                    dataSource={candidateProvinceList.candidates}
+                    dataSource={candidateGamePlatformList.candidates}
                     
                     
-                    onSearch={this.handleCandidateProvinceSearch}
-                    placeholder="请输入省"
+                    onSearch={this.handleCandidateGamePlatformSearch}
+                    placeholder="请输入游戏平台"
                     
-                    disabled={!availableForEdit('province')}
+                    disabled={!availableForEdit('gamePlatform')}
                   >
-                  {candidateProvinceList.candidates.map(item=>{
+                  {candidateGamePlatformList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);
             })}
                   

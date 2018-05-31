@@ -56,7 +56,7 @@ const query = {
 
 
   
-const menuData = {menuName:"SEC用户阻塞", menuFor: "secUserBlocking",
+const menuData = {menuName:"用户块", menuFor: "secUserBlocking",
   		subItems: [
   {name: 'secUserList', displayName:'SEC的用户'},
   		
@@ -165,7 +165,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '代审车服务平台'
+    const title = '濮瑞游戏'
     return title
   }
  

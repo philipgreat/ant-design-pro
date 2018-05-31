@@ -4,11 +4,8 @@ import { Link } from 'dva/router'
 
 const menuData = {menuName:"客户", menuFor: "customer",
   		subItems: [
-  {name: 'companyQrcodePromotionRecordList', displayName:'公司二维码推广记录'},
-  {name: 'vehicleInfoList', displayName:'车辆信息'},
-  {name: 'vehicleInspectionOrderList', displayName:'年检订单'},
-  {name: 'orderDiscountCouponList', displayName:'优惠券'},
-  {name: 'vehicleInspectionOrderCouponList', displayName:'优惠券使用记录'},
+  {name: 'onlineOrderList', displayName:'线上订单号'},
+  {name: 'couponList', displayName:'优惠券'},
   
   		],
 }
@@ -17,27 +14,39 @@ const menuData = {menuName:"客户", menuFor: "customer",
 
 const displayColumns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20', render: (text, record)=>(<Link to={`/customer/${text}/dashboard`}>{text}</Link>) },
-  { title: '客户昵称', debugtype: 'string', dataIndex: 'nickName', width: '24' },
-  { title: '头像', dataIndex: 'logoImage', render: (text, record) => <ImagePreview imageTitle="头像" imageLocation={record.logoImage} /> },
-  { title: '微信ID', debugtype: 'string', dataIndex: 'weixinOpenid', width: '29' },
-  { title: '微信APP', debugtype: 'string', dataIndex: 'weixinAppid', width: '23' },
+  { title: '昵称', debugtype: 'string', dataIndex: 'nickName', width: '11' },
+  { title: '头像', dataIndex: 'avatarImg', render: (text, record) => <ImagePreview imageTitle="头像" imageLocation={record.avatarImg} /> },
+  { title: 'SecUser', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.displayName : '暂无') },
+  { title: '手机号码', debugtype: 'string_china_mobile_phone', dataIndex: 'mobile', width: '15' },
+  { title: '电子邮件', debugtype: 'string', dataIndex: 'email', width: '23' },
+  { title: 'qq', debugtype: 'int', dataIndex: 'qq', width: '11' },
+  { title: '微信 Openid', debugtype: 'string', dataIndex: 'weixinOpenid', width: '29' },
+  { title: '微信 Appid', debugtype: 'string', dataIndex: 'weixinAppid', width: '23' },
   { title: '经度', debugtype: 'double', dataIndex: 'longitude', width: '12' },
   { title: '纬度', debugtype: 'double', dataIndex: 'latitude', width: '11' },
-  { title: 'SecUser', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.displayName : '暂无') },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
+  { title: '经验值', debugtype: 'int', dataIndex: 'experienceValue', width: '8' },
+  { title: '积分', debugtype: 'int', dataIndex: 'gameScore', width: '7' },
+  { title: 'Vip级别', dataIndex: 'vipLevel', render: (text, record) => (record.vipLevel ? record.vipLevel.displayName : '暂无') },
+  { title: '游戏平台', dataIndex: 'gamePlatform', render: (text, record) => (record.gamePlatform ? record.gamePlatform.displayName : '暂无') },
 
 ]
 
 const fieldLabels = {
   id: 'ID',
-  nickName: '客户昵称',
-  logoImage: '头像',
-  weixinOpenid: '微信ID',
-  weixinAppid: '微信APP',
+  nickName: '昵称',
+  avatarImg: '头像',
+  secUser: 'SecUser',
+  mobile: '手机号码',
+  email: '电子邮件',
+  qq: 'qq',
+  weixinOpenid: '微信 Openid',
+  weixinAppid: '微信 Appid',
   longitude: '经度',
   latitude: '纬度',
-  secUser: 'SecUser',
-  platform: '平台',
+  experienceValue: '经验值',
+  gameScore: '积分',
+  vipLevel: 'Vip级别',
+  gamePlatform: '游戏平台',
 
 }
 

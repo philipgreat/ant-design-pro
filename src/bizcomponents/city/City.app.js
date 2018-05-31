@@ -58,10 +58,7 @@ const query = {
   
 const menuData = {menuName:"城市", menuFor: "city",
   		subItems: [
-  {name: 'productPriceList', displayName:'产品价格'},
-  {name: 'vehicleServiceCompanyList', displayName:'商户'},
-  {name: 'inspectionStationList', displayName:'检测站'},
-  {name: 'vehicleInspectionOrderList', displayName:'年检订单'},
+  {name: 'storeList', displayName:'门店'},
   		
   		
   		],
@@ -130,150 +127,45 @@ class CityBizApp extends React.PureComponent {
 
 
 
-  getProductPriceSearch = () => {
-    const {ProductPriceSearch} = GlobalComponents;
+  getStoreSearch = () => {
+    const {StoreSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._city.productPriceList,
-      count: state._city.productPriceCount,
-      currentPage: state._city.productPriceCurrentPageNumber,
-      searchFormParameters: state._city.productPriceSearchFormParameters,
+      data: state._city.storeList,
+      count: state._city.storeCount,
+      currentPage: state._city.storeCurrentPageNumber,
+      searchFormParameters: state._city.storeSearchFormParameters,
       loading: state._city.loading,
       partialList: state._city.partialList,
-      owner: { type: '_city', id: state._city.id, referenceName: 'city', listName: 'productPriceList', ref:state._city, listDisplayName: '产品价格列表' }, // this is for model namespace and
-    }))(ProductPriceSearch)
+      owner: { type: '_city', id: state._city.id, referenceName: 'city', listName: 'storeList', ref:state._city, listDisplayName: '门店列表' }, // this is for model namespace and
+    }))(StoreSearch)
   }
-  getProductPriceCreateForm = () => {
-   	const {ProductPriceCreateForm} = GlobalComponents;
+  getStoreCreateForm = () => {
+   	const {StoreCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._city.productPriceList,
-      count: state._city.productPriceCount,
-      currentPage: state._city.productPriceCurrentPageNumber,
-      searchFormParameters: state._city.productPriceSearchFormParameters,
+      data: state._city.storeList,
+      count: state._city.storeCount,
+      currentPage: state._city.storeCurrentPageNumber,
+      searchFormParameters: state._city.storeSearchFormParameters,
       loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, referenceName: 'city', listName: 'productPriceList', ref:state._city, listDisplayName: '产品价格列表'}, // this is for model namespace and
-    }))(ProductPriceCreateForm)
+      owner: { type: '_city', id: state._city.id, referenceName: 'city', listName: 'storeList', ref:state._city, listDisplayName: '门店列表'}, // this is for model namespace and
+    }))(StoreCreateForm)
   }
   
-  getProductPriceUpdateForm = () => {
-  	const {ProductPriceUpdateForm} = GlobalComponents;
+  getStoreUpdateForm = () => {
+  	const {StoreUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._city.selectedRows,
       currentUpdateIndex: state._city.currentUpdateIndex,
-      owner: { type: '_city', id: state._city.id, listName: 'productPriceList', ref:state._city, listDisplayName: '产品价格列表' }, // this is for model namespace and
-    }))(ProductPriceUpdateForm)
-  }
-
-  getVehicleServiceCompanySearch = () => {
-    const {VehicleServiceCompanySearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._city.vehicleServiceCompanyList,
-      count: state._city.vehicleServiceCompanyCount,
-      currentPage: state._city.vehicleServiceCompanyCurrentPageNumber,
-      searchFormParameters: state._city.vehicleServiceCompanySearchFormParameters,
-      loading: state._city.loading,
-      partialList: state._city.partialList,
-      owner: { type: '_city', id: state._city.id, referenceName: 'addressCity', listName: 'vehicleServiceCompanyList', ref:state._city, listDisplayName: '商户列表' }, // this is for model namespace and
-    }))(VehicleServiceCompanySearch)
-  }
-  getVehicleServiceCompanyCreateForm = () => {
-   	const {VehicleServiceCompanyCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._city.vehicleServiceCompanyList,
-      count: state._city.vehicleServiceCompanyCount,
-      currentPage: state._city.vehicleServiceCompanyCurrentPageNumber,
-      searchFormParameters: state._city.vehicleServiceCompanySearchFormParameters,
-      loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, referenceName: 'addressCity', listName: 'vehicleServiceCompanyList', ref:state._city, listDisplayName: '商户列表'}, // this is for model namespace and
-    }))(VehicleServiceCompanyCreateForm)
-  }
-  
-  getVehicleServiceCompanyUpdateForm = () => {
-  	const {VehicleServiceCompanyUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._city.selectedRows,
-      currentUpdateIndex: state._city.currentUpdateIndex,
-      owner: { type: '_city', id: state._city.id, listName: 'vehicleServiceCompanyList', ref:state._city, listDisplayName: '商户列表' }, // this is for model namespace and
-    }))(VehicleServiceCompanyUpdateForm)
-  }
-
-  getInspectionStationSearch = () => {
-    const {InspectionStationSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._city.inspectionStationList,
-      count: state._city.inspectionStationCount,
-      currentPage: state._city.inspectionStationCurrentPageNumber,
-      searchFormParameters: state._city.inspectionStationSearchFormParameters,
-      loading: state._city.loading,
-      partialList: state._city.partialList,
-      owner: { type: '_city', id: state._city.id, referenceName: 'addressCity', listName: 'inspectionStationList', ref:state._city, listDisplayName: '检测站列表' }, // this is for model namespace and
-    }))(InspectionStationSearch)
-  }
-  getInspectionStationCreateForm = () => {
-   	const {InspectionStationCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._city.inspectionStationList,
-      count: state._city.inspectionStationCount,
-      currentPage: state._city.inspectionStationCurrentPageNumber,
-      searchFormParameters: state._city.inspectionStationSearchFormParameters,
-      loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, referenceName: 'addressCity', listName: 'inspectionStationList', ref:state._city, listDisplayName: '检测站列表'}, // this is for model namespace and
-    }))(InspectionStationCreateForm)
-  }
-  
-  getInspectionStationUpdateForm = () => {
-  	const {InspectionStationUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._city.selectedRows,
-      currentUpdateIndex: state._city.currentUpdateIndex,
-      owner: { type: '_city', id: state._city.id, listName: 'inspectionStationList', ref:state._city, listDisplayName: '检测站列表' }, // this is for model namespace and
-    }))(InspectionStationUpdateForm)
-  }
-
-  getVehicleInspectionOrderSearch = () => {
-    const {VehicleInspectionOrderSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._city.vehicleInspectionOrderList,
-      count: state._city.vehicleInspectionOrderCount,
-      currentPage: state._city.vehicleInspectionOrderCurrentPageNumber,
-      searchFormParameters: state._city.vehicleInspectionOrderSearchFormParameters,
-      loading: state._city.loading,
-      partialList: state._city.partialList,
-      owner: { type: '_city', id: state._city.id, referenceName: 'contactAddressCity', listName: 'vehicleInspectionOrderList', ref:state._city, listDisplayName: '年检订单列表' }, // this is for model namespace and
-    }))(VehicleInspectionOrderSearch)
-  }
-  getVehicleInspectionOrderCreateForm = () => {
-   	const {VehicleInspectionOrderCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._city.vehicleInspectionOrderList,
-      count: state._city.vehicleInspectionOrderCount,
-      currentPage: state._city.vehicleInspectionOrderCurrentPageNumber,
-      searchFormParameters: state._city.vehicleInspectionOrderSearchFormParameters,
-      loading: state._city.loading,
-      owner: { type: '_city', id: state._city.id, referenceName: 'contactAddressCity', listName: 'vehicleInspectionOrderList', ref:state._city, listDisplayName: '年检订单列表'}, // this is for model namespace and
-    }))(VehicleInspectionOrderCreateForm)
-  }
-  
-  getVehicleInspectionOrderUpdateForm = () => {
-  	const {VehicleInspectionOrderUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._city.selectedRows,
-      currentUpdateIndex: state._city.currentUpdateIndex,
-      owner: { type: '_city', id: state._city.id, listName: 'vehicleInspectionOrderList', ref:state._city, listDisplayName: '年检订单列表' }, // this is for model namespace and
-    }))(VehicleInspectionOrderUpdateForm)
+      owner: { type: '_city', id: state._city.id, listName: 'storeList', ref:state._city, listDisplayName: '门店列表' }, // this is for model namespace and
+    }))(StoreUpdateForm)
   }
 
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '代审车服务平台'
+    const title = '濮瑞游戏'
     return title
   }
  
@@ -380,21 +272,9 @@ class CityBizApp extends React.PureComponent {
                
                
 
-               <Route path="/city/:id/list/productPriceList" component={this.getProductPriceSearch()} />
-               <Route path="/city/:id/list/productPriceCreateForm" component={this.getProductPriceCreateForm()} />
-               <Route path="/city/:id/list/productPriceUpdateForm" component={this.getProductPriceUpdateForm()} />
-
-               <Route path="/city/:id/list/vehicleServiceCompanyList" component={this.getVehicleServiceCompanySearch()} />
-               <Route path="/city/:id/list/vehicleServiceCompanyCreateForm" component={this.getVehicleServiceCompanyCreateForm()} />
-               <Route path="/city/:id/list/vehicleServiceCompanyUpdateForm" component={this.getVehicleServiceCompanyUpdateForm()} />
-
-               <Route path="/city/:id/list/inspectionStationList" component={this.getInspectionStationSearch()} />
-               <Route path="/city/:id/list/inspectionStationCreateForm" component={this.getInspectionStationCreateForm()} />
-               <Route path="/city/:id/list/inspectionStationUpdateForm" component={this.getInspectionStationUpdateForm()} />
-
-               <Route path="/city/:id/list/vehicleInspectionOrderList" component={this.getVehicleInspectionOrderSearch()} />
-               <Route path="/city/:id/list/vehicleInspectionOrderCreateForm" component={this.getVehicleInspectionOrderCreateForm()} />
-               <Route path="/city/:id/list/vehicleInspectionOrderUpdateForm" component={this.getVehicleInspectionOrderUpdateForm()} />
+               <Route path="/city/:id/list/storeList" component={this.getStoreSearch()} />
+               <Route path="/city/:id/list/storeCreateForm" component={this.getStoreCreateForm()} />
+               <Route path="/city/:id/list/storeUpdateForm" component={this.getStoreUpdateForm()} />
               
              </Switch>
            </Content>

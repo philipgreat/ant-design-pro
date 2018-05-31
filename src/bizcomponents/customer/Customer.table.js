@@ -9,14 +9,20 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id',  render: (text, record)=>(<Link to={`/customer/${text}/dashboard`}>{text}</Link>) },
-  { title: '客户昵称', debugtype: 'string', dataIndex: 'nickName',},
-  { title: '头像', dataIndex: 'logoImage', render: (text, record) => <ImagePreview imageTitle="头像" imageLocation={record.logoImage} /> },
-  { title: '微信ID', debugtype: 'string', dataIndex: 'weixinOpenid',},
-  { title: '微信APP', debugtype: 'string', dataIndex: 'weixinAppid',},
+  { title: '昵称', debugtype: 'string', dataIndex: 'nickName',},
+  { title: '头像', dataIndex: 'avatarImg', render: (text, record) => <ImagePreview imageTitle="头像" imageLocation={record.avatarImg} /> },
+  { title: 'SecUser', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.displayName : '暂无') },
+  { title: '手机号码', debugtype: 'string_china_mobile_phone', dataIndex: 'mobile',},
+  { title: '电子邮件', debugtype: 'string', dataIndex: 'email',},
+  { title: 'qq', debugtype: 'int', dataIndex: 'qq',},
+  { title: '微信 Openid', debugtype: 'string', dataIndex: 'weixinOpenid',},
+  { title: '微信 Appid', debugtype: 'string', dataIndex: 'weixinAppid',},
   { title: '经度', debugtype: 'double', dataIndex: 'longitude',},
   { title: '纬度', debugtype: 'double', dataIndex: 'latitude',},
-  { title: 'SecUser', dataIndex: 'secUser', render: (text, record) => (record.secUser ? record.secUser.displayName : '暂无') },
-  { title: '平台', dataIndex: 'platform', render: (text, record) => (record.platform ? record.platform.displayName : '暂无') },
+  { title: '经验值', debugtype: 'int', dataIndex: 'experienceValue',},
+  { title: '积分', debugtype: 'int', dataIndex: 'gameScore',},
+  { title: 'Vip级别', dataIndex: 'vipLevel', render: (text, record) => (record.vipLevel ? record.vipLevel.displayName : '暂无') },
+  { title: '游戏平台', dataIndex: 'gamePlatform', render: (text, record) => (record.gamePlatform ? record.gamePlatform.displayName : '暂无') },
 
 
 ]

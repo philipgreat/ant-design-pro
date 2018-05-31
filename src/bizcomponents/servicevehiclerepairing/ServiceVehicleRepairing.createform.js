@@ -50,11 +50,11 @@ const testValues = {};
 const testValues = {
   serviceStatus: '报价',
   serviceSummary: '请联系客户{姓名:电话} 沟通车辆修理事宜。',
-  startTime: '2997-06-05 12:02:23',
-  longitude: '103.45984848349701',
-  latitude: '29.997647131201862',
-  repairingQuotationTotalAmount: '690.19',
-  repairingFinishedDatetime: '2994-02-17 18:30:30',
+  startTime: '2998-04-28 08:50:37',
+  longitude: '103.63741332752527',
+  latitude: '30.662292649589965',
+  repairingQuotationTotalAmount: '828.28',
+  repairingFinishedDatetime: '2996-06-11 19:45:53',
   responsibleWorkerId: 'VSCE000001',
   serviceVehicleInspectionId: 'SVI000001',
   merchantId: 'VSC000001',
@@ -415,7 +415,7 @@ class ServiceVehicleRepairingCreateForm extends Component {
                   {getFieldDecorator('startTime', {
                     rules: [{ required: true, message: '请输入开始时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入开始时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入开始时间" />
                   )}
                 </Form.Item>
               </Col>
@@ -455,7 +455,7 @@ class ServiceVehicleRepairingCreateForm extends Component {
                   {getFieldDecorator('repairingFinishedDatetime', {
                     rules: [{ required: true, message: '请输入维修完成日期时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入维修完成日期时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入维修完成日期时间" />
                   )}
                 </Form.Item>
               </Col>

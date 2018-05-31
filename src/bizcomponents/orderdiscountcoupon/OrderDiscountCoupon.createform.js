@@ -31,7 +31,7 @@ const testValues = {};
 const testValues = {
   couponTitle: '优惠￥10元',
   discountAmount: '10.00',
-  endDate: '2998-02-14 06:27:56',
+  endDate: '2998-11-15 09:51:11',
   couponStatus: '未使用',
   shareCode: 'abcdefg',
   customerId: 'C000001',
@@ -343,7 +343,7 @@ class OrderDiscountCouponCreateForm extends Component {
                   {getFieldDecorator('endDate', {
                     rules: [{ required: true, message: '请输入结束日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入结束日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入结束日期" />
                   )}
                 </Form.Item>
               </Col>

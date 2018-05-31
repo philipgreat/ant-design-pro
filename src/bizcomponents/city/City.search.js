@@ -196,7 +196,7 @@ class CitySearch extends PureComponent {
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
 
 
-<Menu.Item key="province">关联省</Menu.Item>
+<Menu.Item key="gamePlatform">关联游戏平台</Menu.Item>
       
 
       </Menu>

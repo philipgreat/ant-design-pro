@@ -58,11 +58,8 @@ const query = {
   
 const menuData = {menuName:"客户", menuFor: "customer",
   		subItems: [
-  {name: 'companyQrcodePromotionRecordList', displayName:'公司二维码推广记录'},
-  {name: 'vehicleInfoList', displayName:'车辆信息'},
-  {name: 'vehicleInspectionOrderList', displayName:'年检订单'},
-  {name: 'orderDiscountCouponList', displayName:'优惠券'},
-  {name: 'vehicleInspectionOrderCouponList', displayName:'优惠券使用记录'},
+  {name: 'onlineOrderList', displayName:'线上订单号'},
+  {name: 'couponList', displayName:'优惠券'},
   		
   		
   		],
@@ -131,185 +128,80 @@ class CustomerBizApp extends React.PureComponent {
 
 
 
-  getCompanyQrcodePromotionRecordSearch = () => {
-    const {CompanyQrcodePromotionRecordSearch} = GlobalComponents;
+  getOnlineOrderSearch = () => {
+    const {OnlineOrderSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._customer.companyQrcodePromotionRecordList,
-      count: state._customer.companyQrcodePromotionRecordCount,
-      currentPage: state._customer.companyQrcodePromotionRecordCurrentPageNumber,
-      searchFormParameters: state._customer.companyQrcodePromotionRecordSearchFormParameters,
+      data: state._customer.onlineOrderList,
+      count: state._customer.onlineOrderCount,
+      currentPage: state._customer.onlineOrderCurrentPageNumber,
+      searchFormParameters: state._customer.onlineOrderSearchFormParameters,
       loading: state._customer.loading,
       partialList: state._customer.partialList,
-      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'companyQrcodePromotionRecordList', ref:state._customer, listDisplayName: '公司二维码推广记录列表' }, // this is for model namespace and
-    }))(CompanyQrcodePromotionRecordSearch)
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'onlineOrderList', ref:state._customer, listDisplayName: '线上订单号列表' }, // this is for model namespace and
+    }))(OnlineOrderSearch)
   }
-  getCompanyQrcodePromotionRecordCreateForm = () => {
-   	const {CompanyQrcodePromotionRecordCreateForm} = GlobalComponents;
+  getOnlineOrderCreateForm = () => {
+   	const {OnlineOrderCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._customer.companyQrcodePromotionRecordList,
-      count: state._customer.companyQrcodePromotionRecordCount,
-      currentPage: state._customer.companyQrcodePromotionRecordCurrentPageNumber,
-      searchFormParameters: state._customer.companyQrcodePromotionRecordSearchFormParameters,
+      data: state._customer.onlineOrderList,
+      count: state._customer.onlineOrderCount,
+      currentPage: state._customer.onlineOrderCurrentPageNumber,
+      searchFormParameters: state._customer.onlineOrderSearchFormParameters,
       loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'companyQrcodePromotionRecordList', ref:state._customer, listDisplayName: '公司二维码推广记录列表'}, // this is for model namespace and
-    }))(CompanyQrcodePromotionRecordCreateForm)
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'onlineOrderList', ref:state._customer, listDisplayName: '线上订单号列表'}, // this is for model namespace and
+    }))(OnlineOrderCreateForm)
   }
   
-  getCompanyQrcodePromotionRecordUpdateForm = () => {
-  	const {CompanyQrcodePromotionRecordUpdateForm} = GlobalComponents;
+  getOnlineOrderUpdateForm = () => {
+  	const {OnlineOrderUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._customer.selectedRows,
       currentUpdateIndex: state._customer.currentUpdateIndex,
-      owner: { type: '_customer', id: state._customer.id, listName: 'companyQrcodePromotionRecordList', ref:state._customer, listDisplayName: '公司二维码推广记录列表' }, // this is for model namespace and
-    }))(CompanyQrcodePromotionRecordUpdateForm)
+      owner: { type: '_customer', id: state._customer.id, listName: 'onlineOrderList', ref:state._customer, listDisplayName: '线上订单号列表' }, // this is for model namespace and
+    }))(OnlineOrderUpdateForm)
   }
 
-  getVehicleInfoSearch = () => {
-    const {VehicleInfoSearch} = GlobalComponents;
+  getCouponSearch = () => {
+    const {CouponSearch} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._customer.vehicleInfoList,
-      count: state._customer.vehicleInfoCount,
-      currentPage: state._customer.vehicleInfoCurrentPageNumber,
-      searchFormParameters: state._customer.vehicleInfoSearchFormParameters,
+      data: state._customer.couponList,
+      count: state._customer.couponCount,
+      currentPage: state._customer.couponCurrentPageNumber,
+      searchFormParameters: state._customer.couponSearchFormParameters,
       loading: state._customer.loading,
       partialList: state._customer.partialList,
-      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'vehicleInfoList', ref:state._customer, listDisplayName: '车辆信息列表' }, // this is for model namespace and
-    }))(VehicleInfoSearch)
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'couponList', ref:state._customer, listDisplayName: '优惠券列表' }, // this is for model namespace and
+    }))(CouponSearch)
   }
-  getVehicleInfoCreateForm = () => {
-   	const {VehicleInfoCreateForm} = GlobalComponents;
+  getCouponCreateForm = () => {
+   	const {CouponCreateForm} = GlobalComponents;
     return connect(state => ({
       rule: state.rule,
-      data: state._customer.vehicleInfoList,
-      count: state._customer.vehicleInfoCount,
-      currentPage: state._customer.vehicleInfoCurrentPageNumber,
-      searchFormParameters: state._customer.vehicleInfoSearchFormParameters,
+      data: state._customer.couponList,
+      count: state._customer.couponCount,
+      currentPage: state._customer.couponCurrentPageNumber,
+      searchFormParameters: state._customer.couponSearchFormParameters,
       loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'vehicleInfoList', ref:state._customer, listDisplayName: '车辆信息列表'}, // this is for model namespace and
-    }))(VehicleInfoCreateForm)
+      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'couponList', ref:state._customer, listDisplayName: '优惠券列表'}, // this is for model namespace and
+    }))(CouponCreateForm)
   }
   
-  getVehicleInfoUpdateForm = () => {
-  	const {VehicleInfoUpdateForm} = GlobalComponents;
+  getCouponUpdateForm = () => {
+  	const {CouponUpdateForm} = GlobalComponents;
     return connect(state => ({
       selectedRows: state._customer.selectedRows,
       currentUpdateIndex: state._customer.currentUpdateIndex,
-      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInfoList', ref:state._customer, listDisplayName: '车辆信息列表' }, // this is for model namespace and
-    }))(VehicleInfoUpdateForm)
-  }
-
-  getVehicleInspectionOrderSearch = () => {
-    const {VehicleInspectionOrderSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._customer.vehicleInspectionOrderList,
-      count: state._customer.vehicleInspectionOrderCount,
-      currentPage: state._customer.vehicleInspectionOrderCurrentPageNumber,
-      searchFormParameters: state._customer.vehicleInspectionOrderSearchFormParameters,
-      loading: state._customer.loading,
-      partialList: state._customer.partialList,
-      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'vehicleInspectionOrderList', ref:state._customer, listDisplayName: '年检订单列表' }, // this is for model namespace and
-    }))(VehicleInspectionOrderSearch)
-  }
-  getVehicleInspectionOrderCreateForm = () => {
-   	const {VehicleInspectionOrderCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._customer.vehicleInspectionOrderList,
-      count: state._customer.vehicleInspectionOrderCount,
-      currentPage: state._customer.vehicleInspectionOrderCurrentPageNumber,
-      searchFormParameters: state._customer.vehicleInspectionOrderSearchFormParameters,
-      loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'vehicleInspectionOrderList', ref:state._customer, listDisplayName: '年检订单列表'}, // this is for model namespace and
-    }))(VehicleInspectionOrderCreateForm)
-  }
-  
-  getVehicleInspectionOrderUpdateForm = () => {
-  	const {VehicleInspectionOrderUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._customer.selectedRows,
-      currentUpdateIndex: state._customer.currentUpdateIndex,
-      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderList', ref:state._customer, listDisplayName: '年检订单列表' }, // this is for model namespace and
-    }))(VehicleInspectionOrderUpdateForm)
-  }
-
-  getOrderDiscountCouponSearch = () => {
-    const {OrderDiscountCouponSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._customer.orderDiscountCouponList,
-      count: state._customer.orderDiscountCouponCount,
-      currentPage: state._customer.orderDiscountCouponCurrentPageNumber,
-      searchFormParameters: state._customer.orderDiscountCouponSearchFormParameters,
-      loading: state._customer.loading,
-      partialList: state._customer.partialList,
-      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'orderDiscountCouponList', ref:state._customer, listDisplayName: '优惠券列表' }, // this is for model namespace and
-    }))(OrderDiscountCouponSearch)
-  }
-  getOrderDiscountCouponCreateForm = () => {
-   	const {OrderDiscountCouponCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._customer.orderDiscountCouponList,
-      count: state._customer.orderDiscountCouponCount,
-      currentPage: state._customer.orderDiscountCouponCurrentPageNumber,
-      searchFormParameters: state._customer.orderDiscountCouponSearchFormParameters,
-      loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'orderDiscountCouponList', ref:state._customer, listDisplayName: '优惠券列表'}, // this is for model namespace and
-    }))(OrderDiscountCouponCreateForm)
-  }
-  
-  getOrderDiscountCouponUpdateForm = () => {
-  	const {OrderDiscountCouponUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._customer.selectedRows,
-      currentUpdateIndex: state._customer.currentUpdateIndex,
-      owner: { type: '_customer', id: state._customer.id, listName: 'orderDiscountCouponList', ref:state._customer, listDisplayName: '优惠券列表' }, // this is for model namespace and
-    }))(OrderDiscountCouponUpdateForm)
-  }
-
-  getVehicleInspectionOrderCouponSearch = () => {
-    const {VehicleInspectionOrderCouponSearch} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._customer.vehicleInspectionOrderCouponList,
-      count: state._customer.vehicleInspectionOrderCouponCount,
-      currentPage: state._customer.vehicleInspectionOrderCouponCurrentPageNumber,
-      searchFormParameters: state._customer.vehicleInspectionOrderCouponSearchFormParameters,
-      loading: state._customer.loading,
-      partialList: state._customer.partialList,
-      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'vehicleInspectionOrderCouponList', ref:state._customer, listDisplayName: '优惠券使用记录列表' }, // this is for model namespace and
-    }))(VehicleInspectionOrderCouponSearch)
-  }
-  getVehicleInspectionOrderCouponCreateForm = () => {
-   	const {VehicleInspectionOrderCouponCreateForm} = GlobalComponents;
-    return connect(state => ({
-      rule: state.rule,
-      data: state._customer.vehicleInspectionOrderCouponList,
-      count: state._customer.vehicleInspectionOrderCouponCount,
-      currentPage: state._customer.vehicleInspectionOrderCouponCurrentPageNumber,
-      searchFormParameters: state._customer.vehicleInspectionOrderCouponSearchFormParameters,
-      loading: state._customer.loading,
-      owner: { type: '_customer', id: state._customer.id, referenceName: 'customer', listName: 'vehicleInspectionOrderCouponList', ref:state._customer, listDisplayName: '优惠券使用记录列表'}, // this is for model namespace and
-    }))(VehicleInspectionOrderCouponCreateForm)
-  }
-  
-  getVehicleInspectionOrderCouponUpdateForm = () => {
-  	const {VehicleInspectionOrderCouponUpdateForm} = GlobalComponents;
-    return connect(state => ({
-      selectedRows: state._customer.selectedRows,
-      currentUpdateIndex: state._customer.currentUpdateIndex,
-      owner: { type: '_customer', id: state._customer.id, listName: 'vehicleInspectionOrderCouponList', ref:state._customer, listDisplayName: '优惠券使用记录列表' }, // this is for model namespace and
-    }))(VehicleInspectionOrderCouponUpdateForm)
+      owner: { type: '_customer', id: state._customer.id, listName: 'couponList', ref:state._customer, listDisplayName: '优惠券列表' }, // this is for model namespace and
+    }))(CouponUpdateForm)
   }
 
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '代审车服务平台'
+    const title = '濮瑞游戏'
     return title
   }
  
@@ -416,25 +308,13 @@ class CustomerBizApp extends React.PureComponent {
                
                
 
-               <Route path="/customer/:id/list/companyQrcodePromotionRecordList" component={this.getCompanyQrcodePromotionRecordSearch()} />
-               <Route path="/customer/:id/list/companyQrcodePromotionRecordCreateForm" component={this.getCompanyQrcodePromotionRecordCreateForm()} />
-               <Route path="/customer/:id/list/companyQrcodePromotionRecordUpdateForm" component={this.getCompanyQrcodePromotionRecordUpdateForm()} />
+               <Route path="/customer/:id/list/onlineOrderList" component={this.getOnlineOrderSearch()} />
+               <Route path="/customer/:id/list/onlineOrderCreateForm" component={this.getOnlineOrderCreateForm()} />
+               <Route path="/customer/:id/list/onlineOrderUpdateForm" component={this.getOnlineOrderUpdateForm()} />
 
-               <Route path="/customer/:id/list/vehicleInfoList" component={this.getVehicleInfoSearch()} />
-               <Route path="/customer/:id/list/vehicleInfoCreateForm" component={this.getVehicleInfoCreateForm()} />
-               <Route path="/customer/:id/list/vehicleInfoUpdateForm" component={this.getVehicleInfoUpdateForm()} />
-
-               <Route path="/customer/:id/list/vehicleInspectionOrderList" component={this.getVehicleInspectionOrderSearch()} />
-               <Route path="/customer/:id/list/vehicleInspectionOrderCreateForm" component={this.getVehicleInspectionOrderCreateForm()} />
-               <Route path="/customer/:id/list/vehicleInspectionOrderUpdateForm" component={this.getVehicleInspectionOrderUpdateForm()} />
-
-               <Route path="/customer/:id/list/orderDiscountCouponList" component={this.getOrderDiscountCouponSearch()} />
-               <Route path="/customer/:id/list/orderDiscountCouponCreateForm" component={this.getOrderDiscountCouponCreateForm()} />
-               <Route path="/customer/:id/list/orderDiscountCouponUpdateForm" component={this.getOrderDiscountCouponUpdateForm()} />
-
-               <Route path="/customer/:id/list/vehicleInspectionOrderCouponList" component={this.getVehicleInspectionOrderCouponSearch()} />
-               <Route path="/customer/:id/list/vehicleInspectionOrderCouponCreateForm" component={this.getVehicleInspectionOrderCouponCreateForm()} />
-               <Route path="/customer/:id/list/vehicleInspectionOrderCouponUpdateForm" component={this.getVehicleInspectionOrderCouponUpdateForm()} />
+               <Route path="/customer/:id/list/couponList" component={this.getCouponSearch()} />
+               <Route path="/customer/:id/list/couponCreateForm" component={this.getCouponCreateForm()} />
+               <Route path="/customer/:id/list/couponUpdateForm" component={this.getCouponUpdateForm()} />
               
              </Switch>
            </Content>

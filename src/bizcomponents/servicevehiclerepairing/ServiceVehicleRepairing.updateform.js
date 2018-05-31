@@ -340,7 +340,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                     initialValue: selectedRow.startTime,
                     rules: [{ required: true, message: '请输入开始时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入开始时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入开始时间" />
                     
                   )}
                 </Form.Item>
@@ -388,7 +388,7 @@ class ServiceVehicleRepairingUpdateForm extends Component {
                     initialValue: selectedRow.repairingFinishedDatetime,
                     rules: [{ required: true, message: '请输入维修完成日期时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入维修完成日期时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入维修完成日期时间" />
                     
                   )}
                 </Form.Item>

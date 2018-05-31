@@ -86,7 +86,7 @@ const summaryOf = (secUserBlocking) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{secUserBlocking.id}</Description> 
-<Description term="审批人">{secUserBlocking.who}</Description> 
+<Description term="谁">{secUserBlocking.who}</Description> 
 	
         
       </DescriptionList>
@@ -121,7 +121,7 @@ class SecUserBlockingDashboard extends Component {
   render() {
     // eslint-disable-next-line max-len
     const { id,displayName, secUserCount } = this.props.secUserBlocking
-    const cardsData = {cardsName:"SEC用户阻塞",cardsFor: "secUserBlocking",cardsSource: this.props.secUserBlocking,
+    const cardsData = {cardsName:"用户块",cardsFor: "secUserBlocking",cardsSource: this.props.secUserBlocking,
   		subItems: [
 {name: 'secUserList', displayName:'SEC的用户',type:'secUser',count:secUserCount},
     

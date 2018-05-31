@@ -17,8 +17,8 @@ const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
   title: '标题',
-  form: '形式',
-  level: '水平',
+  form: '表单',
+  level: '级别',
 }
 const testValues = {};
 /*
@@ -252,9 +252,9 @@ class FormMessageCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.level} {...formItemLayout}>
                   {getFieldDecorator('level', {
-                    rules: [{ required: true, message: '请输入水平' }],
+                    rules: [{ required: true, message: '请输入级别' }],
                   })(
-                    <Input placeholder="请输入水平" />
+                    <Input placeholder="请输入级别" />
                   )}
                 </Form.Item>
               </Col>
@@ -284,7 +284,7 @@ class FormMessageCreateForm extends Component {
                 <Form.Item label={fieldLabels.form} {...formItemLayout}>
                   {getFieldDecorator('formId', {
                   	initialValue: tryinit('form'),
-                    rules: [{ required: true, message: '请输入形式' }],
+                    rules: [{ required: true, message: '请输入表单' }],
                   })(
                                 
                   <AutoComplete
@@ -292,7 +292,7 @@ class FormMessageCreateForm extends Component {
                     
                     
                     onSearch={this.handleCandidateFormSearch}
-                    placeholder="请输入形式"
+                    placeholder="请输入表单"
                     
                     disabled={!availableForEdit('form')}
                   >

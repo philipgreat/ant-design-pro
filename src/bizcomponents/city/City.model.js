@@ -126,12 +126,12 @@ export default {
       yield put(routerRedux.push(`/city/${id}/list/${type}List/${listName}`))
     },
 
-    *addProductPrice({ payload }, { call, put }) {
+    *addStore({ payload }, { call, put }) {
       const {CityService} = GlobalComponents;
 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CityService.addProductPrice, id, parameters)
+      const data = yield call(CityService.addStore, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -148,14 +148,14 @@ export default {
       }
       const partialList = true
       const newState = {...data, partialList}
-      const location = { pathname: `/city/${id}/list/${type}List/产品价格列表`, state: newState }
+      const location = { pathname: `/city/${id}/list/${type}List/门店列表`, state: newState }
       yield put(routerRedux.push(location))
     },
-    *updateProductPrice({ payload }, { call, put }) {
+    *updateStore({ payload }, { call, put }) {
       const {CityService} = GlobalComponents;      
       const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CityService.updateProductPrice, id, parameters)
+      const data = yield call(CityService.updateStore, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return
@@ -172,247 +172,19 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/city/${id}/list/${type}List/产品价格列表`, state: newPlayload }
+      const location = { pathname: `/city/${id}/list/${type}List/门店列表`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
-    *gotoNextProductPriceUpdateRow({ payload }, { call, put }) {
+    *gotoNextStoreUpdateRow({ payload }, { call, put }) {
       const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
       const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
       yield put({ type: 'updateState', payload: newPlayload })
     },
-    *removeProductPriceList({ payload }, { call, put }) {
+    *removeStoreList({ payload }, { call, put }) {
       const {CityService} = GlobalComponents; 
       const { id, type, parameters, continueNext } = payload
       console.log('get form parameters', parameters)
-      const data = yield call(CityService.removeProductPriceList, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data }
-
-      yield put({ type: 'updateState', payload: newPlayload })
-        
-      // yield put(routerRedux.push(`/city/${id}/list/${type}CreateForm`))
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      // const location = { pathname: `city/${id}/list/${type}List`, state: data}
-      // yield put(routerRedux.push(location))
-    },
-
-    *addVehicleServiceCompany({ payload }, { call, put }) {
-      const {CityService} = GlobalComponents;
-
-      const { id, type, parameters, continueNext } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(CityService.addVehicleServiceCompany, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data }
-      yield put({ type: 'updateState', payload: newPlayload })
-      // yield put(routerRedux.push(`/city/${id}/list/${type}CreateForm'))
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      if (continueNext) {
-        return
-      }
-      const partialList = true
-      const newState = {...data, partialList}
-      const location = { pathname: `/city/${id}/list/${type}List/商户列表`, state: newState }
-      yield put(routerRedux.push(location))
-    },
-    *updateVehicleServiceCompany({ payload }, { call, put }) {
-      const {CityService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(CityService.updateVehicleServiceCompany, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const partialList = true
-      
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex,partialList }
-      yield put({ type: 'updateState', payload: newPlayload })
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      
-      if (continueNext) {
-        return
-      }
-      const location = { pathname: `/city/${id}/list/${type}List/商户列表`, state: newPlayload }
-      yield put(routerRedux.push(location))
-    },
-    *gotoNextVehicleServiceCompanyUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
-      const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
-      yield put({ type: 'updateState', payload: newPlayload })
-    },
-    *removeVehicleServiceCompanyList({ payload }, { call, put }) {
-      const {CityService} = GlobalComponents; 
-      const { id, type, parameters, continueNext } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(CityService.removeVehicleServiceCompanyList, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data }
-
-      yield put({ type: 'updateState', payload: newPlayload })
-        
-      // yield put(routerRedux.push(`/city/${id}/list/${type}CreateForm`))
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      // const location = { pathname: `city/${id}/list/${type}List`, state: data}
-      // yield put(routerRedux.push(location))
-    },
-
-    *addInspectionStation({ payload }, { call, put }) {
-      const {CityService} = GlobalComponents;
-
-      const { id, type, parameters, continueNext } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(CityService.addInspectionStation, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data }
-      yield put({ type: 'updateState', payload: newPlayload })
-      // yield put(routerRedux.push(`/city/${id}/list/${type}CreateForm'))
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      if (continueNext) {
-        return
-      }
-      const partialList = true
-      const newState = {...data, partialList}
-      const location = { pathname: `/city/${id}/list/${type}List/检测站列表`, state: newState }
-      yield put(routerRedux.push(location))
-    },
-    *updateInspectionStation({ payload }, { call, put }) {
-      const {CityService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(CityService.updateInspectionStation, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const partialList = true
-      
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex,partialList }
-      yield put({ type: 'updateState', payload: newPlayload })
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      
-      if (continueNext) {
-        return
-      }
-      const location = { pathname: `/city/${id}/list/${type}List/检测站列表`, state: newPlayload }
-      yield put(routerRedux.push(location))
-    },
-    *gotoNextInspectionStationUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
-      const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
-      yield put({ type: 'updateState', payload: newPlayload })
-    },
-    *removeInspectionStationList({ payload }, { call, put }) {
-      const {CityService} = GlobalComponents; 
-      const { id, type, parameters, continueNext } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(CityService.removeInspectionStationList, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data }
-
-      yield put({ type: 'updateState', payload: newPlayload })
-        
-      // yield put(routerRedux.push(`/city/${id}/list/${type}CreateForm`))
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      // const location = { pathname: `city/${id}/list/${type}List`, state: data}
-      // yield put(routerRedux.push(location))
-    },
-
-    *addVehicleInspectionOrder({ payload }, { call, put }) {
-      const {CityService} = GlobalComponents;
-
-      const { id, type, parameters, continueNext } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(CityService.addVehicleInspectionOrder, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const newPlayload = { ...payload, ...data }
-      yield put({ type: 'updateState', payload: newPlayload })
-      // yield put(routerRedux.push(`/city/${id}/list/${type}CreateForm'))
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      if (continueNext) {
-        return
-      }
-      const partialList = true
-      const newState = {...data, partialList}
-      const location = { pathname: `/city/${id}/list/${type}List/年检订单列表`, state: newState }
-      yield put(routerRedux.push(location))
-    },
-    *updateVehicleInspectionOrder({ payload }, { call, put }) {
-      const {CityService} = GlobalComponents;      
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(CityService.updateVehicleInspectionOrder, id, parameters)
-      if (hasError(data)) {
-        handleServerError(data)
-        return
-      }
-      const partialList = true
-      
-      const newPlayload = { ...payload, ...data, selectedRows, currentUpdateIndex,partialList }
-      yield put({ type: 'updateState', payload: newPlayload })
-      notification.success({
-        message: '执行成功',
-        description: '执行成功',
-      })
-      
-      if (continueNext) {
-        return
-      }
-      const location = { pathname: `/city/${id}/list/${type}List/年检订单列表`, state: newPlayload }
-      yield put(routerRedux.push(location))
-    },
-    *gotoNextVehicleInspectionOrderUpdateRow({ payload }, { call, put }) {
-      const { id, type, parameters, continueNext, selectedRows, currentUpdateIndex } = payload
-      const newPlayload = { ...payload, selectedRows, currentUpdateIndex }
-      yield put({ type: 'updateState', payload: newPlayload })
-    },
-    *removeVehicleInspectionOrderList({ payload }, { call, put }) {
-      const {CityService} = GlobalComponents; 
-      const { id, type, parameters, continueNext } = payload
-      console.log('get form parameters', parameters)
-      const data = yield call(CityService.removeVehicleInspectionOrderList, id, parameters)
+      const data = yield call(CityService.removeStoreList, id, parameters)
       if (hasError(data)) {
         handleServerError(data)
         return

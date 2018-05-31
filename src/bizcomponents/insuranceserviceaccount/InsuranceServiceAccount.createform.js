@@ -37,9 +37,9 @@ const testValues = {
   employeeName: '张三',
   insuranceName: '5元赔10万',
   insuranceVendor: '太平洋财产保险',
-  insurancePrice: '4.55',
+  insurancePrice: '4.93',
   insuranceNumber: 'ADK123123087KMN',
-  insuranceOrderDatetime: '2997-05-14 09:29:13',
+  insuranceOrderDatetime: '2998-03-24 09:21:53',
   mainOrderId: 'vehicle_inspection_order',
   merchantId: 'VSC000001',
   responsibleWorkerId: 'VSCE000001',
@@ -400,7 +400,7 @@ class InsuranceServiceAccountCreateForm extends Component {
                   {getFieldDecorator('insuranceOrderDatetime', {
                     rules: [{ required: true, message: '请输入保险购买日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入保险购买日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入保险购买日期" />
                   )}
                 </Form.Item>
               </Col>

@@ -35,7 +35,7 @@ const topColResponsiveProps = {
 const imageListOf = (customer) =>{
 
   const imageList = [
-	   {"title":'头像',"imageLocation":customer.logoImage},
+	   {"title":'头像',"imageLocation":customer.avatarImg},
 ]
   const filteredList = imageList.filter((item)=>item.imageLocation!=null)
   if(filteredList.length===0){
@@ -75,10 +75,7 @@ const settingListOf = (customer) =>{
 
 const largeTextOf = (customer) =>{
 
-	return(<div> 
-   <Card title={`头像`} ><pre>{customer.logoImage}</pre></Card>
-</div>)
-
+	return null
 	
 
 }
@@ -90,10 +87,15 @@ const summaryOf = (customer) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{customer.id}</Description> 
-<Description term="客户昵称">{customer.nickName}</Description> 
-<Description term="微信ID">{customer.weixinOpenid}</Description> 
-<Description term="微信APP">{customer.weixinAppid}</Description> 
+<Description term="昵称">{customer.nickName}</Description> 
+<Description term="手机号码">{customer.mobile}</Description> 
+<Description term="电子邮件">{customer.email}</Description> 
+<Description term="qq">{customer.qq}</Description> 
+<Description term="微信 Openid">{customer.weixinOpenid}</Description> 
+<Description term="微信 Appid">{customer.weixinAppid}</Description> 
 <Description term="经度">{customer.longitude}</Description> 
+<Description term="纬度">{customer.latitude}</Description> 
+<Description term="经验值">{customer.experienceValue}</Description> 
 	
         
       </DescriptionList>
@@ -127,14 +129,11 @@ class CustomerDashboard extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const { id,displayName, companyQrcodePromotionRecordCount, vehicleInfoCount, vehicleInspectionOrderCount, orderDiscountCouponCount, vehicleInspectionOrderCouponCount } = this.props.customer
+    const { id,displayName, onlineOrderCount, couponCount } = this.props.customer
     const cardsData = {cardsName:"客户",cardsFor: "customer",cardsSource: this.props.customer,
   		subItems: [
-{name: 'companyQrcodePromotionRecordList', displayName:'公司二维码推广记录',type:'companyQrcodePromotionRecord',count:companyQrcodePromotionRecordCount},
-{name: 'vehicleInfoList', displayName:'车辆信息',type:'vehicleInfo',count:vehicleInfoCount},
-{name: 'vehicleInspectionOrderList', displayName:'年检订单',type:'vehicleInspectionOrder',count:vehicleInspectionOrderCount},
-{name: 'orderDiscountCouponList', displayName:'优惠券',type:'orderDiscountCoupon',count:orderDiscountCouponCount},
-{name: 'vehicleInspectionOrderCouponList', displayName:'优惠券使用记录',type:'vehicleInspectionOrderCoupon',count:vehicleInspectionOrderCouponCount},
+{name: 'onlineOrderList', displayName:'线上订单号',type:'onlineOrder',count:onlineOrderCount},
+{name: 'couponList', displayName:'优惠券',type:'coupon',count:couponCount},
     
       	],
   	};

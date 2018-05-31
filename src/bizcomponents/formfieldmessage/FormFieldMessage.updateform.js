@@ -18,8 +18,8 @@ const fieldLabels = {
   id: 'ID',
   title: '标题',
   parameterName: '参数名称',
-  form: '形式',
-  level: '水平',
+  form: '表单',
+  level: '级别',
 
 }
 
@@ -296,9 +296,9 @@ class FormFieldMessageUpdateForm extends Component {
                 <Form.Item label={fieldLabels.level} {...formItemLayout}>
                   {getFieldDecorator('level', {
                     initialValue: selectedRow.level,
-                    rules: [{ required: true, message: '请输入水平' }],
+                    rules: [{ required: true, message: '请输入级别' }],
                   })(
-                    <Input placeholder="请输入水平" />
+                    <Input placeholder="请输入级别" />
                     
                   )}
                 </Form.Item>

@@ -30,8 +30,8 @@ const testValues = {};
 const testValues = {
   couponTitle: '优惠￥10元',
   discountAmount: '10.00',
-  endDate: '2997-11-01 06:12:47',
-  appliedDate: '2998-05-29 09:44:09',
+  endDate: '2998-01-28 11:41:52',
+  appliedDate: '2994-04-21 17:37:16',
   couponStatus: '未使用',
   customerId: 'C000001',
   mainOrderId: 'VIO000001',
@@ -307,7 +307,7 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
                   {getFieldDecorator('endDate', {
                     rules: [{ required: true, message: '请输入结束日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入结束日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入结束日期" />
                   )}
                 </Form.Item>
               </Col>
@@ -317,7 +317,7 @@ class VehicleInspectionOrderCouponCreateForm extends Component {
                   {getFieldDecorator('appliedDate', {
                     rules: [{ required: true, message: '请输入使用日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入使用日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入使用日期" />
                   )}
                 </Form.Item>
               </Col>

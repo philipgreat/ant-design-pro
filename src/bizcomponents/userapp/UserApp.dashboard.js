@@ -89,7 +89,7 @@ const summaryOf = (userApp) =>{
 <Description term="ID">{userApp.id}</Description> 
 <Description term="标题">{userApp.title}</Description> 
 <Description term="应用程序图标">{userApp.appIcon}</Description> 
-<Description term="权限">{userApp.permission}</Description> 
+<Description term="许可">{userApp.permission}</Description> 
 <Description term="访问对象类型">{userApp.objectType}</Description> 
 <Description term="对象ID">{userApp.objectId}</Description> 
 	

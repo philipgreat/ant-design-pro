@@ -40,12 +40,12 @@ const testValues = {};
 const testValues = {
   serviceStatus: '待验收',
   serviceSummary: '请在 {日期} {时间} 前到 {地点} 联系 {姓名+电话}取车。{备注}',
-  startTime: '2997-03-09 03:36:49',
-  longitude: '105.40619432443906',
-  latitude: '32.3726692326974',
+  startTime: '2998-12-14 03:19:35',
+  longitude: '103.83759593023828',
+  latitude: '32.50419739072513',
   transferVerifyCode: 'O12345',
   movementPurpose: 'VEHICLE_M2M_PICK_IN_STORE',
-  notifyDatetime: '2996-12-13 02:07:46',
+  notifyDatetime: '2996-12-06 21:54:40',
   notifyAddress: '',
   handoverResult: '',
   responsibleWorkerId: 'VSCE000001',
@@ -436,7 +436,7 @@ class ServiceVehicleMovementM2mCreateForm extends Component {
                   {getFieldDecorator('startTime', {
                     rules: [{ required: true, message: '请输入开始时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入开始时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入开始时间" />
                   )}
                 </Form.Item>
               </Col>
@@ -486,7 +486,7 @@ class ServiceVehicleMovementM2mCreateForm extends Component {
                   {getFieldDecorator('notifyDatetime', {
                     rules: [{ required: true, message: '请输入通知日期时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入通知日期时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入通知日期时间" />
                   )}
                 </Form.Item>
               </Col>

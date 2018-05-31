@@ -462,7 +462,7 @@ class MainOrderAccountUpdateForm extends Component {
                     initialValue: selectedRow.orderPlacedDatetime,
                     rules: [{ required: true, message: '请输入下单时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入下单时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入下单时间" />
                     
                   )}
                 </Form.Item>
@@ -474,7 +474,7 @@ class MainOrderAccountUpdateForm extends Component {
                     initialValue: selectedRow.orderPaymentDatetime,
                     rules: [{ required: true, message: '请输入付款时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入付款时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入付款时间" />
                     
                   )}
                 </Form.Item>
@@ -486,7 +486,7 @@ class MainOrderAccountUpdateForm extends Component {
                     initialValue: selectedRow.orderFinishedDatetime,
                     rules: [{ required: true, message: '请输入订单完成时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入订单完成时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入订单完成时间" />
                     
                   )}
                 </Form.Item>

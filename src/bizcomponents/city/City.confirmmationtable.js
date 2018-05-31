@@ -8,8 +8,8 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id', width: '20' },
-  { title: '名称', debugtype: 'string', dataIndex: 'name', width: '6' },
-  { title: '省', dataIndex: 'province', render: (text, record) => (record.province ? record.province.id : '暂无') },
+  { title: '城市名字', debugtype: 'string', dataIndex: 'cityName', width: '7' },
+  { title: '游戏平台', dataIndex: 'gamePlatform', render: (text, record) => (record.gamePlatform ? record.gamePlatform.id : '暂无') },
 ]
 
 class CityConfirmationTable extends PureComponent {

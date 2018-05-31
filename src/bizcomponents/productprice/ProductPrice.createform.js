@@ -32,12 +32,12 @@ const testValues = {};
 /*
 const testValues = {
   vehicleType: '小车',
-  inspectionPrice: '160.61',
-  secondLevelMaintenancePrice: '178.42',
-  gradeEstimationPrice: '123.11',
-  agentServicePrice: '129.66',
-  toStoreServicePrice: '102.59',
-  discountAgentServicePrice: '17.90',
+  inspectionPrice: '151.37',
+  secondLevelMaintenancePrice: '152.90',
+  gradeEstimationPrice: '123.95',
+  agentServicePrice: '121.07',
+  toStoreServicePrice: '124.33',
+  discountAgentServicePrice: '16.25',
   description: '含车辆检测费$200.00元和车辆检测待办服务费$168.00元',
   productId: 'AP000001',
   cityId: 'C000001',

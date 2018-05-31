@@ -17,11 +17,11 @@ const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
   label: '标签',
-  localeKey: '消息键值',
+  localeKey: '语言环境的关键',
   actionKey: '行动的关键',
-  level: '水平',
+  level: '级别',
   url: 'url',
-  form: '形式',
+  form: '表单',
 }
 const testValues = {};
 /*
@@ -258,9 +258,9 @@ class FormActionCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.localeKey} {...formItemLayout}>
                   {getFieldDecorator('localeKey', {
-                    rules: [{ required: true, message: '请输入消息键值' }],
+                    rules: [{ required: true, message: '请输入语言环境的关键' }],
                   })(
-                    <Input placeholder="请输入消息键值" />
+                    <Input placeholder="请输入语言环境的关键" />
                   )}
                 </Form.Item>
               </Col>
@@ -278,9 +278,9 @@ class FormActionCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.level} {...formItemLayout}>
                   {getFieldDecorator('level', {
-                    rules: [{ required: true, message: '请输入水平' }],
+                    rules: [{ required: true, message: '请输入级别' }],
                   })(
-                    <Input placeholder="请输入水平" />
+                    <Input placeholder="请输入级别" />
                   )}
                 </Form.Item>
               </Col>
@@ -320,7 +320,7 @@ class FormActionCreateForm extends Component {
                 <Form.Item label={fieldLabels.form} {...formItemLayout}>
                   {getFieldDecorator('formId', {
                   	initialValue: tryinit('form'),
-                    rules: [{ required: true, message: '请输入形式' }],
+                    rules: [{ required: true, message: '请输入表单' }],
                   })(
                                 
                   <AutoComplete
@@ -328,7 +328,7 @@ class FormActionCreateForm extends Component {
                     
                     
                     onSearch={this.handleCandidateFormSearch}
-                    placeholder="请输入形式"
+                    placeholder="请输入表单"
                     
                     disabled={!availableForEdit('form')}
                   >

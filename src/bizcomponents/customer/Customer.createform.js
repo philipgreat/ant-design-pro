@@ -16,33 +16,44 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  nickName: '客户昵称',
-  logoImage: '头像',
-  weixinOpenid: '微信ID',
-  weixinAppid: '微信APP',
+  nickName: '昵称',
+  avatarImg: '头像',
+  secUser: 'SecUser',
+  mobile: '手机号码',
+  email: '电子邮件',
+  qq: 'qq',
+  weixinOpenid: '微信 Openid',
+  weixinAppid: '微信 Appid',
   longitude: '经度',
   latitude: '纬度',
-  secUser: 'SecUser',
-  platform: '平台',
+  experienceValue: '经验值',
+  gameScore: '积分',
+  vipLevel: 'Vip级别',
+  gamePlatform: '游戏平台',
 }
 const testValues = {};
 /*
 const testValues = {
-  nickName: '张俊宝',
+  nickName: '上海外滩杜月笙',
+  mobile: '18080011234',
+  email: '',
+  qq: '1204377',
   weixinOpenid: 'wx123456789abcdefghijklmn',
   weixinAppid: 'wxapp12098410239840',
-  longitude: '103.27213963771766',
-  latitude: '29.893057378471006',
+  longitude: '105.43096652520737',
+  latitude: '29.631149610384504',
+  experienceValue: '1360',
+  gameScore: '144',
   secUserId: 'SU000001',
-  platformId: 'CIP000001',
-  logoImage: 'wx.qlogo.cnmmopenDYAIOgq83eqV99Oaly8icqjNWJWeCZTFR5HCwZcCJeibibCRMvWicIYBusmKFF6e8DAe7o07ql8mT8WhWdNUOJ3BiaQ.jpg',
+  vipLevelId: 'VL000001',
+  gamePlatformId: 'GP000001',
 }
 */
 const imageURLPrefix = '//localhost:2090'
 
 
 const imageKeys = [
-  'logoImage',
+  'avatarImg',
 ]
 
 
@@ -61,7 +72,10 @@ class CustomerCreateForm extends Component {
     this.executeCandidateSecUserSearch("")
     
     
-    this.executeCandidatePlatformSearch("")
+    this.executeCandidateVipLevelSearch("")
+    
+    
+    this.executeCandidateGamePlatformSearch("")
     
  
     
@@ -102,26 +116,48 @@ class CustomerCreateForm extends Component {
     this.executeCandidateSecUserSearch(value)
   }
 
-  executeCandidatePlatformSearch = (filterKey) =>{
+  executeCandidateVipLevelSearch = (filterKey) =>{
 
     const {CustomerService} = GlobalComponents;
     
     const id = "";//not used for now
     const pageNo = 1;
-    const future = CustomerService.requestCandidatePlatform("carInspectionPlatform", id, filterKey, pageNo);
+    const future = CustomerService.requestCandidateVipLevel("vipLevel", id, filterKey, pageNo);
     console.log(future);
     
 
-    future.then(candidatePlatformList=>{
+    future.then(candidateVipLevelList=>{
       this.setState({
-        candidatePlatformList
+        candidateVipLevelList
       })
 
     })
 
   }	 
-  handleCandidatePlatformSearch = (value) => {
-    this.executeCandidatePlatformSearch(value)
+  handleCandidateVipLevelSearch = (value) => {
+    this.executeCandidateVipLevelSearch(value)
+  }
+
+  executeCandidateGamePlatformSearch = (filterKey) =>{
+
+    const {CustomerService} = GlobalComponents;
+    
+    const id = "";//not used for now
+    const pageNo = 1;
+    const future = CustomerService.requestCandidateGamePlatform("gamePlatform", id, filterKey, pageNo);
+    console.log(future);
+    
+
+    future.then(candidateGamePlatformList=>{
+      this.setState({
+        candidateGamePlatformList
+      })
+
+    })
+
+  }	 
+  handleCandidateGamePlatformSearch = (value) => {
+    this.executeCandidateGamePlatformSearch(value)
   }
  
 
@@ -238,11 +274,20 @@ class CustomerCreateForm extends Component {
     }   
     
     
-    const {candidatePlatformList} = this.state
-    if(!candidatePlatformList){
+    const {candidateVipLevelList} = this.state
+    if(!candidateVipLevelList){
       return (<div>等等</div>)
     }
-    if(!candidatePlatformList.candidates){
+    if(!candidateVipLevelList.candidates){
+      return (<div>等等</div>)
+    }   
+    
+    
+    const {candidateGamePlatformList} = this.state
+    if(!candidateGamePlatformList){
+      return (<div>等等</div>)
+    }
+    if(!candidateGamePlatformList.candidates){
       return (<div>等等</div>)
     }   
     
@@ -287,9 +332,39 @@ class CustomerCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.nickName} {...formItemLayout}>
                   {getFieldDecorator('nickName', {
-                    rules: [{ required: true, message: '请输入客户昵称' }],
+                    rules: [{ required: true, message: '请输入昵称' }],
                   })(
-                    <Input placeholder="请输入客户昵称" />
+                    <Input placeholder="请输入昵称" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.mobile} {...formItemLayout}>
+                  {getFieldDecorator('mobile', {
+                    rules: [{ required: true, message: '请输入手机号码' }],
+                  })(
+                    <Input placeholder="请输入手机号码" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.email} {...formItemLayout}>
+                  {getFieldDecorator('email', {
+                    rules: [{ required: false, message: '请输入电子邮件' }],
+                  })(
+                    <Input placeholder="请输入电子邮件" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.qq} {...formItemLayout}>
+                  {getFieldDecorator('qq', {
+                    rules: [{ required: true, message: '请输入qq' }],
+                  })(
+                    <Input placeholder="请输入qq" />
                   )}
                 </Form.Item>
               </Col>
@@ -297,9 +372,9 @@ class CustomerCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.weixinOpenid} {...formItemLayout}>
                   {getFieldDecorator('weixinOpenid', {
-                    rules: [{ required: true, message: '请输入微信ID' }],
+                    rules: [{ required: true, message: '请输入微信 Openid' }],
                   })(
-                    <Input placeholder="请输入微信ID" />
+                    <Input placeholder="请输入微信 Openid" />
                   )}
                 </Form.Item>
               </Col>
@@ -307,9 +382,9 @@ class CustomerCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.weixinAppid} {...formItemLayout}>
                   {getFieldDecorator('weixinAppid', {
-                    rules: [{ required: true, message: '请输入微信APP' }],
+                    rules: [{ required: true, message: '请输入微信 Appid' }],
                   })(
-                    <Input placeholder="请输入微信APP" />
+                    <Input placeholder="请输入微信 Appid" />
                   )}
                 </Form.Item>
               </Col>
@@ -334,6 +409,26 @@ class CustomerCreateForm extends Component {
                 </Form.Item>
               </Col>
 
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.experienceValue} {...formItemLayout}>
+                  {getFieldDecorator('experienceValue', {
+                    rules: [{ required: true, message: '请输入经验值' }],
+                  })(
+                    <Input placeholder="请输入经验值" />
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.gameScore} {...formItemLayout}>
+                  {getFieldDecorator('gameScore', {
+                    rules: [{ required: true, message: '请输入积分' }],
+                  })(
+                    <Input placeholder="请输入积分" />
+                  )}
+                </Form.Item>
+              </Col>
+
             </Row>
           </Form>
         </Card>
@@ -347,22 +442,6 @@ class CustomerCreateForm extends Component {
 
 
 
-        <Card title="头像" className={styles.card} bordered={false}>
-          <Form >
-            <Row gutter={16}>
-              <Col lg={24} md={24} sm={24}>
-                <Form.Item>
-                  {getFieldDecorator('logoImage', {
-                    rules: [{ required: true, message: '请输入头像' }],
-                  })(
-                    <TextArea rows={4} placeholder="请输入请输入头像" />
-                  )}
-                </Form.Item>
-              </Col>
-      </Row>
-          </Form>  
-        </Card>
-
 
 
         <Card title="附件" className={styles.card} bordered={false}>
@@ -373,8 +452,8 @@ class CustomerCreateForm extends Component {
                 <ImageComponent
                   buttonTitle="头像"
                   handlePreview={this.handlePreview}
-                  handleChange={event => this.handleChange(event, 'logoImage')}
-                  fileList={convertedImagesValues.logoImage}
+                  handleChange={event => this.handleChange(event, 'avatarImg')}
+                  fileList={convertedImagesValues.avatarImg}
                 />
               </Col>
 
@@ -414,22 +493,47 @@ class CustomerCreateForm extends Component {
               </Col>
 
               <Col lg={12} md={12} sm={24}>
-                <Form.Item label={fieldLabels.platform} {...formItemLayout}>
-                  {getFieldDecorator('platformId', {
-                  	initialValue: tryinit('platform'),
-                    rules: [{ required: true, message: '请输入平台' }],
+                <Form.Item label={fieldLabels.vipLevel} {...formItemLayout}>
+                  {getFieldDecorator('vipLevelId', {
+                  	initialValue: tryinit('vipLevel'),
+                    rules: [{ required: true, message: '请输入Vip级别' }],
                   })(
                                 
                   <AutoComplete
-                    dataSource={candidatePlatformList.candidates}
+                    dataSource={candidateVipLevelList.candidates}
                     
                     
-                    onSearch={this.handleCandidatePlatformSearch}
-                    placeholder="请输入平台"
+                    onSearch={this.handleCandidateVipLevelSearch}
+                    placeholder="请输入Vip级别"
                     
-                    disabled={!availableForEdit('platform')}
+                    disabled={!availableForEdit('vipLevel')}
                   >
-                  {candidatePlatformList.candidates.map(item=>{
+                  {candidateVipLevelList.candidates.map(item=>{
+                return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);
+            })}
+                  
+                  </AutoComplete>
+                  )}
+                </Form.Item>
+              </Col>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.gamePlatform} {...formItemLayout}>
+                  {getFieldDecorator('gamePlatformId', {
+                  	initialValue: tryinit('gamePlatform'),
+                    rules: [{ required: true, message: '请输入游戏平台' }],
+                  })(
+                                
+                  <AutoComplete
+                    dataSource={candidateGamePlatformList.candidates}
+                    
+                    
+                    onSearch={this.handleCandidateGamePlatformSearch}
+                    placeholder="请输入游戏平台"
+                    
+                    disabled={!availableForEdit('gamePlatform')}
+                  >
+                  {candidateGamePlatformList.candidates.map(item=>{
                 return (<Option key={item.id}>{`${item.name}(${item.id})`}</Option>);
             })}
                   

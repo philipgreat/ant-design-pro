@@ -16,7 +16,7 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  who: '审批人',
+  who: '谁',
   blockTime: '块时间',
   comments: '评论',
 }
@@ -121,7 +121,7 @@ class SecUserBlockingCreateForm extends Component {
       const { owner } = this.props
       dispatch({
         type: `${owner.type}/goback`,
-        payload: { id: owner.id, type: 'secUserBlocking',listName:'SEC用户阻塞列表' },
+        payload: { id: owner.id, type: 'secUserBlocking',listName:'用户块列表' },
       })
     }
     const errors = getFieldsError()
@@ -196,8 +196,8 @@ class SecUserBlockingCreateForm extends Component {
     }
     return (
       <PageHeaderLayout
-        title="新建一个SEC用户阻塞"
-        content="新建一个SEC用户阻塞"
+        title="新建一个用户块"
+        content="新建一个用户块"
         wrapperClassName={styles.advancedForm}
       >
         <Card title="基础信息" className={styles.card} bordered={false}>
@@ -207,9 +207,9 @@ class SecUserBlockingCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.who} {...formItemLayout}>
                   {getFieldDecorator('who', {
-                    rules: [{ required: true, message: '请输入审批人' }],
+                    rules: [{ required: true, message: '请输入谁' }],
                   })(
-                    <Input placeholder="请输入审批人" />
+                    <Input placeholder="请输入谁" />
                   )}
                 </Form.Item>
               </Col>

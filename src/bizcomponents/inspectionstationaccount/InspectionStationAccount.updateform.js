@@ -330,7 +330,7 @@ class InspectionStationAccountUpdateForm extends Component {
                     initialValue: selectedRow.inspectionDatetime,
                     rules: [{ required: true, message: '请输入检测日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入检测日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入检测日期" />
                     
                   )}
                 </Form.Item>

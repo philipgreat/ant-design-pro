@@ -16,8 +16,8 @@ const { RangePicker } = DatePicker
 const { TextArea } = Input
 const fieldLabels = {
   id: 'ID',
-  name: '名称',
-  province: '省',
+  cityName: '城市名字',
+  gamePlatform: '游戏平台',
 
 }
 
@@ -267,12 +267,12 @@ class CityUpdateForm extends Component {
               </Col>
 
               <Col lg={12} md={12} sm={24}>
-                <Form.Item label={fieldLabels.name} {...formItemLayout}>
-                  {getFieldDecorator('name', {
-                    initialValue: selectedRow.name,
-                    rules: [{ required: true, message: '请输入名称' }],
+                <Form.Item label={fieldLabels.cityName} {...formItemLayout}>
+                  {getFieldDecorator('cityName', {
+                    initialValue: selectedRow.cityName,
+                    rules: [{ required: true, message: '请输入城市名字' }],
                   })(
-                    <Input placeholder="请输入名称" />
+                    <Input placeholder="请输入城市名字" />
                     
                   )}
                 </Form.Item>

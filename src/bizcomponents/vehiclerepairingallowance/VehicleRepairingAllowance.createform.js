@@ -26,7 +26,7 @@ const testValues = {};
 const testValues = {
   allowanceTitle: '维修费补贴',
   allowanceCode: 'REPAIRING_ALLOWANCE',
-  allowanceAmount: '19.89',
+  allowanceAmount: '17.36',
   serviceId: 'AS000001',
 }
 */

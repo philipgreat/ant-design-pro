@@ -40,10 +40,10 @@ const testValues = {
   serviceStatus: '审核中',
   serviceSummary: '请处理车辆 {车牌号码} 6年免检事项',
   inspectionResult: '通过',
-  startTime: '2994-09-18 18:18:49',
-  longitude: '104.87191565965396',
-  latitude: '32.12864088146064',
-  inspectionDatetime: '2994-11-21 17:27:44',
+  startTime: '2994-02-07 01:05:56',
+  longitude: '105.19971721722699',
+  latitude: '30.23984891292065',
+  inspectionDatetime: '2998-07-20 02:58:34',
   responsibleWorkerId: 'VSCE000001',
   inspectionStationId: 'IS000001',
   merchantId: 'VSC000001',
@@ -403,7 +403,7 @@ class ServiceFileInspectionCreateForm extends Component {
                   {getFieldDecorator('startTime', {
                     rules: [{ required: true, message: '请输入开始时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入开始时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入开始时间" />
                   )}
                 </Form.Item>
               </Col>
@@ -433,7 +433,7 @@ class ServiceFileInspectionCreateForm extends Component {
                   {getFieldDecorator('inspectionDatetime', {
                     rules: [{ required: true, message: '请输入检测日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入检测日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入检测日期" />
                   )}
                 </Form.Item>
               </Col>

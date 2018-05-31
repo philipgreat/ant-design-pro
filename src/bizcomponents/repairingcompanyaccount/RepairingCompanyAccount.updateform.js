@@ -381,7 +381,7 @@ class RepairingCompanyAccountUpdateForm extends Component {
                     initialValue: selectedRow.paymentDatetime,
                     rules: [{ required: true, message: '请输入付款日期时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入付款日期时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入付款日期时间" />
                     
                   )}
                 </Form.Item>

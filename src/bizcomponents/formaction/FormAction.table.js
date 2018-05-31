@@ -10,11 +10,11 @@ import ImagePreview from '../../components/ImagePreview'
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id',},
   { title: '标签', debugtype: 'string', dataIndex: 'label',},
-  { title: '消息键值', debugtype: 'string', dataIndex: 'localeKey',},
+  { title: '语言环境的关键', debugtype: 'string', dataIndex: 'localeKey',},
   { title: '行动的关键', debugtype: 'string', dataIndex: 'actionKey',},
-  { title: '水平', debugtype: 'string', dataIndex: 'level',},
+  { title: '级别', debugtype: 'string', dataIndex: 'level',},
   { title: 'url', debugtype: 'string', dataIndex: 'url',},
-  { title: '形式', dataIndex: 'form', render: (text, record) => (record.form ? record.form.displayName : '暂无') },
+  { title: '表单', dataIndex: 'form', render: (text, record) => (record.form ? record.form.displayName : '暂无') },
 
 
 ]

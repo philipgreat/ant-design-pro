@@ -9,7 +9,7 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id',  render: (text, record)=>(<Link to={`/secUserBlocking/${text}/dashboard`}>{text}</Link>) },
-  { title: '审批人', debugtype: 'string', dataIndex: 'who',},
+  { title: '谁', debugtype: 'string', dataIndex: 'who',},
   { title: '块时间', dataIndex: 'blockTime', render: (text, record) => moment(record.blockTime).format('YYYY-MM-DD HH:mm:ss') },
   { title: '评论', debugtype: 'string', dataIndex: 'comments',},
 

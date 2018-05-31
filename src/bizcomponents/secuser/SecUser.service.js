@@ -30,7 +30,7 @@ const requestCandidateDomain = (ownerClass, id, filterKey, pageNo) => {
 
 
 const addCustomer = (targetObjectId, parameters) => {
-  const url = `${PREFIX}secUserManager/addCustomer/secUserId/nickName/logoImage/weixinOpenid/weixinAppid/longitude/latitude/platformId/tokensExpr/`
+  const url = `${PREFIX}secUserManager/addCustomer/secUserId/nickName/avatarImg/mobile/email/qq/weixinOpenid/weixinAppid/longitude/latitude/experienceValue/gameScore/vipLevelId/gamePlatformId/tokensExpr/`
   const requestParameters = { ...parameters, tokensExpr: 'none' }
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -42,7 +42,7 @@ const addCustomer = (targetObjectId, parameters) => {
 }
 
 const updateCustomer = (targetObjectId, parameters) => {
-  const url = `${PREFIX}secUserManager/updateCustomerProperties/secUserId/id/nickName/logoImage/weixinOpenid/weixinAppid/longitude/latitude/tokensExpr/`
+  const url = `${PREFIX}secUserManager/updateCustomerProperties/secUserId/id/nickName/avatarImg/mobile/email/qq/weixinOpenid/weixinAppid/longitude/latitude/experienceValue/gameScore/tokensExpr/`
   const secUserId = targetObjectId
   const requestParameters = { ...parameters, secUserId, tokensExpr: 'none' }
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }

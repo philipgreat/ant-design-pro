@@ -132,9 +132,9 @@ class FormMessageSearchForm extends PureComponent {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="水平">
+            <FormItem label="级别">
               {getFieldDecorator('level')(
-                <Input placeholder="请输入水平" />
+                <Input placeholder="请输入级别" />
               )}
             </FormItem>
           </Col>

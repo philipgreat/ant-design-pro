@@ -9,8 +9,8 @@ import ImagePreview from '../../components/ImagePreview'
 
 const columns = [
   { title: 'ID', debugtype: 'string', dataIndex: 'id',  render: (text, record)=>(<Link to={`/city/${text}/dashboard`}>{text}</Link>) },
-  { title: '名称', debugtype: 'string', dataIndex: 'name',},
-  { title: '省', dataIndex: 'province', render: (text, record) => (record.province ? record.province.displayName : '暂无') },
+  { title: '城市名字', debugtype: 'string', dataIndex: 'cityName',},
+  { title: '游戏平台', dataIndex: 'gamePlatform', render: (text, record) => (record.gamePlatform ? record.gamePlatform.displayName : '暂无') },
 
 
 ]

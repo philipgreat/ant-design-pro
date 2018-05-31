@@ -35,7 +35,7 @@ const testValues = {
   inspectionType: '上线检测',
   inspectionVehicleInfo: '川A44W11',
   inspectionFinalResult: '通过',
-  inspectionDatetime: '2997-03-18 06:07:08',
+  inspectionDatetime: '2996-06-25 16:19:41',
   inspectionStationName: '大源车辆检测站',
   mainOrderNumber: 'vehicle_inspection_order',
   merchantId: 'VSC000001',
@@ -402,7 +402,7 @@ class InspectionStationAccountCreateForm extends Component {
                   {getFieldDecorator('inspectionDatetime', {
                     rules: [{ required: true, message: '请输入检测日期' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入检测日期" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入检测日期" />
                   )}
                 </Form.Item>
               </Col>

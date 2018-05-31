@@ -43,21 +43,21 @@ const testValues = {};
 const testValues = {
   vehicleLicensePlateNumber: '川A44W11',
   productName: '上线检测,二级维护，等级评定',
-  inspectionPrice: '153.70',
-  agentServicePrice: '151.07',
+  inspectionPrice: '177.86',
+  agentServicePrice: '133.35',
   city: '成都',
   vehicleType: '小轿车',
-  orderTotalAmount: '360.72',
-  orderPromotionDiscount: '9.40',
-  orderCouponDiscount: '9.72',
-  orderInsuranceAmount: '3.68',
+  orderTotalAmount: '302.23',
+  orderPromotionDiscount: '8.39',
+  orderCouponDiscount: '8.69',
+  orderInsuranceAmount: '3.91',
   orderMerchantDiscount: '$40.0',
-  orderCustomerPaymentAmount: '321.00',
-  orderServiceAmount: '65.08',
-  orderPlatformBalance: '16.22',
-  orderPlacedDatetime: '2996-08-26 02:56:44',
-  orderPaymentDatetime: '2995-10-08 19:20:39',
-  orderFinishedDatetime: '2995-09-05 09:29:56',
+  orderCustomerPaymentAmount: '345.44',
+  orderServiceAmount: '77.08',
+  orderPlatformBalance: '19.89',
+  orderPlacedDatetime: '2998-08-05 07:06:48',
+  orderPaymentDatetime: '2997-09-11 04:33:03',
+  orderFinishedDatetime: '2994-01-12 12:19:57',
   mainOrderId: 'O1234567890',
   wechatOrderId: '5K8264ILTKCH16CQ2502SI8ZNMTM67VS',
   wechatPrepayId: 'u802345jgfjsdfgsdg888',
@@ -420,7 +420,7 @@ class MainOrderAccountCreateForm extends Component {
                   {getFieldDecorator('orderPlacedDatetime', {
                     rules: [{ required: true, message: '请输入下单时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入下单时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入下单时间" />
                   )}
                 </Form.Item>
               </Col>
@@ -430,7 +430,7 @@ class MainOrderAccountCreateForm extends Component {
                   {getFieldDecorator('orderPaymentDatetime', {
                     rules: [{ required: true, message: '请输入付款时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入付款时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入付款时间" />
                   )}
                 </Form.Item>
               </Col>
@@ -440,7 +440,7 @@ class MainOrderAccountCreateForm extends Component {
                   {getFieldDecorator('orderFinishedDatetime', {
                     rules: [{ required: true, message: '请输入订单完成时间' }],
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="请输入订单完成时间" />
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="请输入订单完成时间" />
                   )}
                 </Form.Item>
               </Col>

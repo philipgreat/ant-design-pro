@@ -27,7 +27,7 @@ const testValues = {};
 const testValues = {
   insuranceName: '基本保险',
   insuranceVendor: '太平洋财产保险',
-  insurancePrice: '3.73',
+  insurancePrice: '4.29',
   summary: '除了基本保险，还可以购买额外保险',
   productId: 'AP000001',
 }

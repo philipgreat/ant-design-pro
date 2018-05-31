@@ -20,7 +20,7 @@ const fieldLabels = {
   secUser: 'SEC的用户',
   appIcon: '应用程序图标',
   fullAccess: '完全访问',
-  permission: '权限',
+  permission: '许可',
   objectType: '访问对象类型',
   objectId: '对象ID',
   location: '位置',
@@ -271,9 +271,9 @@ class UserAppCreateForm extends Component {
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.permission} {...formItemLayout}>
                   {getFieldDecorator('permission', {
-                    rules: [{ required: true, message: '请输入权限' }],
+                    rules: [{ required: true, message: '请输入许可' }],
                   })(
-                    <Input placeholder="请输入权限" />
+                    <Input placeholder="请输入许可" />
                   )}
                 </Form.Item>
               </Col>
